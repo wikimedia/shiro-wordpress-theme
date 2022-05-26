@@ -47,6 +47,9 @@ function register_block() {
 				'selectedAuthor' => [
 					'type' => 'number',
 				],
+				'fetchUrlBase' => [
+					'type' => 'string',
+				],
 			],
 		]
 	);

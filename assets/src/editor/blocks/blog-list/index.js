@@ -5,15 +5,15 @@
 /**
  * WordPress dependencies
  */
-import apiFetch from '@wordpress/api-fetch';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { PanelBody, QueryControls } from '@wordpress/components';
 import { useState, useRef, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
-import { addQueryArgs } from '@wordpress/url';
 
 import './style.scss';
+
+const parseLinkHeader = require( 'parse-link-header' );
 
 export const name = 'shiro/blog-list';
 
@@ -53,6 +53,9 @@ export const settings = {
 		selectedAuthor: {
 			type: 'number',
 		},
+		fetchUrlBase: {
+			type: 'string',
+		},
 	},
 
 	/**
@@ -65,6 +68,7 @@ export const settings = {
 			order,
 			orderBy,
 			selectedAuthor,
+			fetchUrlBase,
 		} = attributes;
 
 		const blockProps = useBlockProps( {
@@ -112,39 +116,69 @@ export const settings = {
 		const isStillMounted = useRef();
 
 		/**
+		 * Build args for apiFetch, based on the presence of a remote url base.
+		 */
+		const fetchRemote = async ( path, args ) => {
+			const params = new URLSearchParams( args );
+
+			let test = 'http://wikimedia.local/wp-json';
+			if ( test ) {
+				path = `${test}${path}`;
+			}
+			const url = new URL( `${path}?${params}` );
+			const response = await window.fetch( url );
+			if ( response.ok ) {
+				let extra = {};
+				if ( response.headers && response.headers.get( 'Link' ) ) {
+					const link = parseLinkHeader( response.headers.get( 'Link' ) );
+					if ( link && link.next ) {
+						extra = {
+							...extra,
+							next: link.next.url,
+						};
+					}
+				}
+				const jsonValue = await response.json();
+				return Promise.resolve( {
+					response: jsonValue,
+					extra,
+				} );
+			} else {
+				return Promise.reject( `Could not resolve ${path}` );
+			}
+		};
+
+		/**
+		 *
+		 */
+		const getAllFetched = ( path, args, setResultList ) => {
+			fetchRemote( path, args )
+				.then( ( { response, extra } )  => {
+					if ( isStillMounted.current ) {
+						setResultList( oldList => [ ...oldList, ...response ] );
+						if ( extra.next ) {
+							// If there are more categories, get them as well.
+							const nextUrl = new URL( extra.next );
+							getAllFetched( path, nextUrl.searchParams.entries(), setResultList );
+						}
+					}
+				} )
+				.catch( () => {
+					if ( isStillMounted.current ) {
+						setResultList( [] );
+					}
+				} );
+		};
+
+		/**
 		 * Prepopulate the list of categories and users to select from.
 		 *
 		 * (Copied from the core/latest-posts block.)
 		 */
 		useEffect( () => {
 			isStillMounted.current = true;
-
-			apiFetch( {
-				path: addQueryArgs( '/wp/v2/categories', { per_page: -1 } ),
-			} )
-				.then( data => {
-					if ( isStillMounted.current ) {
-						setCategoriesList( data );
-					}
-				} )
-				.catch( () => {
-					if ( isStillMounted.current ) {
-						setCategoriesList( [] );
-					}
-				} );
-			apiFetch( {
-				path: addQueryArgs( '/wp/v2/users', { per_page: -1 } ),
-			} )
-				.then( data => {
-					if ( isStillMounted.current ) {
-						setAuthorList( data );
-					}
-				} )
-				.catch( () => {
-					if ( isStillMounted.current ) {
-						setAuthorList( [] );
-					}
-				} );
+			getAllFetched( '/wp/v2/categories/', { per_page: 30 }, setCategoriesList );
+			getAllFetched( '/wp/v2/users/', { per_page: 30 }, setAuthorList );
 
 			return () => {
 				isStillMounted.current = false;
