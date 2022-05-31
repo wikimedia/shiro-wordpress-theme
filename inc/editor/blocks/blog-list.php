@@ -51,6 +51,10 @@ function register_block() {
 				'fetchUrlBase' => [
 					'type' => 'string',
 				],
+				'useRemote' => [
+					'type' => 'boolean',
+					'default' => false,
+				],
 			],
 		]
 	);
@@ -65,6 +69,9 @@ function register_block() {
  */
 function render_block( $attributes ) {
 
+	$use_remote = $attributes['useRemote'] ?? false;
+	$remote_url_base = $attributes['fetchUrlBase'] ?? null;
+
 	$args = [
 		'posts_per_page' => $attributes['postsToShow'],
 		'post_status' => 'publish',
@@ -73,27 +80,69 @@ function render_block( $attributes ) {
 		'suppress_filters' => false,
 	];
 
-	$remote_args = [
-		'author' => $attributes['selectedAuthor'] ?? null,
-		'categories' => array_column( $attributes['categories'], 'id' ),
-		'order' => $attributes['order'],
-		'orderby' => $attributes['orderBy'],
-		'per_page' => $attributes['postsToShow'],
-	];
+	if ( $use_remote && filter_var( $remote_url_base, FILTER_VALIDATE_URL ) ) {
+		$remote_args = [
+			'author' => $attributes['selectedAuthor'] ?? null,
+			'categories' => array_column( $attributes['categories'], 'id' ),
+			'order' => $attributes['order'],
+			'orderby' => $attributes['orderBy'],
+			'per_page' => $attributes['postsToShow'],
+		];
 
-	echo '<pre>';
-	var_dump( get_remote_posts( 'http://wikimedia.local/wp-json/wp/v2/posts/', $remote_args ) );
-	echo '</pre>';
+		$recent_posts = get_remote_posts( untrailingslashit( $remote_url_base ), $remote_args );
 
-	if ( isset( $attributes['categories'] ) ) {
-		$args['category__in'] = array_column( $attributes['categories'], 'id' );
+	} else {
+
+		if ( isset( $attributes['categories'] ) ) {
+			$args['category__in'] = array_column( $attributes['categories'], 'id' );
+		}
+
+		if ( isset( $attributes['selectedAuthor'] ) ) {
+			$args['author'] = $attributes['selectedAuthor'];
+		}
+
+		$recent_posts = array_map( function ( \WP_Post $post ) {
+			$image = get_post_thumbnail_id( $post );
+			if ( $image ) {
+				$mime = get_post_mime_type( $post );
+				$type = strtok( $mime, '/' );
+				$media = [
+					'type' => $type,
+					'mime' => $mime,
+					'url' => wp_get_attachment_image_url( $image, 'image_4x3_large' ),
+				];
+			}
+
+			return [
+				'id' => $post->ID,
+				'date' => $post->post_date,
+				'modified' => $post->post_modified,
+				'link' => get_permalink( $post->ID ),
+				'title' => get_the_title( $post ),
+				'content' => apply_filters( 'the_content', $post->post_content ),
+				'excerpt' => get_the_excerpt( $post ),
+				'author' => [
+					'url' => get_author_posts_url( $post->post_author ),
+					'name' => get_the_author_meta( 'display_name', $post->post_author ),
+				],
+				'featured_media' => $media,
+				'categories' => array_map( function ( \WP_Term $term ) {
+					return [
+						'name' => $term->name,
+						'slug' => $term->slug,
+						'url' => get_term_link( $term ),
+					];
+				}, get_the_category( $post->ID ) ?? [] ),
+				'tags' => array_map( function ( \WP_Term $term ) {
+					return [
+						'name' => $term->name,
+						'slug' => $term->slug,
+						'url' => get_term_link( $term ),
+					];
+				}, get_the_tags( $post->ID ) ?? [] ),
+			];
+		}, get_posts( $args ) );
 	}
-
-	if ( isset( $attributes['selectedAuthor'] ) ) {
-		$args['author'] = $attributes['selectedAuthor'];
-	}
-
-	$recent_posts = get_posts( $args );
 
 	if ( count( $recent_posts ) > 0 ) {
 		$output = '';
