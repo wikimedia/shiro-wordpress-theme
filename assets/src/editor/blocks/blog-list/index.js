@@ -6,7 +6,7 @@
  * WordPress dependencies
  */
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { PanelBody, QueryControls } from '@wordpress/components';
+import { PanelBody, QueryControls, ToggleControl, TextControl, Button } from '@wordpress/components';
 import { useState, useRef, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
@@ -55,6 +55,11 @@ export const settings = {
 		},
 		fetchUrlBase: {
 			type: 'string',
+			default: '',
+		},
+		useRemote: {
+			type: 'boolean',
+			default: false,
 		},
 	},
 
@@ -69,6 +74,7 @@ export const settings = {
 			orderBy,
 			selectedAuthor,
 			fetchUrlBase,
+			useRemote,
 		} = attributes;
 
 		const blockProps = useBlockProps( {
@@ -121,9 +127,8 @@ export const settings = {
 		const fetchRemote = async ( path, args ) => {
 			const params = new URLSearchParams( args );
 
-			let test = 'http://wikimedia.local/wp-json';
-			if ( test ) {
-				path = `${test}${path}`;
+			if ( useRemote && fetchUrlBase ) {
+				path = `${fetchUrlBase}${path}`;
 			}
 			const url = new URL( `${path}?${params}` );
 			const response = await window.fetch( url );
@@ -171,14 +176,28 @@ export const settings = {
 		};
 
 		/**
+		 *
+		 */
+		const loadCategories = () => {
+			getAllFetched( '/wp/v2/categories/', { per_page: 30 }, setCategoriesList );
+		};
+
+		/**
+		 *
+		 */
+		const loadAuthors = () => {
+			getAllFetched( '/wp/v2/users/', { per_page: 30 }, setAuthorList );
+		};
+
+		/**
 		 * Prepopulate the list of categories and users to select from.
 		 *
 		 * (Copied from the core/latest-posts block.)
 		 */
 		useEffect( () => {
 			isStillMounted.current = true;
-			getAllFetched( '/wp/v2/categories/', { per_page: 30 }, setCategoriesList );
-			getAllFetched( '/wp/v2/users/', { per_page: 30 }, setAuthorList );
+			loadCategories();
+			loadAuthors();
 
 			return () => {
 				isStillMounted.current = false;
@@ -209,6 +228,34 @@ export const settings = {
 							onOrderByChange={ orderBy => setAttributes( { orderBy } ) }
 							onOrderChange={ order => setAttributes( { order } ) }
 						/>
+						<ToggleControl
+							checked={ useRemote }
+							help={ __( 'This allows you to pull posts from the remote WordPress installation, instead of this one.' ) }
+							label={ __( 'Use remote URL' ) }
+							onChange={ () => {
+								const toLocal = ! useRemote;
+								setAttributes( { useRemote: ! useRemote } );
+								if ( toLocal ) {
+									// If we're switching to load, we need to reload authors/categories.
+									loadAuthors();
+									loadCategories();
+								}
+							} }
+						/>
+						{ useRemote &&  <div>
+							<TextControl
+								label={ __( 'Remote URL Base', 'shiro-admin' ) }
+								value={ fetchUrlBase }
+								onChange={ value => setAttributes( { fetchUrlBase: value } ) }
+							/>
+							<Button
+								isSecondary
+								onClick={ () => {
+									loadAuthors();
+									loadCategories();
+								} }
+							>{ __( 'Set URL', 'shiro-admin' ) }</Button>
+						</div> }
 					</PanelBody>
 
 				</InspectorControls>
