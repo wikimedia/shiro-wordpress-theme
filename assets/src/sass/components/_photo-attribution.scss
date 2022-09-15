@@ -74,6 +74,19 @@
 			margin-left: -10px;
 			position: absolute;
 			z-index: 1;
+
+			&::after {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 0px;
+				top: 100%;
+				left: 1.5em;
+				border: 0.35rem transparent solid;
+				border-bottom: none;
+				border-top-color: rgba(0,0,0,0.75);
+			}
+
 		}
 	}
 
