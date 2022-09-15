@@ -711,14 +711,21 @@ function wmf_get_gulp_asset_uri( string $name ): string {
  * @param string $text The text to wrap
  * @param string $possible_url The URL to put in the href of the link.
  */
-function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
+function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '', $creative_commons ) {
 	if ( empty( $possible_url ) ) :
 		echo esc_html( $text );
 	else :
 	?>
-	<a href="<?php echo esc_url( $possible_url ); ?>" target="_blank" rel="noopener noreferrer">
-		<?php echo esc_html( $text ); ?>
-	</a>
+	<div>
+		<a href="<?php echo esc_url( $possible_url ); ?>" target="_blank" rel="noopener noreferrer">
+			<?php echo esc_html( $text ); ?>
+			<?php if ( isset( $creative_commons ) ): ?>	
+				<div class="attribution-item__content-icon">
+					<span class="attribution-item__content-tooltip"><?php esc_html_e('Utilize Wikimedia Commons', 'shiro'); ?></span>
+				</div>
+			<?php endif; ?>
+		</a>
+	</div>
 	<?php
 	endif;
 }

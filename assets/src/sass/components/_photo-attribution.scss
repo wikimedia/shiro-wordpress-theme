@@ -40,6 +40,41 @@
 
 		// Align tops of capital letters with the top of the image.
 		margin-top: -7px;
+
+		&-icon {
+			display: inline-block;
+
+			&:hover {
+				.attribution-item__content-tooltip {
+					visibility: visible;
+				}
+			}
+
+			&::before {
+				content: '';
+				background: url('./assets/src/images/commons-logo.svg');
+				background-size: contain;
+				background-repeat: no-repeat;
+				display: block;
+				height: rem( 16 );
+				width: rem( 18 );
+			}
+		}
+
+		&-tooltip {
+			font-size: rem( 10 );
+			visibility: hidden;
+			width: 120px;
+			background-color: black;
+			color: #fff;
+			text-align: center;
+			padding: 5px 0;
+			border-radius: 6px;
+			
+			/* Position the tooltip text - see examples below! */
+			position: absolute;
+			z-index: 1;
+		}
 	}
 
 	p {
