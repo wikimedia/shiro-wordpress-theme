@@ -75,73 +75,70 @@
 	}
 }
 
-.tooltip-wrapper {
+.commons-tooltip-wrapper {
 	cursor: help;
 	display: inline-block;
-	text-align: center;  
-	transform: translateZ(0) translateX(0%);
 	-webkit-font-smoothing: antialiased;
+	text-align: center;
+	transform: translateZ(0) translateX(0%);
 
 	&::before {
-		content: '';
-		background: url('./assets/src/images/commons-logo.svg');
-		background-size: contain;
+		background: url("./assets/src/images/commons-logo.svg");
 		background-repeat: no-repeat;
+		background-size: contain;
+		content: "";
 		display: block;
-		height: rem( 16 );
-		width: rem( 18 );
+		height: rem(16);
+		width: rem(18);
 	}
-  }
-	
-  .tooltip-wrapper {
+
 	[role=tooltip] {
-		font-size: rem( 12 );
-	  bottom: 100%;
-	  left: 50%;
-	  margin-bottom: rem( 10 );
-	  opacity: 0;
-	  padding: rem( 5 ) rem( 6 );
-	  transform: translateY(10px) translateX(-50%);
-	  transition: all 0.25s ease-out;
-	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
-	  pointer-events: none;
-	  position: absolute;
-	  background: rgba(0,0,0, 0.75);
-	  color: white;
-	  display: block; 
-	  text-align: center;
-	  
-	  &:before {
-		bottom: -1.2em;
-		height: 1.2em;
-		left: 0;
-		width: 100%;
-		position: absolute;
-		content: " ";
-		display: block;      
-	  } 
-	  
-	  &:after {
-		border-left: solid transparent 0.8em;
-		border-right: solid transparent 0.8em;
-		border-top: solid rgba(0,0,0, 0.75) 0.8em;
-		bottom: -0.8em;
-		content: " ";
-		height: 0;
+		background: rgba(0, 0, 0, 0.75);
+		bottom: 100%;
+		box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+		color: #fff;
+		display: block;
+		font-size: rem(12);
 		left: 50%;
-		margin-left: -13px;
-		width: 0;
-		position: absolute;      
-	  }
+		margin-bottom: rem(10);
+		opacity: 0;
+		padding: rem(5) rem(6);
+		pointer-events: none;
+		position: absolute;
+		text-align: center;
+		transform: translateY(10px) translateX(-50%);
+		transition: all 0.25s ease-out;
+
+		&::before {
+			bottom: -1.2em;
+			content: "";
+			display: block;
+			height: 1.2em;
+			left: 0;
+			position: absolute;
+			width: 100%;
+		}
+
+		&::after {
+			border-left: solid transparent 0.8em;
+			border-right: solid transparent 0.8em;
+			border-top: solid rgba(0, 0, 0, 0.75) 0.8em;
+			bottom: -0.8em;
+			content: "";
+			height: 0;
+			left: 50%;
+			margin-left: -13px;
+			position: absolute;
+			width: 0;
+		}
 	}
 	
 	&:hover,
-	&:focus {  
-	  [role=tooltip] {
-		opacity: 1;
-		pointer-events: auto;
-		transform: translateY(0px) translateX(-50%);      
-	  }
+	&:focus {
+		[role=tooltip] {
+			opacity: 1;
+			pointer-events: auto;
+			transform: translateY(0) translateX(-50%);
+		}
 	}
-  }
-
+}

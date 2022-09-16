@@ -721,7 +721,7 @@ function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '', $creative_com
 			<?php echo esc_html( $text ); ?>
 		</a>
 		<?php if ( isset( $creative_commons ) ): ?>	
-		<div class="tooltip-wrapper" aria-describedby="commons-tooltip" tabindex="0">
+		<div class="commons-tooltip-wrapper" aria-describedby="commons-tooltip" tabindex="0">
    			<span id="commons-tooltip" role="tooltip"><?php esc_html_e('Utilize Wikimedia Commons', 'shiro'); ?></span>
 		</div>
 		<?php endif; ?>
