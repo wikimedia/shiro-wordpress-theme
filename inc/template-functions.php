@@ -711,7 +711,7 @@ function wmf_get_gulp_asset_uri( string $name ): string {
  * @param string $text The text to wrap
  * @param string $possible_url The URL to put in the href of the link.
  */
-function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '', $creative_commons ) {
+function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '', $creative_commons = false ) {
 	if ( empty( $possible_url ) ) :
 		echo esc_html( $text );
 	else :
