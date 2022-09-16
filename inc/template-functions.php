@@ -711,10 +711,12 @@ function wmf_get_gulp_asset_uri( string $name ): string {
  * @param string $text The text to wrap
  * @param string $possible_url The URL to put in the href of the link.
  */
-function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '', $creative_commons = false ) {
+function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
 	if ( empty( $possible_url ) ) :
 		echo esc_html( $text );
 	else :
+		$host = parse_url( $possible_url, PHP_URL_HOST );
+		$creative_commons = false !== strpos( $host, 'commons.wikimedia.org' );
 	?>
 	<div>
 		<a href="<?php echo esc_url( $possible_url ); ?>" target="_blank" rel="noopener noreferrer">

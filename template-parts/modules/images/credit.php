@@ -23,10 +23,9 @@ $credit_info = get_post_meta( $image_id, 'credit_info', true );
 $author      = ! empty( $credit_info['author'] ) ? $credit_info['author'] : '';
 $license     = ! empty( $credit_info['license'] ) ? $credit_info['license'] : '';
 $url         = ! empty( $credit_info['url'] ) ? $credit_info['url'] : '';
-$commons_icon = true;
+
 if ( is_int(stripos($license,'Public domain') ) ) {
-$license_url = 'https://en.wikipedia.org/wiki/Public_domain';
-$commons_icon = false;
+	$license_url = 'https://en.wikipedia.org/wiki/Public_domain';
 } elseif ( is_int(stripos($license,'GFDL') ) && is_int(stripos($license,'1.2') )  ) {
     $license_url = 'https://commons.wikimedia.org/wiki/Commons:GNU_Free_Documentation_License,_version_1.2';
 } elseif ( is_int(stripos($license,'CC0') ) ) {
@@ -47,7 +46,6 @@ $commons_icon = false;
     $license_url = 'https://creativecommons.org/licenses/by/2.0/';
 } else {
 	$license_url = ! empty( $credit_info['license_url'] ) ? $credit_info['license_url'] : '';
-	$commons_icon = false;
 }
 ?>
 
@@ -58,7 +56,7 @@ $commons_icon = false;
 
 	<div class="attribution-item__content">
 		<p>
-			<?php wmf_shiro_echo_wrap_with_link( $title, $url, $commons_icon ); ?>
+			<?php wmf_shiro_echo_wrap_with_link( $title, $url ); ?>
 		</p>
 
 		<?php if ( empty( $author ) && empty( $license ) ) : ?>
