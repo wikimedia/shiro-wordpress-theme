@@ -72,7 +72,7 @@ $commons_icon = false;
 
 			<?php if ( ! empty( $license ) ) : ?>
 				<p>
-					<?php wmf_shiro_echo_wrap_with_link( $license, $license_url, $commons_icon); ?>
+					<?php wmf_shiro_echo_wrap_with_link( $license, $license_url ); ?>
 				</p>
 			<?php endif; ?>
 		<?php endif; ?>
