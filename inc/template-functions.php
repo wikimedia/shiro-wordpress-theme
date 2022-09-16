@@ -719,12 +719,12 @@ function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '', $creative_com
 	<div>
 		<a href="<?php echo esc_url( $possible_url ); ?>" target="_blank" rel="noopener noreferrer">
 			<?php echo esc_html( $text ); ?>
-			<?php if ( isset( $creative_commons ) ): ?>	
-				<div class="attribution-item__content-icon">
-					<span class="attribution-item__content-tooltip"><?php esc_html_e('Utilize Wikimedia Commons', 'shiro'); ?></span>
-				</div>
-			<?php endif; ?>
 		</a>
+		<?php if ( isset( $creative_commons ) ): ?>	
+		<div class="tooltip-wrapper" aria-describedby="commons-tooltip" tabindex="0">
+   			<span id="commons-tooltip" role="tooltip"><?php esc_html_e('Utilize Wikimedia Commons', 'shiro'); ?></span>
+		</div>
+		<?php endif; ?>
 	</div>
 	<?php
 	endif;
