@@ -109,25 +109,15 @@
 		transform: translateY(10px) translateX(-50%);
 		transition: all 0.25s ease-out;
 
-		&::before {
-			bottom: -1.2em;
-			content: "";
-			display: block;
-			height: 1.2em;
-			left: 0;
-			position: absolute;
-			width: 100%;
-		}
-
 		&::after {
-			border-left: solid transparent 0.8em;
-			border-right: solid transparent 0.8em;
-			border-top: solid rgba(0, 0, 0, 0.75) 0.8em;
-			bottom: -0.8em;
+			border-left: solid transparent rem(10);
+			border-right: solid transparent rem(10);
+			border-top: solid rgba(0, 0, 0, 0.75) rem(10);
+			bottom: rem(-9);
 			content: "";
 			height: 0;
 			left: 50%;
-			margin-left: -13px;
+			margin-left: rem(-13);
 			position: absolute;
 			width: 0;
 		}
