@@ -722,10 +722,10 @@ function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
 		<a href="<?php echo esc_url( $possible_url ); ?>" target="_blank" rel="noopener noreferrer">
 			<?php echo esc_html( $text ); ?>
 		</a>
-		<?php if ( $creative_commons ): ?>	
-		<div class="commons-tooltip-wrapper" aria-describedby="commons-tooltip" tabindex="0">
+		<?php if ( $creative_commons ): ?>
+		<a href="https://commons.wikimedia.org/" class="commons-tooltip-wrapper" aria-describedby="commons-tooltip" tabindex="0">
    			<span id="commons-tooltip" role="tooltip"><?php esc_html_e('File provided by Wikimedia Commons', 'shiro'); ?></span>
-		</div>
+		</a>
 		<?php endif; ?>
 	</div>
 	<?php
