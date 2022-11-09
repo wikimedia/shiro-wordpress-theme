@@ -492,3 +492,13 @@ function shiro_add_slug_body_class( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'shiro_add_slug_body_class' );
+
+function get_page_id() {
+	?>
+	<script type="text/javascript">
+		var post_id = '<?php global $post; echo $post->ID; ?>';
+	</script>
+	<?php
+
+} 
+add_action('wp_head','get_page_id');
