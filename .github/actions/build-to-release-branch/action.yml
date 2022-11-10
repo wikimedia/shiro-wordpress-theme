@@ -33,7 +33,8 @@ runs:
 
     - name: Merge source into release branch
       shell: bash
-      # Simulate "-s theirs", which doesn't exist in git for reasons.
+      # Simulate "-s theirs", which doesn't exist in git for sensible reasons
+      # which do not apply to our current situation.
       # https://web.archive.org/web/20131126171744/http://www.seanius.net/blog/2011/02/git-merge-s-theirs/
       run: |
         git fetch origin ${{ inputs.source_branch }}
@@ -43,7 +44,7 @@ runs:
         git merge -s ours ${{ inputs.source_branch }}
         git diff --binary ${{ inputs.source_branch }} | git apply -R --index
         git commit --amend -m "Merge branch '${{ inputs.source_branch }}' into '${{ inputs.release_branch }}'"
-    
+
     - name: Build code
       shell: bash
       run: ${{ inputs.build_script }}
@@ -51,7 +52,6 @@ runs:
     - name: Update release branch
       shell: bash
       run: |
-        echo "${{ inputs.built_asset_paths }}"
         git add -f ${{ inputs.built_asset_paths }}
         git commit --amend -m "Build to 'release' from ${{ inputs.source_branch }}#$( git rev-parse --short ${{ inputs.source_branch }} )"
         git push origin ${{ inputs.release_branch }}:${{ inputs.release_branch }}
