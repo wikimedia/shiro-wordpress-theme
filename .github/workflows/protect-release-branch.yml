@@ -1,0 +1,15 @@
+name: Branch protection
+on:
+  pull_request:
+    branches:
+      - 'release'
+
+jobs:
+  release:
+    name: Do not merge the Release branch into other branches
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          echo "The release branch is automatically maintained based on merges to 'main' and should not be the source for a pull request."
+          exit 1
