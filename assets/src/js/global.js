@@ -16,11 +16,11 @@ function search_donation_links() {
 	function add_parameter( item ) {
 		var current_url = item.getAttribute( 'href' );
 
-		if ( ! current_url.includes('utm_source=') ) {
+		if ( current_url.includes('utm_source') ) {
+			item.href = current_url.replace( /utm_source=0*[1-9][0-9]*/, 'utm_source=' + page_id );
+		} else {
 			item.href = current_url + '&utm_source=' + page_id;
 		}
-
-		//TODO remove wrong utm_source added in the links by the editor
 	}
 
 	donation_button.forEach(add_parameter);
