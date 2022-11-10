@@ -2,34 +2,31 @@ name: Release
 
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
 
 jobs:
   release:
-    name: Build project
+    name: "Update release branch"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
         with:
           node-version: '14'
 
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-
-      - name: Update release branch
-        uses: technote-space/release-github-actions@v7
+      - name: Merge and build
+        uses: ./.github/actions/build-to-release-branch
         with:
-          BRANCH_NAME: release
-          BUILD_COMMAND_TARGET: 'build'
-          CLEAN_TEST_TAG: true
-          CLEAN_TARGETS: .[!.]*,__tests__,src,package.json,package-lock.json,node_modules,tests,*.xml.dist
-          COMMIT_MESSAGE: "Built release for ${{ steps.get_version.outputs.VERSION }}. For a full change log look at the notes within the original/${{ steps.get_version.outputs.VERSION }} release."
-          CREATE_MAJOR_VERSION_TAG: false
-          CREATE_MINOR_VERSION_TAG: false
-          CREATE_PATCH_VERSION_TAG: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ORIGINAL_TAG_PREFIX: original/
-          OUTPUT_BUILD_INFO_FILENAME: build.json
-          TEST_TAG_PREFIX: test/
+          source_branch: main
+          release_branch: release
+          built_asset_paths: ./*.css package-lock.json map assets/dist
+          build_script: |
+            npm ci
+            npm run build:gulp
