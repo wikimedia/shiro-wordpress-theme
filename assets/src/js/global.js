@@ -6,7 +6,8 @@
  */
 
 /**
- * Search for Donation Button and add parameter link.
+ * Search for Donation Button and add parameter link Op1.
+ * This function is mainting all the parameters and adding 'utm_source' to it.
  */
 
 function search_donation_links() {
@@ -28,7 +29,12 @@ function search_donation_links() {
 	donation_button.forEach(add_parameter);
 }
 
-// search_donation_links();
+// 
+
+/**
+ * Search for Donation Button and add parameter link Op1.
+ * This function is removing all the parameters and adding 'utm_source' to it.
+ */
 
 document.querySelectorAll('[href^="https://donate.wikimedia.org"]').forEach( function( item ) {
 	'use strict';
@@ -36,6 +42,6 @@ document.querySelectorAll('[href^="https://donate.wikimedia.org"]').forEach( fun
 	var url = item.href;
 	var params = new URLSearchParams( url.search );
 	params.set( 'utm_source', page_id );
-	item.href = url.replace( /\?.*/, varName + '?' + varName );
+	item.href = url.replace( /\?.*/, '?utm_source=' + page_id );
 }
 );
