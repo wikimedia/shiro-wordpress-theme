@@ -41,7 +41,7 @@ $class      = $card_data['class'] ?? 'blog-post';
 		<?php if ( ! empty( $title ) ) : ?>
 			<h3 class="blog-post__title">
 				<a href="<?php echo esc_url( $link ); ?>">
-					<?php echo esc_html( $title ); ?>
+					<?php the_safe_title( $title ) ?>
 				</a>
 			</h3>
 		<?php endif; ?>

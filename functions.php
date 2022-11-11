@@ -502,3 +502,13 @@ function shiro_add_slug_body_class( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'shiro_add_slug_body_class' );
+
+function the_safe_title( string $title ): void {
+	echo wp_kses( 
+		$title,
+		[
+			'span' => ['class'],
+			'em' => [],
+		]
+	);
+}

@@ -34,7 +34,7 @@ $allowed_tags = [
 
 		<div class="mw-784">
 			<?php if ( ! empty( $title ) ) : ?>
-				<h1><?php echo wp_kses( $title, array( 'span' => array( 'class' ) ) ); ?></h1>
+				<h1><?php the_safe_title( $title ) ?></h1>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $meta ) ) : ?>
