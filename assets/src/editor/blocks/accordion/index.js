@@ -16,7 +16,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 
-import '../../../js/accordion/toggler';
+import '../../helpers/accordion/toggler';
 
 export const name = 'shiro/accordion';
 
