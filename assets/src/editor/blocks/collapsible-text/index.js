@@ -1,6 +1,7 @@
 /**
  * Block for inserting collapsible text.
  */
+import { ReactNode } from 'react';
 
 /**
  * WordPress dependencies
@@ -36,7 +37,15 @@ export const settings = {
 		},
 	},
 
-	edit: ( { attributes, setAttributes } ) => {
+	/**
+	 * Render the editor UI for the block.
+	 *
+	 * @param {object}   props               React component props.
+	 * @param {object}   props.attributes    Block attrs.
+	 * @param {Function} props.setAttributes Block attribute setter.
+	 * @returns {ReactNode} Rendered edit note.
+	 */
+	edit: function Edit( { attributes, setAttributes } ) {
 			 const { fontColor, readMore, readLess } = attributes;
 
 			 return (
