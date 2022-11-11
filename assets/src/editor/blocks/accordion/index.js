@@ -6,6 +6,8 @@
  * WordPress dependencies
  */
 
+import { ReactNode } from 'react';
+
 import { InnerBlocks, useBlockProps, InspectorControls, useSetting } from '@wordpress/block-editor';
 import { Panel, PanelBody, ColorPalette } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -17,21 +19,6 @@ import { __ } from '@wordpress/i18n';
 import '../../../js/accordion/toggler';
 
 export const name = 'shiro/accordion';
-
-const CUSTOM_COLORS = [
-	{
-		color: '#f00',
-		name: 'Red',
-	},
-	{
-		color: '#fff',
-		name: 'White',
-	},
-	{
-		color: '#00f',
-		name: 'Blue',
-	},
-];
 
 export const settings = {
 	apiVersion: 2,
@@ -49,7 +36,15 @@ export const settings = {
 	providesContext: {
 		'accordion/fontColor': 'fontColor',
 	},
-	edit: ( { attributes, setAttributes } ) => {
+	/**
+	 * Render the editor UI for the block.
+	 *
+	 * @param {object}   props               React component props.
+	 * @param {object}   props.attributes    Block attrs.
+	 * @param {Function} props.setAttributes Block attribute setter.
+	 * @returns {ReactNode} Rendered edit note.
+	 */
+	edit: function Edit( { attributes, setAttributes } ) {
 		const blockProps = useBlockProps(); // eslint-disable-line react-hooks/rules-of-hooks
 		const { fontColor } = attributes;
 		return (

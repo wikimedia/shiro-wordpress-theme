@@ -131,8 +131,6 @@ export const settings = {
 
 		const blockProps = useBlockProps( { className: 'hero' } );
 
-		const ctaButtonAdditionalClass = ctaButtonStyle ? ` hero__cta-button hero__cta-button--${ ctaButtonStyle }` : '';
-
 		return (
 			<div { ...applyDefaultStyle( blockProps ) } >
 				<InspectorControls key="setting">
