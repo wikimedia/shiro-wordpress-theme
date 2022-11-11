@@ -8,7 +8,7 @@ import IconSelector from './IconSelector';
 
 import './style.scss';
 
-const withIconSelector = createHigherOrderComponent( ButtonBlockEdit => {
+const withIconSelector = createHigherOrderComponent( ( ButtonBlockEdit ) => {
 	/**
 	 * Insert the icon selector in the inspector controls for the button block.
 	 */
