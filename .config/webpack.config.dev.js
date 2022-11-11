@@ -18,6 +18,7 @@ module.exports = choosePort( 8080).then( port => [
 				editor: filePath('assets/src/editor/index.js'),
 			},
 			output: {
+				chunkFormat: 'array-push',
 				path: filePath('assets/dist'),
 				publicPath: `http://localhost:${port}/shiro-blocks/`
 			},
@@ -36,6 +37,7 @@ module.exports = choosePort( 8080).then( port => [
 				shiro: filePath('assets/src/scripts/shiro.js'),
 			},
 			output: {
+				chunkFormat: 'array-push',
 				path: filePath('assets/dist'),
 				publicPath: `http://localhost:${port}/shiro-theme/`
 			},

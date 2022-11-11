@@ -1,5 +1,5 @@
 var gulp         = require( 'gulp' );
-var sass         = require( 'gulp-sass' );
+var sass         = require( 'gulp-sass' )( require( 'sass' ) );
 var rtlcss       = require( 'gulp-rtlcss' );
 var footer       = require('gulp-footer');
 var rename       = require( 'gulp-rename' );

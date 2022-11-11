@@ -1,7 +1,7 @@
 const { helpers, externals, plugins, presets } = require( '@humanmade/webpack-helpers' );
 const { filePath } = helpers;
 const { copy, clean, manifest, miniCssExtract } = plugins;
-const WebpackRTLPlugin = require( 'webpack-rtl-plugin' );
+const WebpackRTLPlugin = require( '@automattic/webpack-rtl-plugin' );
 const { addSvgr } = require('./shared');
 
 module.exports = [
@@ -12,6 +12,9 @@ module.exports = [
 			editor: filePath( 'assets/src/editor/index.js' ),
 		},
 		output: {
+			chunkFormat: 'array-push',
+			chunkLoading: false,
+			wasmLoading: false,
 			path: filePath( 'assets/dist' ),
 			filename: './[name]-[chunkhash].js',
 		},
@@ -34,7 +37,7 @@ module.exports = [
 		],
 		resolve: {
 			alias: {
-				"sass-lib": filePath('assets/src/sass/')
+				'sass-lib': filePath('assets/src/sass/')
 			}
 		}
 	} )),
@@ -44,6 +47,9 @@ module.exports = [
 			shiro: filePath( 'assets/src/scripts/shiro.js' ),
 		},
 		output: {
+			chunkFormat: 'array-push',
+			chunkLoading: false,
+			wasmLoading: false,
 			path: filePath( 'assets/dist' ),
 			filename: './[name]-[chunkhash].js',
 		},
