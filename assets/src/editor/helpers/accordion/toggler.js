@@ -7,7 +7,7 @@
  *
  * @param {Event} e Click event.
  */
-const toggleAccordionItem = e => {
+const toggleAccordionItem = ( e ) => {
 	e.preventDefault();
 
 	const parent = e.target.closest( '.accordion-item' );
@@ -26,9 +26,9 @@ const toggleAccordionItem = e => {
  *
  * @param {HTMLElement} wrapper Accordion wrapper div.
  */
-const closeAllAccordionItems = wrapper => {
+const closeAllAccordionItems = ( wrapper ) => {
 	[ ...wrapper.querySelectorAll( '.accordion-item' ) ].forEach(
-		accordionItem => accordionItem.removeAttribute( 'aria-expanded' )
+		( accordionItem ) => accordionItem.removeAttribute( 'aria-expanded' )
 	);
 };
 
@@ -37,7 +37,7 @@ const closeAllAccordionItems = wrapper => {
  *
  * @param {Element} item The concerned element.
  */
-const addAccordionToggleHandlers = item => {
+const addAccordionToggleHandlers = ( item ) => {
 	const button = item.querySelector( '.accordion-item__title' );
 	button.addEventListener( 'click', toggleAccordionItem );
 };
@@ -49,7 +49,7 @@ const addAccordionToggleHandlers = item => {
  */
 const initializeAccordionItems = () => {
 	// Hook in click events to each item.
-	[ ...document.querySelectorAll( '.accordion-item' ) ].forEach( item => addAccordionToggleHandlers( item ) );
+	[ ...document.querySelectorAll( '.accordion-item' ) ].forEach( ( item ) => addAccordionToggleHandlers( item ) );
 };
 
 document.addEventListener( 'DOMContentLoaded', initializeAccordionItems );

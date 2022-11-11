@@ -11,6 +11,8 @@
 
 // Minimum available screen width at which a device can be considered a mobile device
 // Many older feature phones have screens smaller than this value.
+@use "sass:math";
+
 $width-breakpoint-mobile: 320px;
 
 // Minimum available screen width at which a device can be considered a tablet
@@ -123,8 +125,8 @@ $background-color-input-binary--checked: $color-primary;
 // Quiet Buttons
 $background-color-quiet:          $background-color-base;
 // Use `rgba()` values here as the quiet buttons need to blend in with background.
-$background-color-quiet--hover:   rgba( 0, 24, 73, 7/255 ); // = `$wmui-color-base90` on white.
-$background-color-quiet--active:  rgba( 0, 36, 73, 21/255 ); // = `$wmui-color-base80` on white.
+$background-color-quiet--hover:   rgba( 0, 24, 73, math.div(7, 255) ); // = `$wmui-color-base90` on white.
+$background-color-quiet--active:  rgba( 0, 36, 73, math.div(21, 255) ); // = `$wmui-color-base80` on white.
 // Toolbar and Tools
 $background-color-toolbar:        $background-color-base;
 $background-color-tool--hover:    $background-color-base--hover;
