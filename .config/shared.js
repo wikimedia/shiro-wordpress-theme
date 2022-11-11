@@ -7,8 +7,8 @@
  * iterate until it is found, apply our custom rule, and then return the
  * mutated configuration.
  *
- * @param config
- * @return {object} Mutated Webpack configuration object.
+ * @param {object} config Webpack configuration object.
+ * @returns {object} Mutated Webpack configuration object.
  */
 function addSvgr( config ) {
 	for ( let i = 0; i < config.module.rules.length; i++ ) {
@@ -18,7 +18,7 @@ function addSvgr( config ) {
 				loader: '@svgr/webpack',
 				options: {
 					icon: true,
-				}
+				},
 			} );
 			return config;
 		}
@@ -29,4 +29,4 @@ function addSvgr( config ) {
 
 module.exports = {
 	addSvgr,
-}
+};

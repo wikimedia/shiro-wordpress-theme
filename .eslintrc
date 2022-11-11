@@ -17,6 +17,21 @@
 	},
 	"overrides": [
 		{
+			"env": {
+				"node": true
+			},
+			"files": [
+				".config/**/*.js",
+				"gulpfile.js"
+			],
+			"extends": ["@humanmade/eslint-config"],
+			"rules": {
+				"arrow-parens": [ "error", "always" ],
+				"jsdoc/require-param": [0],
+				"jsdoc/require-returns": [0]
+			}
+		},
+		{
 			"parser": "babel-eslint",
 			"files": ["assets/src/editor/**/*.js"],
 			"extends": ["@humanmade/eslint-config"],
