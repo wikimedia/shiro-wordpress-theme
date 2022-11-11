@@ -503,6 +503,12 @@ function shiro_add_slug_body_class( $classes ) {
 }
 add_filter( 'body_class', 'shiro_add_slug_body_class' );
 
+/**
+ * Allow span and em tags into titles.
+ *
+ * @param string $title Post title.
+ * @return string
+ */
 function the_safe_title( string $title ): void {
 	echo wp_kses( 
 		$title,
