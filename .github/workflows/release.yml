@@ -29,4 +29,4 @@ jobs:
           built_asset_paths: ./*.css package-lock.json map assets/dist
           build_script: |
             npm ci
-            npm run build:gulp
+            npm run build

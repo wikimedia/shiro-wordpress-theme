@@ -10,7 +10,7 @@ import {
 	useBlockProps,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { SelectControl, Panel, PanelBody, } from '@wordpress/components';
+import { SelectControl, Panel, PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -131,24 +131,34 @@ export const settings = {
 
 		const blockProps = useBlockProps( { className: 'hero' } );
 
-		const ctaButtonAdditionalClass = ctaButtonStyle ? ` hero__cta-button hero__cta-button--${ ctaButtonStyle }` : '';
-
 		return (
 			<div { ...applyDefaultStyle( blockProps ) } >
 				<InspectorControls key="setting">
 					<Panel>
 						<PanelBody
 							title={ __( 'Call-to-action button', 'shiro-admin' ) }
-							initialOpen={ true }
+							initialOpen
 						>
 							<SelectControl
 								label={ __( 'Button style', 'shiro-admin' ) }
 								value={ ctaButtonStyle }
 								options={ [
-									{ label: __( 'No icon / Blue background', 'shiro-admin' ), value: 'no-icon-blue-background' },
-									{ label: __( 'Info icon / Gray background', 'shiro-admin' ), value: 'info-icon-gray-background' },
-									{ label: __( 'Info icon / No background', 'shiro-admin' ), value: 'info-icon-no-background' },
-									{ label: __( 'Expand icon / Gray background', 'shiro-admin' ), value: 'expand-icon-gray-background' },
+									{
+										label: __( 'No icon / Blue background', 'shiro-admin' ),
+										value: 'no-icon-blue-background',
+									},
+									{
+										label: __( 'Info icon / Gray background', 'shiro-admin' ),
+										value: 'info-icon-gray-background',
+									},
+									{
+										label: __( 'Info icon / No background', 'shiro-admin' ),
+										value: 'info-icon-no-background',
+									},
+									{
+										label: __( 'Expand icon / Gray background', 'shiro-admin' ),
+										value: 'expand-icon-gray-background',
+									},
 								] }
 								onChange={ ( value ) => setAttributes( { ctaButtonStyle: value } ) }
 							/>
@@ -163,7 +173,7 @@ export const settings = {
 							placeholder={ __( 'Kicker', 'shiro-admin' ) }
 							tagName="small"
 							value={ kicker }
-							onChange={ kicker => setAttributes( { kicker } ) }
+							onChange={ ( kicker ) => setAttributes( { kicker } ) }
 						/>
 						<RichText
 							className="hero__title"
@@ -171,7 +181,7 @@ export const settings = {
 							placeholder={ __( 'Title for the page', 'shiro-admin' ) }
 							tagName="h1"
 							value={ title }
-							onChange={ title => setAttributes( { title } ) }
+							onChange={ ( title ) => setAttributes( { title } ) }
 						/>
 						<RichText
 							className="hero__description"
@@ -180,20 +190,20 @@ export const settings = {
 							placeholder={ __( 'Description text - some additional information on the hero header.', 'shiro-admin' ) }
 							tagName="div"
 							value={ description }
-							onChange={ description => setAttributes( { description } ) }
+							onChange={ ( description ) => setAttributes( { description } ) }
 						/>
 						<Cta
 							className={ `hero__call-to-action cta-button${ ctaButtonStyle }` }
 							text={ buttonText }
 							url={ buttonLink }
-							onChangeLink={ buttonLink => setAttributes( { buttonLink } ) }
-							onChangeText={ buttonText => setAttributes( { buttonText } ) }
+							onChangeLink={ ( buttonLink ) => setAttributes( { buttonLink } ) }
+							onChangeText={ ( buttonText ) => setAttributes( { buttonText } ) }
 						/>
 					</div>
 					<ImageFilter
 						className="hero__image-container"
 						value={ imageFilter }
-						onChange={ imageFilter => setAttributes( { imageFilter } ) }
+						onChange={ ( imageFilter ) => setAttributes( { imageFilter } ) }
 					>
 						<ImagePicker
 							className="hero__image"
@@ -218,7 +228,7 @@ export const settings = {
 					placeholder={ __( 'Introductory paragraph - some information about this page to guide the reader.', 'shiro-admin' ) }
 					tagName="div"
 					value={ pageIntro }
-					onChange={ pageIntro => setAttributes( { pageIntro } ) }
+					onChange={ ( pageIntro ) => setAttributes( { pageIntro } ) }
 				/>
 			</div>
 		);

@@ -7,12 +7,10 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
 import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 
 import './style.scss';
-
 
 export const name = 'shiro/accordion-item';
 
@@ -34,7 +32,7 @@ export const settings = {
 			type: 'string',
 			source: 'html',
 			selector: 'h3',
-		}
+		},
 	},
 
 	usesContext: [ 'accordion/fontColor' ],
@@ -64,7 +62,7 @@ export const settings = {
 							placeholder={ __( 'Add Accordion Title...', 'shiro-admin' ) }
 							tagName="h3"
 							value={ attributes.title }
-							onChange={ title => setAttributes( { title } ) }
+							onChange={ ( title ) => setAttributes( { title } ) }
 							style={ fontColor && { color: fontColor } }
 						></RichText>
 					</div>
@@ -98,5 +96,5 @@ export const settings = {
 				</div>
 			</div>
 		);
-	}
+	},
 };
