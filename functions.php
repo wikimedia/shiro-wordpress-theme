@@ -282,7 +282,6 @@ require get_template_directory() . '/inc/editor/patterns/template-landing.php';
 require get_template_directory() . '/inc/editor/patterns/template-list.php';
 require get_template_directory() . '/inc/editor/patterns/template-report-landing.php';
 require get_template_directory() . '/inc/editor/patterns/template-report-section.php';
-require get_template_directory() . '/inc/editor/patterns/template-report.php';
 
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
@@ -321,6 +320,7 @@ require get_template_directory() . '/inc/fields.php';
 /**
  * Custom Taxonomies.
  */
+require get_template_directory() . '/inc/taxonomy-content-language.php';
 require get_template_directory() . '/inc/taxonomies.php';
 
 /**
