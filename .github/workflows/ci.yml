@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  push:
+    branches:
+      - main
+      - release
+  pull_request:
+    types:
+      - opened
+      - ready_for_review
+      - synchronize
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php:
+    uses: ./.github/workflows/php.yml
+    secrets: inherit

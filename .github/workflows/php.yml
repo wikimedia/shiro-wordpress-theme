@@ -1,0 +1,53 @@
+name: PHP
+
+on: workflow_call
+
+jobs:
+  php:
+    name: PHP
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-version: [ '8.0' ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Paths filters
+        uses: dorny/paths-filter@v2
+        id: paths
+        with:
+          filters: |
+            composer: &composer
+              - 'composer.json'
+              - 'composer.lock'
+            php: &php
+              - *composer
+              - '**/*.php'
+            phpcs:
+              - *php
+              - 'phpcs.xml'
+            phpunit:
+              - *php
+              - 'phpunit.xml'
+
+      - name: Setup
+        if: ${{ toJSON( steps.paths.outputs.changes ) != '"[]"' }}
+        uses: ./.github/actions/setup-php
+        with:
+          cache_version: ${{ secrets.GH_ACTIONS_CACHE_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        if: ${{ toJSON( steps.paths.outputs.changes ) != '"[]"' && steps.cache-php-dependencies.outputs.cache-hit != 'true' }}
+        run: composer install --no-progress --no-interaction --no-ansi
+
+      - name: Lint code
+        # We use this action and not another because it only targets changed files.
+        uses: tinovyatkin/action-php-codesniffer@v1
+        with:
+          files: "**.php"
+          phpcs_path: vendor/bin/phpcs
+          standard: phpcs.xml
