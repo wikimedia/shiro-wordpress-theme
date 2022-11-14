@@ -18,7 +18,7 @@ runs:
       with:
         php-version: ${{ matrix.php-version }}
         coverage: none
-        tools: composer
+        tools: composer, parallel-lint
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
 
