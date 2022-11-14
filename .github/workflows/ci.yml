@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  push:
+    branches:
+      - main
+      - release
+  pull_request:
+    types:
+      - opened
+      - ready_for_review
+      - synchronize
+    # Only run on a given PR if relevant files have changed.
+    # (Both Node and PHP tasks will be dispatched, but they will exit early if
+    # relevant files for that language are not altered within the PR.)
+    paths:
+      - '**.js'
+      - '**.jsx'
+      - '**.php'
+      - '.babelrc.js'
+      - '.eslintrc'
+      - '.eslintignore'
+      - 'composer.json'
+      - 'composer.lock'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'phpcs.xml'
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  node:
+    uses: ./.github/workflows/node.yml
+    secrets: inherit
+
+  php:
+    uses: ./.github/workflows/php.yml
+    secrets: inherit
