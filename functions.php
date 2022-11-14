@@ -371,10 +371,11 @@ require_once get_template_directory() . '/inc/stories.php';
 Stories_Customisations\init();
 
 /**
- * Modify the document title for the search and 404 pages
+ * Modify the document title for the 404 page
+ *
+ * @param array $title_parts Document title parts.
+ * @return array Filtered array.
  */
-
-// 404 page
 function wmf_filter_wp_404title( $title_parts ) {
 	if ( is_404() ) {
 		$title_parts['title'] = get_theme_mod( 'wmf_404_message', __( '404 Error', 'shiro-admin' ) );
@@ -386,10 +387,22 @@ function wmf_filter_wp_404title( $title_parts ) {
 // Hook into document_title_parts
 add_filter( 'document_title_parts', 'wmf_filter_wp_404title' );
 
-// Search page
+/**
+ * Modify the document title for the search page
+ *
+ * @param array $title_parts Document title parts.
+ * @return array Filtered array.
+ */
 function wmf_filter_wp_searchtitle( $title_parts ) {
 	if ( is_search() ) {
-		$title_parts['title'] = sprintf( __( get_theme_mod( 'wmf_search_results_copy', __( 'Search results for %s', 'shiro-admin' ) ), 'shiro' ), get_search_query() );
+		$title_parts['title'] = sprintf(
+			get_theme_mod(
+				'wmf_search_results_copy',
+				/* translators: %s: the search query. */
+				__( 'Search results for %s', 'shiro-admin' )
+			),
+			get_search_query()
+		);
 	}
 
 	return $title_parts;
