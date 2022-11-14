@@ -42,14 +42,15 @@ jobs:
         if: ${{ toJSON( steps.paths.outputs.changes ) != '"[]"' && steps.cache-php-dependencies.outputs.cache-hit != 'true' }}
         run: composer install --no-progress --no-interaction --no-ansi
 
-      - name: List changed files
+      - name: Check syntax
         if: ${{ steps.paths.outputs.phpcs == 'true' }}
-        run: |
-          echo ${{ steps.paths.outputs.php_files }}
+        run: parallel-lint --exclude .git --exclude .github --exclude vendor .
 
       - name: Lint changed files
         id: phpcs
-        if: ${{ steps.paths.outputs.phpcs == 'true' }}
+        # Once more of the codebase is lint-free, change this to check
+        # outputs.phpcs so it will re-run if standards or dependencies change.
+        if: ${{ steps.paths.outputs.php == 'true' }}
         run: |
           vendor/bin/phpcs --report-full --report-checkstyle=./phpcs-report.xml ${{ steps.paths.outputs.php_files }}
 
