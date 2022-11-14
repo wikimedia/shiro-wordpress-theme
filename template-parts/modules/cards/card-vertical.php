@@ -35,7 +35,7 @@ $image_size = true === $sidebar ? 'image_4x5_large' : 'image_4x3_large';
 			<?php if ( ! empty( $title ) ) : ?>
 			<h3 class="h3">
 				<a href="<?php echo esc_url( $link ); ?>">
-					<?php echo esc_html( $title ); ?>
+					<?php shiro_safe_title( $title ); ?>
 				</a>
 			</h3>
 			<?php endif; ?>
