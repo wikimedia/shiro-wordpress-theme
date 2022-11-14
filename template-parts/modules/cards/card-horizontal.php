@@ -77,9 +77,9 @@ $class      = $card_data['class'] ?? 'blog-post';
 		</div>
 
 		<a href="<?php echo esc_url( $link ); ?>"
-		   class="blog-post__read-more"
-		   aria-label="<?php /* translators: 1. the post title. */
-		   esc_html_e( sprintf( 'Read more about %s', $title ), 'shiro' ); ?>">
+			class="blog-post__read-more"
+			aria-label="<?php /* translators: 1. the post title. */
+			esc_html_e( sprintf( 'Read more about %s', $title ), 'shiro' ); ?>">
 			<?php esc_html_e( 'Read more', 'shiro' ); ?>
 		</a>
 	</div>

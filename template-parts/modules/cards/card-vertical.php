@@ -71,9 +71,9 @@ $image_size = true === $sidebar ? 'image_4x5_large' : 'image_4x3_large';
 			</div>
 
 			<a href="<?php echo esc_url( $link ); ?>"
-			   class="arrow-link"
-			   aria-label="<?php /* translators: 1. the post title. */
-			   esc_html_e( sprintf( 'Read more about %s', $title ), 'shiro' ); ?>">
+				class="arrow-link"
+				aria-label="<?php /* translators: 1. the post title. */
+				esc_html_e( sprintf( 'Read more about %s', $title ), 'shiro' ); ?>">
 				<?php esc_html_e( 'Read more', 'shiro' ); ?>
 			</a>
 		</div>
