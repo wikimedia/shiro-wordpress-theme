@@ -61,7 +61,7 @@
 	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
-			<property name="prefixes" type="array" value="wmf,rkv"/>
+			<property name="prefixes" type="array" value="wmf,shiro"/>
 		</properties>
 	</rule>
 	<rule ref="WordPress.Security.ValidatedSanitizedInput">

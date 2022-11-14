@@ -487,7 +487,7 @@ add_filter( 'nav_menu_item_args', 'wmf_filter_nav_menu_items', 10, 3 );
 /**
  * Add reusable blocks link to admin menu.
  */
-function link_reusable_blocks_url() {
+function shiro_link_reusable_blocks_url() {
 	add_menu_page(
 		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
 		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
@@ -498,7 +498,7 @@ function link_reusable_blocks_url() {
 	);
 }
 
-add_action( 'admin_menu', 'link_reusable_blocks_url' );
+add_action( 'admin_menu', 'shiro_link_reusable_blocks_url' );
 
 /**
  * Add page slug as body class.
