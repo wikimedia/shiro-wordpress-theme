@@ -49,6 +49,7 @@
 			to speed up the process of getting to basic compliance with more critical
 			rules, and should be reinstated in the future as time permits.
 		-->
+		<exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
 		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments"/>
 	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
