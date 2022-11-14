@@ -53,6 +53,10 @@
 		<exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
 		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments"/>
 	</rule>
+	<rule ref="WordPress.NamingConventions.ValidVariableName.StringNotSnakeCase">
+		<!-- Block attributes use JS-style naming patterns. -->
+		<exclude-pattern>inc/editor/blocks/</exclude-pattern>
+	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<property name="prefixes" type="array" value="wmf,rkv"/>
