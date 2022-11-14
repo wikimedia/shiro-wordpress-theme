@@ -12,6 +12,21 @@ on:
       - opened
       - ready_for_review
       - synchronize
+    # Only run on a given PR if relevant files have changed.
+    # (Both Node and PHP tasks will be dispatched, but they will exit early if
+    # relevant files for that language are not altered within the PR.)
+    paths:
+      - '**.js'
+      - '**.jsx'
+      - '**.php'
+      - '.babelrc.js'
+      - '.eslintrc'
+      - '.eslintignore'
+      - 'composer.json'
+      - 'composer.lock'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'phpcs.xml'
 
 defaults:
   run:
