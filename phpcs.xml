@@ -6,6 +6,7 @@
 	<file>.</file>
 	<exclude-pattern>tests/</exclude-pattern>
 	<exclude-pattern>vendor/</exclude-pattern>
+	<exclude>feed-images.php</exclude>
 	<!-- Add additional exclude directories here-->
 
 	<!-- How to scan -->
@@ -37,6 +38,9 @@
 		<exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>
 		<!-- Talk like yoda, you should not. -->
 		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
+		<!-- Permit single-line PHP statements. -->
+		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket"/>
 		<!--
 			The following rules are ones we DO recommend. They are omitted for now
 			to speed up the process of getting to basic compliance with more critical
