@@ -8,6 +8,7 @@
 	<exclude-pattern>vendor/</exclude-pattern>
 	<exclude-pattern>feed-images.php</exclude-pattern>
 	<exclude-pattern>feed-offset1.php</exclude-pattern>
+	<exclude-pattern>inc/classes/walkers/class-walker-main-nav.php</exclude-pattern>
 	<!-- Add additional exclude directories here-->
 
 	<!-- How to scan -->
