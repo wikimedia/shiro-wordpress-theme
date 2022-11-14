@@ -1,0 +1,12 @@
+{
+    "name": "wikimedia/shiro-wordpress-theme",
+    "version": "1.0.0",
+    "description": "Wikimedia Foundation website theme.",
+    "minimum-stability": "stable",
+    "type": "wordpress-theme",
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}
