@@ -35,6 +35,8 @@
 		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta_get_user_meta"/>
 		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta_delete_user_meta"/>
 		<exclude name="Squiz.Commenting.FileComment.MissingPackageTag"/>
+		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+		<exclude name="Internal.NoCodeFound"/>
 		<!-- Do not require = and => alignment. -->
 		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned"/>
 		<exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>
