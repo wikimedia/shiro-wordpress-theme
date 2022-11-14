@@ -1,0 +1,52 @@
+name: Node
+
+on: workflow_call
+
+jobs:
+  node:
+    name: Node
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 14 ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Paths filters
+        uses: dorny/paths-filter@v2
+        id: paths
+        with:
+          filters: |
+            javascript: &javascript
+              - '**/*.js'
+            eslint:
+              - *javascript
+              - '.eslintignore'
+              - '.eslintrc'
+            npm:
+              - 'package.json'
+              - 'package-lock.json'
+
+      - name: Setup
+        if: ${{ toJSON( steps.paths.outputs.changes ) != '"[]"' }}
+        uses: ./.github/actions/setup-node
+        with:
+          cache_version: ${{ secrets.GH_ACTIONS_CACHE_KEY }}
+
+      - name: Install dependencies
+        if: ${{ toJSON( steps.paths.outputs.changes ) != '"[]"' && steps.cache-node-dependencies.outputs.cache-hit != 'true' }}
+        run: npm ci --progress=false --audit=false --fund=false --legacy-peer-deps
+
+      - name: Lint code
+        if: ${{ steps.paths.outputs.eslint == 'true' }}
+        uses: wearerequired/lint-action@v2
+        with:
+          continue_on_error: false
+          eslint: true
+
+      - name: Build application
+        if: ${{ steps.paths.outputs.javascript == 'true' || steps.paths.outputs.npm == 'true' }}
+        run: npm run build
