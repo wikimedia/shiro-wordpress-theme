@@ -154,7 +154,7 @@ function wmf_scripts() {
 	}
 
 	if ( is_page_template( 'page-data.php' ) ) {
-		wp_enqueue_script( 'd3', get_template_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
+		wp_enqueue_script( 'd3', get_template_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', [], '0.0.1', true );
 		wp_enqueue_script( 'datavis', get_template_directory_uri() . '/assets/dist/datavis.min.js', array( 'jquery' ), '0.0.1', true );
 	}
 }
@@ -165,20 +165,20 @@ add_action( 'wp_enqueue_scripts', 'wmf_scripts' );
  */
 function wmf_add_piwik_analytics() {
 	?>
-        <!-- Matomo -->
-        <script type="text/javascript">
-        var _paq = window._paq = window._paq || [];
-        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function() {
-        var u="//piwik.wikimedia.org/";
-        _paq.push(['setTrackerUrl', u+'piwik.php']);
-        _paq.push(['setSiteId', '<?php echo esc_attr( get_site_option( 'matomo_siteid' ) ) ?>']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-        })();
-        </script>
-        <!-- End Matomo Code -->
+	<!-- Matomo -->
+	<script type="text/javascript">
+	var _paq = window._paq = window._paq || [];
+	/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+	_paq.push(['trackPageView']);
+	_paq.push(['enableLinkTracking']);
+	(function() {
+	var u="//piwik.wikimedia.org/";
+	_paq.push(['setTrackerUrl', u+'piwik.php']);
+	_paq.push(['setSiteId', '<?php echo esc_attr( get_site_option( 'matomo_siteid' ) ); ?>']);
+	var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	})();
+	</script>
+	<!-- End Matomo Code -->
 	<?php
 }
 add_action( 'wp_footer', 'wmf_add_piwik_analytics' );
