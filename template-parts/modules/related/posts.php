@@ -35,7 +35,7 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_related_posts_title' 
 		<div class="double-heading">
 			<?php if ( ! empty( $title ) ) : ?>
 				<p class="double-heading__secondary is-style-h5">
-					<span><?php echo esc_html( $title ); ?></span>
+					<span><?php shiro_safe_title( $title ); ?></span>
 				</p>
 			<?php endif; ?>
 			<h2 class="double-heading__primary is-style-h3">
