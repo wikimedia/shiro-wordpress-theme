@@ -29,6 +29,7 @@ if ( empty( $featured_posts ) ) {
 			'post_status'    => 'publish',
 			'posts_per_page' => 2,
 			'no_found_rows'  => true,
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 			'meta_query'     => array(
 				array(
 					'key'     => 'featured_on',
@@ -37,7 +38,7 @@ if ( empty( $featured_posts ) ) {
 				),
 			),
 		)
-	); // WPCS: slow query ok.
+	);
 	wp_cache_add( $cache_key, $featured_posts );
 }
 
