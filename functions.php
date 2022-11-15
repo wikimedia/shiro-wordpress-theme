@@ -527,7 +527,7 @@ function shiro_safe_title( string $title ): void {
 	echo wp_kses(
 		$title,
 		[
-			'span' => ['class'],
+			'span' => [ 'class' ],
 			'em' => [],
 		]
 	);

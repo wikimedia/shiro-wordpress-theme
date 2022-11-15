@@ -42,7 +42,7 @@ $allowed_tags = [
 
 		<div class="mw-784">
 			<?php if ( ! empty( $title ) ) : ?>
-				<h1><?php shiro_safe_title( $title ) ?></h1>
+				<h1><?php shiro_safe_title( $title ); ?></h1>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $meta ) ) : ?>
