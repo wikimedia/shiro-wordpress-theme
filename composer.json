@@ -26,6 +26,7 @@
         "staabm/annotate-pull-request-from-checkstyle": "^1.8"
     },
     "scripts": {
-        "phpcs": "phpcs ."
+        "phpcs": "phpcs .",
+        "phpcs:changed": "phpcs $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base head main) | grep '\\.php')"
     }
 }

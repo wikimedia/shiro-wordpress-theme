@@ -34,7 +34,7 @@ $item_link   = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
 			<a href="<?php echo esc_url( $item_link ); ?>">
 			<?php endif; ?>
 
-			<?php echo esc_html( $title ); ?>
+			<?php shiro_safe_title( $title ); ?>
 
 			<?php if ( ! empty( $item_link ) ) : ?>
 				<?php

@@ -7,6 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint assets/src .config gulpfile.js",
+    "lint:php": "composer phpcs:changed",
     "build": "run-p build:theme",
     "build:theme": "run-s build:webpack build:gulp",
     "build:webpack": "webpack --config=.config/webpack.config.prod.js",
