@@ -9,12 +9,21 @@ $page_header_data = $args;
 
 $h4_link      = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
 $h4_title     = ! empty( $page_header_data['h4_title'] ) ? $page_header_data['h4_title'] : '';
+// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 $title        = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_title'] : '';
 $meta         = ! empty( $page_header_data['page_meta'] ) ? $page_header_data['page_meta'] : '';
 $allowed_tags = [
 	'span' => [ 'class' => [] ],
-	'time' => [ 'datetime' => [], 'itemprop' => [] ],
-	'a'    => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ],
+	'time' => [
+		'datetime' => [],
+		'itemprop' => [],
+	],
+	'a'    => [
+		'href' => [],
+		'class' => [],
+		'title' => [],
+		'rel' => [],
+	],
 ];
 ?>
 
@@ -34,7 +43,7 @@ $allowed_tags = [
 
 		<div class="mw-784">
 			<?php if ( ! empty( $title ) ) : ?>
-				<h1><?php echo wp_kses( $title, array( 'span' => array( 'class' ) ) ); ?></h1>
+				<h1><?php echo wp_kses( $title, [ 'span' => [ 'class' ] ] ); ?></h1>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $meta ) ) : ?>
@@ -43,10 +52,13 @@ $allowed_tags = [
 				</div>
 			<?php endif; ?>
 
-			<?php echo \WMF\Editor\Blocks\ShareArticle\render_block( array(
+			<?php
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo \WMF\Editor\Blocks\ShareArticle\render_block( [
 				'enableTwitter'  => true,
 				'enableFacebook' => true,
-			) ); ?>
+			] );
+			?>
 		</div>
 	</div>
 </div>
