@@ -37,9 +37,12 @@
 		<exclude name="Squiz.Commenting.FileComment.MissingPackageTag"/>
 		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
 		<exclude name="Internal.NoCodeFound"/>
+		<!-- We prefer short arrays. -->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
 		<!-- Do not require = and => alignment. -->
 		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned"/>
 		<exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>
+		<exclude name="Generic.Formatting.MultipleStatementAlignment.IncorrectWarning"/>
 		<!-- Talk like yoda, you should not. -->
 		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
 		<!-- Permit single-line PHP statements. -->
@@ -47,6 +50,7 @@
 		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket"/>
 		<exclude name="Squiz.PHP.EmbeddedPhp.ContentAfterOpen"/>
 		<exclude name="Squiz.PHP.EmbeddedPhp.ContentBeforeEnd"/>
+		<exclude name="Squiz.PHP.EmbeddedPhp.ContentBeforeOpen"/>
 		<!--
 			The following rules are ones we DO recommend. They are omitted for now
 			to speed up the process of getting to basic compliance with more critical
@@ -54,6 +58,7 @@
 		-->
 		<exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
 		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments"/>
+		<exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
 	</rule>
 	<rule ref="WordPress.NamingConventions.ValidVariableName.StringNotSnakeCase">
 		<!-- Block attributes use JS-style naming patterns. -->

@@ -9,7 +9,6 @@ $page_header_data = $args;
 
 $h4_link      = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
 $h4_title     = ! empty( $page_header_data['h4_title'] ) ? $page_header_data['h4_title'] : '';
-// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 $title        = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_title'] : '';
 $meta         = ! empty( $page_header_data['page_meta'] ) ? $page_header_data['page_meta'] : '';
 $allowed_tags = [
