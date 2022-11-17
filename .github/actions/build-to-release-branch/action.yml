@@ -53,5 +53,5 @@ runs:
       shell: bash
       run: |
         git add -f ${{ inputs.built_asset_paths }}
-        git commit --amend -m "Build to 'release' from ${{ inputs.source_branch }}#$( git rev-parse --short ${{ inputs.source_branch }} )"
+        git commit --amend -m "Build to '${{ inputs.release_branch }}' from ${{ inputs.source_branch }}#$( git rev-parse --short ${{ inputs.source_branch }} )"
         git push origin ${{ inputs.release_branch }}:${{ inputs.release_branch }}
