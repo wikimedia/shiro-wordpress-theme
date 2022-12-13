@@ -126,7 +126,12 @@ while ( have_posts() ) :
 	get_template_part( 'template-parts/page/page', 'offsite-links' );
 
 	Credits::get_instance()->pause();
-	$template_args                  = get_post_meta( get_the_ID(), 'profiles', true );
+
+	$template_args = get_post_meta( get_the_ID(), 'profiles', true );
+	if ( ! is_array( $template_args ) ) {
+		$template_args = [];
+	}
+
 	$template_args['profiles_list'] = wmf_get_related_profiles( get_the_ID() );
 	$template_args['headline']      = ! empty( $template_args['headline'] ) ? $template_args['headline'] : $default_heading . $team_name;
 	get_template_part( 'template-parts/modules/profiles/list', null, $template_args );
