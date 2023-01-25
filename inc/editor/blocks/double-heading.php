@@ -40,7 +40,7 @@ function render_block( $attributes ) {
 	$customClass = $attributes['className'] ?? false;
 	$className = $customClass ? "double-heading $customClass" : "double-heading";
 
-	foreach ( $attributes['secondaryHeadings'] as $heading ) {
+	foreach ( ( $attributes['secondaryHeadings'] ?? [] ) as $heading ) {
 		if ( $site_language['shortname'] ?? null === ( $heading['lang'] ?? '' ) ) {
 			$site_language_heading = $heading;
 			continue;
