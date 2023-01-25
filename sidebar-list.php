@@ -10,7 +10,7 @@
 // $args is data passed into the template, also we provide fallbacks in case they don't exist.
 // phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 $nested        = $args['nested'] ?? false;
-$template_args = is_array( $args['template_args'] ) ? $args['template_args'] : get_post_meta( get_the_ID(), 'list', true );
+$template_args = is_array( $args['template_args'] ?? false ) ? $args['template_args'] : get_post_meta( get_the_ID(), 'list', true );
 // phpcs:enable
 
 if ( empty( $template_args ) ) {
@@ -59,7 +59,7 @@ if ( empty( $template_args ) ) {
 	<?php
 	foreach ( $template_args as $i => $list_section ) :
 		$item_text = $list_section['title'] ?? $list_section['name'];
-		$item_link = $list_section['slug'] ? '#' . $list_section['slug'] : '#section-' . ( $i + 1 );
+		$item_link = ( $list_section['slug'] ?? false ) ? '#' . $list_section['slug'] : '#section-' . ( $i + 1 );
 		if ( empty( $item_text ) ) {
 			continue;
 		}
