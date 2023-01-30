@@ -32,7 +32,7 @@ if ( empty( $template_args ) ) {
 	data-visible="false"
 >
 	<h2 class="toc__title screen-reader-text">
-		<?php esc_html_e( 'Table of Contents', 'shiro' ) ?>
+		<?php esc_html_e( 'Table of Contents', 'shiro' ); ?>
 	</h2>
 	<button
 		aria-expanded="false"
@@ -40,7 +40,7 @@ if ( empty( $template_args ) ) {
 		hidden
 	>
 		<span class="btn-label-a11y">
-			<?php esc_html_e( 'Navigate within this page.', 'shiro' ) ?>
+			<?php esc_html_e( 'Navigate within this page.', 'shiro' ); ?>
 		</span>
 		<span class="btn-label-active-item">
 			<?php
