@@ -41,8 +41,8 @@ function body_class( $body_classes ) {
  * relevant to the project. Can return true to include all blocks, or false to
  * include no blocks.
  *
- * @param bool|string[] $allowed_blocks
- * @param \WP_Post      $post
+ * @param bool|string[] $allowed_blocks - all blocks allowed.
+ * @param \WP_Post      $post - wp post.
  *
  * @return bool|string[]
  */
@@ -442,6 +442,9 @@ function is_using_block_editor(): bool {
 	return admin_post_is_new() || admin_post_has_blocks();
 }
 
+/**
+ * Enqueue block editor assets.
+ */
 function enqueue_block_editor_assets() {
 	$manifest = Assets\get_manifest_path();
 
@@ -487,9 +490,9 @@ function enqueue_block_editor_assets() {
 }
 
 /**
- * Add categories relevant to Wikimedia
+ * Add categories relevant to Wikimedia.
  *
- * @param array $categories Original categories
+ * @param array $categories Original categories.
  * @return array Modified categories
  */
 function add_block_categories( $categories ) {
