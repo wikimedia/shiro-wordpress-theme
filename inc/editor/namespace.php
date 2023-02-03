@@ -115,8 +115,9 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 	 * Permit customization of the allowed block list.
 	 *
 	 * @param string[] $blocks Allowed blocks.
+	 * @param \WP_Post $post   Post object.
 	 */
-	return apply_filters( 'wikimedia/shiro_allowed_blocks', $blocks );
+	return apply_filters( 'wikimedia/shiro_allowed_blocks', $blocks, $post );
 }
 
 /**
