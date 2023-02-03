@@ -661,6 +661,7 @@ function wmf_get_page_stories() {
 			'post_type'        => 'story',
 			'post_status'      => 'publish',
 			'post__in'         => $story_ids,
+			// phpcs:ignore WordPress.WP.PostsPerPage.posts_per_page_posts_per_page
 			'posts_per_page'   => count( $story_ids ),
 			'suppress_filters' => false,
 		)
