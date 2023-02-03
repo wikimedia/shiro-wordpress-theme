@@ -86,6 +86,11 @@ function wmf_setup() {
 	add_image_size( 'image_16x9_small', '600', '338', true );
 	add_image_size( 'image_square_medium', '250', '250', true );
 
+	// Warn if required environment is not satisfied.
+	if ( ! function_exists( 'Asset_Loader\enqueue_asset' ) ) {
+		// phpcs:ignore
+		trigger_error( 'This theme expects the humanmade/asset-loader plugin to be installed and active.' );
+	}
 }
 add_action( 'after_setup_theme', 'wmf_setup' );
 
@@ -116,13 +121,13 @@ function wmf_scripts() {
 	$style_version = md5_file( get_theme_file_path( 'style.css' ) );
 	$script_version = md5_file( get_theme_file_path( 'assets/dist/scripts.min.js' ) );
 
-	wp_enqueue_style( 'shiro-style', get_stylesheet_uri(), array(), $style_version );
+	wp_enqueue_style( 'shiro-style', get_template_directory_uri() . '/style.css', array(), $style_version );
 
 	if ( get_theme_mod( 'wmf_enable_rtl' ) ) {
-		wp_enqueue_style( 'shiro-style-rtl', get_stylesheet_directory_uri() . '/rtl.css', array(), $style_version );
+		wp_enqueue_style( 'shiro-style-rtl', get_template_directory_uri() . '/rtl.css', array(), $style_version );
 	}
-	wp_enqueue_script( 'shiro-svg4everybody', get_stylesheet_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-svg4everybody' ), $script_version, true );
+	wp_enqueue_script( 'shiro-svg4everybody', get_template_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'shiro-script', get_template_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-svg4everybody' ), $script_version, true );
 	Asset_Loader\enqueue_asset(
 		\WMF\Assets\get_manifest_path(),
 		'shiro.js',
@@ -149,8 +154,8 @@ function wmf_scripts() {
 	}
 
 	if ( is_page_template( 'page-data.php' ) ) {
-		wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
-		wp_enqueue_script( 'datavis', get_stylesheet_directory_uri() . '/assets/dist/datavis.min.js', array( 'jquery' ), '0.0.1', true );
+		wp_enqueue_script( 'd3', get_template_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', [], '0.0.1', true );
+		wp_enqueue_script( 'datavis', get_template_directory_uri() . '/assets/dist/datavis.min.js', array( 'jquery' ), '0.0.1', true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'wmf_scripts' );
@@ -161,19 +166,19 @@ add_action( 'wp_enqueue_scripts', 'wmf_scripts' );
 function wmf_add_piwik_analytics() {
 	?>
 	<!-- Matomo -->
-<script>
-var _paq = _paq || [];
-/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-_paq.push(['trackPageView']);
-_paq.push(['enableLinkTracking']);
-(function() {
-var u="//piwik.wikimedia.org/";
-_paq.push(['setTrackerUrl', u+'piwik.php']);
-_paq.push(['setSiteId', '17']);
-var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-})();
-</script>
-<!-- End Matomo Code -->
+	<script type="text/javascript">
+	var _paq = window._paq = window._paq || [];
+	/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+	_paq.push(['trackPageView']);
+	_paq.push(['enableLinkTracking']);
+	(function() {
+	var u="//piwik.wikimedia.org/";
+	_paq.push(['setTrackerUrl', u+'piwik.php']);
+	_paq.push(['setSiteId', '<?php echo esc_attr( get_site_option( 'matomo_siteid' ) ); ?>']);
+	var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	})();
+	</script>
+	<!-- End Matomo Code -->
 	<?php
 }
 add_action( 'wp_footer', 'wmf_add_piwik_analytics' );
@@ -200,24 +205,24 @@ add_filter( 'register_post_type_args', 'wmf_edit_page_post_type', 10, 2 );
 function wmf_admin_scripts() {
 	wp_enqueue_style(
 		'shiro-editor',
-		get_stylesheet_directory_uri() . '/assets/dist/admin/admin.css',
+		get_template_directory_uri() . '/assets/dist/admin/admin.css',
 		array(),
-		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/dist/admin/admin.css' )
+		filemtime( trailingslashit( get_template_directory() ) . 'assets/dist/admin/admin.css' )
 	);
 
 	wp_enqueue_script(
 		'shiro-editor-js',
-		get_stylesheet_directory_uri() . '/assets/src/admin/post-meta.js',
+		get_template_directory_uri() . '/assets/src/admin/post-meta.js',
 		array( 'jquery' ),
-		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/src/admin/post-meta.js' ),
+		filemtime( trailingslashit( get_template_directory() ) . 'assets/src/admin/post-meta.js' ),
 		true
 	);
 
 	wp_enqueue_script(
 		'shiro-media-js',
-		get_stylesheet_directory_uri() . '/assets/src/admin/media.js',
+		get_template_directory_uri() . '/assets/src/admin/media.js',
 		array( 'jquery' ),
-		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/src/admin/media.js' ),
+		filemtime( trailingslashit( get_template_directory() ) . 'assets/src/admin/media.js' ),
 		true
 	);
 }
@@ -320,6 +325,12 @@ require get_template_directory() . '/inc/taxonomy-content-language.php';
 require get_template_directory() . '/inc/taxonomies.php';
 
 /**
+ * Additional Network Settings.
+ */
+require get_template_directory() . '/inc/network-settings.php';
+Network_Settings\bootstrap();
+
+/**
  * Add Custom Post Types.
  */
 require get_template_directory() . '/inc/post-types/profile.php';
@@ -360,32 +371,45 @@ require_once get_template_directory() . '/inc/stories.php';
 Stories_Customisations\init();
 
 /**
- * Modify the document title for the search and 404 pages
+ * Modify the document title for the 404 page
+ *
+ * @param array $title_parts Document title parts.
+ * @return array Filtered array.
  */
+function wmf_filter_wp_404title( $title_parts ) {
+	if ( is_404() ) {
+		$title_parts['title'] = get_theme_mod( 'wmf_404_message', __( '404 Error', 'shiro-admin' ) );
+	}
 
-// 404 page
-function theme_slug_filter_wp_404title( $title_parts ) {
-    if ( is_404() ) {
-        $title_parts['title'] = get_theme_mod( 'wmf_404_message', __( '404 Error', 'shiro-admin' ) );
-    }
-
-    return $title_parts;
+	return $title_parts;
 }
 
 // Hook into document_title_parts
-add_filter( 'document_title_parts', 'theme_slug_filter_wp_404title' );
+add_filter( 'document_title_parts', 'wmf_filter_wp_404title' );
 
-// Search page
-function theme_slug_filter_wp_searchtitle( $title_parts ) {
-    if ( is_search() ) {
-        $title_parts['title'] = sprintf( __( get_theme_mod( 'wmf_search_results_copy', __( 'Search results for %s', 'shiro-admin' ) ), 'shiro' ), get_search_query() );
-   }
+/**
+ * Modify the document title for the search page
+ *
+ * @param array $title_parts Document title parts.
+ * @return array Filtered array.
+ */
+function wmf_filter_wp_searchtitle( $title_parts ) {
+	if ( is_search() ) {
+		$title_parts['title'] = sprintf(
+			get_theme_mod(
+				'wmf_search_results_copy',
+				/* translators: %s: the search query. */
+				__( 'Search results for %s', 'shiro-admin' )
+			),
+			get_search_query()
+		);
+	}
 
-    return $title_parts;
+	return $title_parts;
 }
 
 // Hook into document_title_parts
-add_filter( 'document_title_parts', 'theme_slug_filter_wp_searchtitle' );
+add_filter( 'document_title_parts', 'wmf_filter_wp_searchtitle' );
 
 // Rewrite URL for roles to not require /news/ prefix
 add_rewrite_rule( '^role/(.+?)$', 'index.php?role=$matches[1]', 'top' );
@@ -463,7 +487,7 @@ add_filter( 'nav_menu_item_args', 'wmf_filter_nav_menu_items', 10, 3 );
 /**
  * Add reusable blocks link to admin menu.
  */
-function link_reusable_blocks_url() {
+function shiro_link_reusable_blocks_url() {
 	add_menu_page(
 		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
 		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
@@ -474,7 +498,7 @@ function link_reusable_blocks_url() {
 	);
 }
 
-add_action( 'admin_menu', 'link_reusable_blocks_url' );
+add_action( 'admin_menu', 'shiro_link_reusable_blocks_url' );
 
 /**
  * Add page slug as body class.
@@ -492,3 +516,19 @@ function shiro_add_slug_body_class( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'shiro_add_slug_body_class' );
+
+/**
+ * Output a title string, allowing span and em tags within title content.
+ *
+ * @param string $title Post title.
+ * @return void
+ */
+function shiro_safe_title( string $title ): void {
+	echo wp_kses(
+		$title,
+		[
+			'span' => [ 'class' ],
+			'em' => [],
+		]
+	);
+}

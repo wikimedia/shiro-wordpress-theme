@@ -52,6 +52,7 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'shiro/banner',
 		'shiro/blog-list',
 		'shiro/card',
+		'shiro/collapsible-text',
 		'shiro/contact',
 		'shiro/double-heading',
 		'shiro/linked-toc-columns',
@@ -72,6 +73,8 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'shiro/unseen-facts',
 		'shiro/unseen-footer',
 		'shiro/unseen-intro',
+		'shiro/accordion',
+		'shiro/accordion-item',
 
 		// Core blocks
 		'core/paragraph',
@@ -95,6 +98,10 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'core/buttons',
 		'core/latest-posts',
 		'core/quote',
+
+		// Supported third-party blocks
+		'vegalite-plugin/visualization',
+		'vegalite-plugin/responsive-container',
 	];
 
 	if ( $post->post_type === 'post' ) {
@@ -251,7 +258,7 @@ function enqueue_block_editor_assets() {
 		'shiro_editor_js',
 		'shiroEditorVariables',
 		array(
-			'themeUrl'      => get_stylesheet_directory_uri(),
+			'themeUrl'      => get_template_directory_uri(),
 			'languages'     => $languages,
 			'siteLanguage'  => $languages[0]['shortname'],
 			'wmfIsMainSite' => wmf_is_main_site(),
