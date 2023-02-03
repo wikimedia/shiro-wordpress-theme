@@ -13,7 +13,7 @@ use WMF\Assets;
  */
 function bootstrap() {
 	add_filter( 'body_class', __NAMESPACE__ . '\\body_class' );
-	add_filter( 'allowed_block_types', __NAMESPACE__ . '\\filter_blocks', 10, 2 );
+	add_filter( 'allowed_block_types_all', __NAMESPACE__ . '\\filter_blocks', 10, 2 );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\register_core_block_styles' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
@@ -41,12 +41,12 @@ function body_class( $body_classes ) {
  * relevant to the project. Can return true to include all blocks, or false to
  * include no blocks.
  *
- * @param bool|string[] $allowed_blocks Array of block type slugs, or boolean to enable/disable all.
- * @param \WP_Post      $post           The post resource data.
+ * @param bool|string[]            $allowed_block_types  Array of block type slugs, or boolean to enable/disable all.
+ * @param \WP_Block_Editor_Context $block_editor_context The current block editor context.
  *
- * @return bool|string[]
+ * @return bool|string[] Filtered allowed blocks list.
  */
-function filter_blocks( $allowed_blocks, \WP_Post $post ) {
+function filter_blocks( $allowed_block_types, $block_editor_context ) {
 	$blocks = [
 		// Custom blocks
 		'shiro/banner',
@@ -100,12 +100,12 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'core/quote',
 	];
 
-	if ( $post->post_type === 'post' ) {
+	if ( ( $block_editor_context->post->post_type ?? '' ) === 'post' ) {
 		$blocks[] = 'shiro/read-more-categories';
 		$blocks[] = 'shiro/blog-post-heading';
 	}
 
-	if ( $post->post_type === 'page' ) {
+	if ( ( $block_editor_context->post->post_type ?? '' ) === 'page' ) {
 		$blocks[] = 'shiro/home-page-hero';
 		$blocks[] = 'shiro/landing-page-hero';
 		$blocks[] = 'shiro/report-landing-hero';
@@ -114,10 +114,10 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 	/**
 	 * Permit customization of the allowed block list.
 	 *
-	 * @param string[] $blocks Allowed blocks.
-	 * @param \WP_Post $post   Post object.
+ * @param string[]                 $allowed_blocks       Array of block type slugs which should be allowed.
+ * @param \WP_Block_Editor_Context $block_editor_context The current block editor context.
 	 */
-	return apply_filters( 'wmf_shiro_allowed_blocks', $blocks, $post );
+	return apply_filters( 'wmf_shiro_allowed_blocks', $blocks, $block_editor_context );
 }
 
 /**
