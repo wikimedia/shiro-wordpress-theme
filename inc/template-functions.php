@@ -132,6 +132,7 @@ function wmf_get_role_posts( $term_id ) {
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 			'posts_per_page' => 100,
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 			'tax_query'      => array(
 				array(
 					'taxonomy'         => 'role',
@@ -141,7 +142,7 @@ function wmf_get_role_posts( $term_id ) {
 				),
 			),
 		)
-	); // WPCS: slow query ok.
+	);
 
 	$post_list     = wmf_sort_by_last_name( $posts->posts );
 	$featured_list = array();
@@ -255,6 +256,7 @@ function wmf_get_related_profiles( $profile_id ) {
 				'no_found_rows'  => true,
 				'fields'         => 'ids',
 				'post_type'      => 'profile',
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 				'tax_query'      => array(
 					array(
 						'taxonomy' => 'role',
@@ -262,7 +264,7 @@ function wmf_get_related_profiles( $profile_id ) {
 					),
 				),
 			)
-		); // WPCS: slow query ok.
+		);
 
 		$profile_list = $profiles_query->posts;
 		wp_cache_add( $cache_key, $profile_list );
@@ -310,6 +312,7 @@ function wmf_get_related_posts( $post_id ) {
 				'no_found_rows'  => true,
 				'post_type'      => 'post',
 				'ignore_sticky'  => true,
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 				'tax_query'      => array(
 					array(
 						'taxonomy' => 'post_tag',
@@ -317,7 +320,7 @@ function wmf_get_related_posts( $post_id ) {
 					),
 				),
 			)
-		); // WPCS: Slow query ok.
+		);
 
 		$post_list = $posts_query->posts;
 		foreach ( $post_list as $i => $post ) {
@@ -364,7 +367,7 @@ function wmf_get_recent_author_posts( $author_id ) {
 					'ignore_sticky'  => true,
 					'author_name'    => $post->post_name,
 				)
-			); // WPCS: Slow query ok.
+			);
 
 			$post_list = $posts_query->posts;
 			wp_cache_add( $cache_key, $post_list );
@@ -529,7 +532,6 @@ function wmf_sort_by_last_name( $posts ) {
 /**
  * Register custom RSS templates.
  */
-add_action( 'after_setup_theme', 'wmf_rss_templates' );
 function wmf_rss_templates() {
 	foreach ( array( 'offset1', 'images' ) as $name ) {
 		add_feed( $name,
@@ -539,9 +541,12 @@ function wmf_rss_templates() {
 		);
 	}
 }
+add_action( 'after_setup_theme', 'wmf_rss_templates' );
 
 /**
  * Setup offset for offset1 RSS feed.
+ *
+ * @param \WP_Query $query Query being executed.
  */
 function wpsites_exclude_latest_post( $query ) {
 	if ( $query->is_main_query() && $query->is_feed( 'offset1' ) ) {
@@ -667,7 +672,7 @@ function wmf_get_page_stories() {
 /**
  * Get the uri for an SVG in the theme, by name.
  *
- * @param string $name
+ * @param string $name SVG name.
  *
  * @return string
  */
@@ -684,7 +689,7 @@ function wmf_get_svg_uri( string $name ): string {
  * asset processed by webpack. This function takes that into account, and
  * will return a hashed asset if one exists.
  *
- * @param string $name
+ * @param string $name Asset name.
  *
  * @return string
  */
@@ -702,7 +707,7 @@ function wmf_get_gulp_asset_uri( string $name ): string {
 /**
  * Echo & wrap a piece of text with an href if the possible URL is set.
  *
- * @param string $text The text to wrap
+ * @param string $text The text to wrap.
  * @param string $possible_url The URL to put in the href of the link.
  */
 function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
@@ -718,7 +723,7 @@ function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
 		</a>
 		<?php if ( $creative_commons ) : ?>
 		<a href="https://commons.wikimedia.org/" class="commons-tooltip-wrapper" aria-describedby="commons-tooltip" tabindex="0">
-			   <span id="commons-tooltip" role="tooltip"><?php esc_html_e( 'File provided by Wikimedia Commons', 'shiro' ); ?></span>
+			<span id="commons-tooltip" role="tooltip"><?php esc_html_e( 'File provided by Wikimedia Commons', 'shiro' ); ?></span>
 		</a>
 		<?php endif; ?>
 	</div>
@@ -731,8 +736,8 @@ function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
  *
  * @see https://kybernaut.cz/en/clanky/check-for-has_block-inside-reusable-blocks/
  *
- * @param                  $block_name
- * @param int|WP_Post|null $post
+ * @param string           $block_name Name of block.
+ * @param int|WP_Post|null $post       Post to check for block.
  *
  * @return bool
  */
@@ -756,9 +761,9 @@ function wmf_enhanced_has_block( $block_name, $post = null ): bool {
  *
  * @see https://kybernaut.cz/en/clanky/check-for-has_block-inside-reusable-blocks/
  *
- * @param                  $blocks
- * @param                  $block_name
- * @param int|WP_Post|null $post
+ * @param array            $blocks     InnerBlocks tree.
+ * @param string           $block_name Name of block.
+ * @param int|WP_Post|null $post       Post to check for block.
  *
  * @return bool
  */
@@ -780,7 +785,7 @@ function wmf_search_reusable_blocks_within_innerblocks( $blocks, $block_name, $p
  *
  * Returns the id of the reusable block if found; 0 otherwise.
  *
- * @param string $module
+ * @param string $module Block module.
  *
  * @return int
  */
@@ -797,8 +802,8 @@ function wmf_get_reusable_block_module_id( string $module ): int {
 	$id = get_theme_mod( $available_blocks[ $module ] );
 
 	$valid = is_numeric( $id )
-			 && $id > 0
-			 && get_post_type( $id ) === 'wp_block';
+		&& $id > 0
+		&& get_post_type( $id ) === 'wp_block';
 
 	return $valid ? (int) $id : 0;
 }
@@ -808,7 +813,7 @@ function wmf_get_reusable_block_module_id( string $module ): int {
  *
  * Returns null if none found.
  *
- * @param string $module
+ * @param string $module Block module.
  *
  * @return null|WP_Post
  */
@@ -823,7 +828,7 @@ function wmf_get_reusable_block_module( string $module ) {
  *
  * Returns an empty string if block does not exist or cannot be found.
  *
- * @param string $module
+ * @param string $module Block module.
  *
  * @return string
  */
