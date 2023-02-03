@@ -324,6 +324,11 @@ function add_theme_supports() {
 			'color' => '#970302',
 		],
 		[
+			'name' => __( 'Red 70', 'shiro-admin' ),
+			'slug' => 'red70',
+			'color' => '#e5c0c0',
+		],
+		[
 			'name' => __( 'Red 50', 'shiro-admin' ),
 			'slug' => 'red50',
 			'color' => '#d40356',
