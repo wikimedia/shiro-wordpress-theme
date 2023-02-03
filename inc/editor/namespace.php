@@ -13,7 +13,7 @@ use WMF\Assets;
  */
 function bootstrap() {
 	add_filter( 'body_class', __NAMESPACE__ . '\\body_class' );
-	add_filter( 'allowed_block_types', __NAMESPACE__ . '\\filter_blocks', 10, 2 );
+	add_filter( 'allowed_block_types_all', __NAMESPACE__ . '\\filter_blocks', 10, 2 );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\register_core_block_styles' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
@@ -41,12 +41,12 @@ function body_class( $body_classes ) {
  * relevant to the project. Can return true to include all blocks, or false to
  * include no blocks.
  *
- * @param bool|string[] $allowed_blocks - all blocks allowed.
- * @param \WP_Post      $post - wp post.
+ * @param bool|string[]            $allowed_block_types  Array of block type slugs, or boolean to enable/disable all.
+ * @param \WP_Block_Editor_Context $block_editor_context The current block editor context.
  *
- * @return bool|string[]
+ * @return bool|string[] Filtered allowed blocks list.
  */
-function filter_blocks( $allowed_blocks, \WP_Post $post ) {
+function filter_blocks( $allowed_block_types, $block_editor_context ) {
 	$blocks = [
 		// Custom blocks
 		'shiro/banner',
@@ -98,24 +98,26 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'core/buttons',
 		'core/latest-posts',
 		'core/quote',
-
-		// Supported third-party blocks
-		'vegalite-plugin/visualization',
-		'vegalite-plugin/responsive-container',
 	];
 
-	if ( $post->post_type === 'post' ) {
+	if ( ( $block_editor_context->post->post_type ?? '' ) === 'post' ) {
 		$blocks[] = 'shiro/read-more-categories';
 		$blocks[] = 'shiro/blog-post-heading';
 	}
 
-	if ( $post->post_type === 'page' ) {
+	if ( ( $block_editor_context->post->post_type ?? '' ) === 'page' ) {
 		$blocks[] = 'shiro/home-page-hero';
 		$blocks[] = 'shiro/landing-page-hero';
 		$blocks[] = 'shiro/report-landing-hero';
 	}
 
-	return $blocks;
+	/**
+	 * Permit customization of the allowed block list.
+	 *
+ * @param string[]                 $allowed_blocks       Array of block type slugs which should be allowed.
+ * @param \WP_Block_Editor_Context $block_editor_context The current block editor context.
+	 */
+	return apply_filters( 'wmf_shiro_allowed_blocks', $blocks, $block_editor_context );
 }
 
 /**
@@ -448,7 +450,7 @@ function is_using_block_editor(): bool {
 }
 
 /**
- * Enqueue block editor assets.
+ * Enqueue assets used only in the block editor.
  */
 function enqueue_block_editor_assets() {
 	$manifest = Assets\get_manifest_path();
@@ -498,7 +500,7 @@ function enqueue_block_editor_assets() {
  * Add categories relevant to Wikimedia.
  *
  * @param array $categories Original categories.
- * @return array Modified categories
+ * @return array Modified categories.
  */
 function add_block_categories( $categories ) {
 	return array_merge(
