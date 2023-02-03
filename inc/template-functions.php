@@ -30,7 +30,7 @@ add_filter( 'body_class', 'wmf_body_classes' );
  * @return string Container classes to add.
  */
 function wmf_get_header_container_class() {
-	if ( is_front_page() && !has_blocks() ) {
+	if ( is_front_page() && ! has_blocks() ) {
 		$class = 'header-home';
 	} else {
 		$class = 'header-default';
@@ -306,7 +306,7 @@ function wmf_get_related_posts( $post_id ) {
 		$posts_query = new WP_Query(
 			array(
 				'posts_per_page' => 3,
-                'orderby'        => 'date',
+				'orderby'        => 'date',
 				'no_found_rows'  => true,
 				'post_type'      => 'post',
 				'ignore_sticky'  => true,
@@ -357,7 +357,7 @@ function wmf_get_recent_author_posts( $author_id ) {
 		if ( ! empty( $post ) ) {
 			$posts_query = new WP_Query(
 				array(
-                    'orderby'        => 'date',
+					'orderby'        => 'date',
 					'posts_per_page' => 2,
 					'no_found_rows'  => true,
 					'post_type'      => 'post',
@@ -397,7 +397,7 @@ function wmf_get_author_link( $author_id ) {
 		$post = get_post( $author_id );
 	}
 
-    $author_link = $post->post_name;
+	$author_link = $post->post_name;
 
 	return $author_link;
 }
@@ -530,26 +530,23 @@ function wmf_sort_by_last_name( $posts ) {
  * Register custom RSS templates.
  */
 add_action( 'after_setup_theme', 'wmf_rss_templates' );
-function wmf_rss_templates()
-{
-    foreach( array( 'offset1', 'images' ) as $name )
-    {
-        add_feed( $name,
-            function() use ( $name )
-            {
-                get_template_part( 'feed', $name );
-            }
-        );
-    }
+function wmf_rss_templates() {
+	foreach ( array( 'offset1', 'images' ) as $name ) {
+		add_feed( $name,
+			function() use ( $name ) {
+				get_template_part( 'feed', $name );
+			}
+		);
+	}
 }
 
 /**
  * Setup offset for offset1 RSS feed.
  */
 function wpsites_exclude_latest_post( $query ) {
-if ( $query->is_main_query() && $query->is_feed( 'offset1' )) {
-    $query->set( 'offset', '1' );
-    }
+	if ( $query->is_main_query() && $query->is_feed( 'offset1' ) ) {
+		$query->set( 'offset', '1' );
+	}
 }
 add_action( 'pre_get_posts', 'wpsites_exclude_latest_post', 1 );
 
@@ -674,11 +671,10 @@ function wmf_get_page_stories() {
  *
  * @return string
  */
-function wmf_get_svg_uri( string $name ): string
-{
-	$name = str_replace( '.svg', '', $name);
+function wmf_get_svg_uri( string $name ): string {
+	$name = str_replace( '.svg', '', $name );
 	$uri = get_template_directory_uri() . '/assets/src/svg/' . $name . '.svg';
-	return esc_url($uri);
+	return esc_url( $uri );
 }
 
 /**
@@ -695,8 +691,8 @@ function wmf_get_svg_uri( string $name ): string
 function wmf_get_gulp_asset_uri( string $name ): string {
 	$dist_path = get_template_directory_uri() . '/assets/dist/';
 	$manifest  = load_asset_manifest( get_active_manifest( [
-			get_template_directory() . '/assets/dist/rev-manifest.json',
-		] ) ) ?? [];
+		get_template_directory() . '/assets/dist/rev-manifest.json',
+	] ) ) ?? [];
 
 	$resolved_name = $manifest[ $name ] ?? $name;
 
@@ -715,18 +711,18 @@ function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
 	else :
 		$host = parse_url( $possible_url, PHP_URL_HOST );
 		$creative_commons = false !== strpos( $host, 'commons.wikimedia.org' );
-	?>
+		?>
 	<div>
 		<a href="<?php echo esc_url( $possible_url ); ?>" target="_blank" rel="noopener noreferrer">
 			<?php echo esc_html( $text ); ?>
 		</a>
-		<?php if ( $creative_commons ): ?>
+		<?php if ( $creative_commons ) : ?>
 		<a href="https://commons.wikimedia.org/" class="commons-tooltip-wrapper" aria-describedby="commons-tooltip" tabindex="0">
-   			<span id="commons-tooltip" role="tooltip"><?php esc_html_e('File provided by Wikimedia Commons', 'shiro'); ?></span>
+			   <span id="commons-tooltip" role="tooltip"><?php esc_html_e( 'File provided by Wikimedia Commons', 'shiro' ); ?></span>
 		</a>
 		<?php endif; ?>
 	</div>
-	<?php
+		<?php
 	endif;
 }
 
@@ -771,7 +767,7 @@ function wmf_search_reusable_blocks_within_innerblocks( $blocks, $block_name, $p
 		if ( isset( $block['innerBlocks'] ) && ! empty( $block['innerBlocks'] ) ) {
 			wmf_search_reusable_blocks_within_innerblocks( $block['innerBlocks'], $block_name, $post );
 		} elseif ( $block['blockName'] === 'core/block' && ! empty( $block['attrs']['ref'] ) && \has_block( $block_name,
-				$block['attrs']['ref'] ) ) {
+		$block['attrs']['ref'] ) ) {
 			return true;
 		}
 	}
@@ -801,8 +797,8 @@ function wmf_get_reusable_block_module_id( string $module ): int {
 	$id = get_theme_mod( $available_blocks[ $module ] );
 
 	$valid = is_numeric( $id )
-	         && $id > 0
-	         && get_post_type( $id ) === 'wp_block';
+			 && $id > 0
+			 && get_post_type( $id ) === 'wp_block';
 
 	return $valid ? (int) $id : 0;
 }
