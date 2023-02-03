@@ -714,7 +714,7 @@ function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
 	if ( empty( $possible_url ) ) :
 		echo esc_html( $text );
 	else :
-		$host = parse_url( $possible_url, PHP_URL_HOST );
+		$host = wp_parse_url( $possible_url, PHP_URL_HOST );
 		$creative_commons = false !== strpos( $host, 'commons.wikimedia.org' );
 		?>
 	<div>
