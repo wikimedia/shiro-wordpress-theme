@@ -548,12 +548,12 @@ add_action( 'after_setup_theme', 'wmf_rss_templates' );
  *
  * @param \WP_Query $query Query being executed.
  */
-function wpsites_exclude_latest_post( $query ) {
+function wmf_offset1_exclude_latest_post( $query ) {
 	if ( $query->is_main_query() && $query->is_feed( 'offset1' ) ) {
 		$query->set( 'offset', '1' );
 	}
 }
-add_action( 'pre_get_posts', 'wpsites_exclude_latest_post', 1 );
+add_action( 'pre_get_posts', 'wmf_offset1_exclude_latest_post', 1 );
 
 /**
  * Check whether the current post is part of a new-style transparency report
