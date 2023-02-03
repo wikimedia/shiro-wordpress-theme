@@ -98,10 +98,6 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'core/buttons',
 		'core/latest-posts',
 		'core/quote',
-
-		// Supported third-party blocks
-		'vegalite-plugin/visualization',
-		'vegalite-plugin/responsive-container',
 	];
 
 	if ( $post->post_type === 'post' ) {
@@ -115,7 +111,12 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		$blocks[] = 'shiro/report-landing-hero';
 	}
 
-	return $blocks;
+	/**
+	 * Permit customization of the allowed block list.
+	 *
+	 * @param string[] $blocks Allowed blocks.
+	 */
+	return apply_filters( 'wikimedia/shiro_allowed_blocks', $blocks );
 }
 
 /**
