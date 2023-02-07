@@ -99,7 +99,7 @@ function wmf_create_current_language_term(): ?WP_Term {
 		return null;
 	}
 
-	return get_term( $created_term['term_id'] , 'content-language' );
+	return get_term( $created_term['term_id'], 'content-language' );
 }
 
 /**
