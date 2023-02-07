@@ -85,23 +85,21 @@ function wmf_get_and_maybe_create_current_language_term(): ?WP_Term {
  */
 function wmf_create_current_language_term(): ?WP_Term {
 
-	// When this function is called from the REST API, the admin taxonomy
-	// utilities may not be available. This fix ensures that the content
-	// language functionality works in the block editor.
-	if ( ! function_exists( 'wp_create_term' ) ) {
-		require_once ABSPATH . 'wp-admin/includes/taxonomy.php';
-	}
-
 	// Make sure that we always have the "main language" term.
 	$main_locale = wmf_get_current_content_language_term();
-	if ( ! is_a( $main_locale, WP_Term::class ) ) {
-		$result = wp_create_term( wmf_get_current_content_language_slug(), 'content-language' );
-		if ( is_wp_error( $result ) ) {
-			return null;
-		}
-		return get_term( $result['term_id'], 'content-language' );
+
+	if ( is_a( $main_locale, WP_Term::class ) ) {
+		return $main_locale;
 	}
-	return $main_locale;
+
+	// If the current language term doesn't exist, create it now and return it.
+	$created_term = wp_insert_term( wmf_get_current_content_language_slug(), 'content-language' );
+
+	if ( is_wp_error( $created_term ) ) {
+		return null;
+	}
+
+	return get_term( $created_term['term_id'] , 'content-language' );
 }
 
 /**
