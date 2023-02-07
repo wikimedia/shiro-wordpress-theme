@@ -74,10 +74,13 @@ function wmf_get_and_maybe_create_current_language_term(): ?WP_Term {
  * @return \WP_Term|null
  */
 function wmf_create_current_language_term(): ?WP_Term {
+
 	// When this function is called from the REST API, the admin taxonomy
 	// utilities may not be available. This fix ensures that the content
 	// language functionality works in the block editor.
-	require_once ABSPATH . 'wp-admin/includes/taxonomy.php';
+	if ( ! function_exists( 'wp_create_term' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/taxonomy.php';
+	}
 
 	// Make sure that we always have the "main language" term.
 	$main_locale = wmf_get_current_content_language_term();
