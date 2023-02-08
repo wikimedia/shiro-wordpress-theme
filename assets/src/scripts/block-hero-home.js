@@ -16,7 +16,47 @@ let currentHeadingIndex = 0,
 	previousHeadingIndex = 0;
 let currentHeading = headings[ 0 ];
 let previousHeading = headings[ 0 ];
-let timeout = null;
+let rotateHeadingsTimeout = null;
+let rotateImagesTimeout = null;
+
+const rotatingHeros = document.querySelectorAll( '.hero-home__rotator' );
+
+/**
+ * If a hero rotator block has more than one hero in it, set an interval to
+ * cycle through them now.
+ *
+ * @param {HTMLElement} heroBlock Hero rotator block.
+ */
+function startRotatingImages( heroBlock ) {
+
+	// Ensure there are child blocks to rotate through.
+	const childBlocks = heroBlock.querySelectorAll( '.hero-home' );
+
+	if ( ! childBlocks.length ) {
+		return;
+	}
+
+	childBlocks[0].classList.add( 'hero-home--current' );
+
+	if ( childBlocks.length > NO_CYCLING_HEADING_COUNT ) {
+		rotateImagesTimeout = setTimeout( () => showNextImage( heroBlock ), CYCLE_TIME );
+	}
+}
+
+/**
+ * Show the next hero image in a rotating hero series.
+ *
+ * @param {HTMLElement} parent Div representing the hero-rotator block.
+ */
+function showNextImage( parent ) {
+	const images = parent.querySelectorAll( '.hero-home:not(.hero-home--current)' );
+	const nextImage = images[ Math.floor( Math.random() * images.length ) ];
+
+	parent.querySelector( '.hero-home--current' ).classList.remove( 'hero-home--current' );
+	nextImage.classList.add( 'hero-home--current' );
+
+	rotateImagesTimeout = setTimeout( () => showNextImage( parent ), CYCLE_TIME );
+}
 
 const targetLink = document.querySelector( '.hero-home__link' );
 
@@ -43,7 +83,7 @@ function cycleHeading() {
 		fadeOutPreviousHeading();
 	} else {
 		// Setup the next cycle
-		timeout = setTimeout( cycleHeading, CYCLE_TIME );
+		rotateHeadingsTimeout = setTimeout( cycleHeading, CYCLE_TIME );
 	}
 }
 
@@ -54,7 +94,7 @@ function cycleHeading() {
  */
 function fadeOutPreviousHeading() {
 	previousHeading.classList.add( 'hero-home__heading--transparent' );
-	timeout = setTimeout( fadeInCurrentHeading, OPACITY_TRANSITION_TIME );
+	rotateHeadingsTimeout = setTimeout( fadeInCurrentHeading, OPACITY_TRANSITION_TIME );
 }
 
 /**
@@ -72,14 +112,21 @@ function fadeInCurrentHeading() {
 	}, BROWSER_PAINT_WAIT );
 
 	// Setup the next cycle
-	timeout = setTimeout( cycleHeading, CYCLE_TIME );
+	rotateHeadingsTimeout = setTimeout( cycleHeading, CYCLE_TIME );
+}
+
+if ( rotatingHeros.length ) {
+	rotatingHeros.forEach( startRotatingImages );
 }
 
 if ( headings.length > NO_CYCLING_HEADING_COUNT ) {
-	timeout = setTimeout( cycleHeading, CYCLE_TIME );
+	rotateHeadingsTimeout = setTimeout( cycleHeading, CYCLE_TIME );
 }
 
 if ( module.hot ) {
-	module.hot.dispose( () => timeout && clearTimeout( timeout ) );
+	module.hot.dispose( () => {
+		rotateImagesTimeout && clearTimeout( rotateImagesTimeout );
+		rotateHeadingsTimeout && clearTimeout( rotateHeadingsTimeout );
+	} );
 	module.hot.accept();
 }
