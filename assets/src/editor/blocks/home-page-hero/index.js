@@ -37,8 +37,7 @@ export const settings = {
 
 	supports: {
 		inserter: true,
-		multiple: false,
-		reusable: false,
+		multiple: true,
 	},
 
 	attributes: {

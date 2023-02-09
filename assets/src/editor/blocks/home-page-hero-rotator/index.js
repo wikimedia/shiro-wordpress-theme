@@ -4,6 +4,8 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
+import './style.scss';
+
 const HERO_BLOCK = 'shiro/home-page-hero';
 
 export const name = 'shiro/home-page-hero-rotator';
@@ -25,7 +27,6 @@ export const settings = {
 	supports: {
 		inserter: true,
 		multiple: false,
-		reusable: false,
 	},
 
 	/**
@@ -39,6 +40,7 @@ export const settings = {
 				<InnerBlocks
 					template={ [ [ HERO_BLOCK ] ] }
 					allowedBlocks={ [ HERO_BLOCK ] }
+
 				/>
 			</div>
 		);
