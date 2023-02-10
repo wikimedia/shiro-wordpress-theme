@@ -19,8 +19,8 @@ import sharedStyles from '../../helpers/block-styles';
  */
 import './style.scss';
 
-export const name = 'shiro/card',
-	styles = sharedStyles;
+export const name = 'shiro/card';
+export const styles = sharedStyles;
 
 export const settings = {
 	apiVersion: 2,
