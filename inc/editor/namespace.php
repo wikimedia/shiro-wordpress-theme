@@ -47,6 +47,7 @@ function body_class( $body_classes ) {
  * @return bool|string[] Filtered allowed blocks list.
  */
 function filter_blocks( $allowed_block_types, $block_editor_context ) {
+	error_log( print_r( $block_editor_context, true ) );
 	$blocks = [
 		// Custom blocks
 		'shiro/banner',
@@ -107,17 +108,12 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 
 	if ( ( $block_editor_context->post->post_type ?? '' ) === 'page' ) {
 		$blocks[] = 'shiro/home-page-hero';
+		$blocks[] = 'shiro/home-page-hero-rotator';
 		$blocks[] = 'shiro/landing-page-hero';
 		$blocks[] = 'shiro/report-landing-hero';
 	}
 
-	/**
-	 * Permit customization of the allowed block list.
-	 *
- * @param string[]                 $allowed_blocks       Array of block type slugs which should be allowed.
- * @param \WP_Block_Editor_Context $block_editor_context The current block editor context.
-	 */
-	return apply_filters( 'wmf_shiro_allowed_blocks', $blocks, $block_editor_context );
+	return $blocks;
 }
 
 /**
