@@ -62,7 +62,7 @@ export const settings = {
 		from: [
 			{
 				type: 'block',
-				blocks: [ 'shiro/home-page-hero' ],
+				blocks: [ HERO_BLOCK ],
 				isMatch: ( _, { clientId } ) => {
 					const { getBlocksByClientId, getBlockParents } = select( 'core/block-editor' );
 					const parentTypes = getBlocksByClientId( getBlockParents( clientId ) )
@@ -70,11 +70,11 @@ export const settings = {
 					return ! parentTypes.includes( name );
 				},
 				transform: ( attributes ) => createBlock(
-					'shiro/home-page-hero-rotator',
+					name,
 					{},
 					[
 						createBlock(
-							'shiro/home-page-hero',
+							HERO_BLOCK,
 							attributes
 						),
 					]
