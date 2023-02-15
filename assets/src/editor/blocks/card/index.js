@@ -12,6 +12,7 @@ import { __ } from '@wordpress/i18n';
 import BlockIcon from '../../../svg/blocks/card.svg';
 import CallToActionPicker from '../../components/cta';
 import ImagePicker from '../../components/image-picker';
+import sharedStyles from '../../helpers/block-styles';
 
 /**
  * Internal dependencies
@@ -19,6 +20,7 @@ import ImagePicker from '../../components/image-picker';
 import './style.scss';
 
 export const name = 'shiro/card';
+export const styles = sharedStyles;
 
 export const settings = {
 	apiVersion: 2,
@@ -120,7 +122,7 @@ export const settings = {
 						placeholder={ __( 'Heading of the card', 'shiro-admin' ) }
 						tagName="h2"
 						value={ heading }
-						onChange={ heading => setAttributes( { heading } ) }
+						onChange={ ( heading ) => setAttributes( { heading } ) }
 					/>
 					<RichText
 						className="content-card__body has-small-font-size"
@@ -128,14 +130,14 @@ export const settings = {
 						placeholder={ __( 'Body of the card', 'shiro-admin' ) }
 						tagName="p"
 						value={ body }
-						onChange={ body => setAttributes( { body } ) }
+						onChange={ ( body ) => setAttributes( { body } ) }
 					/>
 					<CallToActionPicker
 						className="content-card__call-to-action arrow-link"
 						text={ linkText }
 						url={ linkUrl }
-						onChangeLink={ linkUrl => setAttributes( { linkUrl } ) }
-						onChangeText={ linkText => setAttributes( { linkText } ) }
+						onChangeLink={ ( linkUrl ) => setAttributes( { linkUrl } ) }
+						onChangeText={ ( linkText ) => setAttributes( { linkText } ) }
 					/>
 				</div>
 				<ImagePicker

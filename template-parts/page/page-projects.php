@@ -8,6 +8,9 @@
  */
 
 $template_args = get_post_meta( get_the_ID(), 'projects_module', true );
+if ( ! is_array( $template_args ) ) {
+	$template_args = [];
+}
 
 $rand_translation = wmf_get_random_translation(
 	'projects_module', array(
@@ -15,6 +18,6 @@ $rand_translation = wmf_get_random_translation(
 	)
 );
 
-$template_args['rand_translation_title'] = empty( $rand_translation['pre_heading'] ) ? '' : $rand_translation['pre_heading'];
+$template_args['rand_translation_title'] = $rand_translation['pre_heading'] ?? '';
 
 get_template_part( 'template-parts/modules/projects/projects', null, $template_args );

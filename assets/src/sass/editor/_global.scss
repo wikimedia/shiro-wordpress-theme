@@ -5,7 +5,7 @@ body {
 
 .block-editor-block-list__layout.is-root-container > .wp-block:not(.is-reusable),
 .is-reusable > .block-library-block__reusable-block-container > .block-editor-block-list__layout > .wp-block:not(.is-reusable):not([data-align="full"]) {
-	@include responsive-padding(0 strip-px($block-padding / 2), 0 strip-px($block-padding));
+	@include responsive-padding(0 strip-px($block-padding * 0.5), 0 strip-px($block-padding));
 }
 
 .wp-block.block-editor-default-block-appender {
@@ -79,5 +79,25 @@ body {
 	.single-post & {
 		border-bottom: none;
 		font-weight: 700;
+	}
+}
+
+.wp-block-button.is-style-as-link {
+	.has-blue-background-color &,
+	.has-bright-blue-background-color &,
+	.has-blue-50-background-color &,
+	.has-blue-aaa-background-color &,
+	.has-dark-green-background-color &,
+	.has-orange-background-color &,
+	.has-green-aaa-background-color &,
+	.has-green-background-color &,
+	.has-purple-background-color &,
+	.has-red-background-color &,
+	.has-red-50-background-color &,
+	.has-red-aaa-background-color & {
+		.wp-block-button__link,
+		.wp-block-button__link:hover {
+			color: $wmui-color-base100;
+		}
 	}
 }
