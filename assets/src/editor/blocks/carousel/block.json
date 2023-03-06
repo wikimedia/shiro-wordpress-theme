@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "shiro/carousel",
+	"title": "Carousel",
+	"category": "media",
+	"icon": "images-alt2",
+	"description": "Content carousel",
+	"keywords": [
+		"carousel",
+		"gallery"
+	],
+	"version": "1.0.0",
+	"textdomain": "shiro-admin",
+	"attributes": {
+		"isMobileFullWidth": {
+			"type": "boolean",
+			"default": false
+		},
+		"navPosition": {
+			"type": "string",
+			"enum": [
+				"bottom",
+				"top"
+			],
+			"default": "bottom"
+		},
+		"showCounter": {
+			"type": "boolean",
+			"default": false
+		},
+		"showThumbnails": {
+			"type": "boolean",
+			"default": false
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		}
+	}
+}
