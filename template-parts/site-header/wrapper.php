@@ -25,7 +25,9 @@ $translations = array_filter( wmf_get_translations(), function ( $translation ) 
 		<?php endif; ?>>
 		<?php get_template_part( 'template-parts/site-header/toggle' ); ?>
 		<?php get_template_part( 'template-parts/site-header/logo' ); ?>
-		<?php get_template_part( 'template-parts/site-navigation/search' ); ?>
+		<div class='nav-search nav-search--desktop'>
+			<?php get_template_part( 'template-parts/site-navigation/search' ); ?>
+		</div>
 		<?php get_template_part( 'template-parts/site-header/language-switcher', null, [ 'translations' => $translations ] ); ?>
 		<?php get_template_part( 'template-parts/site-header/donate' ); ?>
 	</div>

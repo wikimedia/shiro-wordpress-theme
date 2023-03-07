@@ -7,6 +7,4 @@
  */
 
 ?>
-<div class="nav-search">
-	<?php get_search_form( true ); ?>
-</div>
+<?php get_search_form( true ); ?>
