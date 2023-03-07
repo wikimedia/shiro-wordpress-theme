@@ -7,11 +7,14 @@
 	width: 100%;
 
 	@media ( min-width: #{$medium-landscape} ) {
-		align-self: flex-start;
+		align-self: center;
 		flex: 0 0 rem(220);
-		margin-left: auto;
-		margin-top: rem(12);
-		order: 1;
+		margin-right: 0.5rem;
+		order: 26;
+	}
+
+	@media ( max-width: #{$medium-landscape} ) {
+		display: none;
 	}
 
 	[data-dropdown-status="uninitialized"] & {
