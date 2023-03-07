@@ -6,9 +6,7 @@ import {
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
-	RadioControl,
 	TextControl,
-	ToggleControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -34,7 +32,7 @@ const TEMPLATE = [
 function Edit( props ) {
 	const { attributes, clientId, setAttributes } = props;
 
-	const { title, navPosition, showCounter, showThumbnails, isMobileFullWidth } = attributes;
+	const { title } = attributes;
 
 	const blockProps = useBlockProps( {
 		className: 'shiro-carousel',
@@ -48,36 +46,6 @@ function Edit( props ) {
 						label={ __( 'Carousel name', 'shiro-admin' ) }
 						value={ title }
 						onChange={ ( title ) => setAttributes( { title } ) }
-					/>
-					<RadioControl
-						label={ __( 'Arrow navigation position', 'shiro-admin' ) }
-						options={ [
-							{
-								label: __( 'Top', 'shiro-admin' ),
-								value: 'top',
-							},
-							{
-								label: __( 'Bottom', 'shiro-admin' ),
-								value: 'bottom',
-							},
-						] }
-						selected={ navPosition }
-						onChange={ ( navPosition ) => setAttributes( { navPosition } ) }
-					/>
-					<ToggleControl
-						checked={ showCounter }
-						label={ __( 'Show slide counter', 'shiro-admin' ) }
-						onChange={ ( showCounter ) => setAttributes( { showCounter } ) }
-					/>
-					<ToggleControl
-						checked={ showThumbnails }
-						label={ __( 'Show thumbnails', 'shiro-admin' ) }
-						onChange={ ( showThumbnails ) => setAttributes( { showThumbnails } ) }
-					/>
-					<ToggleControl
-						checked={ isMobileFullWidth }
-						label={ __( 'Stretch to edge of screen on mobile', 'shiro-admin' ) }
-						onChange={ ( isMobileFullWidth ) => setAttributes( { isMobileFullWidth } ) }
 					/>
 				</PanelBody>
 			</InspectorControls>
