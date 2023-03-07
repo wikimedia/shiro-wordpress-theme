@@ -1,6 +1,6 @@
 import Splide from '@splidejs/splide';
 
-import { slideVisible } from './block-hero-home';
+import { slideVisible, slideHidden } from './block-hero-home';
 
 const carousels = [ ...document.querySelectorAll( '.shiro-carousel' ) ];
 
@@ -41,6 +41,7 @@ const init = () => {
 			// Start rotating headings on the first slide.
 			slideVisible( domElement.carousel.Components.Slides.get()[0] );
 			domElement.carousel.on( 'visible', slideVisible );
+			domElement.carousel.on( 'hidden', slideHidden );
 		}
 	);
 };

@@ -2,11 +2,6 @@
  * Functionality for rotating the rotating headings in the hero home
  */
 
-/**
- * Bootstrap frontend functionality.
- *
- * - This file is loaded at the bottom of the body, so we don't need an onready.
- */
 const HEADER_TEXT_CYCLE_TIME = 3000;
 const OPACITY_TRANSITION_TIME = 750;
 const BROWSER_PAINT_WAIT = 20;
@@ -66,6 +61,17 @@ const startRotatingHeadings = heroBlock => {
 };
 
 /**
+ * Stop rotating the headings in a block.
+ *
+ * @param {HTMLElement} heroBlock Hero block div.
+ */
+const stopRotatingHeadings = heroBlock => {
+	if ( heroBlock.rotateHeadingsTimeout ) {
+		clearTimeout( heroBlock.rotateHeadingsTimeout );
+	}
+};
+
+/**
  * Fade out previous heading.
  *
  * @param {HTMLElement} block Div representing the home-hero block.
@@ -106,11 +112,21 @@ function fadeInCurrentHeading( block ) {
 /**
  * Begin rotating headings in a slide when it becomes visible.
  *
- * @param {} Slide sub-component that is visible.
+ * @param {object} Slide sub-component that is visible.
+ * @param {HTMLElement} Slide.slide Element holding current slide.
  */
 export function slideVisible( { slide } ) {
-	console.log( slide ); // eslint-disable no-console
 	startRotatingHeadings( slide );
+}
+
+/**
+ * Stop rotating headings in a slide when it becomes hidden.
+ *
+ * @param {object} Slide sub-component that is visible.
+ * @param {HTMLElement} Slide.slide Element holding current slide.
+ */
+export function slideHidden( { slide } ) {
+	stopRotatingHeadings( slide );
 }
 
 /**
@@ -127,11 +143,16 @@ const init = () => {
  */
 const dispose = () => {
 	if ( heroes.length ) {
-		heroes.forEach( block => clearTimeout( block.rotateHeadingsTimeout ) );
+		heroes.forEach( stopRotatingHeadings );
 	}
 };
 
 init();
+
+export {
+	startRotatingHeadings,
+	stopRotatingHeadings,
+};
 
 if ( module.hot ) {
 	module.hot.dispose( dispose );
