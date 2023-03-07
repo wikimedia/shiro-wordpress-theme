@@ -4,6 +4,7 @@
  *
  * @package shiro
  */
+
 ?>
 <nav class="primary-nav">
 	<div class="primary-nav__drawer" data-dropdown-content="primary-nav">
