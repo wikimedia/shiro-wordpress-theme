@@ -2,6 +2,7 @@
 
 .shiro-carousel {
 	// stylelint-disable selector-class-pattern
+	margin-bottom: rem(48);
 
 	.splide__arrow {
 		@include button-transparent;
