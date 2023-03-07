@@ -1,5 +1,7 @@
 import Splide from '@splidejs/splide';
 
+import { slideVisible } from './block-hero-home';
+
 const carousels = [ ...document.querySelectorAll( '.shiro-carousel' ) ];
 
 // Set default values for carousel options, which can be overridden by
@@ -35,6 +37,10 @@ const init = () => {
 			};
 
 			domElement.carousel = new Splide( domElement, options ).mount();
+
+			// Start rotating headings on the first slide.
+			slideVisible( domElement.carousel.Components.Slides.get()[0] );
+			domElement.carousel.on( 'visible', slideVisible );
 		}
 	);
 };
