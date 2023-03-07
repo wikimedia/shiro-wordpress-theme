@@ -20,18 +20,17 @@ import HomePageHeroBlock from './edit';
 
 export const name = 'shiro/home-page-hero';
 
-// test edit
 export const settings = {
 	apiVersion: 2,
 
-	title: __( 'Home hero item', 'shiro-admin' ),
+	title: __( 'Home hero', 'shiro-admin' ),
 
 	category: 'wikimedia',
 
 	icon: 'superhero-alt',
 
 	description: __(
-		'A single hero image for the homepage',
+		'A moving hero for the homepage',
 		'shiro-admin'
 	),
 
