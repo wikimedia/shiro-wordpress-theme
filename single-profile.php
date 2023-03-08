@@ -22,7 +22,7 @@ while ( have_posts() ) :
 	$team_name       = '';
 	$parent_name     = $role[0]->name;
 	$parent_link     = get_term_link( $role[0] );
-    $connected_user = get_post_meta( get_the_ID(), 'connected_user', true );
+	$connected_user = get_post_meta( get_the_ID(), 'connected_user', true );
 
 	if ( ! empty( $role ) && ! is_wp_error( $role ) ) {
 		$team_name = $role[0]->name;
@@ -66,49 +66,49 @@ while ( have_posts() ) :
 				?>
 				<?php if ( ! empty( $share_links ) || ! empty( $connected_user ) ) : ?>
 				<div class="rise-up side-list">
-				<?php if ( ! empty( $share_links ) ) : ?>
-					<?php
-					foreach ( $share_links as $link ) :
+					<?php if ( ! empty( $share_links ) ) : ?>
+						<?php
+						foreach ( $share_links as $link ) :
 
+							?>
+					<div class="link-list mar-right">
+							<?php
+							$img = '';
+							if ( is_int( strpos( $link['link'], 'meta.wikimedia.org' ) ) ) {
+								$img = get_template_directory_uri() . '/assets/src/svg/globe.svg';
+							}
+							if ( is_int( strpos( $link['link'], 'mailto' ) ) ) {
+								$img = get_template_directory_uri() . '/assets/src/svg/email.svg';
+							}
+							if ( is_int( strpos( $link['link'], 'wikipedia.org' ) ) ) {
+								$img = get_template_directory_uri() . '/assets/src/svg/individual/wikipedia.svg';
+							}
+							if ( is_int( strpos( $link['link'], '/news/' ) ) ) {
+								$img = get_template_directory_uri() . '/assets/src/svg/individual/wikimedia-blue.svg';
+							}
+							?>
+						<div class="bold profile-contacts"><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
+							<img src="<?php echo esc_url( $img ); ?>" alt="">
+							<?php echo esc_html( $link['title'] ); ?>
+						</a></div>
+					</div>
+						<?php endforeach; ?>
+				<?php endif; ?>
+					<?php if ( ! empty( $connected_user ) ) : ?>
+						<?php
+						$authorimg = get_template_directory_uri() . '/assets/src/svg/edit-ltr.svg';
+						if ( is_rtl() ) {
+							$authorimg = get_template_directory_uri() . '/assets/src/svg/edit-rtl.svg';
+						}
+						$authorlink = wmf_get_author_link( $connected_user );
+						$authorlinkcopy = sprintf( /* translators: 1. post title */ __( 'Posts by %s', 'shiro' ), get_the_title() );
 						?>
 					<div class="link-list mar-right">
-						<?php
-						$img = "";
-						if ( is_int(strpos($link['link'],'meta.wikimedia.org') ) ) {
-							$img = get_template_directory_uri() . "/assets/src/svg/globe.svg";
-						}
-						if ( is_int(strpos($link['link'],'mailto')) ) {
-							$img = get_template_directory_uri() . "/assets/src/svg/email.svg";
-						}
-						if ( is_int(strpos($link['link'],'wikipedia.org')) ) {
-							$img = get_template_directory_uri() . "/assets/src/svg/individual/wikipedia.svg";
-						}
-						if ( is_int(strpos($link['link'],'/news/')) ) {
-							$img = get_template_directory_uri() . "/assets/src/svg/individual/wikimedia-blue.svg";
-						}
-						?>
-						<div class="bold profile-contacts"><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
-							<img src="<?php echo esc_url($img); ?>" alt="">
-							<?php echo esc_html( $link['title'] ); ?>
-                        </a></div>
-					</div>
-					<?php endforeach; ?>
-				<?php endif; ?>
-				<?php if ( ! empty( $connected_user ) ) : ?>
-                    <?php
-						$authorimg = get_template_directory_uri() . "/assets/src/svg/edit-ltr.svg";
-						if ( is_rtl() ) {
-							$authorimg = get_template_directory_uri() . "/assets/src/svg/edit-rtl.svg";
-						}
-                        $authorlink = wmf_get_author_link( $connected_user );
-                        $authorlinkcopy = sprintf( /* translators: 1. post title */ __( 'Posts by %s', 'shiro' ), get_the_title() );
-                    ?>
-                    <div class="link-list mar-right">
-                    <div class="bold profile-contacts"><a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">
-							<img src="<?php echo esc_url($authorimg); ?>" alt="">
+					<div class="bold profile-contacts"><a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">
+							<img src="<?php echo esc_url( $authorimg ); ?>" alt="">
 							<?php echo esc_html( $authorlinkcopy ); ?>
 						</a></div>
-                    </div>
+					</div>
 				<?php endif; ?>
 				</div>
 				<?php endif; ?>
