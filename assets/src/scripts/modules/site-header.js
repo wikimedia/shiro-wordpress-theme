@@ -49,10 +49,10 @@ function processEntry( entry ) {
 			_primaryNav.dataset.backdrop = 'inactive';
 			_primaryNav.dataset.trap = 'inactive';
 
-			// Make subnavs not toggleable.
+			 // Make subnavs toggleable.
 			_subNavMenus.forEach( _subNavMenu => {
-				_subNavMenu.dataset.toggleable = 'no';
-				_subNavMenu.dropdown.toggle.hidden = true;
+				//_subNavMenu.dataset.toggleable = 'yes';
+				_subNavMenu.dropdown.toggle.removeAttribute( 'hidden' );
 			} );
 		} else {
 			// We're on mobile

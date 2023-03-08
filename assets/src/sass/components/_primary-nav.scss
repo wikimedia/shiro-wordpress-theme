@@ -135,6 +135,12 @@
 				flex-wrap: wrap;
 			}
 
+			// A toggleable sub-menu should be displayed over the open one.
+			&[data-toggleable="yes"][data-visible="yes"] .sub-menu {
+				background-color: $color-white;
+				z-index: 1;
+			}
+
 			a {
 				align-items: flex-start;
 				color: $wmui-color-base0;
@@ -224,9 +230,9 @@
 			transform: rotateX( 180deg );
 		}
 
-		&[hidden] {
-			display: none;
-		}
+		//&[hidden] {
+			//display: none;
+		//}
 
 		&:focus {
 			@include focus-ring;
