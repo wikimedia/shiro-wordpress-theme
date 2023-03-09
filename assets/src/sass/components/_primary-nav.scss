@@ -230,9 +230,9 @@
 			transform: rotateX( 180deg );
 		}
 
-		//&[hidden] {
-			//display: none;
-		//}
+		&[hidden] {
+			display: none;
+		}
 
 		&:focus {
 			@include focus-ring;

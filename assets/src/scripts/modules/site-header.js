@@ -49,9 +49,12 @@ function processEntry( entry ) {
 			_primaryNav.dataset.backdrop = 'inactive';
 			_primaryNav.dataset.trap = 'inactive';
 
-			 // Make subnavs toggleable.
+			 // Make subnavs toggleable, and set visibilty as expected.
 			_subNavMenus.forEach( _subNavMenu => {
-				//_subNavMenu.dataset.toggleable = 'yes';
+				const isExpanded = !! _subNavMenu.closest( '.current-menu-item, .current-menu-parent' );
+
+				_subNavMenu.dataset.visible = isExpanded ? 'yes' : 'no';
+				_subNavMenu.dataset.toggleable = isExpanded ? 'no' : 'yes';
 				_subNavMenu.dropdown.toggle.removeAttribute( 'hidden' );
 			} );
 		} else {
