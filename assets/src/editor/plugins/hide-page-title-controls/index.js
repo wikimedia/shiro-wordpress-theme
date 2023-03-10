@@ -36,7 +36,7 @@ export const settings = {
 		const postType = select( 'core/editor' ).getCurrentPostType();
 
 		if ( postType !== 'page' ) {
-			return;
+			return null;
 		}
 
 		return  (
