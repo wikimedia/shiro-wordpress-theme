@@ -9,6 +9,7 @@ import {
 import { getBlockTypes } from '@wordpress/blocks';
 import {
 	PanelBody,
+	RangeControl,
 	SelectControl,
 	TextControl,
 } from '@wordpress/components';
@@ -61,7 +62,7 @@ export const settings = {
 	edit: function Edit( props ) {
 		const { attributes, clientId, setAttributes } = props;
 
-		const { title, currentBlock } = attributes;
+		const { title, currentBlock, perPage } = attributes;
 
 		const blockProps = useBlockProps( {
 			className: 'shiro-carousel',
@@ -99,6 +100,13 @@ export const settings = {
 							options={ blockTypeOptions }
 							onChange={ ( currentBlock ) => setAttributes( { currentBlock } ) }
 						/>
+						<RangeControl
+							label={ __( 'Slides per page', 'shiro-admin' ) }
+							value={ perPage }
+							onChange={ ( perPage ) => setAttributes( { perPage } ) }
+							min={ 1 }
+							max={ 3 }
+						/>
 					</PanelBody>
 				</InspectorControls>
 
@@ -123,13 +131,14 @@ export const settings = {
 	save: function Save( props ) {
 		const { attributes } = props;
 
-		const { title } = attributes;
+		const { title, perPage } = attributes;
 
 		const blockProps = useBlockProps.save( {
 			className: classNames( [
 				'shiro-carousel',
 			] ),
 			'data-label': title,
+			'data-per-page': perPage,
 		} );
 
 		const innerBlocksProps = useInnerBlocksProps.save( {

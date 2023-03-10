@@ -30,6 +30,9 @@
     },
     "currentBlock": {
       "type": "string"
+    },
+    "perPage": {
+      "type": "integer"
     }
   }
 }
