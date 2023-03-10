@@ -28,17 +28,16 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 		$first_result = ( $posts_per_page * $paged ) - $posts_per_page + 1;
 		$last_result = min( $total_results, $wp_query->post_count * $paged );
 		if ( $total_results === 1 ) {
-			$first_result = 1;
-			$last_result  = 1;
+			printf( esc_html__( 'Showing 1 of 1 result', 'shiro' ) );
+		} else {
+			printf(
+				/* translators: 1. first result, 2. last result, 3. total results */
+				esc_html__( 'Showing %1$s - %2$s of %3$s results', 'shiro' ),
+				esc_html( $first_result ),
+				esc_html( $last_result ),
+				esc_html( $total_results )
+			);
 		}
-
-		printf(
-			/* translators: 1. first result, 2. last result, 3. total results */
-			esc_html__( 'Showing %1$s - %2$s of %3$s results', 'shiro' ),
-			esc_html( $first_result ),
-			esc_html( $last_result ),
-			esc_html( $total_results )
-		);
 		?>
 	</div>
 
@@ -50,11 +49,23 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				'page' => 'Pages',
 			];
 
-			$selected = isset( $_GET['post_type'] ) ? esc_attr( array_shift( sanitize_text_field( wp_unslash( $_GET['post_type'] ) ) ) ) : 'all';
+			// All is the default option if none is selected, or if the post_type provided isn't in the list.
+			$option = 'all';
+			if ( isset( $_GET['post_type'] ) ) {
+				$option = sanitize_text_field( wp_unslash( array_shift( $_GET['post_type'] ) ) );
+				$option = ( ! array_key_exists( $option, $options ) ) ? 'all' : $option;
+			}
+			$selected = esc_attr( $option );
 
 			foreach ( $options as $key => $value ) {
 				$active = $selected === $key ? 'active' : '';
-				$href = esc_url( home_url( '/' ) ) . '?s=' . get_search_query() . '&post_type[]=' . $key;
+
+				$href = esc_url( home_url( '/' ) ) . '?s=' . get_search_query();
+				// Simplest way to get the all types is removing post_type param.
+				if ( $key !== 'all' ) {
+					$href .=  '&post_type[]=' . $key;
+				}
+
 				echo '<a href="' . esc_url( $href ) . '" class="' . esc_attr( $active ) . '">' . esc_html( $value ) . '</a>';
 			}
 			?>
