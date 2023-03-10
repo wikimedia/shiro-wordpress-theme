@@ -21,7 +21,7 @@ import { InnerBlockSlider } from '../../components/inner-block-slider';
 import metadata from './block.json';
 import './style.scss';
 
-// Ensure a better user experience by child blocks to a limited subset.
+// Ensure a better user experience by restricting child blocks to a limited subset.
 const ALLOWED_BLOCKS = [
 	'shiro/home-page-hero',
 	'shiro/landing-page-hero',
