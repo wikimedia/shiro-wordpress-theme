@@ -138,7 +138,9 @@ export const settings = {
 							onChange={ ( interval ) => setAttributes( { interval } ) }
 							min={ 0 }
 							max={ 10000 }
-							marks={ [ // eslint-ignore
+							marks={ [
+								/* eslint-disable object-property-newline */
+								/* eslint-disable object-curly-newline */
 								{ 'label': '1s', 'value': 1000 },
 								{ 'label': '2s', 'value': 2000 },
 								{ 'label': '3s', 'value': 3000 },
@@ -148,6 +150,8 @@ export const settings = {
 								{ 'label': '7s', 'value': 7000 },
 								{ 'label': '8s', 'value': 8000 },
 								{ 'label': '9s', 'value': 9000 },
+								/* eslint-enable object-property-newline */
+								/* eslint-enable object-curly-newline */
 							] }
 						/>
 					</PanelBody>
