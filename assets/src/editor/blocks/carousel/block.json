@@ -33,6 +33,22 @@
     },
     "perPage": {
       "type": "integer"
+    },
+    "arrows": {
+      "type": "boolean",
+      "default": true
+    },
+    "pagination": {
+      "type": "boolean",
+      "default": true
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "interval": {
+      "type": "integer",
+      "default": 5000
     }
   }
 }
