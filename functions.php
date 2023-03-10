@@ -372,6 +372,11 @@ require_once get_template_directory() . '/inc/stories.php';
 Stories_Customisations\init();
 
 /**
+ * Search page customizations.
+ */
+require_once get_template_directory() . '/inc/search.php';
+
+/**
  * Modify the document title for the 404 page
  *
  * @param array $title_parts Document title parts.
