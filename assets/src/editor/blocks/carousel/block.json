@@ -27,6 +27,9 @@
     "title": {
       "type": "string",
       "default": ""
+    },
+    "currentBlock": {
+      "type": "string"
     }
   }
 }
