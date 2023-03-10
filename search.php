@@ -63,6 +63,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				// Simplest way to get the all types is removing post_type param.
 				if ( $key !== 'all' ) {
 					$href .= '&post_type[]=' . $key;
+					/* translators: post type, i.e., News or Pages */
 					$aria_label = sprintf( __( 'Filter search for %s only', 'shiro' ), $value );
 				} else {
 					$aria_label = sprintf( __( 'Show all search results', 'shiro' ), $value );
