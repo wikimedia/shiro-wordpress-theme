@@ -13,7 +13,7 @@
  * @return void
  */
 function wmf_remove_profile_from_search( $query ) {
-	if ( $query->is_search() && $query->is_main_query() && ! isset( $_GET['post_type'] ) ) {
+	if ( $query->is_search() && $query->is_main_query() && ! isset( $_GET['post_type'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$query->set( 'post_type', [
 			'post',
 			'page',
