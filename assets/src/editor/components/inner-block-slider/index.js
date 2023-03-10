@@ -10,12 +10,12 @@ import Navigation from './navigation';
 /**
  * InnerBlockSlider component.
  *
- * @param {object} root0 - Component props.
- * @param {string} root0.parentBlockId - Parent block clientId.
- * @param {Array} root0.allowedBlocks - Allowed block types.
- * @param {string} root0.currentBlock - Block which will be inserted by the inserter.
- * @param {Array}  root0.template - Initial block template.
- * @param {number} root0.slideLimit - Maximum allowed slides.
+ * @param {object} props - Component props.
+ * @param {string} props.parentBlockId - Parent block clientId.
+ * @param {Array} props.allowedBlocks - Allowed block types.
+ * @param {string} props.currentBlock - Block which will be inserted by the inserter.
+ * @param {Array}  props.template - Initial block template.
+ * @param {number} props.slideLimit - Maximum allowed slides.
  * @returns {ReactNode} Component.
  */
 const InnerBlockSlider = ( {
