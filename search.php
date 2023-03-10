@@ -50,7 +50,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			];
 
 			// All is the default option if none is selected, or if the post_type provided isn't in the list.
-			if ( isset( $_GET['post_type'][0] ) ) {
+			if ( isset( $_GET['post_type'][0] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				$query_option = sanitize_text_field( wp_unslash( $_GET['post_type'][0] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			}
 			$option = array_key_exists( $query_option, $options ) ? $query_option : 'all';
@@ -81,7 +81,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 					the_post();
 
 					// Render the block for the current post
-					echo WMF\Editor\Blocks\BlogPost\render_block(
+					echo WMF\Editor\Blocks\BlogPost\render_block( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						[ 'post_id' => $post->ID ]
 					);
 				}
