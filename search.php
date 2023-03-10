@@ -43,9 +43,9 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 	<div class="search-results__tabs mw-980">
 		<?php
 			$options = [
-				'all' => __( 'All', 'shiro'),
-				'post' => __( 'News', 'shiro'),
-				'page' => __( 'Pages', 'shiro'),
+				'all' => __( 'All', 'shiro' ),
+				'post' => __( 'News', 'shiro' ),
+				'page' => __( 'Pages', 'shiro' ),
 			];
 
 			// All is the default option if none is selected, or if the post_type provided isn't in the list.
@@ -58,11 +58,11 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			foreach ( $options as $key => $value ) {
 				$active = $selected === $key ? 'active' : '';
 
-				$href = add_query_arg ('s', get_search_query(), home_url( '/' ) );
+				$href = add_query_arg( 's', get_search_query(), home_url( '/' ) );
 
 				// Simplest way to get the all types is not adding post_type param filter.
 				if ( $key !== 'all' ) {
-					$href = add_query_arg ('post_type[]', $key, $href );
+					$href = add_query_arg( 'post_type[]', $key, $href );
 
 					/* translators: post type, i.e., News or Pages */
 					$aria_label = sprintf( __( 'Filter search for %s only', 'shiro' ), $value );
