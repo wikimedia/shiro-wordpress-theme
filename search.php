@@ -63,9 +63,18 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				// Simplest way to get the all types is removing post_type param.
 				if ( $key !== 'all' ) {
 					$href .= '&post_type[]=' . $key;
+					$aria_label = sprintf( __( 'Filter search for %s only', 'shiro' ), $value );
+				} else {
+					$aria_label = sprintf( __( 'Show all search results', 'shiro' ), $value );
 				}
 
-				echo '<a href="' . esc_url( $href ) . '" class="' . esc_attr( $active ) . '">' . esc_html( $value ) . '</a>';
+				printf(
+					'<a href="%1$s" class="search-results__tab %2$s" aria-label="%3$s" title="%3$s">%4$s</a>',
+					esc_url( $href ),
+					esc_attr( $active ),
+					esc_attr( $aria_label ),
+					esc_html( $value )
+				);
 			}
 			?>
 	</div>
