@@ -50,7 +50,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			];
 
 			// All is the default option if none is selected, or if the post_type provided isn't in the list.
-			$query_option = ( isset( $_GET['post_type'][0] ) )
+			$query_option = ( isset( $_GET['post_type'][0] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				? sanitize_text_field( wp_unslash( $_GET['post_type'][0] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				: 'all';
 			$option = array_key_exists( $query_option, $options ) ? $query_option : 'all';
