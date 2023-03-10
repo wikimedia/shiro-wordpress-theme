@@ -84,7 +84,7 @@ export const settings = {
 			.map( ( blockName ) => {
 				const registeredBlock = allBlocksAvailable.find( ( block ) => block.name === blockName );
 
-				if ( registeredBlock !== 'undefined' ) {
+				if ( typeof registeredBlock !== 'undefined' ) {
 					return {
 						label: registeredBlock.title,
 						value: registeredBlock.name,
