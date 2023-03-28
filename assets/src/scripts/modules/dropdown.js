@@ -461,6 +461,13 @@ dropdownMenuItems.forEach( menuItem => {
 } );
 
 /**
+ * Adds class if there's dropdown menu.
+ */
+if ( dropdownMenuItems.lenght !== 0 ) {
+	document.querySelector( 'header' ).classList.add( 'header-default__dropdown-spacing' );
+}
+
+/**
  * Show dropdown.
  *
  * @param {HTMLBodyElement} event document.menu-item['data-dropdown'].
