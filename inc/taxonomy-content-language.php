@@ -145,8 +145,8 @@ function wmf_add_default_content_language( int $post_ID ): void {
  */
 function wmf_filter_posts_by_content_language( WP_Query $query ) : void {
 
-	// Don't filter the admin or singular pages.
-	if ( is_admin() || is_singular() ) {
+	// Don't filter the admin, singular pages or non-main queries.
+	if ( is_admin() || ! $query->is_main_query() || is_singular() ) {
 		return;
 	}
 
