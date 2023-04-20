@@ -183,7 +183,7 @@ function wmf_filter_posts_by_content_language( WP_Query $query ) : void {
 	$query->set( 'tax_query', $tax_query );
 }
 
-add_filter( 'pre_get_posts', 'wmf_filter_posts_by_content_language' );
+add_action( 'pre_get_posts', 'wmf_filter_posts_by_content_language' );
 add_action( 'wp_insert_post', 'wmf_add_default_content_language' );
 add_action( 'admin_init', 'wmf_create_current_language_term' );
 add_action( 'init', 'wmf_register_content_language_taxonomy' );
