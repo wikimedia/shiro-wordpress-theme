@@ -145,8 +145,42 @@ function wmf_add_default_content_language( int $post_ID ): void {
  */
 function wmf_filter_posts_by_content_language( WP_Query $query ) : void {
 
-	// Don't filter the admin, singular pages or non-main queries.
-	if ( is_admin() || ! $query->is_main_query() || is_singular() ) {
+	// Don't filter the admin.
+	if ( is_admin() ) {
+		return;
+	}
+
+	// Restrict content-language filtering to the main query.
+	if ( ! $query->is_main_query() ) {
+		return;
+	}
+
+	// Only filter posts.
+	if ( ! empty( $query->get( 'post_type' ) ) && ! in_array( $query->get( 'post_type' ), apply_filters( 'wmf_content_language_post_types', [ 'post' ] ), true ) ) {
+		return;
+	}
+
+	// Allow user to see single posts no matter what.
+	if ( is_singular() ) {
+		return;
+	}
+
+	// Allow users to see post history setting the content-language.
+	if ( $query->is_tax( 'content-language' ) ) {
+		return;
+	}
+
+	// Try to cover all the potential cases where we don't want the content-language filter to work.
+	if (
+			$query->is_post_type_archive() ||
+			$query->is_category() ||
+			$query->is_tag() ||
+			$query->is_author() ||
+			$query->is_date() ||
+			$query->is_search() ||
+			$query->is_feed() ||
+			$query->is_404()
+		) {
 		return;
 	}
 
@@ -156,31 +190,14 @@ function wmf_filter_posts_by_content_language( WP_Query $query ) : void {
 		return;
 	}
 
-	// Get all language terms.
-	$all_language_terms = get_terms( [
-		'taxonomy' => 'content-language',
-		'hide_empty' => false,
+	// Filter posts which has content-language set to main_locale.
+	$query->set( 'tax_query', [
+		[
+			'taxonomy' => 'content-language',
+			'field'    => 'slug',
+			'terms'    => $main_locale->slug,
+		],
 	] );
-
-	// Remove main language term from language terms.
-	$other_language_terms = array_filter( $all_language_terms, function( $term ) use ( $main_locale ) {
-		return $term->slug !== $main_locale->slug;
-	} );
-
-	$tax_query = $query->get( 'tax_query' );
-	if ( ! is_array( $tax_query ) ) {
-		$tax_query = [];
-	}
-
-	// Remove from query posts which are related to language terms other than main_locale.
-	$tax_query[] = [
-		'taxonomy' => 'content-language',
-		'field'    => 'slug',
-		'terms'    => wp_list_pluck( $other_language_terms, 'slug' ),
-		'operator' => 'NOT IN',
-	];
-
-	$query->set( 'tax_query', $tax_query );
 }
 
 add_action( 'pre_get_posts', 'wmf_filter_posts_by_content_language' );
