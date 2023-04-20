@@ -134,6 +134,56 @@ function wmf_add_default_content_language( int $post_ID ): void {
 	}
 }
 
+/**
+ * Filter posts by content language on post listings.
+ *
+ * This is used to ensure that posts having different current-language
+ * taxonomy are not displayed on the post listings.
+ *
+ * @param \WP_Query $query Query object to filter.
+ * @return void
+ */
+function wmf_filter_posts_by_content_language( WP_Query $query ) : void {
+
+	// Don't filter the admin or singular pages.
+	if ( is_admin() || is_singular() ) {
+		return;
+	}
+
+	// Get term of main language.
+	$main_locale = wmf_get_and_maybe_create_current_language_term();
+	if ( $main_locale === null ) {
+		return;
+	}
+
+	// Get all language terms.
+	$all_language_terms = get_terms( [
+		'taxonomy' => 'content-language',
+		'hide_empty' => false,
+	] );
+
+	// Remove main language term from language terms.
+	$other_language_terms = array_filter( $all_language_terms, function( $term ) use ( $main_locale ) {
+		return $term->slug !== $main_locale->slug;
+	} );
+
+	$tax_query = $query->get( 'tax_query' );
+	if ( ! is_array( $tax_query ) ) {
+		$tax_query = [];
+	}
+
+	// Remove from query posts which are related to language terms other than main_locale.
+	$tax_query[] = [
+		'taxonomy' => 'content-language',
+		'field'    => 'slug',
+		'terms'    => wp_list_pluck( $other_language_terms, 'slug' ),
+		'operator' => 'NOT IN',
+	];
+
+	$query->set( 'tax_query', $tax_query );
+}
+
+add_filter( 'pre_get_posts', 'wmf_filter_posts_by_content_language' );
 add_action( 'wp_insert_post', 'wmf_add_default_content_language' );
 add_action( 'admin_init', 'wmf_create_current_language_term' );
 add_action( 'init', 'wmf_register_content_language_taxonomy' );
