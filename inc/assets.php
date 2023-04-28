@@ -24,6 +24,7 @@ function get_manifests() : array {
  * target asset. This allows some assets to be loaded from a running DevServer
  * while others load from production files on disk.
  *
+ * @param string $target_asset Desired asset within the manifest.
  * @return string|null
  */
 function get_manifest_path( $target_asset ) {
