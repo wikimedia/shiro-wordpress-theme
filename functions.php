@@ -129,7 +129,7 @@ function wmf_scripts() {
 	wp_enqueue_script( 'shiro-svg4everybody', get_template_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'shiro-script', get_template_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-svg4everybody' ), $script_version, true );
 	Asset_Loader\enqueue_asset(
-		\WMF\Assets\get_manifest_path(),
+		\WMF\Assets\get_manifest_path( 'shiro.js' ),
 		'shiro.js',
 		[
 			'dependencies' => [],
@@ -337,6 +337,7 @@ Network_Settings\bootstrap();
 require get_template_directory() . '/inc/post-types/profile.php';
 require get_template_directory() . '/inc/post-types/story.php';
 require get_template_directory() . '/inc/post-types/post.php';
+require get_template_directory() . '/inc/post-types/page.php';
 
 /**
  * Logic for Custom Page Templates.
@@ -370,6 +371,11 @@ require get_template_directory() . '/inc/shortcodes/focus-blocks.php';
  */
 require_once get_template_directory() . '/inc/stories.php';
 Stories_Customisations\init();
+
+/**
+ * Search page customizations.
+ */
+require_once get_template_directory() . '/inc/search.php';
 
 /**
  * Modify the document title for the 404 page
@@ -509,6 +515,11 @@ add_action( 'admin_menu', 'shiro_link_reusable_blocks_url' );
  */
 function shiro_add_slug_body_class( $classes ) {
 	global $post;
+
+	// ignore it for search pages
+	if ( is_search() ) {
+		return $classes;
+	}
 
 	if ( isset( $post ) ) {
 		$classes[] = $post->post_type . '-' . $post->post_name;
