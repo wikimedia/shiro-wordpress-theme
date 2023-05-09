@@ -1,12 +1,8 @@
 /**
  * Collect any "Donate" buttons on the page and set their utm_source.
- */
-
-/**
+ *
  * Searches for any links to donate.wikimedia.org, and replaces their hrefs to
  * include UTM parameters in the query strings.
- *
- * @returns {HTMLElement[]} Array of donation buttons.
  */
 const init = () => {
 	const donationButtons = [ ...document.querySelectorAll( '[href^="https://donate.wikimedia.org"]' ) ];
