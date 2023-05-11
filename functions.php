@@ -376,7 +376,7 @@ Stories_Customisations\init();
  * Post List Filters customizations.
  */
 require get_template_directory() . '/inc/post-list-filters.php';
-Post_List_Filters\bootstrap();
+WMF\Post_List_Filters\bootstrap();
 
 /**
  * Search page customizations.

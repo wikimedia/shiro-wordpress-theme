@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-namespace Post_List_Filters;
+namespace WMF\Post_List_Filters;
 
 /**
  * Bootstrap post list filters functionality.
@@ -19,12 +19,15 @@ function bootstrap() {
  *
  * This function is hooked into the pre_get_posts action below.
  *
- * @param WP_Query $query
+ * @param WP_Query $query The WP_Query instance.
  * @return void
  */
 function custom_post_list_filters( $query ) : void {
-
 	if ( ! $query->is_main_query() ) {
+		return;
+	}
+
+	if ( ! isset( $_GET['post_list_filters_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_GET['post_list_filters_nonce'] ), 'post_list_filters' ) ) {
 		return;
 	}
 
@@ -48,7 +51,7 @@ function custom_post_list_filters( $query ) : void {
 	}
 
 	// Filter by categories.
-	$categories = isset( $_GET['categories'] ) ? $_GET['categories'] : [];
+	$categories = isset( $_GET['categories'] ) ? array_map( 'sanitize_text_field', $_GET['categories'] ) : [];
 	if ( ! empty( $categories ) ) {
 		$query->set( 'tax_query', [
 			[
