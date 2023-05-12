@@ -19,14 +19,31 @@
 	}
 
 	&__toggle {
-
-		&--hide {
-			display: none;
-		}
-
 		&::before {
 			@include button-icon-rules;
 			background-image: url("./assets/src/svg/individual/filter.svg");
+		}
+
+		// Initial toggle button message states.
+		&__message {
+			&--show {
+				display: inline-block;
+			}
+
+			&--hide {
+				display: none;
+			}
+		}
+
+		// Message states when filter container is opened.
+		&--open {
+			.post-list-filter__toggle__message--hide {
+				display: inline-block;
+			}
+
+			.post-list-filter__toggle__message--show {
+				display: none;
+			}
 		}
 	}
 
@@ -38,14 +55,6 @@
 
 		&--open {
 			display: flex;
-
-			.post-list-filter__toggle--show {
-				display: none;
-			}
-
-			.post-list-filter__toggle--hide {
-				display: block;
-			}
 		}
 
 		> div {

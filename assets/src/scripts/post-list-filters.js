@@ -9,10 +9,8 @@ const toggleFilterContainer = ( filterButton, filterContainer ) => {
 	 * Click event handler for the filter button.
 	 */
 	const clickHandler = () => {
-		const isHidden = ! filterContainer.classList.contains( 'post-list-filter__container--open' );
 		filterContainer.classList.toggle( 'post-list-filter__container--open' );
-
-		filterButton.innerHTML = isHidden ? 'Hide filters' : filterButton.dataset.showFiltersAppliedButtonLabel;
+		filterButton.classList.toggle( 'post-list-filter__toggle--open' );
 	};
 
 	filterButton.addEventListener( 'click', clickHandler );
@@ -37,13 +35,13 @@ const resetDateFilters = ( fromDateInput, toDateInput ) => {
  */
 const resetFormFields = form => {
 
-	// Reset all inputs on form.
+	// Reset search and date inputs.
 	const inputs = form.querySelectorAll( 'input[type="text"], input[type="date"]' );
 	inputs.forEach( input => {
 		input.value = '';
 	} );
 
-	// Reset all checkboxes on form.
+	// Reset all category checkboxes.
 	const checkboxes = form.querySelectorAll( 'input[type="checkbox"]' );
 	checkboxes.forEach( checkbox => {
 		checkbox.checked = false;
@@ -57,7 +55,6 @@ const initializePostListFilters = () => {
 
 	// Controls filters container visibility toggle.
 	const filterButton = document.querySelector( '.post-list-filter__toggle' );
-	filterButton.dataset.showFiltersAppliedButtonLabel = filterButton.innerHTML;
 	const filterContainer = document.querySelector( '.post-list-filter__container' );
 	toggleFilterContainer( filterButton, filterContainer );
 

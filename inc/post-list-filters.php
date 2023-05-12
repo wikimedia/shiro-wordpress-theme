@@ -42,7 +42,7 @@ function custom_post_list_filters( $query ) : void {
 	// Filter by date interval.
 	$date_from = isset( $_GET['date_from'] ) ? sanitize_text_field( $_GET['date_from'] ) : '';
 	$date_to   = isset( $_GET['date_to'] ) ? sanitize_text_field( $_GET['date_to'] ) : '';
-	if ( ! empty( $date_from ) && ! empty( $date_to ) ) {
+	if ( ! empty( $date_from ) || ! empty( $date_to ) ) {
 		$query->set( 'date_query', [
 			[
 				'after'     => $date_from,
