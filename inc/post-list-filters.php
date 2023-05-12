@@ -31,10 +31,12 @@ function custom_post_list_filters( $query ) : void {
 		return;
 	}
 
-	// Filter by search text.
-	$search_text = isset( $_GET['s'] ) ? sanitize_text_field( $_GET['s'] ) : '';
-	if ( $search_text ) {
-		$query->set( 's', $search_text );
+	if ( is_admin() ) {
+		return;
+	}
+
+	if ( is_search() ) {
+		return;
 	}
 
 	// Filter by date interval.

@@ -5,13 +5,18 @@
  * @package shiro
  */
 
+// Get query vars.
+$query_var_search_term = get_search_query();
+$query_var_date_from   = isset( $_GET['date_from'] ) ? sanitize_text_field( $_GET['date_from'] ) : '';
+$query_var_date_to     = isset( $_GET['date_to'] ) ? sanitize_text_field( $_GET['date_to'] ) : '';
+$query_var_categories  = isset( $_GET['categories'] ) ? array_map( 'sanitize_text_field', $_GET['categories'] ) : [];
+
 ?>
 
 <section class="post-list-filter mw-980">
 
 	<div class="post-list-filter__head">
 
-		<h3>
 			<?php
 			$total_results = $wp_query->found_posts;
 			$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
@@ -30,38 +35,40 @@
 				);
 			}
 			?>
-		</h3>
 
-		<button class="post-list-filter__toggle">
+		<button class="action-button post-list-filter__toggle">
+			<span class="post-list-filter__toggle--hide"><?php echo __( 'Hide filters' ); ?></span>
+			<span class="post-list-filter__toggle--show">
 			<?php
-			$filter_count = 0;
-
 			if ( isset( $_GET['post_list_filters_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_GET['post_list_filters_nonce'] ), 'post_list_filters' ) ) {
-				$search_term = get_search_query();
-				if ( ! empty( $search_term ) ) {
+				$filter_count = 0;
+
+				// Search term.
+				if ( ! empty( $query_var_search_term ) ) {
 					$filter_count++;
 				}
 
-				if ( ! empty( sanitize_text_field( $_GET['date_from'] ) ) && ! empty( sanitize_text_field( $_GET['date_to'] ) ) ) {
+				// Date interval.
+				if ( ! empty( $query_var_date_from ) && ! empty( $query_var_date_to ) ) {
 					$filter_count++;
 				}
 
-				if ( ! empty( $_GET['categories'] ) ) {
-					$filter_count += count( $_GET['categories'] );
-				}
+				// Categories.
+				$filter_count += count( $query_var_categories );
 
 				printf( esc_html__( 'Show filters', 'shiro' ) );
 
 				if ( $filter_count > 0 ) {
-					echo ' <i>';
+					echo ' <em>';
 					/* translators: 1. how many filters were applied */
 					printf( esc_html__( '(%s applied)', 'shiro' ), esc_html( $filter_count ) );
-					echo '</i>';
+					echo '</em>';
 				}
 			} else {
 				printf( esc_html__( 'Show filters', 'shiro' ) );
 			}
 			?>
+			</span>
 		</button>
 
 	</div>
@@ -75,33 +82,32 @@
 			<div class="filter-by-text">
 				<h5>
 					<?php printf( esc_html__( 'Filter by text', 'shiro' ) ); ?>
-					<?php if ( ! empty( get_search_query() ) ) : ?>
-						&nbsp;<i>(<?php printf( esc_html__( 'applied', 'shiro' ) ); ?>)</i>
+					<?php if ( ! empty( $query_var_search_term ) ) : ?>
+						&nbsp;<em><u>(<?php printf( esc_html__( 'applied', 'shiro' ) ); ?>)</u></em>
 					<?php endif; ?>
 				</h5>
 				<div class="search-text-input-button">
-					<input type="text" name="s" value="<?php echo get_search_query(); ?>">
+					<input type="text" name="s" value="<?php echo $query_var_search_term; ?>">
 				</div>
 			</div>
 
 			<div class="filter-by-date">
 				<h5>
 					<?php printf( esc_html__( 'Filter by date', 'shiro' ) ); ?>
-					<?php if ( ! empty( $_GET['date_from'] ) && ! empty( $_GET['date_to'] ) ) : ?>
-						&nbsp;<i>(<?php printf( esc_html__( 'applied', 'shiro' ) ); ?>)</i>
+					<?php if ( ! empty( $query_var_date_from ) && ! empty( $query_var_date_to ) ) : ?>
+						&nbsp;<em><u>(<?php printf( esc_html__( 'applied', 'shiro' ) ); ?>)</u></em>
 					<?php endif; ?>
 				</h5>
 				<div class="filter-date-inputs-container">
-					<input type="date" name="date_from" placeholder="From" value="<?php echo isset( $_GET['date_from'] ) ? esc_attr( sanitize_text_field( $_GET['date_from'] ) ) : ''; ?>">
-					<input type="date" name="date_to" placeholder="To" value="<?php echo isset( $_GET['date_to'] ) ? esc_attr( sanitize_text_field( $_GET['date_to'] ) ) : ''; ?>">
-					<button type="button" class="button-reset-date-filters">Reset</button>
+					<input type="date" name="date_from" placeholder="From" value="<?php echo esc_attr( $query_var_date_from ); ?>">
+					<input type="date" name="date_to" placeholder="To" value="<?php echo esc_attr( $query_var_date_to ); ?>">
+					<button type="button" class="action-button action-button--clear" id="button-reset-date-filters"><?php printf( esc_html__( 'Reset', 'shiro' ) ); ?></button>
 				</div>
 			</div>
 
 			<div class="filter-by-category">
 				<?php
 				$categories = get_categories();
-				$current_categories = isset( $_GET['categories'] ) ? array_map( 'sanitize_text_field', $_GET['categories'] ) : [];
 
 				foreach ( $categories as $category ) {
 					$category_display = ( $category->parent == 0 )
@@ -115,16 +121,16 @@
 
 				<h5>
 					<?php printf( esc_html__( 'Filter by category', 'shiro' ) ); ?>
-					<?php if ( count( $current_categories ) > 0 ) : ?>
-						&nbsp;<i>(<?php echo count( $current_categories ) . ' ' . esc_html__( 'applied', 'shiro' ); ?>)</i>
+					<?php if ( count( $query_var_categories ) > 0 ) : ?>
+						&nbsp;<em><u>(<?php echo count( $query_var_categories ) . ' ' . esc_html__( 'applied', 'shiro' ); ?>)</u></em>
 					<?php endif; ?>
 				</h5>
 
-				<ul>
+				<ul class='category-container'>
 					<?php foreach ( $categories_array as $category->slug => $category_display ) : ?>
 					<li>
 						<label class='individual-category'>
-							<input type="checkbox" name="categories[]" value="<?php echo esc_attr( $category->slug ); ?>" <?php checked( in_array( $category->slug, $current_categories ) ); ?>>
+							<input type="checkbox" name="categories[]" value="<?php echo esc_attr( $category->slug ); ?>" <?php checked( in_array( $category->slug, $query_var_categories ) ); ?>>
 							<?php echo esc_html( $category_display ); ?>
 						</label>
 					</li>
@@ -133,8 +139,8 @@
 
 			</div>
 
-			<button class='button-clear-filters' type="reset"><?php printf( esc_html__( 'Clear filters', 'shiro' ) ); ?></button>
-			<button type="submit" class="button-apply-filters"><?php printf( esc_html__( 'Apply filters', 'shiro' ) ); ?></button>
+			<button class='action-button action-button--clear' id="button-clear-filters" type="reset"><?php printf( esc_html__( 'Clear filters', 'shiro' ) ); ?></button>
+			<button class="action-button action-button--right" id="button-apply-filters" type="submit"><?php printf( esc_html__( 'Apply filters', 'shiro' ) ); ?></button>
 
 		</div>
 

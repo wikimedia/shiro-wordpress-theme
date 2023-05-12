@@ -9,11 +9,10 @@ const toggleFilterContainer = ( filterButton, filterContainer ) => {
 	 * Click event handler for the filter button.
 	 */
 	const clickHandler = () => {
-	  const isHidden = filterContainer.style.display === 'none' || filterContainer.style.display === '';
-	  filterContainer.style.display = isHidden ? 'flex' : 'none';
+		const isHidden = ! filterContainer.classList.contains( 'post-list-filter__container--open' );
+		filterContainer.classList.toggle( 'post-list-filter__container--open' );
 
-	  const buttonLabel = filterButton.getAttribute( 'show-filters-applied-button-label' );
-	  filterButton.innerHTML = isHidden ? 'Hide filters' : buttonLabel;
+		filterButton.innerHTML = isHidden ? 'Hide filters' : filterButton.dataset.showFiltersAppliedButtonLabel;
 	};
 
 	filterButton.addEventListener( 'click', clickHandler );
@@ -58,12 +57,12 @@ const initializePostListFilters = () => {
 
 	// Controls filters container visibility toggle.
 	const filterButton = document.querySelector( '.post-list-filter__toggle' );
-	filterButton.setAttribute( 'show-filters-applied-button-label', filterButton.innerHTML );
+	filterButton.dataset.showFiltersAppliedButtonLabel = filterButton.innerHTML;
 	const filterContainer = document.querySelector( '.post-list-filter__container' );
 	toggleFilterContainer( filterButton, filterContainer );
 
 	// Controls date filters reset.
-	const resetDateFiltersButton = document.querySelector( '.button-reset-date-filters' );
+	const resetDateFiltersButton = document.getElementById( 'button-reset-date-filters' );
 	const fromDateInput = document.querySelector( 'input[name="date_from"]' );
 	const toDateInput = document.querySelector( 'input[name="date_to"]' );
 	resetDateFiltersButton.addEventListener( 'click', () => {
@@ -71,8 +70,8 @@ const initializePostListFilters = () => {
 	} );
 
 	// Controls form reset.
-	const resetFormButton = document.querySelector( '.button-clear-filters' );
 	const form = document.querySelector( '.post-list-filter__form' );
+	const resetFormButton = filterContainer.querySelector( '#button-clear-filters' );
 	resetFormButton.addEventListener( 'click', () => {
 		resetFormFields( form );
 		form.submit();
