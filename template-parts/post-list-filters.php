@@ -37,7 +37,7 @@ $query_var_categories  = isset( $_GET['categories'] ) ? array_map( 'sanitize_tex
 			?>
 
 		<button class="action-button post-list-filter__toggle">
-			<span class="post-list-filter__toggle--hide"><?php echo __( 'Hide filters' ); ?></span>
+			<span class="post-list-filter__toggle--hide"><?php echo esc_html__( 'Hide filters', 'shiro' ); ?></span>
 			<span class="post-list-filter__toggle--show">
 			<?php
 			if ( isset( $_GET['post_list_filters_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_GET['post_list_filters_nonce'] ), 'post_list_filters' ) ) {
@@ -87,7 +87,7 @@ $query_var_categories  = isset( $_GET['categories'] ) ? array_map( 'sanitize_tex
 					<?php endif; ?>
 				</h5>
 				<div class="search-text-input-button">
-					<input type="text" name="s" value="<?php echo $query_var_search_term; ?>">
+					<input type="text" name="s" value="<?php echo esc_attr( $query_var_search_term ); ?>">
 				</div>
 			</div>
 
