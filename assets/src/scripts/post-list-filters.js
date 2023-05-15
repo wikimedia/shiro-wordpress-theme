@@ -4,16 +4,16 @@
  * @param {HTMLElement} filterButton - The button used to toggle the filter container.
  * @param {HTMLElement} filterContainer - The filter container.
  */
-const toggleFilterContainer = ( filterButton, filterContainer ) => {
+const addFilterToggleHandler = ( filterButton, filterContainer ) => {
 	/**
 	 * Click event handler for the filter button.
 	 */
-	const clickHandler = () => {
+	const toggleFilterClickHandler = () => {
 		filterContainer.classList.toggle( 'post-list-filter__container--open' );
 		filterButton.classList.toggle( 'post-list-filter__toggle--open' );
 	};
 
-	filterButton.addEventListener( 'click', clickHandler );
+	filterButton.addEventListener( 'click', toggleFilterClickHandler );
 };
 
 /**
@@ -56,7 +56,7 @@ const initializePostListFilters = () => {
 	// Controls filters container visibility toggle.
 	const filterButton = document.querySelector( '.post-list-filter__toggle' );
 	const filterContainer = document.querySelector( '.post-list-filter__container' );
-	toggleFilterContainer( filterButton, filterContainer );
+	addFilterToggleHandler( filterButton, filterContainer );
 
 	// Controls date filters reset.
 	const resetDateFiltersButton = document.getElementById( 'button-reset-date-filters' );
