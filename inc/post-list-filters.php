@@ -27,15 +27,15 @@ function custom_post_list_filters( $query ) : void {
 		return;
 	}
 
-	if ( ! isset( $_GET['post_list_filters_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_GET['post_list_filters_nonce'] ), 'post_list_filters' ) ) {
-		return;
-	}
-
 	if ( is_admin() ) {
 		return;
 	}
 
 	if ( is_search() ) {
+		return;
+	}
+
+	if ( ! isset( $_GET['post_list_filters_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_GET['post_list_filters_nonce'] ), 'post_list_filters' ) ) {
 		return;
 	}
 
