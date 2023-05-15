@@ -18,74 +18,6 @@ const PLACEHOLDER = '%MENU_PLACEHOLDER%';
 function bootstrap() {
 	add_filter( 'render_block', __NAMESPACE__ . '\\update_toc_item', 10, 2 );
 	add_filter( 'render_block', __NAMESPACE__ . '\\maybe_create_nested_toc', 20, 3 );
-	// // add_filter( 'pre_render_block', function( $pre_render ) {
-	// // 	echo '<div style="padding-left: 1rem">';
-	// // 	return $pre_render;
-	// // }, 5);
-	// // add_filter( 'pre_render_block', function( $content ) {
-	// // 	echo '</div>';
-	// // 	return $content;
-	// // }, 30);
-	// // add_filter( 'pre_render_block', function( $pre_render, $parsed_block ) {
-	// // 	echo '<pre>' . $parsed_block['blockName'] . '</pre>';
-	// // 	return $pre_render;
-	// // }, 5, 2 );
-	// add_filter( 'render_block', function( $block_content, $block ) {
-	// 	// echo '<pre>' . $block['blockName'] . '</pre>';
-	// 	if ( 'core/heading' !== $block['blockName'] ) {
-	// 		return $block_content;
-	// 	}
-	// 	echo '<pre>' . wp_json_encode( escape_json_content( $block ), JSON_PRETTY_PRINT ) . '</pre>';
-	// 	return $block_content;
-	// }, 5, 2 );
-
-	$headings = [];
-	add_filter( 'render_block', function( $block_content, $block ) use ( &$headings ) {
-		if ( 'core/heading' === $block['blockName'] ) {
-			// We need to get the items class and href, so using a domdoc to confidently locate them.
-			$heading_block_doc = new \DOMDocument();
-			$heading_block_doc->loadHTML( $block_content, \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD );
-			if ( $heading_block_doc->hasChildNodes() ) {
-				$heading = $heading_block_doc->childNodes[0];
-				$headings[] = [
-					'nodeName' => $heading->nodeName,
-					'anchor' => $heading->getAttribute( 'id' ),
-					'content' => trim( wp_kses( $block_content, [] ) ),
-				];
-			}
-
-		}
-		return $block_content;
-	}, 10, 2 );
-	add_filter( 'render_block', function( $block_content, $block ) {
-		if ( 'shiro/toc' === $block['blockName'] ) {
-			return PLACEHOLDER;
-		}
-		return $block_content;
-	}, 30, 2 );
-	add_filter( 'the_content', function( $content ) use ( &$headings ) {
-		if ( empty( $headings ) || strpos( $content, PLACEHOLDER ) === false ) {
-			return $content;
-		}
-		ob_start();
-		?>
-		<ul class="wp-block-shiro-toc table-of-contents toc">
-			<?php foreach ( $headings as $idx => $heading ) : ?>
-			<?php if ( $heading['nodeName'] === 'h2' && ( $headings[ $idx - 1 ]['nodeName'] ?? 'h2' ) !== 'h2' ) : ?>
-			</ul></li>
-			<?php endif; ?>
-			<li class="toc__item">
-			<a class="toc__link" href="#<?php echo esc_attr( $heading['anchor'] ); ?>"><?php echo esc_html( $heading['content'] ); ?></a>
-			<?php if ( ( $headings[ $idx + 1 ]['nodeName'] ?? 'h2' ) !== 'h2' ) : ?>
-			<ul>
-			<?php else :?>
-			</li>
-			<?php endif; ?>
-			<?php endforeach; ?>
-		</ul>
-		<?php
-		return str_replace( PLACEHOLDER, (string) ob_get_clean(), $content );
-	} );
 }
 
 /**
@@ -146,21 +78,6 @@ function maybe_create_nested_toc( string $block_content, array $block, $instance
 	if ( 'shiro/toc' !== $block['blockName'] ) {
 		return $block_content;
 	}
-
-	// echo '<p><strong>properties</strong></p>';
-	// echo '<pre>' . print_r( array_keys( (array) $instance ), true ) . '</pre>';
-	// echo '<p><strong>Block content</strong></p>';
-	// echo '<pre>' . esc_html( preg_replace( "/></", ">\n<", $block_content ) ) . '</pre>';
-	// echo '<p><strong>Block attrs</strong></p>';
-	// echo '<pre>' . wp_json_encode( escape_json_content( $block ), JSON_PRETTY_PRINT ) . '</pre>';
-	// // wp_die( sprintf( '<p><strong>properties</strong></p><pre>%s</pre><p><strong>public</strong></p><pre>%s</pre>', print_r( array_keys( (array) $instance ), true ), print_r( array_keys( (array) get_object_vars( $instance ) ), true ) ) );
-
-	// return '';'
-
-	// $post = get_post();
-	// if ( ! empty( $post ) ) {
-	// 	$headings = parse_blocks
-	// }
 
 	// Check if a parent page exists.
 	$post_parent = get_post_parent();
