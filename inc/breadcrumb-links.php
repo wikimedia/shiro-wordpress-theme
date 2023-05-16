@@ -54,7 +54,7 @@ function display_breadcrumb_link_meta_box( $post ) : void {
 			id="breadcrumb_link_url"
 			name="breadcrumb_link_url"
 			value="<?php echo esc_attr( $breadcrumb_link_url ); ?>"
-			placeholder="<?php esc_html_e( 'Leave blank to use default link', 'shiro-admin' ); ?>"
+			placeholder="<?php esc_attr_e( 'Leave blank to use default link', 'shiro-admin' ); ?>"
 		/>
 	</label><br /><br />
 
@@ -65,7 +65,7 @@ function display_breadcrumb_link_meta_box( $post ) : void {
 			id="breadcrumb_link_title"
 			name="breadcrumb_link_title"
 			value="<?php echo esc_attr( $breadcrumb_link_title ); ?>"
-			placeholder="<?php esc_html_e( 'Leave blank to use default title', 'shiro-admin' ); ?>"
+			placeholder="<?php esc_attr_e( 'Leave blank to use default title', 'shiro-admin' ); ?>"
 		/>
 	</label>
 
