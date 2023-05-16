@@ -25,7 +25,7 @@ function bootstrap() {
 			if ( $heading_block_doc->hasChildNodes() ) {
 				$heading = $heading_block_doc->childNodes[0];
 				$headings[] = [
-					'nodeName' => $heading->nodeName,
+					'node' => $heading->nodeName,
 					'anchor' => $heading->getAttribute( 'id' ),
 					'content' => trim( wp_kses( $block_content, [] ) ),
 				];
@@ -46,20 +46,37 @@ function bootstrap() {
 		if ( empty( $headings ) || strpos( $content, PLACEHOLDER ) === false ) {
 			return $content;
 		}
+		// Break headings into a naively nested structure where any heading
+		// h2 or below is top level, and all others are nested within the
+		// prior h2. The first heading is always treated as top level.
+		// This should work properly in a well-ordered document, and be
+		// resilient to poorly constructed heading hierarchies otherwise.
+		$nested_headings = [];
+		foreach ( $headings as $idx => $heading ) {
+			if ( $idx === 0 || $heading['node'] < 'h3' ) {
+				$nested_headings[] = array_merge( $heading, [ 'children' => [] ] );
+				continue;
+			}
+			$nested_headings[ array_key_last( $nested_headings ) ]['children'][] = $heading;
+		}
 		ob_start();
 		?>
 		<ul class="wp-block-shiro-toc table-of-contents toc">
-			<?php foreach ( $headings as $idx => $heading ) : ?>
-			<?php if ( $heading['nodeName'] === 'h2' && ( $headings[ $idx - 1 ]['nodeName'] ?? 'h2' ) !== 'h2' ) : ?>
-			</ul></li>
-			<?php endif; ?>
+			<?php foreach ( $nested_headings as $heading ) : ?>
 			<li class="toc__item">
-			<a class="toc__link" href="#<?php echo esc_attr( $heading['anchor'] ); ?>"><?php echo esc_html( $heading['content'] ); ?></a>
-			<?php if ( ( $headings[ $idx + 1 ]['nodeName'] ?? 'h2' ) !== 'h2' ) : ?>
-			<ul>
-			<?php else :?>
+				<a class="toc__link" href="#<?php echo esc_attr( $heading['anchor'] ); ?>"><?php echo esc_html( $heading['content'] ); ?></a>
+				<?php if ( count( $heading['children'] ) ) : ?>
+				<ul>
+					<?php foreach ( $heading['children'] as $nested_heading ) : ?>
+					<li class="toc__item toc__item--child">
+						<a class="toc__link" href="#<?php echo esc_attr( $nested_heading['anchor'] ); ?>">
+							<?php echo esc_html( $nested_heading['content'] ); ?>
+						</a>
+					</li>
+					<?php endforeach; ?>
+				</ul>
+				<?php endif; ?>
 			</li>
-			<?php endif; ?>
 			<?php endforeach; ?>
 		</ul>
 		<?php
