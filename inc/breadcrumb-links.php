@@ -3,15 +3,15 @@
  * Breadcrumb Links
  */
 
- namespace WMF\Breadcrumb_Links;
+namespace WMF\Breadcrumb_Links;
 
- /**
-  * Kick it off.
-  */
- function init() {
-	add_action( 'add_meta_boxes', __NAMESPACE__ . '\\add_breadcrumb_link_meta_box');
+/**
+ * Kick it off.
+ */
+function init() {
+	add_action( 'add_meta_boxes', __NAMESPACE__ . '\\add_breadcrumb_link_meta_box' );
 	add_action( 'save_post', __NAMESPACE__ . '\\save_breadcrumb_link_custom_fields' );
- }
+}
 
 
 /**
@@ -34,12 +34,13 @@ function add_breadcrumb_link_meta_box() {
  *
  * @return void
  */
-function display_breadcrumb_link_meta_box($post) : void {
-    $show_breadcrumb_links = get_post_meta( $post->ID, 'show_breadcrumb_links', true );
+function display_breadcrumb_link_meta_box( $post ) : void {
+	$show_breadcrumb_links = get_post_meta( $post->ID, 'show_breadcrumb_links', true );
 	$breadcrumb_link_url = get_post_meta( $post->ID, 'breadcrumb_link_url', true );
 	$breadcrumb_link_title = get_post_meta( $post->ID, 'breadcrumb_link_title', true );
+	?>
 
-    ?>
+	<?php wp_nonce_field( basename( __FILE__ ), 'breadcrumb_link_nonce' ); ?>
 
 	<label for="show_breadcrumb_links">
 		<input type="checkbox" id="show_breadcrumb_links" name="show_breadcrumb_links" <?php checked( $show_breadcrumb_links, 'on' ); ?> />
@@ -68,7 +69,7 @@ function display_breadcrumb_link_meta_box($post) : void {
 		/>
 	</label>
 
-	 <?php
+	<?php
 }
 
 /**
@@ -77,6 +78,10 @@ function display_breadcrumb_link_meta_box($post) : void {
  * @param int $post_id The ID of the post being saved.
  */
 function save_breadcrumb_link_custom_fields( $post_id ) : void {
+	if ( ! isset( $_POST['breadcrumb_link_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_POST['breadcrumb_link_nonce'] ), basename( __FILE__ ) ) ) {
+		return;
+	}
+
 	if ( isset( $_POST['show_breadcrumb_links'] ) ) {
 		update_post_meta( $post_id, 'show_breadcrumb_links', 'on' );
 	} else {
