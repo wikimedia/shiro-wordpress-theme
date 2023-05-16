@@ -70,6 +70,7 @@ abstract class Base {
 				'posts_per_page' => -1,
 				'orderby'        => 'title',
 				'order'          => 'ASC',
+				'post_status'    => 'publish',
 			)
 		);
 
