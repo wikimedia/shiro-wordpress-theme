@@ -39,30 +39,6 @@ function update_toc_item( string $block_content, array $block ) {
 	return is_null( $helper ) ? $block_content : $helper['content'];
 }
 
-function escape_json_content($data) {
-	if (is_array($data)) {
-		foreach ($data as $key => $value) {
-			if ( $key === 'innerContent' ) {
-				$data[$key] = array_map( 'esc_html', $data[$key] );
-			} elseif (in_array($key, [ 'post_content', 'innerHTML', 'content', 'originalContent' ], true ) ) {
-				$data[$key] = esc_html($value);
-			} elseif (is_array($value) || is_object($value)) {
-				$data[$key] = escape_json_content($value);
-			}
-		}
-	} elseif (is_object($data)) {
-		foreach ($data as $key => $value) {
-			if ($key === "content" || $key === "originalContent") {
-				$data->$key = esc_html($value);
-			} elseif (is_array($value) || is_object($value)) {
-				$data->$key = escape_json_content($value);
-			}
-		}
-	}
-
-	return $data;
-}
-
 /**
  * If a table of contents block is found, check to see if there is a linked table of contents in the parent block. If so,
  * add the linked toc block as the parent in the toc column with the contents of the table of contents block as a child under
