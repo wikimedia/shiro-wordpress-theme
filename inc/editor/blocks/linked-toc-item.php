@@ -49,7 +49,7 @@ function update_toc_item( string $block_content, array $block ) {
  *
  * @return string Nested toc column or passed in block content.
  */
-function maybe_create_nested_toc( string $block_content, array $block, $instance ) {
+function maybe_create_nested_toc( string $block_content, array $block ) {
 	// Only apply nesting if we find a toc block.
 	if ( 'shiro/toc' !== $block['blockName'] ) {
 		return $block_content;

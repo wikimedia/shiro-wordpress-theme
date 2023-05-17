@@ -16,6 +16,8 @@ const PLACEHOLDER = '%MENU_PLACEHOLDER%';
  * Bootstrap this block functionality.
  */
 function bootstrap() {
+	add_filter( 'render_block', __NAMESPACE__ . '\\render_toc_block', 10, 2 );
+
 	$headings = [];
 	add_filter( 'render_block', function( $block_content, $block ) use ( &$headings ) {
 		if ( 'core/heading' === $block['blockName'] ) {
@@ -30,7 +32,6 @@ function bootstrap() {
 					'content' => trim( wp_kses( $block_content, [] ) ),
 				];
 			}
-
 		}
 		return $block_content;
 	}, 10, 2 );
@@ -82,4 +83,98 @@ function bootstrap() {
 		<?php
 		return str_replace( PLACEHOLDER, (string) ob_get_clean(), $content );
 	} );
+}
+
+/**
+ * Output the ToC <ul> element given an array of headings.
+ *
+ * Expected structure:
+ *
+ * [
+ *     [ 'node' => (h2|h3), 'anchor' => '#string', contents: 'Heading title', children: [] ],
+ *     [ ... ]
+ * ]
+ *
+ * @param array   $headings            List of headings.
+ * @param boolean $render_nested_items Whether to render subitems.
+ */
+function render_headings_list( $headings, $render_nested_items = true ) : void {
+	if ( empty( $headings ) ) {
+		return;
+	}
+	?>
+	<ul class="wp-block-shiro-toc table-of-contents toc">
+		<?php foreach ( $headings as $heading ) : ?>
+		<li class="toc__item">
+			<a class="toc__link" href="#<?php echo esc_attr( $heading['anchor'] ); ?>"><?php echo esc_html( $heading['content'] ); ?></a>
+			<?php if ( $render_nested_items && count( $heading['children'] ) ) : ?>
+			<ul class="toc toc__nested">
+				<?php foreach ( $heading['children'] as $nested_heading ) : ?>
+				<li class="toc__item">
+					<a class="toc__link" href="#<?php echo esc_attr( $nested_heading['anchor'] ); ?>">
+						<?php echo esc_html( $nested_heading['content'] ); ?>
+					</a>
+				</li>
+				<?php endforeach; ?>
+			</ul>
+			<?php endif; ?>
+		</li>
+		<?php endforeach; ?>
+	</ul>
+	<?php
+}
+
+/**
+ * Render the table of contents block.
+ *
+ * @param string $block_content Saved block content.
+ * @param array  $block         Block array.
+ * @return string Rendered block content.
+ */
+function render_toc_block( string $block_content, array $block ) : string {
+	if ( $block['blockName'] !== BLOCK_NAME ) {
+		return $block_content;
+	}
+
+	if ( ! is_singular() ) {
+		return '';
+	}
+
+	$headings = get_headings_from_post( get_post() );
+
+	if ( empty( $headings ) ) {
+		return '';
+	}
+
+	ob_start();
+	?>
+	<nav
+		class="toc-nav"
+		data-backdrop="inactive"
+		data-dropdown="toc-nav"
+		data-dropdown-content=".toc"
+		data-dropdown-status="uninitialized"
+		data-dropdown-toggle=".toc__button"
+		data-sticky="false"
+		data-toggleable="yes"
+		data-trap="inactive"
+		data-visible="false"
+	>
+		<h2 class="toc__title screen-reader-text">
+			<?php esc_html_e( 'Table of Contents', 'shiro' ); ?>
+		</h2>
+		<button aria-expanded="false" class="toc__button" hidden>
+			<span class="btn-label-a11y">
+				<?php esc_html_e( 'Navigate within this page.', 'shiro' ); ?>
+			</span>
+			<span class="btn-label-active-item">
+				<?php echo esc_html( $headings[0]['content'] ?? __( 'Toggle menu', 'shiro' ) ); ?>
+			</span>
+		</button>
+		<ul class="wp-block-shiro-toc table-of-contents toc">
+			<?php render_headings_list( $headings, $block['attrs']['nested'] ?? false ); ?>
+		</ul>
+	</nav>
+	<?php
+	return (string) ob_get_clean();
 }
