@@ -9,6 +9,9 @@
 
 namespace WMF\Editor\Blocks\TOC;
 
+use DOMDocument;
+use DOMXPath;
+
 const BLOCK_NAME = 'shiro/toc';
 const PLACEHOLDER = '%MENU_PLACEHOLDER%';
 
@@ -17,112 +20,76 @@ const PLACEHOLDER = '%MENU_PLACEHOLDER%';
  */
 function bootstrap() {
 	add_filter( 'render_block', __NAMESPACE__ . '\\render_toc_block', 10, 2 );
-
-	$headings = [];
-	add_filter( 'render_block', function( $block_content, $block ) use ( &$headings ) {
-		if ( 'core/heading' === $block['blockName'] ) {
-			// We need to get the items class and href, so using a domdoc to confidently locate them.
-			$heading_block_doc = new \DOMDocument();
-			$heading_block_doc->loadHTML( $block_content, \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD );
-			if ( $heading_block_doc->hasChildNodes() ) {
-				$heading = $heading_block_doc->childNodes[0];
-				$headings[] = [
-					'node' => $heading->nodeName,
-					'anchor' => $heading->getAttribute( 'id' ),
-					'content' => trim( wp_kses( $block_content, [] ) ),
-				];
-			}
-		}
-		return $block_content;
-	}, 10, 2 );
-
-	add_filter( 'render_block', function( $block_content, $block ) {
-		if ( 'shiro/toc' === $block['blockName'] ) {
-			return preg_replace( '/<ul[^>]+class="wp-block-shiro-toc.*<\/ul>/', PLACEHOLDER, $block_content );
-		}
-		return $block_content;
-	}, 30, 2 );
-
-	add_filter( 'the_content', function( $content ) use ( &$headings ) {
-		if ( empty( $headings ) || strpos( $content, PLACEHOLDER ) === false ) {
-			return $content;
-		}
-		// Break headings into a naively nested structure where any heading
-		// h2 or below is top level, and all others are nested within the
-		// prior h2. The first heading is always treated as top level.
-		// This should work properly in a well-ordered document, and be
-		// resilient to poorly constructed heading hierarchies otherwise.
-		$nested_headings = [];
-		foreach ( $headings as $idx => $heading ) {
-			if ( $idx === 0 || $heading['node'] < 'h3' ) {
-				$nested_headings[] = array_merge( $heading, [ 'children' => [] ] );
-				continue;
-			}
-			$nested_headings[ array_key_last( $nested_headings ) ]['children'][] = $heading;
-		}
-		ob_start();
-		?>
-		<ul class="wp-block-shiro-toc table-of-contents toc">
-			<?php foreach ( $nested_headings as $heading ) : ?>
-			<li class="toc__item">
-				<a class="toc__link" href="#<?php echo esc_attr( $heading['anchor'] ); ?>"><?php echo esc_html( $heading['content'] ); ?></a>
-				<?php if ( count( $heading['children'] ) ) : ?>
-				<ul class="toc toc__nested">
-					<?php foreach ( $heading['children'] as $nested_heading ) : ?>
-					<li class="toc__item">
-						<a class="toc__link" href="#<?php echo esc_attr( $nested_heading['anchor'] ); ?>">
-							<?php echo esc_html( $nested_heading['content'] ); ?>
-						</a>
-					</li>
-					<?php endforeach; ?>
-				</ul>
-				<?php endif; ?>
-			</li>
-			<?php endforeach; ?>
-		</ul>
-		<?php
-		return str_replace( PLACEHOLDER, (string) ob_get_clean(), $content );
-	} );
 }
 
 /**
- * Return a function that may be hooked to `render_block()` which will store
- * all encountered heading blocks in the reference array.
+ * Parse a post or page's raw content for header elements with IDs, and return
+ * an array of those headings and their contents.
  *
- * @param array $headings Array to store headings information.
- * @return void
+ * @param string $content Post content (before block parsing).
+ * @return array Array of headings with anchor IDs.
  */
-function store_heading_blocks( &$headings ) : callable {
+function get_headings_from_post_content( string $content ) : array {
 	// Block attributes stored in post markup are not available on their own
-	// within PHP rendering code. To confidently locate the values we want,
-	// DOMDocument is the most reliable tool.
-	$heading_block_doc = new \DOMDocument();
+	// within PHP rendering code, even once the content is parsed as blocks.
+	// DOMDocument is the most reliable tool to locate the values we want.
+	$heading_block_doc = new DOMDocument();
+	$heading_block_doc->loadHTML( $content );
+	$xpath = new DOMXPath( $heading_block_doc );
 
-	/**
-	 * A render_block hook function which stores encountered heading blocks in
-	 * the $headings array.
-	 *
-	 * @param string $block_content Rendered block content.
-	 * @param array  $block         Block array.
-	 * @return string Unchanged content.
-	 */
-	return function( string $block_content, array $block ) use ( &$headings, $heading_block_doc ) : string {
-		if ( 'core/heading' !== $block['blockName'] ) {
-			return $block_content;
+	// Query for h2 and h3 elements that have an id attribute.
+	$matching_elements = $xpath->query( '//h2[@id] | //h3[@id]' );
+
+	foreach ( $matching_elements as $header_element ) {
+		// DOMDocument properties do not follow WP style guidelines.
+		/* phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase */
+		$headings[] = [
+			'node'    => $header_element->tagName,
+			'id'      => $header_element->getAttribute( 'id' ),
+			'content' => $header_element->nodeValue,
+		];
+		/* eslint-enable */
+	}
+
+	return $headings;
+}
+
+/**
+ * Convert a linear array of headings in the post into a nested structure.
+ *
+ * Assumes H2 is the topmost level, and discards any headings below $max_depth.
+ * All headings within an H2 section are treated as the same level: that is,
+ * [ h2, h3, h4 ] becomes [ { ...h2, children: [ h3, h4 ] } ] and not
+ * [ { ...h2, children: [ { ...h3, children: [ h4 ] } ] } ].
+ *
+ * @param array  $headings  Array of [ node, anchor, content ] heading arrays.
+ * @param string $max_depth Smallest level of heading to include.
+ * @return array Array of headings nested by hierarchy.
+ */
+function headings_to_nested_list( array $headings, $max_depth = 'h3' ) : array {
+	if ( empty( $headings ) ) {
+		return [];
+	}
+
+	// Break headings into a naively nested structure where any heading
+	// h2 or below is top level, and all others are nested within the
+	// prior h2. The first heading is always treated as top level.
+	// This should work properly in a well-ordered document, and be
+	// resilient to poorly constructed heading hierarchies otherwise.
+	$nested_headings = [];
+
+	foreach ( $headings as $idx => $heading ) {
+		if ( $idx === 0 || $heading['node'] < 'h3' ) {
+			$nested_headings[] = array_merge( $heading, [ 'children' => [] ] );
+			continue;
 		}
-		$heading_block_doc->loadHTML( $block_content, \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD );
-		if ( $heading_block_doc->hasChildNodes() ) {
-			/* phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase */
-			$heading_node = $heading_block_doc->childNodes[0];
-			$headings[] = [
-				'node' => $heading_node->nodeName,
-				'anchor' => $heading_node->getAttribute( 'id' ),
-				'content' => trim( wp_kses( $block_content, [] ) ),
-			];
-			/* phpcs:enable */
+		if ( $heading['node'] > $max_depth ) {
+			continue;
 		}
-		return $block_content;
-	};
+		$nested_headings[ array_key_last( $nested_headings ) ]['children'][] = $heading;
+	}
+
+	return $nested_headings;
 }
 
 /**
@@ -131,7 +98,7 @@ function store_heading_blocks( &$headings ) : callable {
  * Expected structure:
  *
  * [
- *     [ 'node' => (h2|h3), 'anchor' => '#string', contents: 'Heading title', children: [] ],
+ *     [ 'id' => 'id-string', contents: 'Heading title', children: [] ],
  *     [ ... ]
  * ]
  *
@@ -146,12 +113,12 @@ function render_headings_list( $headings, $render_nested_items = true ) : void {
 	<ul class="wp-block-shiro-toc table-of-contents toc">
 		<?php foreach ( $headings as $heading ) : ?>
 		<li class="toc__item">
-			<a class="toc__link" href="#<?php echo esc_attr( $heading['anchor'] ); ?>"><?php echo esc_html( $heading['content'] ); ?></a>
+			<a class="toc__link" href="#<?php echo esc_attr( $heading['id'] ); ?>"><?php echo esc_html( $heading['content'] ); ?></a>
 			<?php if ( $render_nested_items && count( $heading['children'] ) ) : ?>
 			<ul class="toc toc__nested">
 				<?php foreach ( $heading['children'] as $nested_heading ) : ?>
 				<li class="toc__item">
-					<a class="toc__link" href="#<?php echo esc_attr( $nested_heading['anchor'] ); ?>">
+					<a class="toc__link" href="#<?php echo esc_attr( $nested_heading['id'] ); ?>">
 						<?php echo esc_html( $nested_heading['content'] ); ?>
 					</a>
 				</li>
@@ -180,8 +147,15 @@ function render_toc_block( string $block_content, array $block ) : string {
 		return '';
 	}
 
-	$headings = [];
-	add_filter( 'render_block', store_heading_blocks( $headings ) );
+	$headings = get_headings_from_post_content( get_post()->post_content ?? '' );
+
+	$ret = '<pre>' . print_r( $headings, true ) . '</pre>';
+
+	$max_depth = ( $block['attrs']['includeH3s'] ?? false ) ? 'h3' : 'h2';
+	$headings = headings_to_nested_list( $headings, $max_depth );
+
+	// return '<pre>' . print_r( $block, true ) . '</pre>';
+	// return $ret . '<pre>' . print_r( $headings, true ) . '</pre>';
 
 	if ( empty( $headings ) ) {
 		return '';
@@ -213,7 +187,7 @@ function render_toc_block( string $block_content, array $block ) : string {
 			</span>
 		</button>
 		<ul class="wp-block-shiro-toc table-of-contents toc">
-			<?php render_headings_list( $headings, $block['attrs']['nested'] ?? false ); ?>
+			<?php render_headings_list( $headings ); ?>
 		</ul>
 	</nav>
 	<?php
