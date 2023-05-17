@@ -1,4 +1,5 @@
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { Panel, PanelBody, ToggleControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -27,6 +28,10 @@ export const name = 'shiro/toc',
 			headingBlocks: {
 				type: 'array',
 				default: [],
+			},
+			includeH3s: {
+				type: 'boolean',
+				default: false,
 			},
 		},
 
@@ -100,6 +105,26 @@ export const name = 'shiro/toc',
 
 			return (
 				<>
+					<InspectorControls>
+						<Panel header={ __( 'Structure', 'shiro-admin' ) } initialOpen>
+							<PanelBody>
+								<ToggleControl
+									label={ __( 'Third-level headings', 'shiro-admin' ) }
+									help={
+										attributes.includeH3s
+											? __( 'Include h3 headings.', 'shiro-admin' )
+											: __( 'Omit h3 headings.', 'shiro-admin' )
+									}
+									checked={ attributes.includeH3s }
+									onChange={ () => {
+										setAttributes( {
+											includeH3s: ! attributes.includeH3s,
+										} );
+									} }
+								/>
+							</PanelBody>
+						</Panel>
+					</InspectorControls>
 					{ attributes.headingBlocks.length > 0 ? (
 						<nav className="toc-nav">
 							<ul { ...blockProps }>
