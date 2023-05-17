@@ -86,6 +86,46 @@ function bootstrap() {
 }
 
 /**
+ * Return a function that may be hooked to `render_block()` which will store
+ * all encountered heading blocks in the reference array.
+ *
+ * @param array $headings Array to store headings information.
+ * @return void
+ */
+function store_heading_blocks( &$headings ) : callable {
+	// Block attributes stored in post markup are not available on their own
+	// within PHP rendering code. To confidently locate the values we want,
+	// DOMDocument is the most reliable tool.
+	$heading_block_doc = new \DOMDocument();
+
+	/**
+	 * A render_block hook function which stores encountered heading blocks in
+	 * the $headings array.
+	 *
+	 * @param string $block_content Rendered block content.
+	 * @param array  $block         Block array.
+	 * @return string Unchanged content.
+	 */
+	return function( string $block_content, array $block ) use ( &$headings, $heading_block_doc ) : string {
+		if ( 'core/heading' !== $block['blockName'] ) {
+			return $block_content;
+		}
+		$heading_block_doc->loadHTML( $block_content, \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD );
+		if ( $heading_block_doc->hasChildNodes() ) {
+			/* phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase */
+			$heading_node = $heading_block_doc->childNodes[0];
+			$headings[] = [
+				'node' => $heading_node->nodeName,
+				'anchor' => $heading_node->getAttribute( 'id' ),
+				'content' => trim( wp_kses( $block_content, [] ) ),
+			];
+			/* phpcs:enable */
+		}
+		return $block_content;
+	};
+}
+
+/**
  * Output the ToC <ul> element given an array of headings.
  *
  * Expected structure:
@@ -140,7 +180,8 @@ function render_toc_block( string $block_content, array $block ) : string {
 		return '';
 	}
 
-	$headings = get_headings_from_post( get_post() );
+	$headings = [];
+	add_filter( 'render_block', store_heading_blocks( $headings ) );
 
 	if ( empty( $headings ) ) {
 		return '';
