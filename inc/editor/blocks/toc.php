@@ -66,9 +66,9 @@ function bootstrap() {
 			<li class="toc__item">
 				<a class="toc__link" href="#<?php echo esc_attr( $heading['anchor'] ); ?>"><?php echo esc_html( $heading['content'] ); ?></a>
 				<?php if ( count( $heading['children'] ) ) : ?>
-				<ul>
+				<ul class="toc toc__nested">
 					<?php foreach ( $heading['children'] as $nested_heading ) : ?>
-					<li class="toc__item toc__item--child">
+					<li class="toc__item">
 						<a class="toc__link" href="#<?php echo esc_attr( $nested_heading['anchor'] ); ?>">
 							<?php echo esc_html( $nested_heading['content'] ); ?>
 						</a>
