@@ -44,33 +44,36 @@ if ( ! empty( $h2_title ) xor ! empty( $title ) ) {
 	$single_title = ! empty( $h2_title ) ? $h2_title : $title;
 }
 
-/**
- * Breadcrumb link switch
- *
- * Possible values of the switch:
- * 1. '' - meta data from component not set (page wasn't yet edited with this component on the page)
- * 2. 'on' - set to yes
- * 3. 'off' - set to no
- */
-$breadcrumb_link_switch = get_post_meta( get_the_ID(), 'show_breadcrumb_links', true );
-if ( $breadcrumb_link_switch === 'on' ) {
-	$breadcrumb_link_custom_title = get_post_meta( get_the_ID(), 'breadcrumb_link_title', true );
-	$h4_title = ! empty( $breadcrumb_link_custom_title ) ? $breadcrumb_link_custom_title : $h4_title;
+if ( is_page() ) {
+	/**
+	 * Page breadcrumb link switch
+	 *
+	 * Possible values of the switch, inserted on edit page screen:
+	 * 1. '' - meta data from component not set (page wasn't yet edited with this component on the page)
+	 * 2. 'on' - set to yes
+	 * 3. 'off' - set to no
+	 */
+	$breadcrumb_link_switch = get_post_meta( get_the_ID(), 'show_breadcrumb_links', true );
+	if ( $breadcrumb_link_switch === 'on' ) {
+		$breadcrumb_link_custom_title = get_post_meta( get_the_ID(), 'breadcrumb_link_title', true );
+		$h4_title = ! empty( $breadcrumb_link_custom_title ) ? $breadcrumb_link_custom_title : $h4_title;
 
-	$breadcrumb_link_custom_url = get_post_meta( get_the_ID(), 'breadcrumb_link_url', true );
-	$h4_link = ! empty( $breadcrumb_link_custom_url ) ? $breadcrumb_link_custom_url : $h4_link;
-} elseif ( $breadcrumb_link_switch === 'off' ) {
-	$h4_link = '';
-	$h4_title = '';
-	?>
-	<h2 class="h4 eyebrow">
-		&nbsp;
-	</h2>
-	<?php
-} elseif ( $breadcrumb_link_switch === '' ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedElseif
-	// Don't do anything, page wasn't yet edited with this component on the page.
-	// Breadcumb link will be displayed with default values.
+		$breadcrumb_link_custom_url = get_post_meta( get_the_ID(), 'breadcrumb_link_url', true );
+		$h4_link = ! empty( $breadcrumb_link_custom_url ) ? $breadcrumb_link_custom_url : $h4_link;
+	} elseif ( $breadcrumb_link_switch === 'off' ) {
+		$h4_link = '';
+		$h4_title = '';
+		?>
+		<h2 class="h4 eyebrow">
+			&nbsp;
+		</h2>
+		<?php
+	} elseif ( $breadcrumb_link_switch === '' ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedElseif
+		// Don't do anything, page wasn't yet edited with this component on the page.
+		// Breadcumb link will be displayed with default values.
+	}
 }
+
 ?>
 
 <div class="header-content">
