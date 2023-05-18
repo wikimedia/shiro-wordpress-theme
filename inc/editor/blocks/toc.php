@@ -151,9 +151,6 @@ function render_toc_block( string $block_content, array $block ) : string {
 	$max_depth = ( $block['attrs']['includeH3s'] ?? false ) ? 'h3' : 'h2';
 	$headings = headings_to_nested_list( $headings, $max_depth );
 
-	// return '<pre>' . print_r( $block, true ) . '</pre>';
-	// return $ret . '<pre>' . print_r( $headings, true ) . '</pre>';
-
 	if ( empty( $headings ) ) {
 		return '';
 	}

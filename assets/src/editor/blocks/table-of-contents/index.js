@@ -152,7 +152,7 @@ export const name = 'shiro/toc',
 
 		/**
 		 * Render save of the table of contents block.
-		*/
+		 */
 		save() {
 			// Server-rendered.
 			return null;
