@@ -50,6 +50,14 @@ const addAccordionToggleHandlers = item => {
 const initializeAccordionItems = () => {
 	// Hook in click events to each item.
 	[ ...document.querySelectorAll( '.accordion-item' ) ].forEach( item => addAccordionToggleHandlers( item ) );
+
+	if ( document.location.hash ) {
+		const targetNode = document.querySelector( document.location.hash );
+		if ( targetNode && targetNode.closest( '.accordion-item' ) ) {
+			targetNode.closest( '.accordion-item' ).click();
+			targetNode.closest( '.accordion-item' ).scrollIntoView();
+		}
+	}
 };
 
 document.addEventListener( 'DOMContentLoaded', initializeAccordionItems );
