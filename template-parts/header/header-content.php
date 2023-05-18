@@ -53,7 +53,6 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
  * 3. 'off' - set to no
  */
 $breadcrumb_link_switch = get_post_meta( get_the_ID(), 'show_breadcrumb_links', true );
-//var_dump($breadcrumb_link_switch);exit;
 if ( $breadcrumb_link_switch === 'on') {
 	$breadcrumb_link_custom_title = get_post_meta( get_the_ID(), 'breadcrumb_link_title', true );
 	$h4_title = ! empty( $breadcrumb_link_custom_title ) ? $breadcrumb_link_custom_title : $h4_title;
@@ -68,7 +67,7 @@ if ( $breadcrumb_link_switch === 'on') {
 		&nbsp;
 	</h2>
 	<?php
-} elseif ( $breadcrumb_link_switch == '' ) {
+} elseif ( $breadcrumb_link_switch === '' ) {
 	// Don't do anything, page wasn't yet edited with this component on the page.
 	// Breadcumb link will be displayed with default values.
 }

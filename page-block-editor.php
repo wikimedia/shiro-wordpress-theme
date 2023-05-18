@@ -28,10 +28,18 @@ while ( have_posts() ) {
 			'h1_title' => get_the_title(),
 		];
 
-		$breadcrumb_link_switch = get_post_meta( get_the_ID(), 'show_breadcrumb_links', true );
-		if ( $breadcrumb_link_switch ) {
-			$parent_page = wp_get_post_parent_id( get_the_ID() );
+		$parent_page = wp_get_post_parent_id( get_the_ID() );
 
+		/**
+		 * Breadcrumb link switch
+		 *
+		 * Possible values of the switch:
+		 * 1. '' - meta data from component not set (page wasn't yet edited with this component on the page)
+		 * 2. 'on' - set to yes
+		 * 3. 'off' - set to no
+		 */
+		$breadcrumb_link_switch = get_post_meta( get_the_ID(), 'show_breadcrumb_links', true );
+		if ( $breadcrumb_link_switch === 'on') {
 			$breadcrumb_link_custom_title = get_post_meta( get_the_ID(), 'breadcrumb_link_title', true );
 			$breadcrumb_link_title = ( ! empty( $breadcrumb_link_custom_title ) ) ? $breadcrumb_link_custom_title : get_the_title( $parent_page );
 
@@ -40,6 +48,12 @@ while ( have_posts() ) {
 
 			$template_args['h4_link'] = $breakcrumb_link;
 			$template_args['h4_title'] = $breadcrumb_link_title;
+		} elseif ( $breadcrumb_link_switch === 'off' ) {
+			// Does nothing.
+		} elseif ( $breadcrumb_link_switch === '' ) {
+			// Default behavior.
+			$template_args['h4_link'] = ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '';
+			$template_args['h4_title'] = ! empty( $parent_page ) ? get_the_title( $parent_page ) : '';
 		}
 
 		get_template_part( 'template-parts/header/page', 'noimage', $template_args );
