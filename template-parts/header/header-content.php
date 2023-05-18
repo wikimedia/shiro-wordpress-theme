@@ -21,15 +21,15 @@ $meta                 = ! empty( $page_header_data['page_meta'] ) ? $page_header
 $allowed_tags         = wp_kses_allowed_html( 'post' );
 $allowed_tags['time'] = true;
 $button = ! empty( get_post_meta( get_the_ID(), 'intro_button', true ) ) ? get_post_meta( get_the_ID(), 'intro_button', true ) : '';
-$extra_height_class = empty($button['title']) ? '' : 'ungrid-extra-height';
+$extra_height_class = empty( $button['title'] ) ? '' : 'ungrid-extra-height';
 $wmf_homedonate_button = get_theme_mod( 'wmf_homedonate_button', __( 'Donate now', 'shiro-admin' ) );
 $wmf_homedonate_uri    = get_theme_mod( 'wmf_homedonate_uri', '#' );
 $wmf_homedonate_intro    = get_theme_mod( 'wmf_homedonate_intro', 'Protect and sustain Wikipedia' );
 $wmf_homedonate_secure    = get_theme_mod( 'wmf_homedonate_secure', 'SECURE DONATIONS' );
 $wmf_emergency_message    = get_theme_mod( 'wmf_emergency_message', '' );
-$wmf_header_link_href	= get_theme_mod( 'wmf_header_link_href', '' );
-$wmf_header_link_aria_label	= get_theme_mod( 'wmf_header_link_aria_label', '' );
-$wmf_alt_header_image_url = get_theme_mod( 'wmf_alt_header_image_url', '');
+$wmf_header_link_href     = get_theme_mod( 'wmf_header_link_href', '' );
+$wmf_header_link_aria_label = get_theme_mod( 'wmf_header_link_aria_label', '' );
+$wmf_alt_header_image_url = get_theme_mod( 'wmf_alt_header_image_url', '' );
 
 
 $image            = ! empty( $page_header_data['image'] ) ? $page_header_data['image'] : '';
@@ -40,7 +40,7 @@ $wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 
 $wmf_translations         = wmf_get_translations();
 
 $single_title = '';
-if ( ! empty( $h2_title ) xor ! empty( $title )) {
+if ( ! empty( $h2_title ) xor ! empty( $title ) ) {
 	$single_title = ! empty( $h2_title ) ? $h2_title : $title;
 }
 
@@ -53,7 +53,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
  * 3. 'off' - set to no
  */
 $breadcrumb_link_switch = get_post_meta( get_the_ID(), 'show_breadcrumb_links', true );
-if ( $breadcrumb_link_switch === 'on') {
+if ( $breadcrumb_link_switch === 'on' ) {
 	$breadcrumb_link_custom_title = get_post_meta( get_the_ID(), 'breadcrumb_link_title', true );
 	$h4_title = ! empty( $breadcrumb_link_custom_title ) ? $breadcrumb_link_custom_title : $h4_title;
 
@@ -67,7 +67,7 @@ if ( $breadcrumb_link_switch === 'on') {
 		&nbsp;
 	</h2>
 	<?php
-} elseif ( $breadcrumb_link_switch === '' ) {
+} elseif ( $breadcrumb_link_switch === '' ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedElseif
 	// Don't do anything, page wasn't yet edited with this component on the page.
 	// Breadcumb link will be displayed with default values.
 }
@@ -97,19 +97,18 @@ if ( $breadcrumb_link_switch === 'on') {
 	<?php if ( is_front_page() ) { ?>
 		<?php if ( ! empty( $title ) ) : ?>
 			<?php if ( ! empty( $wmf_header_link_href ) ) : ?>
-				<a href="<?php echo esc_url($wmf_header_link_href) ?>" aria-label="<?php echo esc_attr($wmf_header_link_aria_label) ?>">
+				<a href="<?php echo esc_url( $wmf_header_link_href ); ?>" aria-label="<?php echo esc_attr( $wmf_header_link_aria_label ); ?>">
 			<?php endif; ?>
 					<div class="header-animation">
-						<div class="header-bg-img" style="<?php if ( !empty($wmf_alt_header_image_url) ) :
-							echo esc_attr('background-image: url("' . get_template_directory_uri() .  $wmf_alt_header_image_url . '")');
-							endif;
-						?>">
+						<div class="header-bg-img" style="<?php if ( ! empty( $wmf_alt_header_image_url ) ) :
+							echo esc_attr( 'background-image: url("' . get_template_directory_uri() . $wmf_alt_header_image_url . '")' );
+							endif;?>">
 
 						</div>
 						<div class="mw-980">
 							<div class="vision_container hero-home">
 								<div class="hero-home__heading-color has-yellow-50-background-color">
-									<?php get_template_part( 'template-parts/header/vision'); ?>
+									<?php get_template_part( 'template-parts/header/vision' ); ?>
 								</div>
 							</div>
 						</div>
@@ -118,10 +117,10 @@ if ( $breadcrumb_link_switch === 'on') {
 				</a>
 			<?php endif; ?>
 		<?php endif; ?>
-        <?php if ( ! empty( $wmf_emergency_message ) ) : ?>
-            <div class="urgent-header rounded center" style="">
-                <?php echo wp_kses( $wmf_emergency_message, $allowed_tags ); ?>
-            </div>
+		<?php if ( ! empty( $wmf_emergency_message ) ) : ?>
+			<div class="urgent-header rounded center" style="">
+				<?php echo wp_kses( $wmf_emergency_message, $allowed_tags ); ?>
+			</div>
 		<?php endif; ?>
 	<?php } ?>
 
@@ -131,8 +130,8 @@ if ( $breadcrumb_link_switch === 'on') {
 			<h1>
 				<?php echo wp_kses( $single_title, array( 'span' => array( 'class' ) ) ); ?>
 			</h1>
-			<?php if ( !empty( $image ) ) { ?>
-				<img src="<?php echo esc_url($image)?>" alt="">
+			<?php if ( ! empty( $image ) ) { ?>
+				<img src="<?php echo esc_url( $image ); ?>" alt="">
 			<?php } ?>
 		<?php } ?>
 
@@ -152,10 +151,10 @@ if ( $breadcrumb_link_switch === 'on') {
 		<?php } ?>
 
 		<!-- h2 and title, with image -->
-		<?php if ( !empty( $image) && !empty($h2_title) && !empty($title)) { ?>
-			<div class="ungrid <?php echo esc_attr($extra_height_class); ?>">
+		<?php if ( ! empty( $image ) && ! empty( $h2_title ) && ! empty( $title ) ) { ?>
+			<div class="ungrid <?php echo esc_attr( $extra_height_class ); ?>">
 				<div class="mw-980">
-					<?php if ( !empty( $image) && !empty($h2_title) && !empty($title)) { ?>
+					<?php if ( ! empty( $image ) && ! empty( $h2_title ) && ! empty( $title ) ) { ?>
 						<div class="flex flex-medium page-landing fifty-fifty">
 							<div class="module-mu w-50p">
 								<h2 class="h2 eyebrow">
@@ -201,8 +200,8 @@ if ( $breadcrumb_link_switch === 'on') {
 					</div>
 					<div class="w-32p">
 						<div>
-                            <?php echo esc_html( $wmf_homedonate_intro ); ?>
-                        </div>
+							<?php echo esc_html( $wmf_homedonate_intro ); ?>
+						</div>
 						<a class="btn btn-blue" href="<?php echo esc_url( $wmf_homedonate_uri ); ?>"><?php echo esc_html( $wmf_homedonate_button ); ?></a>
 						<span class="secure">
 							<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/src/svg/lock.svg" alt="">
