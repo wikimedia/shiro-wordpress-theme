@@ -148,9 +148,6 @@ function render_toc_block( string $block_content, array $block ) : string {
 	}
 
 	$headings = get_headings_from_post_content( get_post()->post_content ?? '' );
-
-	$ret = '<pre>' . print_r( $headings, true ) . '</pre>';
-
 	$max_depth = ( $block['attrs']['includeH3s'] ?? false ) ? 'h3' : 'h2';
 	$headings = headings_to_nested_list( $headings, $max_depth );
 
