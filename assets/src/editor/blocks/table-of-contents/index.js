@@ -4,6 +4,7 @@ import { useSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
+import deprecated from './deprecations';
 import HeadingLinks from './HeadingLinks';
 import { getHeadingBlocks, setHeadingAnchors } from './tocHelpers';
 
@@ -34,6 +35,9 @@ export const name = 'shiro/toc',
 				default: false,
 			},
 		},
+
+		// Support automatic transitioning from old block version.
+		deprecated,
 
 		/**
 		 * Render edit of the table of contents block.
@@ -148,57 +152,9 @@ export const name = 'shiro/toc',
 
 		/**
 		 * Render save of the table of contents block.
-		 */
-		save: function SaveTableOfContentsBlock( { attributes } ) {
-			const blockProps = useBlockProps.save( {
-				className: 'table-of-contents toc',
-			} );
-
-			return (
-				<>
-					{ attributes.headingBlocks.length > 0 && (
-						<nav
-							className="toc-nav"
-							data-backdrop="inactive"
-							data-dropdown="toc-nav"
-							data-dropdown-content=".toc"
-							data-dropdown-status="uninitialized"
-							data-dropdown-toggle=".toc__button"
-							data-sticky="false"
-							data-toggleable="yes"
-							data-trap="inactive"
-							data-visible="false"
-						>
-							<h2 className="toc__title screen-reader-text">
-								{ __( 'Table of Contents', 'shiro' ) }
-							</h2>
-							<button
-								aria-expanded="false"
-								className="toc__button"
-								hidden
-							>
-								<span className="btn-label-a11y">
-									{ __(
-										'Navigate within this page.',
-										'shiro'
-									) }
-								</span>
-								<span className="btn-label-active-item">
-									{ attributes.headingBlocks[ 0 ].attributes.content.replace(
-										/(<([^>]+)>)/gi,
-										''
-									) || __( 'Toggle menu', 'shiro' ) }
-								</span>
-							</button>
-							<ul { ...blockProps }>
-								<HeadingLinks
-									blocks={ attributes.headingBlocks }
-									edit={ false }
-								/>
-							</ul>
-						</nav>
-					) }
-				</>
-			);
+		*/
+		save() {
+			// Server-rendered.
+			return null;
 		},
 	};
