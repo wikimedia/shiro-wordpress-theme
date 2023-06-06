@@ -76,9 +76,9 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		'shiro/unseen-intro',
 		'shiro/accordion',
 		'shiro/accordion-item',
-        
-        // Plugin blocks
-        'gravityforms/form',
+
+		// Plugin blocks
+		'gravityforms/form',
 
 		// Core blocks
 		'core/paragraph',
