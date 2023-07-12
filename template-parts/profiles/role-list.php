@@ -15,15 +15,20 @@ foreach ( $post_list as $term_id => $term_data ) :
 	$name        = ! empty( $term_data['name'] ) ? $term_data['name'] : '';
 	$description = term_description( $term_id, 'role' );
 	$button      = get_term_meta( $term_id, 'role_button', true );
-	$executive   = get_term_meta( $term_id, 'role_executive', true );
+	$executives   = get_term_meta( $term_id, 'role_executive', true );
 	$experts     = get_term_meta( $term_id, 'role_experts', true );
 	$term        = get_term( $term_id, 'role' );
 	$term_slug   = $term->slug;
 	$name        = ( is_wp_error( $term ) || empty( $term->parent ) ) ? '' : $name;
 	$class       = 'role__section wysiwyg';
 
-	$executive_title = get_term_meta( $term_id, 'role_executive_title_override', true ) ?: __( 'Department Executive', 'shiro' );
+	$executives_title = get_term_meta( $term_id, 'role_executive_title_override', true ) ?: __( 'Department Executive', 'shiro' );
 	$experts_title = get_term_meta( $term_id, 'role_experts_title_override', true ) ?: __( 'Department Experts', 'shiro' );
+
+	// If there is only one executive, it needs to be an array, not a string.
+	if ( is_string( $executives ) && ! empty( $executives ) ) {
+		$executives = [ $executives ];
+	}
 
 	if ( ! empty( $name ) && ! is_tax( 'role', $term_id ) ) {
 		$class = $class . ' has-h2';
@@ -46,21 +51,26 @@ foreach ( $post_list as $term_id => $term_data ) :
 
 	<?php
 	if ( is_tax( 'role', 'staff-contractors' ) && ! ( empty ( $executives ) && empty( $experts ) ) ) :
-		if ( ! empty( $executive ) ) {
+		if ( ! empty( $executives ) ) {
 			?>
 		<h3 class="role__staff-title__executive is-style-h4">
-			<?php echo esc_html__( $executive_title ); ?>
+			<?php echo esc_html__( $executives_title ); ?>
 		</h3>
+		<ul class="role__staff-list">
+			<?php
+			foreach ( $executives as $executive_id ) {
+				get_template_part(
+					'template-parts/profiles/role',
+					'item',
+					array(
+						'id'   => $executive_id,
+						'role' => 'executive',
+					)
+				);
+			}
+			?>
+		</ul>
 		<?php
-			get_template_part(
-				'template-parts/profiles/role',
-				'item',
-				array(
-					'id'   => $executive,
-					'list' => false,
-					'role' => 'executive',
-				)
-			);
 		}
 
 		if ( ! empty( $experts ) ) :
@@ -147,7 +157,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 			</div>
 		<?php endif; ?>
 	<?php endif; ?>
-	
+
 	<?php
 	if ( ! empty( $button['link_to_archive'] ) && ! is_tax( 'role', $term_id ) ) :
 		$link_text = ! empty( $button['text'] )
