@@ -57,6 +57,8 @@ jobs:
 
       - name: Lint changed files
         id: phpcs
+        # Once more of the codebase is lint-free, change this to check
+        # outputs.phpcs so it will re-run if standards or dependencies change.
         if: ${{ steps.paths.outputs.php == 'true' }}
         run: |
           CHANGED_FILES=$(git diff --name-only --diff-filter=d origin/${{ github.base_ref }}..${{ github.head_ref }} | grep .php$)
