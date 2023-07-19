@@ -50,13 +50,22 @@ jobs:
         if: ${{ steps.paths.outputs.phpcs == 'true' }}
         run: parallel-lint --exclude .git --exclude .github --exclude vendor .
 
+      - name: Fetch base and head branches
+        run: |
+          git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
+          git fetch origin ${{ github.head_ref }}:${{ github.head_ref }}
+
       - name: Lint changed files
         id: phpcs
-        # Once more of the codebase is lint-free, change this to check
-        # outputs.phpcs so it will re-run if standards or dependencies change.
         if: ${{ steps.paths.outputs.php == 'true' }}
         run: |
-          phpcs --report-full --report-checkstyle=./phpcs-report.xml ${{ steps.paths.outputs.php_files }}
+          CHANGED_FILES=$(git diff --name-only --diff-filter=d origin/${{ github.base_ref }}..${{ github.head_ref }} | grep .php$)
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+          if [[ -n "$CHANGED_FILES" ]]; then
+            echo "Running phpcs..."
+            phpcs --report-full --report-checkstyle=./phpcs-report.xml $CHANGED_FILES
+          fi
 
       - name: Report PHPCS results
         if: ${{ always() && steps.phpcs.outcome == 'failure' }}
