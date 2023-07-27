@@ -199,6 +199,11 @@ function seo_settings_page_update() {
 		update_site_option( 'ogmeta_ogimageurl', $ogmeta_ogimageurl );
 	}
 
+	$mastodon_handle_verify = sanitize_text_field( $_POST['mastodon_handle_verify'] );
+	if ( $mastodon_handle_verify ) {
+		update_site_option( 'mastodon_handle_verify', $mastodon_handle_verify );
+	}
+
 	wp_safe_redirect( add_query_arg( 'updated', 'true', network_admin_url( 'settings.php?page=seo_settings_page' ) ) );
 	exit;
 }
