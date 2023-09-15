@@ -42,10 +42,34 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 	<div class="search-results__tabs mw-980">
 		<?php
+			$sorting_options = [
+				'relevance' => [
+					'query' => 'orderby=relevance',
+					'label' => 'Relevance'
+				],
+				'date-desc' => [
+					'query' => 'orderby=date&order=DESC',
+					'label' => 'Date (newer first)'
+				],
+				'date-asc' => [
+					'query' => 'orderby=date&order=ASC',
+					'label' => 'Date (older first)'
+				],
+			];
+
 			$options = [
-				'all' => __( 'All', 'shiro' ),
-				'post' => __( 'News', 'shiro' ),
-				'page' => __( 'Pages', 'shiro' ),
+				'all' => [
+					'label' => __( 'All', 'shiro' ),
+					'sort' => 'relevance'
+				],
+				'post' => [
+					'label' => __( 'News', 'shiro' ),
+					'sort' => 'date-desc'
+				],
+				'page' => [
+					'label' => __( 'Pages', 'shiro' ),
+					'sort' => 'relevance'
+				],
 			];
 
 			// All is the default option if none is selected, or if the post_type provided isn't in the list.
@@ -60,14 +84,20 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 				$href = add_query_arg( 's', get_search_query(), home_url( '/' ) );
 
+				// Add the default sorting option for the current post_type
+				if ( isset( $sorting_options[ $value['sort'] ] ) ) {
+					$sort_query = $sorting_options[ $value['sort'] ]['query'];
+					$href = add_query_arg( $sort_query, '', $href );
+				}
+
 				// Simplest way to get the all types is not adding post_type param filter.
 				if ( $key !== 'all' ) {
 					$href = add_query_arg( 'post_type[]', $key, $href );
 
 					/* translators: post type, i.e., News or Pages */
-					$aria_label = sprintf( __( 'Filter search for %s only', 'shiro' ), $value );
+					$aria_label = sprintf( __( 'Filter search for %s only', 'shiro' ), $value['label'] );
 				} else {
-					$aria_label = sprintf( __( 'Show all search results', 'shiro' ), $value );
+					$aria_label = sprintf( __( 'Show all search results', 'shiro' ), $value['label'] );
 				}
 
 				printf(
@@ -75,10 +105,93 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 					esc_url( $href ),
 					esc_attr( $active ),
 					esc_attr( $aria_label ),
-					esc_html( $value )
+					esc_html( $value['label'] )
 				);
 			}
+
+			// Default sort option
+			$current_sort = 'relevance';
+
+			// Check the URL for each sorting option's parameters
+			foreach ( $sorting_options as $sortKey => $option ) {
+				$query_params = [];
+				parse_str( $option['query'], $query_params );
+				$match = true;
+				foreach ( $query_params as $param => $value ) {
+					if ( ! isset( $_GET[ $param ] ) || sanitize_text_field( wp_unslash( $_GET[ $param ] ) ) !== $value ) {
+						$match = false;
+						break;
+					}
+				}
+				if ( $match ) {
+					$current_sort = $sortKey;
+					break;
+				}
+			}
+
+			$current_sort_label = $sorting_options[ $current_sort ]['label'];
 			?>
+
+			<div class="sort-container">
+				<button class="sort-button" onclick="toggleDropdown()" aria-haspopup="true" aria-expanded="false">
+					<span>Sort by</span>&nbsp;<span class="selected-sort"><?php echo esc_html( $current_sort_label ); ?></span>
+					<span class="dropdown-icon"></span>
+				</button>
+				<div class="sort-dropdown" onclick="toggleDropdown()" role="menu">
+					<?php foreach ( $sorting_options as $sortKey => $option ) : ?>
+						<?php
+						$sort_url = add_query_arg( $option['query'], $current_url );
+						?>
+						<a href="<?php echo esc_url( $sort_url ); ?>" class="sort-option" data-sort="<?php echo esc_attr( $sortKey ); ?>" role="menuitem">
+							<?php echo esc_html( $option['label'] ); ?>
+						</a>
+					<?php endforeach; ?>
+				</div>
+			</div>
+
+			<script>
+				function toggleDropdown() {
+					const dropdown = document.querySelector('.sort-dropdown');
+					dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
+				}
+			</script>
+
+		<style type="text/css">
+			.sort-container {
+				display: inline-block;
+				position: relative;
+				float: right;
+			}
+
+			.sort-button {
+				padding: 10px 20px;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				border: none;
+				background: none;
+			}
+
+			.dropdown-icon::before {
+				content: '\25BC';
+				margin-left: 10px;
+			}
+
+			.sort-dropdown {
+				display: none;
+				position: absolute;
+				top: 100%;
+				right: 0;
+				z-index: 1;
+			}
+
+			.sort-dropdown .sort-option {
+				display: block;
+				padding: 10px 20px;
+				text-decoration: none;
+			}
+		</style>
+
 	</div>
 <?php endif; ?>
 
