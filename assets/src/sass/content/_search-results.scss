@@ -25,6 +25,40 @@
 				font-weight: 800;
 			}
 		}
+
+		&__sort {
+			display: block;
+			position: relative;
+			float: right;
+
+			button {
+				padding: 10px 20px;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				border: none;
+				background: none;
+			}
+
+			.dropdown-icon::before {
+				content: '\25BC';
+				margin-left: 10px;
+			}
+
+			.sort-dropdown {
+				display: none;
+				position: absolute;
+				top: 100%;
+				right: 0;
+				z-index: 1;
+
+				.sort-option {
+					display: block;
+					padding: 10px 20px;
+					text-decoration: none;
+				}
+			}
+		}
 	}
 }
 

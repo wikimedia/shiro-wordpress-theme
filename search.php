@@ -45,15 +45,15 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			$sorting_options = [
 				'relevance' => [
 					'query' => 'orderby=relevance',
-					'label' => 'Relevance'
+					'label' => __( 'Relevance', 'shiro' ),
 				],
 				'date-desc' => [
 					'query' => 'orderby=date&order=DESC',
-					'label' => 'Date (newer first)'
+					'label' => __( 'Date (newest)', 'shiro' ),
 				],
 				'date-asc' => [
 					'query' => 'orderby=date&order=ASC',
-					'label' => 'Date (older first)'
+					'label' => __( 'Date (oldest)', 'shiro' ),
 				],
 			];
 
@@ -82,17 +82,17 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			foreach ( $options as $key => $value ) {
 				$active = $selected === $key ? 'active' : '';
 
-				$href = add_query_arg( 's', get_search_query(), home_url( '/' ) );
+				$current_url = add_query_arg( 's', get_search_query(), home_url( '/' ) );
 
 				// Add the default sorting option for the current post_type
 				if ( isset( $sorting_options[ $value['sort'] ] ) ) {
 					$sort_query = $sorting_options[ $value['sort'] ]['query'];
-					$href = add_query_arg( $sort_query, '', $href );
+					$current_url = add_query_arg( $sort_query, '', $current_url );
 				}
 
 				// Simplest way to get the all types is not adding post_type param filter.
 				if ( $key !== 'all' ) {
-					$href = add_query_arg( 'post_type[]', $key, $href );
+					$current_url = add_query_arg( 'post_type[]', $key, $current_url );
 
 					/* translators: post type, i.e., News or Pages */
 					$aria_label = sprintf( __( 'Filter search for %s only', 'shiro' ), $value['label'] );
@@ -102,7 +102,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 				printf(
 					'<a href="%1$s" class="search-results__tab %2$s" aria-label="%3$s" title="%3$s">%4$s</a>',
-					esc_url( $href ),
+					esc_url( $current_url ),
 					esc_attr( $active ),
 					esc_attr( $aria_label ),
 					esc_html( $value['label'] )
@@ -113,7 +113,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			$current_sort = 'relevance';
 
 			// Check the URL for each sorting option's parameters
-			foreach ( $sorting_options as $sortKey => $option ) {
+			foreach ( $sorting_options as $sort_key => $option ) {
 				$query_params = [];
 				parse_str( $option['query'], $query_params );
 				$match = true;
@@ -124,7 +124,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 					}
 				}
 				if ( $match ) {
-					$current_sort = $sortKey;
+					$current_sort = $sort_key;
 					break;
 				}
 			}
@@ -132,67 +132,35 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			$current_sort_label = $sorting_options[ $current_sort ]['label'];
 			?>
 
-			<div class="sort-container">
-				<button class="sort-button" onclick="toggleDropdown()" aria-haspopup="true" aria-expanded="false">
+			<div class="search-results__tabs__sort">
+
+				<button onclick="toggleDropdown()" aria-haspopup="true" aria-expanded="false">
 					<span>Sort by</span>&nbsp;<span class="selected-sort"><?php echo esc_html( $current_sort_label ); ?></span>
 					<span class="dropdown-icon"></span>
 				</button>
+
 				<div class="sort-dropdown" onclick="toggleDropdown()" role="menu">
-					<?php foreach ( $sorting_options as $sortKey => $option ) : ?>
+					<?php foreach ( $sorting_options as $sort_key => $option ) : ?>
 						<?php
 						$sort_url = add_query_arg( $option['query'], $current_url );
 						?>
-						<a href="<?php echo esc_url( $sort_url ); ?>" class="sort-option" data-sort="<?php echo esc_attr( $sortKey ); ?>" role="menuitem">
+						<a href="<?php echo esc_url( $sort_url ); ?>" class="sort-option" data-sort="<?php echo esc_attr( $sort_key ); ?>" role="menuitem">
 							<?php echo esc_html( $option['label'] ); ?>
 						</a>
 					<?php endforeach; ?>
 				</div>
+
 			</div>
-
-			<script>
-				function toggleDropdown() {
-					const dropdown = document.querySelector('.sort-dropdown');
-					dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
-				}
-			</script>
-
-		<style type="text/css">
-			.sort-container {
-				display: inline-block;
-				position: relative;
-				float: right;
-			}
-
-			.sort-button {
-				padding: 10px 20px;
-				cursor: pointer;
-				display: flex;
-				align-items: center;
-				border: none;
-				background: none;
-			}
-
-			.dropdown-icon::before {
-				content: '\25BC';
-				margin-left: 10px;
-			}
-
-			.sort-dropdown {
-				display: none;
-				position: absolute;
-				top: 100%;
-				right: 0;
-				z-index: 1;
-			}
-
-			.sort-dropdown .sort-option {
-				display: block;
-				padding: 10px 20px;
-				text-decoration: none;
-			}
-		</style>
-
 	</div>
+
+	<script>
+		function toggleDropdown() {
+			// WIP: This is a temporary place to toggle the dropdown for a POC.
+			const dropdown = document.querySelector('.sort-dropdown');
+			dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
+		}
+	</script>
+
 <?php endif; ?>
 
 <div class="mw-980 mod-margin-bottom flex flex-medium news-card-list">
