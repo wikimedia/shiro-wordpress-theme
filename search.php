@@ -31,7 +31,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 		} else {
 			printf(
 				/* translators: 1. first result, 2. last result, 3. total results */
-				esc_html__( 'Showing %1$s - %2$s of %3$s results', 'shiro' ),
+				esc_html__( 'Showing %1$s-%2$s of %3$s results', 'shiro' ),
 				esc_html( $first_result ),
 				esc_html( $last_result ),
 				esc_html( $total_results )
@@ -60,15 +60,15 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			$options = [
 				'all' => [
 					'label' => __( 'All', 'shiro' ),
-					'sort' => 'relevance'
+					'sort' => 'relevance',
 				],
 				'post' => [
 					'label' => __( 'News', 'shiro' ),
-					'sort' => 'date-desc'
+					'sort' => 'date-desc',
 				],
 				'page' => [
 					'label' => __( 'Pages', 'shiro' ),
-					'sort' => 'relevance'
+					'sort' => 'relevance',
 				],
 			];
 
@@ -109,7 +109,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				);
 			}
 
-			// Default sort option
+			// Default sort option.
 			$current_sort = 'relevance';
 
 			// Check the URL for each sorting option's parameters
@@ -134,32 +134,26 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 			<div class="search-results__tabs__sort">
 
-				<button onclick="toggleDropdown()" aria-haspopup="true" aria-expanded="false">
+				<button aria-haspopup="true" aria-expanded="false">
 					<span>Sort by</span>&nbsp;<span class="selected-sort"><?php echo esc_html( $current_sort_label ); ?></span>
 					<span class="dropdown-icon"></span>
 				</button>
 
-				<div class="sort-dropdown" onclick="toggleDropdown()" role="menu">
-					<?php foreach ( $sorting_options as $sort_key => $option ) : ?>
-						<?php
-						$sort_url = add_query_arg( $option['query'], $current_url );
-						?>
-						<a href="<?php echo esc_url( $sort_url ); ?>" class="sort-option" data-sort="<?php echo esc_attr( $sort_key ); ?>" role="menuitem">
+				<div class="sort-dropdown" role="menu">
+					<?php
+					foreach ( $sorting_options as $sort_key => $option ) {
+						$option_query_params = [];
+						parse_str( $option['query'], $option_query_params );
+						$custom_sort_url = wmf_set_custom_sort_url( $option_query_params );
+					?>
+						<a href="<?php echo esc_url( $custom_sort_url ); ?>" class="sort-option" data-sort="<?php echo esc_attr( $sort_key ); ?>" role="menuitem">
 							<?php echo esc_html( $option['label'] ); ?>
 						</a>
-					<?php endforeach; ?>
+					<?php } ?>
 				</div>
 
 			</div>
 	</div>
-
-	<script>
-		function toggleDropdown() {
-			// WIP: This is a temporary place to toggle the dropdown for a POC.
-			const dropdown = document.querySelector('.sort-dropdown');
-			dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
-		}
-	</script>
 
 <?php endif; ?>
 
