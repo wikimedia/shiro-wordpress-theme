@@ -118,7 +118,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				parse_str( $option['query'], $query_params );
 				$match = true;
 				foreach ( $query_params as $param => $value ) {
-					if ( ! isset( $_GET[ $param ] ) || sanitize_text_field( wp_unslash( $_GET[ $param ] ) ) !== $value ) {
+					if ( ! isset( $_GET[ $param ] ) || sanitize_text_field( wp_unslash( $_GET[ $param ] ) ) !== $value ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 						$match = false;
 						break;
 					}
@@ -145,7 +145,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 						$option_query_params = [];
 						parse_str( $option['query'], $option_query_params );
 						$custom_sort_url = wmf_set_custom_sort_url( $option_query_params );
-					?>
+						?>
 						<a href="<?php echo esc_url( $custom_sort_url ); ?>" class="sort-option" data-sort="<?php echo esc_attr( $sort_key ); ?>" role="menuitem">
 							<?php echo esc_html( $option['label'] ); ?>
 						</a>
