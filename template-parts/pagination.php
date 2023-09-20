@@ -4,6 +4,7 @@
  *
  * @package shiro
  */
+
 $newer = get_theme_mod( 'wmf_pagination_newer', __( 'Next', 'shiro-admin' ) );
 $older = get_theme_mod( 'wmf_pagination_older', __( 'Previous', 'shiro-admin' ) );
 
@@ -44,7 +45,7 @@ if ( ! empty( $additional_args ) ) {
 				echo wp_kses_post(
 					paginate_links( $pagination_args )
 				);
-			?>
+				?>
 		</div>
 
 		<div class="pagination__next-page">
