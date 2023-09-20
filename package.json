@@ -1,5 +1,5 @@
 {
-  "name": "shiro-wordpress-theme-develop",
+  "name": "shiro-wordpress-theme",
   "private": true,
   "version": "1.0.0",
   "description": "Wikimedia Foundation's primary Wordpress theme",
@@ -32,8 +32,8 @@
     "bump:major": "bump major --tag --commit 'Prepare v%s release' package.json assets/src/sass/style.scss"
   },
   "engines": {
-    "node": "20.x",
-    "npm": "10.x"
+    "node": ">=20.x",
+    "npm": ">=10.x"
   },
   "repository": {
     "type": "git",
