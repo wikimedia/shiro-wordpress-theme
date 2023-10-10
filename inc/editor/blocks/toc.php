@@ -34,7 +34,10 @@ function get_headings_from_post_content( string $content ) : array {
 	// within PHP rendering code, even once the content is parsed as blocks.
 	// DOMDocument is the most reliable tool to locate the values we want.
 	$heading_block_doc = new DOMDocument();
-	$heading_block_doc->loadHTML( $content );
+	libxml_use_internal_errors(true); // Silence warnings.
+	$content = preg_replace('/<svg(.*?)<\/svg>/is', '', $content); // Remove any SVG content.
+	$heading_block_doc->loadHTML('<?xml encoding="utf-8" ?>' . $content); // Load with UTF-8 encoding.
+	libxml_clear_errors(); // Clear any raised errors.
 	$xpath = new DOMXPath( $heading_block_doc );
 
 	// Query for h2 and h3 elements that have an id attribute.
