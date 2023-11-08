@@ -22,12 +22,12 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area">
 
-	<?php
+    <?php
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) :
 		?>
-		<h2 class="comments-title">
-			<?php
+    <h2 class="comments-title">
+        <?php
 			$wmf_comment_count = get_comments_number();
 			if ( 1 === $wmf_comment_count ) {
 					printf(
@@ -44,22 +44,22 @@ if ( post_password_required() ) {
 					);
 			}
 			?>
-		</h2><!-- .comments-title -->
+    </h2><!-- .comments-title -->
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
-		<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
-			<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'shiro' ); ?></h2>
-			<div class="nav-links">
+    <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
+    <nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
+        <h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'shiro' ); ?></h2>
+        <div class="nav-links">
 
-				<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'shiro' ) ); ?></div>
-				<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'shiro' ) ); ?></div>
+            <div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'shiro' ) ); ?></div>
+            <div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'shiro' ) ); ?></div>
 
-			</div><!-- .nav-links -->
-		</nav><!-- #comment-nav-above -->
-		<?php endif; // Check for comment navigation. ?>
+        </div><!-- .nav-links -->
+    </nav><!-- #comment-nav-above -->
+    <?php endif; // Check for comment navigation. ?>
 
-		<ol class="comment-list">
-			<?php
+    <ol class="comment-list">
+        <?php
 				wp_list_comments(
 					array(
 						'style'      => 'ol',
@@ -67,19 +67,19 @@ if ( post_password_required() ) {
 					)
 				);
 			?>
-		</ol><!-- .comment-list -->
+    </ol><!-- .comment-list -->
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
-		<nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
-			<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'shiro' ); ?></h2>
-			<div class="nav-links">
+    <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
+    <nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
+        <h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'shiro' ); ?></h2>
+        <div class="nav-links">
 
-				<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'shiro' ) ); ?></div>
-				<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'shiro' ) ); ?></div>
+            <div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'shiro' ) ); ?></div>
+            <div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'shiro' ) ); ?></div>
 
-			</div><!-- .nav-links -->
-		</nav><!-- #comment-nav-below -->
-			<?php
+        </div><!-- .nav-links -->
+    </nav><!-- #comment-nav-below -->
+    <?php
 		endif; // Check for comment navigation.
 
 	endif; // Check for have comments.
@@ -89,8 +89,8 @@ if ( post_password_required() ) {
 	if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
 		?>
 
-		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'shiro' ); ?></p>
-		<?php
+    <p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'shiro' ); ?></p>
+    <?php
 	endif;
 
 	comment_form();

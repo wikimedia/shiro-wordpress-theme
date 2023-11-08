@@ -41,7 +41,7 @@ while ( have_posts() ) {
 	}
 
 	?>
-	<?php
+<?php
 
 	$modules = array(
 		'framing-copy',

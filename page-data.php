@@ -26,36 +26,36 @@ while ( have_posts() ) {
 	} else {
 		get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 		?>
-       <div class="mw-980">
-            <div class="page-intro wysiwyg">
-                <?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
-            </div>
-        </div>
-	<?php }
+<div class="mw-980">
+    <div class="page-intro wysiwyg">
+        <?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+    </div>
+</div>
+<?php }
 	?>
 
-	<?php
+<?php
 	get_template_part( 'template-parts/page/page', 'stats-featured' );
 	get_template_part( 'template-parts/page/page', 'stats-graph' );
 	get_template_part( 'template-parts/page/page', 'stats-plain' );
 	get_template_part( 'template-parts/page/page', 'stats-profiles' );
 	?>
 
-	<div class="mw-980 mod-margin-bottom_sm flex flex-medium data-template toc__section">
+<div class="mw-980 mod-margin-bottom_sm flex flex-medium data-template toc__section">
 
-		<div class="w-32p toc__sidebar">
-			<?php get_sidebar( 'list' ); ?>
-		</div>
+    <div class="w-32p toc__sidebar">
+        <?php get_sidebar( 'list' ); ?>
+    </div>
 
-		<div class="w-68p toc__content">
-			<div class="list-container">
-				<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
-			</div>
-		</div>
+    <div class="w-68p toc__content">
+        <div class="list-container">
+            <?php get_template_part( 'template-parts/page/page', 'list' ); ?>
+        </div>
+    </div>
 
-	</div>
+</div>
 
-	<?php
+<?php
 	$modules = array(
 		'social',
 		'cta',

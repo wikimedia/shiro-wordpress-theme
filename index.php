@@ -29,10 +29,10 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 ?>
 
 <div class="w-100p news-list-container news-card-list mod-margin-bottom">
-	<div class="mw-980">
-		<?php if ( have_posts() ) : ?>
-		<div class="blog-list">
-			<?php
+    <div class="mw-980">
+        <?php if ( have_posts() ) : ?>
+        <div class="blog-list">
+            <?php
 			while ( have_posts() ) :
 				the_post();
 
@@ -41,13 +41,13 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				);
 			endwhile;
 			?>
-		</div>
-			<?php
+        </div>
+        <?php
 		else :
 			get_template_part( 'template-parts/content', 'none' );
 		endif;
 		?>
-	</div>
+    </div>
 </div>
 
 <?php

@@ -67,8 +67,8 @@ while ( have_posts() ) {
 	} else {
 		// Fake header content so we get the same margin before the hero blocks.
 		?>
-		<div class="header-content"></div>
-		<?php
+<div class="header-content"></div>
+<?php
 		get_template_part( 'template-parts/header/closing-tags' );
 	}
 
