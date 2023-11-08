@@ -1,5 +1,4 @@
 .banner {
-
     /**
 	 * This (and the following .banner__conent rule) are a hack to prevent this
 	 * block from appearing "too wide." The slightly gross specificity here is
@@ -14,7 +13,7 @@
     }
 
     &__content {
-        >*:last-child {
+        > *:last-child {
             margin-top: auto;
         }
     }
