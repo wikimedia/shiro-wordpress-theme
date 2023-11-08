@@ -14,12 +14,28 @@ if ( empty( $template_args['heading'] ) ) {
 $icon = ! empty( $template_args['image'] ) ? $template_args['image'] : '';
 $icon = is_numeric( $icon ) ? wp_get_attachment_image_url( $icon ) : $icon;
 
-$allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ], 'p' => [], 'br' => [], 'sup' => [] ];
+$allowed_tags = array(
+	'span'   => array(
+		'class' => array(),
+		'style' => array(),
+	),
+	'em'     => array(),
+	'strong' => array(),
+	'a'      => array(
+		'href'  => array(),
+		'class' => array(),
+		'title' => array(),
+		'rel'   => array(),
+	),
+	'p'      => array(),
+	'br'     => array(),
+	'sup'    => array(),
+);
 
 ?>
 
 <h2 class="h2">
-	<?php if (!empty( $template_args['image'] )) { ?>
+	<?php if ( ! empty( $template_args['image'] ) ) { ?>
 		<span class="icon-container" style="background-image: url(<?php echo esc_url( $icon ); ?>)"></span>
 	<?php } ?>
 	<?php echo esc_html( $template_args['heading'] ); ?>

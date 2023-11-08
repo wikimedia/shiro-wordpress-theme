@@ -42,7 +42,8 @@ $project_class = '_map';
 				<p class="mar-bottom_lg">
 					<?php
 					echo wp_kses(
-						$template_args['content'], array(
+						$template_args['content'],
+						array(
 							'em'     => array(),
 							'span'   => array( 'class', 'id' ),
 							'del'    => array(),

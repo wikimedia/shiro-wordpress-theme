@@ -14,7 +14,8 @@ if ( ! is_array( $template_args ) ) {
 }
 
 $rand_translation = wmf_get_random_translation(
-	'profiles', array(
+	'profiles',
+	array(
 		'source' => 'meta',
 	)
 );
