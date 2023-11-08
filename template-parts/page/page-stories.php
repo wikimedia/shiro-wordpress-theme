@@ -9,6 +9,10 @@
 
 $template_args = get_post_meta( get_the_ID(), 'stories', true );
 
+if ( empty( $template_args ) || ! is_array( $template_args ) ) {
+	$template_args = array();
+}
+
 $rand_translation = wmf_get_random_translation(
 	'stories',
 	array(

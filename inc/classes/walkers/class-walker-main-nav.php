@@ -25,16 +25,16 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 	 * @param array  $args   An array of arguments. @see wp_nav_menu()
 	 */
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = ( $depth > 0  ? str_repeat( "\t", $depth ) : '' ); // code indent
+		$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
 
-		$classes = array(
+		$classes     = array(
 			'sub-menu',
-			'nav-sub-menu-'. $this->currentItemID,
+			'nav-sub-menu-' . $this->currentItemID,
 		);
 		$class_names = implode( ' ', $classes );
 
 		// Build HTML for output.
-		$output .= "\n" . $indent . '<ul class="' . esc_attr( $class_names ) . '" data-dropdown-content="nav-sub-menu-'. $this->currentItemID . '">' . "\n";
+		$output .= "\n" . $indent . '<ul class="' . esc_attr( $class_names ) . '" data-dropdown-content="nav-sub-menu-' . $this->currentItemID . '">' . "\n";
 	}
 
 	/**
@@ -62,7 +62,7 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 		$key = array_search( 'menu-item-has-children', $classes, true );
 
 		if ( $depth > 0 && $key !== false ) {
-			unset( $classes[$key] );
+			unset( $classes[ $key ] );
 		}
 
 		// Apply filters and prepare classes for use.
@@ -75,7 +75,7 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 
 		$output .=
 			$indent
-			. '<li id="nav-menu-item-'. $item->ID . '"'
+			. '<li id="nav-menu-item-' . $item->ID . '"'
 			. ' class="' . $class_names . '"'
 			. ( in_array( 'menu-item-has-children', $classes, true ) ?
 				' data-dropdown="nav-sub-menu-' . $item->ID . '"'
@@ -93,7 +93,8 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 		$attributes = ! empty( $item->url ) ? ' href="' . esc_url( $item->url ) . '"' : '';
 
 		// Build HTML output and pass through the proper filter.
-		$item_output = sprintf( '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
+		$item_output = sprintf(
+			'%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
 			$args->before,
 			$attributes,
 			$args->link_before,
