@@ -33,30 +33,30 @@ while ( have_posts() ) :
 	}
 	?>
 <div class="mw-980 mod-margin-bottom flex flex-medium report-template toc__section">
-	<div class="w-32p toc__sidebar">
-		<?php get_sidebar( 'report' ); ?>
-	</div>
+    <div class="w-32p toc__sidebar">
+        <?php get_sidebar( 'report' ); ?>
+    </div>
 
-	<div class="w-68p report-content toc__content">
-		<h2 class="report-section-title">
-			<?php echo wp_kses( $template_args['h2_title'], array( 'span' => array( 'class' ) ) ); ?>
-		</h2>
+    <div class="w-68p report-content toc__content">
+        <h2 class="report-section-title">
+            <?php echo wp_kses( $template_args['h2_title'], array( 'span' => array( 'class' ) ) ); ?>
+        </h2>
 
-		<?php if ( $has_content ) : ?>
-		<div class="page-intro mod-margin-bottom wysiwyg">
-			<?php if ( ! has_post_thumbnail() ) : ?>
-				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
-			<?php endif; ?>
-			<?php echo wp_kses_post( $bodytext1 ); ?>
-		</div>
-		<?php endif; ?>
+        <?php if ( $has_content ) : ?>
+        <div class="page-intro mod-margin-bottom wysiwyg">
+            <?php if ( ! has_post_thumbnail() ) : ?>
+            <?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+            <?php endif; ?>
+            <?php echo wp_kses_post( $bodytext1 ); ?>
+        </div>
+        <?php endif; ?>
 
-		<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
+        <?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
 
-		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
-	</div>
+        <?php get_template_part( 'template-parts/page/page', 'list' ); ?>
+    </div>
 </div>
-	<?php
+<?php
 
 	$modules = array(
 		'stories',

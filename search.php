@@ -19,8 +19,8 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 ?>
 
 <?php if ( have_posts() ) : ?>
-	<div class="search-results__count mw-980">
-		<?php
+<div class="search-results__count mw-980">
+    <?php
 		$total_results = $wp_query->found_posts;
 		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 		$posts_per_page = get_query_var( 'posts_per_page' );
@@ -38,10 +38,10 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			);
 		}
 		?>
-	</div>
+</div>
 
-	<div class="search-results__tabs mw-980">
-		<?php
+<div class="search-results__tabs mw-980">
+    <?php
 			$sorting_options = [
 				'relevance' => [
 					'query' => 'orderby=relevance',
@@ -136,40 +136,40 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			$current_sort_label = $sorting_options[ $current_sort ]['label'];
 			?>
 
-			<?php if ( ! empty( $search_results_tabs[ $selected ]['sort_by'] ) ) : ?>
+    <?php if ( ! empty( $search_results_tabs[ $selected ]['sort_by'] ) ) : ?>
 
-				<div class="search-results__tabs__sort">
+    <div class="search-results__tabs__sort">
 
-					<button aria-haspopup="true" aria-expanded="false">
-						<span>Sort by</span>&nbsp;<span class="selected-sort"><?php echo esc_html( $current_sort_label ); ?></span>
-						<span class="dropdown-icon"></span>
-					</button>
+        <button aria-haspopup="true" aria-expanded="false">
+            <span>Sort by</span>&nbsp;<span class="selected-sort"><?php echo esc_html( $current_sort_label ); ?></span>
+            <span class="dropdown-icon"></span>
+        </button>
 
-					<div class="sort-dropdown" role="menu">
-						<?php
+        <div class="sort-dropdown" role="menu">
+            <?php
 						foreach ( $sorting_options as $sort_key => $option ) {
 							$option_query_params = [];
 							parse_str( $option['query'], $option_query_params );
 							$custom_sort_url = wmf_set_custom_sort_url( $option_query_params );
 							?>
-							<a href="<?php echo esc_url( $custom_sort_url ); ?>" class="sort-option" data-sort="<?php echo esc_attr( $sort_key ); ?>" role="menuitem">
-								<?php echo esc_html( $option['label'] ); ?>
-							</a>
-						<?php } ?>
-					</div>
+            <a href="<?php echo esc_url( $custom_sort_url ); ?>" class="sort-option" data-sort="<?php echo esc_attr( $sort_key ); ?>" role="menuitem">
+                <?php echo esc_html( $option['label'] ); ?>
+            </a>
+            <?php } ?>
+        </div>
 
-				</div>
+    </div>
 
-			<?php endif; ?>
-	</div>
+    <?php endif; ?>
+</div>
 
 <?php endif; ?>
 
 <div class="mw-980 mod-margin-bottom flex flex-medium news-card-list">
 
-	<div id="search-results" class="card-list-container">
+    <div id="search-results" class="card-list-container">
 
-			<?php
+        <?php
 			if ( have_posts() ) {
 				while ( have_posts() ) {
 					the_post();
@@ -184,16 +184,16 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				get_template_part( 'template-parts/content', 'none' );
 			}
 			?>
-		</div>
-	</div>
+    </div>
+</div>
 
-	<div id="pagination">
-		<?php
+<div id="pagination">
+    <?php
 		if ( have_posts() ) :
 			get_template_part( 'template-parts/pagination' );
 		endif;
 		?>
-	</div>
+</div>
 
 <?php
 get_footer();

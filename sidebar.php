@@ -16,13 +16,13 @@ if ( empty( $facts ) && empty( $downloads ) ) {
 ?>
 
 <div class="sidebar-float">
-	<?php
+    <?php
 	if ( ! empty( $facts ) ) {
 		get_template_part( 'template-parts/sidebar/fact', null, $facts );
 	}
 	?>
 
-	<?php
+    <?php
 	if ( ! empty( $downloads ) ) {
 		get_template_part( 'template-parts/sidebar/downloads', null, $downloads );
 	}

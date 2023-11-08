@@ -30,26 +30,26 @@ while ( have_posts() ) :
 	}
 	?>
 <div class="mw-980 mod-margin-bottom_sm flex flex-medium report-template toc__section">
-	<div class="w-32p toc__sidebar">
-		<?php get_sidebar( 'list' ); ?>
-	</div>
+    <div class="w-32p toc__sidebar">
+        <?php get_sidebar( 'list' ); ?>
+    </div>
 
-	<div class="w-68p toc__content">
-		<div class="page-intro mod-margin-bottom wysiwyg">
+    <div class="w-68p toc__content">
+        <div class="page-intro mod-margin-bottom wysiwyg">
             <?php if ( ! has_post_thumbnail() ) : ?>
-			<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+            <?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
             <?php endif; ?>
-			<?php echo wp_kses( $bodytext1, $allowed_tags ); ?>
-		</div>
+            <?php echo wp_kses( $bodytext1, $allowed_tags ); ?>
+        </div>
 
-		<div class="page-intro mod-margin-bottom wysiwyg">
-			<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
-		</div>
+        <div class="page-intro mod-margin-bottom wysiwyg">
+            <?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
+        </div>
 
-		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
-	</div>
+        <?php get_template_part( 'template-parts/page/page', 'list' ); ?>
+    </div>
 </div>
-	<?php
+<?php
 
 	$modules = array(
 		'stories',

@@ -52,16 +52,16 @@ while ( have_posts() ) {
 	$has_social_share         = wmf_enhanced_has_block( 'shiro/share-article' );
 	?>
 
-	<?php if ( ! empty( $intro ) ) : ?>
-		<div class="article-title">
-			<?php echo wp_kses( $intro, $allowed_tags ); ?>
-		</div>
-	<?php endif; ?>
+<?php if ( ! empty( $intro ) ) : ?>
+<div class="article-title">
+    <?php echo wp_kses( $intro, $allowed_tags ); ?>
+</div>
+<?php endif; ?>
 
-	<article class="mw-784 wysiwyg">
-		<?php the_content(); ?>
+<article class="mw-784 wysiwyg">
+    <?php the_content(); ?>
 
-		<?php
+    <?php
 		if ( ! $has_social_share ) {
 			echo wp_kses_post( \WMF\Editor\Blocks\ShareArticle\render_block( [
 				'enableTwitter'  => true,
@@ -73,9 +73,9 @@ while ( have_posts() ) {
 			echo wp_kses_post( \WMF\Editor\Blocks\ReadMoreCategories\render_block( [] ) );
 		}
 		?>
-	</article>
+</article>
 
-	<?php
+<?php
 }
 
 $has_blog_list = wmf_enhanced_has_block( 'shiro/blog-list' );
