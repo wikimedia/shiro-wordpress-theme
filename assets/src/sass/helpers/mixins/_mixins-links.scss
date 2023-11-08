@@ -6,8 +6,8 @@
  *
  * @param {Color}  $color   Base color.
  */
-@mixin style-guide-darken-color( $color ) {
-	color: scale-color($color, $lightness: -30%);
+@mixin style-guide-darken-color($color) {
+    color: scale-color($color, $lightness: -30%);
 }
 
 /**
@@ -19,22 +19,22 @@
  *
  * @param {Color}  $color   Base color.
  */
-@mixin style-guide-filter-color( $color ) {
-	@include style-guide-darken-color($color);
+@mixin style-guide-filter-color($color) {
+    @include style-guide-darken-color($color);
 
-	@supports (filter: brightness(0.7) hue-rotate(6deg)) {
-		color: $color;
-		filter: brightness(0.7) hue-rotate(6deg);
-	}
+    @supports (filter: brightness(0.7) hue-rotate(6deg)) {
+        color: $color;
+        filter: brightness(0.7) hue-rotate(6deg);
+    }
 }
 
 /**
  * Reset focus ring styles to override with other focus styles.
  */
 @mixin focus-reset {
-	border-radius: 0;
-	box-shadow: none;
-	outline: none;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
 }
 
 /**
@@ -45,76 +45,82 @@
  * @param {String}   $width        Px width for outline.
  * @param {String}   $transparency If transparent, what opacity?
  */
-@mixin focus-ring(
-	$hex: false,
-	$inset: false,
-	$width: 2px,
-	$transparency: 0.8
-) {
-	border-radius: rem(2);
-	box-shadow: if($inset, inset, #{""}) 0 0 0 $width if($hex, $wmui-color-focus-ring-hex, rgba($wmui-color-focus-ring, $transparency));
-	outline: none;
+@mixin focus-ring($hex: false,
+    $inset: false,
+    $width: 2px,
+    $transparency: 0.8) {
+    border-radius: rem(2);
+    box-shadow: if($inset, inset, #{""}) 0 0 0 $width if($hex, $wmui-color-focus-ring-hex, rgba($wmui-color-focus-ring, $transparency));
+    outline: none;
 }
 
 /**
  * Link styles
  */
 @mixin style-guide-link {
-	color: $color-primary;
-	color: var(--link-color);
+    color: $color-primary;
+    color: var(--link-color);
 
-	&:focus {
-		@include style-guide-darken-color($color-primary);
-		@include focus-ring;
-	}
+    &:focus {
+        @include style-guide-darken-color($color-primary);
+        @include focus-ring;
+    }
 
-	&:hover {
-		@include style-guide-darken-color($color-primary);
-		text-decoration: underline;
-	}
+    &:hover {
+        @include style-guide-darken-color($color-primary);
+        text-decoration: underline;
+    }
 }
 
 @mixin style-guide-arrow-content {
-	content: " →" #{"/*rtl:'← '*/;"};
+    content: " →"#{"/*rtl:'← '*/;"};
 }
 
 @mixin style-guide-arrow-content-back {
-	content: "← " #{"/*rtl:'→ '*/;"};
+    content: "← "#{"/*rtl:'→ '*/;"};
 }
 
 @mixin style-guide-arrow($back: false) {
-	display: inline-flex;
-	position: relative;
+    display: inline-flex;
+    position: relative;
 
-	@if $back {
-		&::before {
-			@include style-guide-arrow-content-back;
-			color: currentColor;
-			font-family: $font-family-system-sans;
-			margin-right: rem(4); /*rtl: margin: 0 0 0 rem(4);*/
-			transition: 300ms ease-in transform;
-		}
-	} @else {
-		&::after {
-			@include style-guide-arrow-content;
-			color: currentColor;
-			font-family: $font-family-system-sans;
-			margin-left: rem(4); /*rtl: margin: 0 rem(4) 0 0;*/
-			transition: 300ms ease-in transform;
-		}
-	}
+    @if $back {
+        &::before {
+            @include style-guide-arrow-content-back;
+            color: currentColor;
+            font-family: $font-family-system-sans;
+            margin-right: rem(4);
+            /*rtl: margin: 0 0 0 rem(4);*/
+            transition: 300ms ease-in transform;
+        }
+    }
 
-	&:hover {
-		text-decoration: none;
+    @else {
+        &::after {
+            @include style-guide-arrow-content;
+            color: currentColor;
+            font-family: $font-family-system-sans;
+            margin-left: rem(4);
+            /*rtl: margin: 0 rem(4) 0 0;*/
+            transition: 300ms ease-in transform;
+        }
+    }
 
-		@if $back {
-			&::before {
-				transform: translateX(rem(-5)); /*rtl: transform: translateX(rem(5));*/
-			}
-		} @else {
-			&::after {
-				transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
-			}
-		}
-	}
+    &:hover {
+        text-decoration: none;
+
+        @if $back {
+            &::before {
+                transform: translateX(rem(-5));
+                /*rtl: transform: translateX(rem(5));*/
+            }
+        }
+
+        @else {
+            &::after {
+                transform: translateX(rem(5));
+                /*rtl: transform: translateX(rem(-5));*/
+            }
+        }
+    }
 }

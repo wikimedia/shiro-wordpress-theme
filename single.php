@@ -12,21 +12,30 @@ while ( have_posts() ) {
 	the_post();
 	$intro        = get_post_meta( get_the_ID(), 'page_intro', true );
 	$parent_page  = get_option( 'page_for_posts' );
-	$allowed_tags = [ 'span'   => [ 'class' => [], 'style' => [] ],
-	                  'img'    => [
-		                  'src'    => [],
-		                  'height' => [],
-		                  'width'  => [],
-		                  'alt'    => [],
-		                  'style'  => [],
-		                  'class'  => []
-	                  ],
-	                  'em'     => [],
-	                  'strong' => [],
-	                  'a'      => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ],
-	                  'p'      => [],
-	                  'br'     => []
-	];
+	$allowed_tags = array(
+		'span'   => array(
+			'class' => array(),
+			'style' => array(),
+		),
+		'img'    => array(
+			'src'    => array(),
+			'height' => array(),
+			'width'  => array(),
+			'alt'    => array(),
+			'style'  => array(),
+			'class'  => array(),
+		),
+		'em'     => array(),
+		'strong' => array(),
+		'a'      => array(
+			'href'  => array(),
+			'class' => array(),
+			'title' => array(),
+			'rel'   => array(),
+		),
+		'p'      => array(),
+		'br'     => array(),
+	);
 
 	get_template_part(
 		'template-parts/header/page',
@@ -35,8 +44,12 @@ while ( have_posts() ) {
 			'h4_link'   => get_the_permalink( $parent_page ),
 			'h4_title'  => get_the_title( $parent_page ),
 			'h1_title'  => get_the_title(),
-			'page_meta' => sprintf( '<span>%s</span><span class="separator">&bull;</span><time datetime="%s">%s</time>',
-				wmf_byline(), get_the_date( 'c' ), get_the_date() ),
+			'page_meta' => sprintf(
+				'<span>%s</span><span class="separator">&bull;</span><time datetime="%s">%s</time>',
+				wmf_byline(),
+				get_the_date( 'c' ),
+				get_the_date()
+			),
 		)
 	);
 
@@ -53,27 +66,31 @@ while ( have_posts() ) {
 	?>
 
 	<?php if ( ! empty( $intro ) ) : ?>
-		<div class="article-title">
-			<?php echo wp_kses( $intro, $allowed_tags ); ?>
-		</div>
+<div class="article-title">
+		<?php echo wp_kses( $intro, $allowed_tags ); ?>
+</div>
 	<?php endif; ?>
 
-	<article class="mw-784 wysiwyg">
-		<?php the_content(); ?>
+<article class="mw-784 wysiwyg">
+	<?php the_content(); ?>
 
-		<?php
-		if ( ! $has_social_share ) {
-			echo wp_kses_post( \WMF\Editor\Blocks\ShareArticle\render_block( [
-				'enableTwitter'  => true,
-				'enableFacebook' => true,
-			] ) );
-		}
+	<?php
+	if ( ! $has_social_share ) {
+		echo wp_kses_post(
+			\WMF\Editor\Blocks\ShareArticle\render_block(
+				array(
+					'enableTwitter'  => true,
+					'enableFacebook' => true,
+				)
+			)
+		);
+	}
 
-		if ( ! $has_read_more_categories ) {
-			echo wp_kses_post( \WMF\Editor\Blocks\ReadMoreCategories\render_block( [] ) );
-		}
-		?>
-	</article>
+	if ( ! $has_read_more_categories ) {
+		echo wp_kses_post( \WMF\Editor\Blocks\ReadMoreCategories\render_block( array() ) );
+	}
+	?>
+</article>
 
 	<?php
 }

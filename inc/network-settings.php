@@ -122,7 +122,7 @@ function matomo_siteid_field_content() {
 
 	$matomo_siteid = get_site_option( 'matomo_siteid' );
 
-		?>
+	?>
 		<label>
 			<input
 				type="number"
@@ -147,7 +147,7 @@ function ogmeta_ogimageurl_field_content() {
 
 	$ogmeta_ogimageurl = get_site_option( 'ogmeta_ogimageurl' );
 
-		?>
+	?>
 		<label>
 			<input
 				type="text"
@@ -172,7 +172,7 @@ function mastodon_handle_verify_field_content() {
 
 	$mastodon_handle_verify = get_site_option( 'mastodon_handle_verify' );
 
-		?>
+	?>
 		<label>
 			<input
 				type="text"

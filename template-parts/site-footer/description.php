@@ -10,15 +10,20 @@ $text = get_theme_mod( 'wmf_footer_text', \WMF\Customizer\Footer::defaults( 'wmf
 ?>
 <div class="site-footer__description">
 	<img class="site-footer__logo" src="<?php echo esc_url( $logo ); ?>"
-		 alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"/>
+		alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"/>
 	<?php if ( ! empty( $text ) ) : ?>
-		<p><?php echo wp_kses(
-				$text, array(
-					'a'  => array(
-						'href' => array(),
-					),
-					'br' => array(),
-				)
-			); ?></p>
+		<p>
+		<?php
+		echo wp_kses(
+			$text,
+			array(
+				'a'  => array(
+					'href' => array(),
+				),
+				'br' => array(),
+			)
+		);
+		?>
+			</p>
 	<?php endif; ?>
 </div>

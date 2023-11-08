@@ -93,7 +93,8 @@ function wmf_get_role_hierarchy( $parent_id ) {
 	$children   = array();
 	$term_array = array();
 	$terms      = get_terms(
-		'role', array(
+		'role',
+		array(
 			'orderby' => 'name',
 			'fields'  => 'id=>parent',
 			'get'     => 'all',
@@ -522,8 +523,9 @@ add_filter( 'img_caption_shortcode', 'wmf_filter_caption_shortcode', 10, 3 );
  */
 function wmf_rss_templates() {
 	foreach ( array( 'offset1', 'images' ) as $name ) {
-		add_feed( $name,
-			function() use ( $name ) {
+		add_feed(
+			$name,
+			function () use ( $name ) {
 				get_template_part( 'feed', $name );
 			}
 		);
@@ -617,7 +619,7 @@ function wmf_get_report_sidebar_data() {
 		),
 		// Continue with all direct child pages.
 		array_map(
-			function( $page ) use ( $current_page ) {
+			function ( $page ) use ( $current_page ) {
 				return array(
 					'id'     => $page->ID,
 					'title'  => $page->post_title,
@@ -638,10 +640,10 @@ function wmf_get_report_sidebar_data() {
 function wmf_get_page_stories() {
 	// See the "Stories" field for how this data gets set.
 	$stories   = get_post_meta( get_the_ID(), 'stories', true );
-	$story_ids = $stories['stories_list'] ?? [];
+	$story_ids = $stories['stories_list'] ?? array();
 
 	if ( empty( $story_ids ) ) {
-		return [];
+		return array();
 	}
 
 	$stories = get_posts(
@@ -667,7 +669,7 @@ function wmf_get_page_stories() {
  */
 function wmf_get_svg_uri( string $name ): string {
 	$name = str_replace( '.svg', '', $name );
-	$uri = get_template_directory_uri() . '/assets/src/svg/' . $name . '.svg';
+	$uri  = get_template_directory_uri() . '/assets/src/svg/' . $name . '.svg';
 	return esc_url( $uri );
 }
 
@@ -684,9 +686,13 @@ function wmf_get_svg_uri( string $name ): string {
  */
 function wmf_get_gulp_asset_uri( string $name ): string {
 	$dist_path = get_template_directory_uri() . '/assets/dist/';
-	$manifest  = load_asset_manifest( get_active_manifest( [
-		get_template_directory() . '/assets/dist/rev-manifest.json',
-	] ) ) ?? [];
+	$manifest  = load_asset_manifest(
+		get_active_manifest(
+			array(
+				get_template_directory() . '/assets/dist/rev-manifest.json',
+			)
+		)
+	) ?? array();
 
 	$resolved_name = $manifest[ $name ] ?? $name;
 
@@ -703,7 +709,7 @@ function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
 	if ( empty( $possible_url ) ) :
 		echo esc_html( $text );
 	else :
-		$host = wp_parse_url( $possible_url, PHP_URL_HOST );
+		$host             = wp_parse_url( $possible_url, PHP_URL_HOST );
 		$creative_commons = false !== strpos( $host, 'commons.wikimedia.org' );
 		?>
 	<div>
@@ -760,8 +766,10 @@ function wmf_search_reusable_blocks_within_innerblocks( $blocks, $block_name, $p
 	foreach ( $blocks as $block ) {
 		if ( isset( $block['innerBlocks'] ) && ! empty( $block['innerBlocks'] ) ) {
 			wmf_search_reusable_blocks_within_innerblocks( $block['innerBlocks'], $block_name, $post );
-		} elseif ( $block['blockName'] === 'core/block' && ! empty( $block['attrs']['ref'] ) && \has_block( $block_name,
-		$block['attrs']['ref'] ) ) {
+		} elseif ( $block['blockName'] === 'core/block' && ! empty( $block['attrs']['ref'] ) && \has_block(
+			$block_name,
+			$block['attrs']['ref']
+		) ) {
 			return true;
 		}
 	}
@@ -779,10 +787,10 @@ function wmf_search_reusable_blocks_within_innerblocks( $blocks, $block_name, $p
  * @return int
  */
 function wmf_get_reusable_block_module_id( string $module ): int {
-	$available_blocks = [
+	$available_blocks = array(
 		'connect' => 'wmf_connect_reusable_block',
 		'support' => 'wmf_support_reusable_block',
-	];
+	);
 
 	if ( ! isset( $available_blocks[ $module ] ) ) {
 		return 0;

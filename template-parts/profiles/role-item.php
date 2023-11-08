@@ -7,15 +7,15 @@
 
 // $args is data passed into the template, also we provide fallbacks in case they don't exist.
 // phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
-$profile_data = $args ?? [];
+$profile_data = $args ?? array();
 
 if ( empty( $profile_data['id'] ) ) {
 	return;
 }
 
-$is_list  = $profile_data['list'] ?? true;
-$profile_id  = $profile_data['id'];
-$profile     = get_post( $profile_id );
+$is_list    = $profile_data['list'] ?? true;
+$profile_id = $profile_data['id'];
+$profile    = get_post( $profile_id );
 
 if ( ! is_a( $profile, \WP_Post::class ) ) {
 	return;
@@ -24,7 +24,7 @@ if ( ! is_a( $profile, \WP_Post::class ) ) {
 $profile_img = get_the_post_thumbnail(
 	$profile_id,
 	$is_list ? 'profile_thumb' : 'image_4x3_large',
-	[ 'class' => 'role__staff-list__item__photo' ]
+	array( 'class' => 'role__staff-list__item__photo' )
 );
 
 $profile_class = 'role__staff-list__item';
@@ -37,7 +37,8 @@ if ( $profile_data['role'] ?? false ) {
 	<li class="<?php echo esc_attr( $profile_class ); ?>">
 <?php else : ?>
 	<div class="<?php echo esc_attr( $profile_class ); ?>">
-<?php endif;
+	<?php
+endif;
 
 if ( $profile_img ) :
 	echo wp_kses_post( $profile_img );

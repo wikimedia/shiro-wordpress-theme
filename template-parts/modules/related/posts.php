@@ -51,7 +51,7 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_related_posts_title' 
 		<?php
 		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		foreach ( $template_data['posts'] as $post ) {
-			echo wp_kses_post( BlogPost\render_block( [ 'post_id' => $post->ID ] ) );
+			echo wp_kses_post( BlogPost\render_block( array( 'post_id' => $post->ID ) ) );
 		}
 		// phpcs:enable
 		?>

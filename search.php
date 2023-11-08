@@ -19,69 +19,69 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 ?>
 
 <?php if ( have_posts() ) : ?>
-	<div class="search-results__count mw-980">
-		<?php
-		$total_results = $wp_query->found_posts;
-		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+<div class="search-results__count mw-980">
+	<?php
+		$total_results  = $wp_query->found_posts;
+		$paged          = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 		$posts_per_page = get_query_var( 'posts_per_page' );
-		$first_result = ( $posts_per_page * $paged ) - $posts_per_page + 1;
-		$last_result = min( $total_results, $wp_query->post_count * $paged );
-		if ( $total_results === 1 ) {
-			printf( esc_html__( 'Showing 1 of 1 result', 'shiro' ) );
-		} else {
-			printf(
-				/* translators: 1. first result, 2. last result, 3. total results */
-				esc_html__( 'Showing %1$s-%2$s of %3$s results', 'shiro' ),
-				esc_html( $first_result ),
-				esc_html( $last_result ),
-				esc_html( $total_results )
-			);
-		}
-		?>
-	</div>
+		$first_result   = ( $posts_per_page * $paged ) - $posts_per_page + 1;
+		$last_result    = min( $total_results, $wp_query->post_count * $paged );
+	if ( $total_results === 1 ) {
+		printf( esc_html__( 'Showing 1 of 1 result', 'shiro' ) );
+	} else {
+		printf(
+			/* translators: 1. first result, 2. last result, 3. total results */
+			esc_html__( 'Showing %1$s-%2$s of %3$s results', 'shiro' ),
+			esc_html( $first_result ),
+			esc_html( $last_result ),
+			esc_html( $total_results )
+		);
+	}
+	?>
+</div>
 
-	<div class="search-results__tabs mw-980">
-		<?php
-			$sorting_options = [
-				'relevance' => [
+<div class="search-results__tabs mw-980">
+	<?php
+			$sorting_options = array(
+				'relevance' => array(
 					'query' => 'orderby=relevance',
 					'label' => __( 'Relevance', 'shiro' ),
-				],
-				'date-desc' => [
+				),
+				'date-desc' => array(
 					'query' => 'orderby=date&order=DESC',
 					'label' => __( 'Date (newest)', 'shiro' ),
-				],
-				'date-asc' => [
+				),
+				'date-asc'  => array(
 					'query' => 'orderby=date&order=ASC',
 					'label' => __( 'Date (oldest)', 'shiro' ),
-				],
-			];
+				),
+			);
 
 			/**
 			 * An empty sort_by value means sorting isn't applied for that post_type,
 			 * so the sort dropdown will not be displayed.
 			 */
-			$search_results_tabs = [
-				'all' => [
-					'label' => __( 'All', 'shiro' ),
+			$search_results_tabs = array(
+				'all'  => array(
+					'label'   => __( 'All', 'shiro' ),
 					'sort_by' => 'relevance',
-				],
-				'post' => [
-					'label' => __( 'News', 'shiro' ),
+				),
+				'post' => array(
+					'label'   => __( 'News', 'shiro' ),
 					'sort_by' => 'date-desc',
-				],
-				'page' => [
-					'label' => __( 'Pages', 'shiro' ),
+				),
+				'page' => array(
+					'label'   => __( 'Pages', 'shiro' ),
 					'sort_by' => false, // No sorting option for pages.
-				],
-			];
+				),
+			);
 
 			// All is the default option if none is selected, or if the post_type provided isn't in the list.
 			$query_option = ( isset( $_GET['post_type'][0] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				? sanitize_text_field( wp_unslash( $_GET['post_type'][0] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				: 'all';
-			$option = array_key_exists( $query_option, $search_results_tabs ) ? $query_option : 'all';
-			$selected = esc_attr( $option );
+			$option       = array_key_exists( $query_option, $search_results_tabs ) ? $query_option : 'all';
+			$selected     = esc_attr( $option );
 
 			foreach ( $search_results_tabs as $key => $value ) {
 				$active = $selected === $key ? 'active' : '';
@@ -90,7 +90,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 				// Add the default sorting option for the current post_type
 				if ( isset( $sorting_options[ $value['sort_by'] ] ) ) {
-					$sort_query = $sorting_options[ $value['sort_by'] ]['query'];
+					$sort_query  = $sorting_options[ $value['sort_by'] ]['query'];
 					$current_url = add_query_arg( $sort_query, '', $current_url );
 				}
 
@@ -118,7 +118,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 			// Check the URL for each sorting option's parameters
 			foreach ( $sorting_options as $sort_key => $option ) {
-				$query_params = [];
+				$query_params = array();
 				parse_str( $option['query'], $query_params );
 				$match = true;
 				foreach ( $query_params as $param => $value ) {
@@ -136,32 +136,32 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			$current_sort_label = $sorting_options[ $current_sort ]['label'];
 			?>
 
-			<?php if ( ! empty( $search_results_tabs[ $selected ]['sort_by'] ) ) : ?>
+	<?php if ( ! empty( $search_results_tabs[ $selected ]['sort_by'] ) ) : ?>
 
-				<div class="search-results__tabs__sort">
+	<div class="search-results__tabs__sort">
 
-					<button aria-haspopup="true" aria-expanded="false">
-						<span>Sort by</span>&nbsp;<span class="selected-sort"><?php echo esc_html( $current_sort_label ); ?></span>
-						<span class="dropdown-icon"></span>
-					</button>
+		<button aria-haspopup="true" aria-expanded="false">
+			<span>Sort by</span>&nbsp;<span class="selected-sort"><?php echo esc_html( $current_sort_label ); ?></span>
+			<span class="dropdown-icon"></span>
+		</button>
 
-					<div class="sort-dropdown" role="menu">
-						<?php
-						foreach ( $sorting_options as $sort_key => $option ) {
-							$option_query_params = [];
-							parse_str( $option['query'], $option_query_params );
-							$custom_sort_url = wmf_set_custom_sort_url( $option_query_params );
-							?>
-							<a href="<?php echo esc_url( $custom_sort_url ); ?>" class="sort-option" data-sort="<?php echo esc_attr( $sort_key ); ?>" role="menuitem">
-								<?php echo esc_html( $option['label'] ); ?>
-							</a>
-						<?php } ?>
-					</div>
+		<div class="sort-dropdown" role="menu">
+			<?php
+			foreach ( $sorting_options as $sort_key => $option ) {
+				$option_query_params = array();
+				parse_str( $option['query'], $option_query_params );
+				$custom_sort_url = wmf_set_custom_sort_url( $option_query_params );
+				?>
+			<a href="<?php echo esc_url( $custom_sort_url ); ?>" class="sort-option" data-sort="<?php echo esc_attr( $sort_key ); ?>" role="menuitem">
+				<?php echo esc_html( $option['label'] ); ?>
+			</a>
+			<?php } ?>
+		</div>
 
-				</div>
-
-			<?php endif; ?>
 	</div>
+
+	<?php endif; ?>
+</div>
 
 <?php endif; ?>
 
@@ -169,31 +169,31 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 	<div id="search-results" class="card-list-container">
 
-			<?php
-			if ( have_posts() ) {
-				while ( have_posts() ) {
-					the_post();
-
-					// Render the block for the current post
-					echo WMF\Editor\Blocks\BlogPost\render_block( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-						[ 'post_id' => $post->ID ]
-					);
-				}
-			} else {
-				// If there are no posts, display a "content-none" template
-				get_template_part( 'template-parts/content', 'none' );
-			}
-			?>
-		</div>
-	</div>
-
-	<div id="pagination">
 		<?php
-		if ( have_posts() ) :
-			get_template_part( 'template-parts/pagination' );
-		endif;
+		if ( have_posts() ) {
+			while ( have_posts() ) {
+				the_post();
+
+				// Render the block for the current post
+				echo WMF\Editor\Blocks\BlogPost\render_block( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					array( 'post_id' => $post->ID )
+				);
+			}
+		} else {
+			// If there are no posts, display a "content-none" template
+			get_template_part( 'template-parts/content', 'none' );
+		}
 		?>
 	</div>
+</div>
+
+<div id="pagination">
+	<?php
+	if ( have_posts() ) :
+		get_template_part( 'template-parts/pagination' );
+		endif;
+	?>
+</div>
 
 <?php
 get_footer();

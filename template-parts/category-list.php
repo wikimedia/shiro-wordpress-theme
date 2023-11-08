@@ -28,12 +28,12 @@ if ( ! empty( $featured_categories ) ) :
 				$class = (int) $category === (int) $current_category ? 'border-turquoise' : '';
 				?>
 				<?php if ( 0 !== $i ) : ?>
-					<li aria-hidden="true">—</li>
-				<?php endif; ?>
+			<li aria-hidden="true">—</li>
+			<?php endif; ?>
 
-				<li class="<?php echo esc_attr( $class ); ?>">
-					<a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $term->name ); ?></a>
-				</li>
+			<li class="<?php echo esc_attr( $class ); ?>">
+				<a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $term->name ); ?></a>
+			</li>
 			<?php endforeach; ?>
 		</ul>
 	</div>
