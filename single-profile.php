@@ -88,10 +88,14 @@ while ( have_posts() ) :
 							}
 							?>
 						<div class="bold profile-contacts">
-							<?php if ( isset( $link['link'] ) ) : ?><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>"><?php endif; ?>
+							<?php if ( isset( $link['link'] ) ) : ?>
+							<a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
+							<?php endif; ?>
 								<img src="<?php echo esc_url( $img ); ?>" alt="">
 								<?php echo esc_html( $link['title'] ); ?>
-							<?php if ( isset( $link['link'] ) ) : ?></a><?php endif; ?>
+							<?php if ( isset( $link['link'] ) ) : ?>
+							</a>
+							<?php endif; ?>
 						</div>
 					</div>
 						<?php endforeach; ?>
