@@ -41,7 +41,7 @@ foreach ( $template_args as $i => $list_section ) {
 	</div>
 	<?php endif; ?>
 
-	
+
 	<?php if ( isset( $list_section['links'] ) ) : ?>
 		<ul class="link-list">
 		<?php
