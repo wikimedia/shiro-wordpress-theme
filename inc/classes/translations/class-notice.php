@@ -168,5 +168,4 @@ class Notice {
 			);
 		}
 	}
-
 }

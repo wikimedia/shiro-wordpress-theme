@@ -14,7 +14,8 @@ if ( empty( $template_args ) || ! is_array( $template_args ) ) {
 }
 
 $rand_translation = wmf_get_random_translation(
-	'stories', array(
+	'stories',
+	array(
 		'source' => 'meta',
 	)
 );
