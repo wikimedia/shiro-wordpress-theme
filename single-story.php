@@ -31,8 +31,8 @@ while ( have_posts() ) :
 		'template-parts/header/story',
 		'single',
 		array(
-			'back_to_link'  => $parent_link,
-			'back_to_label' => $parent_name,
+			'back_to_link'  => $parent_link ?? '',
+			'back_to_label' => $parent_name ?? '',
 			'share_links'   => get_post_meta( get_the_ID(), 'contact_links', true ),
 		)
 	);
