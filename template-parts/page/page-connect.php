@@ -17,8 +17,10 @@ $reusable_block = wmf_get_reusable_block_module( 'connect' );
 
 if ( $no_custom_connect && $reusable_block ) {
 	if ( is_a( $reusable_block, \WP_Post::class ) ) { ?>
-		<?php /** Since we're not in the "content" area, these blocks need
-		 * a wrapper with a set width or they look real strange. */ ?>
+		<?php
+		/** Since we're not in the "content" area, these blocks need
+		 * a wrapper with a set width or they look real strange. */
+		?>
 		<div class="block-area">
 			<div class="wysiwyg mw-980">
 				<?php
@@ -28,10 +30,12 @@ if ( $no_custom_connect && $reusable_block ) {
 				?>
 			</div>
 		</div>
-	<?php }
+		<?php
+	}
 } else {
 	$rand_translation = wmf_get_random_translation(
-		'connect', array(
+		'connect',
+		array(
 			'source' => 'meta',
 		)
 	);

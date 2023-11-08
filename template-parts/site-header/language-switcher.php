@@ -9,14 +9,18 @@
 
 // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 $current_label = get_theme_mod( 'wmf_current_language_label', __( 'Current language:', 'shiro-admin' ) );
-$translations  = $args['translations'] ?? [];
-$current       = array_reduce( $translations, function ( $carry, $item ) {
-	if ( is_string( $carry ) ) {
-		return $carry;
-	}
+$translations  = $args['translations'] ?? array();
+$current       = array_reduce(
+	$translations,
+	function ( $carry, $item ) {
+		if ( is_string( $carry ) ) {
+			return $carry;
+		}
 
-	return $item['selected'] ? esc_html( $item['shortname'] ) : null;
-}, null );
+		return $item['selected'] ? esc_html( $item['shortname'] ) : null;
+	},
+	null
+);
 // phpcs:enable
 
 if ( ! empty( $translations ) ) : ?>
@@ -29,7 +33,7 @@ if ( ! empty( $translations ) ) : ?>
 		<div class="language-switcher__content">
 			<ul>
 				<?php foreach ( $translations as $translation ) : ?>
-					<li class="language-switcher__language <?php echo $translation['selected'] ? 'language-switcher__language--selected' : '' ?>">
+					<li class="language-switcher__language <?php echo $translation['selected'] ? 'language-switcher__language--selected' : ''; ?>">
 					<span lang="<?php echo esc_attr( $translation['shortname'] ); ?>">
 						<a href="<?php echo esc_url( $translation['uri'] ); ?>">
 							<span class="language-switcher__language-name">

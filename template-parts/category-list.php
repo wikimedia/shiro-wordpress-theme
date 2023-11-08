@@ -19,24 +19,24 @@ $cat_anchor       = 'card-list';
 if ( ! empty( $featured_categories ) ) :
 	?>
 <div class="news-categories" id="<?php echo esc_attr( $cat_anchor ); ?>">
-    <div class="news-category-inner mw-1360">
-        <ul class="link-list color-gray uppercase bold slider-on-mobile">
-            <?php
+	<div class="news-category-inner mw-1360">
+		<ul class="link-list color-gray uppercase bold slider-on-mobile">
+			<?php
 			foreach ( $featured_categories as $i => $category ) :
 				$term  = get_term( absint( $category ) );
 				$link  = add_query_arg( 'cat', $category, $url ) . '#' . $cat_anchor;
 				$class = (int) $category === (int) $current_category ? 'border-turquoise' : '';
 				?>
-            <?php if ( 0 !== $i ) : ?>
-            <li aria-hidden="true">—</li>
-            <?php endif; ?>
+				<?php if ( 0 !== $i ) : ?>
+			<li aria-hidden="true">—</li>
+			<?php endif; ?>
 
-            <li class="<?php echo esc_attr( $class ); ?>">
-                <a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $term->name ); ?></a>
-            </li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
+			<li class="<?php echo esc_attr( $class ); ?>">
+				<a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $term->name ); ?></a>
+			</li>
+			<?php endforeach; ?>
+		</ul>
+	</div>
 </div>
-<?php
+	<?php
 endif;

@@ -25,19 +25,19 @@ get_template_part( 'template-parts/header/page', '404', $template_args );
 
 <?php if ( $wmf_404_copy ) : ?>
 <div class="page-intro mw-1360 mod-margin-bottom wysiwyg">
-    <div class="page-intro-text">
-        <?php echo wp_kses_post( wpautop( $wmf_404_copy ) ); ?>
-    </div>
+	<div class="page-intro-text">
+		<?php echo wp_kses_post( wpautop( $wmf_404_copy ) ); ?>
+	</div>
 </div>
 <?php endif; ?>
 
 <div class="mw-980 mod-margin-bottom">
-    <div class="search-container no-margin aligncenter">
-        <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-            <input class="search-input mar-bottom" type="search" placeholder="<?php echo esc_attr( $wmf_404_search_text ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s">
-            <button class="btn btn-blue search-btn" type="submit"><?php echo esc_html( $wmf_search_button ); ?></button>
-        </form>
-    </div>
+	<div class="search-container no-margin aligncenter">
+		<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+			<input class="search-input mar-bottom" type="search" placeholder="<?php echo esc_attr( $wmf_404_search_text ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s">
+			<button class="btn btn-blue search-btn" type="submit"><?php echo esc_html( $wmf_search_button ); ?></button>
+		</form>
+	</div>
 </div>
 
 <?php

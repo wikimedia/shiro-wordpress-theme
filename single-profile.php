@@ -16,13 +16,13 @@ while ( have_posts() ) :
 
 	?>
 
-<?php
+	<?php
 	$roles           = get_the_terms( get_the_ID(), 'role' );
 	$default_heading = get_theme_mod( 'wmf_related_profiles_heading', __( 'Other members of ', 'shiro-admin' ) );
 	$team_name       = '';
 	$parent_name     = $roles[0]->name;
 	$parent_link     = get_term_link( $roles[0] );
-	$connected_user = get_post_meta( get_the_ID(), 'connected_user', true );
+	$connected_user  = get_post_meta( get_the_ID(), 'connected_user', true );
 
 	if ( ! empty( $roles ) && ! is_wp_error( $roles ) ) {
 		$team_name = $roles;
@@ -52,9 +52,9 @@ while ( have_posts() ) :
 	?>
 
 <div class="mw-980 mar-bottom">
-    <div class="flex flex-medium flex-space-between mar-bottom_lg">
-        <div class="w-48p">
-            <?php
+	<div class="flex flex-medium flex-space-between mar-bottom_lg">
+		<div class="w-48p">
+			<?php
 				get_template_part(
 					'template-parts/thumbnail',
 					'framed',
@@ -63,67 +63,67 @@ while ( have_posts() ) :
 						'container_class' => '',
 					)
 				);
-				?>
-            <?php if ( ! empty( $share_links ) || ! empty( $connected_user ) ) : ?>
-            <div class="rise-up side-list">
-                <?php if ( ! empty( $share_links ) ) : ?>
-                <?php
-						foreach ( $share_links as $link ) :
+			?>
+			<?php if ( ! empty( $share_links ) || ! empty( $connected_user ) ) : ?>
+			<div class="rise-up side-list">
+				<?php if ( ! empty( $share_links ) ) : ?>
+					<?php
+					foreach ( $share_links as $link ) :
 
-							?>
-                <div class="link-list mar-right">
-                    <?php
-							$img = '';
-							if ( is_int( strpos( $link['link'], 'meta.wikimedia.org' ) ) ) {
-								$img = get_template_directory_uri() . '/assets/src/svg/globe.svg';
-							}
-							if ( is_int( strpos( $link['link'], 'mailto' ) ) ) {
-								$img = get_template_directory_uri() . '/assets/src/svg/email.svg';
-							}
-							if ( is_int( strpos( $link['link'], 'wikipedia.org' ) ) ) {
-								$img = get_template_directory_uri() . '/assets/src/svg/individual/wikipedia.svg';
-							}
-							if ( is_int( strpos( $link['link'], '/news/' ) ) ) {
-								$img = get_template_directory_uri() . '/assets/src/svg/individual/wikimedia-blue.svg';
-							}
-							?>
-                    <div class="bold profile-contacts"><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
-                            <img src="<?php echo esc_url( $img ); ?>" alt="">
-                            <?php echo esc_html( $link['title'] ); ?>
-                        </a></div>
-                </div>
-                <?php endforeach; ?>
-                <?php endif; ?>
-                <?php if ( ! empty( $connected_user ) ) : ?>
-                <?php
-						$authorimg = get_template_directory_uri() . '/assets/src/svg/edit-ltr.svg';
-						if ( is_rtl() ) {
-							$authorimg = get_template_directory_uri() . '/assets/src/svg/edit-rtl.svg';
-						}
-						$authorlink = wmf_get_author_link( $connected_user );
-						$authorlinkcopy = sprintf( /* translators: 1. post title */ __( 'Posts by %s', 'shiro' ), get_the_title() );
 						?>
-                <div class="link-list mar-right">
-                    <div class="bold profile-contacts">
-                        <a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">
-                            <img src="<?php echo esc_url( $authorimg ); ?>" alt="">
-                            <?php echo esc_html( $authorlinkcopy ); ?>
-                        </a>
-                    </div>
-                </div>
-                <?php endif; ?>
-            </div>
-            <?php endif; ?>
-        </div>
-        <div class="w-50p">
-            <div class="article-main mod-margin-bottom wysiwyg">
-                <?php the_content(); ?>
-            </div>
-        </div>
-    </div>
+				<div class="link-list mar-right">
+						<?php
+						$img = '';
+						if ( is_int( strpos( $link['link'], 'meta.wikimedia.org' ) ) ) {
+							$img = get_template_directory_uri() . '/assets/src/svg/globe.svg';
+						}
+						if ( is_int( strpos( $link['link'], 'mailto' ) ) ) {
+							$img = get_template_directory_uri() . '/assets/src/svg/email.svg';
+						}
+						if ( is_int( strpos( $link['link'], 'wikipedia.org' ) ) ) {
+							$img = get_template_directory_uri() . '/assets/src/svg/individual/wikipedia.svg';
+						}
+						if ( is_int( strpos( $link['link'], '/news/' ) ) ) {
+							$img = get_template_directory_uri() . '/assets/src/svg/individual/wikimedia-blue.svg';
+						}
+						?>
+					<div class="bold profile-contacts"><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
+							<img src="<?php echo esc_url( $img ); ?>" alt="">
+							<?php echo esc_html( $link['title'] ); ?>
+						</a></div>
+				</div>
+				<?php endforeach; ?>
+				<?php endif; ?>
+				<?php if ( ! empty( $connected_user ) ) : ?>
+					<?php
+						$authorimg = get_template_directory_uri() . '/assets/src/svg/edit-ltr.svg';
+					if ( is_rtl() ) {
+						$authorimg = get_template_directory_uri() . '/assets/src/svg/edit-rtl.svg';
+					}
+						$authorlink     = wmf_get_author_link( $connected_user );
+						$authorlinkcopy = sprintf( /* translators: 1. post title */ __( 'Posts by %s', 'shiro' ), get_the_title() );
+					?>
+				<div class="link-list mar-right">
+					<div class="bold profile-contacts">
+						<a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">
+							<img src="<?php echo esc_url( $authorimg ); ?>" alt="">
+							<?php echo esc_html( $authorlinkcopy ); ?>
+						</a>
+					</div>
+				</div>
+				<?php endif; ?>
+			</div>
+			<?php endif; ?>
+		</div>
+		<div class="w-50p">
+			<div class="article-main mod-margin-bottom wysiwyg">
+				<?php the_content(); ?>
+			</div>
+		</div>
+	</div>
 </div>
 
-<?php
+	<?php
 
 	get_template_part( 'template-parts/page/page', 'offsite-links' );
 
@@ -131,7 +131,7 @@ while ( have_posts() ) :
 
 	$template_args = get_post_meta( get_the_ID(), 'profiles', true );
 	if ( ! is_array( $template_args ) ) {
-		$template_args = [];
+		$template_args = array();
 	}
 
 	$template_args['profiles_list'] = wmf_get_related_profiles( get_the_ID() );

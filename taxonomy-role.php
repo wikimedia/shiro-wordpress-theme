@@ -64,32 +64,32 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 
 <?php if ( ! empty( $display_intro ) ) : ?>
 <div class="mw-980 mod-margin-bottom_sm">
-    <div class="page-intro wysiwyg taxonomy-role">
-        <?php if ( ! empty( $description ) ) : ?>
-        <p>
-            <?php echo esc_html( $description ); ?>
-        </p>
-        <?php endif; ?>
+	<div class="page-intro wysiwyg taxonomy-role">
+		<?php if ( ! empty( $description ) ) : ?>
+		<p>
+			<?php echo esc_html( $description ); ?>
+		</p>
+		<?php endif; ?>
 
-        <?php if ( ! empty( $button_label ) ) : ?>
-        <a href="<?php echo esc_url( isset( $button_link ) ? $button_link : '#' ); ?>" class="btn btn-blue">
-            <?php echo esc_html( $button_label ); ?>
-        </a>
-        <?php endif; ?>
-    </div>
+		<?php if ( ! empty( $button_label ) ) : ?>
+		<a href="<?php echo esc_url( isset( $button_link ) ? $button_link : '#' ); ?>" class="btn btn-blue">
+			<?php echo esc_html( $button_label ); ?>
+		</a>
+		<?php endif; ?>
+	</div>
 </div>
 <?php endif; ?>
 
 <div class="mw-980 mod-margin-bottom flex flex-medium role-template toc__section">
-    <?php if ( ! empty( $post_list ) && count( $post_list ) > 1 ) : ?>
-    <div class="w-32p toc__sidebar">
-        <?php get_sidebar( 'list', [ 'template_args' => $post_list ] ); ?>
-    </div>
-    <?php endif; ?>
+	<?php if ( ! empty( $post_list ) && count( $post_list ) > 1 ) : ?>
+	<div class="w-32p toc__sidebar">
+		<?php get_sidebar( 'list', array( 'template_args' => $post_list ) ); ?>
+	</div>
+	<?php endif; ?>
 
-    <div class="w-68p toc__content">
-        <?php get_template_part( 'template-parts/profiles/role-list', null, $post_list ); ?>
-    </div>
+	<div class="w-68p toc__content">
+		<?php get_template_part( 'template-parts/profiles/role-list', null, $post_list ); ?>
+	</div>
 </div>
 
 <?php

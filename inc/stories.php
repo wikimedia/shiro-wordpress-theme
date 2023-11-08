@@ -27,6 +27,6 @@ function link_stories_page_stories( $check, $object_id, $meta_key, $meta_value, 
 	}
 
 	foreach ( $meta_value['stories_list'] as $story_id ) {
-		update_post_meta( $story_id,'_story_parent_page', $object_id );
+		update_post_meta( $story_id, '_story_parent_page', $object_id );
 	}
 }

@@ -9,7 +9,7 @@
  * Add landing page options.
  */
 function wmf_landing_fields() {
-	$is_landing_page = ( wmf_using_template( 'page-landing'  ) || wmf_using_template( 'page-report-landing-long' ) );
+	$is_landing_page = ( wmf_using_template( 'page-landing' ) || wmf_using_template( 'page-report-landing-long' ) );
 	$is_home         = (int) get_option( 'page_on_front' ) === (int) wmf_get_fields_post_id();
 
 	if ( $is_landing_page ) {
@@ -109,7 +109,7 @@ function wmf_landing_fields() {
 		$sidebar_menu_label = new Fieldmanager_Textfield(
 			array(
 				'name'     => 'landing_page_sidebar_menu_label',
-				'sanitize' => 'wp_kses_post'
+				'sanitize' => 'wp_kses_post',
 			)
 		);
 		$sidebar_menu_label->add_meta_box( __( 'Sidebar Menu Label', 'shiro-admin' ), 'page' );

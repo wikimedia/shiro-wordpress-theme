@@ -24,10 +24,10 @@ while ( have_posts() ) {
 
 	?>
 <div class="freeform-content">
-    <?php the_content(); ?>
+	<?php the_content(); ?>
 </div>
 
-<?php
+	<?php
 	get_template_part( 'template-parts/page/page', 'connect' );
 }
 get_footer();
