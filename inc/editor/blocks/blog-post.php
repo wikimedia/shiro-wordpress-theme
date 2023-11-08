@@ -20,19 +20,19 @@ function bootstrap() {
 function register_block() {
 	register_block_type(
 		BLOCK_NAME,
-		[
+		array(
 			'apiVersion'      => 2,
 			'render_callback' => __NAMESPACE__ . '\\render_block',
-			'attributes'      => [
-				'post_id'     => [
+			'attributes'      => array(
+				'post_id'     => array(
 					'type' => 'integer',
-				],
-				'is_featured' => [
+				),
+				'is_featured' => array(
 					'type'    => 'boolean',
 					'default' => false,
-				],
-			],
-		]
+				),
+			),
+		)
 	);
 }
 
@@ -49,10 +49,12 @@ function render_block( $attributes ) {
 		return '';
 	}
 
-	$post_query = new \WP_Query( [
-		'post_type' => [ 'post', 'page' ],
-		'p'         => (int) $id,
-	] );
+	$post_query = new \WP_Query(
+		array(
+			'post_type' => array( 'post', 'page' ),
+			'p'         => (int) $id,
+		) 
+	);
 
 	if ( ! $post_query->have_posts() ) {
 		return '';
@@ -66,7 +68,7 @@ function render_block( $attributes ) {
 		get_template_part(
 			'template-parts/modules/cards/card',
 			'horizontal',
-			[
+			array(
 				'link'       => get_the_permalink(),
 				'image_id'   => get_post_thumbnail_id(),
 				'title'      => get_the_title(),
@@ -75,7 +77,7 @@ function render_block( $attributes ) {
 				'excerpt'    => get_the_excerpt(),
 				'categories' => get_the_category(),
 				'class'      => 'blog-post' . ( ! empty( $attributes['is_featured'] ) ? ' blog-post--featured' : '' ),
-			]
+			)
 		);
 	}
 

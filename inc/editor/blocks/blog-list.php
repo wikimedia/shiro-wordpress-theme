@@ -22,39 +22,39 @@ function bootstrap() {
 function register_block() {
 	register_block_type(
 		BLOCK_NAME,
-		[
+		array(
 			'apiVersion'      => 2,
 			'render_callback' => __NAMESPACE__ . '\\render_block',
-			'attributes' => [
-				'postsToShow' => [
-					'type' => 'integer',
+			'attributes'      => array(
+				'postsToShow'        => array(
+					'type'    => 'integer',
 					'default' => 2,
-				],
-				'categories' => [
-					'type' => 'array',
-					'items' => [
+				),
+				'categories'         => array(
+					'type'  => 'array',
+					'items' => array(
 						'type' => 'object',
-					],
-				],
-				'excludedCategories' => [
-					'type' => 'array',
-					'items' => [
+					),
+				),
+				'excludedCategories' => array(
+					'type'  => 'array',
+					'items' => array(
 						'type' => 'object',
-					],
-				],
-				'order' => [
-					'type' => 'string',
+					),
+				),
+				'order'              => array(
+					'type'    => 'string',
 					'default' => 'desc',
-				],
-				'orderBy' => [
-					'type' => 'string',
+				),
+				'orderBy'            => array(
+					'type'    => 'string',
 					'default' => 'date',
-				],
-				'selectedAuthor' => [
+				),
+				'selectedAuthor'     => array(
 					'type' => 'number',
-				],
-			],
-		]
+				),
+			),
+		)
 	);
 }
 
@@ -65,18 +65,18 @@ function register_block() {
  *
  * @return string HTML markup.
  */
-function render_block( $attributes ) : string {
+function render_block( $attributes ): string {
 
-	$args = [
+	$args = array(
 		'posts_per_page'   => $attributes['postsToShow'],
 		'post_status'      => 'publish',
 		'order'            => $attributes['order'],
 		'orderby'          => $attributes['orderBy'],
 		'suppress_filters' => false,
-	];
+	);
 
-	$categories = array_column( $attributes['categories'] ?? [], 'id' );
-	$excluded_categories = array_column( $attributes['excludedCategories'] ?? [], 'id' );
+	$categories          = array_column( $attributes['categories'] ?? array(), 'id' );
+	$excluded_categories = array_column( $attributes['excludedCategories'] ?? array(), 'id' );
 
 	if ( count( $categories ) > 0 ) {
 		$args['cat'] = join( ',', $categories );
@@ -86,9 +86,13 @@ function render_block( $attributes ) : string {
 		if ( ! isset( $args['cat'] ) ) {
 			$args['cat'] = '';
 		}
-		$args['cat'] = array_reduce( $excluded_categories, function( $carry, $item ) {
-			return $carry . ",-$item";
-		}, $args['cat'] );
+		$args['cat'] = array_reduce(
+			$excluded_categories,
+			function ( $carry, $item ) {
+				return $carry . ",-$item";
+			},
+			$args['cat'] 
+		);
 	}
 
 	if ( isset( $attributes['selectedAuthor'] ) ) {
@@ -102,23 +106,27 @@ function render_block( $attributes ) : string {
 		 * categories to show, then we *don't* filter out non-main languages.
 		 * To do so would almost certainly result in no posts being returned.
 		 */
-		$in_translated = array_reduce( $args['category__in'] ?? [], function( $collected, $cat_id ) {
-			if ( $collected === true ) {
-				return true;
-			}
-			$term = get_term( $cat_id, 'category' );
+		$in_translated = array_reduce(
+			$args['category__in'] ?? array(),
+			function ( $collected, $cat_id ) {
+				if ( $collected === true ) {
+					return true;
+				}
+				$term = get_term( $cat_id, 'category' );
 
-			return $term->slug === 'translations';
-		}, false );
+				return $term->slug === 'translations';
+			},
+			false 
+		);
 
 		if ( ! $in_translated ) {
-			$args['tax_query'] = [
-				[
+			$args['tax_query'] = array(
+				array(
 					'taxonomy' => 'content-language',
-					'field' => 'term_id',
-					'terms' => [ wmf_get_current_content_language_term()->term_id ],
-				]
-			];
+					'field'    => 'term_id',
+					'terms'    => array( wmf_get_current_content_language_term()->term_id ),
+				),
+			);
 		}
 	}
 
@@ -128,7 +136,7 @@ function render_block( $attributes ) : string {
 		$output = '';
 
 		foreach ( $recent_posts as $recent_post ) {
-			$output .= BlogPost\render_block( [ 'post_id' => $recent_post->ID ] );
+			$output .= BlogPost\render_block( array( 'post_id' => $recent_post->ID ) );
 		}
 
 		return $output;

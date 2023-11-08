@@ -76,7 +76,7 @@ abstract class Base {
 
 		foreach ( $posts->posts as $post_choice ) {
 			if ( ! empty( $post_choice->post_title ) ) {
-				$page_relative_link = wp_make_link_relative( get_permalink( $post_choice->ID ) );
+				$page_relative_link          = wp_make_link_relative( get_permalink( $post_choice->ID ) );
 				$choices[ $post_choice->ID ] = $post_choice->post_title . ' (ID ' . $post_choice->ID . ' - ' . $page_relative_link . ')';
 			}
 		}

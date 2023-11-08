@@ -34,9 +34,9 @@ function add_breadcrumb_link_meta_box() {
  *
  * @return void
  */
-function display_breadcrumb_link_meta_box( $post ) : void {
+function display_breadcrumb_link_meta_box( $post ): void {
 	$show_breadcrumb_links = get_post_meta( $post->ID, 'show_breadcrumb_links', true );
-	$breadcrumb_link_url = get_post_meta( $post->ID, 'breadcrumb_link_url', true );
+	$breadcrumb_link_url   = get_post_meta( $post->ID, 'breadcrumb_link_url', true );
 	$breadcrumb_link_title = get_post_meta( $post->ID, 'breadcrumb_link_title', true );
 	?>
 
@@ -77,7 +77,7 @@ function display_breadcrumb_link_meta_box( $post ) : void {
  *
  * @param int $post_id The ID of the post being saved.
  */
-function save_breadcrumb_link_custom_fields( $post_id ) : void {
+function save_breadcrumb_link_custom_fields( $post_id ): void {
 	if ( ! isset( $_POST['breadcrumb_link_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_POST['breadcrumb_link_nonce'] ), basename( __FILE__ ) ) ) {
 		return;
 	}

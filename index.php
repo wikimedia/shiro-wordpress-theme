@@ -37,7 +37,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				the_post();
 
 				echo WMF\Editor\Blocks\BlogPost\render_block(
-					[ 'post_id' => $post->ID ]
+					array( 'post_id' => $post->ID )
 				);
 			endwhile;
 			?>

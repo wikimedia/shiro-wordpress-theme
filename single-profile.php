@@ -20,9 +20,9 @@ while ( have_posts() ) :
 	$roles           = get_the_terms( get_the_ID(), 'role' );
 	$default_heading = get_theme_mod( 'wmf_related_profiles_heading', __( 'Other members of ', 'shiro-admin' ) );
 	$team_name       = '';
-	$parent_name    = $roles[0]->name;
-	$parent_link    = get_term_link( $roles[0] );
-	$connected_user = get_post_meta( get_the_ID(), 'connected_user', true );
+	$parent_name     = $roles[0]->name;
+	$parent_link     = get_term_link( $roles[0] );
+	$connected_user  = get_post_meta( get_the_ID(), 'connected_user', true );
 
 	if ( ! empty( $roles ) && ! is_wp_error( $roles ) ) {
 		$team_name = $roles;
@@ -106,7 +106,7 @@ while ( have_posts() ) :
 						if ( is_rtl() ) {
 							$authorimg = get_template_directory_uri() . '/assets/src/svg/edit-rtl.svg';
 						}
-						$authorlink = wmf_get_author_link( $connected_user );
+						$authorlink     = wmf_get_author_link( $connected_user );
 						$authorlinkcopy = sprintf( /* translators: 1. post title */ __( 'Posts by %s', 'shiro' ), get_the_title() );
 						?>
 					<div class="link-list mar-right">
@@ -137,7 +137,7 @@ while ( have_posts() ) :
 
 	$template_args = get_post_meta( get_the_ID(), 'profiles', true );
 	if ( ! is_array( $template_args ) ) {
-		$template_args = [];
+		$template_args = array();
 	}
 
 	$template_args['profiles_list'] = wmf_get_related_profiles( get_the_ID() );

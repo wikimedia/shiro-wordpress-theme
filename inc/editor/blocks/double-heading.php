@@ -20,10 +20,10 @@ function bootstrap() {
 function register_block() {
 	register_block_type(
 		BLOCK_NAME,
-		[
+		array(
 			'apiVersion'      => 2,
 			'render_callback' => __NAMESPACE__ . '\\render_block',
-		]
+		)
 	);
 }
 
@@ -34,13 +34,13 @@ function register_block() {
  * @return string HTML markup.
  */
 function render_block( $attributes ) {
-	$site_language = wmf_get_translations()[0] ?? [];
-	$translated_headings = [];
+	$site_language         = wmf_get_translations()[0] ?? array();
+	$translated_headings   = array();
 	$site_language_heading = null;
-	$customClass = $attributes['className'] ?? false;
-	$className = $customClass ? "double-heading $customClass" : 'double-heading';
+	$customClass           = $attributes['className'] ?? false;
+	$className             = $customClass ? "double-heading $customClass" : 'double-heading';
 
-	foreach ( ( $attributes['secondaryHeadings'] ?? [] ) as $heading ) {
+	foreach ( ( $attributes['secondaryHeadings'] ?? array() ) as $heading ) {
 		if ( $site_language['shortname'] ?? null === ( $heading['lang'] ?? '' ) ) {
 			$site_language_heading = $heading;
 			continue;
@@ -62,7 +62,7 @@ function render_block( $attributes ) {
 		$random_key         = array_rand( $translated_headings );
 		$translated_heading = $translated_headings[ $random_key ];
 	}
-	$primary_heading    = $attributes['primaryHeading'] ?? null;
+	$primary_heading = $attributes['primaryHeading'] ?? null;
 
 	ob_start()
 	?>

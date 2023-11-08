@@ -5,14 +5,15 @@
  * @package shiro
  */
 
-$wmf_stories_name      = get_theme_mod( 'wmf_stories_label', __( 'Stories', 'shiro-admin' ) );
+$wmf_stories_name = get_theme_mod( 'wmf_stories_label', __( 'Stories', 'shiro-admin' ) );
 
 /**
  * Registers the `story` post type.
  */
 function wmf_story_init() {
 	register_post_type(
-		'story', array(
+		'story',
+		array(
 			'labels'            => array(
 				'name'                  => __( 'Stories', 'shiro-admin' ),
 				'singular_name'         => __( 'Story', 'shiro-admin' ),
@@ -77,7 +78,8 @@ function wmf_story_updated_messages( $messages ) {
 		2  => __( 'Custom field updated.', 'shiro-admin' ),
 		3  => __( 'Custom field deleted.', 'shiro-admin' ),
 		4  => __( 'Story updated.', 'shiro-admin' ),
-		/* translators: %s: date and time of the revision */
+		/*
+		translators: %s: date and time of the revision */
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		5  => isset( $_GET['revision'] ) ? sprintf( __( 'Story restored to revision from %s', 'shiro-admin' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
 		/* translators: %s: post permalink */
@@ -88,7 +90,8 @@ function wmf_story_updated_messages( $messages ) {
 		9  => sprintf(
 			/* translators: 1: Publish box date format, see https://secure.php.net/date 2: Post permalink */
 			__( 'Story scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview Story</a>', 'shiro-admin' ),
-			date_i18n( __( 'M j, Y @ G:i', 'shiro-admin' ), strtotime( $post->post_date ) ), esc_url( $permalink )
+			date_i18n( __( 'M j, Y @ G:i', 'shiro-admin' ), strtotime( $post->post_date ) ),
+			esc_url( $permalink )
 		),
 		/* translators: %s: post permalink */
 		10 => sprintf( __( 'Story draft updated. <a target="_blank" href="%s">Preview Story</a>', 'shiro-admin' ), esc_url( add_query_arg( 'preview', 'true', $permalink ) ) ),

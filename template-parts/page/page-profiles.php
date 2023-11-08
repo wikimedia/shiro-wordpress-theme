@@ -10,7 +10,7 @@
 $template_args = get_post_meta( get_the_ID(), 'profiles', true );
 
 if ( ! is_array( $template_args ) ) {
-	$template_args = [];
+	$template_args = array();
 }
 
 $rand_translation = wmf_get_random_translation(

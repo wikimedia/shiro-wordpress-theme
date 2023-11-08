@@ -35,7 +35,7 @@ foreach ( $post_list as $term_id => $term_data ) {
 
 	// If there is only one executive, it needs to be an array, not a string.
 	if ( is_string( $executives ) && ! empty( $executives ) ) {
-		$executives = [ $executives ];
+		$executives = array( $executives );
 	}
 
 	if ( ! empty( $name ) && ! is_tax( 'role', $term_id ) ) {
@@ -68,12 +68,15 @@ foreach ( $post_list as $term_id => $term_data ) {
 			<?php
 
 			// Sort executives by `last_name`, a custom meta field.
-			usort( $executives, function( $a, $b ) {
-				$last_name_a = get_post_meta( $a, 'last_name', true );
-				$last_name_b = get_post_meta( $b, 'last_name', true );
+			usort(
+				$executives,
+				function ( $a, $b ) {
+					$last_name_a = get_post_meta( $a, 'last_name', true );
+					$last_name_b = get_post_meta( $b, 'last_name', true );
 
-				return strnatcasecmp( $last_name_a, $last_name_b );
-			} );
+					return strnatcasecmp( $last_name_a, $last_name_b );
+				} 
+			);
 
 			foreach ( $executives as $executive_id ) {
 				get_template_part(
@@ -98,12 +101,15 @@ foreach ( $post_list as $term_id => $term_data ) {
 		<ul class="role__staff-list">
 			<?php
 			// Sort experts by `last_name`, a custom meta field.
-			usort( $experts, function( $a, $b ) {
-				$last_name_a = get_post_meta( $a, 'last_name', true );
-				$last_name_b = get_post_meta( $b, 'last_name', true );
+			usort(
+				$experts,
+				function ( $a, $b ) {
+					$last_name_a = get_post_meta( $a, 'last_name', true );
+					$last_name_b = get_post_meta( $b, 'last_name', true );
 
-				return strnatcasecmp( $last_name_a, $last_name_b );
-			} );
+					return strnatcasecmp( $last_name_a, $last_name_b );
+				} 
+			);
 
 			foreach ( $experts as $expert_id ) {
 				get_template_part(
@@ -150,7 +156,8 @@ foreach ( $post_list as $term_id => $term_data ) {
 						continue;
 					}
 
-					if ( ! empty( $name ) ) : ?>
+					if ( ! empty( $name ) ) : 
+						?>
 					<h3 class="role__staff-title__nested">
 						<?php echo esc_html( $name ); ?>
 					</h3>
@@ -194,7 +201,7 @@ foreach ( $post_list as $term_id => $term_data ) {
 				__( 'View full %s team', 'shiro' ),
 				$name
 			);
-		$link_url  = ! empty( $button['link'] ) ? $button['link'] : get_term_link( $term_id, 'role' );
+		$link_url = ! empty( $button['link'] ) ? $button['link'] : get_term_link( $term_id, 'role' );
 		?>
 		<div class="role__read-more">
 			<a href="<?php echo esc_url( $link_url ); ?>" class="arrow-link">
