@@ -7,15 +7,15 @@
     "icon": "images-alt2",
     "description": "Content carousel",
     "keywords": [
-    "carousel",
-    "gallery"
-  ],
+        "carousel",
+        "gallery"
+    ],
     "supports": {
         "align": [
-      "center",
-      "wide",
-      "full"
-    ]
+            "center",
+            "wide",
+            "full"
+        ]
     },
     "version": "1.0.0",
     "textdomain": "shiro-admin",

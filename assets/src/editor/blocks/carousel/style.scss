@@ -4,7 +4,7 @@ Editor styles for the carousel block.
 
 // stylelint-disable selector-class-pattern
 
-.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > .wp-block[data-align=full] {
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container>.wp-block[data-align=full] {
     max-width: unset;
 }
 
