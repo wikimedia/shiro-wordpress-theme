@@ -1,24 +1,25 @@
 .header-featured-news {
-  position: relative;
+    position: relative;
 
-  @media (min-width: $medium-bp) {
-    margin-top: rem(-360);
+    @media (min-width: $medium-bp) {
+        margin-top: rem(-360);
 
-    .card-content {
-      margin-bottom: 70px;
+        .card-content {
+            margin-bottom: 70px;
+        }
     }
-  }
-  h2.small {
-    margin-bottom: rem(10);
-  }
 
-  .cta-footer {
-    margin-top: rem(20);
-  }
+    h2.small {
+        margin-bottom: rem(10);
+    }
 
- .card-content-text {
-  background: $color-white;
-  padding: rem(20);
- }
+    .cta-footer {
+        margin-top: rem(20);
+    }
+
+    .card-content-text {
+        background: $color-white;
+        padding: rem(20);
+    }
 
 }

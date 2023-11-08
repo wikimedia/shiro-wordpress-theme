@@ -1,68 +1,68 @@
 .search-results {
-	&__tabs {
-		border-bottom: 1px solid $wmui-color-base70;
-		margin-bottom: 2rem !important;
-		padding-top: 2rem !important;
+    &__tabs {
+        border-bottom: 1px solid $wmui-color-base70;
+        margin-bottom: 2rem !important;
+        padding-top: 2rem !important;
 
-		a {
-			padding: 0.5rem 1rem;
-			margin-right: 0.35rem;
-			border: 1px solid $wmui-color-base70;
-			border-bottom: none;
-			background-color: $wmui-color-base80;
-			text-decoration: none;
-			color: #000;
-			display: inline-block;
+        a {
+            padding: 0.5rem 1rem;
+            margin-right: 0.35rem;
+            border: 1px solid $wmui-color-base70;
+            border-bottom: none;
+            background-color: $wmui-color-base80;
+            text-decoration: none;
+            color: #000;
+            display: inline-block;
 
-			&:hover {
-				background-color: $wmui-color-base90;
-			}
+            &:hover {
+                background-color: $wmui-color-base90;
+            }
 
-			&.active {
-				background-color: $wmui-color-base100;
-				border-bottom: 1px solid $wmui-color-base100;
-				font-weight: 800;
-			}
-		}
+            &.active {
+                background-color: $wmui-color-base100;
+                border-bottom: 1px solid $wmui-color-base100;
+                font-weight: 800;
+            }
+        }
 
-		&__sort {
-			display: block;
-			position: relative;
-			float: right;
+        &__sort {
+            display: block;
+            position: relative;
+            float: right;
 
-			@media (max-width: 500px) {
-				right: 0;
-				position: absolute;
-				float: none;
-			}
+            @media (max-width: 500px) {
+                right: 0;
+                position: absolute;
+                float: none;
+            }
 
-			.dropdown-icon::before {
-				content: '\25BC';
-				margin-left: 10px;
-			}
+            .dropdown-icon::before {
+                content: '\25BC';
+                margin-left: 10px;
+            }
 
-			.sort-dropdown {
-				display: none;
-				position: absolute;
-				top: 100%;
-				right: 0;
-				z-index: 1;
+            .sort-dropdown {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                z-index: 1;
 
-				&.is-visible {
-					display: block;
-				}
+                &.is-visible {
+                    display: block;
+                }
 
-				.sort-option {
-					display: block;
-					padding: 10px 20px;
-					text-decoration: none;
-					border-bottom: 1px solid $wmui-color-base70;
-				}
-			}
-		}
-	}
+                .sort-option {
+                    display: block;
+                    padding: 10px 20px;
+                    text-decoration: none;
+                    border-bottom: 1px solid $wmui-color-base70;
+                }
+            }
+        }
+    }
 }
 
 #search-results .blog-post:not(:last-child) {
-	border-bottom: 1px solid $wmui-color-base80;
+    border-bottom: 1px solid $wmui-color-base80;
 }
