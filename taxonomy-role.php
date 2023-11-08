@@ -83,7 +83,7 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 <div class="mw-980 mod-margin-bottom flex flex-medium role-template toc__section">
 	<?php if ( ! empty( $post_list ) && count( $post_list ) > 1 ) : ?>
 		<div class="w-32p toc__sidebar">
-			<?php get_sidebar( 'list', [ 'template_args' => $post_list ] ); ?>
+			<?php get_sidebar( 'list', array( 'template_args' => $post_list ) ); ?>
 		</div>
 	<?php endif; ?>
 

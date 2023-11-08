@@ -58,12 +58,18 @@ function wmf_is_posts_page() {
  */
 function wmf_get_fields_post_id() {
 	$post_request_id = filter_input(
-		INPUT_POST, 'post_ID', FILTER_CALLBACK, array(
+		INPUT_POST,
+		'post_ID',
+		FILTER_CALLBACK,
+		array(
 			'options' => 'intval',
 		)
 	);
 	$get_request_id  = filter_input(
-		INPUT_GET, 'post', FILTER_CALLBACK, array(
+		INPUT_GET,
+		'post',
+		FILTER_CALLBACK,
+		array(
 			'options' => 'intval',
 		)
 	);

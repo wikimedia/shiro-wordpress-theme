@@ -45,7 +45,7 @@ function wmf_ajax_search() {
 	if ( $search_query->have_posts() ) {
 		while ( $search_query->have_posts() ) :
 			$search_query->the_post();
-			echo wp_kses_post( \WMF\Editor\Blocks\BlogPost\render_block( [ 'post_id' => get_the_ID() ] ) );
+			echo wp_kses_post( \WMF\Editor\Blocks\BlogPost\render_block( array( 'post_id' => get_the_ID() ) ) );
 		endwhile;
 	} else {
 		get_template_part( 'template-parts/content', 'none' );
@@ -68,7 +68,8 @@ function wmf_ajax_search() {
 		array(
 			'posts_html' => wp_kses_post( $posts_html ),
 			'pagination' => wp_kses_post( $pagination ),
-		), 200
+		),
+		200
 	);
 }
 add_action( 'wp_ajax_nopriv_ajax_search', 'wmf_ajax_search' );
