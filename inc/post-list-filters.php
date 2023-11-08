@@ -22,7 +22,7 @@ function bootstrap() {
  * @param WP_Query $query The WP_Query instance.
  * @return void
  */
-function custom_post_list_filters( $query ) : void {
+function custom_post_list_filters( $query ): void {
 	if ( ! $query->is_main_query() ) {
 		return;
 	}
@@ -43,24 +43,30 @@ function custom_post_list_filters( $query ) : void {
 	$date_from = isset( $_GET['date_from'] ) ? sanitize_text_field( $_GET['date_from'] ) : '';
 	$date_to   = isset( $_GET['date_to'] ) ? sanitize_text_field( $_GET['date_to'] ) : '';
 	if ( ! empty( $date_from ) || ! empty( $date_to ) ) {
-		$query->set( 'date_query', [
-			[
-				'after'     => $date_from,
-				'before'    => $date_to,
-				'inclusive' => true,
-			],
-		] );
+		$query->set(
+			'date_query',
+			array(
+				array(
+					'after'     => $date_from,
+					'before'    => $date_to,
+					'inclusive' => true,
+				),
+			) 
+		);
 	}
 
 	// Filter by categories.
-	$categories = isset( $_GET['categories'] ) ? array_map( 'sanitize_text_field', $_GET['categories'] ) : [];
+	$categories = isset( $_GET['categories'] ) ? array_map( 'sanitize_text_field', $_GET['categories'] ) : array();
 	if ( ! empty( $categories ) ) {
-		$query->set( 'tax_query', [
-			[
-				'taxonomy' => 'category',
-				'field'    => 'slug',
-				'terms'    => $categories,
-			],
-		] );
+		$query->set(
+			'tax_query',
+			array(
+				array(
+					'taxonomy' => 'category',
+					'field'    => 'slug',
+					'terms'    => $categories,
+				),
+			) 
+		);
 	}
 }

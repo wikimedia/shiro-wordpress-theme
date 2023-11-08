@@ -13,7 +13,7 @@ $twitter     = ! empty( $template_args['twitter_url'] ) ? $template_args['twitte
 $instagram   = ! empty( $template_args['instagram_url'] ) ? $template_args['instagram_url'] : get_theme_mod( 'wmf_instagram_url' );
 $blog        = ! empty( $template_args['blog_url'] ) ? $template_args['blog_url'] : get_theme_mod( 'wmf_blog_url' );
 
-$facebook_label  = ! empty( $template_args['facebook_label'] ) ? $template_args['facebook_label'] : get_theme_mod( 'wmf_facebook_label', __( 'Facebook', 'shiro-admin') );
+$facebook_label  = ! empty( $template_args['facebook_label'] ) ? $template_args['facebook_label'] : get_theme_mod( 'wmf_facebook_label', __( 'Facebook', 'shiro-admin' ) );
 $twitter_id      = ! empty( $template_args['twitter_id'] ) ? $template_args['twitter_id'] : get_theme_mod( 'wmf_twitter_id', __( 'Twitter', 'shiro-admin' ) );
 $twitter_id      = sprintf( '@%s', trim( $twitter_id, '@' ) );
 $instagram_label = ! empty( $template_args['instagram_label'] ) ? $template_args['instagram_label'] : get_theme_mod( 'wmf_instagram_label', __( 'Instagram', 'shiro-admin' ) );
@@ -68,5 +68,5 @@ if ( empty( $facebook ) && empty( $twitter ) && empty( $instagram ) && empty( $b
 		<?php endif; ?>
 	</ul>
 	<span aria-hidden="true" class="visually-hidden" id="a11y-message--new-window">
-    (opens new window)</span>
+	(opens new window)</span>
 </div>

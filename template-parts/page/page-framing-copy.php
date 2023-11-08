@@ -15,7 +15,8 @@ $template_args = array(
 );
 
 $rand_translation = wmf_get_random_translation(
-	'framing_copy', array(
+	'framing_copy',
+	array(
 		'source' => 'meta',
 	)
 );

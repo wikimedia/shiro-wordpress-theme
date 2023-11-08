@@ -18,7 +18,8 @@ if ( $reusable_block ) {
 				?>
 			</div>
 		</div>
-	<?php }
+		<?php 
+	}
 } else {
 	// When the updates to how this section works are rolled out, the ability
 	// to edit the data originally stored here will be lost. This will use that
