@@ -9,7 +9,7 @@
 
 namespace WMF\Editor\Blocks\LinkedTOCItem;
 
-const BLOCK_NAME  = 'shiro/linked-toc-item';
+const BLOCK_NAME = 'shiro/linked-toc-item';
 const PLACEHOLDER = '%MENU_PLACEHOLDER%';
 
 /**
@@ -185,12 +185,12 @@ function _toc_item_helper( $block_content, $page ) {
 	if ( get_permalink() === $href ) {
 		$active_type = $page ? 'toc__link--active-page' : 'toc__link--active';
 		$classes     = explode( ' ', $classes );
-		$a_element->setAttribute( 'class', implode( ' ', array_merge( $classes, array( $active_type ) ) ) );
+		$a_element->setAttribute( 'class', implode( ' ', array_merge( $classes, [ $active_type ] ) ) );
 	}
 
-	return array(
+	return [
 		'classes' => $classes,
 		'content' => $link_block_doc->saveHTML() ?? $block_content,
 		'href'    => $href,
-	);
+	];
 }

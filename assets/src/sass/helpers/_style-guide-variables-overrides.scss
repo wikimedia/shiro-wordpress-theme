@@ -4,43 +4,43 @@
 // which can override baseUI definitions.
 
 // Overrides to Base UI color definitions.
-$wmui-color-blue: #0063bf;
-$wmui-color-blue50: #0e65c0;
-$wmui-color-blue50: #3a25ff;
-$wmui-color-blue70: #c3d8ef;
-$wmui-color-blue90: #eeeaff;
-$wmui-color-blue-aaa: #0c57A8;
+$wmui-color-blue:     #0063bf;
+$wmui-color-blue50:   #0e65c0;
+$wmui-color-blue50:   #3a25ff;
+$wmui-color-blue70:   #c3d8ef;
+$wmui-color-blue90:   #eeeaff;
+$wmui-color-blue-aaa:   #0c57A8;
 
-$wmui-color-bright-blue: #049dff;
-$wmui-color-bright-blue70: #c0e6ff;
+$wmui-color-bright-blue:   #049dff;
+$wmui-color-bright-blue70:   #c0e6ff;
 
-$wmui-color-bright-green: #e9e7c4;
-$wmui-color-bright-green70: #f9f9f0;
+$wmui-color-bright-green:   #e9e7c4;
+$wmui-color-bright-green70:   #f9f9f0;
 
-$wmui-color-bright-yellow: #e9e7c4;
-$wmui-color-bright-yellow70: #f9f9f0;
+$wmui-color-bright-yellow:   #e9e7c4;
+$wmui-color-bright-yellow70:   #f9f9f0;
 
-$wmui-color-dark-green: #71d1b3;
-$wmui-color-dark-green70: #dbf3ec;
+$wmui-color-dark-green:   #71d1b3;
+$wmui-color-dark-green70:   #dbf3ec;
 
-$wmui-color-green: #308557;
-$wmui-color-green-aaa: #246342;
-$wmui-color-green70: #cbe0d5;
+$wmui-color-green:   #308557;
+$wmui-color-green-aaa:   #246342;
+$wmui-color-green70:   #cbe0d5;
 
-$wmui-color-orange: #ee8019;
-$wmui-color-orange70: #fbdfc5;
+$wmui-color-orange:   #ee8019;
+$wmui-color-orange70:   #fbdfc5;
 
-$wmui-color-pink: #e679a6;
-$wmui-color-pink70: #f9dde9;
+$wmui-color-pink:   #e679a6;
+$wmui-color-pink70:   #f9dde9;
 
-$wmui-color-purple: #5748b5;
-$wmui-color-purple70: #d5d1ec;
+$wmui-color-purple:   #5748b5;
+$wmui-color-purple70:   #d5d1ec;
 
-$wmui-color-red: #970302;
-$wmui-color-red-aaa: #970302;
-$wmui-color-red50: #d40356;
-$wmui-color-red70: #e5c0c0;
-$wmui-color-red90: #fbe9f1;
+$wmui-color-red:    #970302;
+$wmui-color-red-aaa:  #970302;
+$wmui-color-red50:    #d40356;
+$wmui-color-red70:    #e5c0c0;
+$wmui-color-red90:    #fbe9f1;
 
 $wmui-color-yellow: #f0bc00;
 $wmui-color-yellow50: #fffd33;
@@ -48,7 +48,7 @@ $wmui-color-yellow70: #fbeebf;
 $wmui-color-yellow90: #fffec2;
 
 $wmui-color-image-filter-blue: rgba(213, 203, 255, .85);
-$wmui-color-image-filter-red: rgba(255, 186, 223, .85);
+$wmui-color-image-filter-red: rgba(255,186,223, .85);
 $wmui-color-image-filter-yellow: rgba(255, 254, 168, .85);
 
 $wmui-color-focus-ring: rgba(#007dfa, 0.8);
@@ -56,14 +56,14 @@ $wmui-color-focus-ring: rgba(#007dfa, 0.8);
 $wmui-color-focus-ring-hex: scale-color(#007dfa, $lightness: 40%);
 
 // Updated branded colors for primary buttons.
-$color-primary: $wmui-color-blue50;
-$color-primary--hover: #3200be;
+$color-primary:         $wmui-color-blue50;
+$color-primary--hover:  #3200be;
 
-$color-secondary: $wmui-color-red50;
-$color-secondary--hover: #a00040;
+$color-secondary:         $wmui-color-red50;
+$color-secondary--hover:  #a00040;
 
-$color-tertiary: $wmui-color-base100;
-$color-tertiary--hover: $color-tertiary;
+$color-tertiary:         $wmui-color-base100;
+$color-tertiary--hover:  $color-tertiary;
 
 // The style-guide doesn't contain variables for the border color of framed
 // elements

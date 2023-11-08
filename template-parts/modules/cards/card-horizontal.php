@@ -18,7 +18,7 @@ $authors    = $card_data['authors'] ?? '';
 $date       = $card_data['date'] ?? '';
 $isodate    = $card_data['isodate'] ?? '';
 $excerpt    = $card_data['excerpt'] ?? '';
-$categories = $card_data['categories'] ?? array();
+$categories = $card_data['categories'] ?? [];
 $sidebar    = boolval( $card_data['sidebar'] ?? false );
 $image_size = $sidebar ? 'image_4x5_large' : 'image_4x3_large';
 $class      = $card_data['class'] ?? 'blog-post';
@@ -28,14 +28,12 @@ $class      = $card_data['class'] ?? 'blog-post';
 
 	<?php if ( ! empty( $image_id ) ) : ?>
 		<a class="blog-post__image-link" alt="" tabindex="-1" href="<?php echo esc_url( $link ); ?>">
-			<?php
-			echo wp_get_attachment_image(
+			<?php echo wp_get_attachment_image(
 				$image_id,
 				$image_size,
 				null,
-				array( 'class' => 'blog-post__image' )
-			);
-			?>
+				[ 'class' => 'blog-post__image' ]
+			); ?>
 		</a>
 	<?php endif; ?>
 
@@ -80,12 +78,9 @@ $class      = $card_data['class'] ?? 'blog-post';
 
 		<a href="<?php echo esc_url( $link ); ?>"
 			class="blog-post__read-more"
-			aria-label="
-			<?php
+			aria-label="<?php
 			/* translators: 1. the post title. */
-			echo esc_attr( sprintf( __( 'Read more about %s', 'shiro' ), $title ) );
-			?>
-			">
+			echo esc_attr( sprintf( __( 'Read more about %s', 'shiro' ), $title ) ); ?>">
 			<?php esc_html_e( 'Read more', 'shiro' ); ?>
 		</a>
 	</div>

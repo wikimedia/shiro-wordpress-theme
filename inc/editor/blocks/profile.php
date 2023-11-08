@@ -20,15 +20,15 @@ function bootstrap() {
 function register_block() {
 	register_block_type(
 		BLOCK_NAME,
-		array(
+		[
 			'apiVersion'      => 2,
 			'render_callback' => __NAMESPACE__ . '\\render_block',
-			'attributes'      => array(
-				'profile_id' => array(
+			'attributes'      => [
+				'profile_id' => [
 					'type' => 'integer',
-				),
-			),
-		)
+				],
+			],
+		]
 	);
 }
 

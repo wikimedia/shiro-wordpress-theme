@@ -207,7 +207,7 @@ class Flow {
 	public static function sync_meta( $keys, $context, $post ) {
 		return array_merge(
 			$keys,
-			array(
+			[
 				// Fieldmanager fields.
 				'page_cta',
 				'intro_button',
@@ -237,7 +237,7 @@ class Flow {
 				'stories',
 				// Page template setting.
 				'_wp_page_template',
-			)
+			]
 		);
 	}
 
@@ -337,7 +337,7 @@ class Flow {
 		$this->maybe_register_translation_status_terms();
 		$this->set_translate_term( $post_id );
 
-		return $this;
+        return $this;
 	}
 
 	/**
@@ -448,7 +448,7 @@ class Flow {
 				'default'           => 1,
 				'single'            => true,
 				'sanitize_callback' => 'absint',
-				'auth_callback'     => function () {
+				'auth_callback'     => function() {
 					return current_user_can( 'edit_posts' );
 				},
 			)
@@ -463,10 +463,11 @@ class Flow {
 				'default'           => 0,
 				'single'            => true,
 				'sanitize_callback' => 'absint',
-				'auth_callback'     => function () {
+				'auth_callback'     => function() {
 					return current_user_can( 'edit_posts' );
 				},
 			)
 		);
 	}
+
 }

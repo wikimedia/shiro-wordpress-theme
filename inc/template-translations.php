@@ -41,16 +41,16 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 	switch_to_blog( $remote_site_id );
 
 	// String post meta.
-	$string_post_meta = array(
+	$string_post_meta = [
 		'page_template',
 		'sub_title',
 		'page_intro',
 		'featured_post_sub_title',
 		'landing_page_sidebar_menu_label',
-	);
+	];
 
 	// Array post meta
-	$array_meta_keys = array(
+	$array_meta_keys = [
 		'connect',
 		'contact_links',
 		'featured_on',
@@ -76,7 +76,7 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 		'stats_plain',
 		'stats_profiles',
 		'stories',
-	);
+	];
 
 	foreach ( $multilingualpress as $translationMetabox ) {
 		if ( $translationMetabox['remote-content-copy'] === '1' ) {
@@ -115,7 +115,7 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 
 	return $keysToSync;
 }
-add_filter( 'multilingualpress.sync_post_meta_keys', 'wmf_copy_post_meta', 10, 3 );
+add_filter('multilingualpress.sync_post_meta_keys', 'wmf_copy_post_meta', 10, 3 );
 
 /**
  * Conditionally outputs the translation in progress notice on the post editor.
@@ -238,7 +238,7 @@ function wmf_get_random_translation( $key, $args = array() ) {
 
 	switch_to_blog( $target_translation['site_id'] );
 
-	$translation = array();
+	$translation = [];
 
 	switch ( $args['source'] ) {
 		case 'meta':
@@ -255,7 +255,7 @@ function wmf_get_random_translation( $key, $args = array() ) {
 			break;
 	}
 
-	$translation['lang'] = $target_translation['shortname'];
+    $translation['lang'] = $target_translation['shortname'];
 
 	restore_current_blog();
 

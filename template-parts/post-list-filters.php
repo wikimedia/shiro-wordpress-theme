@@ -9,18 +9,18 @@
 $query_var_search_term = get_search_query();
 $query_var_date_from   = isset( $_GET['date_from'] ) ? sanitize_text_field( $_GET['date_from'] ) : '';
 $query_var_date_to     = isset( $_GET['date_to'] ) ? sanitize_text_field( $_GET['date_to'] ) : '';
-$query_var_categories  = isset( $_GET['categories'] ) ? array_map( 'sanitize_text_field', $_GET['categories'] ) : array();
+$query_var_categories  = isset( $_GET['categories'] ) ? array_map( 'sanitize_text_field', $_GET['categories'] ) : [];
 
 // Results count.
-$total_results  = $wp_query->found_posts;
-$paged          = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+$total_results = $wp_query->found_posts;
+$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 $posts_per_page = get_query_var( 'posts_per_page' );
-$first_result   = ( $posts_per_page * $paged ) - $posts_per_page + 1;
-$last_result    = min( $total_results, $wp_query->post_count * $paged );
+$first_result = ( $posts_per_page * $paged ) - $posts_per_page + 1;
+$last_result = min( $total_results, $wp_query->post_count * $paged );
 
 // Create a sorted array of categories.
-$categories       = get_categories();
-$categories_array = array();
+$categories = get_categories();
+$categories_array = [];
 foreach ( $categories as $category ) {
 	$category_display = ( $category->parent == 0 )
 		? $category->name
@@ -35,12 +35,12 @@ $applied_filter_count = 0;
 if ( isset( $_GET['post_list_filters_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_GET['post_list_filters_nonce'] ), 'post_list_filters' ) ) {
 	// Search term.
 	if ( ! empty( $query_var_search_term ) ) {
-		++$applied_filter_count;
+		$applied_filter_count++;
 	}
 
 	// Date interval.
 	if ( ! empty( $query_var_date_from ) || ! empty( $query_var_date_to ) ) {
-		++$applied_filter_count;
+		$applied_filter_count++;
 	}
 
 	// Categories.

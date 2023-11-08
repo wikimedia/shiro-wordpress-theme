@@ -11,30 +11,30 @@ if ( is_front_page() && has_blocks() ) {
 
 $page_header_data = $args;
 
-$h4_link                    = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
-$h4_title                   = ! empty( $page_header_data['h4_title'] ) ? $page_header_data['h4_title'] : '';
-$h2_link                    = ! empty( $page_header_data['h2_link'] ) ? $page_header_data['h2_link'] : '';
-$h2_title                   = ! empty( $page_header_data['h2_title'] ) ? $page_header_data['h2_title'] : '';
-$title                      = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_title'] : '';
-$alt_title                  = ! empty( $page_header_data['h1_alt_title'] ) ? $page_header_data['h1_alt_title'] : '';
-$meta                       = ! empty( $page_header_data['page_meta'] ) ? $page_header_data['page_meta'] : '';
-$allowed_tags               = wp_kses_allowed_html( 'post' );
-$allowed_tags['time']       = true;
-$button                     = ! empty( get_post_meta( get_the_ID(), 'intro_button', true ) ) ? get_post_meta( get_the_ID(), 'intro_button', true ) : '';
-$extra_height_class         = empty( $button['title'] ) ? '' : 'ungrid-extra-height';
-$wmf_homedonate_button      = get_theme_mod( 'wmf_homedonate_button', __( 'Donate now', 'shiro-admin' ) );
-$wmf_homedonate_uri         = get_theme_mod( 'wmf_homedonate_uri', '#' );
-$wmf_homedonate_intro       = get_theme_mod( 'wmf_homedonate_intro', 'Protect and sustain Wikipedia' );
-$wmf_homedonate_secure      = get_theme_mod( 'wmf_homedonate_secure', 'SECURE DONATIONS' );
-$wmf_emergency_message      = get_theme_mod( 'wmf_emergency_message', '' );
-$wmf_header_link_href       = get_theme_mod( 'wmf_header_link_href', '' );
+$h4_link              = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
+$h4_title             = ! empty( $page_header_data['h4_title'] ) ? $page_header_data['h4_title'] : '';
+$h2_link              = ! empty( $page_header_data['h2_link'] ) ? $page_header_data['h2_link'] : '';
+$h2_title             = ! empty( $page_header_data['h2_title'] ) ? $page_header_data['h2_title'] : '';
+$title                = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_title'] : '';
+$alt_title            = ! empty( $page_header_data['h1_alt_title'] ) ? $page_header_data['h1_alt_title'] : '';
+$meta                 = ! empty( $page_header_data['page_meta'] ) ? $page_header_data['page_meta'] : '';
+$allowed_tags         = wp_kses_allowed_html( 'post' );
+$allowed_tags['time'] = true;
+$button = ! empty( get_post_meta( get_the_ID(), 'intro_button', true ) ) ? get_post_meta( get_the_ID(), 'intro_button', true ) : '';
+$extra_height_class = empty( $button['title'] ) ? '' : 'ungrid-extra-height';
+$wmf_homedonate_button = get_theme_mod( 'wmf_homedonate_button', __( 'Donate now', 'shiro-admin' ) );
+$wmf_homedonate_uri    = get_theme_mod( 'wmf_homedonate_uri', '#' );
+$wmf_homedonate_intro    = get_theme_mod( 'wmf_homedonate_intro', 'Protect and sustain Wikipedia' );
+$wmf_homedonate_secure    = get_theme_mod( 'wmf_homedonate_secure', 'SECURE DONATIONS' );
+$wmf_emergency_message    = get_theme_mod( 'wmf_emergency_message', '' );
+$wmf_header_link_href     = get_theme_mod( 'wmf_header_link_href', '' );
 $wmf_header_link_aria_label = get_theme_mod( 'wmf_header_link_aria_label', '' );
-$wmf_alt_header_image_url   = get_theme_mod( 'wmf_alt_header_image_url', '' );
+$wmf_alt_header_image_url = get_theme_mod( 'wmf_alt_header_image_url', '' );
 
 
-$image    = ! empty( $page_header_data['image'] ) ? $page_header_data['image'] : '';
-$bg_opts  = wmf_get_background_image();
-$bg_color = ( is_array( $bg_opts ) && $bg_opts['color'] ) ? 'pink' : 'blue';
+$image            = ! empty( $page_header_data['image'] ) ? $page_header_data['image'] : '';
+$bg_opts          = wmf_get_background_image();
+$bg_color         = ( is_array( $bg_opts ) && $bg_opts['color'] ) ? 'pink' : 'blue';
 
 $wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro-admin' ) );
 $wmf_translations         = wmf_get_translations();
@@ -56,12 +56,12 @@ if ( is_page() ) {
 	$breadcrumb_link_switch = get_post_meta( get_the_ID(), 'show_breadcrumb_links', true );
 	if ( $breadcrumb_link_switch === 'on' ) {
 		$breadcrumb_link_custom_title = get_post_meta( get_the_ID(), 'breadcrumb_link_title', true );
-		$h4_title                     = ! empty( $breadcrumb_link_custom_title ) ? $breadcrumb_link_custom_title : $h4_title;
+		$h4_title = ! empty( $breadcrumb_link_custom_title ) ? $breadcrumb_link_custom_title : $h4_title;
 
 		$breadcrumb_link_custom_url = get_post_meta( get_the_ID(), 'breadcrumb_link_url', true );
-		$h4_link                    = ! empty( $breadcrumb_link_custom_url ) ? $breadcrumb_link_custom_url : $h4_link;
+		$h4_link = ! empty( $breadcrumb_link_custom_url ) ? $breadcrumb_link_custom_url : $h4_link;
 	} elseif ( $breadcrumb_link_switch === 'off' ) {
-		$h4_link  = '';
+		$h4_link = '';
 		$h4_title = '';
 		?>
 		<h2 class="h4 eyebrow">
@@ -103,13 +103,9 @@ if ( is_page() ) {
 				<a href="<?php echo esc_url( $wmf_header_link_href ); ?>" aria-label="<?php echo esc_attr( $wmf_header_link_aria_label ); ?>">
 			<?php endif; ?>
 					<div class="header-animation">
-						<div class="header-bg-img" style="
-						<?php
-						if ( ! empty( $wmf_alt_header_image_url ) ) :
+						<div class="header-bg-img" style="<?php if ( ! empty( $wmf_alt_header_image_url ) ) :
 							echo esc_attr( 'background-image: url("' . get_template_directory_uri() . $wmf_alt_header_image_url . '")' );
-							endif;
-						?>
-							">
+							endif;?>">
 
 						</div>
 						<div class="mw-980">

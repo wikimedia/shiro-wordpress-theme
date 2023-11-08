@@ -12,8 +12,9 @@
 function wmf_post_init() {
 	$post_post_type = get_post_type_object( 'post' );
 
-	$post_post_type->template = array(
-		array( 'shiro/blog-post-heading' ),
-	);
+	$post_post_type->template = [
+		[ 'shiro/blog-post-heading' ]
+	];
 }
 add_action( 'init', 'wmf_post_init' );
+

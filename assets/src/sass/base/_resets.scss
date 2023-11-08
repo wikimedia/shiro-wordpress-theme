@@ -2,19 +2,19 @@
 
 /*Nice text rendering and sizing*/
 html {
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-    margin: 0;
+  margin: 0;
 }
 
 /*Set up sane box-sizing*/
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /*BLOCK ELEMENTS*/
@@ -55,8 +55,8 @@ table,
 tfoot,
 ul,
 video {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /*Make sure newer block elements always work, even in IE*/
@@ -73,7 +73,7 @@ menu,
 nav,
 section,
 summary {
-    display: block;
+  display: block;
 }
 
 /*TEXT AND IMAGE RULES*/
@@ -85,29 +85,29 @@ h3,
 h4,
 h5,
 h6 {
-    font-size: inherit;
-    font-weight: normal;
+  font-size: inherit;
+  font-weight: normal;
 }
 
 /*No more ugly default links*/
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 /*Automatically size images nicely*/
 img {
-    height: auto;
-    border: 0;
-    max-width: 100%;
+  height: auto;
+  border: 0;
+  max-width: 100%;
 }
 
 cite {
-    font-style: normal;
+  font-style: normal;
 }
 
 dl {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 /*FORMS*/
@@ -120,35 +120,35 @@ select,
 progress,
 meter,
 textarea {
-    color: inherit;
-    font: inherit;
-    margin: 0;
-    padding: 0;
-    outline: none;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  outline: none;
 
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -o-appearance: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
 }
 
 input[type="checkbox"] {
-    appearance: checkbox;
-    -webkit-appearance: checkbox;
-    -moz-appearance: checkbox;
-    -o-appearance: checkbox;
+  appearance: checkbox;
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+  -o-appearance: checkbox;
 }
 
 input[type="radio"] {
-    appearance: radio;
-    -webkit-appearance: radio;
-    -moz-appearance: radio;
-    -o-appearance: radio;
+  appearance: radio;
+  -webkit-appearance: radio;
+  -moz-appearance: radio;
+  -o-appearance: radio;
 }
 
 /*TABLE*/
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }

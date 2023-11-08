@@ -10,8 +10,7 @@
  */
 function wmf_download_init() {
 	register_post_type(
-		'download',
-		array(
+		'download', array(
 			'labels'            => array(
 				'name'                  => __( 'Downloads', 'shiro-admin' ),
 				'singular_name'         => __( 'Download', 'shiro-admin' ),
@@ -56,3 +55,4 @@ function wmf_download_init() {
 	);
 }
 add_action( 'init', 'wmf_download_init' );
+

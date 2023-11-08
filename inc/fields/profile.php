@@ -78,6 +78,7 @@ function wmf_role_fields() {
 
 	$display_intro->add_term_meta_box( __( 'Display Intro?', 'shiro-admin' ), 'role' );
 
+
 	$featured_term = new Fieldmanager_Checkbox(
 		array(
 			'name'        => 'featured_term',
@@ -87,13 +88,15 @@ function wmf_role_fields() {
 
 	$featured_term->add_term_meta_box( __( 'Featured Term?', 'shiro-admin' ), 'role' );
 
+
 	// Get the current term ID.
 	// We don't need to validate this because we're only using it if it exists and providing a fallback if not.
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 	$current_term_id = absint( $_GET['tag_ID'] ?? 0 );
 
+
 	// New WP_Query for posts with this role assigned.
-	$current_term_args  = array(
+	$current_term_args = array(
 		'post_type' => 'profile',
 		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 		'tax_query' => array(
@@ -105,7 +108,7 @@ function wmf_role_fields() {
 		), // WPCS: Slow query okay.
 	);
 	$current_term_query = new WP_Query( $current_term_args );
-	$current_term_posts = array();
+	$current_term_posts = [];
 
 	// Create array for profile selector.
 	while ( $current_term_query->have_posts() ) {
@@ -113,14 +116,14 @@ function wmf_role_fields() {
 		$current_term_posts[ get_the_ID() ] = get_the_title();
 	}
 
-	$no_posts_args = empty( $current_term_posts )
+	$no_posts_args = empty ( $current_term_posts )
 		? array(
-			'attributes'  => array(
+			'attributes' => array(
 				'disabled' => 'disabled',
 			),
 			'description' => __( 'There are no profiles assigned to this role.', 'shiro-admin' ),
 		)
-		: array();
+		: [];
 
 	// Create checkbox group for executive profiles.
 	$executive = new Fieldmanager_Checkboxes(
@@ -168,6 +171,7 @@ function wmf_role_fields() {
 
 	$experts_title_override->add_term_meta_box( __( 'Department Experts Title Override', 'shiro-admin' ), 'role' );
 
+
 	$button = new Fieldmanager_Group(
 		array(
 			'name'     => 'role_button',
@@ -179,8 +183,8 @@ function wmf_role_fields() {
 						'description' => __( 'Select this option to display a link to this role archive on the parent archive page.', 'shiro-admin' ),
 					),
 				),
-				'text'            => new Fieldmanager_Textfield( __( 'Override link text for archive link', 'shiro-admin' ) ),
-				'link'            => new Fieldmanager_Link( __( 'Override link URL for archive link', 'shiro-admin' ) ),
+				'text' => new Fieldmanager_Textfield( __( 'Override link text for archive link', 'shiro-admin' ) ),
+				'link' => new Fieldmanager_Link( __( 'Override link URL for archive link', 'shiro-admin' ) ),
 			),
 		)
 	);

@@ -9,15 +9,11 @@
  * Registers the "hide page title" meta field
  */
 function wmf_page_init() {
-	register_post_meta(
-		'page',
-		'wmf_hide_title',
-		array(
-			'type'         => 'boolean',
-			'single'       => true,
-			'show_in_rest' => true,
-		)
-	);
+	register_post_meta( 'page', 'wmf_hide_title', [
+		'type' => 'boolean',
+		'single' => true,
+		'show_in_rest' => true,
+	] );
 }
 
 add_action( 'init', 'wmf_page_init' );
@@ -37,3 +33,4 @@ function wmf_page_filter_body_class( $body_classes ) {
 }
 
 add_filter( 'body_class', 'wmf_page_filter_body_class' );
+

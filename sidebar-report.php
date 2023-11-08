@@ -15,13 +15,28 @@ if ( empty( $sidebar_items ) ) {
 }
 ?>
 
-<nav class="toc-nav" data-backdrop="inactive" data-dropdown="toc-nav" data-dropdown-content=".toc" data-dropdown-status="uninitialized" data-dropdown-toggle=".toc__button" data-sticky="false" data-toggleable="yes" data-trap="inactive" data-visible="false">
+<nav
+	class="toc-nav"
+	data-backdrop="inactive"
+	data-dropdown="toc-nav"
+	data-dropdown-content=".toc"
+	data-dropdown-status="uninitialized"
+	data-dropdown-toggle=".toc__button"
+	data-sticky="false"
+	data-toggleable="yes"
+	data-trap="inactive"
+	data-visible="false"
+>
 	<h2 class="toc__title screen-reader-text">
-		<?php esc_html_e( 'Table of Contents', 'shiro' ); ?>
+		<?php esc_html_e( 'Table of Contents', 'shiro' ) ?>
 	</h2>
-	<button aria-expanded="false" class="toc__button" hidden>
+	<button
+		aria-expanded="false"
+		class="toc__button"
+		hidden
+	>
 		<span class="btn-label-a11y">
-			<?php esc_html_e( 'Navigate within this section.', 'shiro' ); ?>
+			<?php esc_html_e( 'Navigate within this section.', 'shiro' ) ?>
 		</span>
 		<span class="btn-label-active-item">
 			<?php
@@ -49,25 +64,26 @@ if ( empty( $sidebar_items ) ) {
 				foreach ( $blocks as $block ) {
 					if ( 'core/heading' === $block['blockName'] ) {
 						echo apply_filters( 'the_content', render_block( $block ) );
-
+						 
 						break;
 					}
+
 				}
 			}
 
 			?>
-		<li class="toc__item">
-			<a class="<?php echo esc_attr( $link_classes ); ?>" href="<?php echo esc_url( $report_section['url'] ); ?>">
-				<?php echo wp_kses_post( $report_section['title'] ); ?>
-			</a>
-			<?php
+			<li class="toc__item">
+				<a class="<?php echo esc_attr( $link_classes ); ?>" href="<?php echo esc_url( $report_section['url'] ); ?>">
+					<?php echo wp_kses_post( $report_section['title'] ); ?>
+				</a>
+				<?php
 				// Nest page anchor sidebar within nav sidebar.
-			if ( $current_page_id === $report_section['id'] ) {
-				// TODO: remove get_sidebar function and use headings
-				get_sidebar( 'list', array( 'nested' => true ) );
-			}
-			?>
-		</li>
+				if ( $current_page_id === $report_section['id'] ) {
+					//TODO: remove get_sidebar function and use headings
+					get_sidebar( 'list', [ 'nested'=> true ] );
+				}
+				?>
+			</li>
 			<?php
 		}
 		?>

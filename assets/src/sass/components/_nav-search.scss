@@ -1,56 +1,56 @@
 .nav-search {
-    background: #fff;
-    border: 1px solid $border-color-base;
-    border-radius: 2px;
-    box-sizing: border-box;
-    flex: 0 0 rem(220);
-    margin-bottom: 0;
-    width: 100%;
+	background: #fff;
+	border: 1px solid $border-color-base;
+	border-radius: 2px;
+	box-sizing: border-box;
+	flex: 0 0 rem(220);
+	margin-bottom: 0;
+	width: 100%;
 
-    [data-dropdown-status="uninitialized"] & {
-        @include target-ie {
-            margin-top: 0.5rem;
-        }
-    }
+	[data-dropdown-status="uninitialized"] & {
+		@include target-ie {
+			margin-top: 0.5rem;
+		}
+	}
 
-    .search-form__field {
+	.search-form__field {
 
-        /**
+		/**
 		 * On iPhones, if the font size in an input field is less than 16px,
 		 * Safari will zoom in when the field is activated--and *not* zoom back
 		 * out when the field is left, which creates a bad UX.
 		 */
-        font-size: 16px;
+		font-size: 16px;
 
-        &::placeholder {
-            font-size: 14px;
-        }
+		&::placeholder {
+			font-size: 14px;
+		}
 
-        @media (min-width: #{$medium-landscape}) {
-            font-size: 14px;
-        }
-    }
+		@media ( min-width: #{$medium-landscape} ) {
+			font-size: 14px;
+		}
+	}
 
-    &--mobile {
-        display: none;
+	&--mobile {
+		display: none;
 
-        @media (max-width: #{$medium-landscape}) {
-            align-self: flex-start;
-            display: block;
-            margin-left: auto;
-            margin-top: rem(12);
-            order: 1;
-        }
-    }
+		@media ( max-width: #{$medium-landscape} ) {
+			align-self: flex-start;
+			display: block;
+			margin-left: auto;
+			margin-top: rem(12);
+			order: 1;
+		}
+	}
 
-    &--desktop {
-        display: block;
-        align-self: center;
-        margin-right: 0.5rem;
-        order: 26;
+	&--desktop {
+		display: block;
+		align-self: center;
+		margin-right: 0.5rem;
+		order: 26;
 
-        @media (max-width: #{$medium-landscape}) {
-            display: none;
-        }
-    }
+		@media ( max-width: #{$medium-landscape} ) {
+			display: none;
+		}
+	}
 }

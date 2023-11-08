@@ -70,4 +70,5 @@ class Edit_Posts {
 			wp_dropdown_categories( $dropdown_options );
 		}
 	}
+
 }

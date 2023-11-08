@@ -14,13 +14,10 @@
  */
 function wmf_restrict_search( $query ) {
 	if ( $query->is_search() && $query->is_main_query() && ! isset( $_GET['post_type'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$query->set(
-			'post_type',
-			array(
-				'post',
-				'page',
-			)
-		);
+		$query->set( 'post_type', [
+			'post',
+			'page',
+		] );
 	}
 }
 add_action( 'pre_get_posts', 'wmf_restrict_search' );
@@ -59,11 +56,11 @@ add_action( 'pre_get_posts', 'wmf_custom_sort' );
  * @param array $additional_params Additional query parameters to merge.
  * @return string The updated URL.
  */
-function wmf_set_custom_sort_url( $additional_params = array() ) {
+function wmf_set_custom_sort_url( $additional_params = [] ) {
 	$current_url = home_url( add_query_arg( null, null ) );
-	$parsed_url  = wp_parse_url( $current_url );
+	$parsed_url = wp_parse_url( $current_url );
 
-	$current_query_params = array();
+	$current_query_params = [];
 	if ( isset( $parsed_url['query'] ) ) {
 		parse_str( $parsed_url['query'], $current_query_params );
 	}

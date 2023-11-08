@@ -11,19 +11,19 @@ $h4_link      = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_
 $h4_title     = ! empty( $page_header_data['h4_title'] ) ? $page_header_data['h4_title'] : '';
 $title        = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_title'] : '';
 $meta         = ! empty( $page_header_data['page_meta'] ) ? $page_header_data['page_meta'] : '';
-$allowed_tags = array(
-	'span' => array( 'class' => array() ),
-	'time' => array(
-		'datetime' => array(),
-		'itemprop' => array(),
-	),
-	'a'    => array(
-		'href'  => array(),
-		'class' => array(),
-		'title' => array(),
-		'rel'   => array(),
-	),
-);
+$allowed_tags = [
+	'span' => [ 'class' => [] ],
+	'time' => [
+		'datetime' => [],
+		'itemprop' => [],
+	],
+	'a'    => [
+		'href' => [],
+		'class' => [],
+		'title' => [],
+		'rel' => [],
+	],
+];
 ?>
 
 <div class="header-main">
@@ -53,12 +53,10 @@ $allowed_tags = array(
 
 			<?php
 			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo \WMF\Editor\Blocks\ShareArticle\render_block(
-				array(
-					'enableTwitter'  => true,
-					'enableFacebook' => true,
-				)
-			);
+			echo \WMF\Editor\Blocks\ShareArticle\render_block( [
+				'enableTwitter'  => true,
+				'enableFacebook' => true,
+			] );
 			?>
 		</div>
 	</div>

@@ -11,26 +11,10 @@ if ( empty( $template_args['headline'] ) ) {
 	return;
 }
 
-$no_of_modules = count( $template_args['copy'] );
-$width         = ( $no_of_modules <= 2 ) ? 'w-50p' : 'w-32p';
+$no_of_modules = count($template_args['copy']);
+$width = ($no_of_modules <= 2) ? 'w-50p' : 'w-32p';
 
-$allowed_tags = array(
-	'span'   => array(
-		'class' => array(),
-		'style' => array(),
-	),
-	'em'     => array(),
-	'strong' => array(),
-	'a'      => array(
-		'href'  => array(),
-		'class' => array(),
-		'title' => array(),
-		'rel'   => array(),
-	),
-	'p'      => array(),
-	'br'     => array(),
-	'sup'    => array(),
-);
+$allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ], 'p' => [], 'br' => [], 'sup' => [] ];
 
 ?>
 
@@ -48,11 +32,10 @@ $allowed_tags = array(
 		</div>
 
 		<div class="flex flex-medium flex-wrap flex-space-between mar-bottom">
-			<?php
-			for ( $i = 0; $i < $no_of_modules; $i++ ) {
-				$this_module = $template_args['copy'][ $i ];
-				?>
-			<div class="<?php echo esc_attr( $width ); ?> mar-top wysiwyg">
+			<?php for ($i = 0; $i < $no_of_modules; $i++) {
+			$this_module = $template_args['copy'][$i];
+			?>
+			<div class="<?php echo esc_attr($width); ?> mar-top wysiwyg">
 				<h3 class="h3"><?php echo esc_html( $this_module['heading'] ); ?></h3>
 				<div class="mar-top">
 					<?php echo wp_kses( $this_module['desc'], $allowed_tags ); ?>

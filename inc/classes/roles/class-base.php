@@ -117,7 +117,7 @@ class Base {
 
 		update_option( $this->version_option, $this->version );
 
-		foreach ( glob( __DIR__ . '/*.php' ) as $file ) {
+		foreach ( glob( dirname( __FILE__ ) . '/*.php' ) as $file ) {
 			if ( __FILE__ === $file ) {
 				continue; // we don't need this file.
 			}

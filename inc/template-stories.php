@@ -65,9 +65,9 @@ function wmf_inject_stories_as_list( $value, $object_id, $meta_key ) {
 
 	// If we are on the Stories template and 'list' meta has been requested,
 	// return an array of stories in the same shape as the expected List items.
-	return array(
+	return [
 		array_map(
-			function ( $story ) {
+			function( $story ) {
 				$image_id    = get_post_thumbnail_id( $story );
 				$credit_info = get_post_meta( $image_id, 'credit_info', true );
 				$image_url   = ! empty( $credit_info['url'] ) ? $credit_info['url'] : '';
@@ -77,14 +77,14 @@ function wmf_inject_stories_as_list( $value, $object_id, $meta_key ) {
 					$image = sprintf( '<a href="%s">%s</a>', esc_url( $image_url ), $image );
 				}
 
-				return array(
+				return [
 					'title'       => $story->post_title,
 					'description' => $image . $story->post_content,
 					'link'        => get_the_permalink( $story ),
-				);
+				];
 			},
 			wmf_get_page_stories()
 		),
-	);
+	];
 }
 add_filter( 'get_post_metadata', 'wmf_inject_stories_as_list', 10, 3 );

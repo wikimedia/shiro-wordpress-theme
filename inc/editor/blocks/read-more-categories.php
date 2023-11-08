@@ -20,10 +20,10 @@ function bootstrap() {
 function register_block() {
 	register_block_type(
 		BLOCK_NAME,
-		array(
+		[
 			'apiVersion'      => 2,
 			'render_callback' => __NAMESPACE__ . '\\render_block',
-		)
+		]
 	);
 }
 
@@ -34,16 +34,13 @@ function register_block() {
  * @return string HTML markup.
  */
 function render_block( $attributes ) {
-	$categories = get_the_terms( get_the_ID(), 'category' ) ?: array();
-	$tags       = get_the_terms( get_the_ID(), 'post_tag' ) ?: array();
-	$terms      = array_merge( $categories, $tags );
+	$categories = get_the_terms( get_the_ID(), 'category' ) ?: [];
+	$tags = get_the_terms( get_the_ID(), 'post_tag' ) ?: [];
+	$terms = array_merge( $categories, $tags );
 
-	usort(
-		$terms,
-		function ( $a, $b ) {
-			return strcmp( $a->name, $b->name );
-		}
-	);
+	usort( $terms, function( $a, $b ) {
+		return strcmp( $a->name, $b->name );
+	} );
 
 	ob_start();
 	?>
@@ -57,18 +54,17 @@ function render_block( $attributes ) {
 			<?php foreach ( $terms as $term ) : ?>
 				<?php
 					$term_link = get_term_link( $term->term_id );
-				if ( is_wp_error( $term_link ) ) {
-					continue;
-				}
+					if ( is_wp_error( $term_link ) ) {
+						continue;
+					}
 
 					$is_last = ++$i === count( $terms );
 				?>
-				<a href="<?php echo esc_url( $term_link ); ?>"><?php echo esc_html( $term->name ); ?></a>
-									<?php
-									if ( ! $is_last ) {
-										echo ',';
-									}
-									?>
+				<a href="<?php echo esc_url( $term_link ); ?>"><?php echo esc_html( $term->name ); ?></a><?php
+					if ( ! $is_last ) {
+						echo ',';
+					}
+				?>
 			<?php endforeach; ?>
 		</span>
 	</div>

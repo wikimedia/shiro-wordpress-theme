@@ -21,8 +21,7 @@ class Post extends Base {
 	public function setup_fields() {
 		$section_id = 'wmf_post_content';
 		$this->customize->add_section(
-			$section_id,
-			array(
+			$section_id, array(
 				'title'    => __( 'Post Settings', 'shiro-admin' ),
 				'priority' => 60,
 			)
@@ -30,14 +29,12 @@ class Post extends Base {
 
 		$control_id = 'wmf_related_posts_title';
 		$this->customize->add_setting(
-			$control_id,
-			array(
+			$control_id, array(
 				'default' => __( 'Related', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
-			$control_id,
-			array(
+			$control_id, array(
 				'label'       => __( 'Related Posts Section Title', 'shiro-admin' ),
 				'description' => __( 'This displays at the bottom of each single post.', 'shiro-admin' ),
 				'section'     => $section_id,
@@ -47,18 +44,17 @@ class Post extends Base {
 
 		$control_id = 'wmf_related_posts_description';
 		$this->customize->add_setting(
-			$control_id,
-			array(
+			$control_id, array(
 				'default' => __( 'Read further in the pursuit of knowledge', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
-			$control_id,
-			array(
+			$control_id, array(
 				'label'   => __( 'Related Posts Section Description', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'textarea',
 			)
 		);
 	}
+
 }

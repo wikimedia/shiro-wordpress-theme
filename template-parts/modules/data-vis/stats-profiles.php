@@ -11,38 +11,22 @@ if ( empty( $template_args['headline'] ) ) {
 	return;
 }
 
-$labels            = $template_args['labels'];
-$labelsList        = json_decode( $labels );
+$labels = $template_args['labels'];
+$labelsList = json_decode($labels);
 $filterInstruction = $template_args['filter-instruction'];
-$data              = $template_args['data'];
-$dataLength        = count( json_decode( $data ) );
-$maxf1             = $template_args['maxf1'];
-$maxf2             = $template_args['maxf2'];
-$masterunit        = $template_args['masterunit'];
-$iconMedia         = ! empty( $template_args['icons'] ) ? $template_args['icons'] : array();
-$icons             = array();
-for ( $i = 0; $i <= count( $iconMedia ); $i++ ) {
-	$icon = is_numeric( $iconMedia[ $i ]['image'] ?? '' ) ? wp_get_attachment_image_url( $iconMedia[ $i ]['image'] ) : '';
-	array_push( $icons, $icon );
+$data = $template_args['data'];
+$dataLength = count(json_decode($data));
+$maxf1 = $template_args['maxf1'];
+$maxf2 = $template_args['maxf2'];
+$masterunit = $template_args['masterunit'];
+$iconMedia = ! empty( $template_args['icons'] ) ? $template_args['icons'] : [];
+$icons = [];
+for ($i = 0; $i <= count($iconMedia); $i++) {
+	$icon = is_numeric( $iconMedia[$i]['image'] ?? '' ) ? wp_get_attachment_image_url( $iconMedia[$i]['image'] ) : '';
+    array_push($icons, $icon);
 }
 
-$allowed_tags = array(
-	'span'   => array(
-		'class' => array(),
-		'style' => array(),
-	),
-	'em'     => array(),
-	'strong' => array(),
-	'a'      => array(
-		'href'  => array(),
-		'class' => array(),
-		'title' => array(),
-		'rel'   => array(),
-	),
-	'p'      => array(),
-	'br'     => array(),
-	'sup'    => array(),
-);
+$allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ], 'p' => [], 'br' => [], 'sup' => [] ];
 
 ?>
 
@@ -60,7 +44,7 @@ $allowed_tags = array(
 		</div>
 
 		<div class="w-50p graph-visualization">
-			<div id="profilechart1" class="d3-dataprofiles" data-chart-raw="<?php echo esc_attr( $data ); ?>" data-chart-labels="<?php echo esc_attr( $labels ); ?>" data-chart-icons="<?php echo esc_attr( wp_json_encode( $icons ) ); ?>" data-chart-masterunit="<?php echo esc_attr( $masterunit ); ?>" data-max-feature-1="<?php echo esc_attr( $maxf1 ); ?>" data-max-feature-2="<?php echo esc_attr( $maxf2 ); ?>" data-chart-except="true" data-slice-start="0" data-slice-end="1">
+			<div id="profilechart1" class="d3-dataprofiles" data-chart-raw="<?php echo esc_attr($data)?>" data-chart-labels="<?php echo esc_attr($labels) ?>" data-chart-icons="<?php echo esc_attr(wp_json_encode($icons))?>" data-chart-masterunit="<?php echo esc_attr($masterunit)?>" data-max-feature-1="<?php echo esc_attr($maxf1)?>" data-max-feature-2="<?php echo esc_attr($maxf2)?>" data-chart-except="true" data-slice-start="0" data-slice-end="1">
 			</div>
 		</div>
 
@@ -91,7 +75,7 @@ $allowed_tags = array(
 		</div>
 
 		<div class="w-100p graph-visualization">
-			<div id="profilechart2" class="d3-dataprofiles" data-chart-raw="<?php echo esc_attr( $data ); ?>" data-chart-labels="<?php echo esc_attr( $labels ); ?>" data-chart-icons="<?php echo esc_attr( wp_json_encode( $icons ) ); ?>" data-chart-masterunit='<?php echo esc_attr( $masterunit ); ?>' data-max-feature-1="<?php echo esc_attr( $maxf1 ); ?>" data-max-feature-2="<?php echo esc_attr( $maxf2 ); ?>" data-chart-except="false" data-slice-start="1" data-slice-end="<?php echo esc_attr( $dataLength ); ?>">
+			<div id="profilechart2" class="d3-dataprofiles" data-chart-raw="<?php echo esc_attr($data)?>" data-chart-labels="<?php echo esc_attr($labels) ?>" data-chart-icons="<?php echo esc_attr(wp_json_encode($icons))?>" data-chart-masterunit='<?php echo esc_attr($masterunit)?>' data-max-feature-1="<?php echo esc_attr($maxf1)?>" data-max-feature-2="<?php echo esc_attr($maxf2)?>" data-chart-except="false" data-slice-start="1" data-slice-end="<?php echo esc_attr( $dataLength ); ?>">
 			</div>
 		</div>
 	</div>

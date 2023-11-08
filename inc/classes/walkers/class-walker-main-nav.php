@@ -14,7 +14,7 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 
 	// Private variable for the current menu item.
 	private $currentItemID;
-
+	
 	/**
 	 * Starts the list before the elements are added.
 	 *
@@ -25,16 +25,16 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 	 * @param array  $args   An array of arguments. @see wp_nav_menu()
 	 */
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
+		$indent = ( $depth > 0  ? str_repeat( "\t", $depth ) : '' ); // code indent
 
-		$classes     = array(
+		$classes = array(
 			'sub-menu',
-			'nav-sub-menu-' . $this->currentItemID,
+			'nav-sub-menu-'. $this->currentItemID,
 		);
 		$class_names = implode( ' ', $classes );
-
+	
 		// Build HTML for output.
-		$output .= "\n" . $indent . '<ul class="' . esc_attr( $class_names ) . '" data-dropdown-content="nav-sub-menu-' . $this->currentItemID . '">' . "\n";
+		$output .= "\n" . $indent . '<ul class="' . esc_attr( $class_names ) . '" data-dropdown-content="nav-sub-menu-'. $this->currentItemID . '">' . "\n";
 	}
 
 	/**
@@ -62,27 +62,24 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 		$key = array_search( 'menu-item-has-children', $classes, true );
 
 		if ( $depth > 0 && $key !== false ) {
-			unset( $classes[ $key ] );
+			unset( $classes[$key] );
 		}
 
 		// Apply filters and prepare classes for use.
 		$class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
 
 		// Build HTML.
-		$active_classes = array( 'current-menu-item', 'current-menu-ancestor' );
-
-		$is_open = count( array_intersect( $active_classes, $classes ) ) > 0;
-
-		$output .=
+		$active_classes = [ 'current-menu-item', 'current-menu-ancestor' ];
+		$output .= 
 			$indent
-			. '<li id="nav-menu-item-' . $item->ID . '"'
+			. '<li id="nav-menu-item-'. $item->ID . '"'
 			. ' class="' . $class_names . '"'
 			. ( in_array( 'menu-item-has-children', $classes, true ) ?
 				' data-dropdown="nav-sub-menu-' . $item->ID . '"'
-				. ' data-dropdown-content=".nav-sub-menu-' . $item->ID . '"'
-				. ' data-dropdown-toggle=".nav-sub-menu-button-' . $item->ID . '"'
-				. ' data-visible="' . ( $is_open ? 'yes' : 'no' ) . '"'
-				. ' data-toggleable="' . ( $is_open ? 'no' : 'yes' ) . '"'
+				. ' data-dropdown-content=".nav-sub-menu-'. $item->ID . '"'
+				. ' data-dropdown-toggle=".nav-sub-menu-button-'. $item->ID . '"'
+				. ' data-visible="' . ( count( array_intersect( $active_classes, $classes ) ) > 0 ? 'yes' : 'no' ) . '"'
+				. ' data-toggleable="no"'
 			: '' )
 			. '>';
 
@@ -93,8 +90,7 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 		$attributes = ! empty( $item->url ) ? ' href="' . esc_url( $item->url ) . '"' : '';
 
 		// Build HTML output and pass through the proper filter.
-		$item_output = sprintf(
-			'%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
+		$item_output = sprintf( '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
 			$args->before,
 			$attributes,
 			$args->link_before,
@@ -106,14 +102,13 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 
 		if ( in_array( 'menu-item-has-children', $classes, true ) ) {
-			$label   = __( 'Expand submenu for ', 'shiro' ) . apply_filters( 'the_title', $item->title, $item->ID );
-			$output .=
-			'<button class="menu-item__expand nav-sub-menu-button-' . $item->ID . '"'
+			$label = __( 'Expand submenu for ', 'shiro' ) . apply_filters( 'the_title', $item->title, $item->ID );
+			$output .= 
+			'<button class="menu-item__expand nav-sub-menu-button-'. $item->ID . '"'
 			. ' hidden'
 			. ' aria-label="' . esc_attr( $label ) . '"'
-			. ' aria-expanded="' . ( $is_open ? 'true' : 'false' ) . '"'
-			. ( $is_open ? ' disabled="disabled"' : '' )
-			. ' data-dropdown-toggle="nav-sub-menu-' . $item->ID . '">'
+			. ' aria-expanded="' . ( count( array_intersect( $active_classes, $classes ) ) > 0 ? 'true' : 'false' ) . '"'
+			. ' data-dropdown-toggle="nav-sub-menu-'. $item->ID . '">'
 			. '<span class="btn-label-a11y">'
 			. esc_html( $label )
 			. '</span></button>';

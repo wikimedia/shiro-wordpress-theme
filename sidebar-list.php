@@ -19,11 +19,26 @@ if ( empty( $template_args ) ) {
 ?>
 
 <?php if ( ! $nested ) : ?>
-<nav class="toc-nav" data-backdrop="inactive" data-dropdown="toc-nav" data-dropdown-content=".toc" data-dropdown-status="uninitialized" data-dropdown-toggle=".toc__button" data-sticky="false" data-toggleable="yes" data-trap="inactive" data-visible="false">
+<nav
+	class="toc-nav"
+	data-backdrop="inactive"
+	data-dropdown="toc-nav"
+	data-dropdown-content=".toc"
+	data-dropdown-status="uninitialized"
+	data-dropdown-toggle=".toc__button"
+	data-sticky="false"
+	data-toggleable="yes"
+	data-trap="inactive"
+	data-visible="false"
+>
 	<h2 class="toc__title screen-reader-text">
 		<?php esc_html_e( 'Table of Contents', 'shiro' ); ?>
 	</h2>
-	<button aria-expanded="false" class="toc__button" hidden>
+	<button
+		aria-expanded="false"
+		class="toc__button"
+		hidden
+	>
 		<span class="btn-label-a11y">
 			<?php esc_html_e( 'Navigate within this page.', 'shiro' ); ?>
 		</span>
@@ -38,25 +53,25 @@ if ( empty( $template_args ) ) {
 		</span>
 	</button>
 	<ul class="table-of-contents toc">
-		<?php else : ?>
-		<ul class="toc__nested">
-			<?php endif; ?>
-			<?php
-			foreach ( $template_args as $i => $list_section ) :
-				$item_text = $list_section['title'] ?? $list_section['name'];
-				$item_link = ( $list_section['slug'] ?? false ) ? '#' . $list_section['slug'] : '#section-' . ( $i + 1 );
-				if ( empty( $item_text ) ) {
-					continue;
-				}
-				?>
-			<li class="toc__item">
-				<a class="toc__link" href="<?php echo esc_url( $item_link ); ?>">
-					<?php echo esc_html( $item_text ); ?>
-				</a>
-			</li>
-			<?php endforeach; ?>
-		</ul>
+<?php else : ?>
+	<ul class="toc__nested">
+<?php endif; ?>
+	<?php
+	foreach ( $template_args as $i => $list_section ) :
+		$item_text = $list_section['title'] ?? $list_section['name'];
+		$item_link = ( $list_section['slug'] ?? false ) ? '#' . $list_section['slug'] : '#section-' . ( $i + 1 );
+		if ( empty( $item_text ) ) {
+			continue;
+		}
+		?>
+		<li class="toc__item">
+			<a class="toc__link" href="<?php echo esc_url( $item_link ); ?>">
+				<?php echo esc_html( $item_text ); ?>
+			</a>
+		</li>
+	<?php endforeach; ?>
+</ul>
 
-		<?php if ( ! $nested ) : ?>
+<?php if ( ! $nested ) : ?>
 </nav>
 <?php endif; ?>

@@ -23,7 +23,7 @@
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_column_shortcode_callback( $atts = array(), $content = '' ) {
+function wmf_column_shortcode_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
 	return '<div class="column">' . wp_kses_post( $content ) . '</div>';
@@ -43,7 +43,7 @@ add_shortcode( 'wmf_column', 'wmf_column_shortcode_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_columns_shortcode_callback( $atts = array(), $content = '' ) {
+function wmf_columns_shortcode_callback( $atts = [], $content = '' ) {
 	$reverse = empty( $atts ) ? false : in_array( 'reverse', array_map( 'strtolower', $atts ), true );
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );

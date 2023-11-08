@@ -30,15 +30,15 @@ while ( have_posts() ) {
 	get_template_part( 'template-parts/header/index' );
 	?>
 
-<div class="mw-980 mod-margin-bottom flex flex-medium report-template toc__section">
-	<div class="w-32p toc__sidebar">
-		<?php get_sidebar( 'report' ); ?>
-	</div>
+	<div class="mw-980 mod-margin-bottom flex flex-medium report-template toc__section">
+		<div class="w-32p toc__sidebar">
+			<?php get_sidebar( 'report' ); ?>
+		</div>
 
-	<div class="w-68p report-content toc__content">
-		<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+		<div class="w-68p report-content toc__content">
+			<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+		</div>
 	</div>
-</div>
 
 	<?php
 	$modules = array(

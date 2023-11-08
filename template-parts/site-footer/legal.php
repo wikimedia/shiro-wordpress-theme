@@ -9,15 +9,12 @@ $legal_copy = get_theme_mod( 'wmf_footer_copyright', \WMF\Customizer\Footer::def
 ?>
 
 <div class="site-footer__legal">
-	<?php
-	echo wp_kses(
-		$legal_copy,
-		array(
+	<?php echo wp_kses(
+		$legal_copy, array(
 			'a'  => array(
 				'href' => array(),
 			),
 			'br' => array(),
 		)
-	);
-	?>
+	); ?>
 </div>

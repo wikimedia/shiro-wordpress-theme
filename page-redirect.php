@@ -5,7 +5,7 @@
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
  * @package shiro
- *
+ * 
  * This template does not output any content of its own, and should get no special
  * handling or metaboxes within the admin. Instead, when rendered it will redirect
  * to its most-recently-published child page without appearing in site breadcrumbs.

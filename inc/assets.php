@@ -12,11 +12,11 @@ use Asset_Loader\Manifest;
  *
  * @return array
  */
-function get_manifests(): array {
-	return array(
+function get_manifests() : array {
+	return [
 		get_template_directory() . '/assets/dist/development-asset-manifest.json',
 		get_template_directory() . '/assets/dist/production-asset-manifest.json',
-	);
+	];
 }
 
 /**
