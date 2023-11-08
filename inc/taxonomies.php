@@ -46,10 +46,11 @@ function wmf_add_taxonomies() {
 	);
 
 	$profile_type_args = wp_parse_args(
-		$default_args, array(
-			'labels'  => $profile_type_labels,
+		$default_args,
+		array(
+			'labels'       => $profile_type_labels,
 			'show_in_rest' => true,
-			'rewrite' => array(
+			'rewrite'      => array(
 				'with_front' => false,
 				'slug'       => __( 'role', 'shiro-admin' ),
 			),
@@ -84,7 +85,8 @@ function wmf_add_taxonomies() {
 	);
 
 	$story_type_args = wp_parse_args(
-		$default_args, array(
+		$default_args,
+		array(
 			'labels'  => $story_type_labels,
 			'rewrite' => array(
 				'with_front' => false,

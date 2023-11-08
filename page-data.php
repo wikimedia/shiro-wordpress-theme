@@ -26,12 +26,13 @@ while ( have_posts() ) {
 	} else {
 		get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 		?>
-       <div class="mw-980">
-            <div class="page-intro wysiwyg">
-                <?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
-            </div>
-        </div>
-	<?php }
+		<div class="mw-980">
+			<div class="page-intro wysiwyg">
+				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+			</div>
+		</div>
+		<?php 
+	}
 	?>
 
 	<?php
