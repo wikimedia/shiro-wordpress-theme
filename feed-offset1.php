@@ -3,12 +3,13 @@
  * RSS2 Feed Template for displaying RSS2 Posts feed.
  * Adds an offset of "1" to display all but most recent
  * Full details at: https://wordimpress.com/anatomy-advanced-wordpress-blog-notification-email
+ *
  * @package WordPress
  */
 
-header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . get_option('blog_charset'), true);
+header( 'Content-Type: ' . feed_content_type( 'rss-http' ) . '; charset=' . get_option( 'blog_charset' ), true );
 
-echo '<?xml version="1.0" encoding="'.esc_attr(get_option('blog_charset')).'"?'.'>';
+echo '<?xml version="1.0" encoding="' . esc_attr( get_option( 'blog_charset' ) ) . '"?' . '>';
 
 /**
  * Fires between the <xml> and <rss> tags in a feed.
@@ -40,9 +41,9 @@ do_action( 'rss_tag_pre', 'rss2' );
 <channel>
 	<title><?php wp_title_rss(); ?></title>
 	<atom:link href="<?php self_link(); ?>" rel="self" type="application/rss+xml" />
-	<link><?php bloginfo_rss('url') ?></link>
-	<description><?php bloginfo_rss("description") ?></description>
-	<lastBuildDate><?php echo esc_html(mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false)); ?></lastBuildDate>
+	<link><?php bloginfo_rss( 'url' ); ?></link>
+	<description><?php bloginfo_rss( 'description' ); ?></description>
+	<lastBuildDate><?php echo esc_html( mysql2date( 'D, d M Y H:i:s +0000', get_lastpostmodified( 'GMT' ), false ) ); ?></lastBuildDate>
 	<language><?php bloginfo_rss( 'language' ); ?></language>
 	<?php
 	$duration = 'hourly';
@@ -55,7 +56,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 	 *                         Default 'hourly'. Accepts 'hourly', 'daily', 'weekly', 'monthly', 'yearly'.
 	 */
 	?>
-	<sy:updatePeriod><?php echo esc_html(apply_filters( 'rss_update_period', $duration )); ?></sy:updatePeriod>
+	<sy:updatePeriod><?php echo esc_html( apply_filters( 'rss_update_period', $duration ) ); ?></sy:updatePeriod>
 	<?php
 	$frequency = '1';
 	/**
@@ -67,27 +68,28 @@ do_action( 'rss_tag_pre', 'rss2' );
 	 *                          of RSS updates within the update period. Default '1'.
 	 */
 	?>
-	<sy:updateFrequency><?php echo esc_html(apply_filters( 'rss_update_frequency', $frequency )); ?></sy:updateFrequency>
+	<sy:updateFrequency><?php echo esc_html( apply_filters( 'rss_update_frequency', $frequency ) ); ?></sy:updateFrequency>
 	<?php
 	/**
 	 * Fires at the end of the RSS2 Feed Header.
 	 *
 	 * @since 2.0.0
 	 */
-	do_action( 'rss2_head');
-	while( have_posts()) : the_post();
-	?>
+	do_action( 'rss2_head' );
+	while ( have_posts() ) :
+		the_post();
+		?>
 	<item>
-		<title><?php the_title_rss() ?></title>
-		<link><?php the_permalink_rss() ?></link>
+		<title><?php the_title_rss(); ?></title>
+		<link><?php the_permalink_rss(); ?></link>
 		<comments><?php comments_link_feed(); ?></comments>
-		<pubDate><?php echo esc_html(mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false)); ?></pubDate>
-		<dc:creator><![CDATA[<?php the_author() ?>]]></dc:creator>
-		<?php the_category_rss('rss2') ?>
+		<pubDate><?php echo esc_html( mysql2date( 'D, d M Y H:i:s +0000', get_post_time( 'Y-m-d H:i:s', true ), false ) ); ?></pubDate>
+		<dc:creator><![CDATA[<?php the_author(); ?>]]></dc:creator>
+		<?php the_category_rss( 'rss2' ); ?>
 
 		<guid isPermaLink="false"><?php the_guid(); ?></guid>
-		<description><![CDATA[<?php wp_strip_all_tags(the_excerpt()); ?>]]></description>
-		<content:encoded><![CDATA[<?php wp_strip_all_tags(the_excerpt()); ?>]]></content:encoded>
+		<description><![CDATA[<?php wp_strip_all_tags( the_excerpt() ); ?>]]></description>
+		<content:encoded><![CDATA[<?php wp_strip_all_tags( the_excerpt() ); ?>]]></content:encoded>
 		<?php rss_enclosure(); ?>
 			<?php
 				/**
