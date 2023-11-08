@@ -12,7 +12,6 @@ use function WMF\Editor\is_using_block_editor;
 
 /**
  * Name of the meta field.
- *
  * @var string
  */
 const FIELD_NAME = 'page_intro';
@@ -28,12 +27,12 @@ add_action( 'init', __NAMESPACE__ . '\\register_fieldmanager_fields' );
  */
 function register_meta_fields() {
 
-	$meta_args = array(
+	$meta_args = [
 		'type'         => 'string',
 		'description'  => __( 'Intro field, displayed before post content in single views', 'shiro-admin' ),
 		'single'       => true,
 		'show_in_rest' => true,
-	);
+	];
 
 	// The Intro field is available on all Posts.
 	register_post_meta( 'post', FIELD_NAME, $meta_args );
