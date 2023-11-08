@@ -35,9 +35,13 @@ if ( is_countable( $team_name ) && count( $team_name ) > 1 ) {
 <div class="header-main header-role">
 	<div class="header-content">
 		<h2 class="h4 eyebrow">
+			<?php if ( ! empty( $back_to_link ) && is_string( $back_to_link ) ) : ?>
 			<a class="back-arrow-link" href="<?php echo esc_url( $back_to_link ); ?>">
+			<?php endif; ?>
 				<?php echo esc_html( $staff_name ); ?>
+			<?php if ( ! empty( $back_to_link ) && is_string( $back_to_link ) ) : ?>
 			</a>
+			<?php endif; ?>
 		</h2>
 
 		<h1><?php the_title(); ?></h1>

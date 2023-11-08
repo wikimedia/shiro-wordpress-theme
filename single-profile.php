@@ -20,8 +20,8 @@ while ( have_posts() ) :
 	$roles           = get_the_terms( get_the_ID(), 'role' );
 	$default_heading = get_theme_mod( 'wmf_related_profiles_heading', __( 'Other members of ', 'shiro-admin' ) );
 	$team_name       = '';
-	$parent_name     = $roles[0]->name;
-	$parent_link     = get_term_link( $roles[0] );
+	$parent_name    = $roles[0]->name;
+	$parent_link    = get_term_link( $roles[0] );
 	$connected_user = get_post_meta( get_the_ID(), 'connected_user', true );
 
 	if ( ! empty( $roles ) && ! is_wp_error( $roles ) ) {
