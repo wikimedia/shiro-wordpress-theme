@@ -87,10 +87,16 @@ while ( have_posts() ) :
 								$img = get_template_directory_uri() . '/assets/src/svg/individual/wikimedia-blue.svg';
 							}
 							?>
-						<div class="bold profile-contacts"><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
-							<img src="<?php echo esc_url( $img ); ?>" alt="">
-							<?php echo esc_html( $link['title'] ); ?>
-						</a></div>
+						<div class="bold profile-contacts">
+							<?php if ( isset( $link['link'] ) ) : ?>
+							<a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
+							<?php endif; ?>
+								<img src="<?php echo esc_url( $img ); ?>" alt="">
+								<?php echo esc_html( $link['title'] ); ?>
+							<?php if ( isset( $link['link'] ) ) : ?>
+							</a>
+							<?php endif; ?>
+						</div>
 					</div>
 						<?php endforeach; ?>
 				<?php endif; ?>
