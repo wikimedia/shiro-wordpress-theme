@@ -49,7 +49,7 @@ if ( is_countable( $team_name ) && count( $team_name ) > 1 ) {
 		<p class="post-meta">
 			<?php echo wp_kses_post( $role_desc ); ?>
 
-			<?php if ( count( $team_name ) > 1 ) : ?>
+			<?php if ( is_countable( $team_name ) && count( $team_name ) > 1 ) : ?>
 			<span class="post-meta-team">
 				<?php echo wp_kses_post( $role_team ); ?>
 			</span>
