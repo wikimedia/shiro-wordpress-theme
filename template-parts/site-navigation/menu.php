@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Adds primary navigation menu
  *
