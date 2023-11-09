@@ -24,6 +24,8 @@ function bootstrap() {
 
 /**
  * Add has blocks column to the possible columns.
+ *
+ * @param boolean $columns If blocks column to the possible columns.
  */
 function add_column( $columns ) {
 	$columns['has_blocks'] = __( 'Has blocks', 'shiro' );
@@ -90,6 +92,8 @@ function add_has_blocks_filter( $post_type ) {
  * Copied from WordPress core
  *
  * @see https://github.com/WordPress/wordpress-develop/blob/5.7.1/src/wp-admin/includes/post.php#L1160-L1189
+ *
+ * @param string $post_type Type of post type to use.
  */
 function posts_per_page( $post_type ) {
 	$per_page       = "edit_{$post_type}_per_page";
@@ -187,7 +191,7 @@ function where_has_blocks( string $where, WP_Query $query ) {
 /**
  * Add has_blocks query vary, so `where_has_blocks()` can look for it.
  *
- * @param array $vars
+ * @param array $vars Content with blocks.
  *
  * @return array
  */
