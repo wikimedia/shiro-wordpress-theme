@@ -6,11 +6,15 @@
 namespace WMF\Editor\Patterns;
 
 /**
+ * Setting slug for the block pattern category to group these into.
+ *
  * @var string The slug for the block pattern category to group these into.
  */
 const MAIN_CATEGORY_NAME = 'wikimedia';
 
 /**
+ * Setting slug for patterns that are meant for migration to populate based on a template.
+ *
  * @var string The slug for patterns that are meant for migration to populate
  *             based on a template.
  */
@@ -23,6 +27,9 @@ function bootstrap() {
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\register_pattern' );
 }
 
+/**
+ * Register the pattern block
+ */
 function register_pattern() {
 	register_block_pattern_category(
 		MAIN_CATEGORY_NAME,

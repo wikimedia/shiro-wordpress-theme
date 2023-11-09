@@ -120,7 +120,15 @@ class Credits {
 
 		return $bool;
 	}
-
+	
+	/**
+	 * TODO: Describe this function.
+	 *
+	 * @param string $image TODO: Describe this parameter.
+	 * @param string $attachment_id TODO: Describe this parameter.
+	 * @param string $size TODO: Describe this parameter.
+	 * @param string $icon TODO: Describe this parameter.
+	 */
 	public function set_id_from_att_src( $image, $attachment_id, $size, $icon ) {
 		if ( true !== $this->pause && ! in_array( $attachment_id, $this->image_ids, true ) ) {
 			$this->image_ids[] = $attachment_id;
