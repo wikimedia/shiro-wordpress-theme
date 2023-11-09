@@ -34,7 +34,6 @@ function wmf_autotweets_callback( $atts = array(), $content = '' ) {
 			'alt'    => array(),
 			'style'  => array(),
 			'class'  => array(),
-			'style'  => array(),
 		),
 		'em'     => array(),
 		'strong' => array(),
