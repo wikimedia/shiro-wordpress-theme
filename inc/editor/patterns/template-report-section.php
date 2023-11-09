@@ -1,12 +1,15 @@
 <?php
 /**
- * Block pattern for converting from the "report-landing" template
+ * Block pattern for converting from the "report-section" template
  */
 
 namespace WMF\Editor\Patterns\TemplateReportSection;
 
 const NAME = 'shiro/template-report-section';
 
+/**
+ * Display "report-section" template content.
+ */
 function pattern(): string {
 	return <<<CONTENT
 <!-- wp:shiro/toc-columns -->

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Adds donate button(s)
  *
