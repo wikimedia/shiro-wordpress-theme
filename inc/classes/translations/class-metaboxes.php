@@ -251,7 +251,7 @@ class Metaboxes {
 			esc_attr_x( 'No content yet.', 'placeholder for empty translation textarea', 'shiro-admin' ),
 			esc_textarea( $meta_data )
 		);
-		printf( '<p><strong>%1$s</strong>:</p>%2$s', esc_html( $opt_label ), esc_textarea( $text_area ) ); // WPCS: xss ok.
+		printf( '<p><strong>%1$s</strong>:</p>%2$s', esc_html( $opt_label ), $text_area ); // WPCS: xss ok.
 	}
 
 	/**

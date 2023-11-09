@@ -13,7 +13,7 @@ if ( empty( $post_list ) ) {
 
 foreach ( $post_list as $term_id => $term_data ) {
 	$name        = ! empty( $term_data['name'] ) ? $term_data['name'] : '';
-	$description = term_description( $term_id );
+	$description = term_description( $term_id, 'role' );
 	$button      = get_term_meta( $term_id, 'role_button', true );
 	$executives  = get_term_meta( $term_id, 'role_executive', true );
 	$experts     = get_term_meta( $term_id, 'role_experts', true );
@@ -150,7 +150,7 @@ foreach ( $post_list as $term_id => $term_data ) {
 				<?php
 				foreach ( $term_data['children'] as $child_term_id => $child_term_data ) {
 					$name        = ! empty( $child_term_data['name'] ) ? $child_term_data['name'] : '';
-					$description = term_description( $child_term_id );
+					$description = term_description( $child_term_id, 'role' );
 
 					if ( empty( $child_term_data['posts'] ) ) {
 						continue;

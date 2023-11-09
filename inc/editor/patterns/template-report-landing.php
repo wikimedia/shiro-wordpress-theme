@@ -7,9 +7,6 @@ namespace WMF\Editor\Patterns\TemplateReportLanding;
 
 const NAME = 'shiro/template-report-landing';
 
-/**
- * Display "report-landing" template content.
- */
 function pattern(): string {
 	return <<<CONTENT
 <!-- wp:shiro/report-landing-hero -->

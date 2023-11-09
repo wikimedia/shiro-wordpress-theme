@@ -5,6 +5,7 @@
  * @package shiro
  */
 
+
 /**
  * Registers the `story` post type.
  */
