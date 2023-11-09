@@ -22,7 +22,7 @@ while ( have_posts() ) :
 	$team_name       = '';
 	$parent_name     = $roles[0]->name;
 	$parent_link     = get_term_link( $roles[0] );
-	$connected_user = get_post_meta( get_the_ID(), 'connected_user', true );
+	$connected_user  = get_post_meta( get_the_ID(), 'connected_user', true );
 
 	if ( ! empty( $roles ) && ! is_wp_error( $roles ) ) {
 		$team_name = $roles;
@@ -87,10 +87,16 @@ while ( have_posts() ) :
 								$img = get_template_directory_uri() . '/assets/src/svg/individual/wikimedia-blue.svg';
 							}
 							?>
-						<div class="bold profile-contacts"><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
-							<img src="<?php echo esc_url( $img ); ?>" alt="">
-							<?php echo esc_html( $link['title'] ); ?>
-						</a></div>
+						<div class="bold profile-contacts">
+							<?php if ( isset( $link['link'] ) ) : ?>
+							<a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
+							<?php endif; ?>
+								<img src="<?php echo esc_url( $img ); ?>" alt="">
+								<?php echo esc_html( $link['title'] ); ?>
+							<?php if ( isset( $link['link'] ) ) : ?>
+							</a>
+							<?php endif; ?>
+						</div>
 					</div>
 						<?php endforeach; ?>
 				<?php endif; ?>
@@ -100,7 +106,7 @@ while ( have_posts() ) :
 						if ( is_rtl() ) {
 							$authorimg = get_template_directory_uri() . '/assets/src/svg/edit-rtl.svg';
 						}
-						$authorlink = wmf_get_author_link( $connected_user );
+						$authorlink     = wmf_get_author_link( $connected_user );
 						$authorlinkcopy = sprintf( /* translators: 1. post title */ __( 'Posts by %s', 'shiro' ), get_the_title() );
 						?>
 					<div class="link-list mar-right">
@@ -131,7 +137,7 @@ while ( have_posts() ) :
 
 	$template_args = get_post_meta( get_the_ID(), 'profiles', true );
 	if ( ! is_array( $template_args ) ) {
-		$template_args = [];
+		$template_args = array();
 	}
 
 	$template_args['profiles_list'] = wmf_get_related_profiles( get_the_ID() );
