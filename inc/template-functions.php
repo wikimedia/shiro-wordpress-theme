@@ -92,14 +92,7 @@ function wmf_get_header_cta_button_class() {
 function wmf_get_role_hierarchy( $parent_id ) {
 	$children   = array();
 	$term_array = array();
-	$terms      = get_terms(
-		'role',
-		array(
-			'orderby' => 'name',
-			'fields'  => 'id=>parent',
-			'get'     => 'all',
-		)
-	);
+	$terms      = get_terms( 'role' );
 
 	foreach ( $terms as $term_id => $parent ) {
 		if ( 0 < $parent ) {
@@ -130,7 +123,6 @@ function wmf_get_role_posts( $term_id ) {
 		array(
 			'post_type'      => 'profile',
 			'fields'         => 'ids',
-			'orderby'        => 'title',
 			'meta_key'       => 'last_name',
 			'orderby'        => 'meta_value',
 			'order'          => 'ASC',
