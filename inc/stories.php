@@ -1,11 +1,5 @@
 <?php
-/**
- * Creates page for story post type
- *
- * @package shiro
- */
-
-namespace WMF\Stories_Customisations;
+namespace Stories_Customisations;
 
 /**
  * Kick it off.
@@ -21,7 +15,7 @@ function init() {
  * @param int       $object_id  ID of the object metadata is for.
  * @param string    $meta_key   Metadata key.
  * @param mixed     $meta_value Metadata value. Must be serializable if non-scalar.
- * @param mixed     $prev_value Optional. If specified, only update existing metadata entries.
+ * @param mixed     $prev_value Optional. If specified, only update existing metadata entries
  */
 function link_stories_page_stories( $check, $object_id, $meta_key, $meta_value, $prev_value ) {
 	if ( $meta_key !== 'stories' ) {

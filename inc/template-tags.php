@@ -17,19 +17,15 @@ if ( ! function_exists( 'wmf_entry_footer' ) ) :
 			/* translators: used between list items, there is a space after the comma */
 			$categories_list = get_the_category_list( esc_html__( ', ', 'shiro' ) );
 			if ( $categories_list && wmf_categorized_blog() ) {
-                // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'shiro' ) . '</span>', $categories_list );
-                // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
+				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'shiro' ) . '</span>', $categories_list ); // WPCS: XSS OK.
 			}
 
 			/* translators: used between list items, there is a space after the comma */
 			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'shiro' ) );
 			if ( $tags_list ) {
-                // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'shiro' ) . '</span>', $tags_list );
-                // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
+				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'shiro' ) . '</span>', $tags_list ); // WPCS: XSS OK.
 			}
 		}
 
@@ -204,8 +200,6 @@ function wmf_is_main_site( $site_id = 0 ) {
 	return (int) get_main_site_id() === (int) $site_id;
 }
 
-add_filter( 'wp_headers', 'wmf_remove_x_hacker_header', 999 );
-
 /**
  * Filter X-hacker output.
  *
@@ -213,6 +207,8 @@ add_filter( 'wp_headers', 'wmf_remove_x_hacker_header', 999 );
  *
  * @return array
  */
+add_filter( 'wp_headers', 'wmf_remove_x_hacker_header', 999 );
+
 function wmf_remove_x_hacker_header( $headers ) {
 	if ( isset( $headers['X-hacker'] ) ) {
 		unset( $headers['X-hacker'] );
@@ -229,17 +225,15 @@ add_filter( 'jetpack_honor_dnt_header_for_stats', '__return_true' );
 /**
  * Filter JetPack devicepx script.
  */
-function wmf_remove_devicepx() {
+function remove_devicepx() {
 	wp_dequeue_script( 'devicepx' );
 }
-add_action( 'wp_enqueue_scripts', 'wmf_remove_devicepx' );
+add_action( 'wp_enqueue_scripts', 'remove_devicepx' );
 
 /**
  * Utility function to get the attachment url based on attachment title
- *
- * @param string $slug ID created by function.
  */
-function wmf_custom_get_attachment_id_by_slug( $slug ) {
+function custom_get_attachment_id_by_slug( $slug ) {
 	$args    = array(
 		'post_type'        => 'attachment',
 		'name'             => sanitize_title( $slug ),
