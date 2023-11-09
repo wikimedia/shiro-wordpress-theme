@@ -52,13 +52,13 @@ add_filter( 'attachment_fields_to_edit', 'wmf_add_media_custom_fields', 10, 2 );
  */
 function wmf_save_attachment_custom_fields( $post, $attachment ) {
 	$credit_info = array(
-		'author'      => ! empty( $attachment['credit_author'] ) ? sanitize_text_field( wp_unslash( $attachment['credit_author'] ) ) : '', // WPCS: Input var CSRF ok.
+		'author'      => ! empty( $attachment['credit_author'] ) ? sanitize_text_field( wp_unslash( $attachment['credit_author'] ) ) : '',
 
-		'license'     => ! empty( $attachment['credit_license'] ) ? sanitize_text_field( wp_unslash( $attachment['credit_license'] ) ) : '', // WPCS: Input var CSRF ok.
+		'license'     => ! empty( $attachment['credit_license'] ) ? sanitize_text_field( wp_unslash( $attachment['credit_license'] ) ) : '',
 
-		'url'         => ! empty( $attachment['credit_url'] ) ? esc_url_raw( wp_unslash( $attachment['credit_url'] ) ) : '', // WPCS: Input var CSRF ok.
+		'url'         => ! empty( $attachment['credit_url'] ) ? esc_url_raw( wp_unslash( $attachment['credit_url'] ) ) : '',
 
-		'license_url' => ! empty( $attachment['credit_license_url'] ) ? esc_url_raw( wp_unslash( $attachment['credit_license_url'] ) ) : '', // WPCS: Input var CSRF ok.
+		'license_url' => ! empty( $attachment['credit_license_url'] ) ? esc_url_raw( wp_unslash( $attachment['credit_license_url'] ) ) : '',
 	);
 
 	if ( ! empty( $credit_info ) ) {

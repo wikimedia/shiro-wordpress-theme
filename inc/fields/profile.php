@@ -105,7 +105,7 @@ function wmf_role_fields() {
 				'terms'            => $current_term_id,
 				'include_children' => false,
 			),
-		), // WPCS: Slow query okay.
+		),
 	);
 	$current_term_query = new WP_Query( $current_term_args );
 	$current_term_posts = array();
