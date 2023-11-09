@@ -78,10 +78,13 @@ function wmf_profile_updated_messages( $messages ) {
 		2  => __( 'Custom field updated.', 'shiro-admin' ),
 		3  => __( 'Custom field deleted.', 'shiro-admin' ),
 		4  => __( 'Profile updated.', 'shiro-admin' ),
-		/*
-		translators: %s: date and time of the revision */
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        // phpcs:disable Squiz.Commenting.BlockComment.NoNewLine
+        // phpcs:disable WordPress.WP.I18n.MissingTranslatorsComment
+		/* translators: %s: date and time of the revision */
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		5  => isset( $_GET['revision'] ) ? sprintf( __( 'Profile restored to revision from %s', 'shiro-admin' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+        // phpcs:enable WordPress.WP.I18n.MissingTranslatorsComment
+        // phpcs:enable Squiz.Commenting.BlockComment.NoNewLine
 		/* translators: %s: post permalink */
 		6  => sprintf( __( 'Profile published. <a href="%s">View Profile</a>', 'shiro-admin' ), esc_url( $permalink ) ),
 		7  => __( 'Profile saved.', 'shiro-admin' ),

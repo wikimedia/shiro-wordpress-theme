@@ -26,8 +26,12 @@ add_action( 'manage_profile_posts_custom_column', array( 'WMF\Translations\Notic
 
 /**
  * Copy post meta to remote site if the option is set in the translation metabox.
+ *
+ * @param  string $keys_to_sync
+ * @param  string $context
+ * @param  string $request
  */
-function wmf_copy_post_meta( $keysToSync, $context, $request ) {
+function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
 
 	$multilingualpress = $request->bodyValue(
 		'multilingualpress',
@@ -78,8 +82,8 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 		'stories',
 	);
 
-	foreach ( $multilingualpress as $translationMetabox ) {
-		if ( $translationMetabox['remote-content-copy'] === '1' ) {
+	foreach ( $multilingualpress as $translation_metabox ) {
+		if ( $translation_metabox['remote-content-copy'] === '1' ) {
 			foreach ( $string_post_meta as $meta_key ) {
 				$meta_value = (string) $request->bodyValue(
 					$meta_key,
@@ -113,7 +117,7 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 		}
 	}
 
-	return $keysToSync;
+	return $keys_to_sync;
 }
 add_filter( 'multilingualpress.sync_post_meta_keys', 'wmf_copy_post_meta', 10, 3 );
 

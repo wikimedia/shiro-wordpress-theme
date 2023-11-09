@@ -28,7 +28,7 @@ if ( ! empty( $translations ) ) : ?>
 		<button class="language-switcher__button" aria-expanded="false" hidden>
 			<span class="btn-label-a11y"><?php echo esc_html( $current_label ); ?> </span>
 			<?php wmf_show_icon( 'translate', 'language-switcher__icon' ); ?>
-			<span class="language-switcher__label"><?php echo $current; ?></span>
+			<span class="language-switcher__label"><?php echo esc_html( $current ); ?></span>
 		</button>
 		<div class="language-switcher__content">
 			<ul>
