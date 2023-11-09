@@ -198,12 +198,13 @@ class General extends Base {
 		$this->customize->add_control(
 			$control_id,
 			array(
-				'label'       => __( 'Support CTA' ),
+				'label'       => __( 'Support CTA', 'shiro-admin' ),
 				'type'        => 'select',
 				'choices'     => $choices,
 				'section'     => $section_id,
 				'description' => count( $selectable_blocks ) > 0
 					? __( 'Select a spotlight block to be shown in the "Support" area.', 'shiro-admin' )
+				/* translators: Prompting for page's to select a block for "Support" area of block. */
 					: sprintf( __( '<strong>There are no spotlight blocks available!</strong> Please <a href="%s">create one</a>.', 'shiro-admin' ), admin_url( 'edit.php?post_type=wp_block' ) ),
 			)
 		);
@@ -223,7 +224,8 @@ class General extends Base {
 		$this->customize->add_setting(
 			$control_id,
 			array(
-				'default' => __( /** translators: Current search term */ 'Search results for %s', 'shiro-admin' ),
+				/* translators: Current search term */
+				'default' => __( 'Search results for %s', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(

@@ -1,4 +1,9 @@
 <?php
+/**
+ * Additional functionality for the shiro/mailchimp-subscribe block.
+ *
+ * @package shiro
+ */
 
 namespace WMF\Editor\Blocks\MailChimpSubscribe;
 
@@ -15,6 +20,9 @@ function bootstrap() {
  * Render mailchimp subscribe block. This is required because wp_kses_post will
  * strip <form> and <input> tags. For the mailchimp subscribe we need those
  * tags. Other than these changes, this is de facto a static block.
+ *
+ * @param   string $block_attributes   Attributes set for the block.
+ * @param   mixed  $content            Output of block's content.
  */
 function render_block( $block_attributes, $content ) {
 	$action            = get_theme_mod( 'wmf_subscribe_action', Connect::defaults( 'wmf_subscribe_action' ) );

@@ -39,7 +39,7 @@ if ( post_password_required() ) {
 					printf( // WPCS: XSS OK.
 						/* translators: 1: comment count number, 2: title. */
 						esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $wmf_comment_count, 'comments title', 'shiro' ) ),
-						number_format_i18n( $wmf_comment_count ),
+						esc_html( number_format_i18n( $wmf_comment_count ) ),
 						'<span>' . esc_html( get_the_title() ) . '</span>'
 					);
 			}
