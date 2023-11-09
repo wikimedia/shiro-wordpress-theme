@@ -7,9 +7,6 @@ namespace WMF\Editor\Patterns\TemplateList;
 
 const NAME = 'shiro/template-list';
 
-/**
- * Display "list" template content.
- */
 function pattern(): string {
 	$support_module        = wmf_get_reusable_block_module_insert( 'support' );
 	$communications_module = wmf_get_reusable_block_module_insert( 'connect' );

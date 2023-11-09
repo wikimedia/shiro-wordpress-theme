@@ -1,12 +1,3 @@
-<?php
-/**
- * Displays pages when site set to maintenance mode.
- *
- * @package maintenance-mode
- */
-
-// phpcs:disable WordPress.WP.I18n.TextDomainMismatch
-?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>

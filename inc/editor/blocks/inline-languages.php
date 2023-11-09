@@ -7,16 +7,10 @@ namespace WMF\Editor\Blocks\InlineLanguages;
 
 const BLOCK_NAME = 'shiro/inline-languages';
 
-/**
- * Action for registration.
- */
 function bootstrap() {
 	add_action( 'init', __NAMESPACE__ . '\\register_block' );
 }
 
-/**
- * Register the shiro/inline-languages block.
- */
 function register_block() {
 	register_block_type(
 		BLOCK_NAME,
@@ -34,11 +28,6 @@ function register_block() {
 	);
 }
 
-/**
- * Render the attributes.
- *
- * @param mixed $attributes Attributes rendered.
- */
 function render_block( $attributes ) {
 	$class = 'inline-languages';
 	if ( isset( $attributes['align'] ) && $attributes['align'] === 'full' ) {

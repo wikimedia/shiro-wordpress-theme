@@ -13,8 +13,7 @@
  * @return void
  */
 function wmf_restrict_search( $query ) {
-	if ( $query->is_search() && $query->is_main_query() && ! isset( $_GET['post_type'] ) ) {
-        //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( $query->is_search() && $query->is_main_query() && ! isset( $_GET['post_type'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$query->set(
 			'post_type',
 			array(
@@ -39,12 +38,10 @@ function wmf_custom_sort( WP_Query $query ) {
 		return;
 	}
 
-	$order_by = sanitize_text_field( $_GET['orderby'] ?? '' );
-    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$order_by = sanitize_text_field( $_GET['orderby'] ?? '' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	switch ( $order_by ) {
 		case 'date':
-			$order_direction = isset( $_GET['order'] ) ? strtoupper( sanitize_text_field( $_GET['order'] ) ) : 'DESC';
-            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$order_direction = isset( $_GET['order'] ) ? strtoupper( sanitize_text_field( $_GET['order'] ) ) : 'DESC'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$query->set( 'order', $order_direction );
 			$query->set( 'orderby', 'date' );
 			break;
