@@ -27,9 +27,9 @@ add_action( 'manage_profile_posts_custom_column', array( 'WMF\Translations\Notic
 /**
  * Copy post meta to remote site if the option is set in the translation metabox.
  *
- * @param  string $keys_to_sync TODO: Describe this parameter.
- * @param  string $context TODO: Describe this parameter.
- * @param  string $request TODO: Describe this parameter.
+ * @param  string $keys_to_sync
+ * @param  string $context
+ * @param  string $request
  */
 function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
 

@@ -198,9 +198,9 @@ class Flow {
 	/**
 	 * Define which post meta to sync to remote site.
 	 *
-	 * @param string $keys TODO: Describe this parameter.
-	 * @param string $context TODO: Describe this parameter.
-	 * @param string $post TODO: Describe this parameter.
+	 * @param $keys
+	 * @param $context
+	 * @param $post
 	 *
 	 * @return string[]
 	 */

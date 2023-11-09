@@ -120,7 +120,6 @@ function render_block( $attributes ): string {
 		);
 
 		if ( ! $in_translated ) {
-            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' => 'content-language',
