@@ -7,11 +7,14 @@
 
 namespace WMF\Customizer;
 
-/**
- * Adds controls & settings to existing (core-provided) "Site Identity" section
- * of the Customizer.
- */
+	/**
+	 * Adds controls & settings to existing (core-provided) "Site Identity" section
+	 * of the Customizer.
+	 */
 class Identity extends Base {
+	/**
+	 * Here we go.
+	 */
 	public function setup_fields() {
 		$section_id = 'title_tagline';
 
@@ -29,7 +32,7 @@ class Identity extends Base {
 				'wmf_shiro_logo',
 				array(
 					'label'       => __( 'Site Logo', 'shiro-admin' ),
-					'description' => __( 'Set the logo that appears in the site header. <strong>SVGs strongly encouraged.</strong>' ),
+					'description' => __( 'Set the logo that appears in the site header. <strong>SVGs strongly encouraged.</strong>', 'shiro-admin' ),
 					'settings'    => 'wmf_site_logo',
 					'section'     => $section_id,
 				) 

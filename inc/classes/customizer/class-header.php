@@ -373,6 +373,7 @@ class Header extends Base {
 		$this->customize->add_setting(
 			$control_id,
 			array(
+                // phpcs:ignore WordPress.WP.I18n.NoEmptyStrings
 				'default' => __( '', 'shiro-admin' ),
 			)
 		);
@@ -421,6 +422,7 @@ class Header extends Base {
 		$this->customize->add_setting(
 			$control_id,
 			array(
+                // phpcs:ignore WordPress.WP.I18n.NoEmptyStrings
 				'default' => __( '', 'shiro-admin' ),
 			)
 		);
@@ -469,6 +471,7 @@ class Header extends Base {
 		$this->customize->add_setting(
 			$control_id,
 			array(
+                // phpcs:ignore WordPress.WP.I18n.NoEmptyStrings
 				'default' => __( '', 'shiro-admin' ),
 			)
 		);
@@ -517,6 +520,7 @@ class Header extends Base {
 		$this->customize->add_setting(
 			$control_id,
 			array(
+                // phpcs:ignore WordPress.WP.I18n.NoEmptyStrings
 				'default' => __( '', 'shiro-admin' ),
 			)
 		);
