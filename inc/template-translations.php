@@ -26,8 +26,12 @@ add_action( 'manage_profile_posts_custom_column', array( 'WMF\Translations\Notic
 
 /**
  * Copy post meta to remote site if the option is set in the translation metabox.
+ *
+ * @param  string $keys_to_sync
+ * @param  string $context
+ * @param  string $request
  */
-function wmf_copy_post_meta( $keysToSync, $context, $request ) {
+function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
 
 	$multilingualpress = $request->bodyValue(
 		'multilingualpress',
@@ -41,16 +45,16 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 	switch_to_blog( $remote_site_id );
 
 	// String post meta.
-	$string_post_meta = [
+	$string_post_meta = array(
 		'page_template',
 		'sub_title',
 		'page_intro',
 		'featured_post_sub_title',
 		'landing_page_sidebar_menu_label',
-	];
+	);
 
 	// Array post meta
-	$array_meta_keys = [
+	$array_meta_keys = array(
 		'connect',
 		'contact_links',
 		'featured_on',
@@ -76,10 +80,10 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 		'stats_plain',
 		'stats_profiles',
 		'stories',
-	];
+	);
 
-	foreach ( $multilingualpress as $translationMetabox ) {
-		if ( $translationMetabox['remote-content-copy'] === '1' ) {
+	foreach ( $multilingualpress as $translation_metabox ) {
+		if ( $translation_metabox['remote-content-copy'] === '1' ) {
 			foreach ( $string_post_meta as $meta_key ) {
 				$meta_value = (string) $request->bodyValue(
 					$meta_key,
@@ -113,9 +117,9 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 		}
 	}
 
-	return $keysToSync;
+	return $keys_to_sync;
 }
-add_filter('multilingualpress.sync_post_meta_keys', 'wmf_copy_post_meta', 10, 3 );
+add_filter( 'multilingualpress.sync_post_meta_keys', 'wmf_copy_post_meta', 10, 3 );
 
 /**
  * Conditionally outputs the translation in progress notice on the post editor.
@@ -238,7 +242,7 @@ function wmf_get_random_translation( $key, $args = array() ) {
 
 	switch_to_blog( $target_translation['site_id'] );
 
-	$translation = [];
+	$translation = array();
 
 	switch ( $args['source'] ) {
 		case 'meta':
@@ -255,7 +259,7 @@ function wmf_get_random_translation( $key, $args = array() ) {
 			break;
 	}
 
-    $translation['lang'] = $target_translation['shortname'];
+	$translation['lang'] = $target_translation['shortname'];
 
 	restore_current_blog();
 

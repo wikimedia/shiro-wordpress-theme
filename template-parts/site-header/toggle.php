@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Adds menu toggle button
  *

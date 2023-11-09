@@ -17,15 +17,19 @@ if ( ! function_exists( 'wmf_entry_footer' ) ) :
 			/* translators: used between list items, there is a space after the comma */
 			$categories_list = get_the_category_list( esc_html__( ', ', 'shiro' ) );
 			if ( $categories_list && wmf_categorized_blog() ) {
+                // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'shiro' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'shiro' ) . '</span>', $categories_list );
+                // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			/* translators: used between list items, there is a space after the comma */
 			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'shiro' ) );
 			if ( $tags_list ) {
+                // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'shiro' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'shiro' ) . '</span>', $tags_list );
+                // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 
@@ -103,7 +107,7 @@ add_action( 'save_post', 'wmf_category_transient_flusher' );
  * @param  string $classes Classes to add to icon.
  */
 function wmf_show_icon( $name, $classes = '' ) {
-	$sprite_path = wmf_get_gulp_asset_uri('icons.svg');
+	$sprite_path = wmf_get_gulp_asset_uri( 'icons.svg' );
 	?>
 	<svg class="i icon icon-<?php echo esc_attr( $name ); ?> <?php echo esc_attr( $classes ); ?>">
 		<use xlink:href="<?php echo esc_url( $sprite_path . '#' . $name ); ?>"></use>
@@ -119,7 +123,7 @@ function wmf_show_icon( $name, $classes = '' ) {
  *
  * @return string
  */
-function wmf_get_share_url( $service, $args = [] ) {
+function wmf_get_share_url( $service, $args = array() ) {
 	$default = array(
 		'uri'     => get_permalink(),
 		'message' => '',
@@ -200,6 +204,8 @@ function wmf_is_main_site( $site_id = 0 ) {
 	return (int) get_main_site_id() === (int) $site_id;
 }
 
+add_filter( 'wp_headers', 'wmf_remove_x_hacker_header', 999 );
+
 /**
  * Filter X-hacker output.
  *
@@ -207,8 +213,6 @@ function wmf_is_main_site( $site_id = 0 ) {
  *
  * @return array
  */
-add_filter( 'wp_headers', 'wmf_remove_x_hacker_header', 999 );
-
 function wmf_remove_x_hacker_header( $headers ) {
 	if ( isset( $headers['X-hacker'] ) ) {
 		unset( $headers['X-hacker'] );
@@ -225,24 +229,26 @@ add_filter( 'jetpack_honor_dnt_header_for_stats', '__return_true' );
 /**
  * Filter JetPack devicepx script.
  */
-function remove_devicepx() {
-wp_dequeue_script( 'devicepx' );
+function wmf_remove_devicepx() {
+	wp_dequeue_script( 'devicepx' );
 }
-add_action( 'wp_enqueue_scripts', 'remove_devicepx' );
+add_action( 'wp_enqueue_scripts', 'wmf_remove_devicepx' );
 
 /**
  * Utility function to get the attachment url based on attachment title
+ *
+ * @param string $slug ID created by function.
  */
-function custom_get_attachment_id_by_slug( $slug ) {
-	$args = array(
-		'post_type' => 'attachment',
-		'name' => sanitize_title($slug),
-		'posts_per_page' => 1,
-		'post_status' => 'inherit',
+function wmf_custom_get_attachment_id_by_slug( $slug ) {
+	$args    = array(
+		'post_type'        => 'attachment',
+		'name'             => sanitize_title( $slug ),
+		'posts_per_page'   => 1,
+		'post_status'      => 'inherit',
 		'suppress_filters' => false,
 	);
 	$_header = get_posts( $args );
-	$header = $_header ? array_pop($_header) : null;
-	$id = $header && !empty($slug) ? $header->ID : null;
+	$header  = $_header ? array_pop( $_header ) : null;
+	$id      = $header && ! empty( $slug ) ? $header->ID : null;
 	return $id;
 }

@@ -217,8 +217,14 @@ class Metaboxes {
 		$text = empty( $meta_data ) ? __( 'Image not selected', 'shiro-admin' ) : __( 'Selected image is:', 'shiro-admin' );
 
 		printf(
-			'<p><strong>%1$s</strong>: %2$s</p>%3$s', esc_html( $opt_label ), esc_html( $text ), wp_get_attachment_image(
-				$meta_data, 'thumbnail', false, array(
+			'<p><strong>%1$s</strong>: %2$s</p>%3$s',
+			esc_html( $opt_label ),
+			esc_html( $text ),
+			wp_get_attachment_image(
+				$meta_data,
+				'thumbnail',
+				false,
+				array(
 					'style' => 'max-width: 200px; max-height: 200px; background: #333;',
 				)
 			)
@@ -245,7 +251,7 @@ class Metaboxes {
 			esc_attr_x( 'No content yet.', 'placeholder for empty translation textarea', 'shiro-admin' ),
 			esc_textarea( $meta_data )
 		);
-		printf( '<p><strong>%1$s</strong>:</p>%2$s', esc_html( $opt_label ), $text_area ); // WPCS: xss ok.
+		printf( '<p><strong>%1$s</strong>:</p>%2$s', esc_html( $opt_label ), esc_textarea( $text_area ) ); // WPCS: xss ok.
 	}
 
 	/**
@@ -291,14 +297,17 @@ class Metaboxes {
 			}
 		}
 		printf(
-			'<p><strong>%1$s</strong>: %2$s <strong>%3$s</strong></p>', esc_html( $opt_label ), esc_html(
+			'<p><strong>%1$s</strong>: %2$s <strong>%3$s</strong></p>',
+			esc_html( $opt_label ),
+			esc_html(
 				_n(
 					'Checked option is:',
 					'Checked options are:',
 					count( $checked ),
 					'shiro-admin'
 				)
-			), esc_html( implode( ', ', $checked ) )
+			),
+			esc_html( implode( ', ', $checked ) )
 		);
 	}
 
@@ -324,5 +333,4 @@ class Metaboxes {
 			echo '</div>';
 		}
 	}
-
 }

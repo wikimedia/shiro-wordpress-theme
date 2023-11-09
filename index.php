@@ -35,9 +35,10 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			<?php
 			while ( have_posts() ) :
 				the_post();
-
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo WMF\Editor\Blocks\BlogPost\render_block(
-					[ 'post_id' => $post->ID ]
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					array( 'post_id' => $post->ID )
 				);
 			endwhile;
 			?>

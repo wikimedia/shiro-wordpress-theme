@@ -11,4 +11,7 @@
  * @package shiro
  */
 
+/**
+ * Requires the `page-report-section` page.
+ */
 require_once __DIR__ . '/page-report-section.php';

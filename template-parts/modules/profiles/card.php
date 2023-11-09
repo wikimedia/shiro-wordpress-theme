@@ -17,9 +17,14 @@ $team     = ! empty( $template_data['team'] ) ? $template_data
 ['team'] : '';
 $img_id   = ! empty( $template_data['img_id'] ) ? $template_data
 ['img_id'] : '';
-$image_el = wp_get_attachment_image( $img_id, 'image_4x3_small', null, [
-	'class' => 'profile__image',
-] );
+$image_el = wp_get_attachment_image(
+	$img_id,
+	'image_4x3_small',
+	null,
+	array(
+		'class' => 'profile__image',
+	) 
+);
 // phpcs:enable
 
 ?>

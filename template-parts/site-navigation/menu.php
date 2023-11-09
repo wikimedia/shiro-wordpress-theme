@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Adds primary navigation menu
  *
@@ -17,4 +16,3 @@ if ( has_nav_menu( 'header' ) ) {
 		)
 	);
 }
-?>
