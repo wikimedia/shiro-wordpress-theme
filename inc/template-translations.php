@@ -32,7 +32,6 @@ add_action( 'manage_profile_posts_custom_column', array( 'WMF\Translations\Notic
  * @param  string $request TODO: Describe this parameter.
  */
 function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
-
 	$multilingualpress = $request->bodyValue(
 		'multilingualpress',
 		INPUT_POST,
