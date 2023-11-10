@@ -34,7 +34,6 @@ function wmf_quotes_section_callback( $atts = array(), $content = '' ) {
 			'alt'    => array(),
 			'style'  => array(),
 			'class'  => array(),
-			'style'  => array(),
 		),
 		'em'     => array(),
 		'strong' => array(),

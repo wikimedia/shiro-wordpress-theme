@@ -19,7 +19,7 @@ class Connect extends Base {
 	 * are needed in get_theme_mod() calls in templates. This allows for a
 	 * centralized location for this values and reduces duplication.
 	 *
-	 * @param string $setting
+	 * @param string $setting Variable selected to determine which text to display.
 	 *
 	 * @return string
 	 */
@@ -76,6 +76,7 @@ class Connect extends Base {
 				'description' => count( $selectable_blocks ) > 0
 					? __( 'Select a reusable block to be shown in the "Connect" area.', 'shiro-admin' )
 					: sprintf(
+						/* translators: Error message to page editors. */
 						__(
 							'<strong>There are no viable reusable blocks!</strong> This reusable block must include at least one of the the Connect or the Mailchimp Subscribe blocks. Please <a href="%s">create one</a>.',
 							'shiro-admin' 
