@@ -88,7 +88,8 @@ function render_settings_page() {
 
 	<?php
     // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	if ( isset( $_GET['updated'] ) && sanitize_text_field( wp_unslash( $_GET['updated'] ) ) ) : ?>
+	if ( isset( $_GET['updated'] ) && sanitize_text_field( wp_unslash( $_GET['updated'] ) ) ) : 
+		?>
 		<div id="message" class="updated notice is-dismissible">
 			<p><?php esc_html_e( 'SEO and social media settings were saved.', 'shiro-admin' ); ?></p>
 		</div>
