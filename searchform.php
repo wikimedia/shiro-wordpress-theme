@@ -12,8 +12,9 @@ $wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Sea
 	<label class="search-form__label">
 		<span class="screen-reader-text"><?php echo esc_html_x( 'Search for:', 'label', 'shiro' ); ?></span>
 		<input type="search" class="search-form__field"
+				<?php 
 				// TODO: Add this string to I18n setup.
-				// phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText
+				// phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText ?>
 				placeholder="<?php echo esc_attr_x( $wmf_search_placeholder, 'placeholder', 'shiro' ); ?>"
 				value="<?php echo get_search_query(); ?>" name="s"
 				title="<?php echo esc_attr_x( 'Search for:', 'label', 'shiro' ); ?>" />

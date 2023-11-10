@@ -21,7 +21,7 @@ function wmf_focus_blocks_callback( $atts = array(), $content = '' ) {
 	$atts     = shortcode_atts( $defaults, $atts, 'focus_blocks' );
 	$content  = do_shortcode( $content );
 
-	// exclude p tag to avoid empty ones
+	// Exclude p tag to avoid empty ones.
 	$allowed_tags = array(
 		'span'   => array(
 			'class' => array(),

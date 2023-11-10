@@ -418,11 +418,11 @@ WMF\Breadcrumb_Links\init();
 require get_template_directory() . '/inc/security.php';
 WMF\Security\init();
 
-// Hook into document_title_parts
+// Hook into document_title_parts.
 add_filter( 'document_title_parts', 'wmf_filter_wp_404title' );
 
 /**
- * Modify the document title for the search page
+ * Modify the document title for the search page.
  *
  * @param array $title_parts Document title parts.
  * @return array Filtered array.
@@ -442,10 +442,10 @@ function wmf_filter_wp_searchtitle( $title_parts ) {
 	return $title_parts;
 }
 
-// Hook into document_title_parts
+// Hook into document_title_parts.
 add_filter( 'document_title_parts', 'wmf_filter_wp_searchtitle' );
 
-// Rewrite URL for roles to not require /news/ prefix
+// Rewrite URL for roles to not require /news/ prefix.
 add_rewrite_rule( '^role/(.+?)$', 'index.php?role=$matches[1]', 'top' );
 
 /**
@@ -544,7 +544,7 @@ add_action( 'admin_menu', 'shiro_link_reusable_blocks_url' );
 function shiro_add_slug_body_class( $classes ) {
 	global $post;
 
-	// ignore it for search pages
+	// Ignore it for search pages.
 	if ( is_search() ) {
 		return $classes;
 	}

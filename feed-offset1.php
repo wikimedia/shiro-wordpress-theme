@@ -4,7 +4,7 @@
  * Adds an offset of "1" to display all but most recent
  * Full details at: https://wordimpress.com/anatomy-advanced-wordpress-blog-notification-email
  *
- * @package WordPress
+ * @package shiro
  */
 
 header( 'Content-Type: ' . feed_content_type( 'rss-http' ) . '; charset=' . get_option( 'blog_charset' ), true );
