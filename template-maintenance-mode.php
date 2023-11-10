@@ -43,12 +43,10 @@
 				border-radius: 2px;
 				margin-top: 150px;
 				margin-bottom: 20px;
-
 			}
 			.fade { opacity: 0.75; }
 			.donation h3 {
 				font-family: "Georgia", "Times", serif;
-
 				font-weight: normal;
 				color: #777;
 				font-size: 18px;
