@@ -58,7 +58,7 @@ function wmf_ajax_search() {
 
 	if ( $search_query->have_posts() ) {
 		global $wp_query;
-		$wp_query = $search_query; // override ok.
+		$wp_query = $search_query;
 		set_query_var( 'search_args', $custom_args );
 		set_query_var( 'pagination_base', home_url( '/%_%' ) );
 		ob_start();

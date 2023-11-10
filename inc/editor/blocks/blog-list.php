@@ -68,7 +68,6 @@ function register_block() {
  * @return string HTML markup.
  */
 function render_block( $attributes ): string {
-
 	$args = array(
 		'posts_per_page'   => $attributes['postsToShow'],
 		'post_status'      => 'publish',
