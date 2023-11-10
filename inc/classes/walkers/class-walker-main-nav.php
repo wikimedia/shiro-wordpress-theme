@@ -12,8 +12,12 @@ namespace WMF\Walkers;
  */
 class Walker_Main_Nav extends \Walker_Nav_Menu {
 
-	// Private variable for the current menu item.
-	private $currentItemID;
+	/**
+	 * Private variable for the current menu item.
+	 *
+	 * @var $current_item_id TODO: Document this variable.
+	 */
+	private $current_item_id;
 	
 	/**
 	 * Starts the list before the elements are added.
@@ -22,19 +26,19 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 	 *
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @param int    $depth  Depth of menu item. Used for padding.
-	 * @param array  $args   An array of arguments. @see wp_nav_menu()
+	 * @param array  $args   An array of arguments. @see wp_nav_menu() for more info.
 	 */
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
+		$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // Code indent.
 
 		$classes     = array(
 			'sub-menu',
-			'nav-sub-menu-' . $this->currentItemID,
+			'nav-sub-menu-' . $this->current_item_id,
 		);
 		$class_names = implode( ' ', $classes );
 	
 		// Build HTML for output.
-		$output .= "\n" . $indent . '<ul class="' . esc_attr( $class_names ) . '" data-dropdown-content="nav-sub-menu-' . $this->currentItemID . '">' . "\n";
+		$output .= "\n" . $indent . '<ul class="' . esc_attr( $class_names ) . '" data-dropdown-content="nav-sub-menu-' . $this->current_item_id . '">' . "\n";
 	}
 
 	/**
@@ -45,15 +49,15 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @param object $item   Menu item data object.
 	 * @param int    $depth  Depth of menu item. Used for padding.
-	 * @param array  $args   An array of arguments. @see wp_nav_menu()
+	 * @param array  $args   An array of arguments. @see wp_nav_menu() for more info.
 	 * @param int    $id     Current item ID.
 	 */
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 		global $wp_query;
-		$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
+		$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // Code indent.
 
 		// Set the current item.
-		$this->currentItemID = $item->ID;
+		$this->current_item_id = $item->ID;
 
 		// Passed classes.
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
@@ -61,7 +65,7 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 		// Remove "has-children" class from second level items.
 		$key = array_search( 'menu-item-has-children', $classes, true );
 
-		if ( $depth > 0 && $key !== false ) {
+		if ( $depth > 0 && false !== $key ) {
 			unset( $classes[ $key ] );
 		}
 

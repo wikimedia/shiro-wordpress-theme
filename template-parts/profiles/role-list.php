@@ -22,7 +22,7 @@ foreach ( $post_list as $term_id => $term_data ) {
 	$name        = ( is_wp_error( $term ) || empty( $term->parent ) ) ? '' : $name;
 	$class       = 'role__section wysiwyg';
 
-	// Avoided using short ternaries
+	// Avoided using short ternaries.
 	$executives_title = get_term_meta( $term_id, 'role_executive_title_override', true );
 	if ( ! $executives_title ) {
 		$executives_title = __( 'Department Executive', 'shiro' );

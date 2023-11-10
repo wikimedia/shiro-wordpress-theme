@@ -8,6 +8,8 @@
  * otherwise served by the blog to be translated and associated with the
  * original post in the same way that MultiLingual Press handles associating
  * content between different lnaguage sites.
+ *
+ * @package shiro
  */
 
 /**
@@ -71,7 +73,7 @@ function wmf_get_current_content_language_term(): ?WP_Term {
  */
 function wmf_get_and_maybe_create_current_language_term(): ?WP_Term {
 	$term = wmf_get_current_content_language_term();
-	if ( $term === null ) {
+	if ( null === $term ) {
 		$term = wmf_create_current_language_term();
 	}
 
@@ -121,7 +123,7 @@ function wmf_add_default_content_language( int $post_ID ): void {
 		return;
 	}
 	$main_locale = wmf_get_and_maybe_create_current_language_term();
-	if ( $main_locale === null ) {
+	if ( null === $main_locale ) {
 		/*
 		 * The current language term doesn't exist and can't be created, which
 		 * is not an error we can recover from.
@@ -186,7 +188,7 @@ function wmf_filter_posts_by_content_language( WP_Query $query ): void {
 
 	// Get term of main language.
 	$main_locale = wmf_get_and_maybe_create_current_language_term();
-	if ( $main_locale === null ) {
+	if ( null === $main_locale ) {
 		return;
 	}
 
@@ -251,7 +253,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		}
 
 		$term = wmf_get_and_maybe_create_current_language_term();
-		if ( $term === null ) {
+		if ( null === $term ) {
 			WP_CLI::error( 'Count not find term for current language!' );
 			return;
 		}

@@ -53,7 +53,7 @@ function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
 		'landing_page_sidebar_menu_label',
 	);
 
-	// Array post meta
+	// Array post meta.
 	$array_meta_keys = array(
 		'connect',
 		'contact_links',
@@ -83,7 +83,7 @@ function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
 	);
 
 	foreach ( $multilingualpress as $translation_metabox ) {
-		if ( $translation_metabox['remote-content-copy'] === '1' ) {
+		if ( '1' === $translation_metabox['remote-content-copy'] ) {
 			foreach ( $string_post_meta as $meta_key ) {
 				$meta_value = (string) $request->bodyValue(
 					$meta_key,
@@ -101,7 +101,7 @@ function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
 			update_post_meta( $remote_post_id, 'connected_user', $connected_user_value );
 
 			foreach ( $array_meta_keys as $meta_key ) {
-				// get post meta value from source site
+				// Get post meta value from source site.
 				$meta_value = $request->bodyValue(
 					$meta_key,
 					INPUT_POST,
@@ -109,7 +109,7 @@ function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
 					FILTER_FORCE_ARRAY
 				);
 
-				// switch to remote sites and save post meta
+				// Switch to remote sites and save post meta.
 				update_post_meta( $remote_post_id, $meta_key, $meta_value );
 			}
 

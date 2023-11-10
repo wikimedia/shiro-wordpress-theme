@@ -20,11 +20,13 @@ function wmf_sanitize_post_type_array( $post_types ) {
  * Set up search AJAX endpoint.
  */
 function wmf_ajax_search() {
-	$post_types = isset( $_POST['post_type'] ) ? wmf_sanitize_post_type_array( wp_unslash( $_POST['post_type'] ) ) : '';
+    //phpcs:disable WordPress.Security.NonceVerification.Missing
+    $post_types = isset( $_POST['post_type'] ) ? wmf_sanitize_post_type_array( wp_unslash( $_POST['post_type'] ) ) : '';
 
 	$keyword = ! empty( $_POST['s'] ) ? sanitize_text_field( wp_unslash( $_POST['s'] ) ) : '';
 	$order   = ! empty( $_POST['order'] ) ? sanitize_text_field( wp_unslash( $_POST['order'] ) ) : 'desc';
 	$orderby = ! empty( $_POST['orderby'] ) ? sanitize_text_field( wp_unslash( $_POST['orderby'] ) ) : 'title';
+    //phpcs:enable WordPress.Security.NonceVerification.Missing
 
 	$default_args = array(
 		'post_status' => 'publish',

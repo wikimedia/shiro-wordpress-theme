@@ -212,7 +212,7 @@ function wmf_timeline_callback( $atts = array(), $content = '' ) {
 	$atts     = shortcode_atts( $defaults, $atts, 'timeline' );
 	$content  = do_shortcode( $content );
 	$content  = wmf_custom_filter_shortcode_text( $content );
-	$margin   = $atts['margin'] === '0' ? '' : ' mod-margin-bottom';
+	$margin   = '0' === $atts['margin'] ? '' : ' mod-margin-bottom';
 	$classes  = 'timeline ' . $atts['class'] . $margin;
 
 	wp_enqueue_script( 'timeline', get_template_directory_uri() . '/assets/dist/shortcode-timeline.min.js', array( 'jquery' ), '0.0.1', true );
@@ -296,26 +296,26 @@ function wmf_section_shortcode_callback( $atts = array(), $content = '' ) {
 	$content  = do_shortcode( $content );
 	$content  = wmf_custom_filter_shortcode_text( $content );
 
-	$margin          = $atts['margin'] === '1' ? 'mod-margin-bottom ' : '';
-	$classes         = $atts['bg_color'] === '1' ? 'section mod-padding-vertical bg-ltgray ' . $margin : 'mw-980 section ' . $margin;
-	$atts['class']   = $atts['bg_color'] === '1' ? $atts['class'] . ' mw-980' : $atts['class'];
+	$margin          = '1' === $atts['margin'] ? 'mod-margin-bottom ' : '';
+	$classes         = '1' === $atts['bg_color'] ? 'section mod-padding-vertical bg-ltgray ' . $margin : 'mw-980 section ' . $margin;
+	$atts['class']   = '1' === $atts['bg_color'] ? $atts['class'] . ' mw-980' : $atts['class'];
 	$id              = strtolower( str_replace( ' ', '-', $atts['title'] ) );
 	$image_id        = wmf_custom_get_attachment_id_by_slug( $atts['img'] );
 	$image           = $image_id ? wp_get_attachment_image( $image_id, array( 600, 400 ) ) : null;
-	$atts['columns'] = $image === null && strlen( $atts['title'] ) === 0 ? '1' : $atts['columns'];
+	$atts['columns'] = null === $image && strlen( $atts['title'] ) === 0 ? '1' : $atts['columns'];
 	$confetti_opt    = random_int( 1, 10 );
 
 	ob_start();
 	?>
 
-	<?php if ( $atts['columns'] === '1' ) { ?>
+	<?php if ( '1' === $atts['columns'] ) { ?>
 		<div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $classes ); ?>" data-confetti-option="<?php echo esc_attr( $confetti_opt ); ?>">
 			<div class="<?php echo esc_attr( $atts['class'] ); ?>">
 				<?php echo esc_html( $atts['title'] ) . wp_kses_post( $content ); ?>
 			</div>
 		</div>
 		<?php 
-	} elseif ( $atts['reverse'] === '0' ) {
+	} elseif ( '0' === $atts['reverse'] ) {
 		?>
 			<div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $classes ); ?>">
 				<div class="flex flex-medium flex-space-between <?php echo esc_attr( $atts['class'] ); ?>">
@@ -674,10 +674,10 @@ function wmf_custom_filter_shortcode_text( $text = '' ) {
 	$tags = array( '<p>', '</p>' );
 	$text = str_replace( $tags, "\n", $text );
 
-	// Remove any BR tags
+	// Remove any BR tags.
 	$tags = array( '<br>', '<br/>', '<br />' );
 	$text = str_replace( $tags, '', $text );
 
-	// Add back in the P and BR tags again, remove empty ones
+	// Add back in the P and BR tags again, remove empty ones.
 	return apply_filters( 'the_content', $text );
 }
