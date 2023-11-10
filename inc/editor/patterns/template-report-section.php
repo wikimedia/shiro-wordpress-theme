@@ -1,6 +1,8 @@
 <?php
 /**
  * Block pattern for converting from the "report-section" template
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Patterns\TemplateReportSection;

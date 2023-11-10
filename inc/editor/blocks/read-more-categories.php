@@ -1,6 +1,8 @@
 <?php
 /**
  * Server-side registration for the shiro/read-more-categories block.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Blocks\ReadMoreCategories;
@@ -61,7 +63,7 @@ function render_block( $attributes ) {
 					continue;
 				}
 
-					$is_last = ++$i === count( $terms );
+					$is_last = count( $terms ) === ++$i;
 				?>
 				<a href="<?php echo esc_url( $term_link ); ?>"><?php echo esc_html( $term->name ); ?></a>
 									<?php

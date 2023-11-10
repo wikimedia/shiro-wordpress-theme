@@ -1,6 +1,8 @@
 <?php
 /**
  * Block pattern for populating a page migrated from the 'landing' template
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Patterns\TemplateLanding;

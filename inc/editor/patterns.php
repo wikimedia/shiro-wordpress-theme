@@ -1,6 +1,8 @@
 <?php
 /**
  * Block patterns for content editors to quickly create content.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Patterns;

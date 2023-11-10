@@ -1,6 +1,8 @@
 <?php
 /**
  * Functionality related to finding and loading assets.
+ *
+ * @package shiro
  */
 
 namespace WMF\Assets;

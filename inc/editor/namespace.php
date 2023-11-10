@@ -1,6 +1,8 @@
 <?php
 /**
  * Functionality related to supporting the stepped migration to block editor content.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor;
@@ -48,7 +50,7 @@ function body_class( $body_classes ) {
  */
 function filter_blocks( $allowed_block_types, $block_editor_context ) {
 	$blocks = array(
-		// Custom blocks
+		// Custom blocks.
 		'shiro/banner',
 		'shiro/blog-list',
 		'shiro/card',
@@ -77,10 +79,10 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		'shiro/accordion',
 		'shiro/accordion-item',
 
-		// Plugin blocks
+		// Plugin blocks.
 		'gravityforms/form',
 
-		// Core blocks
+		// Core blocks.
 		'core/paragraph',
 		'core/image',
 		'core/heading',
@@ -440,7 +442,7 @@ function admin_post_has_blocks(): bool {
 function admin_post_is_new(): bool {
 	$post = get_admin_post();
 
-	return ! $post || $post->post_content === '';
+	return ! $post || '' === $post->post_content;
 }
 
 /**

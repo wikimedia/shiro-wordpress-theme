@@ -1,6 +1,8 @@
 <?php
 /**
  * Block pattern for converting from the "report-landing" template
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Patterns\TemplateReportLanding;

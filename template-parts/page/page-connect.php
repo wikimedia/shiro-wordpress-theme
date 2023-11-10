@@ -10,7 +10,7 @@
 $template_args = get_post_meta( get_the_ID(), 'connect', true );
 $template_args = empty( $template_args ) || is_string( $template_args ) ? array() : $template_args;
 
-// Determine if this is using a legacy customization to the connect text
+// Determine if this is using a legacy customization to the connect text.
 $no_custom_connect = empty( array_filter( $template_args ) );
 
 $reusable_block = wmf_get_reusable_block_module( 'connect' );

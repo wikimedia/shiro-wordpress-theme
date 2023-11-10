@@ -1,6 +1,8 @@
 <?php
 /**
  * Block pattern for the "Tweet this" columns.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Patterns\TweetColumns;

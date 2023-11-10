@@ -1,6 +1,8 @@
 <?php
 /**
  * Server-side registration for the shiro/blog-post block.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Blocks\BlogPost;
