@@ -101,7 +101,6 @@
 			button.neutral {
 				border: 1px solid #CCC;
 				background: #FFF;
-				
 			}
 			button.primary {
 				background: #347bff;
@@ -113,7 +112,6 @@
 			}
 			button.primary:hover {
 				color: #fff;
-				
 			}
 			button.linkButton:hover {
 				box-shadow: none;   
