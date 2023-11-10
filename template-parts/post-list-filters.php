@@ -22,7 +22,7 @@ $last_result    = min( $total_results, $wp_query->post_count * $paged );
 $categories       = get_categories();
 $categories_array = array();
 foreach ( $categories as $category ) {
-	$category_display = ( $category->parent == 0 )
+	$category_display = ( 0 == $category->parent )
 		? $category->name
 		: get_category_parents( $category->parent, false, ' > ', false ) . $category->name;
 

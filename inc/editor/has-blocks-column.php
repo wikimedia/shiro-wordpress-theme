@@ -1,6 +1,8 @@
 <?php
 /**
  * Contains all logic for showing which posts & pages have blocks.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\HasBlockColumn;
@@ -40,7 +42,7 @@ function add_column( $columns ) {
  * @param mixed  $post Post of the current row.
  */
 function render_column_content( $column, $post ) {
-	if ( $column === 'has_blocks' ) {
+	if ( 'has_blocks' === $column ) {
 		$has_blocks = has_blocks( $post );
 
 		$output = $has_blocks ? __( 'Yes', 'shiro' ) : __( 'No', 'shiro' );
@@ -56,7 +58,7 @@ function render_column_content( $column, $post ) {
  * @param string $post_type The post type we we are rendering for.
  */
 function add_has_blocks_filter( $post_type ) {
-	if ( $post_type !== 'page' ) {
+	if ( 'page' !== $post_type ) {
 		return;
 	}
 
@@ -127,11 +129,11 @@ function filter_on_has_blocks( $query ) {
 		$current_filter = sanitize_key( $_GET['shiro_has_blocks_filter'] );
 	}
 
-	if ( $current_filter === '' ) {
+	if ( '' === $current_filter ) {
 		return $query;
 	}
 
-	$query->query_vars['has_blocks'] = $current_filter === 'has_blocks' ? 'yes' : 'no';
+	$query->query_vars['has_blocks'] = 'has_blocks' === $current_filter ? 'yes' : 'no';
 
 	/*
 	 * WordPress has special handling for hierarchical post types. It tries to query
@@ -146,8 +148,8 @@ function filter_on_has_blocks( $query ) {
 	if (
 		! empty( $post_type ) &&
 		is_post_type_hierarchical( $post_type ) &&
-		$query->query_vars['orderby'] === 'menu_order title' &&
-		$query->query_vars['posts_per_page'] === -1
+		'menu_order title' === $query->query_vars['orderby'] &&
+		-1 === $query->query_vars['posts_per_page']
 	) {
 		$posts_per_page                              = posts_per_page( $post_type );
 		$query->query_vars['posts_per_page']         = $posts_per_page;

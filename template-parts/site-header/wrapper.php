@@ -13,7 +13,7 @@
 $translations = array_filter(
 	wmf_get_translations(),
 	function ( $translation ) {
-		return $translation['uri'] !== '';
+		return '' !== $translation['uri'];
 	} 
 );
 ?>

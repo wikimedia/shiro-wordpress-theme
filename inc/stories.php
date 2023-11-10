@@ -24,7 +24,7 @@ function init() {
  * @param mixed     $prev_value Optional. If specified, only update existing metadata entries.
  */
 function link_stories_page_stories( $check, $object_id, $meta_key, $meta_value, $prev_value ) {
-	if ( $meta_key !== 'stories' ) {
+	if ( 'stories' !== $meta_key ) {
 		return;
 	}
 

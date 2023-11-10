@@ -1,6 +1,8 @@
 <?php
 /**
  * Register the shiro/inline-languages block.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Blocks\InlineLanguages;
@@ -37,11 +39,11 @@ function register_block() {
 /**
  * Render the attributes.
  *
- * @param mixed $attributes Attributes rendered.
+ * @param string $attributes TODO: Document this parameter.
  */
 function render_block( $attributes ) {
 	$class = 'inline-languages';
-	if ( isset( $attributes['align'] ) && $attributes['align'] === 'full' ) {
+	if ( isset( $attributes['align'] ) && 'full' === $attributes['align'] ) {
 		$class .= ' alignfull';
 	}
 	$output = '<div class="' . $class . '"><ul class="inline-languages__list">';

@@ -15,7 +15,7 @@ $wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 
 $wmf_translations         = array_filter(
 	wmf_get_translations(),
 	function ( $translation ) {
-		return $translation['uri'] !== '';
+		return '' !== $translation['uri'];
 	} 
 );
 

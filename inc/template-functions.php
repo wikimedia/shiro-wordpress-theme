@@ -758,7 +758,7 @@ function wmf_search_reusable_blocks_within_innerblocks( $blocks, $block_name, $p
 	foreach ( $blocks as $block ) {
 		if ( isset( $block['innerBlocks'] ) && ! empty( $block['innerBlocks'] ) ) {
 			wmf_search_reusable_blocks_within_innerblocks( $block['innerBlocks'], $block_name, $post );
-		} elseif ( $block['blockName'] === 'core/block' && ! empty( $block['attrs']['ref'] ) && \has_block(
+		} elseif ( 'core/block' === $block['blockName'] && ! empty( $block['attrs']['ref'] ) && \has_block(
 			$block_name,
 			$block['attrs']['ref'] 
 		) ) {
