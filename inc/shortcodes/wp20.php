@@ -14,13 +14,13 @@
  * @return string Rendered shortcode output.
  */
 function wmf_symbols_grid_callback( $atts = array(), $content = '' ) {
-	$defaults   = array(
+	$defaults    = array(
 		'title' => '',
 		'text'  => '',
 		'id'    => 'symbols-grid',
 	);
-	$atts       = shortcode_atts( $defaults, $atts, 'symbols_grid' );
-	$texts      = preg_split( '/\|/', $atts['text'] );
+	$atts        = shortcode_atts( $defaults, $atts, 'symbols_grid' );
+	$texts       = preg_split( '/\|/', $atts['text'] );
 	$text1_class = count( $texts ) >= 1 ? 'grid-item grid-text grid-text-1' : 'grid-item';
 	$text2_class = count( $texts ) >= 2 ? 'grid-item grid-text grid-text-2' : 'grid-item';
 	$text3_class = count( $texts ) >= 3 ? 'grid-item grid-text grid-text-3' : 'grid-item';

@@ -11,16 +11,16 @@ if ( empty( $template_args['headline'] ) ) {
 	return;
 }
 
-$labels            = $template_args['labels'];
+$labels             = $template_args['labels'];
 $labels_list        = json_decode( $labels );
 $filter_instruction = $template_args['filter-instruction'];
-$data              = $template_args['data'];
+$data               = $template_args['data'];
 $data_length        = count( json_decode( $data ) );
-$maxf1             = $template_args['maxf1'];
-$maxf2             = $template_args['maxf2'];
-$masterunit        = $template_args['masterunit'];
+$maxf1              = $template_args['maxf1'];
+$maxf2              = $template_args['maxf2'];
+$masterunit         = $template_args['masterunit'];
 $icon_media         = ! empty( $template_args['icons'] ) ? $template_args['icons'] : array();
-$icons             = array();
+$icons              = array();
 for ( $i = 0; $i <= count( $icon_media ); $i++ ) {
 	$icon = is_numeric( $icon_media[ $i ]['image'] ?? '' ) ? wp_get_attachment_image_url( $icon_media[ $i ]['image'] ) : '';
 	array_push( $icons, $icon );
