@@ -34,7 +34,6 @@ function wmf_focus_blocks_callback( $atts = array(), $content = '' ) {
 			'alt'    => array(),
 			'style'  => array(),
 			'class'  => array(),
-			'style'  => array(),
 		),
 		'em'     => array(),
 		'strong' => array(),
@@ -95,7 +94,7 @@ function wmf_focus_block_callback( $atts = array(), $content = '' ) {
 	static $index = 0;
 	++$index;
 
-	$image_id  = custom_get_attachment_id_by_slug( $atts['img'] );
+	$image_id  = wmf_custom_get_attachment_id_by_slug( $atts['img'] );
 	$image_url = $image_id ? wp_get_attachment_image_url( $image_id, array( 600, 600 ) ) : null;
 
 	ob_start();

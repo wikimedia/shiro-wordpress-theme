@@ -36,8 +36,6 @@ function register_block() {
 
 /**
  * Render the attributes.
- *
- * @param mixed $attributes Attributes rendered.
  */
 function render_block( $attributes ) {
 	$class = 'inline-languages';

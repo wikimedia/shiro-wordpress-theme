@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-namespace Network_Settings;
+namespace WMF\Network_Settings;
 
 /**
  * Bootstrap network functionality.
@@ -21,8 +21,8 @@ function bootstrap() {
 function add_menu_and_fields() {
 	add_submenu_page(
 		'settings.php',
-		__( 'Search Engine Optimization and Social Media Settings', 'shiro-seo-admin' ),
-		__( 'SEO & Social', 'shiro-seo-admin' ),
+		__( 'Search Engine Optimization and Social Media Settings', 'shiro-admin' ),
+		__( 'SEO & Social', 'shiro-admin' ),
 		'manage_network_options',
 		'seo_settings_page',
 		__NAMESPACE__ . '\\render_settings_page'
@@ -30,7 +30,7 @@ function add_menu_and_fields() {
 
 	add_settings_section(
 		'matomo_settings_section',
-		__( 'Matomo settings', 'shiro-seo-admin' ),
+		__( 'Matomo settings', 'shiro-admin' ),
 		__NAMESPACE__ . '\\matomo_settings_section_content',
 		'seo_settings_page'
 	);
@@ -39,7 +39,7 @@ function add_menu_and_fields() {
 
 	add_settings_field(
 		'matomo_siteid_field',
-		__( 'Enter Matomo Site ID', 'shiro-seo-admin' ),
+		__( 'Enter Matomo Site ID', 'shiro-admin' ),
 		__NAMESPACE__ . '\\matomo_siteid_field_content',
 		'seo_settings_page',
 		'matomo_settings_section'
@@ -47,7 +47,7 @@ function add_menu_and_fields() {
 
 	add_settings_section(
 		'ogmeta_settings_section',
-		__( 'Open Graph protocol settings', 'shiro-seo-admin' ),
+		__( 'Open Graph protocol settings', 'shiro-admin' ),
 		__NAMESPACE__ . '\\ogmeta_settings_section_content',
 		'seo_settings_page'
 	);
@@ -56,7 +56,7 @@ function add_menu_and_fields() {
 
 	add_settings_field(
 		'ogmeta_ogimageurl_field',
-		__( 'Set URL of image for OG:Image', 'shiro-seo-admin' ),
+		__( 'Set URL of image for OG:Image', 'shiro-admin' ),
 		__NAMESPACE__ . '\\ogmeta_ogimageurl_field_content',
 		'seo_settings_page',
 		'ogmeta_settings_section'
@@ -64,7 +64,7 @@ function add_menu_and_fields() {
 
 	add_settings_section(
 		'mastodon_settings_section',
-		__( 'Mastodon settings', 'shiro-seo-admin' ),
+		__( 'Mastodon settings', 'shiro-admin' ),
 		__NAMESPACE__ . '\\mastodon_settings_section_content',
 		'seo_settings_page'
 	);
@@ -73,7 +73,7 @@ function add_menu_and_fields() {
 
 	add_settings_field(
 		'mastodon_handle_verify_field',
-		__( 'Set wikimedia.social handle - without "@" prefix - for Mastodon verification', 'shiro-seo-admin' ),
+		__( 'Set wikimedia.social handle - without "@" prefix - for Mastodon verification', 'shiro-admin' ),
 		__NAMESPACE__ . '\\mastodon_handle_verify_field_content',
 		'seo_settings_page',
 		'mastodon_settings_section'
@@ -86,15 +86,18 @@ function add_menu_and_fields() {
 function render_settings_page() {
 	?>
 
-	<?php if ( isset( $_GET['updated'] ) && sanitize_text_field( wp_unslash( $_GET['updated'] ) ) ) : ?>
+	<?php
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( isset( $_GET['updated'] ) && sanitize_text_field( wp_unslash( $_GET['updated'] ) ) ) : 
+		?>
 		<div id="message" class="updated notice is-dismissible">
-			<p><?php esc_html_e( 'SEO and social media settings were saved.', 'shiro-seo-admin' ); ?></p>
+			<p><?php esc_html_e( 'SEO and social media settings were saved.', 'shiro-admin' ); ?></p>
 		</div>
 	<?php endif; ?>
 
 	<div class="wrap">
 
-		<h1><?php esc_html_e( 'Search Engine Optimization and Social Media Settings', 'shiro-seo-admin' ); ?></h1>
+		<h1><?php esc_html_e( 'Search Engine Optimization and Social Media Settings', 'shiro-admin' ); ?></h1>
 
 		<form method="post" action="edit.php?action=seo_settings_page">
 			<?php
@@ -112,7 +115,7 @@ function render_settings_page() {
  * Matomo settings section content.
  */
 function matomo_settings_section_content() {
-	esc_html_e( 'Use the options below to configure the usage of Matomo', 'shiro-seo-admin' );
+	esc_html_e( 'Use the options below to configure the usage of Matomo', 'shiro-admin' );
 }
 
 /**
@@ -137,7 +140,7 @@ function matomo_siteid_field_content() {
  * Open Graph protocol settings section content.
  */
 function ogmeta_settings_section_content() {
-	esc_html_e( 'Use the options below to configure Open Graph protocol values for the entire network of sites.', 'shiro-seo-admin' );
+	esc_html_e( 'Use the options below to configure Open Graph protocol values for the entire network of sites.', 'shiro-admin' );
 }
 
 /**
@@ -152,7 +155,7 @@ function ogmeta_ogimageurl_field_content() {
 			<input
 				type="text"
 				name="ogmeta_ogimageurl"
-				value="<?php echo esc_html( $ogmeta_ogimageurl ); ?>"
+				value="<?php echo esc_attr( $ogmeta_ogimageurl ); ?>"
 			>
 		</label>
 		<?php
@@ -162,7 +165,7 @@ function ogmeta_ogimageurl_field_content() {
  * Mastodon settings section content.
  */
 function mastodon_settings_section_content() {
-	esc_html_e( 'Use the options below to configure Mastodon values for the entire network of sites.', 'shiro-seo-admin' );
+	esc_html_e( 'Use the options below to configure Mastodon values for the entire network of sites.', 'shiro-admin' );
 }
 
 /**
@@ -189,17 +192,17 @@ function mastodon_handle_verify_field_content() {
 function seo_settings_page_update() {
 	check_admin_referer( 'seo_settings_page-options' );
 
-	$matomo_siteid = sanitize_text_field( $_POST['matomo_siteid'] );
+	$matomo_siteid = ( isset( $_POST['matomo_siteid'] ) ) ? sanitize_text_field( $_POST['matomo_siteid'] ) : '';
 	if ( $matomo_siteid ) {
 		update_site_option( 'matomo_siteid', $matomo_siteid );
 	}
 
-	$ogmeta_ogimageurl = sanitize_text_field( $_POST['ogmeta_ogimageurl'] );
+	$ogmeta_ogimageurl = ( isset( $_POST['ogmeta_ogimageurl'] ) ) ? sanitize_text_field( $_POST['ogmeta_ogimageurl'] ) : '';
 	if ( $ogmeta_ogimageurl ) {
 		update_site_option( 'ogmeta_ogimageurl', $ogmeta_ogimageurl );
 	}
 
-	$mastodon_handle_verify = sanitize_text_field( $_POST['mastodon_handle_verify'] );
+	$mastodon_handle_verify = ( isset( $_POST['mastodon_handle_verify'] ) ) ? sanitize_text_field( $_POST['mastodon_handle_verify'] ) : '';
 	if ( $mastodon_handle_verify ) {
 		update_site_option( 'mastodon_handle_verify', $mastodon_handle_verify );
 	}
