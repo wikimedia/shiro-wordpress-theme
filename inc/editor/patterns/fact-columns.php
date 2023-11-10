@@ -1,6 +1,8 @@
 <?php
 /**
  * Block pattern for the numbered "facts" columns.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Patterns\FactColumns;

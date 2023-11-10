@@ -1,6 +1,8 @@
 <?php
 /**
  * Register the shiro/blog-list block.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Blocks\BlogList;
@@ -109,12 +111,12 @@ function render_block( $attributes ): string {
 		$in_translated = array_reduce(
 			$args['category__in'] ?? array(),
 			function ( $collected, $cat_id ) {
-				if ( $collected === true ) {
+				if ( true === $collected ) {
 					return true;
 				}
 				$term = get_term( $cat_id, 'category' );
 
-				return $term->slug === 'translations';
+				return 'translations' === $term->slug;
 			},
 			false 
 		);

@@ -77,7 +77,7 @@ if ( empty( $sidebar_items ) ) {
 				<?php
 				// Nest page anchor sidebar within nav sidebar.
 				if ( $current_page_id === $report_section['id'] ) {
-					// TODO: remove get_sidebar function and use headings
+					// TODO: Remove get_sidebar function and use headings.
 					get_sidebar( 'list', array( 'nested' => true ) );
 				}
 				?>

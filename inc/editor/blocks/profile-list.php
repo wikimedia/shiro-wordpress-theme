@@ -1,6 +1,8 @@
 <?php
 /**
  * Server-side registration for the shiro/profile block.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Blocks\ProfileList;

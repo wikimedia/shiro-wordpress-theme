@@ -48,7 +48,7 @@ function get_headings_from_post_content( string $content ): array {
 	$xpath = new DOMXPath( $heading_block_doc );
 
 	// Query for h2 and h3 elements that have an id attribute.
-	// $matching_elements = $xpath->query( '//h2[@id] | //h3[@id]' );
+	// TODO: Fix "$matching_elements = $xpath->query( '//h2[@id] | //h3[@id]' );".
 	$matching_elements = $xpath->query( '//h2[@id]' ); // quickfix regarding to ticket #873.
 
 	$headings = array();
@@ -91,7 +91,7 @@ function headings_to_nested_list( array $headings, $max_depth = 'h3' ): array {
 	$nested_headings = array();
 
 	foreach ( $headings as $idx => $heading ) {
-		if ( $idx === 0 || $heading['node'] < 'h3' ) {
+		if ( 0 === $idx || $heading['node'] < 'h3' ) {
 			$nested_headings[] = array_merge( $heading, array( 'children' => array() ) );
 			continue;
 		}
@@ -151,7 +151,7 @@ function render_headings_list( $headings, $render_nested_items = true ): void {
  * @return string Rendered block content.
  */
 function render_toc_block( string $block_content, array $block ): string {
-	if ( $block['blockName'] !== BLOCK_NAME ) {
+	if ( BLOCK_NAME !== $block['blockName'] ) {
 		return $block_content;
 	}
 

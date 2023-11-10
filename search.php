@@ -26,7 +26,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 		$posts_per_page = get_query_var( 'posts_per_page' );
 		$first_result   = ( $posts_per_page * $paged ) - $posts_per_page + 1;
 		$last_result    = min( $total_results, $wp_query->post_count * $paged );
-		if ( $total_results === 1 ) {
+		if ( 1 === $total_results ) {
 			printf( esc_html__( 'Showing 1 of 1 result', 'shiro' ) );
 		} else {
 			printf(
@@ -88,14 +88,14 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 				$current_url = add_query_arg( 's', get_search_query(), home_url( '/' ) );
 
-				// Add the default sorting option for the current post_type
+				// Add the default sorting option for the current post_type.
 				if ( isset( $sorting_options[ $value['sort_by'] ] ) ) {
 					$sort_query  = $sorting_options[ $value['sort_by'] ]['query'];
 					$current_url = add_query_arg( $sort_query, '', $current_url );
 				}
 
 				// Simplest way to get the all types is not adding post_type param filter.
-				if ( $key !== 'all' ) {
+				if ( 'all' !== $key ) {
 					$current_url = add_query_arg( 'post_type[]', $key, $current_url );
 
 					/* translators: post type, i.e., News or Pages */
@@ -116,7 +116,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			// Default sort option.
 			$current_sort = 'relevance';
 
-			// Check the URL for each sorting option's parameters
+			// Check the URL for each sorting option's parameters.
 			foreach ( $sorting_options as $sort_key => $option ) {
 				$query_params = array();
 				parse_str( $option['query'], $query_params );
@@ -174,14 +174,14 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				while ( have_posts() ) {
 					the_post();
 
-					// Render the block for the current post
-					echo WMF\Editor\Blocks\BlogPost\render_block(
+					// Render the block for the current post.
                     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo WMF\Editor\Blocks\BlogPost\render_block(
 						array( 'post_id' => $post->ID )
 					);
 				}
 			} else {
-				// If there are no posts, display a "content-none" template
+				// If there are no posts, display a "content-none" template.
 				get_template_part( 'template-parts/content', 'none' );
 			}
 			?>

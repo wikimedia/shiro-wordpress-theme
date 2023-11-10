@@ -37,7 +37,7 @@ $has_image        = get_the_post_thumbnail_url();
 			<?php } ?>
 		</div>
 
-		<?php if ( $no_of_modules === 4 ) { ?>
+		<?php if ( 4 === $no_of_modules ) { ?>
 			<div class="ungrid-bottom-1">
 				<div class="ungrid-bottom-box ungrid-bottom-box-4">
 					<div class="code <?php echo esc_attr( $ungrid_color ); ?>">04</div>
@@ -46,7 +46,7 @@ $has_image        = get_the_post_thumbnail_url();
 			</div>
 		<?php } ?>
 
-		<?php if ( $no_of_modules === 5 ) { ?>
+		<?php if ( 5 === $no_of_modules ) { ?>
 			<div class="ungrid-bottom-2">
 				<?php for ( $i = 3; $i < 5; $i++ ) { ?>
 					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo esc_attr( $i ); ?>">
@@ -57,7 +57,7 @@ $has_image        = get_the_post_thumbnail_url();
 			</div>
 		<?php } ?>
 
-		<?php if ( $no_of_modules === 6 ) { ?>
+		<?php if ( 6 === $no_of_modules ) { ?>
 			<div class="ungrid-bottom-3">
 				<?php for ( $i = 3; $i < 6; $i++ ) { ?>
 					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo esc_attr( $i ); ?>">

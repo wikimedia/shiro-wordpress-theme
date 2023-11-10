@@ -11,7 +11,7 @@
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<?php wp_head(); // allow for remote-login on mapped domains ?>
+	<?php wp_head(); // Allow for remote-login on mapped domains. ?>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
 		<style>
 			* { Box-sizing: Border-box }

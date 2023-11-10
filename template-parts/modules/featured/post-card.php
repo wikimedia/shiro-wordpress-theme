@@ -31,7 +31,7 @@ Credits::get_instance()->pause();
 	<div class="card-content">
 		<?php the_excerpt(); ?>
 	</div>
-	<?php // TODO: Make this a template arg ?>
+	<?php // TODO: Make this a template arg. ?>
 	<a class="arrow-link" href="<?php the_permalink(); ?>">
 		<?php esc_html_e( 'Read more', 'shiro' ); ?>
 	</a>
