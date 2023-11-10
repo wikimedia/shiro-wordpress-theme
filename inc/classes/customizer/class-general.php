@@ -193,7 +193,7 @@ class General extends Base {
 			}
 		}
 
-		// We're using `+` instead of `array_merge` because array_merge rewrites numeric IDs
+		// We're using `+` instead of `array_merge` because array_merge rewrites numeric IDs.
 		$choices = array( 0 => 'No CTA' ) + $selectable_blocks;
 		$this->customize->add_control(
 			$control_id,

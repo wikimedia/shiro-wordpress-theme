@@ -21,7 +21,7 @@ function wmf_autotweets_callback( $atts = array(), $content = '' ) {
 	$atts     = shortcode_atts( $defaults, $atts, 'autotweets' );
 	$content  = do_shortcode( $content );
 
-	// exclude p tag to avoid empty ones
+	// Exclude p tag to avoid empty ones.
 	$allowed_tags = array(
 		'span'   => array(
 			'class' => array(),
@@ -92,8 +92,8 @@ function wmf_autotweet_callback( $atts = array(), $content = '' ) {
 
 	$share_text = get_theme_mod( 'wmf_tweet_this_copy', __( 'Tweet this', 'shiro-admin' ) );
 	$args       = array(
-		'uri'     => $atts['uri'] . '&hashtags=' . $atts['hashtag'],
-		'message' => $atts['empty'] === '0' ? wp_strip_all_tags( $content ) : '',
+		'uri'             => $atts['uri'] . '&hashtags=' . $atts['hashtag'],
+		'0' === 'message' => $atts['empty'] ? wp_strip_all_tags( $content ) : '',
 	);
 
 	ob_start();

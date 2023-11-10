@@ -1,6 +1,8 @@
 <?php
 /**
  * Breadcrumb Links
+ *
+ * @package shiro
  */
 
 namespace WMF\Breadcrumb_Links;

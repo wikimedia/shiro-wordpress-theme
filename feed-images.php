@@ -3,7 +3,7 @@
  * RSS2 Feed Template for displaying RSS2 Posts feed.
  * Adds media content output
  *
- * @package WordPress
+ * @package shiro
  */
 
 header( 'Content-Type: ' . feed_content_type( 'rss-http' ) . '; charset=' . get_option( 'blog_charset' ), true );
