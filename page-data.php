@@ -7,6 +7,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 get_header();
 while ( have_posts() ) {
 	the_post();
@@ -31,7 +35,7 @@ while ( have_posts() ) {
 				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
 			</div>
 		</div>
-		<?php 
+		<?php
 	}
 	?>
 

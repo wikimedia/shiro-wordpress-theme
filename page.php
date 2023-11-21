@@ -12,6 +12,10 @@
  * @package shiro
  */
 
+ if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 // When everything is build with the block editor, this entire file can be
 // replaced by page-block-editor.php
 if ( has_blocks() ) {
