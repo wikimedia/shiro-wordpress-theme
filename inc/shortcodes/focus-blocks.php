@@ -9,7 +9,7 @@
 /**
  * Define a [focus_blocks] shortcode that renders container with nested [focus_block].
  *
- * @param array $atts Shortcode attributes array.
+ * @param array  $atts Shortcode attributes array.
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
@@ -22,18 +22,51 @@ function wmf_focus_blocks_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 
 	// exclude p tag to avoid empty ones
-	$allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'img' => [ 'src' => [], 'height' => [], 'width' => [], 'alt' => [], 'style' => [], 'class' => [], 'style' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [], 'target' => [] ], 'h3' => [ 'class' => [], 'style' => [] ], 'div' => [ 'class' => [], 'style' => [], 'aria-hidden' => [] ], 'h2' => [ 'class' => [] ] ];
+	$allowed_tags = [
+		'span' => [
+			'class' => [],
+			'style' => [],
+		],
+		'img' => [
+			'src' => [],
+			'height' => [],
+			'width' => [],
+			'alt' => [],
+			'style' => [],
+			'class' => [],
+			'style' => [],
+		],
+		'em' => [],
+		'strong' => [],
+		'a' => [
+			'href' => [],
+			'class' => [],
+			'title' => [],
+			'rel' => [],
+			'target' => [],
+		],
+		'h3' => [
+			'class' => [],
+			'style' => [],
+		],
+		'div' => [
+			'class' => [],
+			'style' => [],
+			'aria-hidden' => [],
+		],
+		'h2' => [ 'class' => [] ],
+	];
 
 	ob_start();
 	?>
 
-	<div class="mw-980 mod-margin-bottom <?php echo esc_attr( $atts['class'] ) ?>">
-		<?php if ( !empty( $atts['title'] ) ) { ?>
-			<h2><?php echo esc_html( $atts['title'] ) ?></h2>
+	<div class="mw-980 mod-margin-bottom <?php echo esc_attr( $atts['class'] ); ?>">
+		<?php if ( ! empty( $atts['title'] ) ) { ?>
+			<h2><?php echo esc_html( $atts['title'] ); ?></h2>
 		<?php } ?>
 		<div class="quotes-section-container">
 			<div class="flex flex-medium flex-wrap flex-space-between">
-				<?php echo wp_kses( $content, $allowed_tags ) ?>
+				<?php echo wp_kses( $content, $allowed_tags ); ?>
 			</div>
 		</div>
 	</div>
@@ -46,7 +79,7 @@ add_shortcode( 'focus_blocks', 'wmf_focus_blocks_callback' );
 /**
  * Define a [focus_block] shortcode that renders focus block.
  *
- * @param array $atts Shortcode attributes array.
+ * @param array  $atts Shortcode attributes array.
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
@@ -68,9 +101,9 @@ function wmf_focus_block_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<a href="<?php echo esc_url( $atts['uri'] ); ?>" class="w-32p mod-margin-bottom_sm focus-block rounded shadow <?php echo esc_attr( $atts['class'] ) ?>" target="_blank">
+	<a href="<?php echo esc_url( $atts['uri'] ); ?>" class="w-32p mod-margin-bottom_sm focus-block rounded shadow <?php echo esc_attr( $atts['class'] ); ?>" target="_blank">
 		<div class="card">
-			<?php if ( isset($image_url) ) : ?>
+			<?php if ( isset( $image_url ) ) : ?>
 			<div class="bg-img-container">
 				<div class="bg-img" style="background-image: url(<?php echo esc_url( $image_url ); ?>);"></div>
 			</div>

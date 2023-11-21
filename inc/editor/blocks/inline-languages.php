@@ -22,15 +22,15 @@ function register_block() {
 				'align' => [
 					'type' => 'string',
 					'default' => 'center',
-				]
-			]
+				],
+			],
 		]
 	);
 }
 
 function render_block( $attributes ) {
 	$class = 'inline-languages';
-	if (isset($attributes['align']) && $attributes['align'] === 'full') {
+	if ( isset( $attributes['align'] ) && $attributes['align'] === 'full' ) {
 		$class .= ' alignfull';
 	}
 	$output = '<div class="' . $class . '"><ul class="inline-languages__list">';

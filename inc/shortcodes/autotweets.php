@@ -9,7 +9,7 @@
 /**
  * Define a [autotweets] shortcode that renders tweets container with nested [autotweet].
  *
- * @param array $atts Shortcode attributes array.
+ * @param array  $atts Shortcode attributes array.
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
@@ -22,18 +22,46 @@ function wmf_autotweets_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 
 	// exclude p tag to avoid empty ones
-	$allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'img' => [ 'src' => [], 'height' => [], 'width' => [], 'alt' => [], 'style' => [], 'class' => [], 'style' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [], 'target' => [] ], 'h3' => [ 'class' => [], 'style' => [] ], 'div' => [ 'class' => [] ] ];
+	$allowed_tags = [
+		'span' => [
+			'class' => [],
+			'style' => [],
+		],
+		'img' => [
+			'src' => [],
+			'height' => [],
+			'width' => [],
+			'alt' => [],
+			'style' => [],
+			'class' => [],
+			'style' => [],
+		],
+		'em' => [],
+		'strong' => [],
+		'a' => [
+			'href' => [],
+			'class' => [],
+			'title' => [],
+			'rel' => [],
+			'target' => [],
+		],
+		'h3' => [
+			'class' => [],
+			'style' => [],
+		],
+		'div' => [ 'class' => [] ],
+	];
 
 	ob_start();
 	?>
 
-	<div class="mw-980 mod-margin-bottom <?php echo esc_attr( $atts['class'] ) ?>">
-		<?php if ( !empty( $atts['title'] ) ) { ?>
-			<h2><?php echo esc_html( $atts['title'] ) ?></h2>
+	<div class="mw-980 mod-margin-bottom <?php echo esc_attr( $atts['class'] ); ?>">
+		<?php if ( ! empty( $atts['title'] ) ) { ?>
+			<h2><?php echo esc_html( $atts['title'] ); ?></h2>
 		<?php } ?>
 		<div class="auto-tweet-container">
 			<div class="flex flex-medium flex-wrap flex-space-between">
-				<?php echo wp_kses( $content, $allowed_tags ) ?>
+				<?php echo wp_kses( $content, $allowed_tags ); ?>
 			</div>
 		</div>
 	</div>
@@ -46,7 +74,7 @@ add_shortcode( 'autotweets', 'wmf_autotweets_callback' );
 /**
  * Define a [autotweet] shortcode that renders 1 tweet that readers can tweet.
  *
- * @param array $atts Shortcode attributes array.
+ * @param array  $atts Shortcode attributes array.
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
@@ -60,12 +88,12 @@ function wmf_autotweet_callback( $atts = [], $content = '' ) {
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'autotweet' );
 	static $index = 0;
-	$auto_tweet_width = 3 === (int)$atts['count'] ? 'w-32p' : 'w-48p';
+	$auto_tweet_width = 3 === (int) $atts['count'] ? 'w-32p' : 'w-48p';
 	$index++;
 
 	$share_text    = get_theme_mod( 'wmf_tweet_this_copy', __( 'Tweet this', 'shiro-admin' ) );
 	$args = array(
-		'uri' => $atts['uri']  . '&hashtags=' . $atts['hashtag'],
+		'uri' => $atts['uri'] . '&hashtags=' . $atts['hashtag'],
 		'message' => $atts['empty'] === '0' ? wp_strip_all_tags( $content ) : '',
 	);
 
@@ -74,7 +102,7 @@ function wmf_autotweet_callback( $atts = [], $content = '' ) {
 
 	<a href="<?php echo esc_url( wmf_get_share_url( 'twitter', $args ) ); ?>" class="auto-tweet-inner rounded shadow <?php echo esc_attr( $auto_tweet_width ); ?> mar-bottom_lg color-blue" target="_blank">
 		<div class="auto-tweet-text-wrap">
-			<h3 class="auto-tweet mar-bottom p"><?php echo wp_kses_post( $content ) ?></h3>
+			<h3 class="auto-tweet mar-bottom p"><?php echo wp_kses_post( $content ); ?></h3>
 		</div>
 		<div class="social-share social-share-home">
 			<span class="inline-social-list">
