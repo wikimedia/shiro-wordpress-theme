@@ -7,6 +7,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 get_header();
 while ( have_posts() ) {
 	the_post();
@@ -48,7 +52,7 @@ while ( have_posts() ) {
 				'<span>%s</span><span class="separator">&bull;</span><time datetime="%s">%s</time>',
 				wmf_byline(),
 				get_the_date( 'c' ),
-				get_the_date() 
+				get_the_date()
 			),
 		)
 	);
@@ -81,8 +85,8 @@ while ( have_posts() ) {
 					array(
 						'enableTwitter'  => true,
 						'enableFacebook' => true,
-					) 
-				) 
+					)
+				)
 			);
 		}
 

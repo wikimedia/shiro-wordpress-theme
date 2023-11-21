@@ -12,6 +12,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 get_header();
 
 $post_id          = get_option( 'page_for_posts' );
