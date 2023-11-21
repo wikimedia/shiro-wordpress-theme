@@ -335,7 +335,7 @@ require get_template_directory() . '/inc/taxonomies.php';
  * Additional Network Settings.
  */
 require get_template_directory() . '/inc/network-settings.php';
-Network_Settings\bootstrap();
+WMF\Network_Settings\bootstrap();
 
 /**
  * Add Custom Post Types.

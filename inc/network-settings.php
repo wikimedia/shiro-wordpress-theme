@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-namespace Network_Settings;
+namespace WMF\Network_Settings;
 
 /**
  * Bootstrap network functionality.
