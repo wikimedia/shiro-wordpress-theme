@@ -10,6 +10,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 get_header();
 while ( have_posts() ) :
 	the_post();

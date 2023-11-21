@@ -7,6 +7,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 /**
  * This loads the blocks template if the front page is using blocks.
  * This is necessary as a conditional so that the "old" home page can exist

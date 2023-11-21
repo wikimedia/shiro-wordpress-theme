@@ -10,6 +10,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 /*
  * If the current post is protected by a password and
  * the visitor has not yet entered the password we will

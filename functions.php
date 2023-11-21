@@ -7,6 +7,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
