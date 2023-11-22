@@ -376,7 +376,7 @@ require get_template_directory() . '/inc/shortcodes/focus-blocks.php';
  * Stories page template customizations.
  */
 require_once get_template_directory() . '/inc/stories.php';
-Stories_Customisations\init();
+WMF\Stories_Customisations\init();
 
 /**
  * Post List Filters customizations.

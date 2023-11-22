@@ -7,6 +7,9 @@
  * @package shiro
  */
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
+// TODO: Consider namespacing more of these template functions.
+
 if ( ! function_exists( 'wmf_entry_footer' ) ) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
@@ -18,14 +21,14 @@ if ( ! function_exists( 'wmf_entry_footer' ) ) :
 			$categories_list = get_the_category_list( esc_html__( ', ', 'shiro' ) );
 			if ( $categories_list && wmf_categorized_blog() ) {
 				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'shiro' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'shiro' ) . '</span>', $categories_list );
 			}
 
 			/* translators: used between list items, there is a space after the comma */
 			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'shiro' ) );
 			if ( $tags_list ) {
 				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'shiro' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'shiro' ) . '</span>', $tags_list );
 			}
 		}
 
@@ -207,8 +210,6 @@ function wmf_is_main_site( $site_id = 0 ) {
  *
  * @return array
  */
-add_filter( 'wp_headers', 'wmf_remove_x_hacker_header', 999 );
-
 function wmf_remove_x_hacker_header( $headers ) {
 	if ( isset( $headers['X-hacker'] ) ) {
 		unset( $headers['X-hacker'] );
@@ -216,6 +217,7 @@ function wmf_remove_x_hacker_header( $headers ) {
 
 	return $headers;
 }
+add_filter( 'wp_headers', 'wmf_remove_x_hacker_header', 999 );
 
 /**
  * Honor do not track requests for stats.
@@ -232,6 +234,8 @@ add_action( 'wp_enqueue_scripts', 'remove_devicepx' );
 
 /**
  * Utility function to get the attachment url based on attachment title
+ *
+ * @param string $slug Attachment slug.
  */
 function custom_get_attachment_id_by_slug( $slug ) {
 	$args = array(

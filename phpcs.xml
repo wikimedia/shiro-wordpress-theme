@@ -6,6 +6,7 @@
 	<file>.</file>
 	<exclude-pattern>tests/</exclude-pattern>
 	<exclude-pattern>vendor/</exclude-pattern>
+	<exclude-pattern>node_modules/</exclude-pattern>
 	<exclude-pattern>feed-images.php</exclude-pattern>
 	<exclude-pattern>feed-offset1.php</exclude-pattern>
 	<exclude-pattern>inc/classes/walkers/class-walker-main-nav.php</exclude-pattern>
@@ -43,6 +44,8 @@
 		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned"/>
 		<exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>
 		<exclude name="Generic.Formatting.MultipleStatementAlignment.IncorrectWarning"/>
+		<!-- Short ternaries are absolutely fine. -->
+		<exclude name="WordPress.PHP.DisallowShortTernary.Found"/>
 		<!-- Talk like yoda, you should not. -->
 		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
 		<!-- Permit single-line PHP statements. -->

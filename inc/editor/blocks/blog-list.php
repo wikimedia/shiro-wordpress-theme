@@ -111,6 +111,7 @@ function render_block( $attributes ) : string {
 		}, false );
 
 		if ( ! $in_translated ) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 			$args['tax_query'] = [
 				[
 					'taxonomy' => 'content-language',
