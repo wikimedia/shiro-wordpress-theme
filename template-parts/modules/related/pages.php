@@ -24,9 +24,9 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_related_pages_pre_hea
 		<?php if ( ! empty( $preheading ) ) : ?>
 			<p class="double-heading__secondary is-style-h5">
 				<?php echo esc_html( $preheading ); ?>
-                <?php if ( ! empty( $rand_translation_title['content'] ?? '' ) ) : ?>
-                    — <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ?? '' ); ?>"><?php echo esc_html( $rand_translation_title['content'] ?? '' ); ?></span>
-                <?php endif; ?>
+				<?php if ( ! empty( $rand_translation_title['content'] ?? '' ) ) : ?>
+					— <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ?? '' ); ?>"><?php echo esc_html( $rand_translation_title['content'] ?? '' ); ?></span>
+				<?php endif; ?>
 			</p>
 		<?php endif; ?>
 

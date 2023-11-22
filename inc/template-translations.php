@@ -28,7 +28,6 @@ add_action( 'manage_profile_posts_custom_column', array( 'WMF\Translations\Notic
  * Copy post meta to remote site if the option is set in the translation metabox.
  */
 function wmf_copy_post_meta( $keysToSync, $context, $request ) {
-
 	$multilingualpress = $request->bodyValue(
 		'multilingualpress',
 		INPUT_POST,
@@ -115,7 +114,7 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 
 	return $keysToSync;
 }
-add_filter('multilingualpress.sync_post_meta_keys', 'wmf_copy_post_meta', 10, 3 );
+add_filter( 'multilingualpress.sync_post_meta_keys', 'wmf_copy_post_meta', 10, 3 );
 
 /**
  * Conditionally outputs the translation in progress notice on the post editor.
@@ -255,7 +254,7 @@ function wmf_get_random_translation( $key, $args = array() ) {
 			break;
 	}
 
-    $translation['lang'] = $target_translation['shortname'];
+	$translation['lang'] = $target_translation['shortname'];
 
 	restore_current_blog();
 

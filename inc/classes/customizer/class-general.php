@@ -159,7 +159,7 @@ class General extends Base {
 		);
 
 		$control_id = 'wmf_support_reusable_block';
-		$this->customize->add_setting($control_id);
+		$this->customize->add_setting( $control_id );
 		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_posts_get_posts
 		$resuable_blocks = get_posts([
 			'post_type' => 'wp_block',
@@ -168,9 +168,9 @@ class General extends Base {
 		// phpcs:enable
 
 		$selectable_blocks = [];
-		foreach ($resuable_blocks as $block) {
+		foreach ( $resuable_blocks as $block ) {
 			if ( has_block( 'shiro/spotlight', $block->ID ) ) {
-				$selectable_blocks[$block->ID] = $block->post_title;
+				$selectable_blocks[ $block->ID ] = $block->post_title;
 			}
 		}
 
@@ -189,7 +189,7 @@ class General extends Base {
 		);
 
 		// Search Page.
-        $section_id = 'wmf_search_page';
+		$section_id = 'wmf_search_page';
 		$this->customize->add_section(
 			$section_id, array(
 				'title'    => __( 'Search Page', 'shiro-admin' ),
@@ -198,7 +198,7 @@ class General extends Base {
 			)
 		);
 
-        $control_id = 'wmf_search_results_copy';
+		$control_id = 'wmf_search_results_copy';
 		$this->customize->add_setting(
 			$control_id, array(
 				'default' => __( /** translators: Current search term */ 'Search results for %s', 'shiro-admin' ),
@@ -212,7 +212,7 @@ class General extends Base {
 			)
 		);
 
-        $control_id = 'wmf_no_results_title';
+		$control_id = 'wmf_no_results_title';
 		$this->customize->add_setting(
 			$control_id, array(
 				'default' => __( 'Nothing Found', 'shiro-admin' ),
@@ -328,7 +328,7 @@ class General extends Base {
 			)
 		);
 
-        $control_id = 'wmf_search_toggle';
+		$control_id = 'wmf_search_toggle';
 		$this->customize->add_setting(
 			$control_id, array(
 				'default' => __( 'Toggle search', 'shiro-admin' ),
@@ -437,7 +437,7 @@ class General extends Base {
 			)
 		);
 
-        $control_id = 'wmf_blackout_modal_enabled';
+		$control_id = 'wmf_blackout_modal_enabled';
 		$this->customize->add_setting(
 			$control_id, array(
 				'default' => false,
@@ -576,8 +576,8 @@ class General extends Base {
 
 		$control_id = 'wikipedia_article_views';
 		$this->customize->add_setting( $control_id, array(
-				'default' => __('views', 'shiro-admin'),
-			) );
+			'default' => __( 'views', 'shiro-admin' ),
+		) );
 		$this->customize->add_control(
 			$control_id, array(
 				'label'       => __( 'Wikipedia article views', 'shiro-admin' ),
@@ -652,7 +652,6 @@ class General extends Base {
 				'type'        => 'text',
 			)
 		);
-
 	}
 
 }
