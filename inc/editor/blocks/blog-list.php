@@ -66,7 +66,6 @@ function register_block() {
  * @return string HTML markup.
  */
 function render_block( $attributes ) : string {
-
 	$args = [
 		'posts_per_page'   => $attributes['postsToShow'],
 		'post_status'      => 'publish',
@@ -117,7 +116,7 @@ function render_block( $attributes ) : string {
 					'taxonomy' => 'content-language',
 					'field' => 'term_id',
 					'terms' => [ wmf_get_current_content_language_term()->term_id ],
-				]
+				],
 			];
 		}
 	}

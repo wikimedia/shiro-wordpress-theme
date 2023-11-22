@@ -337,7 +337,7 @@ class Flow {
 		$this->maybe_register_translation_status_terms();
 		$this->set_translate_term( $post_id );
 
-        return $this;
+		return $this;
 	}
 
 	/**

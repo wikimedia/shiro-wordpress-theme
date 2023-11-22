@@ -119,10 +119,9 @@ function matomo_settings_section_content() {
  * Matomo Site ID field content.
  */
 function matomo_siteid_field_content() {
-
 	$matomo_siteid = get_site_option( 'matomo_siteid' );
 
-		?>
+	?>
 		<label>
 			<input
 				type="number"
@@ -144,10 +143,9 @@ function ogmeta_settings_section_content() {
  * OG:Image field content.
  */
 function ogmeta_ogimageurl_field_content() {
-
 	$ogmeta_ogimageurl = get_site_option( 'ogmeta_ogimageurl' );
 
-		?>
+	?>
 		<label>
 			<input
 				type="text"
@@ -169,10 +167,9 @@ function mastodon_settings_section_content() {
  * Mastodon wikimedia.social handle verification field content.
  */
 function mastodon_handle_verify_field_content() {
-
 	$mastodon_handle_verify = get_site_option( 'mastodon_handle_verify' );
 
-		?>
+	?>
 		<label>
 			<input
 				type="text"

@@ -28,7 +28,7 @@ if ( empty( $sidebar_items ) ) {
 	data-visible="false"
 >
 	<h2 class="toc__title screen-reader-text">
-		<?php esc_html_e( 'Table of Contents', 'shiro' ) ?>
+		<?php esc_html_e( 'Table of Contents', 'shiro' ); ?>
 	</h2>
 	<button
 		aria-expanded="false"
@@ -36,7 +36,7 @@ if ( empty( $sidebar_items ) ) {
 		hidden
 	>
 		<span class="btn-label-a11y">
-			<?php esc_html_e( 'Navigate within this section.', 'shiro' ) ?>
+			<?php esc_html_e( 'Navigate within this section.', 'shiro' ); ?>
 		</span>
 		<span class="btn-label-active-item">
 			<?php
@@ -58,7 +58,6 @@ if ( empty( $sidebar_items ) ) {
 
 			// If report section is active then check for heading blocks at the page, they will be nested toc items.
 			if ( $report_section['active'] ) {
-
 				$blocks = parse_blocks( $post->post_content );
 
 				foreach ( $blocks as $block ) {
@@ -67,7 +66,6 @@ if ( empty( $sidebar_items ) ) {
 						 
 						break;
 					}
-
 				}
 			}
 
@@ -79,8 +77,8 @@ if ( empty( $sidebar_items ) ) {
 				<?php
 				// Nest page anchor sidebar within nav sidebar.
 				if ( $current_page_id === $report_section['id'] ) {
-					//TODO: remove get_sidebar function and use headings
-					get_sidebar( 'list', [ 'nested'=> true ] );
+					// TODO: remove get_sidebar function and use headings
+					get_sidebar( 'list', [ 'nested' => true ] );
 				}
 				?>
 			</li>

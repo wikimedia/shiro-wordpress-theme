@@ -12,6 +12,7 @@ use function WMF\Editor\is_using_block_editor;
 
 /**
  * Name of the meta field.
+ *
  * @var string
  */
 const FIELD_NAME = 'page_intro';
@@ -26,7 +27,6 @@ add_action( 'init', __NAMESPACE__ . '\\register_fieldmanager_fields' );
  * Register meta fields for use in the REST API.
  */
 function register_meta_fields() {
-
 	$meta_args = [
 		'type'         => 'string',
 		'description'  => __( 'Intro field, displayed before post content in single views', 'shiro-admin' ),

@@ -19,7 +19,7 @@ function bootstrap() {
 function render_block( $block_attributes, $content ) {
 	$action            = get_theme_mod( 'wmf_subscribe_action', Connect::defaults( 'wmf_subscribe_action' ) );
 	$additional_fields = get_theme_mod( 'wmf_subscribe_additional_fields',
-		Connect::defaults( 'wmf_subscribe_additional_fields' ) );
+	Connect::defaults( 'wmf_subscribe_additional_fields' ) );
 	$additional_fields = kses_input_fields( $additional_fields );
 
 	/*
@@ -36,12 +36,12 @@ function render_block( $block_attributes, $content ) {
 	$form_start = '<form action="' . esc_url( $action ) . '" method="POST" class="mailchimp-subscribe__form">';
 	$form_end   = '</form>';
 	$input_field = '<input' .
-	               ' class="mailchimp-subscribe__input-field"' .
-	               ' id="wmf-subscribe-input-email"' .
-	               ' name="EMAIL"' .
-	               ' placeholder="' . esc_attr( $input_placeholder ) . '"' .
-	               ' required=""' .
-	               ' type="email" />';
+				   ' class="mailchimp-subscribe__input-field"' .
+				   ' id="wmf-subscribe-input-email"' .
+				   ' name="EMAIL"' .
+				   ' placeholder="' . esc_attr( $input_placeholder ) . '"' .
+				   ' required=""' .
+				   ' type="email" />';
 
 	$content = str_replace( '<!-- input_field -->', $input_field, $content );
 
@@ -54,7 +54,7 @@ function render_block( $block_attributes, $content ) {
 function register() {
 	register_block_type( 'shiro/mailchimp-subscribe', array(
 		'apiVersion' => 2,
-		'render_callback' => __NAMESPACE__ . '\\render_block'
+		'render_callback' => __NAMESPACE__ . '\\render_block',
 	) );
 }
 
