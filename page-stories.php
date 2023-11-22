@@ -7,8 +7,10 @@
  * normal Report Section page's "list" data, replacing that data with stories.
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
- *
- * @package shiro
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
 
 require_once __DIR__ . '/page-report-section.php';

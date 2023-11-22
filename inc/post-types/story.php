@@ -77,10 +77,15 @@ function wmf_story_updated_messages( $messages ) {
 		2  => __( 'Custom field updated.', 'shiro-admin' ),
 		3  => __( 'Custom field deleted.', 'shiro-admin' ),
 		4  => __( 'Story updated.', 'shiro-admin' ),
-		/*
-		 translators: %s: date and time of the revision */
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		5  => isset( $_GET['revision'] ) ? sprintf( __( 'Story restored to revision from %s', 'shiro-admin' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+		5  => isset( $_GET['revision'] )
+			? sprintf(
+				/* translators: %s: date and time of the revision */
+				__( 'Story restored to revision from %s', 'shiro-admin' ),
+				// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				wp_post_revision_title( (int) $_GET['revision'], false )
+			)
+			: false,
 		/* translators: %s: post permalink */
 		6  => sprintf( __( 'Story published. <a href="%s">View Story</a>', 'shiro-admin' ), esc_url( $permalink ) ),
 		7  => __( 'Story saved.', 'shiro-admin' ),

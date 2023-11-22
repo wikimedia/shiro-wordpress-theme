@@ -21,14 +21,14 @@ if ( ! function_exists( 'wmf_entry_footer' ) ) :
 			$categories_list = get_the_category_list( esc_html__( ', ', 'shiro' ) );
 			if ( $categories_list && wmf_categorized_blog() ) {
 				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'shiro' ) . '</span>', $categories_list );
+				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'shiro' ) . '</span>', $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			/* translators: used between list items, there is a space after the comma */
 			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'shiro' ) );
 			if ( $tags_list ) {
 				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'shiro' ) . '</span>', $tags_list );
+				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'shiro' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 

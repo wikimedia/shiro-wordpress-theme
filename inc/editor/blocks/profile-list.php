@@ -48,6 +48,7 @@ function render_block( $attributes ) {
 		return '';
 	}
 
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	$max_profiles = apply_filters( 'max_profile_list_profiles', 3 );
 	// Only randomize if there are more profiles than the max.
 	if ( $max_profiles < count( $profile_ids ) ) {

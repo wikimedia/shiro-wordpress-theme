@@ -7,6 +7,11 @@ namespace WMF\Editor\Patterns\TemplateReportSection;
 
 const NAME = 'shiro/template-report-section';
 
+/**
+ * Return block pattern string.
+ *
+ * @return string
+ */
 function pattern(): string {
 	return <<<CONTENT
 <!-- wp:shiro/toc-columns -->

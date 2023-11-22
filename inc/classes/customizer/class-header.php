@@ -332,7 +332,7 @@ class Header extends Base {
 		$control_id = 'wmf_vision_lang2';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( '', 'shiro-admin' ),
+				'default' => '',
 			)
 		);
 		$this->customize->add_control(
@@ -374,7 +374,7 @@ class Header extends Base {
 		$control_id = 'wmf_vision_lang3';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( '', 'shiro-admin' ),
+				'default' => '',
 			)
 		);
 		$this->customize->add_control(
@@ -416,7 +416,7 @@ class Header extends Base {
 		$control_id = 'wmf_vision_lang4';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( '', 'shiro-admin' ),
+				'default' => '',
 			)
 		);
 		$this->customize->add_control(
@@ -458,7 +458,7 @@ class Header extends Base {
 		$control_id = 'wmf_vision_lang5';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( '', 'shiro-admin' ),
+				'default' => '',
 			)
 		);
 		$this->customize->add_control(

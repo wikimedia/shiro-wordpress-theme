@@ -38,10 +38,9 @@ $image_el = wp_get_attachment_image( $img_id, 'image_4x3_small', null, [
 			<span class="profile__title">
 				<?php
 				if ( $role && $team ) {
-					esc_html_e(
-					/* translators: 1. role 2. team */
-						sprintf( '%1$s, %2$s', $role, $team ),
-						'shiro'
+					echo esc_html(
+						/* translators: 1. role 2. team */
+						sprintf( __( '%1$s, %2$s', 'shiro' ), $role, $team )
 					);
 				} else {
 					echo esc_html( $role );

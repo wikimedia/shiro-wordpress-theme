@@ -12,7 +12,7 @@
  * @package shiro
  */
 
- if ( ! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // File should never be accessed directly.
 }
 
