@@ -198,9 +198,9 @@ class Flow {
 	/**
 	 * Define which post meta to sync to remote site.
 	 *
-	 * @param $keys
-	 * @param $context
-	 * @param $post
+	 * @param string[] $keys    Keys array.
+	 * @param unknown  $context Context.
+	 * @param unknown  $post    Current post.
 	 *
 	 * @return string[]
 	 */

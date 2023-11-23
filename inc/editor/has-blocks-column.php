@@ -24,6 +24,9 @@ function bootstrap() {
 
 /**
  * Add has blocks column to the possible columns.
+ *
+ * @param array $columns Posts list columns.
+ * @return array
  */
 function add_column( $columns ) {
 	$columns['has_blocks'] = __( 'Has blocks', 'shiro' );
@@ -90,6 +93,9 @@ function add_has_blocks_filter( $post_type ) {
  * Copied from WordPress core
  *
  * @see https://github.com/WordPress/wordpress-develop/blob/5.7.1/src/wp-admin/includes/post.php#L1160-L1189
+ *
+ * @param string $post_type Name of post type.
+ * @return int Posts per page.
  */
 function posts_per_page( $post_type ) {
 	$per_page       = "edit_{$post_type}_per_page";
@@ -98,14 +104,12 @@ function posts_per_page( $post_type ) {
 		$posts_per_page = 20;
 	}
 
-	/**
-	 * Documented in wp-admin/includes/post.php
-	 */
+	// Documented in wp-admin/includes/post.php.
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	$posts_per_page = apply_filters( "edit_{$post_type}_per_page", $posts_per_page );
 
-	/**
-	 * Documented in wp-admin/includes/post.php
-	 */
+	// Documented in wp-admin/includes/post.php.
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	$posts_per_page = apply_filters( 'edit_posts_per_page', $posts_per_page, $post_type );
 
 	return $posts_per_page;
@@ -169,10 +173,12 @@ function where_has_blocks( string $where, WP_Query $query ) {
 	if ( $query->get( 'has_blocks', false ) ) {
 		global $wpdb;
 		if ( $query->get( 'has_blocks', 'no' ) === 'yes' ) {
+			// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.LikeWildcardsInQueryWithPlaceholder -- We control the value of the placeholder.
 			$where .= $wpdb->prepare( "AND `post_content` LIKE '%%%s%%%'",
 				'<!-- wp:'
 			);
 		} else {
+			// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.LikeWildcardsInQueryWithPlaceholder -- We control the value of the placeholder.
 			$where .= $wpdb->prepare( "AND `post_content` NOT LIKE '%%%s%%%'",
 				'<!-- wp:'
 			);
@@ -185,7 +191,7 @@ function where_has_blocks( string $where, WP_Query $query ) {
 /**
  * Add has_blocks query vary, so `where_has_blocks()` can look for it.
  *
- * @param array $vars
+ * @param array $vars Query variables array.
  *
  * @return array
  */

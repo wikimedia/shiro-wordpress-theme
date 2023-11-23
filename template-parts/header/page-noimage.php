@@ -8,9 +8,10 @@
 $page_header_data = $args;
 
 ?>
+		<div class="header-main">
+			<?php get_template_part( 'template-parts/header/header', 'content', $page_header_data ); ?>
+		</div>
+	</div>
+</header>
 
-<div class="header-main">
-<?php get_template_part( 'template-parts/header/header', 'content', $page_header_data ); ?>
-</div>
-
-<?php get_template_part( 'template-parts/header/closing-tags' ); ?>
+<main id="content">

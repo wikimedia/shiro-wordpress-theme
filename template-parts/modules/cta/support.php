@@ -12,9 +12,8 @@ if ( $reusable_block ) {
 		<div class="block-area">
 			<div class="wysiwyg mw-980">
 				<?php
-				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 				echo apply_filters( 'the_content', $reusable_block->post_content );
-				// phpcs:enable
 				?>
 			</div>
 		</div>
