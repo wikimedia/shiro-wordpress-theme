@@ -40,6 +40,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			while ( have_posts() ) :
 				the_post();
 
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaping is done within wrapped template part.
 				echo WMF\Editor\Blocks\BlogPost\render_block(
 					[ 'post_id' => $post->ID ]
 				);

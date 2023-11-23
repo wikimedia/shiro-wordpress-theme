@@ -6,13 +6,16 @@
 namespace WMF\Editor\Patterns;
 
 /**
- * @var string The slug for the block pattern category to group these into.
+ * The slug for the block pattern category to group these into.
+ *
+ * @var string
  */
 const MAIN_CATEGORY_NAME = 'wikimedia';
 
 /**
- * @var string The slug for patterns that are meant for migration to populate
- *             based on a template.
+ * The slug for patterns that are meant for migration to populate based on a template.
+ *
+ * @var string
  */
 const TEMPLATE_CATEGORY_NAME = 'wikimedia-templates';
 
@@ -23,6 +26,11 @@ function bootstrap() {
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\register_pattern' );
 }
 
+/**
+ * Register our patterns and their pattern categories.
+ *
+ * @return void
+ */
 function register_pattern() {
 	register_block_pattern_category( MAIN_CATEGORY_NAME, [
 		'label' => __( 'Wikimedia', 'shiro-admin' ),

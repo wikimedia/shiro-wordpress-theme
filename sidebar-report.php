@@ -62,6 +62,7 @@ if ( empty( $sidebar_items ) ) {
 
 				foreach ( $blocks as $block ) {
 					if ( 'core/heading' === $block['blockName'] ) {
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 						echo apply_filters( 'the_content', render_block( $block ) );
 						 
 						break;

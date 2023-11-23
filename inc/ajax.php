@@ -20,11 +20,12 @@ function wmf_sanitize_post_type_array( $post_types ) {
  * Set up search AJAX endpoint.
  */
 function wmf_ajax_search() {
-	$post_types = isset( $_POST['post_type'] ) ? wmf_sanitize_post_type_array( wp_unslash( $_POST['post_type'] ) ) : ''; // WPCS: CSRF ok, input var ok, sanitization ok.
+	// phpcs:disable WordPress.Security.NonceVerification.Missing
+	$post_types = isset( $_POST['post_type'] ) ? wmf_sanitize_post_type_array( wp_unslash( $_POST['post_type'] ) ) : '';
 
-	$keyword = ! empty( $_POST['s'] ) ? sanitize_text_field( wp_unslash( $_POST['s'] ) ) : ''; // WPCS: CSRF ok, input var ok.
-	$order   = ! empty( $_POST['order'] ) ? sanitize_text_field( wp_unslash( $_POST['order'] ) ) : 'desc'; // WPCS: CSRF ok, input var ok.
-	$orderby = ! empty( $_POST['orderby'] ) ? sanitize_text_field( wp_unslash( $_POST['orderby'] ) ) : 'title'; // WPCS: CSRF ok, input var ok.
+	$keyword = ! empty( $_POST['s'] ) ? sanitize_text_field( wp_unslash( $_POST['s'] ) ) : '';
+	$order   = ! empty( $_POST['order'] ) ? sanitize_text_field( wp_unslash( $_POST['order'] ) ) : 'desc';
+	$orderby = ! empty( $_POST['orderby'] ) ? sanitize_text_field( wp_unslash( $_POST['orderby'] ) ) : 'title';
 
 	$default_args = array(
 		'post_status' => 'publish',
@@ -56,7 +57,7 @@ function wmf_ajax_search() {
 
 	if ( $search_query->have_posts() ) {
 		global $wp_query;
-		$wp_query = $search_query; // override ok.
+		$wp_query = $search_query;
 		set_query_var( 'search_args', $custom_args );
 		set_query_var( 'pagination_base', home_url( '/%_%' ) );
 		ob_start();
@@ -70,6 +71,7 @@ function wmf_ajax_search() {
 			'pagination' => wp_kses_post( $pagination ),
 		), 200
 	);
+	// phpcs:enable
 }
 add_action( 'wp_ajax_nopriv_ajax_search', 'wmf_ajax_search' );
 add_action( 'wp_ajax_ajax_search', 'wmf_ajax_search' );

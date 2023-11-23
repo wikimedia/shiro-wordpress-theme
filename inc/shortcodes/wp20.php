@@ -6,6 +6,9 @@
  * @package shiro
  */
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
+// TODO: Evaluate whether this page is still in use, and prefix or remove global functions as necessary.
+
 /**
  * Define a [symbol_grid] shortcode that renders a grid of images and text.
  *
@@ -21,9 +24,9 @@ function wmf_symbols_grid_callback( $atts = [], $content = '' ) {
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'symbols_grid' );
 	$texts = preg_split( '/\|/', $atts['text'] );
-	$text1Class = sizeof( $texts ) >= 1 ? 'grid-item grid-text grid-text-1' : 'grid-item';
-	$text2Class = sizeof( $texts ) >= 2 ? 'grid-item grid-text grid-text-2' : 'grid-item';
-	$text3Class = sizeof( $texts ) >= 3 ? 'grid-item grid-text grid-text-3' : 'grid-item';
+	$text_1_class = is_countable( $texts ) && count( $texts ) >= 1 ? 'grid-item grid-text grid-text-1' : 'grid-item';
+	$text_2_class = is_countable( $texts ) && count( $texts ) >= 2 ? 'grid-item grid-text grid-text-2' : 'grid-item';
+	$text_3_class = is_countable( $texts ) && count( $texts ) >= 3 ? 'grid-item grid-text grid-text-3' : 'grid-item';
 
 	wp_enqueue_script( 'symbols_grid', get_template_directory_uri() . '/assets/dist/shortcode-symbol-grid.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'symbols_grid', 'var gridAtts = ' . wp_json_encode( $atts ) . ';' );
@@ -35,9 +38,9 @@ function wmf_symbols_grid_callback( $atts = [], $content = '' ) {
 		<?php for ( $i = 0; $i < 24; $i++ ) { ?>
 			<div class="grid-item grid-symbol"><div></div><div></div></div>
 		<?php } ?>
-		<div class="<?php echo esc_attr( $text1Class ); ?>"><div class="wp20"><h2><?php echo esc_html( $texts[0] ); ?></h2></div></div>
-		<div class="<?php echo esc_attr( $text2Class ); ?>"><div class="wp20"><h2><?php echo esc_html( $texts[1] ); ?></h2></div></div>
-		<div class="<?php echo esc_attr( $text3Class ); ?>"><div class="wp20"><h2><?php echo esc_html( $texts[2] ); ?></h2></div></div>
+		<div class="<?php echo esc_attr( $text_1_class ); ?>"><div class="wp20"><h2><?php echo esc_html( $texts[0] ); ?></h2></div></div>
+		<div class="<?php echo esc_attr( $text_2_class ); ?>"><div class="wp20"><h2><?php echo esc_html( $texts[1] ); ?></h2></div></div>
+		<div class="<?php echo esc_attr( $text_3_class ); ?>"><div class="wp20"><h2><?php echo esc_html( $texts[2] ); ?></h2></div></div>
 	</div>
 
 	<?php
@@ -153,7 +156,8 @@ function wmf_recent_edits_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 
-	for ( $i = 0; $i < count( $atts['lang_list'] ); $i++ ) {
+	$lang_count = count( $atts['lang_list'] );
+	for ( $i = 0; $i < $lang_count; $i++ ) {
 		array_push( $atts['lang_list_long'], get_theme_mod( $atts['lang_list'][ $i ] . '_wikipedia', strtoupper( $atts['lang_list'][ $i ] ) . ' Wikipedia' ) );
 	}
 
@@ -655,9 +659,11 @@ function egg_shortcode_callback( $atts = [], $content = '' ) {
 }
 add_shortcode( 'egg', 'egg_shortcode_callback' );
 
-/*
- * Utility function to deal with the way
- * WordPress auto formats text in a shortcode.
+/**
+ * Utility function to deal with the way WordPress auto-formats text in a shortcode.
+ *
+ * @param string $text Shortcode text.
+ * @return string
  */
 function custom_filter_shortcode_text( $text = '' ) {
 	// Replace all the poorly formatted P tags that WP adds by default.
@@ -668,6 +674,7 @@ function custom_filter_shortcode_text( $text = '' ) {
 	$tags = array( '<br>', '<br/>', '<br />' );
 	$text = str_replace( $tags, '', $text );
 
-	// Add back in the P and BR tags again, remove empty ones
+	// Add back in the P and BR tags again, remove empty ones.
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	return apply_filters( 'the_content', $text );
 }

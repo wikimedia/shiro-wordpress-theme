@@ -19,7 +19,7 @@ class Footer extends Base {
 	 * are needed in get_theme_mod() calls in templates. This allows for a
 	 * centralized location for this values and reduces duplication.
 	 *
-	 * @param string $setting
+	 * @param string $setting Setting key.
 	 *
 	 * @return string
 	 */

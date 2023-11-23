@@ -81,7 +81,8 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 						<?php if ( ! empty( $template_args['subscribe_additional_fields'] ) ) : ?>
 						<div class="mailchimp-subscribe__description">
 							<?php
-								echo \WMF\Editor\Blocks\MailChimpSubscribe\kses_input_fields( $template_args['subscribe_additional_fields'] );
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Non-standard but valid kses function.
+							echo \WMF\Editor\Blocks\MailChimpSubscribe\kses_input_fields( $template_args['subscribe_additional_fields'] );
 							?>
 						</div>
 						<?php endif; ?>
