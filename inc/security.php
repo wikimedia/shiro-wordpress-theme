@@ -56,9 +56,9 @@ function set_content_security_policy() {
 
 	$csp_allowed = array(
 		"default-src 'self'",
-		"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://piwik.wikimedia.org https://stats.wp.com https://pixel.wp.com https://www.youtube.com https://player.vimeo.com http://localhost https://localhost http://localhost:8080",
-		"frame-src 'self' https://www.youtube.com https://player.vimeo.com",
-		"style-src 'self' 'unsafe-inline'",
+		"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://piwik.wikimedia.org https://stats.wp.com https://pixel.wp.com https://www.youtube.com https://player.vimeo.com http://localhost https://localhost http://localhost:8080 https://s0.wp.com",
+		"frame-src 'self' https://www.youtube.com https://player.vimeo.com https://widgets.wp.com",
+		"style-src 'self' 'unsafe-inline' https://s0.wp.com",
 		"img-src 'self' data: https://piwik.wikimedia.org https://wikipedia.org https://upload.wikimedia.org https://pixel.wp.com/g.gif",
 		"font-src 'self' data:",
 		"connect-src 'self' wss://public-api.wordpress.com https://*.wikipedia.org",
