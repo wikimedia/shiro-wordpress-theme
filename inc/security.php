@@ -60,7 +60,7 @@ function set_content_security_policy() {
 		"frame-src 'self' https://www.youtube.com https://player.vimeo.com https://widgets.wp.com",
 		"style-src 'self' 'unsafe-inline' https://s0.wp.com",
 		"img-src 'self' data: https://piwik.wikimedia.org https://wikipedia.org https://upload.wikimedia.org https://pixel.wp.com/g.gif",
-		"font-src 'self' data:",
+		"font-src 'self' data: https://s0.wp.com",
 		"connect-src 'self' wss://public-api.wordpress.com https://*.wikipedia.org",
 	);
 
