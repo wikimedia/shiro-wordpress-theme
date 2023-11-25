@@ -61,7 +61,7 @@ function set_content_security_policy() {
 		"style-src 'self' 'unsafe-inline' https://s0.wp.com",
 		"img-src 'self' data: https://piwik.wikimedia.org https://wikipedia.org https://upload.wikimedia.org https://pixel.wp.com/g.gif",
 		"font-src 'self' data: https://s0.wp.com",
-		"connect-src 'self' wss://public-api.wordpress.com https://*.wikipedia.org",
+		"connect-src 'self' wss://public-api.wordpress.com https://*.wikipedia.org wss://public-api.wordpress.com/pinghub/wpcom/me/newest-note-data",
 	);
 
 	header( 'Content-Security-Policy: ' . implode( '; ', $csp_allowed ) );
