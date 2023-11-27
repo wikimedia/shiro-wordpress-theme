@@ -56,12 +56,12 @@ function set_content_security_policy() {
 
 	$csp_allowed = array(
 		"default-src 'self'",
-		"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://piwik.wikimedia.org https://stats.wp.com https://pixel.wp.com https://www.youtube.com https://player.vimeo.com http://localhost https://localhost http://localhost:8080",
-		"frame-src 'self' https://www.youtube.com https://player.vimeo.com",
-		"style-src 'self' 'unsafe-inline'",
-		"img-src 'self' data: https://piwik.wikimedia.org https://wikipedia.org https://upload.wikimedia.org",
-		"font-src 'self' data:",
-		"connect-src 'self' wss://public-api.wordpress.com https://*.wikipedia.org",
+		"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.wikimedia.org https://*.wp.com https://www.youtube.com https://player.vimeo.com http://localhost https://localhost http://localhost:8080",
+		"frame-src 'self' https://www.youtube.com https://player.vimeo.com https://*.wp.com",
+		"style-src 'self' 'unsafe-inline' https://*.wikimedia.org https://*.wp.com",
+		"img-src 'self' data: https://*.wikimedia.org https://*.wp.com",
+		"font-src 'self' data: https://*.wp.com",
+		"connect-src 'self' https://*.wikipedia.org wss://*.wordpress.com",
 	);
 
 	header( 'Content-Security-Policy: ' . implode( '; ', $csp_allowed ) );
