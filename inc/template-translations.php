@@ -7,7 +7,9 @@
 
 // Actions and filters.
 use Inpsyde\MultilingualPress\Framework\Api\TranslationSearchArgs;
+use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\Framework\WordpressContext;
+use Inpsyde\MultilingualPress\TranslationUi\Post\RelationshipContext;
 use function Inpsyde\MultilingualPress\resolve;
 
 add_filter( 'fm_element_markup_end', array( 'WMF\Translations\Metaboxes', 'fm_element_markup_end' ), 10, 2 );
@@ -26,9 +28,13 @@ add_action( 'manage_profile_posts_custom_column', array( 'WMF\Translations\Notic
 
 /**
  * Copy post meta to remote site if the option is set in the translation metabox.
+ *
+ * @param array               $keys_to_sync Array of keys.
+ * @param RelationshipContext $context      Relationship context.
+ * @param Request             $request      HTTP Request object.
+ * @return array
  */
-function wmf_copy_post_meta( $keysToSync, $context, $request ) {
-
+function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
 	$multilingualpress = $request->bodyValue(
 		'multilingualpress',
 		INPUT_POST,
@@ -78,8 +84,8 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 		'stories',
 	];
 
-	foreach ( $multilingualpress as $translationMetabox ) {
-		if ( $translationMetabox['remote-content-copy'] === '1' ) {
+	foreach ( $multilingualpress as $translation_metabox ) {
+		if ( $translation_metabox['remote-content-copy'] === '1' ) {
 			foreach ( $string_post_meta as $meta_key ) {
 				$meta_value = (string) $request->bodyValue(
 					$meta_key,
@@ -113,9 +119,9 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 		}
 	}
 
-	return $keysToSync;
+	return $keys_to_sync;
 }
-add_filter('multilingualpress.sync_post_meta_keys', 'wmf_copy_post_meta', 10, 3 );
+add_filter( 'multilingualpress.sync_post_meta_keys', 'wmf_copy_post_meta', 10, 3 );
 
 /**
  * Conditionally outputs the translation in progress notice on the post editor.
@@ -255,7 +261,7 @@ function wmf_get_random_translation( $key, $args = array() ) {
 			break;
 	}
 
-    $translation['lang'] = $target_translation['shortname'];
+	$translation['lang'] = $target_translation['shortname'];
 
 	restore_current_blog();
 

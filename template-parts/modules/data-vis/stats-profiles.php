@@ -12,21 +12,38 @@ if ( empty( $template_args['headline'] ) ) {
 }
 
 $labels = $template_args['labels'];
-$labelsList = json_decode($labels);
-$filterInstruction = $template_args['filter-instruction'];
+$labels_list = json_decode( $labels );
+$filter_instruction = $template_args['filter-instruction'];
 $data = $template_args['data'];
-$dataLength = count(json_decode($data));
+$data_length = count( json_decode( $data ) );
 $maxf1 = $template_args['maxf1'];
 $maxf2 = $template_args['maxf2'];
 $masterunit = $template_args['masterunit'];
-$iconMedia = ! empty( $template_args['icons'] ) ? $template_args['icons'] : [];
+$icon_media = ! empty( $template_args['icons'] ) ? $template_args['icons'] : [];
 $icons = [];
-for ($i = 0; $i <= count($iconMedia); $i++) {
-	$icon = is_numeric( $iconMedia[$i]['image'] ?? '' ) ? wp_get_attachment_image_url( $iconMedia[$i]['image'] ) : '';
-    array_push($icons, $icon);
+$media_count = count( $icon_media );
+for ( $i = 0; $i <= $media_count; $i++ ) {
+	$icon = is_numeric( $icon_media[ $i ]['image'] ?? '' ) ? wp_get_attachment_image_url( $icon_media[ $i ]['image'] ) : '';
+	array_push( $icons, $icon );
 }
 
-$allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ], 'p' => [], 'br' => [], 'sup' => [] ];
+$allowed_tags = [
+	'span' => [
+		'class' => [],
+		'style' => [],
+	],
+	'em' => [],
+	'strong' => [],
+	'a' => [
+		'href' => [],
+		'class' => [],
+		'title' => [],
+		'rel' => [],
+	],
+	'p' => [],
+	'br' => [],
+	'sup' => [],
+];
 
 ?>
 
@@ -44,7 +61,7 @@ $allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'stron
 		</div>
 
 		<div class="w-50p graph-visualization">
-			<div id="profilechart1" class="d3-dataprofiles" data-chart-raw="<?php echo esc_attr($data)?>" data-chart-labels="<?php echo esc_attr($labels) ?>" data-chart-icons="<?php echo esc_attr(wp_json_encode($icons))?>" data-chart-masterunit="<?php echo esc_attr($masterunit)?>" data-max-feature-1="<?php echo esc_attr($maxf1)?>" data-max-feature-2="<?php echo esc_attr($maxf2)?>" data-chart-except="true" data-slice-start="0" data-slice-end="1">
+			<div id="profilechart1" class="d3-dataprofiles" data-chart-raw="<?php echo esc_attr( $data ); ?>" data-chart-labels="<?php echo esc_attr( $labels ); ?>" data-chart-icons="<?php echo esc_attr( wp_json_encode( $icons ) ); ?>" data-chart-masterunit="<?php echo esc_attr( $masterunit ); ?>" data-max-feature-1="<?php echo esc_attr( $maxf1 ); ?>" data-max-feature-2="<?php echo esc_attr( $maxf2 ); ?>" data-chart-except="true" data-slice-start="0" data-slice-end="1">
 			</div>
 		</div>
 
@@ -60,22 +77,22 @@ $allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'stron
 			<ul>
 				<li>
 					<input type="checkbox" id="feature1" name="feature1" checked>
-					<label for="feature1"><?php echo esc_html( $labelsList[1] ); ?></label>
+					<label for="feature1"><?php echo esc_html( $labels_list[1] ); ?></label>
 				</li>
 				<li>
 					<input type="checkbox" id="feature2" name="feature2" checked>
-					<label for="feature2"><?php echo esc_html( $labelsList[2] ); ?></label>
+					<label for="feature2"><?php echo esc_html( $labels_list[2] ); ?></label>
 				</li>
 				<li>
 					<input type="checkbox" id="feature3" name="feature3" checked>
-					<label for="feature3"><?php echo esc_html( $labelsList[3] ); ?></label>
+					<label for="feature3"><?php echo esc_html( $labels_list[3] ); ?></label>
 				</li>
 			</ul>
-			<p display="inline-block"><?php echo esc_html( $filterInstruction ); ?></p>
+			<p display="inline-block"><?php echo esc_html( $filter_instruction ); ?></p>
 		</div>
 
 		<div class="w-100p graph-visualization">
-			<div id="profilechart2" class="d3-dataprofiles" data-chart-raw="<?php echo esc_attr($data)?>" data-chart-labels="<?php echo esc_attr($labels) ?>" data-chart-icons="<?php echo esc_attr(wp_json_encode($icons))?>" data-chart-masterunit='<?php echo esc_attr($masterunit)?>' data-max-feature-1="<?php echo esc_attr($maxf1)?>" data-max-feature-2="<?php echo esc_attr($maxf2)?>" data-chart-except="false" data-slice-start="1" data-slice-end="<?php echo esc_attr( $dataLength ); ?>">
+			<div id="profilechart2" class="d3-dataprofiles" data-chart-raw="<?php echo esc_attr( $data ); ?>" data-chart-labels="<?php echo esc_attr( $labels ); ?>" data-chart-icons="<?php echo esc_attr( wp_json_encode( $icons ) ); ?>" data-chart-masterunit='<?php echo esc_attr( $masterunit ); ?>' data-max-feature-1="<?php echo esc_attr( $maxf1 ); ?>" data-max-feature-2="<?php echo esc_attr( $maxf2 ); ?>" data-chart-except="false" data-slice-start="1" data-slice-end="<?php echo esc_attr( $data_length ); ?>">
 			</div>
 		</div>
 	</div>

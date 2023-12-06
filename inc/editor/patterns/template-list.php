@@ -7,6 +7,11 @@ namespace WMF\Editor\Patterns\TemplateList;
 
 const NAME = 'shiro/template-list';
 
+/**
+ * Return block pattern string.
+ *
+ * @return string
+ */
 function pattern(): string {
 	$support_module        = wmf_get_reusable_block_module_insert( 'support' );
 	$communications_module = wmf_get_reusable_block_module_insert( 'connect' );

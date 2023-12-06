@@ -151,4 +151,4 @@ if ( isset( $_GET['post_list_filters_nonce'] ) && wp_verify_nonce( sanitize_text
 
 	</form>
 
-</div>
+</section>

@@ -20,8 +20,8 @@ while ( have_posts() ) :
 	$roles           = get_the_terms( get_the_ID(), 'role' );
 	$default_heading = get_theme_mod( 'wmf_related_profiles_heading', __( 'Other members of ', 'shiro-admin' ) );
 	$team_name       = '';
-	$parent_name     = $roles[0]->name;
-	$parent_link     = get_term_link( $roles[0] );
+	$parent_name    = $roles[0]->name;
+	$parent_link    = get_term_link( $roles[0] );
 	$connected_user = get_post_meta( get_the_ID(), 'connected_user', true );
 
 	if ( ! empty( $roles ) && ! is_wp_error( $roles ) ) {
@@ -87,10 +87,16 @@ while ( have_posts() ) :
 								$img = get_template_directory_uri() . '/assets/src/svg/individual/wikimedia-blue.svg';
 							}
 							?>
-						<div class="bold profile-contacts"><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
-							<img src="<?php echo esc_url( $img ); ?>" alt="">
-							<?php echo esc_html( $link['title'] ); ?>
-						</a></div>
+						<div class="bold profile-contacts">
+							<?php if ( isset( $link['link'] ) ) : ?>
+							<a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
+							<?php endif; ?>
+								<img src="<?php echo esc_url( $img ); ?>" alt="">
+								<?php echo esc_html( $link['title'] ); ?>
+							<?php if ( isset( $link['link'] ) ) : ?>
+							</a>
+							<?php endif; ?>
+						</div>
 					</div>
 						<?php endforeach; ?>
 				<?php endif; ?>

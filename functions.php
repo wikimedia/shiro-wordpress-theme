@@ -7,6 +7,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -331,7 +335,7 @@ require get_template_directory() . '/inc/taxonomies.php';
  * Additional Network Settings.
  */
 require get_template_directory() . '/inc/network-settings.php';
-Network_Settings\bootstrap();
+WMF\Network_Settings\bootstrap();
 
 /**
  * Add Custom Post Types.
@@ -372,7 +376,7 @@ require get_template_directory() . '/inc/shortcodes/focus-blocks.php';
  * Stories page template customizations.
  */
 require_once get_template_directory() . '/inc/stories.php';
-Stories_Customisations\init();
+WMF\Stories_Customisations\init();
 
 /**
  * Post List Filters customizations.

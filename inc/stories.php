@@ -1,5 +1,9 @@
 <?php
-namespace Stories_Customisations;
+/**
+ * Handle metadata relating to Stories feature.
+ */
+
+namespace WMF\Stories_Customisations;
 
 /**
  * Kick it off.
@@ -15,7 +19,7 @@ function init() {
  * @param int       $object_id  ID of the object metadata is for.
  * @param string    $meta_key   Metadata key.
  * @param mixed     $meta_value Metadata value. Must be serializable if non-scalar.
- * @param mixed     $prev_value Optional. If specified, only update existing metadata entries
+ * @param mixed     $prev_value Optional. If specified, only update existing metadata entries.
  */
 function link_stories_page_stories( $check, $object_id, $meta_key, $meta_value, $prev_value ) {
 	if ( $meta_key !== 'stories' ) {
@@ -27,6 +31,6 @@ function link_stories_page_stories( $check, $object_id, $meta_key, $meta_value, 
 	}
 
 	foreach ( $meta_value['stories_list'] as $story_id ) {
-		update_post_meta( $story_id,'_story_parent_page', $object_id );
+		update_post_meta( $story_id, '_story_parent_page', $object_id );
 	}
 }

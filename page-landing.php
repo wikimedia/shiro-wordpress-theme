@@ -7,6 +7,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 get_header();
 while ( have_posts() ) {
 	the_post();
@@ -28,13 +32,13 @@ while ( have_posts() ) {
 	}
 	?>
 
-    <?php if ( ! has_post_thumbnail() ) : ?>
-        <div class="mw-980">
-            <div class="page-intro wysiwyg">
-                <?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
-            </div>
-        </div>
-    <?php endif; ?>
+	<?php if ( ! has_post_thumbnail() ) : ?>
+		<div class="mw-980">
+			<div class="page-intro wysiwyg">
+				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+			</div>
+		</div>
+	<?php endif; ?>
 
 	<?php
 	$modules = array(

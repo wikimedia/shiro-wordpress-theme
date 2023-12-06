@@ -46,9 +46,9 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 				<?php echo esc_html( $template_args['pre_heading'] ); ?>
 				<?php if ( ! empty( $rand_translation_title['lang'] ?? '' ) ) : ?>
 				— <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ?? '' ); ?>"><?php echo esc_html( $rand_translation_title['content'] ?? '' ); ?></span>
-                <?php endif; ?>
+				<?php endif; ?>
 			</p>
-        <?php endif; ?>
+		<?php endif; ?>
 		<?php if ( ! empty( $template_args['heading'] ) ) : ?>
 			<h2 class="double-heading__primary is-style-h3">
 				<?php echo esc_html( $template_args['heading'] ); ?>
@@ -81,7 +81,8 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 						<?php if ( ! empty( $template_args['subscribe_additional_fields'] ) ) : ?>
 						<div class="mailchimp-subscribe__description">
 							<?php
-								echo \WMF\Editor\Blocks\MailChimpSubscribe\kses_input_fields( $template_args['subscribe_additional_fields'] );
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Non-standard but valid kses function.
+							echo \WMF\Editor\Blocks\MailChimpSubscribe\kses_input_fields( $template_args['subscribe_additional_fields'] );
 							?>
 						</div>
 						<?php endif; ?>

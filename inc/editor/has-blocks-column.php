@@ -24,6 +24,9 @@ function bootstrap() {
 
 /**
  * Add has blocks column to the possible columns.
+ *
+ * @param array $columns Posts list columns.
+ * @return array
  */
 function add_column( $columns ) {
 	$columns['has_blocks'] = __( 'Has blocks', 'shiro' );
@@ -35,7 +38,7 @@ function add_column( $columns ) {
  * Render content of the has_blocks column.
  *
  * @param string $column Name of the column.
- * @param mixed $post Post of the current row.
+ * @param mixed  $post Post of the current row.
  */
 function render_column_content( $column, $post ) {
 	if ( $column === 'has_blocks' ) {
@@ -59,8 +62,8 @@ function add_has_blocks_filter( $post_type ) {
 	}
 
 	$current_filter = '';
-	if ( isset($_GET['shiro_has_blocks_filter']) && check_admin_referer( HAS_BLOCKS_NONCE_ACTION, HAS_BLOCKS_NONCE_FIELD ) ) {
-		$current_filter = sanitize_key ( $_GET['shiro_has_blocks_filter'] );
+	if ( isset( $_GET['shiro_has_blocks_filter'] ) && check_admin_referer( HAS_BLOCKS_NONCE_ACTION, HAS_BLOCKS_NONCE_FIELD ) ) {
+		$current_filter = sanitize_key( $_GET['shiro_has_blocks_filter'] );
 	}
 
 	?>
@@ -68,7 +71,7 @@ function add_has_blocks_filter( $post_type ) {
 			<span class="screen-reader-text">
 				<?php esc_html_e( 'Filter by whether the page has blocks', 'shiro' ); ?>
 			</span>
-			<?php wp_nonce_field( HAS_BLOCKS_NONCE_ACTION, HAS_BLOCKS_NONCE_FIELD ) ?>
+			<?php wp_nonce_field( HAS_BLOCKS_NONCE_ACTION, HAS_BLOCKS_NONCE_FIELD ); ?>
 			<select id="shiro_has_blocks_filter" name="shiro_has_blocks_filter">
 				<option value=""<?php selected( '', $current_filter ); ?>>
 					<?php esc_html_e( 'All', 'shiro' ); ?>
@@ -90,6 +93,9 @@ function add_has_blocks_filter( $post_type ) {
  * Copied from WordPress core
  *
  * @see https://github.com/WordPress/wordpress-develop/blob/5.7.1/src/wp-admin/includes/post.php#L1160-L1189
+ *
+ * @param string $post_type Name of post type.
+ * @return int Posts per page.
  */
 function posts_per_page( $post_type ) {
 	$per_page       = "edit_{$post_type}_per_page";
@@ -98,14 +104,12 @@ function posts_per_page( $post_type ) {
 		$posts_per_page = 20;
 	}
 
-	/**
-	 * Documented in wp-admin/includes/post.php
-	 */
+	// Documented in wp-admin/includes/post.php.
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	$posts_per_page = apply_filters( "edit_{$post_type}_per_page", $posts_per_page );
 
-	/**
-	 * Documented in wp-admin/includes/post.php
-	 */
+	// Documented in wp-admin/includes/post.php.
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	$posts_per_page = apply_filters( 'edit_posts_per_page', $posts_per_page, $post_type );
 
 	return $posts_per_page;
@@ -119,7 +123,7 @@ function posts_per_page( $post_type ) {
  */
 function filter_on_has_blocks( $query ) {
 	$current_filter = '';
-	if ( isset($_GET['shiro_has_blocks_filter']) && check_admin_referer( HAS_BLOCKS_NONCE_ACTION, HAS_BLOCKS_NONCE_FIELD ) ) {
+	if ( isset( $_GET['shiro_has_blocks_filter'] ) && check_admin_referer( HAS_BLOCKS_NONCE_ACTION, HAS_BLOCKS_NONCE_FIELD ) ) {
 		$current_filter = sanitize_key( $_GET['shiro_has_blocks_filter'] );
 	}
 
@@ -166,13 +170,15 @@ function filter_on_has_blocks( $query ) {
  * @return string The altered WHERE SQL clause.
  */
 function where_has_blocks( string $where, WP_Query $query ) {
-	if ( $query->get('has_blocks', false ) ) {
+	if ( $query->get( 'has_blocks', false ) ) {
 		global $wpdb;
-		if ( $query->get('has_blocks', 'no' ) === 'yes' ) {
+		if ( $query->get( 'has_blocks', 'no' ) === 'yes' ) {
+			// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.LikeWildcardsInQueryWithPlaceholder -- We control the value of the placeholder.
 			$where .= $wpdb->prepare( "AND `post_content` LIKE '%%%s%%%'",
 				'<!-- wp:'
 			);
 		} else {
+			// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.LikeWildcardsInQueryWithPlaceholder -- We control the value of the placeholder.
 			$where .= $wpdb->prepare( "AND `post_content` NOT LIKE '%%%s%%%'",
 				'<!-- wp:'
 			);
@@ -185,7 +191,7 @@ function where_has_blocks( string $where, WP_Query $query ) {
 /**
  * Add has_blocks query vary, so `where_has_blocks()` can look for it.
  *
- * @param array $vars
+ * @param array $vars Query variables array.
  *
  * @return array
  */

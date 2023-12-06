@@ -12,13 +12,13 @@
  * @return string Rendered shortcode output.
  */
 function wmf_simple_bar_graph_shortcode_callback( $atts ) {
-	$defaults = [
+	$defaults = array(
 		'max'    => 0,
 		'value'  => 0,
 		'color'  => '#92278f',
 		'width'  => 200,
 		'height' => 14,
-	];
+	);
 	$atts     = shortcode_atts( $defaults, $atts, 'simple_bar_graph' );
 
 	if ( empty( $atts['max'] ) ) {
@@ -34,11 +34,11 @@ function wmf_simple_bar_graph_shortcode_callback( $atts ) {
 	$values = array_map( 'trim', explode( ',', (string) $atts['value'] ) );
 	$colors = array_map( 'trim', explode( ',', (string) $atts['color'] ) );
 	foreach ( $values as $idx => $value ) {
-		$values[ $idx ] = [
+		$values[ $idx ] = array(
 			'color' => ( $idx + 1 <= count( $colors ) ) ? $colors[ $idx ] : $colors[0],
 			'width' => floor( (int) $value / (int) $atts['max'] * ( (int) $atts['width'] ) ),
-			'x'     => ( 0 === $idx ) ? 0 : intval(  $values[ $idx - 1 ]['x'] ) + intval( $values[ $idx - 1 ]['width'] ),
-		];
+			'x'     => ( 0 === $idx ) ? 0 : intval( $values[ $idx - 1 ]['x'] ) + intval( $values[ $idx - 1 ]['width'] ),
+		);
 	}
 
 	ob_start();

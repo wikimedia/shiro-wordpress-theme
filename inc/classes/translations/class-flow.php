@@ -198,9 +198,9 @@ class Flow {
 	/**
 	 * Define which post meta to sync to remote site.
 	 *
-	 * @param $keys
-	 * @param $context
-	 * @param $post
+	 * @param string[] $keys    Keys array.
+	 * @param unknown  $context Context.
+	 * @param unknown  $post    Current post.
 	 *
 	 * @return string[]
 	 */
@@ -337,7 +337,7 @@ class Flow {
 		$this->maybe_register_translation_status_terms();
 		$this->set_translate_term( $post_id );
 
-        return $this;
+		return $this;
 	}
 
 	/**

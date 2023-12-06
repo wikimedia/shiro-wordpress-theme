@@ -19,19 +19,19 @@ class Footer extends Base {
 	 * are needed in get_theme_mod() calls in templates. This allows for a
 	 * centralized location for this values and reduces duplication.
 	 *
-	 * @param string $setting
+	 * @param string $setting Setting key.
 	 *
 	 * @return string
 	 */
 	public static function defaults( string $setting = '' ): string {
 		$defaults = [
 			'wmf_footer_text'                    => __( 'The Wikimedia Foundation, Inc is a nonprofit charitable organization dedicated to encouraging the growth, development and distribution of free, multilingual content, and to providing the full content of these wiki-based projects to the public free of charge.',
-				'shiro-admin' ),
+			'shiro-admin' ),
 			'wmf_projects_menu_label'            => __( 'Projects', 'shiro-admin' ),
 			'wmf_movement_affiliates_menu_label' => __( 'Movement Affiliates', 'shiro-admin' ),
 			'wmf_other_links_menu_label'         => __( 'Other', 'shiro-admin' ),
 			'wmf_footer_copyright'               => __( 'This work is licensed under a <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> unported license. Some images under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>.',
-				'shiro-admin' ),
+			'shiro-admin' ),
 		];
 
 		return $defaults[ $setting ] ?? '';

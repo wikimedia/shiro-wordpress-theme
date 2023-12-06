@@ -7,11 +7,17 @@ namespace WMF\Editor\Blocks\InlineLanguages;
 
 const BLOCK_NAME = 'shiro/inline-languages';
 
+/**
+ * Connect namespace functions to actions and filters.
+ */
 function bootstrap() {
 	add_action( 'init', __NAMESPACE__ . '\\register_block' );
 }
 
-function register_block() {
+/**
+ * Register block.
+ */
+function register_block(): void {
 	register_block_type(
 		BLOCK_NAME,
 		[
@@ -22,15 +28,21 @@ function register_block() {
 				'align' => [
 					'type' => 'string',
 					'default' => 'center',
-				]
-			]
+				],
+			],
 		]
 	);
 }
 
+/**
+ * Render inline languages block.
+ *
+ * @param array $attributes Block attributes array.
+ * @return string
+ */
 function render_block( $attributes ) {
 	$class = 'inline-languages';
-	if (isset($attributes['align']) && $attributes['align'] === 'full') {
+	if ( isset( $attributes['align'] ) && $attributes['align'] === 'full' ) {
 		$class .= ' alignfull';
 	}
 	$output = '<div class="' . $class . '"><ul class="inline-languages__list">';

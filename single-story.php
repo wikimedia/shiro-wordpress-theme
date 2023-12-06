@@ -7,6 +7,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 get_header();
 
 while ( have_posts() ) :
@@ -31,8 +35,8 @@ while ( have_posts() ) :
 		'template-parts/header/story',
 		'single',
 		array(
-			'back_to_link'  => $parent_link,
-			'back_to_label' => $parent_name,
+			'back_to_link'  => $parent_link ?? '',
+			'back_to_label' => $parent_name ?? '',
 			'share_links'   => get_post_meta( get_the_ID(), 'contact_links', true ),
 		)
 	);
@@ -40,10 +44,10 @@ while ( have_posts() ) :
 	$share_links = get_post_meta( get_the_ID(), 'contact_links', true );
 	?>
 
-	<div class="mw-980 mar-bottom">
-		<div class="flex flex-medium flex-space-between mar-bottom_lg">
-			<div class="w-48p">
-				<?php
+<div class="mw-980 mar-bottom">
+	<div class="flex flex-medium flex-space-between mar-bottom_lg">
+		<div class="w-48p">
+			<?php
 				get_template_part(
 					'template-parts/thumbnail',
 					'framed',
@@ -52,16 +56,16 @@ while ( have_posts() ) :
 						'container_class' => '',
 					)
 				);
-				?>
-			</div>
-			</div>
-			<div class="w-50p">
-				<div class="article-main mod-margin-bottom wysiwyg">
-					<?php the_content(); ?>
-				</div>
-			</div>
+			?>
 		</div>
 	</div>
+	<div class="w-50p">
+		<div class="article-main mod-margin-bottom wysiwyg">
+			<?php the_content(); ?>
+		</div>
+	</div>
+</div>
+</div>
 
 	<?php
 

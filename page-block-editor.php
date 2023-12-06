@@ -10,6 +10,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 get_header();
 
 while ( have_posts() ) {
@@ -68,8 +72,11 @@ while ( have_posts() ) {
 		// Fake header content so we get the same margin before the hero blocks.
 		?>
 		<div class="header-content"></div>
+		</div>
+	</header>
+
+	<main id="content">
 		<?php
-		get_template_part( 'template-parts/header/closing-tags' );
 	}
 
 
