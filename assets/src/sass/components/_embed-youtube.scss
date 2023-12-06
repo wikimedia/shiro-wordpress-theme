@@ -1,0 +1,6 @@
+.youtube-player {
+	aspect-ratio: 16/9;
+	height: auto;
+	min-width: 321px; /* YouTube shows a low quality thumb image if the width is <= 320px */
+	width: 100%;
+}
