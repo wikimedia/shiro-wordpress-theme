@@ -157,8 +157,11 @@ function wmf_get_role_posts( $term_id ) {
 		}
 	}
 
+	$profile_list = array_merge( $featured_list, $posts->posts );
+	$profile_list = array_unique( $profile_list );
+
 	return array(
-		'posts' => $featured_list + $posts->posts,
+		'posts' => $profile_list,
 		'name'  => $term_query->name,
 		'slug'  => $term_query->slug,
 	);
@@ -184,7 +187,7 @@ function wmf_get_posts_by_child_roles( $term_id ) {
 
 	$cached_posts = wp_cache_get( 'wmf_terms_list_' . $term_id );
 
-	if ( ! empty( $cached_posts ) ) {
+	if ( ! empty( $cached_posts ) && false ) {
 		return $cached_posts;
 	}
 
