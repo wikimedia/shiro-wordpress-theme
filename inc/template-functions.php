@@ -187,7 +187,7 @@ function wmf_get_posts_by_child_roles( $term_id ) {
 
 	$cached_posts = wp_cache_get( 'wmf_terms_list_' . $term_id );
 
-	if ( ! empty( $cached_posts ) && false ) {
+	if ( ! empty( $cached_posts ) ) {
 		return $cached_posts;
 	}
 
