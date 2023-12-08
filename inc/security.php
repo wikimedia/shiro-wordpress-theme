@@ -15,7 +15,7 @@ namespace WMF\Security;
  * Once security plugin is stable, this logic can be removed.
  */
 function init() {
-	if ( ! function_exists( 'Wikimedia\\Security\\CSP\\bootstrap' ) ) {
+	if ( ! function_exists( 'WMF\\Security\\CSP\\bootstrap' ) ) {
 		add_action( 'send_headers', __NAMESPACE__ . '\\set_content_security_policy' ); // Policy for content security.
 	}
 	if ( ! function_exists( 'WMF\\Security\\HTTP_Headers\\bootstrap' ) ) {
