@@ -32,18 +32,18 @@ jobs:
           list-files: shell
 
       - name: Setup
-        if: ${{ toJSON( steps.paths.outputs.changes ) != '"[]"' }}
+        if: ${{ github.event_name != 'pull_request' || toJSON( steps.paths.outputs.changes ) != '"[]"' }}
         uses: ./.github/actions/setup-php
         with:
           cache_version: ${{ secrets.GH_ACTIONS_CACHE_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
-        if: ${{ toJSON( steps.paths.outputs.changes ) != '"[]"' && steps.cache-php-dependencies.outputs.cache-hit != 'true' }}
+        if: ${{ github.event_name != 'pull_request' || toJSON( steps.paths.outputs.changes ) != '"[]"' && steps.cache-php-dependencies.outputs.cache-hit != 'true' }}
         run: composer install --no-progress --no-interaction --no-ansi
 
       - name: Make Composer packages available globally
-        if: ${{ toJSON( steps.paths.outputs.changes ) != '"[]"' }}
+        if: ${{ github.event_name != 'pull_request' || toJSON( steps.paths.outputs.changes ) != '"[]"' }}
         run: echo "${PWD}/vendor/bin" >> $GITHUB_PATH
 
       - name: Check syntax
@@ -57,9 +57,7 @@ jobs:
 
       - name: Lint changed files
         id: phpcs
-        # Once more of the codebase is lint-free, change this to check
-        # outputs.phpcs so it will re-run if standards or dependencies change.
-        if: ${{ steps.paths.outputs.php == 'true' && github.event_name == 'pull_request' }}
+        if: ${{ steps.paths.outputs.phpcs == 'true' && github.event_name == 'pull_request' }}
         run: |
           CHANGED_FILES=$(git diff --name-only --diff-filter=d origin/${{ github.base_ref }}..${{ github.head_ref }} | grep .php$)
           CHANGED_FILES=${CHANGED_FILES:-.}
