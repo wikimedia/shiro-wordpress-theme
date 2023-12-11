@@ -86,22 +86,18 @@ function wmf_get_header_cta_button_class() {
 /**
  * Get all the child terms for a parent organized by hierarchy
  *
- * @param int $parent_id ID to query against.
- * @return array List of organized IDs.
+ * @param int $parent_id The ID of the parent term to query against.
+ * @return array|false An associative array of child terms organized by their IDs,
+ *                     or false if no children are found for the given parent ID.
  */
-function wmf_get_role_hierarchy( $parent_id ) {
+function wmf_get_role_hierarchy( int $parent_id ) {
 	$children   = array();
 	$term_array = array();
-	$terms      = get_terms(
-		'role', array(
-			'orderby' => 'name',
-			'fields'  => 'id=>parent',
-			'get'     => 'all',
-		)
-	);
+	$terms      = get_terms( 'role' );
 
 	foreach ( $terms as $term_id => $parent ) {
-		if ( 0 < $parent ) {
+		// Ensure that $parent is an integer and greater than 0.
+		if ( is_int( $parent ) && $parent > 0 ) {
 			$children[ $parent ][] = $term_id;
 		}
 	}
