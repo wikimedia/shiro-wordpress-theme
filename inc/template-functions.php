@@ -102,7 +102,6 @@ function wmf_get_role_hierarchy( int $parent_id ) {
 	);
 
 	foreach ( $terms as $term_id => $parent ) {
-		// Ensure that $parent is an integer and greater than 0.
 		if ( is_int( $parent ) && $parent > 0 ) {
 			$children[ $parent ][] = $term_id;
 		}
@@ -175,7 +174,7 @@ function wmf_get_role_posts( $term_id ) {
  * @param int $term_id  ID of parent term.
  * @return array list of organized posts or empty array.
  */
-function wmf_get_posts_by_child_roles( $term_id ) {
+function wmf_get_posts_by_child_roles( int $term_id ) {
 	$post_list = array();
 
 	$term = get_term( $term_id );
