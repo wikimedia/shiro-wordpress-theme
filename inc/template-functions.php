@@ -93,7 +93,13 @@ function wmf_get_header_cta_button_class() {
 function wmf_get_role_hierarchy( int $parent_id ) {
 	$children   = array();
 	$term_array = array();
-	$terms      = get_terms( 'role' );
+	$terms      = get_terms(
+		'role', array(
+			'orderby' => 'name',
+			'fields'  => 'id=>parent',
+			'get'     => 'all',
+		)
+	);
 
 	foreach ( $terms as $term_id => $parent ) {
 		// Ensure that $parent is an integer and greater than 0.
