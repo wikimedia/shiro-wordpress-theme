@@ -71,7 +71,7 @@ jobs:
           fi
 
       - name: Lint project
-        id: phpcs
+        id: phpcs-main
         if: ${{ github.event_name != 'pull_request' }}
         run: |
           echo "Running phpcs..."
