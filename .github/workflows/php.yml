@@ -47,7 +47,7 @@ jobs:
         run: echo "${PWD}/vendor/bin" >> $GITHUB_PATH
 
       - name: Check syntax
-        if: ${{ steps.paths.outputs.phpcs == 'true' }}
+        if: ${{ github.event_name != 'pull_request' || steps.paths.outputs.phpcs == 'true' }}
         run: parallel-lint --exclude .git --exclude .github --exclude vendor .
 
       - name: Fetch base and head branches
@@ -59,9 +59,10 @@ jobs:
         id: phpcs
         # Once more of the codebase is lint-free, change this to check
         # outputs.phpcs so it will re-run if standards or dependencies change.
-        if: ${{ steps.paths.outputs.php == 'true' }}
+        if: ${{ steps.paths.outputs.php == 'true' && github.event_name == 'pull_request' }}
         run: |
           CHANGED_FILES=$(git diff --name-only --diff-filter=d origin/${{ github.base_ref }}..${{ github.head_ref }} | grep .php$)
+          CHANGED_FILES=${CHANGED_FILES:-.}
           echo "Changed files:"
           echo "$CHANGED_FILES"
           if [[ -n "$CHANGED_FILES" ]]; then
@@ -69,7 +70,14 @@ jobs:
             phpcs --report-full --report-checkstyle=./phpcs-report.xml $CHANGED_FILES
           fi
 
-      - name: Report PHPCS results
-        if: ${{ always() && steps.phpcs.outcome == 'failure' }}
+      - name: Lint project
+        id: phpcs
+        if: ${{ github.event_name != 'pull_request' }}
+        run: |
+          echo "Running phpcs..."
+          phpcs --report-full --report-checkstyle=./phpcs-report.xml .
+
+      - name: Report PHPCS results to PR
+        if: ${{ always() && steps.phpcs.outcome == 'failure' && github.event_name == 'pull_request' }}
         run: |
           cs2pr ./phpcs-report.xml
