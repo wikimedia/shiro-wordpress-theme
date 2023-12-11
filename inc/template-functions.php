@@ -157,8 +157,11 @@ function wmf_get_role_posts( $term_id ) {
 		}
 	}
 
+	$profile_list = array_merge( $featured_list, $posts->posts );
+	$profile_list = array_unique( $profile_list );
+
 	return array(
-		'posts' => $featured_list + $posts->posts,
+		'posts' => $profile_list,
 		'name'  => $term_query->name,
 		'slug'  => $term_query->slug,
 	);
