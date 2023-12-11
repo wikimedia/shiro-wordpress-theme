@@ -86,10 +86,11 @@ function wmf_get_header_cta_button_class() {
 /**
  * Get all the child terms for a parent organized by hierarchy
  *
- * @param int $parent_id ID to query against.
- * @return array List of organized IDs.
+ * @param int $parent_id The ID of the parent term to query against.
+ * @return array|false An associative array of child terms organized by their IDs,
+ *                     or false if no children are found for the given parent ID.
  */
-function wmf_get_role_hierarchy( $parent_id ) {
+function wmf_get_role_hierarchy( int $parent_id ) {
 	$children   = array();
 	$term_array = array();
 	$terms      = get_terms(
@@ -101,8 +102,11 @@ function wmf_get_role_hierarchy( $parent_id ) {
 	);
 
 	foreach ( $terms as $term_id => $parent ) {
-		if ( 0 < $parent ) {
+		if ( is_int( $parent ) && $parent > 0 ) {
 			$children[ $parent ][] = $term_id;
+		} else {
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log, WordPress.PHP.DevelopmentFunctions.error_log_var_export -- Intentionally using error_log with var_export for detailed troubleshooting.
+			error_log( sprintf( 'Term ID %d has an invalid parent ID of [%s].', $term_id, var_export( $parent, true ) ) );
 		}
 	}
 
@@ -176,7 +180,7 @@ function wmf_get_role_posts( $term_id ) {
  * @param int $term_id  ID of parent term.
  * @return array list of organized posts or empty array.
  */
-function wmf_get_posts_by_child_roles( $term_id ) {
+function wmf_get_posts_by_child_roles( int $term_id ) {
 	$post_list = array();
 
 	$term = get_term( $term_id );
