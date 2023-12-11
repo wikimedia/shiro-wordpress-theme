@@ -105,7 +105,7 @@ function wmf_get_role_hierarchy( int $parent_id ) {
 		if ( is_int( $parent ) && $parent > 0 ) {
 			$children[ $parent ][] = $term_id;
 		} else {
-			error_log( sprintf( 'Term ID %d has an invalid parent ID of [%s].', $term_id, var_export( $parent, true ) ) );
+			error_log( sprintf( 'Term ID %d has an invalid parent ID of [%s].', $term_id, var_export( $parent, true ) ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 		}
 	}
 
