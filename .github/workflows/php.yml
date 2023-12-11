@@ -32,14 +32,14 @@ jobs:
           list-files: shell
 
       - name: Setup
-        if: ${{ toJSON( steps.paths.outputs.changes ) != '"[]"' }}
+        if: ${{ github.event_name != 'pull_request' || toJSON( steps.paths.outputs.changes ) != '"[]"' }}
         uses: ./.github/actions/setup-php
         with:
           cache_version: ${{ secrets.GH_ACTIONS_CACHE_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
-        if: ${{ toJSON( steps.paths.outputs.changes ) != '"[]"' && steps.cache-php-dependencies.outputs.cache-hit != 'true' }}
+        if: ${{ github.event_name != 'pull_request' || toJSON( steps.paths.outputs.changes ) != '"[]"' && steps.cache-php-dependencies.outputs.cache-hit != 'true' }}
         run: composer install --no-progress --no-interaction --no-ansi
 
       - name: Make Composer packages available globally
