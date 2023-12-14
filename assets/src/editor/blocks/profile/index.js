@@ -14,9 +14,8 @@ import ServerSideRender from '@wordpress/server-side-render';
 /**
  * Internal dependencies
  */
+import PostControl from '../../components/post-control';
 import './style.scss';
-
-const { PostControl } = hm.controls;
 
 export const name = 'shiro/profile';
 
