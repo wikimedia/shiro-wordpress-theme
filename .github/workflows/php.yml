@@ -57,7 +57,9 @@ jobs:
 
       - name: Lint changed files
         id: phpcs
-        if: ${{ steps.paths.outputs.phpcs == 'true' && github.event_name == 'pull_request' }}
+        # TODO: Change if trigger to outputs.phpcs so it will also re-run if standards or
+        # dependencies change. When we tried to do this in e3b64132 it broke PR linting.
+        if: ${{ steps.paths.outputs.php == 'true' && github.event_name == 'pull_request' }}
         run: |
           CHANGED_FILES=$(git diff --name-only --diff-filter=d origin/${{ github.base_ref }}..${{ github.head_ref }} | grep .php$)
           CHANGED_FILES=${CHANGED_FILES:-.}
