@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
  * Gutenberg Tools plugin is not active.
  */
 const FallbackComponent = () => (
-	<p>{ __( 'HM Gutenberg Tools not found' ) }</p>
+	<p>{ __( 'HM Gutenberg Tools not found', 'shiro' ) }</p>
 );
 
 const PostControl = hm?.controls?.PostControl || FallbackComponent;
