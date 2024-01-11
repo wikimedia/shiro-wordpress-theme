@@ -44,7 +44,7 @@ export const name = 'shiro/clock';
 export const settings = {
 	apiVersion: 2,
 
-	icon: 'star-filled',
+	icon: 'clock',
 
 	title: __( 'Clock', 'shiro-admin' ),
 
