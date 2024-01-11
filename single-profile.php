@@ -73,6 +73,10 @@ while ( have_posts() ) :
 							?>
 					<div class="link-list mar-right">
 							<?php
+							// Avoid undefined array index warnings.
+							$link['link']  = $link['link'] ?? '';
+							$link['title'] = $link['title'] ?? '';
+
 							$img = '';
 							if ( is_int( strpos( $link['link'], 'meta.wikimedia.org' ) ) ) {
 								$img = get_template_directory_uri() . '/assets/src/svg/globe.svg';
