@@ -13,8 +13,9 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import './style.scss';
+import metadata from './block.json';
 import initializeClock from './view';
+import './style.scss';
 
 const displayOptions = [
 	{
@@ -39,54 +40,10 @@ const displayOptions = [
 	},
 ];
 
-export const name = 'shiro/clock';
+export const name = metadata.name;
 
 export const settings = {
-	apiVersion: 2,
-
-	icon: 'clock',
-
-	title: __( 'Clock', 'shiro-admin' ),
-
-	category: 'wikimedia',
-
-	description: __(
-		'Clock creates a block that provides statistics and a count down/up timer.',
-		'shiro-admin'
-	),
-
-	attributes: {
-		countTitle: {
-			type: 'string',
-			source: 'html',
-			selector: '.clock__contents__count-label',
-		},
-		date: {
-			type: 'string',
-		},
-		disclaimer: {
-			type: 'string',
-			source: 'html',
-			selector: '.clock__contents__disclaimer',
-		},
-		display: {
-			type: 'string',
-			default: displayOptions[0]['value'],
-		},
-		displayPadding: {
-			type: 'string',
-			default: '0',
-		},
-		stopAtTime: {
-			type: 'boolean',
-			default: false,
-		},
-		title: {
-			type: 'string',
-			source: 'html',
-			selector: '.clock__title',
-		},
-	},
+	...metadata,
 
 	/**
 	 * Edit component used to manage the clock block.
