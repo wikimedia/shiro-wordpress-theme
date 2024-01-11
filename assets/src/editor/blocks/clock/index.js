@@ -14,7 +14,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import './style.scss';
-import clockBlock from '../../../scripts/clock-block';
+import initializeClock from './view';
 
 const displayOptions = [
 	{
@@ -110,10 +110,8 @@ export const settings = {
 
 		const labeledCounter = ( display !== 'd-nolabel' );
 
-		// Setup the counter.
-		useEffect( () => {
-			clockBlock();
-		}, [ date, stopAtTime, display, displayPadding ] );
+		// Setup or re-initialize the counter.
+		useEffect( initializeClock, [ date, stopAtTime, display, displayPadding ] );
 
 		return (
 			<div { ...blockProps }>
