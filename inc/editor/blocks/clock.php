@@ -18,6 +18,12 @@ function bootstrap() {
 	add_action( 'init', __NAMESPACE__ . '\\register_block' );
 }
 
+/**
+ * Register (but do not enqueue) the frontend view script for the block.
+ *
+ * This will be conditionally enqueued by WP when the block is present on the
+ * page using the block.json "viewScript" property.
+ */
 function register_block_view_script() : void {
 	Asset_Loader\register_asset(
 		Assets\get_manifest_path( 'blocks/clock.js' ),
