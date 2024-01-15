@@ -1,8 +1,9 @@
 {
-  "shiro.js": "./shiro-aa455e4c52ff070023c7.js",
-  "editor.css": "./editor-a47dfd4d6649b16d1bb1.css",
-  "editor.js": "./editor-a47dfd4d6649b16d1bb1.js",
-  "editor.rtl.css": "./editor-a47dfd4d6649b16d1bb1.rtl.css",
+  "shiro.js": "./shiro-cc80ce63812b114e1c96.js",
+  "editor.css": "./editor-079393362d08c73df1a6.css",
+  "editor.js": "./editor-079393362d08c73df1a6.js",
+  "editor.rtl.css": "./editor-079393362d08c73df1a6.rtl.css",
+  "blocks/clock.js": "./blocks/clock-0e17f936c21efdc3b0d2.js",
   "images/header-pattern-3.png": "images/header-pattern-3.png",
   "images/home-pattern2.jpg": "images/home-pattern2.jpg",
   "images/home-pattern1.jpg": "images/home-pattern1.jpg",
