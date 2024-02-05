@@ -131,10 +131,6 @@ function wmf_get_role_posts( $term_id ) {
 		array(
 			'post_type'      => 'profile',
 			'fields'         => 'ids',
-			'orderby'        => 'title',
-			'meta_key'       => 'last_name',
-			'orderby'        => 'meta_value',
-			'order'          => 'ASC',
 			'posts_per_page' => 100,
 			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 			'tax_query'      => array(
@@ -161,6 +157,9 @@ function wmf_get_role_posts( $term_id ) {
 
 	$profile_list = array_merge( $featured_list, $posts->posts );
 	$profile_list = array_unique( $profile_list );
+
+	// Sort by last_name. Unusual profile ordering may occur if this field is not set.
+	usort( $profile_list, fn( $profile_id ) => get_post_meta( $profile_id, 'last_name', true ) );
 
 	return array(
 		'posts' => $profile_list,
