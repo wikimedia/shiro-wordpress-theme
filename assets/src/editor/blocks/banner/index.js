@@ -221,6 +221,7 @@ export const settings = {
 					<ImagePicker.Content
 						alt={ imageAlt }
 						className="banner__image"
+						id={ imageID }
 						imageSize={ 'medium_large' }
 						src={ imageSrc }
 					/>
