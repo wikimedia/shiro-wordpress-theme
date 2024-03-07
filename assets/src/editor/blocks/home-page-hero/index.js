@@ -105,7 +105,6 @@ export const settings = {
 	 */
 	save: function Save( { attributes } ) {
 		const {
-			imageId,
 			imageUrl,
 			imageAlt,
 			enableAnimation,
@@ -134,7 +133,6 @@ export const settings = {
 						<ImagePicker.Content
 							alt={ imageAlt }
 							className="hero-home__image"
-							id={ imageId }
 							src={ imageUrl }
 						/>
 					</div>
