@@ -15,12 +15,12 @@ $rand_translation_title = empty( $template_args['rand_translation_title'] ) ? ''
 
 $has_title = ! empty( $template_args['pre_heading'] ) && ! empty( $template_args['heading'] );
 
-$bg_opts      = get_post_meta( get_the_ID(), 'page_header_background', true );
+$bg_opts = get_post_meta( get_the_ID(), 'page_header_background', true );
 $ungrid_color = isset( $bg_opts['color'] ) && 'pink' === $bg_opts['color'] ? 'pink' : '';
 
-$has_modules      = isset( $template_args['modules'] ) && count( $template_args['modules'] ) > 0;
+$has_modules = isset( $template_args['modules'] ) && count( $template_args['modules'] ) > 0;
 $has_many_modules = count( $template_args['modules'] ) > 2;
-$has_image        = get_the_post_thumbnail_url();
+$has_image = get_the_post_thumbnail_url();
 ?>
 
 <?php if ( $has_many_modules && $has_image && ! is_front_page() ) { ?>
@@ -37,7 +37,7 @@ $has_image        = get_the_post_thumbnail_url();
 			<?php } ?>
 		</div>
 
-		<?php if ( 4 === $no_of_modules ) { ?>
+		<?php if ( $no_of_modules === 4 ) { ?>
 			<div class="ungrid-bottom-1">
 				<div class="ungrid-bottom-box ungrid-bottom-box-4">
 					<div class="code <?php echo esc_attr( $ungrid_color ); ?>">04</div>
@@ -46,7 +46,7 @@ $has_image        = get_the_post_thumbnail_url();
 			</div>
 		<?php } ?>
 
-		<?php if ( 5 === $no_of_modules ) { ?>
+		<?php if ( $no_of_modules === 5 ) { ?>
 			<div class="ungrid-bottom-2">
 				<?php for ( $i = 3; $i < 5; $i++ ) { ?>
 					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo esc_attr( $i ); ?>">
@@ -57,7 +57,7 @@ $has_image        = get_the_post_thumbnail_url();
 			</div>
 		<?php } ?>
 
-		<?php if ( 6 === $no_of_modules ) { ?>
+		<?php if ( $no_of_modules === 6 ) { ?>
 			<div class="ungrid-bottom-3">
 				<?php for ( $i = 3; $i < 6; $i++ ) { ?>
 					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo esc_attr( $i ); ?>">

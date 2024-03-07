@@ -9,13 +9,21 @@ namespace WMF\Security;
 
 /**
  * Booting up the security functionalities.
+ *
+ * Delegate these responsibilities to the security plugin, if active.
+ *
+ * Once security plugin is stable, this logic can be removed.
  */
 function init() {
-	add_action( 'send_headers', __NAMESPACE__ . '\\enable_strict_transport_security' ); // Making sure of HTTPS.
-	add_action( 'send_headers', __NAMESPACE__ . '\\set_content_security_policy' ); // Policy for content security.
-	add_action( 'send_headers', __NAMESPACE__ . '\\set_x_content_type_options' ); // Option of X Content Type.
-	add_action( 'send_headers', __NAMESPACE__ . '\\set_referrer_policy' ); // Policy for referrer.
-	add_action( 'send_headers', __NAMESPACE__ . '\\set_permissions_policy' ); // Policy for permissions.
+	if ( ! function_exists( 'WMF\\Security\\CSP\\bootstrap' ) ) {
+		add_action( 'send_headers', __NAMESPACE__ . '\\set_content_security_policy' ); // Policy for content security.
+	}
+	if ( ! function_exists( 'WMF\\Security\\HTTP_Headers\\bootstrap' ) ) {
+		add_action( 'send_headers', __NAMESPACE__ . '\\enable_strict_transport_security' ); // Making sure of HTTPS.
+		add_action( 'send_headers', __NAMESPACE__ . '\\set_x_content_type_options' ); // Option of X Content Type.
+		add_action( 'send_headers', __NAMESPACE__ . '\\set_referrer_policy' ); // Policy for referrer.
+		add_action( 'send_headers', __NAMESPACE__ . '\\set_permissions_policy' ); // Policy for permissions.
+	}
 }
 
 /**
@@ -59,7 +67,7 @@ function set_content_security_policy() {
 		"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.wikimedia.org https://*.wp.com https://www.youtube.com https://player.vimeo.com http://localhost https://localhost http://localhost:8080",
 		"frame-src 'self' https://www.youtube.com https://player.vimeo.com https://*.wp.com",
 		"style-src 'self' 'unsafe-inline' https://*.wikimedia.org https://*.wp.com",
-		"img-src 'self' data: https://*.wikimedia.org https://*.wp.com",
+		"img-src 'self' data: https://*.wikimedia.org https://*.wp.com https://wikimediafoundation.org",
 		"font-src 'self' data: https://*.wp.com",
 		"connect-src 'self' https://*.wikipedia.org wss://*.wordpress.com",
 	);

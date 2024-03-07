@@ -58,7 +58,7 @@ if ( empty( $template_args ) ) {
 <?php endif; ?>
 	<?php
 	foreach ( $template_args as $i => $list_section ) :
-		$item_text = $list_section['title'] ?? $list_section['name'];
+		$item_text = $list_section['title'] ?? $list_section['name'] ?? '';
 		$item_link = ( $list_section['slug'] ?? false ) ? '#' . $list_section['slug'] : '#section-' . ( $i + 1 );
 		if ( empty( $item_text ) ) {
 			continue;

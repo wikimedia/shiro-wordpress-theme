@@ -13,43 +13,44 @@
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_quotes_section_callback( $atts = array(), $content = '' ) {
-	$defaults = array(
+function wmf_quotes_section_callback( $atts = [], $content = '' ) {
+	$defaults = [
 		'title' => '',
 		'class' => '',
-	);
-	$atts     = shortcode_atts( $defaults, $atts, 'quotes_section' );
-	$content  = do_shortcode( $content );
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'quotes_section' );
+	$content = do_shortcode( $content );
 
-	// Exclude p tag to avoid empty ones.
-	$allowed_tags = array(
-		'span'   => array(
-			'class' => array(),
-			'style' => array(),
-		),
-		'img'    => array(
-			'src'    => array(),
-			'height' => array(),
-			'width'  => array(),
-			'alt'    => array(),
-			'style'  => array(),
-			'class'  => array(),
-		),
-		'em'     => array(),
-		'strong' => array(),
-		'a'      => array(
-			'href'   => array(),
-			'class'  => array(),
-			'title'  => array(),
-			'rel'    => array(),
-			'target' => array(),
-		),
-		'h3'     => array(
-			'class' => array(),
-			'style' => array(),
-		),
-		'div'    => array( 'class' => array() ),
-	);
+	// exclude p tag to avoid empty ones
+	$allowed_tags = [
+		'span' => [
+			'class' => [],
+			'style' => [],
+		],
+		'img' => [
+			'src' => [],
+			'height' => [],
+			'width' => [],
+			'alt' => [],
+			'style' => [],
+			'class' => [],
+			'style' => [],
+		],
+		'em' => [],
+		'strong' => [],
+		'a' => [
+			'href' => [],
+			'class' => [],
+			'title' => [],
+			'rel' => [],
+			'target' => [],
+		],
+		'h3' => [
+			'class' => [],
+			'style' => [],
+		],
+		'div' => [ 'class' => [] ],
+	];
 
 	ob_start();
 	?>
@@ -77,18 +78,18 @@ add_shortcode( 'quotes_section', 'wmf_quotes_section_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_quote_box_callback( $atts = array(), $content = '' ) {
-	$defaults         = array(
-		'title'  => '',
-		'count'  => '3',
-		'uri'    => '',
-		'class'  => '',
+function wmf_quote_box_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'title' => '',
+		'count' => '3',
+		'uri' => '',
+		'class' => '',
 		'author' => '',
-	);
-	$atts             = shortcode_atts( $defaults, $atts, 'quote_box' );
-	static $index     = 0;
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'quote_box' );
+	static $index = 0;
 	$auto_tweet_width = 3 === (int) $atts['count'] ? 'w-32p' : 'w-48p';
-	++$index;
+	$index++;
 
 	ob_start();
 	?>

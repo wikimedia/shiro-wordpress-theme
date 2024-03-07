@@ -6,6 +6,9 @@
  * @package shiro
  */
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
+// TODO: Evaluate whether this page is still in use, and prefix or remove global functions as necessary.
+
 /**
  * Define a [symbol_grid] shortcode that renders a grid of images and text.
  *
@@ -13,17 +16,17 @@
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_symbols_grid_callback( $atts = array(), $content = '' ) {
-	$defaults    = array(
+function wmf_symbols_grid_callback( $atts = [], $content = '' ) {
+	$defaults = [
 		'title' => '',
-		'text'  => '',
-		'id'    => 'symbols-grid',
-	);
-	$atts        = shortcode_atts( $defaults, $atts, 'symbols_grid' );
-	$texts       = preg_split( '/\|/', $atts['text'] );
-	$text1_class = count( $texts ) >= 1 ? 'grid-item grid-text grid-text-1' : 'grid-item';
-	$text2_class = count( $texts ) >= 2 ? 'grid-item grid-text grid-text-2' : 'grid-item';
-	$text3_class = count( $texts ) >= 3 ? 'grid-item grid-text grid-text-3' : 'grid-item';
+		'text' => '',
+		'id' => 'symbols-grid',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'symbols_grid' );
+	$texts = preg_split( '/\|/', $atts['text'] );
+	$text_1_class = is_countable( $texts ) && count( $texts ) >= 1 ? 'grid-item grid-text grid-text-1' : 'grid-item';
+	$text_2_class = is_countable( $texts ) && count( $texts ) >= 2 ? 'grid-item grid-text grid-text-2' : 'grid-item';
+	$text_3_class = is_countable( $texts ) && count( $texts ) >= 3 ? 'grid-item grid-text grid-text-3' : 'grid-item';
 
 	wp_enqueue_script( 'symbols_grid', get_template_directory_uri() . '/assets/dist/shortcode-symbol-grid.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'symbols_grid', 'var gridAtts = ' . wp_json_encode( $atts ) . ';' );
@@ -35,9 +38,9 @@ function wmf_symbols_grid_callback( $atts = array(), $content = '' ) {
 		<?php for ( $i = 0; $i < 24; $i++ ) { ?>
 			<div class="grid-item grid-symbol"><div></div><div></div></div>
 		<?php } ?>
-		<div class="<?php echo esc_attr( $text1_class ); ?>"><div class="wp20"><h2><?php echo esc_html( $texts[0] ); ?></h2></div></div>
-		<div class="<?php echo esc_attr( $text2_class ); ?>"><div class="wp20"><h2><?php echo esc_html( $texts[1] ); ?></h2></div></div>
-		<div class="<?php echo esc_attr( $text3_class ); ?>"><div class="wp20"><h2><?php echo esc_html( $texts[2] ); ?></h2></div></div>
+		<div class="<?php echo esc_attr( $text_1_class ); ?>"><div class="wp20"><h2><?php echo esc_html( $texts[0] ); ?></h2></div></div>
+		<div class="<?php echo esc_attr( $text_2_class ); ?>"><div class="wp20"><h2><?php echo esc_html( $texts[1] ); ?></h2></div></div>
+		<div class="<?php echo esc_attr( $text_3_class ); ?>"><div class="wp20"><h2><?php echo esc_html( $texts[2] ); ?></h2></div></div>
 	</div>
 
 	<?php
@@ -52,15 +55,15 @@ add_shortcode( 'symbols_grid', 'wmf_symbols_grid_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_story_carousel_callback( $atts = array(), $content = '' ) {
-	$defaults = array(
+function wmf_story_carousel_callback( $atts = [], $content = '' ) {
+	$defaults = [
 		'title' => '',
-		'id'    => 'volunteer-stories',
+		'id' => 'volunteer-stories',
 		'class' => '',
-	);
-	$atts     = shortcode_atts( $defaults, $atts, 'story_carousel' );
-	$content  = do_shortcode( $content );
-	$content  = wmf_custom_filter_shortcode_text( $content );
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'story_carousel' );
+	$content = do_shortcode( $content );
+	$content = custom_filter_shortcode_text( $content );
 
 	wp_enqueue_script( 'story_carousel', get_template_directory_uri() . '/assets/dist/shortcode-stories.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'story_carousel', 'var storiesAtts = ' . wp_json_encode( $atts ) . ';' );
@@ -93,15 +96,15 @@ add_shortcode( 'story_carousel', 'wmf_story_carousel_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_story_shortcode_callback( $atts = array(), $content = '' ) {
-	$defaults  = array(
-		'name'     => '',
-		'since'    => '',
+function wmf_story_shortcode_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'name' => '',
+		'since' => '',
 		'location' => '',
-		'img'      => '',
-	);
-	$atts      = shortcode_atts( $defaults, $atts, 'story' );
-	$image_id  = wmf_custom_get_attachment_id_by_slug( $atts['img'] );
+		'img' => '',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'story' );
+	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
 	$image_url = $image_id ? wp_get_attachment_image_url( $image_id, array( 400, 400 ) ) : null;
 
 	ob_start();
@@ -139,21 +142,22 @@ add_shortcode( 'story', 'wmf_story_shortcode_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_recent_edits_callback( $atts = array(), $content = '' ) {
-	$defaults               = array(
-		'title'     => '',
-		'id'        => 'recent-edits',
+function wmf_recent_edits_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'title' => '',
+		'id' => 'recent-edits',
 		'lang_list' => 'en|ar|es|de|fr|ru|zh',
-		'label'     => 'One human just edited',
-		'class'     => '',
-	);
-	$atts                   = shortcode_atts( $defaults, $atts, 'recent_edits' );
-	$atts['lang_list']      = preg_split( '/\|/', $atts['lang_list'] );
-	$atts['lang_list_long'] = array();
-	$content                = do_shortcode( $content );
-	$content                = wmf_custom_filter_shortcode_text( $content );
+		'label' => 'One human just edited',
+		'class' => '',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'recent_edits' );
+	$atts['lang_list'] = preg_split( '/\|/', $atts['lang_list'] );
+	$atts['lang_list_long'] = [];
+	$content = do_shortcode( $content );
+	$content = custom_filter_shortcode_text( $content );
 
-	for ( $i = 0; $i < count( $atts['lang_list'] ); $i++ ) {
+	$lang_count = count( $atts['lang_list'] );
+	for ( $i = 0; $i < $lang_count; $i++ ) {
 		array_push( $atts['lang_list_long'], get_theme_mod( $atts['lang_list'][ $i ] . '_wikipedia', strtoupper( $atts['lang_list'][ $i ] ) . ' Wikipedia' ) );
 	}
 
@@ -202,18 +206,18 @@ add_shortcode( 'recent_edits', 'wmf_recent_edits_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_timeline_callback( $atts = array(), $content = '' ) {
-	$defaults = array(
-		'id'     => 'timeline',
-		'title'  => '',
+function wmf_timeline_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'id' => 'timeline',
+		'title' => '',
 		'margin' => '0',
-		'class'  => '',
-	);
-	$atts     = shortcode_atts( $defaults, $atts, 'timeline' );
-	$content  = do_shortcode( $content );
-	$content  = wmf_custom_filter_shortcode_text( $content );
-	$margin   = '0' === $atts['margin'] ? '' : ' mod-margin-bottom';
-	$classes  = 'timeline ' . $atts['class'] . $margin;
+		'class' => '',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'timeline' );
+	$content = do_shortcode( $content );
+	$content = custom_filter_shortcode_text( $content );
+	$margin = $atts['margin'] === '0' ? '' : ' mod-margin-bottom';
+	$classes = 'timeline ' . $atts['class'] . $margin;
 
 	wp_enqueue_script( 'timeline', get_template_directory_uri() . '/assets/dist/shortcode-timeline.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'timeline', 'var timelineAtts = ' . wp_json_encode( $atts ) . ';' );
@@ -247,25 +251,22 @@ add_shortcode( 'timeline', 'wmf_timeline_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_milestone_callback( $atts = array(), $content = '' ) {
-	$defaults = array(
+function wmf_milestone_callback( $atts = [], $content = '' ) {
+	$defaults = [
 		'img' => '',
-	);
-	$atts     = shortcode_atts( $defaults, $atts, 'milestone' );
-	$content  = do_shortcode( $content );
-	$content  = wmf_custom_filter_shortcode_text( $content );
-	$classes  = 'milestone';
-	$image_id = wmf_custom_get_attachment_id_by_slug( $atts['img'] );
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'milestone' );
+	$content = do_shortcode( $content );
+	$content = custom_filter_shortcode_text( $content );
+	$classes = 'milestone';
+	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
 
 	ob_start();
 	?>
 
 	<div class="<?php echo esc_attr( $classes ); ?>">
 		<div class="milestone-container">
-			<?php 
-			if ( $image_id ) {
-				echo wp_get_attachment_image( $image_id, array( 500, 500 ) );} 
-			?>
+			<?php if ( $image_id ) echo wp_get_attachment_image( $image_id, array( 500, 500 ) ); ?>
 			<div class="milestone-desc"><?php echo wp_kses_post( $content ); ?></div>
 		</div>
 	</div>
@@ -282,50 +283,47 @@ add_shortcode( 'milestone', 'wmf_milestone_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_section_shortcode_callback( $atts = array(), $content = '' ) {
-	$defaults = array(
-		'title'    => '',
-		'columns'  => '1',
-		'img'      => '',
-		'margin'   => '1',
-		'reverse'  => '0',
+function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'title' => '',
+		'columns' => '1',
+		'img' => '',
+		'margin' => '1',
+		'reverse' => '0',
 		'bg_color' => '0',
-		'class'    => '',
-	);
-	$atts     = shortcode_atts( $defaults, $atts, 'wmf_section' );
-	$content  = do_shortcode( $content );
-	$content  = wmf_custom_filter_shortcode_text( $content );
+		'class' => '',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'wmf_section' );
+	$content = do_shortcode( $content );
+	$content = custom_filter_shortcode_text( $content );
 
-	$margin          = '1' === $atts['margin'] ? 'mod-margin-bottom ' : '';
-	$classes         = '1' === $atts['bg_color'] ? 'section mod-padding-vertical bg-ltgray ' . $margin : 'mw-980 section ' . $margin;
-	$atts['class']   = '1' === $atts['bg_color'] ? $atts['class'] . ' mw-980' : $atts['class'];
-	$id              = strtolower( str_replace( ' ', '-', $atts['title'] ) );
-	$image_id        = wmf_custom_get_attachment_id_by_slug( $atts['img'] );
-	$image           = $image_id ? wp_get_attachment_image( $image_id, array( 600, 400 ) ) : null;
-	$atts['columns'] = null === $image && strlen( $atts['title'] ) === 0 ? '1' : $atts['columns'];
-	$confetti_opt    = random_int( 1, 10 );
+	$margin = $atts['margin'] === '1' ? 'mod-margin-bottom ' : '';
+	$classes = $atts['bg_color'] === '1' ? 'section mod-padding-vertical bg-ltgray ' . $margin : 'mw-980 section ' . $margin;
+	$atts['class'] = $atts['bg_color'] === '1' ? $atts['class'] . ' mw-980' : $atts['class'];
+	$id = strtolower( str_replace( ' ', '-', $atts['title'] ) );
+	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
+	$image = $image_id ? wp_get_attachment_image( $image_id, array( 600, 400 ) ) : null;
+	$atts['columns'] = $image === null && strlen( $atts['title'] ) === 0 ? '1' : $atts['columns'];
+	$confetti_opt = random_int( 1, 10 );
 
 	ob_start();
 	?>
 
-	<?php if ( '1' === $atts['columns'] ) { ?>
+	<?php if ( $atts['columns'] === '1' ) { ?>
 		<div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $classes ); ?>" data-confetti-option="<?php echo esc_attr( $confetti_opt ); ?>">
 			<div class="<?php echo esc_attr( $atts['class'] ); ?>">
 				<?php echo esc_html( $atts['title'] ) . wp_kses_post( $content ); ?>
 			</div>
 		</div>
-		<?php 
-	} elseif ( '0' === $atts['reverse'] ) {
-		?>
+	<?php } else {
+		if ( $atts['reverse'] === '0' ) { ?>
 			<div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $classes ); ?>">
 				<div class="flex flex-medium flex-space-between <?php echo esc_attr( $atts['class'] ); ?>">
 					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ); ?></div>
 					<div class="w-48p mod-margin-bottom_xs">
-						<?php 
-						if ( $image_id ) {
+						<?php if ( $image_id ) {
 							echo wp_get_attachment_image( $image_id, array( 600, 400 ) );
-						} else { 
-							?>
+						} else { ?>
 						<h1><?php echo esc_html( $atts['title'] ); ?></h1>
 						<?php } ?>
 					</div>
@@ -335,20 +333,18 @@ function wmf_section_shortcode_callback( $atts = array(), $content = '' ) {
 			<div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $classes ); ?>">
 				<div class="flex flex-medium flex-space-between flex-column-reverse-small <?php echo esc_attr( $atts['class'] ); ?>">
 					<div class="w-48p mod-margin-bottom_xs">
-						<?php 
-						if ( $image_id ) {
+						<?php if ( $image_id ) {
 							echo wp_get_attachment_image( $image_id, array( 600, 400 ) );
-						} else { 
-							?>
+						} else { ?>
 						<h1><?php echo esc_html( $atts['title'] ); ?></h1>
 						<?php } ?>
 					</div>
 					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ); ?></div>
 				</div>
 			</div>
-		<?php 
-		}
-		return (string) ob_get_clean();
+	<?php }
+	}
+	return (string) ob_get_clean();
 }
 add_shortcode( 'wmf_section', 'wmf_section_shortcode_callback' );
 
@@ -359,14 +355,14 @@ add_shortcode( 'wmf_section', 'wmf_section_shortcode_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_movement_callback( $atts = array(), $content = '' ) {
-	$defaults = array(
-		'id'    => 'movement-content',
+function wmf_movement_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'id' => 'movement-content',
 		'class' => '',
-	);
-	$atts     = shortcode_atts( $defaults, $atts, 'movement' );
-	$content  = do_shortcode( $content );
-	$content  = wmf_custom_filter_shortcode_text( $content );
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'movement' );
+	$content = do_shortcode( $content );
+	$content = custom_filter_shortcode_text( $content );
 
 	wp_enqueue_script( 'movement', get_template_directory_uri() . '/assets/dist/shortcode-movement.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'movement', 'var movementAtts = ' . wp_json_encode( $atts ) . ';' );
@@ -418,8 +414,8 @@ add_shortcode( 'movement', 'wmf_movement_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_movement_tooltip_callback( $atts = array(), $content = '' ) {
-	$content = wmf_custom_filter_shortcode_text( $content );
+function wmf_movement_tooltip_callback( $atts = [], $content = '' ) {
+	$content = custom_filter_shortcode_text( $content );
 	ob_start();
 	?>
 
@@ -440,26 +436,26 @@ add_shortcode( 'movement_tooltip', 'wmf_movement_tooltip_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_top_data_callback( $atts = array(), $content = '' ) {
-	$defaults          = array(
+function wmf_top_data_callback( $atts = [], $content = '' ) {
+	$defaults = [
 		'path_edits' => '/assets/src/foundation-assets/wikipedia20/data/wp20edits.csv',
 		'path_views' => '/assets/src/foundation-assets/wikipedia20/data/wp20pageviews.csv',
-		'lang'       => 'en',
-		'id'         => 'top-data',
-		'class'      => '',
-	);
-	$atts              = shortcode_atts( $defaults, $atts, 'wmf_top_data' );
+		'lang' => 'en',
+		'id' => 'top-data',
+		'class' => '',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'wmf_top_data' );
 	$atts['directory'] = get_template_directory_uri() . '/assets/src/foundation-assets/wikipedia20/data/thumbnails/';
 	$atts['url_edits'] = get_template_directory_uri() . $atts['path_edits'];
 	$atts['url_views'] = get_template_directory_uri() . $atts['path_views'];
-	$content           = do_shortcode( $content );
-	$content           = wmf_custom_filter_shortcode_text( $content );
-	$header            = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro-admin' ) );
+	$content = do_shortcode( $content );
+	$content = custom_filter_shortcode_text( $content );
+	$header = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro-admin' ) );
 	$most_viewed_label = get_theme_mod( 'wikipedia_article_most_viewed', __( 'Most viewed articles', 'shiro-admin' ) );
 	$most_edited_label = get_theme_mod( 'wikipedia_article_most_edited', __( 'most edited articles', 'shiro-admin' ) );
-	$in_label          = get_theme_mod( 'wikipedia_article_in', __( 'in', 'shiro-admin' ) );
-	$or_label          = get_theme_mod( 'wikipedia_article_or', __( 'or', 'shiro-admin' ) );
-	$no_data_label     = get_theme_mod( 'wikipedia_article_no_data', __( 'There is not data for the options you selected. Please change the options above.', 'shiro-admin' ) );
+	$in_label = get_theme_mod( 'wikipedia_article_in', __( 'in', 'shiro-admin' ) );
+	$or_label = get_theme_mod( 'wikipedia_article_or', __( 'or', 'shiro-admin' ) );
+	$no_data_label = get_theme_mod( 'wikipedia_article_no_data', __( 'There is not data for the options you selected. Please change the options above.', 'shiro-admin' ) );
 	// "views" and "edits" needs to be same as the inout values below
 	$atts['views_label'] = get_theme_mod( 'wikipedia_article_views', __( 'views', 'shiro-admin' ) );
 	$atts['edits_label'] = get_theme_mod( 'wikipedia_article_edits', __( 'edits', 'shiro-admin' ) );
@@ -612,14 +608,14 @@ add_shortcode( 'wmf_top_data', 'wmf_top_data_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_wp20_easter_eggs_shortcode_callback( $atts = array(), $content = '' ) {
-	$defaults = array(
-		'title'         => '',
+function wp20_easter_eggs_shortcode_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'title' => '',
 		'target_search' => '.section strong.easter-egg, .movement strong.easter-egg',
-	);
-	$atts     = shortcode_atts( $defaults, $atts, 'wp20_easter_eggs' );
-	$content  = do_shortcode( $content );
-	$content  = wmf_custom_filter_shortcode_text( $content );
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'wp20_easter_eggs' );
+	$content = do_shortcode( $content );
+	$content = custom_filter_shortcode_text( $content );
 
 	wp_enqueue_script( 'wp20_easter_eggs', get_template_directory_uri() . '/assets/dist/shortcode-easter-eggs.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'wp20_easter_eggs', 'var eggsAtts = ' . wp_json_encode( $atts ) . ';' );
@@ -634,7 +630,7 @@ function wmf_wp20_easter_eggs_shortcode_callback( $atts = array(), $content = ''
 	<?php
 	return (string) ob_get_clean();
 }
-add_shortcode( 'wp20_easter_eggs', 'wmf_wp20_easter_eggs_shortcode_callback' );
+add_shortcode( 'wp20_easter_eggs', 'wp20_easter_eggs_shortcode_callback' );
 
 /**
  * Define a [egg] wrapper shortcode that creates a HTML wrapper for one easter egg in [wp20_easter_eggs].
@@ -643,13 +639,13 @@ add_shortcode( 'wp20_easter_eggs', 'wmf_wp20_easter_eggs_shortcode_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_egg_shortcode_callback( $atts = array(), $content = '' ) {
-	$defaults = array(
+function egg_shortcode_callback( $atts = [], $content = '' ) {
+	$defaults = [
 		'title' => '',
-	);
-	$atts     = shortcode_atts( $defaults, $atts, 'egg' );
-	$content  = do_shortcode( $content );
-	$content  = wmf_custom_filter_shortcode_text( $content );
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'egg' );
+	$content = do_shortcode( $content );
+	$content = custom_filter_shortcode_text( $content );
 
 	ob_start();
 	?>
@@ -661,23 +657,24 @@ function wmf_egg_shortcode_callback( $atts = array(), $content = '' ) {
 	<?php
 	return (string) ob_get_clean();
 }
-add_shortcode( 'egg', 'wmf_egg_shortcode_callback' );
+add_shortcode( 'egg', 'egg_shortcode_callback' );
 
 /**
- * Utility function to deal with the way
- * WordPress auto formats text in a shortcode.
+ * Utility function to deal with the way WordPress auto-formats text in a shortcode.
  *
- * @param string $text Content wrapped by shortcode.
+ * @param string $text Shortcode text.
+ * @return string
  */
-function wmf_custom_filter_shortcode_text( $text = '' ) {
+function custom_filter_shortcode_text( $text = '' ) {
 	// Replace all the poorly formatted P tags that WP adds by default.
 	$tags = array( '<p>', '</p>' );
 	$text = str_replace( $tags, "\n", $text );
 
-	// Remove any BR tags.
+	// Remove any BR tags
 	$tags = array( '<br>', '<br/>', '<br />' );
 	$text = str_replace( $tags, '', $text );
 
 	// Add back in the P and BR tags again, remove empty ones.
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	return apply_filters( 'the_content', $text );
 }

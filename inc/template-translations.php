@@ -7,7 +7,9 @@
 
 // Actions and filters.
 use Inpsyde\MultilingualPress\Framework\Api\TranslationSearchArgs;
+use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\Framework\WordpressContext;
+use Inpsyde\MultilingualPress\TranslationUi\Post\RelationshipContext;
 use function Inpsyde\MultilingualPress\resolve;
 
 add_filter( 'fm_element_markup_end', array( 'WMF\Translations\Metaboxes', 'fm_element_markup_end' ), 10, 2 );
@@ -27,9 +29,10 @@ add_action( 'manage_profile_posts_custom_column', array( 'WMF\Translations\Notic
 /**
  * Copy post meta to remote site if the option is set in the translation metabox.
  *
- * @param  string $keys_to_sync TODO: Describe this parameter.
- * @param  string $context TODO: Describe this parameter.
- * @param  string $request TODO: Describe this parameter.
+ * @param array               $keys_to_sync Array of keys.
+ * @param RelationshipContext $context      Relationship context.
+ * @param Request             $request      HTTP Request object.
+ * @return array
  */
 function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
 	$multilingualpress = $request->bodyValue(
@@ -44,16 +47,16 @@ function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
 	switch_to_blog( $remote_site_id );
 
 	// String post meta.
-	$string_post_meta = array(
+	$string_post_meta = [
 		'page_template',
 		'sub_title',
 		'page_intro',
 		'featured_post_sub_title',
 		'landing_page_sidebar_menu_label',
-	);
+	];
 
-	// Array post meta.
-	$array_meta_keys = array(
+	// Array post meta
+	$array_meta_keys = [
 		'connect',
 		'contact_links',
 		'featured_on',
@@ -79,10 +82,10 @@ function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
 		'stats_plain',
 		'stats_profiles',
 		'stories',
-	);
+	];
 
 	foreach ( $multilingualpress as $translation_metabox ) {
-		if ( '1' === $translation_metabox['remote-content-copy'] ) {
+		if ( $translation_metabox['remote-content-copy'] === '1' ) {
 			foreach ( $string_post_meta as $meta_key ) {
 				$meta_value = (string) $request->bodyValue(
 					$meta_key,
@@ -100,7 +103,7 @@ function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
 			update_post_meta( $remote_post_id, 'connected_user', $connected_user_value );
 
 			foreach ( $array_meta_keys as $meta_key ) {
-				// Get post meta value from source site.
+				// get post meta value from source site
 				$meta_value = $request->bodyValue(
 					$meta_key,
 					INPUT_POST,
@@ -108,7 +111,7 @@ function wmf_copy_post_meta( $keys_to_sync, $context, $request ) {
 					FILTER_FORCE_ARRAY
 				);
 
-				// Switch to remote sites and save post meta.
+				// switch to remote sites and save post meta
 				update_post_meta( $remote_post_id, $meta_key, $meta_value );
 			}
 
@@ -241,7 +244,7 @@ function wmf_get_random_translation( $key, $args = array() ) {
 
 	switch_to_blog( $target_translation['site_id'] );
 
-	$translation = array();
+	$translation = [];
 
 	switch ( $args['source'] ) {
 		case 'meta':

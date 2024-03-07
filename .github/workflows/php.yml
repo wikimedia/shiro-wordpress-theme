@@ -32,22 +32,22 @@ jobs:
           list-files: shell
 
       - name: Setup
-        if: ${{ toJSON( steps.paths.outputs.changes ) != '"[]"' }}
+        if: ${{ github.event_name != 'pull_request' || toJSON( steps.paths.outputs.changes ) != '"[]"' }}
         uses: ./.github/actions/setup-php
         with:
           cache_version: ${{ secrets.GH_ACTIONS_CACHE_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
-        if: ${{ toJSON( steps.paths.outputs.changes ) != '"[]"' && steps.cache-php-dependencies.outputs.cache-hit != 'true' }}
+        if: ${{ github.event_name != 'pull_request' || toJSON( steps.paths.outputs.changes ) != '"[]"' && steps.cache-php-dependencies.outputs.cache-hit != 'true' }}
         run: composer install --no-progress --no-interaction --no-ansi
 
       - name: Make Composer packages available globally
-        if: ${{ toJSON( steps.paths.outputs.changes ) != '"[]"' }}
+        if: ${{ github.event_name != 'pull_request' || toJSON( steps.paths.outputs.changes ) != '"[]"' }}
         run: echo "${PWD}/vendor/bin" >> $GITHUB_PATH
 
       - name: Check syntax
-        if: ${{ steps.paths.outputs.phpcs == 'true' }}
+        if: ${{ github.event_name != 'pull_request' || steps.paths.outputs.phpcs == 'true' }}
         run: parallel-lint --exclude .git --exclude .github --exclude vendor .
 
       - name: Fetch base and head branches
@@ -57,11 +57,12 @@ jobs:
 
       - name: Lint changed files
         id: phpcs
-        # Once more of the codebase is lint-free, change this to check
-        # outputs.phpcs so it will re-run if standards or dependencies change.
-        if: ${{ steps.paths.outputs.php == 'true' }}
+        # TODO: Change if trigger to outputs.phpcs so it will also re-run if standards or
+        # dependencies change. When we tried to do this in e3b64132 it broke PR linting.
+        if: ${{ steps.paths.outputs.php == 'true' && github.event_name == 'pull_request' }}
         run: |
           CHANGED_FILES=$(git diff --name-only --diff-filter=d origin/${{ github.base_ref }}..${{ github.head_ref }} | grep .php$)
+          CHANGED_FILES=${CHANGED_FILES:-.}
           echo "Changed files:"
           echo "$CHANGED_FILES"
           if [[ -n "$CHANGED_FILES" ]]; then
@@ -69,7 +70,14 @@ jobs:
             phpcs --report-full --report-checkstyle=./phpcs-report.xml $CHANGED_FILES
           fi
 
-      - name: Report PHPCS results
-        if: ${{ always() && steps.phpcs.outcome == 'failure' }}
+      - name: Lint project
+        id: phpcs-main
+        if: ${{ github.event_name != 'pull_request' }}
+        run: |
+          echo "Running phpcs..."
+          phpcs --report-full --report-checkstyle=./phpcs-report.xml .
+
+      - name: Report PHPCS results to PR
+        if: ${{ always() && steps.phpcs.outcome == 'failure' && github.event_name == 'pull_request' }}
         run: |
           cs2pr ./phpcs-report.xml

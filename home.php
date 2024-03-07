@@ -12,6 +12,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 get_header();
 
 $post_id          = get_option( 'page_for_posts' );
@@ -27,45 +31,43 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 <?php get_template_part( 'template-parts/post-list-filters' ); ?>
 
-<div class="blog-list">
+<div class="mw-980">
+	<div class="blog-list">
 
-	<?php
-	$post = get_post( $featured_post_id );
-	if ( ! empty( $post ) ) {
-		$featured_post_id = (int) $post->ID;
-		echo wp_kses_post(
-			WMF\Editor\Blocks\BlogPost\render_block(
-				array(
-					'post_id'     => $featured_post_id,
+		<?php
+		$post = get_post( $featured_post_id );
+		if ( ! empty( $post ) ) {
+			$featured_post_id = (int) $post->ID;
+			echo wp_kses_post( WMF\Editor\Blocks\BlogPost\render_block(
+				[
+					'post_id' => $featured_post_id,
 					'is_featured' => true,
-				)
-			) 
-		);
-	}
-	?>
+				]
+			) );
+		}
+		?>
 
-	<?php get_template_part( 'template-parts/category-list' ); ?>
+		<?php get_template_part( 'template-parts/category-list' ); ?>
 
-	<?php
-	if ( have_posts() ) :
-		while ( have_posts() ) :
-			the_post();
+		<?php
+		if ( have_posts() ) :
+			while ( have_posts() ) :
+				the_post();
 
-			if ( get_the_ID() === intval( $featured_post_id ) ) {
-				continue;
-			}
+				if ( get_the_ID() === intval( $featured_post_id ) ) {
+					continue;
+				}
 
-			echo wp_kses_post(
-				WMF\Editor\Blocks\BlogPost\render_block(
-					array( 'post_id' => $post->ID )
-				) 
-			);
-		endwhile;
-	else :
-		get_template_part( 'template-parts/content', 'none' );
-	endif;
-	?>
+				echo wp_kses_post( WMF\Editor\Blocks\BlogPost\render_block(
+					[ 'post_id' => $post->ID ]
+				) );
+			endwhile;
+		else :
+			get_template_part( 'template-parts/content', 'none' );
+		endif;
+		?>
 
+	</div>
 </div>
 
 <?php

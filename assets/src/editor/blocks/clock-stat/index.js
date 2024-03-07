@@ -10,7 +10,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import './style.scss';
-import { wrapCharacters } from '../../../scripts/clock-block';
+import wrapCharacters from '../clock/wrap-characters';
 
 export const name = 'shiro/clock-stat';
 

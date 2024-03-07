@@ -8,7 +8,7 @@
 $template_args = get_post_meta( get_the_ID(), 'related_pages', true );
 
 if ( ! is_array( $template_args ) ) {
-	$template_args = array();
+	$template_args = [];
 }
 
 $template_args['preheading'] = get_theme_mod( 'wmf_related_pages_pre_heading', __( 'Related', 'shiro-admin' ) );

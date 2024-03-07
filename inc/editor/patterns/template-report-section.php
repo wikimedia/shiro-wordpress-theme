@@ -1,8 +1,6 @@
 <?php
 /**
- * Block pattern for converting from the "report-section" template
- *
- * @package shiro
+ * Block pattern for converting from the "report-landing" template
  */
 
 namespace WMF\Editor\Patterns\TemplateReportSection;
@@ -10,7 +8,9 @@ namespace WMF\Editor\Patterns\TemplateReportSection;
 const NAME = 'shiro/template-report-section';
 
 /**
- * Display "report-section" template content.
+ * Return block pattern string.
+ *
+ * @return string
  */
 function pattern(): string {
 	return <<<CONTENT

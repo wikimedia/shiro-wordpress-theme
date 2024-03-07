@@ -62,6 +62,7 @@ if ( empty( $sidebar_items ) ) {
 
 				foreach ( $blocks as $block ) {
 					if ( 'core/heading' === $block['blockName'] ) {
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 						echo apply_filters( 'the_content', render_block( $block ) );
 						 
 						break;
@@ -77,8 +78,8 @@ if ( empty( $sidebar_items ) ) {
 				<?php
 				// Nest page anchor sidebar within nav sidebar.
 				if ( $current_page_id === $report_section['id'] ) {
-					// TODO: Remove get_sidebar function and use headings.
-					get_sidebar( 'list', array( 'nested' => true ) );
+					// TODO: remove get_sidebar function and use headings
+					get_sidebar( 'list', [ 'nested' => true ] );
 				}
 				?>
 			</li>

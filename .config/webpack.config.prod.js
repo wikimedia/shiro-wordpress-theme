@@ -11,6 +11,9 @@ module.exports = [
 		externals,
 		entry: {
 			editor: filePath( 'assets/src/editor/index.js' ),
+			// Include these standalone block view.js files in the editor build
+			// configuration so they may use the block editor's externals.
+			'blocks/clock': filePath( 'assets/src/editor/blocks/clock/view.js' ),
 		},
 		output: {
 			chunkFormat: 'array-push',

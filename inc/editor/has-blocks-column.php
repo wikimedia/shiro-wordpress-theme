@@ -1,8 +1,6 @@
 <?php
 /**
  * Contains all logic for showing which posts & pages have blocks.
- *
- * @package shiro
  */
 
 namespace WMF\Editor\HasBlockColumn;
@@ -10,7 +8,7 @@ namespace WMF\Editor\HasBlockColumn;
 use WP_Query;
 
 const HAS_BLOCKS_NONCE_ACTION = 'shiro_has_blocks_filter_action';
-const HAS_BLOCKS_NONCE_FIELD  = 'shiro_has_blocks_filter_nonce';
+const HAS_BLOCKS_NONCE_FIELD = 'shiro_has_blocks_filter_nonce';
 
 /**
  * Bootstrap all hooks related to the has-block column.
@@ -27,7 +25,8 @@ function bootstrap() {
 /**
  * Add has blocks column to the possible columns.
  *
- * @param boolean $columns If blocks column to the possible columns.
+ * @param array $columns Posts list columns.
+ * @return array
  */
 function add_column( $columns ) {
 	$columns['has_blocks'] = __( 'Has blocks', 'shiro' );
@@ -42,7 +41,7 @@ function add_column( $columns ) {
  * @param mixed  $post Post of the current row.
  */
 function render_column_content( $column, $post ) {
-	if ( 'has_blocks' === $column ) {
+	if ( $column === 'has_blocks' ) {
 		$has_blocks = has_blocks( $post );
 
 		$output = $has_blocks ? __( 'Yes', 'shiro' ) : __( 'No', 'shiro' );
@@ -58,7 +57,7 @@ function render_column_content( $column, $post ) {
  * @param string $post_type The post type we we are rendering for.
  */
 function add_has_blocks_filter( $post_type ) {
-	if ( 'page' !== $post_type ) {
+	if ( $post_type !== 'page' ) {
 		return;
 	}
 
@@ -95,7 +94,8 @@ function add_has_blocks_filter( $post_type ) {
  *
  * @see https://github.com/WordPress/wordpress-develop/blob/5.7.1/src/wp-admin/includes/post.php#L1160-L1189
  *
- * @param string $post_type Type of post type to use.
+ * @param string $post_type Name of post type.
+ * @return int Posts per page.
  */
 function posts_per_page( $post_type ) {
 	$per_page       = "edit_{$post_type}_per_page";
@@ -104,14 +104,12 @@ function posts_per_page( $post_type ) {
 		$posts_per_page = 20;
 	}
 
-	/**
-	 * Documented in wp-admin/includes/post.php
-	 */
+	// Documented in wp-admin/includes/post.php.
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	$posts_per_page = apply_filters( "edit_{$post_type}_per_page", $posts_per_page );
 
-	/**
-	 * Documented in wp-admin/includes/post.php
-	 */
+	// Documented in wp-admin/includes/post.php.
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	$posts_per_page = apply_filters( 'edit_posts_per_page', $posts_per_page, $post_type );
 
 	return $posts_per_page;
@@ -129,11 +127,11 @@ function filter_on_has_blocks( $query ) {
 		$current_filter = sanitize_key( $_GET['shiro_has_blocks_filter'] );
 	}
 
-	if ( '' === $current_filter ) {
+	if ( $current_filter === '' ) {
 		return $query;
 	}
 
-	$query->query_vars['has_blocks'] = 'has_blocks' === $current_filter ? 'yes' : 'no';
+	$query->query_vars['has_blocks'] = $current_filter === 'has_blocks' ? 'yes' : 'no';
 
 	/*
 	 * WordPress has special handling for hierarchical post types. It tries to query
@@ -148,15 +146,15 @@ function filter_on_has_blocks( $query ) {
 	if (
 		! empty( $post_type ) &&
 		is_post_type_hierarchical( $post_type ) &&
-		'menu_order title' === $query->query_vars['orderby'] &&
-		-1 === $query->query_vars['posts_per_page']
+		$query->query_vars['orderby'] === 'menu_order title' &&
+		$query->query_vars['posts_per_page'] === -1
 	) {
 		$posts_per_page                              = posts_per_page( $post_type );
 		$query->query_vars['posts_per_page']         = $posts_per_page;
 		$query->query_vars['posts_per_archive_page'] = $posts_per_page;
 		$query->query_vars['fields']                 = 'all';
 
-		// Set this to force WordPress to use non-hierarchical display.
+		// Set this to force WordPress to use non-hierarchical display
 		$query->query['orderby'] = 'title';
 	}
 
@@ -175,13 +173,13 @@ function where_has_blocks( string $where, WP_Query $query ) {
 	if ( $query->get( 'has_blocks', false ) ) {
 		global $wpdb;
 		if ( $query->get( 'has_blocks', 'no' ) === 'yes' ) {
-			$where .= $wpdb->prepare(
-				"AND `post_content` LIKE '%%%s%%%'",
+			// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.LikeWildcardsInQueryWithPlaceholder -- We control the value of the placeholder.
+			$where .= $wpdb->prepare( "AND `post_content` LIKE '%%%s%%%'",
 				'<!-- wp:'
 			);
 		} else {
-			$where .= $wpdb->prepare(
-				"AND `post_content` NOT LIKE '%%%s%%%'",
+			// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.LikeWildcardsInQueryWithPlaceholder -- We control the value of the placeholder.
+			$where .= $wpdb->prepare( "AND `post_content` NOT LIKE '%%%s%%%'",
 				'<!-- wp:'
 			);
 		}
@@ -193,7 +191,7 @@ function where_has_blocks( string $where, WP_Query $query ) {
 /**
  * Add has_blocks query vary, so `where_has_blocks()` can look for it.
  *
- * @param array $vars Content with blocks.
+ * @param array $vars Query variables array.
  *
  * @return array
  */
