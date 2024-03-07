@@ -7,6 +7,9 @@
  * @package shiro
  */
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
+// TODO: Consider namespacing more of these template functions.
+
 if ( ! function_exists( 'wmf_entry_footer' ) ) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
@@ -17,19 +20,15 @@ if ( ! function_exists( 'wmf_entry_footer' ) ) :
 			/* translators: used between list items, there is a space after the comma */
 			$categories_list = get_the_category_list( esc_html__( ', ', 'shiro' ) );
 			if ( $categories_list && wmf_categorized_blog() ) {
-                // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'shiro' ) . '</span>', $categories_list );
-                // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
+				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'shiro' ) . '</span>', $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			/* translators: used between list items, there is a space after the comma */
 			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'shiro' ) );
 			if ( $tags_list ) {
-                // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'shiro' ) . '</span>', $tags_list );
-                // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
+				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'shiro' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 
@@ -123,7 +122,7 @@ function wmf_show_icon( $name, $classes = '' ) {
  *
  * @return string
  */
-function wmf_get_share_url( $service, $args = array() ) {
+function wmf_get_share_url( $service, $args = [] ) {
 	$default = array(
 		'uri'     => get_permalink(),
 		'message' => '',
@@ -204,8 +203,6 @@ function wmf_is_main_site( $site_id = 0 ) {
 	return (int) get_main_site_id() === (int) $site_id;
 }
 
-add_filter( 'wp_headers', 'wmf_remove_x_hacker_header', 999 );
-
 /**
  * Filter X-hacker output.
  *
@@ -220,6 +217,7 @@ function wmf_remove_x_hacker_header( $headers ) {
 
 	return $headers;
 }
+add_filter( 'wp_headers', 'wmf_remove_x_hacker_header', 999 );
 
 /**
  * Honor do not track requests for stats.
@@ -229,26 +227,26 @@ add_filter( 'jetpack_honor_dnt_header_for_stats', '__return_true' );
 /**
  * Filter JetPack devicepx script.
  */
-function wmf_remove_devicepx() {
+function remove_devicepx() {
 	wp_dequeue_script( 'devicepx' );
 }
-add_action( 'wp_enqueue_scripts', 'wmf_remove_devicepx' );
+add_action( 'wp_enqueue_scripts', 'remove_devicepx' );
 
 /**
  * Utility function to get the attachment url based on attachment title
  *
- * @param string $slug ID created by function.
+ * @param string $slug Attachment slug.
  */
-function wmf_custom_get_attachment_id_by_slug( $slug ) {
-	$args    = array(
-		'post_type'        => 'attachment',
-		'name'             => sanitize_title( $slug ),
-		'posts_per_page'   => 1,
-		'post_status'      => 'inherit',
+function custom_get_attachment_id_by_slug( $slug ) {
+	$args = array(
+		'post_type' => 'attachment',
+		'name' => sanitize_title( $slug ),
+		'posts_per_page' => 1,
+		'post_status' => 'inherit',
 		'suppress_filters' => false,
 	);
 	$_header = get_posts( $args );
-	$header  = $_header ? array_pop( $_header ) : null;
-	$id      = $header && ! empty( $slug ) ? $header->ID : null;
+	$header = $_header ? array_pop( $_header ) : null;
+	$id = $header && ! empty( $slug ) ? $header->ID : null;
 	return $id;
 }

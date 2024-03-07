@@ -13,43 +13,44 @@
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_autotweets_callback( $atts = array(), $content = '' ) {
-	$defaults = array(
+function wmf_autotweets_callback( $atts = [], $content = '' ) {
+	$defaults = [
 		'title' => '',
 		'class' => '',
-	);
-	$atts     = shortcode_atts( $defaults, $atts, 'autotweets' );
-	$content  = do_shortcode( $content );
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'autotweets' );
+	$content = do_shortcode( $content );
 
-	// Exclude p tag to avoid empty ones.
-	$allowed_tags = array(
-		'span'   => array(
-			'class' => array(),
-			'style' => array(),
-		),
-		'img'    => array(
-			'src'    => array(),
-			'height' => array(),
-			'width'  => array(),
-			'alt'    => array(),
-			'style'  => array(),
-			'class'  => array(),
-		),
-		'em'     => array(),
-		'strong' => array(),
-		'a'      => array(
-			'href'   => array(),
-			'class'  => array(),
-			'title'  => array(),
-			'rel'    => array(),
-			'target' => array(),
-		),
-		'h3'     => array(
-			'class' => array(),
-			'style' => array(),
-		),
-		'div'    => array( 'class' => array() ),
-	);
+	// exclude p tag to avoid empty ones
+	$allowed_tags = [
+		'span' => [
+			'class' => [],
+			'style' => [],
+		],
+		'img' => [
+			'src' => [],
+			'height' => [],
+			'width' => [],
+			'alt' => [],
+			'style' => [],
+			'class' => [],
+			'style' => [],
+		],
+		'em' => [],
+		'strong' => [],
+		'a' => [
+			'href' => [],
+			'class' => [],
+			'title' => [],
+			'rel' => [],
+			'target' => [],
+		],
+		'h3' => [
+			'class' => [],
+			'style' => [],
+		],
+		'div' => [ 'class' => [] ],
+	];
 
 	ob_start();
 	?>
@@ -77,23 +78,23 @@ add_shortcode( 'autotweets', 'wmf_autotweets_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_autotweet_callback( $atts = array(), $content = '' ) {
-	$defaults         = array(
-		'title'   => '',
-		'count'   => '3',
-		'uri'     => '',
+function wmf_autotweet_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'title' => '',
+		'count' => '3',
+		'uri' => '',
 		'hashtag' => '',
-		'empty'   => '0',
-	);
-	$atts             = shortcode_atts( $defaults, $atts, 'autotweet' );
-	static $index     = 0;
+		'empty' => '0',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'autotweet' );
+	static $index = 0;
 	$auto_tweet_width = 3 === (int) $atts['count'] ? 'w-32p' : 'w-48p';
-	++$index;
+	$index++;
 
-	$share_text = get_theme_mod( 'wmf_tweet_this_copy', __( 'Tweet this', 'shiro-admin' ) );
-	$args       = array(
-		'uri'             => $atts['uri'] . '&hashtags=' . $atts['hashtag'],
-		'0' === 'message' => $atts['empty'] ? wp_strip_all_tags( $content ) : '',
+	$share_text    = get_theme_mod( 'wmf_tweet_this_copy', __( 'Tweet this', 'shiro-admin' ) );
+	$args = array(
+		'uri' => $atts['uri'] . '&hashtags=' . $atts['hashtag'],
+		'message' => $atts['empty'] === '0' ? wp_strip_all_tags( $content ) : '',
 	);
 
 	ob_start();

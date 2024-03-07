@@ -55,6 +55,8 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		'shiro/blog-list',
 		'shiro/card',
 		'shiro/carousel',
+		'shiro/clock',
+		'shiro/clock-stat',
 		'shiro/collapsible-text',
 		'shiro/contact',
 		'shiro/double-heading',

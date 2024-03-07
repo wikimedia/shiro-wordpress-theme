@@ -13,48 +13,49 @@
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_focus_blocks_callback( $atts = array(), $content = '' ) {
-	$defaults = array(
+function wmf_focus_blocks_callback( $atts = [], $content = '' ) {
+	$defaults = [
 		'title' => '',
 		'class' => '',
-	);
-	$atts     = shortcode_atts( $defaults, $atts, 'focus_blocks' );
-	$content  = do_shortcode( $content );
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'focus_blocks' );
+	$content = do_shortcode( $content );
 
-	// Exclude p tag to avoid empty ones.
-	$allowed_tags = array(
-		'span'   => array(
-			'class' => array(),
-			'style' => array(),
-		),
-		'img'    => array(
-			'src'    => array(),
-			'height' => array(),
-			'width'  => array(),
-			'alt'    => array(),
-			'style'  => array(),
-			'class'  => array(),
-		),
-		'em'     => array(),
-		'strong' => array(),
-		'a'      => array(
-			'href'   => array(),
-			'class'  => array(),
-			'title'  => array(),
-			'rel'    => array(),
-			'target' => array(),
-		),
-		'h3'     => array(
-			'class' => array(),
-			'style' => array(),
-		),
-		'div'    => array(
-			'class'       => array(),
-			'style'       => array(),
-			'aria-hidden' => array(),
-		),
-		'h2'     => array( 'class' => array() ),
-	);
+	// exclude p tag to avoid empty ones
+	$allowed_tags = [
+		'span' => [
+			'class' => [],
+			'style' => [],
+		],
+		'img' => [
+			'src' => [],
+			'height' => [],
+			'width' => [],
+			'alt' => [],
+			'style' => [],
+			'class' => [],
+			'style' => [],
+		],
+		'em' => [],
+		'strong' => [],
+		'a' => [
+			'href' => [],
+			'class' => [],
+			'title' => [],
+			'rel' => [],
+			'target' => [],
+		],
+		'h3' => [
+			'class' => [],
+			'style' => [],
+		],
+		'div' => [
+			'class' => [],
+			'style' => [],
+			'aria-hidden' => [],
+		],
+		'h2' => [ 'class' => [] ],
+	];
 
 	ob_start();
 	?>
@@ -82,19 +83,19 @@ add_shortcode( 'focus_blocks', 'wmf_focus_blocks_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_focus_block_callback( $atts = array(), $content = '' ) {
-	$defaults     = array(
-		'title'     => '',
-		'uri'       => '',
+function wmf_focus_block_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'title' => '',
+		'uri' => '',
 		'link_text' => '',
-		'img'       => '',
-		'class'     => '',
-	);
-	$atts         = shortcode_atts( $defaults, $atts, 'focus_block' );
+		'img' => '',
+		'class' => '',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'focus_block' );
 	static $index = 0;
-	++$index;
+	$index++;
 
-	$image_id  = wmf_custom_get_attachment_id_by_slug( $atts['img'] );
+	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
 	$image_url = $image_id ? wp_get_attachment_image_url( $image_id, array( 600, 600 ) ) : null;
 
 	ob_start();

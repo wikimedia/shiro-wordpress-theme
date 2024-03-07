@@ -120,14 +120,15 @@ class Credits {
 
 		return $bool;
 	}
-	
+
 	/**
-	 * TODO: Describe this function.
+	 * Adds the requested image ID based on the attachment source, if not previously set.
 	 *
-	 * @param string $image TODO: Describe this parameter.
-	 * @param string $attachment_id TODO: Describe this parameter.
-	 * @param string $size TODO: Describe this parameter.
-	 * @param string $icon TODO: Describe this parameter.
+	 * @param array|false  $image         Array of image data, or boolean false if no image is available.
+	 * @param int          $attachment_id Image attachment ID.
+	 * @param string|int[] $size          Image size (any registered size name, or [ width, height ] array).
+	 * @param bool         $icon          Whether to fall back to an icon mime type.
+	 * @return array|false Unchanged $image.
 	 */
 	public function set_id_from_att_src( $image, $attachment_id, $size, $icon ) {
 		if ( true !== $this->pause && ! in_array( $attachment_id, $this->image_ids, true ) ) {
@@ -166,7 +167,7 @@ class Credits {
 			$url      = explode( '?', $url )[0];
 			$image_id = wpcom_vip_attachment_url_to_postid( $url );
 
-			// It might be a thumbnail size ( suffix '-dddxddd' ).
+			// It might be a thumbnail size ( suffix '-dddxddd' )
 			if ( empty( $image_id ) ) {
 				$attachment_url = preg_replace( '/-\d+x\d+(?=\.(jpg|jpeg|png|gif)$)/i', '', $url );
 				$image_id       = wpcom_vip_attachment_url_to_postid( $attachment_url );

@@ -1,8 +1,6 @@
 <?php
 /**
  * Register the shiro/inline-languages block.
- *
- * @package shiro
  */
 
 namespace WMF\Editor\Blocks\InlineLanguages;
@@ -10,45 +8,46 @@ namespace WMF\Editor\Blocks\InlineLanguages;
 const BLOCK_NAME = 'shiro/inline-languages';
 
 /**
- * Action for registration.
+ * Connect namespace functions to actions and filters.
  */
 function bootstrap() {
 	add_action( 'init', __NAMESPACE__ . '\\register_block' );
 }
 
 /**
- * Register the shiro/inline-languages block.
+ * Register block.
  */
-function register_block() {
+function register_block(): void {
 	register_block_type(
 		BLOCK_NAME,
-		array(
-			'apiVersion'      => 2,
+		[
+			'apiVersion' => 2,
 			'render_callback' => __NAMESPACE__ . '\\render_block',
-			'icon'            => 'translation',
-			'attributes'      => array(
-				'align' => array(
-					'type'    => 'string',
+			'icon' => 'translation',
+			'attributes' => [
+				'align' => [
+					'type' => 'string',
 					'default' => 'center',
-				),
-			),
-		)
+				],
+			],
+		]
 	);
 }
 
 /**
- * Render the attributes.
+ * Render inline languages block.
  *
- * @param string $attributes TODO: Document this parameter.
+ * @param array $attributes Block attributes array.
+ * @return string
  */
 function render_block( $attributes ) {
 	$class = 'inline-languages';
-	if ( isset( $attributes['align'] ) && 'full' === $attributes['align'] ) {
+	if ( isset( $attributes['align'] ) && $attributes['align'] === 'full' ) {
 		$class .= ' alignfull';
 	}
 	$output = '<div class="' . $class . '"><ul class="inline-languages__list">';
 	foreach ( \wmf_get_translations() as $index => $lang ) {
-		$el      = $lang['selected']
+		$el = $lang['selected']
 			? '<span>' . esc_html( $lang['name'] ) . '</span>'
 			: '<a href="' . esc_url( $lang['uri'] ) . '" lang="' . esc_attr( $lang['shortname'] ) . '">' . esc_html( $lang['name'] ) . '</a>';
 		$output .= '<li class="inline-languages__language' . ( $lang['selected'] ? ' inline-languages__language--current' : ' ' ) . '">' . $el . '</li>';

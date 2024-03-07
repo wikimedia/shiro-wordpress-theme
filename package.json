@@ -52,7 +52,7 @@
     "@svgr/webpack": "^5.5.0",
     "babel-eslint": "^10.1.0",
     "block-editor-hmr": "^0.6.3",
-    "browser-sync": "^2.29.1",
+    "browser-sync": "^3.0.2",
     "classnames": "^2.3.1",
     "copy-webpack-plugin": "^6.4.1",
     "css-mqpacker": "^7.0.0",

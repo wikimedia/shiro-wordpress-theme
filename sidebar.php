@@ -7,6 +7,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 $facts     = get_post_meta( get_the_ID(), 'sidebar_facts', true );
 $downloads = get_post_meta( get_the_ID(), 'sidebar_downloads', true );
 

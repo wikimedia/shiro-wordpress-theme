@@ -7,14 +7,12 @@ import './block-hero-home';
 import './modules/donate-buttons';
 import './post-list-filters';
 import './search-results-dropdown';
-import clockBlock from './clock-block';
 import dimensionShim from './modules/dimension-shim';
 import dropdown from './modules/dropdown';
 import siteHeader from './modules/site-header';
 import stickySiteHeader from './modules/sticky-site-header';
 import tocNav from './modules/toc-nav';
 
-clockBlock();
 dropdown();
 siteHeader();
 dimensionShim();

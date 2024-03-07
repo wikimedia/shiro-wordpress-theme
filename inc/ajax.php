@@ -20,13 +20,12 @@ function wmf_sanitize_post_type_array( $post_types ) {
  * Set up search AJAX endpoint.
  */
 function wmf_ajax_search() {
-    //phpcs:disable WordPress.Security.NonceVerification.Missing
+	// phpcs:disable WordPress.Security.NonceVerification.Missing
 	$post_types = isset( $_POST['post_type'] ) ? wmf_sanitize_post_type_array( wp_unslash( $_POST['post_type'] ) ) : '';
 
 	$keyword = ! empty( $_POST['s'] ) ? sanitize_text_field( wp_unslash( $_POST['s'] ) ) : '';
 	$order   = ! empty( $_POST['order'] ) ? sanitize_text_field( wp_unslash( $_POST['order'] ) ) : 'desc';
 	$orderby = ! empty( $_POST['orderby'] ) ? sanitize_text_field( wp_unslash( $_POST['orderby'] ) ) : 'title';
-    //phpcs:enable WordPress.Security.NonceVerification.Missing
 
 	$default_args = array(
 		'post_status' => 'publish',
@@ -47,7 +46,7 @@ function wmf_ajax_search() {
 	if ( $search_query->have_posts() ) {
 		while ( $search_query->have_posts() ) :
 			$search_query->the_post();
-			echo wp_kses_post( \WMF\Editor\Blocks\BlogPost\render_block( array( 'post_id' => get_the_ID() ) ) );
+			echo wp_kses_post( \WMF\Editor\Blocks\BlogPost\render_block( [ 'post_id' => get_the_ID() ] ) );
 		endwhile;
 	} else {
 		get_template_part( 'template-parts/content', 'none' );
@@ -70,9 +69,9 @@ function wmf_ajax_search() {
 		array(
 			'posts_html' => wp_kses_post( $posts_html ),
 			'pagination' => wp_kses_post( $pagination ),
-		),
-		200
+		), 200
 	);
+	// phpcs:enable
 }
 add_action( 'wp_ajax_nopriv_ajax_search', 'wmf_ajax_search' );
 add_action( 'wp_ajax_ajax_search', 'wmf_ajax_search' );

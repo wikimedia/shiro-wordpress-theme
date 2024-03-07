@@ -6,8 +6,8 @@
  */
 
 $page_header_data = $args;
-$title            = $page_header_data['h2_title'];
-$sub_title        = $page_header_data['h1_title'];
+$title = $page_header_data['h2_title'];
+$sub_title = $page_header_data['h1_title'];
 
 ?>
 

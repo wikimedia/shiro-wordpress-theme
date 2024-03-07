@@ -1,8 +1,6 @@
 <?php
 /**
  * Block pattern for converting from the "list" template
- *
- * @package shiro
  */
 
 namespace WMF\Editor\Patterns\TemplateList;
@@ -10,7 +8,9 @@ namespace WMF\Editor\Patterns\TemplateList;
 const NAME = 'shiro/template-list';
 
 /**
- * Display "list" template content.
+ * Return block pattern string.
+ *
+ * @return string
  */
 function pattern(): string {
 	$support_module        = wmf_get_reusable_block_module_insert( 'support' );

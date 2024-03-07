@@ -5,15 +5,14 @@
  * @package shiro
  */
 
-$wmf_profiles_name = get_theme_mod( 'wmf_profiles_label', __( 'Profiles', 'shiro-admin' ) );
+$wmf_profiles_name      = get_theme_mod( 'wmf_profiles_label', __( 'Profiles', 'shiro-admin' ) );
 
 /**
  * Registers the `profile` post type.
  */
 function wmf_profile_init() {
 	register_post_type(
-		'profile',
-		array(
+		'profile', array(
 			'labels'            => array(
 				'name'                  => __( 'Profiles', 'shiro-admin' ),
 				'singular_name'         => __( 'Profile', 'shiro-admin' ),
@@ -78,13 +77,15 @@ function wmf_profile_updated_messages( $messages ) {
 		2  => __( 'Custom field updated.', 'shiro-admin' ),
 		3  => __( 'Custom field deleted.', 'shiro-admin' ),
 		4  => __( 'Profile updated.', 'shiro-admin' ),
-        // phpcs:disable Squiz.Commenting.BlockComment.NoNewLine
-        // phpcs:disable WordPress.WP.I18n.MissingTranslatorsComment
-		/* translators: %s: date and time of the revision */
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		5  => isset( $_GET['revision'] ) ? sprintf( __( 'Profile restored to revision from %s', 'shiro-admin' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-        // phpcs:enable WordPress.WP.I18n.MissingTranslatorsComment
-        // phpcs:enable Squiz.Commenting.BlockComment.NoNewLine
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		5  => isset( $_GET['revision'] )
+			? sprintf(
+				/* translators: %s: date and time of the revision */
+				__( 'Profile restored to revision from %s', 'shiro-admin' ),
+				// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				wp_post_revision_title( (int) $_GET['revision'], false )
+			)
+			: false,
 		/* translators: %s: post permalink */
 		6  => sprintf( __( 'Profile published. <a href="%s">View Profile</a>', 'shiro-admin' ), esc_url( $permalink ) ),
 		7  => __( 'Profile saved.', 'shiro-admin' ),
@@ -93,8 +94,7 @@ function wmf_profile_updated_messages( $messages ) {
 		9  => sprintf(
 			/* translators: 1: Publish box date format, see https://secure.php.net/date 2: Post permalink */
 			__( 'Profile scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview Profile</a>', 'shiro-admin' ),
-			date_i18n( __( 'M j, Y @ G:i', 'shiro-admin' ), strtotime( $post->post_date ) ),
-			esc_url( $permalink )
+			date_i18n( __( 'M j, Y @ G:i', 'shiro-admin' ), strtotime( $post->post_date ) ), esc_url( $permalink )
 		),
 		/* translators: %s: post permalink */
 		10 => sprintf( __( 'Profile draft updated. <a target="_blank" href="%s">Preview Profile</a>', 'shiro-admin' ), esc_url( add_query_arg( 'preview', 'true', $permalink ) ) ),

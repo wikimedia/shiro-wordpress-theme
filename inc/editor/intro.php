@@ -27,12 +27,12 @@ add_action( 'init', __NAMESPACE__ . '\\register_fieldmanager_fields' );
  * Register meta fields for use in the REST API.
  */
 function register_meta_fields() {
-	$meta_args = array(
+	$meta_args = [
 		'type'         => 'string',
 		'description'  => __( 'Intro field, displayed before post content in single views', 'shiro-admin' ),
 		'single'       => true,
 		'show_in_rest' => true,
-	);
+	];
 
 	// The Intro field is available on all Posts.
 	register_post_meta( 'post', FIELD_NAME, $meta_args );

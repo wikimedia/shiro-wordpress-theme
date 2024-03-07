@@ -7,6 +7,10 @@
  * @package shiro
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // File should never be accessed directly.
+}
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -269,6 +273,7 @@ require get_template_directory() . '/inc/ajax.php';
 require get_template_directory() . '/inc/editor/namespace.php';
 require get_template_directory() . '/inc/editor/blocks/blog-list.php';
 require get_template_directory() . '/inc/editor/blocks/blog-post.php';
+require get_template_directory() . '/inc/editor/blocks/clock.php';
 require get_template_directory() . '/inc/editor/blocks/double-heading.php';
 require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
 require get_template_directory() . '/inc/editor/blocks/linked-toc-item.php';
@@ -297,6 +302,7 @@ WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
 WMF\Editor\Blocks\BlogList\bootstrap();
 WMF\Editor\Blocks\BlogPost\bootstrap();
+WMF\Editor\Blocks\Clock\bootstrap();
 WMF\Editor\Blocks\InlineLanguages\bootstrap();
 WMF\Editor\Blocks\DoubleHeading\bootstrap();
 WMF\Editor\Blocks\LinkedTOCItem\bootstrap();

@@ -198,16 +198,16 @@ class Flow {
 	/**
 	 * Define which post meta to sync to remote site.
 	 *
-	 * @param string $keys TODO: Describe this parameter.
-	 * @param string $context TODO: Describe this parameter.
-	 * @param string $post TODO: Describe this parameter.
+	 * @param string[] $keys    Keys array.
+	 * @param unknown  $context Context.
+	 * @param unknown  $post    Current post.
 	 *
 	 * @return string[]
 	 */
 	public static function sync_meta( $keys, $context, $post ) {
 		return array_merge(
 			$keys,
-			array(
+			[
 				// Fieldmanager fields.
 				'page_cta',
 				'intro_button',
@@ -237,7 +237,7 @@ class Flow {
 				'stories',
 				// Page template setting.
 				'_wp_page_template',
-			)
+			]
 		);
 	}
 
@@ -448,7 +448,7 @@ class Flow {
 				'default'           => 1,
 				'single'            => true,
 				'sanitize_callback' => 'absint',
-				'auth_callback'     => function () {
+				'auth_callback'     => function() {
 					return current_user_can( 'edit_posts' );
 				},
 			)
@@ -463,10 +463,11 @@ class Flow {
 				'default'           => 0,
 				'single'            => true,
 				'sanitize_callback' => 'absint',
-				'auth_callback'     => function () {
+				'auth_callback'     => function() {
 					return current_user_can( 'edit_posts' );
 				},
 			)
 		);
 	}
+
 }
