@@ -125,13 +125,13 @@ function render_headings_list( $headings, $render_nested_items = true ) : void {
 	<ul class="wp-block-shiro-toc table-of-contents toc">
 		<?php foreach ( $headings as $heading ) : ?>
 		<li class="toc__item">
-			<a class="toc__link" href="#<?php echo esc_attr( $heading['id'] ); ?>"><?php echo esc_html( $heading['content'] ); ?></a>
+			<a class="toc__link" href="#<?php echo esc_attr( $heading['id'] ); ?>"><?php echo wp_kses_post( $heading['content'] ); ?></a>
 			<?php if ( $render_nested_items && count( $heading['children'] ) ) : ?>
 			<ul class="toc toc__nested">
 				<?php foreach ( $heading['children'] as $nested_heading ) : ?>
 				<li class="toc__item">
 					<a class="toc__link" href="#<?php echo esc_attr( $nested_heading['id'] ); ?>">
-						<?php echo esc_html( $nested_heading['content'] ); ?>
+						<?php echo wp_kses_post( $nested_heading['content'] ); ?>
 					</a>
 				</li>
 				<?php endforeach; ?>

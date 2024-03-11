@@ -66,7 +66,7 @@ if ( empty( $template_args ) ) {
 		?>
 		<li class="toc__item">
 			<a class="toc__link" href="<?php echo esc_url( $item_link ); ?>">
-				<?php echo esc_html( $item_text ); ?>
+				<?php echo wp_kses_post( $item_text ); ?>
 			</a>
 		</li>
 	<?php endforeach; ?>

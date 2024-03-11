@@ -157,6 +157,7 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
  * @return array|null
  */
 function _toc_item_helper( $block_content, $page ) {
+	error_log( $block_content );
 	// We need to get the items class and href, so using a domdoc to confidently locate them.
 	$link_block_doc = new \DOMDocument();
 	$link_block_doc->loadHTML( $block_content, \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD );
