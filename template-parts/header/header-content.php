@@ -133,7 +133,7 @@ if ( is_page() ) {
 
 	<?php if ( ! is_front_page() && ! is_home() ) { ?>
 		<!-- h1 or title as heading -->
-		<?php if ( ! empty( $single_title ) && ! wmf_is_transparency_report_page() ) { ?>
+		<?php if ( ! empty( $single_title ) && ! wmf_is_transparency_report_page() && ! apply_filters( 'wmf_hide_page_title', false ) ) { ?>
 			<h1>
 				<?php echo wp_kses( $single_title, array( 'span' => array( 'class' ) ) ); ?>
 			</h1>
