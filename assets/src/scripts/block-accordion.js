@@ -39,7 +39,9 @@ const closeAllAccordionItems = wrapper => {
  */
 const addAccordionToggleHandlers = item => {
 	const button = item.querySelector( '.accordion-item__title' );
-	console.log( { item, button } ); // eslint-disable-line
+	if ( ! button ) {
+		return;
+	}
 	button.addEventListener( 'click', toggleAccordionItem );
 };
 
