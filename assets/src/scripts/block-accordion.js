@@ -39,6 +39,9 @@ const closeAllAccordionItems = wrapper => {
  */
 const addAccordionToggleHandlers = item => {
 	const button = item.querySelector( '.accordion-item__title' );
+	if ( ! button ) {
+		return;
+	}
 	button.addEventListener( 'click', toggleAccordionItem );
 };
 
@@ -49,7 +52,7 @@ const addAccordionToggleHandlers = item => {
  */
 const initializeAccordionItems = () => {
 	// Hook in click events to each item.
-	[ ...document.querySelectorAll( '.accordion-item' ) ].forEach( item => addAccordionToggleHandlers( item ) );
+	[ ...document.querySelectorAll( '.wp-block-shiro-accordion .accordion-item' ) ].forEach( item => addAccordionToggleHandlers( item ) );
 
 	// Open and scroll FAQ into view if visiting page with the anchor link for a section.
 	if ( document.location.hash ) {
