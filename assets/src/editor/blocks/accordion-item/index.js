@@ -79,13 +79,10 @@ export const settings = {
 	 * Save block markup.
 	 */
 	save: ( { attributes, context } ) => {
-		const blockProps = useBlockProps.save( {
-			className: 'accordion-item',
-		} );
 		const { fontColor, title } = attributes;
 
 		return (
-			<div { ...blockProps }>
+			<div className="accordion-item">
 				<button className="accordion-item__title" style={ fontColor && { color: fontColor } } >
 					<RichText.Content
 						className="accordion-item__title-text"
