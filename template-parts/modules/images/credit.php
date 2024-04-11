@@ -47,6 +47,10 @@ if ( is_int( stripos( $license, 'Public domain' ) ) ) {
 } else {
 	$license_url = ! empty( $credit_info['license_url'] ) ? $credit_info['license_url'] : '';
 }
+
+if ( empty( $author ) && empty( $license ) && empty( $url ) ) {
+	return;
+}
 ?>
 
 <div class="attribution-item">
