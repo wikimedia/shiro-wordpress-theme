@@ -73,10 +73,12 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				'post' => [
 					'label' => __( 'News', 'shiro' ),
 					'sort_by' => 'date-desc',
+					'hide_if_no_results' => true,
 				],
 				'page' => [
 					'label' => __( 'Pages', 'shiro' ),
 					'sort_by' => false, // No sorting option for pages.
+					'hide_if_no_results' => true,
 				],
 			];
 
@@ -96,6 +98,20 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				if ( isset( $sorting_options[ $value['sort_by'] ] ) ) {
 					$sort_query = $sorting_options[ $value['sort_by'] ]['query'];
 					$current_url = add_query_arg( $sort_query, '', $current_url );
+				}
+
+				if ( $key !== 'all' && $value['hide_if_no_results'] ) {
+					$has_results = get_posts( [
+						's'              => get_search_query(),
+						'posts_per_page' => 1,
+						'no_found_rows'  => true,
+						'post_type'      => $key,
+						'fields'         => 'ids',
+					] );
+
+					if ( empty( $has_results ) ) {
+						continue;
+					}
 				}
 
 				// Simplest way to get the all types is not adding post_type param filter.
