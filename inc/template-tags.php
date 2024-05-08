@@ -166,7 +166,7 @@ function wmf_get_current_url() {
  * Adds a byline using Coauthors or WP native functions
  */
 function wmf_byline() {
-	if ( function_exists( 'coauthors_links' ) ) {
+	if ( function_exists( 'coauthors_links' ) && function_exists( 'get_coauthors' ) && ! empty( get_coauthors() ) ) {
 		return coauthors_posts_links( null, null, __( 'By ', 'shiro' ), '', false );
 	} else {
 		return get_the_author_link();
