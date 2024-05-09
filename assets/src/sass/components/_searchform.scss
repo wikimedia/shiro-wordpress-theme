@@ -48,6 +48,7 @@
 		//					padding			width of icon	padding
 		padding-right: calc( #{rem( 8 )} + #{rem( 16 )} + #{rem( 8 )} );
 		border: 0;
+		color: #202122;
 
 		@media ( min-width: #{$medium-landscape} ) {
 			padding-bottom: rem( 6 );
