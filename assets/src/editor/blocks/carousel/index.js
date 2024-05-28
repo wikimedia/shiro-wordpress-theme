@@ -198,7 +198,7 @@ export const settings = {
 			'data-per-page': perPage,
 			'data-arrows': arrows,
 			'data-pagination': pagination,
-			'data-autoplay': autoplay,
+			'data-autoplay': autoplay ? autoplay : null,
 			'data-interval': autoplay ? interval : null,
 		} );
 
