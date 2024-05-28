@@ -57,7 +57,6 @@ const LinkedTOCItemWithFocusOutside = withFocusOutside(
 						className="linked-toc__link toc__link"
 						placeholder={ __( 'Link heading', 'shiro-admin' ) }
 						tagName="span"
-						unstableOnFocus={ () => this.setState( { showButtons: true } ) }
 						value={ heading }
 						onChange={ setHeading }
 						onFocus={ () => this.setState( { showButtons: true } ) }

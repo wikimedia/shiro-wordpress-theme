@@ -69,7 +69,9 @@ while ( have_posts() ) :
 					<?php if ( ! empty( $share_links ) ) : ?>
 						<?php
 						foreach ( $share_links as $link ) :
-
+							if ( empty( $link['link'] ) ) {
+								continue;
+							}
 							?>
 					<div class="link-list mar-right">
 							<?php
