@@ -72,6 +72,7 @@ export const settings = {
 			perPage,
 			arrows,
 			pagination,
+			loop,
 			autoplay,
 			interval,
 		} = attributes;
@@ -130,6 +131,11 @@ export const settings = {
 							onChange={ ( pagination ) => setAttributes( { pagination } ) }
 						/>
 						<ToggleControl
+							label={ __( 'Loop carousel?', 'shiro-admin' ) }
+							checked={ loop }
+							onChange={ ( loop ) => setAttributes( { loop } ) }
+						/>
+						<ToggleControl
 							label={ __( 'Enable autoplay?', 'shiro-admin' ) }
 							checked={ autoplay }
 							onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
@@ -186,6 +192,7 @@ export const settings = {
 			perPage,
 			arrows,
 			pagination,
+			loop,
 			autoplay,
 			interval,
 		} = attributes;
@@ -198,7 +205,8 @@ export const settings = {
 			'data-per-page': perPage,
 			'data-arrows': arrows,
 			'data-pagination': pagination,
-			'data-autoplay': autoplay,
+			'data-type': loop ? 'loop' : 'slide',
+			'data-autoplay': autoplay ? autoplay : null,
 			'data-interval': autoplay ? interval : null,
 		} );
 
