@@ -43,8 +43,10 @@ const CtaWithFocusOutside = withFocusOutside(
 				text,
 				onChangeText,
 				onChangeLink,
+				onChangeNewTab,
 				className,
 				url,
+				opensInNewTab,
 			} = this.props;
 
 			return (
@@ -52,7 +54,9 @@ const CtaWithFocusOutside = withFocusOutside(
 					<URLPicker
 						isSelected={ showButtons }
 						url={ url }
+						opensInNewTab={ opensInNewTab }
 						onChangeLink={ onChangeLink }
+						onChangeNewTab={ onChangeNewTab }
 					/>
 					<div className={
 						classNames(
@@ -92,28 +96,34 @@ CtaWithFocusOutside.propTypes = {
 	text: PropTypes.string,
 	onChangeText: PropTypes.func.isRequired,
 	onChangeLink: PropTypes.func.isRequired,
+	onChangeNewTab: PropTypes.func.isRequired,
 	className: PropTypes.string,
 	url: PropTypes.string,
+	opensInNewTab: PropTypes.bool,
 };
 
 /**
  * Provide a ready-made element for `save()`.
  */
-CtaWithFocusOutside.Content = ( { url, text, className, ...props } ) => {
+CtaWithFocusOutside.Content = ( { url, opensInNewTab, text, className, ...props } ) => {
 	if ( ! url ) {
 		return null;
 	}
+
+	//const newTab = opensInNewTab ? ' target="_blank" rel="noopener" ' : null;
 
 	return (
 		<a
 			className={ className }
 			href={ url }
+			/* { ...newTab } */
 			{ ...props }>{ text }</a>
 	);
 };
 
 CtaWithFocusOutside.Content.propTypes = {
 	url: PropTypes.string,
+	opensInNewTab: PropTypes.bool,
 	text: PropTypes.string,
 	className: PropTypes.string,
 };
