@@ -197,17 +197,21 @@ export const settings = {
 			interval,
 		} = attributes;
 
+		const dataSplide = {
+			label: title,
+			perPage: perPage,
+			arrows: arrows,
+			pagination: pagination,
+			type: loop ? 'loop' : 'slide',
+			autoplay: autoplay,
+			interval: interval,
+		};
+
 		const blockProps = useBlockProps.save( {
 			className: classNames( [
 				'shiro-carousel',
 			] ),
-			'data-label': title,
-			'data-per-page': perPage,
-			'data-arrows': arrows,
-			'data-pagination': pagination,
-			'data-type': loop ? 'loop' : 'slide',
-			'data-autoplay': autoplay ? autoplay : null,
-			'data-interval': autoplay ? interval : null,
+			'data-splide': JSON.stringify( dataSplide ),
 		} );
 
 		const innerBlocksProps = useInnerBlocksProps.save( {
