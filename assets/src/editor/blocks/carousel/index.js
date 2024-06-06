@@ -72,6 +72,7 @@ export const settings = {
 			perPage,
 			arrows,
 			pagination,
+			loop,
 			autoplay,
 			interval,
 		} = attributes;
@@ -130,6 +131,11 @@ export const settings = {
 							onChange={ ( pagination ) => setAttributes( { pagination } ) }
 						/>
 						<ToggleControl
+							label={ __( 'Loop carousel?', 'shiro-admin' ) }
+							checked={ loop }
+							onChange={ ( loop ) => setAttributes( { loop } ) }
+						/>
+						<ToggleControl
 							label={ __( 'Enable autoplay?', 'shiro-admin' ) }
 							checked={ autoplay }
 							onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
@@ -186,20 +192,26 @@ export const settings = {
 			perPage,
 			arrows,
 			pagination,
+			loop,
 			autoplay,
 			interval,
 		} = attributes;
+
+		const dataSplide = {
+			label: title,
+			perPage: perPage,
+			arrows: arrows,
+			pagination: pagination,
+			type: loop ? 'loop' : 'slide',
+			autoplay: autoplay,
+			interval: interval,
+		};
 
 		const blockProps = useBlockProps.save( {
 			className: classNames( [
 				'shiro-carousel',
 			] ),
-			'data-label': title,
-			'data-per-page': perPage,
-			'data-arrows': arrows,
-			'data-pagination': pagination,
-			'data-autoplay': autoplay,
-			'data-interval': autoplay ? interval : null,
+			'data-splide': JSON.stringify( dataSplide ),
 		} );
 
 		const innerBlocksProps = useInnerBlocksProps.save( {
