@@ -43,6 +43,10 @@
       "type": "boolean",
       "default": true
     },
+    "loop": {
+      "type": "boolean",
+      "default": false
+    },
     "autoplay": {
       "type": "boolean",
       "default": false
