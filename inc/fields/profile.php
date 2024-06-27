@@ -11,8 +11,8 @@
 function wmf_profile_fields() {
 	$last_name = new Fieldmanager_Textfield(
 		array(
-			'label'       => __( 'Last Name', 'shiro-admin' ),
-			'description' => __( 'This field is required to enable correct sorting via last name.', 'shiro-admin' ),
+			'label'       => __( 'Sort Name', 'shiro-admin' ),
+			'description' => __( 'Profiles are sorted on staff pages in alphabetical order based on this field.', 'shiro-admin' ),
 			'name'        => 'last_name',
 		)
 	);
