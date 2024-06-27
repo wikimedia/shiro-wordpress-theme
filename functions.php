@@ -578,7 +578,7 @@ add_filter( 'jetpack_blaze_enabled', '__return_false' );
 
 
 /**
- * Profiles/Roles Order customizations.
+ * Profiles Order customizations.
  */
-require get_template_directory() . '/inc/roles-order.php';
-WMF\Roles_Order\bootstrap();
+require get_template_directory() . '/inc/profile-order.php';
+WMF\Profile_Order\bootstrap();
