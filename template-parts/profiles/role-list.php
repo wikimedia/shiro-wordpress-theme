@@ -66,17 +66,23 @@ foreach ( $post_list as $term_id => $term_data ) {
 		</h3>
 		<ul class="role__staff-list">
 			<?php
+			// Sort $executives based on $profile_order.
+			usort( $executives, function( $a, $b ) {
+				$order_a = get_post_meta( $a, '_post_order', true );
+				$order_b = get_post_meta( $b, '_post_order', true );
 
-			// Sort executives by `last_name`, a custom meta field.
-			usort(
-				$executives,
-				function ( $a, $b ) {
-					$last_name_a = get_post_meta( $a, 'last_name', true );
-					$last_name_b = get_post_meta( $b, 'last_name', true );
+				// If `_post_order` is not set or empty, set a very large number, so they stay at the end.
+				$order_a = empty( $order_a ) ? PHP_INT_MAX : intval( $order_a );
+				$order_b = empty( $order_b ) ? PHP_INT_MAX : intval( $order_b );
 
-					return strnatcasecmp( $last_name_a, $last_name_b );
-				} 
-			);
+				// Compare the order values.
+				if ( $order_a === $order_b ) {
+					return 0;
+				}
+
+				// Compare numeric values
+				return ( $order_a < $order_b ) ? -1 : 1;
+			});
 
 			foreach ( $executives as $executive_id ) {
 				get_template_part(
@@ -100,16 +106,23 @@ foreach ( $post_list as $term_id => $term_data ) {
 		</h3>
 		<ul class="role__staff-list">
 			<?php
-			// Sort experts by `last_name`, a custom meta field.
-			usort(
-				$experts,
-				function ( $a, $b ) {
-					$last_name_a = get_post_meta( $a, 'last_name', true );
-					$last_name_b = get_post_meta( $b, 'last_name', true );
+			// Sort $executives based on $profile_order.
+			usort( $executives, function( $a, $b ) {
+				$order_a = get_post_meta( $a, '_post_order', true );
+				$order_b = get_post_meta( $b, '_post_order', true );
 
-					return strnatcasecmp( $last_name_a, $last_name_b );
-				} 
-			);
+				// If `_post_order` is not set or empty, set a very large number, so they stay at the end.
+				$order_a = empty( $order_a ) ? PHP_INT_MAX : intval( $order_a );
+				$order_b = empty( $order_b ) ? PHP_INT_MAX : intval( $order_b );
+
+				// Compare the order values.
+				if ( $order_a === $order_b ) {
+					return 0;
+				}
+
+				// Compare numeric values
+				return ( $order_a < $order_b ) ? -1 : 1;
+			});
 
 			foreach ( $experts as $expert_id ) {
 				get_template_part(
@@ -127,6 +140,24 @@ foreach ( $post_list as $term_id => $term_data ) {
 		}
 	} else {
 		if ( ! empty( $term_data ) ) {
+
+			// Sort term_data['posts'] based on $profile_order.
+			usort( $term_data['posts'], function( $a, $b ) {
+				$order_a = get_post_meta( $a, '_post_order', true );
+				$order_b = get_post_meta( $b, '_post_order', true );
+
+				// If `_post_order` is not set or empty, set a very large number, so they stay at the end.
+				$order_a = empty( $order_a ) ? PHP_INT_MAX : intval( $order_a );
+				$order_b = empty( $order_b ) ? PHP_INT_MAX : intval( $order_b );
+
+				// Compare the order values.
+				if ( $order_a === $order_b ) {
+					return 0;
+				}
+
+				// Compare numeric values.
+				return ( $order_a < $order_b ) ? -1 : 1;
+			});
 			?>
 		<ul class="role__staff-list">
 			<?php

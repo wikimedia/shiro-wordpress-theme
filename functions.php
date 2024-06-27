@@ -583,3 +583,10 @@ function shiro_safe_title( string $title ): void {
  * Disable JetPack Blaze.
  */
 add_filter( 'jetpack_blaze_enabled', '__return_false' );
+
+
+/**
+ * Profiles Order customizations.
+ */
+require get_template_directory() . '/inc/profile-order.php';
+WMF\Profile_Order\bootstrap();
