@@ -575,3 +575,10 @@ function shiro_safe_title( string $title ): void {
  * Disable JetPack Blaze.
  */
 add_filter( 'jetpack_blaze_enabled', '__return_false' );
+
+
+/**
+ * Profiles/Roles Order customizations.
+ */
+require get_template_directory() . '/inc/roles-order.php';
+WMF\Roles_Order\bootstrap();
