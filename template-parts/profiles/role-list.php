@@ -11,6 +11,25 @@ if ( empty( $post_list ) ) {
 	return;
 }
 
+/**
+ * Sort an array of profiles based on the profile's assigned last_name
+ * sorting value and return the sorted array.
+ *
+ * @param WP_Post[] $profiles Profiles to sort.
+ * @return WP_Post[] Sorted profiles.
+ */
+function sort_profiles( $profiles ) {
+	// The sort order is defined by the `last_name` meta field, which is
+	// actually exclusively used for alphabetical ordering.
+	usort( $profiles, function( $a, $b ) {
+		$last_name_a = get_post_meta( $a, 'last_name', true ) ?: 'z';
+		$last_name_b = get_post_meta( $b, 'last_name', true ) ?: 'z';
+
+		return strnatcasecmp( $last_name_a, $last_name_b );
+	} );
+	return $profiles;
+}
+
 foreach ( $post_list as $term_id => $term_data ) {
 	$name        = ! empty( $term_data['name'] ) ? $term_data['name'] : '';
 	$description = term_description( $term_id, 'role' );
@@ -66,16 +85,7 @@ foreach ( $post_list as $term_id => $term_data ) {
 		</h3>
 		<ul class="role__staff-list">
 			<?php
-
-			// Sort executives by `last_name`, a custom meta field.
-			usort( $executives, function( $a, $b ) {
-				$last_name_a = get_post_meta( $a, 'last_name', true );
-				$last_name_b = get_post_meta( $b, 'last_name', true );
-
-				return strnatcasecmp( $last_name_a, $last_name_b );
-			} );
-
-			foreach ( $executives as $executive_id ) {
+			foreach ( sort_profiles( $executives ) as $executive_id ) {
 				get_template_part(
 					'template-parts/profiles/role',
 					'item',
@@ -97,14 +107,6 @@ foreach ( $post_list as $term_id => $term_data ) {
 		</h3>
 		<ul class="role__staff-list">
 			<?php
-			// Sort experts by `last_name`, a custom meta field.
-			usort( $experts, function( $a, $b ) {
-				$last_name_a = get_post_meta( $a, 'last_name', true );
-				$last_name_b = get_post_meta( $b, 'last_name', true );
-
-				return strnatcasecmp( $last_name_a, $last_name_b );
-			} );
-
 			foreach ( $experts as $expert_id ) {
 				get_template_part(
 					'template-parts/profiles/role',
@@ -124,7 +126,7 @@ foreach ( $post_list as $term_id => $term_data ) {
 			?>
 		<ul class="role__staff-list">
 			<?php
-			foreach ( $term_data['posts'] as $term_data_post_id ) {
+			foreach ( sort_profiles( $term_data['posts'] ) as $term_data_post_id ) {
 				get_template_part(
 					'template-parts/profiles/role',
 					'item',
