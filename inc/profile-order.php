@@ -31,7 +31,7 @@ function bootstrap() {
 function add_order_meta_box() {
     add_meta_box(
         'post_order',
-        __('Post Order', 'shiro-admin'),
+        __('Profile Order', 'shiro-admin'),
          __NAMESPACE__ . '\\render_order_meta_box',
         'profile',
         'side',
