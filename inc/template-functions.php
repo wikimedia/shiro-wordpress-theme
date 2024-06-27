@@ -84,6 +84,35 @@ function wmf_get_header_cta_button_class() {
 }
 
 /**
+ * Sort an associative array of roles keyed by role ID based on each roles'
+ * role_order meta field, ordering defined values before 0/empty.
+ *
+ * Iteratively sorts child roles as well.
+ *
+ * @param array $roles Keyed array of shape [ term_id => term_details_arr ].
+ * @return array Sorted array.
+ */
+function _wmf_sort_role_array( &$roles ) {
+	uasort( $roles, function( $a, $b) {
+		$order_a = $a['order'];
+		if ( empty( $order_a ) ) {
+			$order_a = 1000;
+		}
+		$order_b = $b['order'];
+		if ( empty( $order_b ) ) {
+			$order_b = 1000;
+		}
+		return $order_a - $order_b;
+	} );
+
+	foreach ( $roles as $role ) {
+		if ( ! empty( $role['children'] ) ) {
+			_wmf_sort_role_array( $role['children'] );
+		}
+	}
+}
+
+/**
  * Get all the child terms for a parent organized by hierarchy
  *
  * @param int $parent_id The ID of the parent term to query against.
@@ -94,7 +123,8 @@ function wmf_get_role_hierarchy( int $parent_id ) {
 	$children   = array();
 	$term_array = array();
 	$terms      = get_terms(
-		'role', array(
+		'role',
+		array(
 			'orderby' => 'name',
 			'fields'  => 'id=>parent',
 			'get'     => 'all',
@@ -114,6 +144,8 @@ function wmf_get_role_hierarchy( int $parent_id ) {
 	foreach ( $children[ $parent_id ] as $child_id ) {
 		$term_array[ $child_id ] = isset( $children[ $child_id ] ) ? $children[ $child_id ] : array();
 	}
+
+	_wmf_sort_role_array( $term_array );
 
 	return $term_array;
 }
@@ -164,7 +196,7 @@ function wmf_get_role_posts( $term_id ) {
 		'posts' => $profile_list,
 		'name'  => $term_query->name,
 		'slug'  => $term_query->slug,
-		'order' => get_term_meta( $term_query->term_id, 'role_order', true ) ?: 0,
+		'order' => get_term_meta( $term_id, 'role_order', true ) ?: 0,
 	);
 }
 
@@ -215,6 +247,8 @@ function wmf_get_posts_by_child_roles( int $term_id ) {
 			}
 		}
 	}
+
+	_wmf_sort_role_array( $post_list );
 
 	wp_cache_set( 'wmf_terms_list_' . $term_id, $post_list );
 
