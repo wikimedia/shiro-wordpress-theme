@@ -89,6 +89,18 @@ function wmf_role_fields() {
 	$featured_term->add_term_meta_box( __( 'Featured Term?', 'shiro-admin' ), 'role' );
 
 
+	$role_order = new Fieldmanager_TextField(
+		array(
+			'name'          => 'role_order',
+			'input_type'    => 'number',
+			'default_value' => 0,
+			'description'   => __( 'In what position should this role display on the archive page?', 'shiro-admin' ),
+		)
+	);
+
+	$role_order->add_term_meta_box( __( 'Role Order', 'shiro-admin' ), 'role' );
+
+
 	// Get the current term ID.
 	// We don't need to validate this because we're only using it if it exists and providing a fallback if not.
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated
@@ -217,3 +229,62 @@ function wmf_save_user_profile( $meta_id, $post_id, $meta_key, $meta_value ) {
 	}
 }
 add_action( 'update_postmeta', 'wmf_save_user_profile', 10, 4 );
+
+/**
+ * Show the configured row-order meta value in the term list table.
+ *
+ * @param ?string $string      Column contents.
+ * @param string  $column_name Name of column.
+ * @param int     $term_id     ID of term being rendered.
+ * @return ?string Filtered contents string.
+ */
+function wmf_render_role_order_list_table_column( ?string $string, string $column_name, int $term_id ) {
+	if ( $column_name === 'role_order' ) {
+		$role_order = get_term_meta( $term_id, 'role_order', true );
+		if ( ! empty( $role_order ) ) {
+			return sprintf( '<strong>%d</strong>', (int) $role_order );
+		}
+	}
+	return $string;
+}
+add_filter( 'manage_role_custom_column', 'wmf_render_role_order_list_table_column', 10, 3 );
+
+/**
+ * Add a column to the Edit Roles term list screen to show the term's Role Order value.
+ *
+ * @param array $columns Associative array of registered columns.
+ */
+function wmf_add_role_order_list_table_column( array $columns ) : array {
+	$columns['role_order'] = __( 'Role Order', 'shiro-admin' );
+	return $columns;
+}
+add_filter( 'manage_edit-role_columns', 'wmf_add_role_order_list_table_column' );
+
+/**
+ * Make the column sortable
+ *
+ * @param array $sortable_columns Array of sortable columns.
+ * @return array Filtered array, with our column added.
+ */
+function wmf_make_role_order_column_sortable( array $sortable_columns ) : array {
+    $sortable_columns['role_order'] = 'role_order';
+    return $sortable_columns;
+}
+add_filter( 'manage_edit-role_sortable_columns', 'wmf_make_role_order_column_sortable' );
+
+/**
+ * Define how to sort by role_order.
+ *
+ * @param WP_Term_Query $query Term query.
+ */
+function sort_role_order_column( $query ) {
+    if ( ! is_admin() ) {
+        return;
+    }
+
+    if ( $query->query_vars['orderby'] === 'role_order' ) {
+		$query->query_vars['orderby'] = 'meta_value_num';
+		$query->query_vars['meta_key'] = 'role_order';
+    }
+}
+add_action( 'pre_get_terms', 'sort_role_order_column' );
