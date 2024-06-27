@@ -158,12 +158,13 @@ function wmf_get_role_posts( $term_id ) {
 	$profile_list = array_unique( $profile_list );
 
 	// Sort by last_name. Unusual profile ordering may occur if this field is not set.
-	usort( $profile_list, fn( $profile_id ) => get_post_meta( $profile_id, 'last_name', true ) );
+	usort( $profile_list, fn( $profile_id ) => get_post_meta( $profile_id, 'last_name', true ) ?: 'z' );
 
 	return array(
 		'posts' => $profile_list,
 		'name'  => $term_query->name,
 		'slug'  => $term_query->slug,
+		'order' => get_term_meta( $term_query->term_id, 'role_order', true ) ?: 0,
 	);
 }
 
