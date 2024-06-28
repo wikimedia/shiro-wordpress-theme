@@ -89,10 +89,12 @@ function wmf_get_header_cta_button_class() {
  *
  * Iteratively sorts child roles as well.
  *
+ * NOTE: Intended for use only within role hierarchy getter functions!
+ *
  * @param array $roles Keyed array of shape [ term_id => term_details_arr ].
  */
-function _wmf_sort_role_array( &$roles ) {
-	uasort( $roles, function( $a, $b) {
+function wmf_sort_role_list( &$roles ) {
+	uasort( $roles, function( $a, $b ) {
 		$order_a = $a['order'];
 		if ( empty( $order_a ) ) {
 			$order_a = 1000;
@@ -106,7 +108,7 @@ function _wmf_sort_role_array( &$roles ) {
 
 	foreach ( $roles as $role ) {
 		if ( ! empty( $role['children'] ) ) {
-			_wmf_sort_role_array( $role['children'] );
+			wmf_sort_role_list( $role['children'] );
 		}
 	}
 }
@@ -144,7 +146,7 @@ function wmf_get_role_hierarchy( int $parent_id ) {
 		$term_array[ $child_id ] = isset( $children[ $child_id ] ) ? $children[ $child_id ] : array();
 	}
 
-	_wmf_sort_role_array( $term_array );
+	wmf_sort_role_list( $term_array );
 
 	return $term_array;
 }
@@ -247,7 +249,7 @@ function wmf_get_posts_by_child_roles( int $term_id ) {
 		}
 	}
 
-	_wmf_sort_role_array( $post_list );
+	wmf_sort_role_list( $post_list );
 
 	wp_cache_set( 'wmf_terms_list_' . $term_id, $post_list );
 
