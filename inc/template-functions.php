@@ -90,7 +90,6 @@ function wmf_get_header_cta_button_class() {
  * Iteratively sorts child roles as well.
  *
  * @param array $roles Keyed array of shape [ term_id => term_details_arr ].
- * @return array Sorted array.
  */
 function _wmf_sort_role_array( &$roles ) {
 	uasort( $roles, function( $a, $b) {
@@ -253,6 +252,25 @@ function wmf_get_posts_by_child_roles( int $term_id ) {
 	wp_cache_set( 'wmf_terms_list_' . $term_id, $post_list );
 
 	return $post_list;
+}
+
+/**
+ * Sort an array of profiles based on the profile's assigned last_name
+ * sorting value and return the sorted array.
+ *
+ * @param WP_Post[] $profiles Profiles to sort.
+ * @return WP_Post[] Sorted profiles.
+ */
+function wmf_sort_profiles( $profiles ) {
+	// The sort order is defined by the `last_name` meta field, which is
+	// actually exclusively used for alphabetical ordering.
+	usort( $profiles, function( $a, $b ) {
+		$last_name_a = get_post_meta( $a, 'last_name', true ) ?: 'z';
+		$last_name_b = get_post_meta( $b, 'last_name', true ) ?: 'z';
+
+		return strnatcasecmp( $last_name_a, $last_name_b );
+	} );
+	return $profiles;
 }
 
 /**

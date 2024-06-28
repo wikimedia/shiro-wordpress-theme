@@ -267,8 +267,8 @@ add_filter( 'manage_edit-role_columns', 'wmf_add_role_order_list_table_column' )
  * @return array Filtered array, with our column added.
  */
 function wmf_make_role_order_column_sortable( array $sortable_columns ) : array {
-    $sortable_columns['role_order'] = 'role_order';
-    return $sortable_columns;
+	$sortable_columns['role_order'] = 'role_order';
+	return $sortable_columns;
 }
 add_filter( 'manage_edit-role_sortable_columns', 'wmf_make_role_order_column_sortable' );
 
@@ -277,14 +277,14 @@ add_filter( 'manage_edit-role_sortable_columns', 'wmf_make_role_order_column_sor
  *
  * @param WP_Term_Query $query Term query.
  */
-function sort_role_order_column( $query ) {
-    if ( ! is_admin() ) {
-        return;
-    }
+function wmf_sort_role_order_column( $query ) {
+	if ( ! is_admin() ) {
+		return;
+	}
 
-    if ( $query->query_vars['orderby'] === 'role_order' ) {
+	if ( $query->query_vars['orderby'] === 'role_order' ) {
 		$query->query_vars['orderby'] = 'meta_value_num';
 		$query->query_vars['meta_key'] = 'role_order';
-    }
+	}
 }
-add_action( 'pre_get_terms', 'sort_role_order_column' );
+add_action( 'pre_get_terms', 'wmf_sort_role_order_column' );
