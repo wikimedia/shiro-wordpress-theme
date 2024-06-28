@@ -240,9 +240,14 @@ add_action( 'update_postmeta', 'wmf_save_user_profile', 10, 4 );
  */
 function wmf_render_role_order_list_table_column( ?string $string, string $column_name, int $term_id ) {
 	if ( $column_name === 'role_order' ) {
+		$parent_term_id = wp_get_term_taxonomy_parent_id( $term_id, 'role' );
+		if ( empty( $parent_term_id ) ) {
+			return __( 'N/A (Top level)', 'shiro-admin' );
+		}
+
 		$role_order = get_term_meta( $term_id, 'role_order', true );
 		if ( ! empty( $role_order ) ) {
-			return sprintf( '<strong>%d</strong>', (int) $role_order );
+			return sprintf( '<strong>%d</strong>', $role_order );
 		}
 	}
 	return $string;
