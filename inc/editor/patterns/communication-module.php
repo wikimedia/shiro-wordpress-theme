@@ -1,8 +1,6 @@
 <?php
 /**
  * Block pattern for the newsletter & contact section.
- *
- * @package shiro
  */
 
 namespace WMF\Editor\Patterns\CommunicationModule;

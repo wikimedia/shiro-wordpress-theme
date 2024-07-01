@@ -1,8 +1,6 @@
 <?php
 /**
  * Block pattern for the "Tweet this" columns.
- *
- * @package shiro
  */
 
 namespace WMF\Editor\Patterns\TweetColumns;
@@ -21,8 +19,8 @@ const NAME = 'shiro/tweet-columns';
  * @return string
  */
 function pattern() {
-	$post_id           = get_admin_post() ?? false;
-	$permalink         = $post_id ? get_permalink( $post_id ) : get_home_url();
+	$post_id = get_admin_post() ?? false;
+	$permalink = $post_id ? get_permalink( $post_id ) : get_home_url();
 	$permalink_encoded = urlencode( $permalink );
 
 	return <<<CONTENT

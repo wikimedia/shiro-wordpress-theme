@@ -10,12 +10,9 @@
  * determine if the inner header should initialize the language switcher
  * dropdown.
  */
-$translations = array_filter(
-	wmf_get_translations(),
-	function ( $translation ) {
-		return '' !== $translation['uri'];
-	} 
-);
+$translations = array_filter( wmf_get_translations(), function ( $translation ) {
+	return $translation['uri'] !== '';
+} );
 ?>
 
 <div class="site-header">
@@ -31,7 +28,7 @@ $translations = array_filter(
 		<div class='nav-search nav-search--desktop'>
 			<?php get_template_part( 'template-parts/site-navigation/search' ); ?>
 		</div>
-		<?php get_template_part( 'template-parts/site-header/language-switcher', null, array( 'translations' => $translations ) ); ?>
+		<?php get_template_part( 'template-parts/site-header/language-switcher', null, [ 'translations' => $translations ] ); ?>
 		<?php get_template_part( 'template-parts/site-header/donate' ); ?>
 	</div>
 </div>

@@ -1,8 +1,6 @@
 <?php
 /**
  * Block pattern for a full-wdth group containing a header and two recent posts.
- *
- * @package shiro
  */
 
 namespace WMF\Editor\Patterns\BlogList;

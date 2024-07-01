@@ -6,7 +6,7 @@
  */
 
 $share_args = wp_parse_args(
-	array( 'uri' => wmf_get_current_url() ),
+	[ 'uri' => wmf_get_current_url() ],
 	$args
 );
 
