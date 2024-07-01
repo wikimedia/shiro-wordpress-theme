@@ -1,6 +1,6 @@
 import { BlockControls, __experimentalLinkControl as LinkControl } from '@wordpress/block-editor';
 import { Popover, ToolbarButton, ToolbarGroup, KeyboardShortcuts } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { useMemo, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { rawShortcut, displayShortcut } from '@wordpress/keycodes';
 
@@ -17,11 +17,27 @@ import './style.scss';
 function URLPicker( {
 	isSelected,
 	url,
+	linkTarget,
+	opensInNewTab,
 	onChangeLink,
+	onChangeNewTab,
 } ) {
 	const [ isURLPickerOpen, setIsURLPickerOpen ] = useState( false );
 	const urlIsSet = !! url;
 	const urlIsSetandSelected = urlIsSet && isSelected;
+
+	// Memoize link value to avoid overriding the LinkControl's internal state.
+	const linkValue = useMemo(
+		() => ( {
+			url,
+			opensInNewTab,
+		} ),
+		[
+			url,
+			opensInNewTab,
+		]
+	);
+
 	/**
 	 * Handle opening url entry interface when toolbar button is clicked.
 	 */
@@ -35,8 +51,10 @@ function URLPicker( {
 	 */
 	const removeLink = () => {
 		onChangeLink( undefined );
+		onChangeNewTab( false );
 		setIsURLPickerOpen( false );
 	};
+
 	const linkControl = ( isURLPickerOpen || urlIsSetandSelected ) && (
 		<Popover
 			position="bottom center"
@@ -44,15 +62,22 @@ function URLPicker( {
 		>
 			<LinkControl
 				className="wp-block-navigation-link__inline-link-input"
-				// This empty array removes the "open in new tab" option.
-				// For CTAs, the behavior is likely to always be the same, and
-				// implementing this feature has been complicated. If necessary,
-				// it can be added at a later date.
-				settings={ [] }
-				value={ {
-					url,
+				// An array of settings objects associated with a link (e.g., the "open in new tab" option).
+				// Each object will be used to render a ToggleControl for that setting.
+				// To disable settings, pass in an empty array (i.e., settings={ [] } ).
+				settings={
+					[
+						{
+							id: 'opensInNewTab',
+							title: __( 'Open in new tab' ),
+						},
+					]
+				}
+				value={ linkValue }
+				onChange={ ( value ) => {
+					onChangeLink( value.url, value );
+					onChangeNewTab( value.opensInNewTab, value );
 				} }
-				onChange={ ( link ) => onChangeLink( link.url, link ) }
 			/>
 		</Popover>
 	);

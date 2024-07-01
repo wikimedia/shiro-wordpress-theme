@@ -85,6 +85,13 @@ export const settings = {
 			selector: '.content-card__call-to-action',
 			attribute: 'href',
 		},
+		linkTarget: {
+			type: 'string',
+			source: 'attribute',
+			selector: '.content-card__call-to-action',
+			attribute: 'target',
+			default: '_self',
+		},
 	},
 
 	/**
@@ -99,6 +106,7 @@ export const settings = {
 			body,
 			linkText,
 			linkUrl,
+			linkTarget,
 			imageWidth,
 			imageHeight,
 		} = attributes;
@@ -112,6 +120,19 @@ export const settings = {
 				imageHeight: height,
 			} );
 		}, [ setAttributes ] );
+
+		const opensInNewTab = linkTarget === '_blank';
+
+		/**
+		 * Handle setting the target attribute value.
+		 */
+		const onChangeNewTab = ( opensInNewTab ) => {
+			if ( opensInNewTab ) {
+				setAttributes( { linkTarget: '_blank' } );
+			} else {
+				setAttributes( { linkTarget: '_self' } );
+			}
+		};
 
 		return (
 			<div { ...blockProps }>
@@ -136,8 +157,10 @@ export const settings = {
 						className="content-card__call-to-action arrow-link"
 						text={ linkText }
 						url={ linkUrl }
+						opensInNewTab={ opensInNewTab }
 						onChangeLink={ ( linkUrl ) => setAttributes( { linkUrl } ) }
 						onChangeText={ ( linkText ) => setAttributes( { linkText } ) }
+						onChangeNewTab={ onChangeNewTab( opensInNewTab ) }
 					/>
 				</div>
 				<ImagePicker
