@@ -451,6 +451,46 @@ function teardown() {
 	}
 }
 
+/**
+ * Selects all menu items that have a dropdown and add event listeners for mouse enter and mouse leave.
+ */
+const dropdownMenuItems = [ ...document.querySelectorAll( '[data-dropdown].menu-item' ) ];
+dropdownMenuItems.forEach( menuItem => {
+	menuItem.addEventListener( 'mouseenter', showDropDown );
+	menuItem.addEventListener( 'mouseleave', mouseLeaveDelay );
+} );
+
+/**
+ * Adds class if there's dropdown menu.
+ */
+if ( dropdownMenuItems.lenght !== 0 ) {
+	document.querySelector( 'header' ).classList.add( 'header-default__dropdown-spacing' );
+}
+
+/**
+ * Show dropdown.
+ *
+ * @param {HTMLBodyElement} event document.menu-item['data-dropdown'].
+ */
+function showDropDown( event ) {
+	event.target.dataset.visible = 'yes';
+	event.target.dataset.trap = 'active';
+	event.target.dataset.backdrop = 'active';
+}
+
+/**
+ * Hide dropdown after 50ms.
+ *
+ * @param {HTMLBodyElement} event for .mennu-item[data-dropdown].
+ */
+function mouseLeaveDelay( event ) {
+	setTimeout( () => {
+		event.target.dataset.visible = 'no';
+		event.target.dataset.trap = 'inactive';
+		event.target.dataset.backdrop = 'inactive';
+	}, 50 );
+}
+
 export default initialize( setup, teardown );
 export {
 	_backdrop as backdrop,
