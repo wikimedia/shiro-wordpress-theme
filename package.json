@@ -13,6 +13,7 @@
     "build:theme": "run-s build:webpack build:gulp",
     "build:webpack": "webpack --config=.config/webpack.config.prod.js",
     "build:gulp": "gulp build",
+    "build:scripts": "wp-scripts build --output-path=assets/dist",
     "start": "run-p start:theme",
     "start:theme": "run-p start:webpack:theme start:gulp",
     "start:webpack:theme": "webpack-dev-server --config=.config/webpack.config.dev.js --config-name=theme",
@@ -47,7 +48,9 @@
   "homepage": "https://github.com/wikimedia/shiro-wordpress-theme-develop#readme",
   "devDependencies": {
     "@wordpress/scripts": "^28.4.0",
+    "block-editor-hmr": "^0.7.0",
     "classnames": "^2.5.1",
+    "glob": "^11.0.0",
     "version-bump-prompt": "^6.1.0",
     "webpack-cli": "^5.1.4"
   },
