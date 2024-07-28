@@ -115,6 +115,10 @@ module.exports = {
 					from: filePath( 'assets/src/libs' ),
 					to: filePath( 'assets/dist' ),
 				},
+				{
+					from: filePath( 'assets/src/svg/spritesheet' ),
+					to: filePath( 'assets/dist' ),
+				},
 			],
 		} ),
 	],
