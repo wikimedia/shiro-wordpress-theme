@@ -1,10 +1,24 @@
+/**
+ * This Webpack config augments the default wp-scripts "build" command with
+ * custom logic to properly process all of Shiro's existing code modules.
+ */
 const { resolve, basename } = require( 'path' );
 const { globSync } = require( 'glob' );
+const CopyPlugin = require( 'copy-webpack-plugin' );
+
 // Import the original config from the @wordpress/scripts package.
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 
 // Import the helper to find and generate the entry points in the src directory
 const { getWebpackEntryPoints } = require( '@wordpress/scripts/utils/config' );
+
+/**
+ * Generate an absolute file system path relative to the working dir.
+ *
+ * @param {string} relPath Relative path.
+ * @returns {string} Absolute path.
+ */
+const filePath = ( relPath ) => resolve( process.cwd(), relPath );
 
 /**
  * Get a list of valid source files within the provided directory path.
@@ -53,8 +67,8 @@ module.exports = {
 		...defaultConfig.resolve,
 		alias: {
 			...defaultConfig.resolve.alias,
-			// <apping for files used within migrated Webpack bundles.
-			'sass-lib': resolve( process.cwd(), 'assets/src/sass' ),
+			// Mapping for files used within migrated Webpack bundles.
+			'sass-lib': filePath( 'assets/src/sass' ),
 		},
 	},
 	output: {
@@ -81,4 +95,27 @@ module.exports = {
 			return '[name].js';
 		},
 	},
+	plugins: [
+		...defaultConfig.plugins,
+		new CopyPlugin( {
+			patterns: [
+				{
+					from: filePath( 'assets/src/fonts' ),
+					to: filePath( 'assets/dist/fonts' ),
+				},
+				{
+					from: filePath( 'assets/src/admin-copy' ),
+					to: filePath( 'assets/dist/admin' ),
+				},
+				{
+					from: filePath( 'assets/src/images' ),
+					to: filePath( 'assets/dist/images' ),
+				},
+				{
+					from: filePath( 'assets/src/libs' ),
+					to: filePath( 'assets/dist' ),
+				},
+			],
+		} ),
+	],
 };
