@@ -20,15 +20,6 @@ let paths = {
 	svgFiles: 'assets/src/svg/individual/*.svg',
 };
 
-let svgConfig = {
-	mode: {
-		symbol: {
-			sprite: 'icons.svg',
-			dest: '.',
-		},
-	},
-};
-
 gulp.task( 'sass', gulp.series( function () {
 	return gulp.src( paths.sassSrc )
 			   .pipe( sourcemaps.init() )
@@ -72,7 +63,14 @@ gulp.task(
 	gulp.series( function () {
 		return gulp
 			.src( paths.svgFiles )
-			.pipe( svgsprite( svgConfig ) )
+			.pipe( svgsprite( {
+				mode: {
+					symbol: {
+						sprite: 'icons.svg',
+						dest: '.',
+					},
+				},
+			} ) )
 			.pipe( rev() )
 			.pipe( gulp.dest( 'assets/dist' ) )
 			.pipe( rev.manifest( { merge: true } ) )
@@ -80,33 +78,33 @@ gulp.task(
 	} )
 );
 
-gulp.task( 'concat', gulp.series( function () {
-	return gulp.src( paths.jsFiles )
-			   .pipe( concat( 'scripts.min.js' ) )
-			   .pipe( sourcemaps.init() )
-			   .pipe( uglify() )
-			   .pipe( sourcemaps.write( 'maps' ) )
-			   .pipe( gulp.dest( 'assets/dist' ) );
-} ) );
+// gulp.task( 'concat', gulp.series( function () {
+// 	return gulp.src( paths.jsFiles )
+// 			   .pipe( concat( 'scripts.min.js' ) )
+// 			   .pipe( sourcemaps.init() )
+// 			   .pipe( uglify() )
+// 			   .pipe( sourcemaps.write( 'maps' ) )
+// 			   .pipe( gulp.dest( 'assets/dist' ) );
+// } ) );
 
-gulp.task( 'concat2', gulp.series( function () {
-	return gulp.src( paths.dataVisJsFiles )
-			   .pipe( concat( 'datavis.min.js' ) )
-			   .pipe( sourcemaps.init() )
-			   .pipe( uglify() )
-			   .pipe( sourcemaps.write( 'maps' ) )
-			   .pipe( gulp.dest( 'assets/dist' ) );
-} ) );
+// gulp.task( 'concat2', gulp.series( function () {
+// 	return gulp.src( paths.dataVisJsFiles )
+// 			   .pipe( concat( 'datavis.min.js' ) )
+// 			   .pipe( sourcemaps.init() )
+// 			   .pipe( uglify() )
+// 			   .pipe( sourcemaps.write( 'maps' ) )
+// 			   .pipe( gulp.dest( 'assets/dist' ) );
+// } ) );
 
-gulp.task( 'shortCodeScripts', function () {
-	return gulp.src( paths.shortCodeJsFiles )
-		.pipe( rename( { suffix: '.min' } ) )
-		.pipe( uglify() )
-		.pipe( gulp.dest( 'assets/dist' ) );
-} );
+// gulp.task( 'shortCodeScripts', function () {
+// 	return gulp.src( paths.shortCodeJsFiles )
+// 		.pipe( rename( { suffix: '.min' } ) )
+// 		.pipe( uglify() )
+// 		.pipe( gulp.dest( 'assets/dist' ) );
+// } );
 
 gulp.task( 'styles', gulp.series( [ 'sass', 'sassEditor', 'rtl', 'rtlEditor' ] ) );
-gulp.task( 'scripts', gulp.series( [ 'concat', 'concat2', 'shortCodeScripts' ] ) );
+// gulp.task( 'scripts', gulp.series( [ 'concat', 'concat2', 'shortCodeScripts' ] ) );
 gulp.task( 'build', gulp.series( [ 'svg', 'styles', 'scripts' ] ) );
 
 gulp.task( 'default', gulp.series( 'build', ( done ) => {
