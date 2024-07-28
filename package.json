@@ -9,11 +9,7 @@
     "lint:js": "eslint assets/src .config gulpfile.js",
     "lint:php": "composer phpcs:changed",
     "lint": "run-p lint:js lint:php",
-    "build": "run-p build:theme",
-    "build:theme": "run-s build:webpack build:gulp",
-    "build:webpack": "webpack --config=.config/webpack.config.prod.js",
-    "build:gulp": "gulp build",
-    "build:scripts": "wp-scripts build --output-path=assets/dist",
+    "build": "wp-scripts build --output-path=assets/dist",
     "start": "run-p start:theme",
     "start:theme": "run-p start:webpack:theme start:gulp",
     "start:webpack:theme": "webpack-dev-server --config=.config/webpack.config.dev.js --config-name=theme",
@@ -53,7 +49,8 @@
     "glob": "^11.0.0",
     "run-p": "^0.0.0",
     "version-bump-prompt": "^6.1.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-manifest-plugin": "^5.0.0"
   },
   "dependencies": {
     "@splidejs/splide": "^4.1.4",
