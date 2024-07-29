@@ -72,6 +72,15 @@ defaultConfig.optimization.splitChunks.cacheGroups.style.name =  ( _, chunks, ca
 	return chunks[ 0 ].name;
 };
 
+// Augment the loader list with an svgr loader.
+defaultConfig.module.rules.unshift( {
+	test: /\.svg$/,
+	loader: '@svgr/webpack',
+	options: {
+		icon: true,
+	},
+} );
+
 /**
  * Map each entry to the correct filename format.
  *
