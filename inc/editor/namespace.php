@@ -129,8 +129,8 @@ function add_theme_supports() {
 
 	// Add support and default values for block editor styles.
 	add_theme_support( 'editor-styles' );
-	// add_editor_style automatically handles using the -rtl.css version when needed.
-	add_editor_style( 'assets/dist/editor-style.css' );
+	$css_file = is_rtl() ? 'editor-style.rtl.css' : 'editor-style.css';
+	add_editor_style( $css_file );
 
 	// Define alternate font sizes selectable in the editor (the default
 	// for body copy is 18px / 1.75 on desktop; 16px / 1.75 on mobile).
@@ -482,14 +482,14 @@ function enqueue_block_editor_assets() {
 		)
 	);
 
+	$css_asset = is_rtl() ? 'editor.rtl.css' : 'editor.css';
 	Asset_Loader\enqueue_asset(
 		Assets\get_manifest_path( $css_asset ),
-		'editor.css',
+		$css_asset,
 		[
 			'handle' => 'shiro_editor_css',
 		]
 	);
-	wp_style_add_data( 'shiro_editor_css', 'rtl', 'replace' );
 }
 
 /**
