@@ -10,6 +10,7 @@
     "lint:php": "composer phpcs:changed",
     "lint": "run-p lint:js lint:php",
     "build": "wp-scripts build --output-path=assets/dist",
+    "postbuild": "sed -i '' 's/url(#/url(/g' assets/dist/style.css assets/dist/style-rtl.css assets/dist/editor-style.css assets/dist/editor-style-rtl.css",
     "start": "run-p start:theme",
     "start:theme": "run-p start:webpack:theme start:gulp",
     "start:webpack:theme": "webpack-dev-server --config=.config/webpack.config.dev.js --config-name=theme",

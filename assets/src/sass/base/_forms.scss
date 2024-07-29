@@ -41,7 +41,7 @@ textarea {
 	position: relative;
 
 	&::after {
-		background: url('assets/dist/fonts/raw-icons/arrow-down.svg') no-repeat;
+		background: url( '#assets/dist/fonts/raw-icons/arrow-down.svg') no-repeat;
 		content: "";
 		display: block;
 		fill: $color-dark-gray;
@@ -67,7 +67,7 @@ select {
 	display: inline-block;
 }
 .search-input {
-	background: url('assets/dist/fonts/raw-icons/icon-search-grey.svg') rem( 10 ) rem( 10 ) no-repeat;
+	background: url( '#assets/dist/fonts/raw-icons/icon-search-grey.svg') rem( 10 ) rem( 10 ) no-repeat;
 	padding-left: rem( 45 );
 	position: relative;
 	width: 80%;
