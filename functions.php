@@ -125,10 +125,11 @@ function wmf_scripts() {
 	$style_version = md5_file( get_theme_file_path( 'style.css' ) );
 	$script_version = md5_file( get_theme_file_path( 'assets/dist/scripts.min.js' ) );
 
-	wp_enqueue_style( 'shiro-style', get_template_directory_uri() . '/style.css', array(), $style_version );
+	wp_enqueue_style( 'shiro-style', get_template_directory_uri() . '/assets/dist/style.css', array(), $style_version );
 
 	if ( get_theme_mod( 'wmf_enable_rtl' ) ) {
-		wp_enqueue_style( 'shiro-style-rtl', get_template_directory_uri() . '/rtl.css', array(), $style_version );
+		wp_dequeue_style( 'shiro-style' );
+		wp_enqueue_style( 'shiro-style-rtl', get_template_directory_uri() . '/assets/dist/style-rtl.css', array(), $style_version );
 	}
 	wp_enqueue_script( 'shiro-svg4everybody', get_template_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'shiro-script', get_template_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-svg4everybody' ), $script_version, true );
