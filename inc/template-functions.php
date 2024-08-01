@@ -191,7 +191,7 @@ function wmf_get_role_posts( $term_id ) {
 	$profile_list = array_unique( $profile_list );
 
 	// Sort by last_name. Unusual profile ordering may occur if this field is not set.
-	usort( $profile_list, fn( $profile_id ) => get_post_meta( $profile_id, 'last_name', true ) ?: 'z' );
+	$profile_list = wmf_sort_profiles( $profile_list );
 
 	return array(
 		'posts' => $profile_list,
@@ -260,8 +260,8 @@ function wmf_get_posts_by_child_roles( int $term_id ) {
  * Sort an array of profiles based on the profile's assigned last_name
  * sorting value and return the sorted array.
  *
- * @param WP_Post[] $profiles Profiles to sort.
- * @return WP_Post[] Sorted profiles.
+ * @param WP_Post[]|int[] $profiles Array of profiles (or profile post IDs) to sort.
+ * @return WP_Post[]|int[] Input array, sorted by last name.
  */
 function wmf_sort_profiles( $profiles ) {
 	// The sort order is defined by the `last_name` meta field, which is
