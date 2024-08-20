@@ -6,9 +6,9 @@
  * possible, while combining as many build processes into one Webpack command
  * as we possibly can.
  */
-const { resolve, basename, dirname } = require( 'path' );
+/* eslint-disable import/no-extraneous-dependencies */// Used via wp-scripts.
+const { resolve, basename } = require( 'path' );
 const { globSync } = require( 'glob' );
-const { optimize } = require( 'webpack' );
 const CopyPlugin = require( 'copy-webpack-plugin' );
 const MiniCSSExtractPlugin = require( 'mini-css-extract-plugin' );
 const RtlCssPlugin = require( 'rtlcss-webpack-plugin' );
@@ -73,7 +73,7 @@ const themeStylesheets = {
 // Targeted adjustment to disable some problematic filename alteration.
 // Altering style imports to be `[group]-[chunkName]` (e.g. style-editor.css)
 // is unnecessarily magic and breaks existing code.
-defaultConfig.optimization.splitChunks.cacheGroups.style.name =  ( _, chunks, cacheGroupKey ) => {
+defaultConfig.optimization.splitChunks.cacheGroups.style.name =  ( _, chunks ) => {
 	return chunks[ 0 ].name;
 };
 
