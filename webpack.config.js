@@ -26,7 +26,7 @@ const isProduction = process.env.NODE_ENV === 'production';
  * Generate an absolute file system path relative to the working dir.
  *
  * @param {string} relPath Relative path.
- * @returns {string} Absolute path.
+ * @return {string} Absolute path.
  */
 const filePath = ( relPath ) => resolve( process.cwd(), relPath );
 
@@ -34,7 +34,7 @@ const filePath = ( relPath ) => resolve( process.cwd(), relPath );
  * Get a list of valid source files within the provided directory path.
  *
  * @param {string} globPath Project-relative glob path string.
- * @returns {string[]} Array of full file paths.
+ * @return {string[]} Array of full file paths.
  */
 const listFilesFrom = ( globPath ) => globSync( globPath )
 	// Limit to JS and CSS files.
@@ -73,7 +73,7 @@ const themeStylesheets = {
 // Targeted adjustment to disable some problematic filename alteration.
 // Altering style imports to be `[group]-[chunkName]` (e.g. style-editor.css)
 // is unnecessarily magic and breaks existing code.
-defaultConfig.optimization.splitChunks.cacheGroups.style.name =  ( _, chunks ) => {
+defaultConfig.optimization.splitChunks.cacheGroups.style.name =  ( _, chunks, cacheGroupKe ) => {
 	return chunks[ 0 ].name;
 };
 
@@ -102,7 +102,7 @@ defaultConfig.module.rules.forEach( ( rule ) => {
 				 * @see https://webpack.js.org/loaders/css-loader/#url
 				 *
 				 * @param {string} url Path to asset referenced via url().
-				 * @returns {boolean} Whether to process with loader.
+				 * @return {boolean} Whether to process with loader.
 				 */
 				filter( url ) {
 					return ! /assets\/(dist|src|fonts)/.test( url );
@@ -119,7 +119,7 @@ defaultConfig.module.rules.forEach( ( rule ) => {
  * entire asset loading throughout the theme; this is the "comapat layer".)
  *
  * @param {PathData} pathData Webpack pathData object.
- * @returns {string} Filename string format.
+ * @return {string} Filename string format.
  */
 const setConditionalOutputFilename = ( { chunk } ) => {
 	if ( Object.keys( legacyEntries ).includes( chunk.name ) ) {
@@ -138,7 +138,7 @@ const setConditionalOutputFilename = ( { chunk } ) => {
  * Generate the CSS version of each contextually-appropriate output filename.
  *
  * @param {PathData} pathData Webpack pathData object.
- * @returns {string} Filename string format.
+ * @return {string} Filename string format.
  */
 const setExtractedCssFilename = ( pathData ) => {
 	return setConditionalOutputFilename( pathData ).replace( /\.js$/, '.css' );
