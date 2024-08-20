@@ -72,6 +72,39 @@ defaultConfig.optimization.splitChunks.cacheGroups.style.name =  ( _, chunks, ca
 	return chunks[ 0 ].name;
 };
 
+// Do not process some url() imports in SCSS: The files are not located
+// properly for relative import the way the css-loader expects, and it
+// would slow down the build too much if they were.
+// Iterate through rules until we find one that applies to SCSS, to avoid
+// hard-coding WP config index specificity into our override.
+defaultConfig.module.rules.forEach( ( rule ) => {
+	if ( ! rule.test.test( 'file.scss' ) ) {
+		return;
+	}
+	// We've isolated SCSS build.
+	rule.use.forEach( ( loader ) => {
+		if ( ! /\/css-loader/.test( loader.loader ) ) {
+			return;
+		}
+		// We've found the CSS loader itself. Options should be defined,
+		// but let's ensure it is, just in case.
+		loader.options = loader.options || {};
+		loader.options.url = {
+			/**
+			 * Do not process url() statements for assets used in the legacy CSS files.
+			 *
+			 * @see https://webpack.js.org/loaders/css-loader/#url
+			 *
+			 * @param {string} url Path to asset referenced via url().
+			 * @returns {boolean} Whether to process with loader.
+			 */
+			filter( url ) {
+				return ! /assets\/(dist|src|fonts)/.test( url );
+			},
+		};
+	} );
+} );
+
 /**
  * Map each entry to the correct filename format.
  *
