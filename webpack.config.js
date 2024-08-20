@@ -1,9 +1,14 @@
 /**
  * This Webpack config augments the default wp-scripts "build" command with
  * custom logic to properly process all of Shiro's existing code modules.
+ *
+ * It is focused on maintaining filename parity with the existing build where
+ * possible, while combining as many build processes into one Webpack command
+ * as we possibly can.
  */
 const { resolve, basename, dirname } = require( 'path' );
 const { globSync } = require( 'glob' );
+const { optimize } = require( 'webpack' );
 const CopyPlugin = require( 'copy-webpack-plugin' );
 const MiniCSSExtractPlugin = require( 'mini-css-extract-plugin' );
 const RtlCssPlugin = require( 'rtlcss-webpack-plugin' );
@@ -220,3 +225,22 @@ module.exports = {
 		} ),
 	],
 };
+
+if (
+	process.env.WEBPACK_SERVE === 'true' &&
+	process.argv.includes( '--hot' )
+) {
+	// Running in hot-reloading mode: customize the exported configuration
+	// to set a single runtime chunk (necessary for HMR to work across multiple
+	// block / theme bundles at once) and allow devServer access from all hosts.
+	// YOU MAY ALSO NEED TO INSTALL AND ACTIVATE THE GUTENBERG PLUGIN.
+	module.exports.devServer = {
+		...module.exports.devServer,
+		allowedHosts: 'all',
+		proxy: { '/assets/dist': { pathRewrite: { '^/assets/dist': '' } } }
+	};
+	module.exports.optimization = {
+		...module.exports.optimization,
+		runtimeChunk: 'single',
+	};
+}
