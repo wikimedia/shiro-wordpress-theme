@@ -1,3 +1,6 @@
+# Built files
+assets/dist/
+
 # Third-party dependencies
 assets/src/datavisjs/libraries/
 assets/src/libs/
