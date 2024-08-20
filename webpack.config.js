@@ -73,7 +73,7 @@ const themeStylesheets = {
 // Targeted adjustment to disable some problematic filename alteration.
 // Altering style imports to be `[group]-[chunkName]` (e.g. style-editor.css)
 // is unnecessarily magic and breaks existing code.
-defaultConfig.optimization.splitChunks.cacheGroups.style.name =  ( _, chunks, cacheGroupKe ) => {
+defaultConfig.optimization.splitChunks.cacheGroups.style.name =  ( _, chunks ) => {
 	return chunks[ 0 ].name;
 };
 
