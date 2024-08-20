@@ -27,7 +27,7 @@ jobs:
         with:
           source_branch: main
           release_branch: release
-          built_asset_paths: ./*.css package-lock.json map assets/dist
+          built_asset_paths: assets/dist
           build_script: |
             npm ci
             npm run build
