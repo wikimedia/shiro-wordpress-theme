@@ -1,3 +1,5 @@
 gulpfile.js
 node_modules/
 assets/src/svg/
+assets/src/libs/
+assets/src/datavisjs/libraries/
