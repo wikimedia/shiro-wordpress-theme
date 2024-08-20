@@ -1,5 +1,7 @@
-gulpfile.js
+# Third-party dependencies
 node_modules/
-assets/src/svg/
 assets/src/libs/
 assets/src/datavisjs/libraries/
+
+# Nested legacy builds
+gulpfile.js
