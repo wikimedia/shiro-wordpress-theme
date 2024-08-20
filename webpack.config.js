@@ -88,18 +88,20 @@ defaultConfig.module.rules.forEach( ( rule ) => {
 		}
 		// We've found the CSS loader itself. Options should be defined,
 		// but let's ensure it is, just in case.
-		loader.options = loader.options || {};
-		loader.options.url = {
-			/**
-			 * Do not process url() statements for assets used in the legacy CSS files.
-			 *
-			 * @see https://webpack.js.org/loaders/css-loader/#url
-			 *
-			 * @param {string} url Path to asset referenced via url().
-			 * @returns {boolean} Whether to process with loader.
-			 */
-			filter( url ) {
-				return ! /assets\/(dist|src|fonts)/.test( url );
+		loader.options = {
+			...loader.options,
+			url: {
+				/**
+				 * Do not process url() statements for assets used in the legacy CSS files.
+				 *
+				 * @see https://webpack.js.org/loaders/css-loader/#url
+				 *
+				 * @param {string} url Path to asset referenced via url().
+				 * @returns {boolean} Whether to process with loader.
+				 */
+				filter( url ) {
+					return ! /assets\/(dist|src|fonts)/.test( url );
+				},
 			},
 		};
 	} );
