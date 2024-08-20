@@ -5,7 +5,7 @@
   "description": "Wikimedia Foundation's primary Wordpress theme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint:js": "eslint assets/src",
+    "lint:js": "wp-scripts lint-js",
     "lint:php": "composer phpcs:changed",
     "lint": "run-p lint:js lint:php",
     "build": "wp-scripts build --output-path=assets/dist",
