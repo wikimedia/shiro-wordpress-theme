@@ -126,7 +126,7 @@
 
 			&::before {
 				@include button-icon-rules;
-				background-image: url("./assets/src/svg/individual/info.svg") !important;
+				background-image: url("../../assets/src/svg/individual/info.svg") !important;
 			}
 
 			&:hover {
@@ -143,7 +143,7 @@
 
 			&::before {
 				@include button-icon-rules;
-				background-image: url("./assets/src/svg/individual/info.svg") !important;
+				background-image: url("../../assets/src/svg/individual/info.svg") !important;
 			}
 
 			&:hover {
@@ -159,7 +159,7 @@
 
 			&::before {
 				@include button-icon-rules;
-				background-image: url("./assets/src/svg/individual/downTriangle.svg") !important;
+				background-image: url("../../assets/src/svg/individual/downTriangle.svg") !important;
 			}
 
 			&:hover {
