@@ -477,7 +477,7 @@ function enqueue_block_editor_assets() {
 		array(
 			'themeUrl'      => get_template_directory_uri(),
 			'languages'     => $languages,
-			'siteLanguage'  => $languages[0]['shortname'],
+			'siteLanguage'  => $languages[0]['shortname'] ?? '',
 			'wmfIsMainSite' => wmf_is_main_site(),
 		)
 	);
