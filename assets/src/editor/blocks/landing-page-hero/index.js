@@ -50,6 +50,7 @@ export const settings = {
 			buttonText: 'Learn More',
 			buttonLink: 'https://wikimediafoundation.org/',
 			ctaButtonAdditionalStyle: '',
+			ctaOpenInNewTab: false,
 		},
 	},
 
@@ -110,6 +111,10 @@ export const settings = {
 			type: 'string',
 			default: '',
 		},
+		ctaOpenInNewTab: {
+			type: 'boolean',
+			default: false,
+		},
 	},
 
 	/**
@@ -127,6 +132,7 @@ export const settings = {
 			pageIntro,
 			imageFilter,
 			ctaButtonAdditionalStyle,
+			ctaOpenInNewTab = false,
 		} = attributes;
 
 		const blockProps = useBlockProps( { className: 'hero' } );
@@ -196,8 +202,10 @@ export const settings = {
 							className={ `hero__call-to-action ${ ctaButtonAdditionalStyle }` }
 							text={ buttonText }
 							url={ buttonLink }
+							openInNewTab={ ctaOpenInNewTab }
 							onChangeLink={ ( buttonLink ) => setAttributes( { buttonLink } ) }
 							onChangeText={ ( buttonText ) => setAttributes( { buttonText } ) }
+							onChangeOpenInNewTab={ ( ctaOpenInNewTab ) => setAttributes( { ctaOpenInNewTab } ) }
 						/>
 					</div>
 					<ImageFilter
@@ -249,6 +257,7 @@ export const settings = {
 			pageIntro,
 			imageFilter,
 			ctaButtonAdditionalStyle,
+			ctaOpenInNewTab,
 		} = attributes;
 
 		const blockProps = useBlockProps.save( { className: 'hero' } );
@@ -276,12 +285,12 @@ export const settings = {
 							/>
 						) }
 						{ buttonLink && (
-							<a
+							<Cta.Content
 								className={ ` hero__call-to-action ${ ctaButtonAdditionalStyle }` }
-								href={ buttonLink }
-							>
-								{ buttonText }
-							</a>
+								url={ buttonLink }
+								openInNewTab={ ctaOpenInNewTab }
+								text={ buttonText }
+							/>
 						) }
 					</div>
 					<ImageFilter.Content
