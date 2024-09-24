@@ -17,7 +17,7 @@ function bootstrap() {
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\register_core_block_styles' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
-	add_filter( 'block_categories', __NAMESPACE__ . '\\add_block_categories' );
+	add_filter( 'block_categories_all', __NAMESPACE__ . '\\add_block_categories' );
 }
 
 /**
