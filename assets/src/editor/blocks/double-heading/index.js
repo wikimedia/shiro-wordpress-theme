@@ -157,7 +157,6 @@ export const name = 'shiro/double-heading',
 									>
 										<RichText
 											allowedFormats={ [] }
-											keepPlaceholderOnFocus
 											placeholder={ __(
 												'Write secondary heading',
 												'shiro-admin'
@@ -175,7 +174,6 @@ export const name = 'shiro/double-heading',
 										&nbsp;—&nbsp;
 										<RichText
 											allowedFormats={ [] }
-											keepPlaceholderOnFocus
 											placeholder={ __(
 												'Write translated secondary heading',
 												'shiro-admin'
@@ -200,7 +198,6 @@ export const name = 'shiro/double-heading',
 							<RichText
 								allowedFormats={ [] }
 								className=""
-								keepPlaceholderOnFocus
 								placeholder={ __(
 									'Write secondary heading',
 									'shiro-admin'
@@ -227,7 +224,6 @@ export const name = 'shiro/double-heading',
 					<RichText
 						allowedFormats={ [] }
 						className="double-heading__primary is-style-h3"
-						keepPlaceholderOnFocus
 						placeholder={ __(
 							'Write primary heading',
 							'shiro-admin'

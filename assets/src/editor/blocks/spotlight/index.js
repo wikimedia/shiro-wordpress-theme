@@ -137,7 +137,6 @@ export const settings = {
 						<RichText
 							allowedFormats={ [ 'core/bold', 'core/italic' ] }
 							className="spotlight__heading is-style-h1"
-							keepPlaceholderOnFocus
 							placeholder={ __( 'Heading for spotlight', 'shiro-admin' ) }
 							tagName="h2"
 							value={ heading }

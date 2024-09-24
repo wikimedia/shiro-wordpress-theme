@@ -175,7 +175,6 @@ export const settings = {
 					<div className="hero__text-column">
 						<RichText
 							className="hero__kicker"
-							keepPlaceholderOnFocus
 							placeholder={ __( 'Kicker', 'shiro-admin' ) }
 							tagName="small"
 							value={ kicker }
@@ -183,7 +182,6 @@ export const settings = {
 						/>
 						<RichText
 							className="hero__title"
-							keepPlaceholderOnFocus
 							placeholder={ __( 'Title for the page', 'shiro-admin' ) }
 							tagName="h1"
 							value={ title }
@@ -191,7 +189,6 @@ export const settings = {
 						/>
 						<RichText
 							className="hero__description"
-							keepPlaceholderOnFocus
 							multiline="p"
 							placeholder={ __( 'Description text - some additional information on the hero header.', 'shiro-admin' ) }
 							tagName="div"
@@ -231,7 +228,6 @@ export const settings = {
 				</header>
 				<RichText
 					className="hero__intro"
-					keepPlaceholderOnFocus
 					multiline="p"
 					placeholder={ __( 'Introductory paragraph - some information about this page to guide the reader.', 'shiro-admin' ) }
 					tagName="div"
