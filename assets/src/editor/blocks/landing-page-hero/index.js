@@ -8,6 +8,7 @@
 import {
 	RichText,
 	useBlockProps,
+	useInnerBlocksProps,
 	InspectorControls,
 } from '@wordpress/block-editor';
 import { SelectControl, Panel, PanelBody } from '@wordpress/components';
@@ -99,13 +100,11 @@ export const settings = {
 			type: 'string',
 			source: 'html',
 			selector: '.hero__intro',
-			multiline: 'p',
 		},
 		description: {
 			type: 'string',
 			source: 'html',
 			selector: '.hero__description',
-			multiline: 'p',
 		},
 		ctaButtonAdditionalStyle: {
 			type: 'string',
@@ -136,6 +135,20 @@ export const settings = {
 		} = attributes;
 
 		const blockProps = useBlockProps( { className: 'hero' } );
+		const innerBlocksProps = useInnerBlocksProps(
+			{ className: 'hero__intro' },
+			{
+				allowedBlocks: [ 'core/paragraph' ],
+				template: [
+					[
+						'core/paragraph',
+						{
+							placeholder: __( 'Introductory paragraph - some information about this page to guide the reader.', 'shiro-admin' ),
+						},
+					],
+				],
+			}
+		);
 
 		return (
 			<div { ...applyDefaultStyle( blockProps ) } >
@@ -189,9 +202,8 @@ export const settings = {
 						/>
 						<RichText
 							className="hero__description"
-							multiline="p"
 							placeholder={ __( 'Description text - some additional information on the hero header.', 'shiro-admin' ) }
-							tagName="div"
+							tagName="p"
 							value={ description }
 							onChange={ ( description ) => setAttributes( { description } ) }
 						/>
@@ -226,14 +238,7 @@ export const settings = {
 						/>
 					</ImageFilter>
 				</header>
-				<RichText
-					className="hero__intro"
-					multiline="p"
-					placeholder={ __( 'Introductory paragraph - some information about this page to guide the reader.', 'shiro-admin' ) }
-					tagName="div"
-					value={ pageIntro }
-					onChange={ ( pageIntro ) => setAttributes( { pageIntro } ) }
-				/>
+				<div { ...innerBlocksProps } />
 			</div>
 		);
 
@@ -250,13 +255,13 @@ export const settings = {
 			buttonText,
 			buttonLink,
 			description,
-			pageIntro,
 			imageFilter,
 			ctaButtonAdditionalStyle,
 			ctaOpenInNewTab,
 		} = attributes;
 
 		const blockProps = useBlockProps.save( { className: 'hero' } );
+		const innerBlocksProps = useInnerBlocksProps.save( { className: 'hero__intro' } );
 
 		return (
 			<div { ...applyDefaultStyle( blockProps ) }>
@@ -275,7 +280,6 @@ export const settings = {
 						{ description && (
 							<RichText.Content
 								className="hero__description"
-								multiline="p"
 								tagName="div"
 								value={ description }
 							/>
@@ -299,12 +303,7 @@ export const settings = {
 						/>
 					</ImageFilter.Content>
 				</header>
-				<RichText.Content
-					className="hero__intro"
-					multiline="p"
-					tagName="div"
-					value={ pageIntro }
-				/>
+				<div { ...innerBlocksProps } />
 			</div>
 		);
 	},
