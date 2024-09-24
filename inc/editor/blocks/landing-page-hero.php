@@ -118,7 +118,7 @@ function convert_page_intro_to_blocks( $response, $handler, $request ) {
 	);
 	$data['content']['raw'] = preg_replace(
 		PAGE_INTRO_PATTERN,
-		'<div class="hero__intro">' . implode( '', $paragraph_blocks ) . "</div>",
+		'<div class="hero__intro">' . implode( '', $paragraph_blocks ) . '</div>',
 		$data['content']['raw']
 	);
 
