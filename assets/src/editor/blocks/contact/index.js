@@ -100,7 +100,6 @@ export const name = 'shiro/contact',
 				<ContactIcon className="contact__icon" />
 				<RichText
 					className="contact__title"
-					keepPlaceholderOnFocus
 					placeholder={ __( 'Write contact title', 'shiro-admin' ) }
 					tagName="h3"
 					value={ title }
@@ -108,7 +107,6 @@ export const name = 'shiro/contact',
 				/>
 				<RichText
 					className="contact__description"
-					keepPlaceholderOnFocus
 					placeholder={ __( 'Write contact description', 'shiro-admin' ) }
 					tagName="div"
 					value={ description }
@@ -123,7 +121,6 @@ export const name = 'shiro/contact',
 				/>
 				<RichText
 					className="contact__social-title"
-					keepPlaceholderOnFocus
 					placeholder={ __( 'Write social links title', 'shiro-admin' ) }
 					tagName="h4"
 					value={ socialTitle }

@@ -17,7 +17,7 @@ function bootstrap() {
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\register_core_block_styles' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
-	add_filter( 'block_categories', __NAMESPACE__ . '\\add_block_categories' );
+	add_filter( 'block_categories_all', __NAMESPACE__ . '\\add_block_categories' );
 }
 
 /**
@@ -477,17 +477,26 @@ function enqueue_block_editor_assets() {
 		array(
 			'themeUrl'      => get_template_directory_uri(),
 			'languages'     => $languages,
-			'siteLanguage'  => $languages[0]['shortname'],
+			'siteLanguage'  => $languages[0]['shortname'] ?? '',
 			'wmfIsMainSite' => wmf_is_main_site(),
 		)
 	);
 
-	$css_asset = is_rtl() ? 'editor.rtl.css' : 'editor.css';
+	$editor_css_asset = is_rtl() ? 'editor.rtl.css' : 'editor.css';
 	Asset_Loader\enqueue_asset(
-		Assets\get_manifest_path( $css_asset ),
-		$css_asset,
+		Assets\get_manifest_path( $editor_css_asset ),
+		$editor_css_asset,
 		[
 			'handle' => 'shiro_editor_css',
+		]
+	);
+
+	$editor_style_css_asset = is_rtl() ? 'editor-style.rtl.css' : 'editor-style.css';
+	Asset_Loader\enqueue_asset(
+		Assets\get_manifest_path( $editor_style_css_asset ),
+		$editor_style_css_asset,
+		[
+			'handle' => 'shiro_editor_style_css',
 		]
 	);
 }
