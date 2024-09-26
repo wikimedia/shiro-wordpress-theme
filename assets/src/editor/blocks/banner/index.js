@@ -139,7 +139,6 @@ export const settings = {
 					<RichText
 						allowedFormats={ [ 'core/bold', 'core/italic' ] }
 						className="banner__heading is-style-h4"
-						keepPlaceholderOnFocus
 						placeholder={ __( 'Heading for banner', 'shiro-admin' ) }
 						tagName="h2"
 						value={ heading }

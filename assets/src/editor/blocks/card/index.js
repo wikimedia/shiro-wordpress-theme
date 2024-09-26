@@ -118,7 +118,6 @@ export const settings = {
 				<div className="content-card__contents">
 					<RichText
 						className="content-card__heading is-style-h3"
-						keepPlaceholderOnFocus
 						placeholder={ __( 'Heading of the card', 'shiro-admin' ) }
 						tagName="h2"
 						value={ heading }
@@ -126,7 +125,6 @@ export const settings = {
 					/>
 					<RichText
 						className="content-card__body has-small-font-size"
-						keepPlaceholderOnFocus
 						placeholder={ __( 'Body of the card', 'shiro-admin' ) }
 						tagName="p"
 						value={ body }
