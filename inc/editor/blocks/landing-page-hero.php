@@ -113,7 +113,7 @@ function convert_page_intro_to_blocks( $response, $handler, $request ) {
 	}
 
 	$paragraph_blocks = array_map(
-		fn ( $content ) => "<!-- wp:paragraph -->\n$content\n<!-- /wp:paragraph -->",
+		fn ( $content ) => "<!-- wp:paragraph {\"fontSize\":\"large\"} -->\n$content\n<!-- /wp:paragraph -->",
 		explode( '</p><p>', $matches[1] )
 	);
 	$data['content']['raw'] = preg_replace(

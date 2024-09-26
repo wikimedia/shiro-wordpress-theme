@@ -143,6 +143,7 @@ export const settings = {
 					[
 						'core/paragraph',
 						{
+							fontSize: 'large',
 							placeholder: __( 'Introductory paragraph - some information about this page to guide the reader.', 'shiro-admin' ),
 						},
 					],
