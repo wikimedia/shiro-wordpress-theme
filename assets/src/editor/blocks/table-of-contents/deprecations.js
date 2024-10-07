@@ -103,8 +103,6 @@ const v1WithAriaOnButton = {
 			className: 'table-of-contents toc',
 		} );
 
-		console.log( 'trying old save' ); // eslint-disable-line
-
 		return (
 			<>
 				{ attributes.headingBlocks.length > 0 && (

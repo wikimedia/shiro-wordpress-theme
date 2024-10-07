@@ -97,7 +97,6 @@ export const
 				<div { ...blockProps }>
 					<RichText
 						className="stair__heading is-style-h3"
-						keepPlaceholderOnFocus
 						placeholder={ __( 'Write heading', 'shiro-admin' ) }
 						tagName="h2"
 						value={ heading }
@@ -114,7 +113,6 @@ export const
 					/>
 					<RichText
 						className="stair__body"
-						keepPlaceholderOnFocus
 						placeholder={ __( 'Start writing your stair contents', 'shiro-admin' ) }
 						tagName="p"
 						value={ content }

@@ -11,7 +11,7 @@ import { useSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import BlockIcon from '../../../svg/blocks/twitter.svg';
+import { ReactComponent as BlockIcon } from '../../../svg/blocks/twitter.svg';
 
 export const
 	name = 'shiro/tweet-this',
@@ -53,7 +53,6 @@ export const
 					<RichText
 						allowedFormats={ [ 'core/bold', 'core/italic' ] }
 						className="wp-block-shiro-button is-style-as-link has-icon has-icon-social-twitter-blue"
-						keepPlaceholderOnFocus
 						placeholder={ __( 'Write tweet this text', 'shiro' ) }
 						tagName="div"
 						value={ text }

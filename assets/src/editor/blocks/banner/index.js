@@ -9,7 +9,7 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import BlockIcon from '../../../svg/blocks/banner.svg';
+import { ReactComponent as BlockIcon } from '../../../svg/blocks/banner.svg';
 import Cta from '../../components/cta/index';
 import ImageFilter, { DEFAULT_IMAGE_FILTER } from '../../components/image-filter';
 import ImagePicker from '../../components/image-picker/index.js';
@@ -139,7 +139,6 @@ export const settings = {
 					<RichText
 						allowedFormats={ [ 'core/bold', 'core/italic' ] }
 						className="banner__heading is-style-h4"
-						keepPlaceholderOnFocus
 						placeholder={ __( 'Heading for banner', 'shiro-admin' ) }
 						tagName="h2"
 						value={ heading }

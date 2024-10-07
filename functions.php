@@ -270,6 +270,7 @@ require get_template_directory() . '/inc/editor/blocks/blog-post.php';
 require get_template_directory() . '/inc/editor/blocks/clock.php';
 require get_template_directory() . '/inc/editor/blocks/double-heading.php';
 require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
+require get_template_directory() . '/inc/editor/blocks/landing-page-hero.php';
 require get_template_directory() . '/inc/editor/blocks/linked-toc-item.php';
 require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
 require get_template_directory() . '/inc/editor/blocks/read-more-categories.php';
@@ -299,6 +300,7 @@ WMF\Editor\Blocks\BlogPost\bootstrap();
 WMF\Editor\Blocks\Clock\bootstrap();
 WMF\Editor\Blocks\InlineLanguages\bootstrap();
 WMF\Editor\Blocks\DoubleHeading\bootstrap();
+WMF\Editor\Blocks\LandingPageHero\bootstrap();
 WMF\Editor\Blocks\LinkedTOCItem\bootstrap();
 WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
 WMF\Editor\Blocks\ReadMoreCategories\bootstrap();
@@ -466,14 +468,17 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 		[
 			'svg'  => [
 				'viewBox' => true,
+				'fill'    => true,
 				'width'   => true,
 				'height'  => true,
 				'class'   => true,
 				'xmlns'   => true,
 			],
 			'path' => [
-				'd'    => true,
-				'fill' => true,
+				'd'         => true,
+				'clip-rule' => true,
+				'fill'      => true,
+				'fill-rule' => true,
 			],
 			'rect' => [
 				'fill'   => true,
