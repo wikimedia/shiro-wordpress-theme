@@ -175,7 +175,9 @@ function _toc_item_helper( $block_content, $page ) {
 		return null;
 	}
 
-	if ( ! empty( $post_id ) ) {
+	// Double check post ID is numeric if set, sometimes that data attribute is
+	// saved as the post's permalink URL instead of a valid ID.
+	if ( ! empty( $post_id ) && is_numeric( $post_id ) ) {
 		// Update href to value of post id to ensure we have the latest permalink.
 		$href = get_permalink( $post_id );
 		$a_element->setAttribute( 'href', $href );
