@@ -9,7 +9,7 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import BlockIcon from '../../../svg/blocks/card.svg';
+import { ReactComponent as BlockIcon } from '../../../svg/blocks/card.svg';
 import CallToActionPicker from '../../components/cta';
 import ImagePicker from '../../components/image-picker';
 import sharedStyles from '../../helpers/block-styles';

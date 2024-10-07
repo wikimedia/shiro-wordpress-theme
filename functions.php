@@ -468,14 +468,17 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 		[
 			'svg'  => [
 				'viewBox' => true,
+				'fill'    => true,
 				'width'   => true,
 				'height'  => true,
 				'class'   => true,
 				'xmlns'   => true,
 			],
 			'path' => [
-				'd'    => true,
-				'fill' => true,
+				'd'         => true,
+				'clip-rule' => true,
+				'fill'      => true,
+				'fill-rule' => true,
 			],
 			'rect' => [
 				'fill'   => true,

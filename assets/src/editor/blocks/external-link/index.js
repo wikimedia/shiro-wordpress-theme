@@ -22,7 +22,7 @@ import { __ } from '@wordpress/i18n';
  * Local dependencies
  */
 import './style.scss';
-import ExternalLinkIcon from '../../../svg/individual/open.svg';
+import { ReactComponent as ExternalLinkIcon } from '../../../svg/individual/open.svg';
 import URLPicker from '../../components/url-picker';
 
 const ExternalLinkWithFocusOutside = withFocusOutside(

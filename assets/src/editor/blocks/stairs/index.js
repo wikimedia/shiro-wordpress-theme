@@ -4,7 +4,7 @@ import {
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
-import BlockIcon from '../../../svg/blocks/stairs.svg';
+import { ReactComponent as BlockIcon } from '../../../svg/blocks/stairs.svg';
 
 import './style.scss';
 
