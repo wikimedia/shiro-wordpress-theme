@@ -280,7 +280,7 @@ export const settings = {
 						{ description && (
 							<RichText.Content
 								className="hero__description"
-								tagName="div"
+								tagName="p"
 								value={ description }
 							/>
 						) }
