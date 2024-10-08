@@ -11,7 +11,7 @@ import { Button, PanelBody, SelectControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import BlockIcon from '../../../svg/blocks/double-heading.svg';
+import { ReactComponent as BlockIcon } from '../../../svg/blocks/double-heading.svg';
 import {
 	ensureEmptyHeading,
 	prepareHeadings,
