@@ -5,8 +5,8 @@ import {
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
-import BlockIcon from '../../../svg/blocks/contact.svg';
-import ContactIcon from '../../../svg/individual/contact.svg';
+import { ReactComponent as BlockIcon } from '../../../svg/blocks/contact.svg';
+import { ReactComponent as ContactIcon } from '../../../svg/individual/contact.svg';
 import CallToActionPicker from '../../components/cta';
 
 import './style.scss';
