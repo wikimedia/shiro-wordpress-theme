@@ -17,6 +17,14 @@
 			margin-left: ( ( $content-column-post - $content-column ) * 0.5 );
 			margin-right: ( ( $content-column-post - $content-column ) * 0.5 );
 		}
+		.page &,
+		.page &.wp-block-group,
+		.page &.wp-block-group.has-background {
+			margin-left: -2.375em;
+			margin-right: -2.375em;
+			padding-left: 2.375em;
+			padding-right: 2.375em;
+		}
 	}
 }
 
