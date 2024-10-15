@@ -1,6 +1,13 @@
 .wp-block-group {
 	&.has-background {
 		padding: rem(20);
+
+		&,
+		> .wp-block-group__inner-container {
+			> :last-child {
+				margin-bottom: 0;
+			}
+		}
 	}
 
 	&.alignfull {

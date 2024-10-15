@@ -58,6 +58,10 @@ body {
 	}
 }
 
+.has-background > .wp-block-group__inner-container > :last-child {
+	margin-bottom: 0;
+}
+
 .wp-block-group__inner-container > .wp-block {
 	max-width: $content-column-rem;
 }
