@@ -9,6 +9,11 @@
 
 		display: flex;
 		padding: rem(28) rem(20);
+
+		@media ( min-width: #{$width-breakpoint-desktop} ) {
+			padding-left: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
+			padding-right: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
+		}
 	}
 
 	&__image-container {
@@ -20,8 +25,6 @@
 
 		&__header {
 			flex-flow: row nowrap;
-			padding-left: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
-			padding-right: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
 		}
 
 		&__text-column,

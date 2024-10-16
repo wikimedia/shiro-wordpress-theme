@@ -20,11 +20,33 @@
 --------------------------------------------- */
 :root {
 	--wp--style--global--content-size: 980px;
-	--wp--style--global--wide-size: 980px;
+	--wp--style--global--wide-size: 1020px;
 }
 .single-post {
 	--wp--style--global--content-size: 40rem;
 	--wp--style--global--wide-size: 980px;
+}
+
+@media screen and (max-width: #{$width-breakpoint-desktop}) {
+	:root {
+		--wp--style--global--content-size: calc( 100vw - 5rem );
+		--wp--style--global--wide-size: calc( 100vw - 5rem );
+	}
+	.single-post {
+		--wp--style--global--content-size: calc( 100vw - 5rem );
+		--wp--style--global--wide-size: calc( 100vw - 5rem );
+	}
+}
+
+@media screen and (max-width: #{$width-breakpoint-tablet}) {
+	:root {
+		--wp--style--global--content-size: calc( 100vw - 40px );
+		--wp--style--global--wide-size: calc( 100vw - 40px );
+	}
+	.single-post {
+		--wp--style--global--content-size: calc( 100vw - 40px );
+		--wp--style--global--wide-size: calc( 100vw - 40px );
+	}
 }
 
 .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)),
