@@ -4,7 +4,6 @@
 
 	&__header {
 
-		@include alignfull-padded;
 		@include block-style-background-color;
 		@include block-style-text-color;
 
@@ -21,6 +20,8 @@
 
 		&__header {
 			flex-flow: row nowrap;
+			padding-left: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
+			padding-right: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
 		}
 
 		&__text-column,

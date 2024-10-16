@@ -10,8 +10,9 @@
 		}
 	}
 
-	&.alignfull {
-		@include alignfull-padded;
+	// Ensure elements following background groups have a little extra space.
+	&.has-background + :where(:not(.has-background)) {
+		padding-top: 2.5rem;
 	}
 
 	&.has-radius-big {
