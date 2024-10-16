@@ -3,9 +3,9 @@ body {
 	line-height: normal;
 }
 
-:root {
+.is-layout-constrained {
 	--wp--style--global--content-size: 980px;
-	--wp--style--global--wide-size: 980px;
+	--wp--style--global--wide-size: 1020px;
 }
 .post-type-post {
 	--wp--style--global--content-size: 40rem;
