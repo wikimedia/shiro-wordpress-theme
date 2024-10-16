@@ -15,3 +15,22 @@
 --------------------------------------------- */
 @import "elements";
 @import "forms";
+
+/* Layout (block style)
+--------------------------------------------- */
+:root {
+	--wp--style--global--content-size: 980px;
+}
+
+.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)),
+// For now, top-level groups with background colors also behave as layout-constrained.
+.page .article-main > .has-background.alignfull > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+	max-width: var(--wp--style--global--content-size);
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.wp-block-shiro-landing-page-hero,
+.wp-block-shiro-report-landing-hero {
+	max-width: unset;
+}

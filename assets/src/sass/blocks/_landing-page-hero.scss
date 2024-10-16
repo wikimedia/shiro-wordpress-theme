@@ -4,7 +4,6 @@
 
 	&__header {
 
-		@include alignfull-padded;
 		@include block-style-background-color;
 		@include block-style-text-color;
 
@@ -21,6 +20,9 @@
 
 		&__header {
 			flex-flow: row nowrap;
+
+			padding-left: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
+			padding-right: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
 		}
 
 		&__text-column,
@@ -93,11 +95,12 @@
 
 		border-left: 1px solid var(--accent-color);
 
-		margin: rem(-32) 0 0 0;
+		margin-top: rem(-32);
 		padding: rem(72) rem(10) rem(40) rem(30);
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
-			margin-top: 0;
+			margin: 0 auto;
+			max-width: var(--wp--style--global--content-size);
 			padding-bottom: rem(60);
 			padding-top: rem(60);
 		}
