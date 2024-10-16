@@ -3,6 +3,15 @@ body {
 	line-height: normal;
 }
 
+:root {
+	--wp--style--global--content-size: 980px;
+	--wp--style--global--wide-size: 980px;
+}
+.post-type-post {
+	--wp--style--global--content-size: 40rem;
+	--wp--style--global--wide-size: 980px;
+}
+
 .has-background > .wp-block-group__inner-container > :last-child {
 	margin-bottom: 0;
 }
