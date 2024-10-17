@@ -2,13 +2,17 @@
 	&.has-background {
 		padding: rem(20);
 
-		&:not(:only-child) {
-			@include global-margin-bottom;
+		&,
+		> .wp-block-group__inner-container {
+			> :last-child {
+				margin-bottom: 0;
+			}
 		}
 	}
 
-	&.alignfull {
-		@include alignfull-padded;
+	// Ensure elements following background groups have a little extra space.
+	&.has-background + :where(:not(.has-background)) {
+		padding-top: 2.5rem;
 	}
 
 	&.has-radius-big {
