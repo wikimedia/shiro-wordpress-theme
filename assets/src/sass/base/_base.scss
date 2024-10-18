@@ -68,7 +68,19 @@
 .single-post .alignwide > .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
 	max-width: unset;
 }
+// Related blog post list on post pages is wide.
+.single-post article + .block-area.is-layout-constrained > * {
+	max-width: var(--wp--style--global--wide-size);
+}
 
 .is-layout-constrained > .alignwide {
 	max-width: var(--wp--style--global--wide-size);
+}
+
+// Some buttons may end up as inline-block, which breaks layout because
+// margin: auto does not work with that display mode.
+.is-layout-constrained > .wp-block-shiro-button.is-style-as-link {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
