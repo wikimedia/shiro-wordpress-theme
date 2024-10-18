@@ -128,7 +128,10 @@ function render_block( $attributes ) : string {
 		$output = '';
 
 		foreach ( $recent_posts as $recent_post ) {
-			$output .= BlogPost\render_block( [ 'post_id' => $recent_post->ID ] );
+			$output .= BlogPost\render_block( [
+				'post_id' => $recent_post->ID,
+				'align' => 'wide',
+			] );
 		}
 
 		return $output;

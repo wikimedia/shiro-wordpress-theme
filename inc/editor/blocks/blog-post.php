@@ -74,7 +74,9 @@ function render_block( $attributes ) {
 				'date'       => get_the_date(),
 				'excerpt'    => get_the_excerpt(),
 				'categories' => get_the_category(),
-				'class'      => 'blog-post' . ( ! empty( $attributes['is_featured'] ) ? ' blog-post--featured' : '' ),
+				'class'      => 'blog-post' .
+					( ! empty( $attributes['is_featured'] ) ? ' blog-post--featured' : '' ) .
+					( ( ( $attributes['align'] ?? '' ) === 'wide' ) ? ' alignwide' : '' ),
 			]
 		);
 	}
