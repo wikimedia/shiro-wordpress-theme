@@ -68,6 +68,10 @@
 .single-post .alignwide > .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
 	max-width: unset;
 }
+// Related blog post list on post pages is wide.
+.single-post article + .block-area.is-layout-constrained > * {
+	max-width: var(--wp--style--global--wide-size);
+}
 
 .is-layout-constrained > .alignwide {
 	max-width: var(--wp--style--global--wide-size);
