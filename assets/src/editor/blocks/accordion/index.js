@@ -8,6 +8,7 @@
 
 import { ReactNode } from 'react';
 
+import { registerBlockType } from '@wordpress/blocks';
 import { InnerBlocks, useBlockProps, InspectorControls, useSetting } from '@wordpress/block-editor';
 import { Panel, PanelBody, ColorPalette } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -16,26 +17,11 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 
+import metadata from './block.json';
+
 import '../../helpers/accordion/toggler';
 
-export const name = 'shiro/accordion';
-
-export const settings = {
-	apiVersion: 2,
-	title: __( 'Accordion', 'shiro-admin' ),
-	icon: 'menu',
-	category: 'wikimedia',
-	supports: {
-		align: [ 'center', 'full' ],
-	},
-	attributes: {
-		fontColor: {
-			type: 'string',
-		},
-	},
-	providesContext: {
-		'accordion/fontColor': 'fontColor',
-	},
+registerBlockType( metadata.name, {
 	/**
 	 * Render the editor UI for the block.
 	 *
@@ -81,4 +67,12 @@ export const settings = {
 
 		);
 	},
-};
+} );
+
+// Block HMR boilerplate.
+if ( module.hot ) {
+	module.hot.accept();
+	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
+	module.hot.dispose( deregister( metadata.name ) );
+	refresh( metadata.name, module.hot.data );
+}

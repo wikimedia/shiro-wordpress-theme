@@ -6,7 +6,6 @@ import { registerBlockType, registerBlockStyle } from '@wordpress/blocks';
 import { addFilter } from '@wordpress/hooks';
 
 // List of non-autoloaded blocks.
-import * as accordion from './blocks/accordion';
 import * as accordionItem from './blocks/accordion-item';
 import * as banner from './blocks/banner';
 import * as blogList from './blocks/blog-list';
@@ -52,7 +51,6 @@ import * as unseenIntro from './blocks/unseen-intro';
 import './style.scss';
 
 const blocks = [
-	accordion,
 	accordionItem,
 	banner,
 	blogList,
