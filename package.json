@@ -8,8 +8,8 @@
     "lint:js": "wp-scripts lint-js",
     "lint:php": "composer phpcs:changed",
     "lint": "run-p lint:js lint:php",
-    "build": "wp-scripts build --output-path=assets/dist",
-    "start": "wp-scripts start --output-path=assets/dist --hot ",
+    "build": "wp-scripts build --output-path=assets/dist --webpack-src-dir=assets/src/editor",
+    "start": "wp-scripts start --output-path=assets/dist --webpack-src-dir=assets/src/editor --hot ",
     "make-shiro-frontend-pot": "wp i18n make-pot . languages/shiro.pot --domain=shiro --exclude=assets/dist",
     "make-shiro-admin-pot": "wp i18n make-pot . languages/shiro-admin.pot --domain=shiro-admin --exclude=assets/dist",
     "make-shiro-pot": [
@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/wikimedia/shiro-wordpress-theme-develop#readme",
   "devDependencies": {
-    "@wordpress/scripts": "^28.5.0",
+    "@wordpress/scripts": "^30.3.0",
     "block-editor-hmr": "^0.7.0",
     "classnames": "^2.5.1",
     "glob": "^11.0.0",
