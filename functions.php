@@ -265,7 +265,6 @@ require get_template_directory() . '/inc/ajax.php';
  * Block editor functionality.
  */
 require get_template_directory() . '/inc/editor/namespace.php';
-require get_template_directory() . '/inc/editor/blocks/blog-list.php';
 require get_template_directory() . '/inc/editor/blocks/blog-post.php';
 require get_template_directory() . '/inc/editor/blocks/clock.php';
 require get_template_directory() . '/inc/editor/blocks/double-heading.php';
@@ -295,7 +294,6 @@ require get_template_directory() . '/inc/editor/patterns/template-report-section
 
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
-WMF\Editor\Blocks\BlogList\bootstrap();
 WMF\Editor\Blocks\BlogPost\bootstrap();
 WMF\Editor\Blocks\Clock\bootstrap();
 WMF\Editor\Blocks\InlineLanguages\bootstrap();
