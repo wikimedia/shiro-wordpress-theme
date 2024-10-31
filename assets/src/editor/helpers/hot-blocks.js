@@ -2,7 +2,8 @@
  * Provide helper methods to dynamically reload & reregister blocks in hot-
  * reloading contexts. Inspired by "block-editor-hmr" NPM package.
  */
-import { unregisterBlockType } from '@wordpress/blocks';
+import { unregisterBlockType, unregisterBlockStyle } from '@wordpress/blocks';
+import { removeFilter } from '@wordpress/hooks';
 import { dispatch, select } from '@wordpress/data';
 
 /**
@@ -14,9 +15,20 @@ import { dispatch, select } from '@wordpress/data';
  * The active block will be reselected in the refresh function.
  *
  * @param {string} hotBlockName Name of block being hot-reloaded.
+ * @param {Object} [variants]   Dictionary of { styles, filters } arrays to optionally unbind.
  */
-export const deregister = ( hotBlockName ) => ( data ) => {
+export const deregister = ( hotBlockName, variants = {} ) => ( data ) => {
 	unregisterBlockType( hotBlockName );
+
+	if ( Array.isArray( variants?.styles ) ) {
+		variants.styles.forEach( ( style ) => unregisterBlockStyle( hotBlockName, style.name ) );
+	}
+
+	if ( Array.isArray( variants?.filters ) ) {
+		variants.filters.forEach( ( { hook, namespace } ) => {
+			removeFilter( hook, namespace );
+		} );
+	}
 
 	const selectedBlockId =
 		select( 'core/block-editor' ).getSelectedBlockClientId();
