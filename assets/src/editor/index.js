@@ -6,7 +6,6 @@ import { registerBlockType, registerBlockStyle } from '@wordpress/blocks';
 import { addFilter } from '@wordpress/hooks';
 
 // List of non-autoloaded blocks.
-import * as blogList from './blocks/blog-list';
 import * as blogPostHeading from './blocks/blog-post-heading';
 import * as card from './blocks/card';
 import * as carousel from './blocks/carousel';
@@ -49,7 +48,6 @@ import * as unseenIntro from './blocks/unseen-intro';
 import './style.scss';
 
 const blocks = [
-	blogList,
 	blogPostHeading,
 	card,
 	carousel,
