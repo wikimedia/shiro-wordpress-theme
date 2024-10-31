@@ -9,7 +9,7 @@
 import { ReactNode } from 'react';
 
 import { registerBlockType } from '@wordpress/blocks';
-import { InnerBlocks, useBlockProps, InspectorControls, useSetting } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps, InspectorControls, useSettings } from '@wordpress/block-editor';
 import { Panel, PanelBody, ColorPalette } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -30,9 +30,10 @@ registerBlockType( metadata.name, {
 	 * @param {Function} props.setAttributes Block attribute setter.
 	 * @returns {ReactNode} Rendered edit note.
 	 */
-	edit: function Edit( { attributes, setAttributes } ) {
-		const blockProps = useBlockProps(); // eslint-disable-line react-hooks/rules-of-hooks
+	edit: function Edit( { attributes, setAttributes,  } ) {
+		const blockProps = useBlockProps();
 		const { fontColor } = attributes;
+		const [ colorSettings ] = useSettings( 'color.palette' );
 		return (
 			<>
 				<InspectorControls>
@@ -40,7 +41,7 @@ registerBlockType( metadata.name, {
 						<PanelBody>
 							<ColorPalette
 								value={ fontColor }
-								colors={ [ ...useSetting( 'color.palette' ) ] }
+								colors={ [ ...colorSettings ] }
 								onChange={ ( fontColor ) => setAttributes( { fontColor } ) }
 							/>
 						</PanelBody>
