@@ -37,7 +37,7 @@ registerBlockType( metadata.name, {
 					<div className="accordion-item__title">
 						<RichText
 							className="accordion-item__title-text"
-							formattingControls={ [] }
+							allowedFormats={ [] }
 							placeholder={ __( 'Add Accordion Title...', 'shiro-admin' ) }
 							tagName="h3"
 							value={ attributes.title }
