@@ -15,7 +15,6 @@ const BLOCK_NAME = 'shiro/clock';
  */
 function bootstrap() {
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\register_block_view_script' );
-	add_action( 'init', __NAMESPACE__ . '\\register_block' );
 }
 
 /**
@@ -33,11 +32,4 @@ function register_block_view_script() : void {
 			'dependencies' => [],
 		]
 	);
-}
-
-/**
- * Register the block here.
- */
-function register_block() : void {
-	register_block_type_from_metadata( get_template_directory() . '/assets/src/editor/blocks/clock' );
 }
