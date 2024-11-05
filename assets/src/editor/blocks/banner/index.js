@@ -5,6 +5,7 @@
 /**
  * WordPress dependencies
  */
+import { registerBlockType, registerBlockStyle } from '@wordpress/blocks';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -14,84 +15,22 @@ import Cta from '../../components/cta/index';
 import ImageFilter, { DEFAULT_IMAGE_FILTER } from '../../components/image-filter';
 import ImagePicker from '../../components/image-picker/index.js';
 import sharedStyles, { applyDefaultStyle } from '../../helpers/block-styles';
+
+import metadata from './block.json';
+
 import './style.scss';
 
-export const name = 'shiro/banner',
-	styles = sharedStyles;
-
-export const settings = {
-	title: __( 'Banner', 'shiro-admin' ),
-
-	category: 'wikimedia',
-
-	apiVersion: 2,
+registerBlockType( metadata.name, {
+	...metadata,
 
 	icon: BlockIcon,
 
-	description: __(
-		'Banner with an image and call to action.',
-		'shiro-admin'
-	),
-
+	// Inject the imported default into a specific attribute.
 	attributes: {
-		imageID: {
-			type: 'integer',
-		},
-		imageSrc: {
-			type: 'string',
-			source: 'attribute',
-			selector: '.banner__image',
-			attribute: 'src',
-		},
-		imageAlt: {
-			type: 'string',
-			source: 'attribute',
-			selector: '.banner__image',
-			attribute: 'alt',
-		},
+		...metadata.attributes,
 		imageFilter: {
-			type: 'string',
+			...metadata.attributes.imageFilter,
 			default: DEFAULT_IMAGE_FILTER,
-		},
-		align: {
-			type: 'string',
-			default: 'wide',
-		},
-		heading: {
-			type: 'string',
-			source: 'html',
-			selector: '.banner__heading',
-		},
-		text: {
-			type: 'string',
-			source: 'html',
-			selector: '.banner__text',
-		},
-		url: {
-			type: 'string',
-			source: 'attribute',
-			selector: '.banner__cta',
-			attribute: 'href',
-		},
-		buttonText: {
-			type: 'string',
-			source: 'html',
-			selector: '.banner__cta',
-		},
-	},
-
-	example: {
-		attributes: {
-			imageID: 0,
-			// This is the same image and source that the core Image block uses
-			// @see https://github.com/WordPress/gutenberg/blob/trunk/packages/block-library/src/image/index.js#L32
-			imageSrc: 'https://s.w.org/images/core/5.3/MtBlanc1.jpg',
-			imageAlt: '',
-			align: 'wide',
-			heading: 'Banner Heading',
-			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-			url: 'https://wikimediafoundation.org/',
-			buttonText: 'Call to Action',
 		},
 	},
 
@@ -228,4 +167,14 @@ export const settings = {
 			</div>
 		);
 	},
-};
+} );
+
+sharedStyles.forEach( ( style ) => registerBlockStyle( metadata.name, style ) );
+
+// Block HMR boilerplate.
+if ( module.hot ) {
+	module.hot.accept();
+	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
+	module.hot.dispose( deregister( metadata.name, { styles: sharedStyles } ) );
+	refresh( metadata.name, module.hot.data );
+}
