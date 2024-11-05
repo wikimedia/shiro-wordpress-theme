@@ -9,7 +9,6 @@ import { addFilter } from '@wordpress/hooks';
 import * as blogPostHeading from './blocks/blog-post-heading';
 import * as card from './blocks/card';
 import * as carousel from './blocks/carousel';
-import * as clock from './blocks/clock';
 import * as clockStat from './blocks/clock-stat';
 import * as collapsibleText from './blocks/collapsible-text';
 import * as contact from './blocks/contact';
@@ -51,7 +50,6 @@ const blocks = [
 	blogPostHeading,
 	card,
 	carousel,
-	clock,
 	clockStat,
 	collapsibleText,
 	contact,
