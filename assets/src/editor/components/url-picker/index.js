@@ -18,6 +18,8 @@ function URLPicker( {
 	isSelected,
 	url,
 	onChangeLink,
+	onChangeOpenInNewTab,
+	openInNewTab,
 } ) {
 	const [ isURLPickerOpen, setIsURLPickerOpen ] = useState( false );
 	const urlIsSet = !! url;
@@ -79,6 +81,14 @@ function URLPicker( {
 							shortcut={ displayShortcut.primaryShift( 'k' ) }
 							title={ __( 'Unlink' ) }
 							onClick={ removeLink }
+						/>
+					) }
+					{ ( urlIsSetandSelected && onChangeOpenInNewTab ) && (
+						<ToolbarButton
+							icon="external"
+							label={ __( 'Open in new tab', 'shiro-admin' ) }
+							isPressed={ openInNewTab }
+							onClick={ () => onChangeOpenInNewTab( ! openInNewTab ) }
 						/>
 					) }
 				</ToolbarGroup>
