@@ -7,36 +7,15 @@
 /**
  * WordPress dependencies
  */
+import { registerBlockType } from '@wordpress/blocks';
 import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
+import metadata from './block.json';
+
 import './style.scss';
 
-export const name = 'shiro/accordion-item';
-
-export const settings = {
-	apiVersion: 2,
-	title: __( 'Accordion Item', 'shiro-admin' ),
-	icon: 'minus',
-	category: 'wikimedia',
-	parent: [ 'shiro/accordion' ],
-	supports: {
-		align: [ 'center', 'full' ],
-	},
-
-	attributes: {
-		fontColor: {
-			type: 'string',
-		},
-		title: {
-			type: 'string',
-			source: 'html',
-			selector: 'h3',
-		},
-	},
-
-	usesContext: [ 'accordion/fontColor' ],
-
+registerBlockType( metadata.name, {
 	/**
 	 * Edit the block.
 	 */
@@ -58,7 +37,7 @@ export const settings = {
 					<div className="accordion-item__title">
 						<RichText
 							className="accordion-item__title-text"
-							formattingControls={ [] }
+							allowedFormats={ [] }
 							placeholder={ __( 'Add Accordion Title...', 'shiro-admin' ) }
 							tagName="h3"
 							value={ attributes.title }
@@ -97,4 +76,12 @@ export const settings = {
 			</div>
 		);
 	},
-};
+} );
+
+// Block HMR boilerplate.
+if ( module.hot ) {
+	module.hot.accept();
+	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
+	module.hot.dispose( deregister( metadata.name ) );
+	refresh( metadata.name, module.hot.data );
+}
