@@ -61,7 +61,7 @@ function URLPicker( {
 	return (
 		<>
 			<BlockControls>
-				<ToolbarGroup>
+				{ ( ! urlIsSet || urlIsSetandSelected ) && <ToolbarGroup>
 					{ ! urlIsSet && (
 						<ToolbarButton
 							className="url-picker__link-button"
@@ -91,7 +91,7 @@ function URLPicker( {
 							onClick={ () => onChangeOpenInNewTab( ! openInNewTab ) }
 						/>
 					) }
-				</ToolbarGroup>
+				</ToolbarGroup> }
 			</BlockControls>
 			{ isSelected && (
 				<KeyboardShortcuts
