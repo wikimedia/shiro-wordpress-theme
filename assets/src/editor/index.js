@@ -6,7 +6,6 @@ import { registerBlockType, registerBlockStyle } from '@wordpress/blocks';
 import { addFilter } from '@wordpress/hooks';
 
 // List of non-autoloaded blocks.
-import * as card from './blocks/card';
 import * as carousel from './blocks/carousel';
 import * as clockStat from './blocks/clock-stat';
 import * as collapsibleText from './blocks/collapsible-text';
@@ -46,7 +45,6 @@ import * as unseenIntro from './blocks/unseen-intro';
 import './style.scss';
 
 const blocks = [
-	card,
 	carousel,
 	clockStat,
 	collapsibleText,
