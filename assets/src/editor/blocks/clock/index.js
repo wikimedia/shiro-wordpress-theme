@@ -238,9 +238,9 @@ const wrappedPlaceholder = ( padding ) => {
 	const days = '0'.padStart( padding, '0' );
 
 	let daysArray = days.split( '' );
-	daysArray = daysArray.map( ( placeholder ) => {
-		return ( <span>{ placeholder }</span> );
-	} );
+	daysArray = daysArray.map( ( placeholder, idx ) => (
+		<span key={ placeholder }>{ placeholder }</span>
+	) );
 
 	return daysArray;
 };
