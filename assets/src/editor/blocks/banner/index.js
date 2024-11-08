@@ -46,6 +46,7 @@ registerBlockType( metadata.name, {
 			imageID,
 			imageSrc,
 			imageFilter,
+			openInNewTab,
 		} = attributes;
 
 		const blockProps = useBlockProps( {
@@ -95,6 +96,8 @@ registerBlockType( metadata.name, {
 						className="banner__cta"
 						text={ buttonText }
 						url={ url }
+						openInNewTab={ openInNewTab }
+						onChangeOpenInNewTab={ ( openInNewTab ) => setAttributes( { openInNewTab } ) }
 						onChangeLink={ onChangeLink }
 						onChangeText={ onChangeText }
 					/>
@@ -128,6 +131,7 @@ registerBlockType( metadata.name, {
 			imageAlt,
 			imageID,
 			imageFilter,
+			openInNewTab,
 		} = attributes;
 
 		const blockProps = useBlockProps.save( {
@@ -149,6 +153,7 @@ registerBlockType( metadata.name, {
 					/>
 					<Cta.Content
 						className="banner__cta"
+						openInNewTab={ openInNewTab }
 						text={ buttonText }
 						url={ url }
 					/>
