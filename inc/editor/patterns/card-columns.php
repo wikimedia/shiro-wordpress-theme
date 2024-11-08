@@ -1,6 +1,8 @@
 <?php
 /**
  * Block pattern for 3-up cards with call to action in each.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Patterns\CardColumns;

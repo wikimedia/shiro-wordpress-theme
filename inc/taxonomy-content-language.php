@@ -8,6 +8,8 @@
  * otherwise served by the blog to be translated and associated with the
  * original post in the same way that MultiLingual Press handles associating
  * content between different lnaguage sites.
+ *
+ * @package shiro
  */
 
 /**
@@ -21,10 +23,10 @@ function wmf_register_content_language_taxonomy(): void {
 	$language_type_args = array(
 		'hierarchical' => false,
 		'show_in_rest' => true,
-		'rewrite' => false,
-		'label' => __( 'Content Language', 'shiro-admin' ),
+		'rewrite'      => false,
+		'label'        => __( 'Content Language', 'shiro-admin' ),
 	);
-	register_taxonomy( 'content-language', apply_filters( 'wmf_content_language_post_types', [ 'post' ] ), $language_type_args );
+	register_taxonomy( 'content-language', apply_filters( 'wmf_content_language_post_types', array( 'post' ) ), $language_type_args );
 }
 
 /**
@@ -71,7 +73,7 @@ function wmf_get_current_content_language_term(): ?WP_Term {
  */
 function wmf_get_and_maybe_create_current_language_term(): ?WP_Term {
 	$term = wmf_get_current_content_language_term();
-	if ( $term === null ) {
+	if ( null === $term ) {
 		$term = wmf_create_current_language_term();
 	}
 
@@ -121,7 +123,7 @@ function wmf_add_default_content_language( int $post_ID ): void {
 		return;
 	}
 	$main_locale = wmf_get_and_maybe_create_current_language_term();
-	if ( $main_locale === null ) {
+	if ( null === $main_locale ) {
 		/*
 		 * The current language term doesn't exist and can't be created, which
 		 * is not an error we can recover from.
@@ -143,7 +145,7 @@ function wmf_add_default_content_language( int $post_ID ): void {
  * @param \WP_Query $query Query object to filter.
  * @return void
  */
-function wmf_filter_posts_by_content_language( WP_Query $query ) : void {
+function wmf_filter_posts_by_content_language( WP_Query $query ): void {
 
 	// Don't filter the admin.
 	if ( is_admin() ) {
@@ -156,7 +158,7 @@ function wmf_filter_posts_by_content_language( WP_Query $query ) : void {
 	}
 
 	// Only filter posts.
-	if ( ! empty( $query->get( 'post_type' ) ) && ! in_array( $query->get( 'post_type' ), apply_filters( 'wmf_content_language_post_types', [ 'post' ] ), true ) ) {
+	if ( ! empty( $query->get( 'post_type' ) ) && ! in_array( $query->get( 'post_type' ), apply_filters( 'wmf_content_language_post_types', array( 'post' ) ), true ) ) {
 		return;
 	}
 
@@ -186,18 +188,21 @@ function wmf_filter_posts_by_content_language( WP_Query $query ) : void {
 
 	// Get term of main language.
 	$main_locale = wmf_get_and_maybe_create_current_language_term();
-	if ( $main_locale === null ) {
+	if ( null === $main_locale ) {
 		return;
 	}
 
 	// Filter posts which has content-language set to main_locale.
-	$query->set( 'tax_query', [
-		[
-			'taxonomy' => 'content-language',
-			'field'    => 'slug',
-			'terms'    => $main_locale->slug,
-		],
-	] );
+	$query->set(
+		'tax_query',
+		array(
+			array(
+				'taxonomy' => 'content-language',
+				'field'    => 'slug',
+				'terms'    => $main_locale->slug,
+			),
+		) 
+	);
 }
 
 add_action( 'pre_get_posts', 'wmf_filter_posts_by_content_language' );
@@ -248,13 +253,13 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		}
 
 		$term = wmf_get_and_maybe_create_current_language_term();
-		if ( $term === null ) {
+		if ( null === $term ) {
 			WP_CLI::error( 'Count not find term for current language!' );
 			return;
 		}
 
-		$query_args = [
-			'post_types' => apply_filters( 'wmf_content_language_post_types', [ 'post' ] ),
+		$query_args = array(
+			'post_types'     => apply_filters( 'wmf_content_language_post_types', array( 'post' ) ),
 
 			/*
 			 * Getting *all* posts is a bad practice, but in this case it's the
@@ -271,29 +276,29 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			 * getting *all* posts should be safe.
 			 */
 			'posts_per_page' => -1,
-			'fields' => 'ids',
+			'fields'         => 'ids',
 			// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-			'tax_query' => [
-				[
+			'tax_query'      => array(
+				array(
 					'taxonomy' => 'content-language',
-					'field' => 'term_id',
-					'terms' => [ $term->term_id ],
+					'field'    => 'term_id',
+					'terms'    => array( $term->term_id ),
 					'operator' => 'NOT EXISTS',
-				],
-			],
-		];
+				),
+			),
+		);
 		$posts = get_posts( $query_args );
 		$count = 0;
 		foreach ( $posts as $post_id ) {
 			$terms = wp_get_post_terms( $post_id, 'content-language' );
 			if ( is_wp_error( $terms ) ) {
 				WP_CLI::error( "$post_id - Cannot find content-language taxonomy!" );
-				$count++;
+				++$count;
 				continue;
 			}
 			if ( count( $terms ) > 0 ) {
 				WP_CLI::success( "$post_id - Has languages; no need to update." );
-				$count++;
+				++$count;
 				continue;
 			}
 
@@ -301,7 +306,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				wmf_add_default_content_language( $post_id );
 			}
 			WP_CLI::success( "$post_id - Updated content-language terms!" );
-			$count++;
+			++$count;
 			unset( $terms );
 		}
 		wp_defer_term_counting( false );

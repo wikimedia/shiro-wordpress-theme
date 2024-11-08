@@ -1,6 +1,8 @@
 <?php
 /**
  * Block pattern for "external link" columns
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Patterns\LinkColumns;

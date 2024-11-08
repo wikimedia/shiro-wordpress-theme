@@ -1,12 +1,14 @@
 <?php
 /**
  * Block pattern for populating a page migrated from the 'landing' template
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Patterns\TemplateLanding;
 
 use function WMF\Editor\Patterns\TweetColumns\pattern as tweet_columns_pattern;
-use WMF\Editor\Patterns\LinkColumns as LinkColumns;
+use WMF\Editor\Patterns\LinkColumns;
 
 const NAME = 'shiro/template-landing';
 

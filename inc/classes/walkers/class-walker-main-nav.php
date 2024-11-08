@@ -12,8 +12,12 @@ namespace WMF\Walkers;
  */
 class Walker_Main_Nav extends \Walker_Nav_Menu {
 
-	// Private variable for the current menu item.
-	private $currentItemID;
+	/**
+	 * Private variable for the current menu item.
+	 *
+	 * @var $current_item_id TODO: Document this variable.
+	 */
+	private $current_item_id;
 	
 	/**
 	 * Starts the list before the elements are added.
@@ -22,19 +26,19 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 	 *
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @param int    $depth  Depth of menu item. Used for padding.
-	 * @param array  $args   An array of arguments. @see wp_nav_menu()
+	 * @param array  $args   An array of arguments. @see wp_nav_menu() for more info.
 	 */
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = ( $depth > 0  ? str_repeat( "\t", $depth ) : '' ); // code indent
+		$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // Code indent.
 
-		$classes = array(
+		$classes     = array(
 			'sub-menu',
-			'nav-sub-menu-'. $this->currentItemID,
+			'nav-sub-menu-' . $this->current_item_id,
 		);
 		$class_names = implode( ' ', $classes );
 	
 		// Build HTML for output.
-		$output .= "\n" . $indent . '<ul class="' . esc_attr( $class_names ) . '" data-dropdown-content="nav-sub-menu-'. $this->currentItemID . '">' . "\n";
+		$output .= "\n" . $indent . '<ul class="' . esc_attr( $class_names ) . '" data-dropdown-content="nav-sub-menu-' . $this->current_item_id . '">' . "\n";
 	}
 
 	/**
@@ -45,15 +49,15 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @param object $item   Menu item data object.
 	 * @param int    $depth  Depth of menu item. Used for padding.
-	 * @param array  $args   An array of arguments. @see wp_nav_menu()
+	 * @param array  $args   An array of arguments. @see wp_nav_menu() for more info.
 	 * @param int    $id     Current item ID.
 	 */
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 		global $wp_query;
-		$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
+		$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // Code indent.
 
 		// Set the current item.
-		$this->currentItemID = $item->ID;
+		$this->current_item_id = $item->ID;
 
 		// Passed classes.
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
@@ -61,23 +65,23 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 		// Remove "has-children" class from second level items.
 		$key = array_search( 'menu-item-has-children', $classes, true );
 
-		if ( $depth > 0 && $key !== false ) {
-			unset( $classes[$key] );
+		if ( $depth > 0 && false !== $key ) {
+			unset( $classes[ $key ] );
 		}
 
 		// Apply filters and prepare classes for use.
 		$class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
 
 		// Build HTML.
-		$active_classes = [ 'current-menu-item', 'current-menu-ancestor' ];
-		$output .= 
+		$active_classes = array( 'current-menu-item', 'current-menu-ancestor' );
+		$output        .= 
 			$indent
-			. '<li id="nav-menu-item-'. $item->ID . '"'
+			. '<li id="nav-menu-item-' . $item->ID . '"'
 			. ' class="' . $class_names . '"'
 			. ( in_array( 'menu-item-has-children', $classes, true ) ?
 				' data-dropdown="nav-sub-menu-' . $item->ID . '"'
-				. ' data-dropdown-content=".nav-sub-menu-'. $item->ID . '"'
-				. ' data-dropdown-toggle=".nav-sub-menu-button-'. $item->ID . '"'
+				. ' data-dropdown-content=".nav-sub-menu-' . $item->ID . '"'
+				. ' data-dropdown-toggle=".nav-sub-menu-button-' . $item->ID . '"'
 				. ' data-visible="' . ( count( array_intersect( $active_classes, $classes ) ) > 0 ? 'yes' : 'no' ) . '"'
 				. ' data-toggleable="no"'
 			: '' )
@@ -90,7 +94,8 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 		$attributes = ! empty( $item->url ) ? ' href="' . esc_url( $item->url ) . '"' : '';
 
 		// Build HTML output and pass through the proper filter.
-		$item_output = sprintf( '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
+		$item_output = sprintf(
+			'%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
 			$args->before,
 			$attributes,
 			$args->link_before,
@@ -102,13 +107,13 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 
 		if ( in_array( 'menu-item-has-children', $classes, true ) ) {
-			$label = __( 'Expand submenu for ', 'shiro' ) . apply_filters( 'the_title', $item->title, $item->ID );
+			$label   = __( 'Expand submenu for ', 'shiro' ) . apply_filters( 'the_title', $item->title, $item->ID );
 			$output .= 
-			'<button class="menu-item__expand nav-sub-menu-button-'. $item->ID . '"'
+			'<button class="menu-item__expand nav-sub-menu-button-' . $item->ID . '"'
 			. ' hidden'
 			. ' aria-label="' . esc_attr( $label ) . '"'
 			. ' aria-expanded="' . ( count( array_intersect( $active_classes, $classes ) ) > 0 ? 'true' : 'false' ) . '"'
-			. ' data-dropdown-toggle="nav-sub-menu-'. $item->ID . '">'
+			. ' data-dropdown-toggle="nav-sub-menu-' . $item->ID . '">'
 			. '<span class="btn-label-a11y">'
 			. esc_html( $label )
 			. '</span></button>';

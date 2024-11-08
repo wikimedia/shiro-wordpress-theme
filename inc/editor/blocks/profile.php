@@ -1,6 +1,8 @@
 <?php
 /**
  * Server-side registration for the shiro/profile block.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Blocks\Profile;
@@ -20,15 +22,15 @@ function bootstrap() {
 function register_block() {
 	register_block_type(
 		BLOCK_NAME,
-		[
+		array(
 			'apiVersion'      => 2,
 			'render_callback' => __NAMESPACE__ . '\\render_block',
-			'attributes'      => [
-				'profile_id' => [
+			'attributes'      => array(
+				'profile_id' => array(
 					'type' => 'integer',
-				],
-			],
-		]
+				),
+			),
+		)
 	);
 }
 

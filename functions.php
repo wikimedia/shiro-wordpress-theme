@@ -60,7 +60,8 @@ function wmf_setup() {
 	 * to output valid HTML5.
 	 */
 	add_theme_support(
-		'html5', array(
+		'html5',
+		array(
 			'search-form',
 			'comment-form',
 			'comment-list',
@@ -71,8 +72,10 @@ function wmf_setup() {
 
 	// Set up the WordPress core custom background feature.
 	add_theme_support(
-		'custom-background', apply_filters(
-			'wmf_custom_background_args', array(
+		'custom-background',
+		apply_filters(
+			'wmf_custom_background_args',
+			array(
 				'default-color' => 'ffffff',
 				'default-image' => '',
 			)
@@ -122,7 +125,7 @@ add_action( 'widgets_init', 'wmf_widgets_init' );
  * Enqueue scripts and styles.
  */
 function wmf_scripts() {
-	$style_version = md5_file( get_theme_file_path( 'style.css' ) );
+	$style_version  = md5_file( get_theme_file_path( 'style.css' ) );
 	$script_version = md5_file( get_theme_file_path( 'assets/dist/scripts.min.js' ) );
 
 	wp_enqueue_style( 'shiro-style', get_template_directory_uri() . '/assets/dist/style.css', array(), $style_version );
@@ -136,21 +139,25 @@ function wmf_scripts() {
 	Asset_Loader\enqueue_asset(
 		\WMF\Assets\get_manifest_path( 'shiro.js' ),
 		'shiro.js',
-		[
-			'dependencies' => [],
-			'handle' => 'shiro-modern',
-		]
+		array(
+			'dependencies' => array(),
+			'handle'       => 'shiro-modern',
+		)
 	);
 
 	wp_localize_script(
-		'shiro-script', 'shiro', array(
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
+		'shiro-script',
+		'shiro',
+		array(
+			'ajax_url'  => admin_url( 'admin-ajax.php' ),
 			'object_id' => get_queried_object_id(),
 		)
 	);
 
 	wp_localize_script(
-		'shiro-script', 'wmfrtl', array(
+		'shiro-script',
+		'wmfrtl',
+		array(
 			'enable' => get_theme_mod( 'wmf_enable_rtl' ) ? true : false,
 		)
 	);
@@ -160,7 +167,7 @@ function wmf_scripts() {
 	}
 
 	if ( is_page_template( 'page-data.php' ) ) {
-		wp_enqueue_script( 'd3', get_template_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', [], '0.0.1', true );
+		wp_enqueue_script( 'd3', get_template_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array(), '0.0.1', true );
 		wp_enqueue_script( 'datavis', get_template_directory_uri() . '/assets/dist/datavis.min.js', array( 'jquery' ), '0.0.1', true );
 	}
 }
@@ -418,11 +425,11 @@ WMF\Breadcrumb_Links\init();
 require get_template_directory() . '/inc/security.php';
 WMF\Security\init();
 
-// Hook into document_title_parts
+// Hook into document_title_parts.
 add_filter( 'document_title_parts', 'wmf_filter_wp_404title' );
 
 /**
- * Modify the document title for the search page
+ * Modify the document title for the search page.
  *
  * @param array $title_parts Document title parts.
  * @return array Filtered array.
@@ -442,10 +449,10 @@ function wmf_filter_wp_searchtitle( $title_parts ) {
 	return $title_parts;
 }
 
-// Hook into document_title_parts
+// Hook into document_title_parts.
 add_filter( 'document_title_parts', 'wmf_filter_wp_searchtitle' );
 
-// Rewrite URL for roles to not require /news/ prefix
+// Rewrite URL for roles to not require /news/ prefix.
 add_rewrite_rule( '^role/(.+?)$', 'index.php?role=$matches[1]', 'top' );
 
 /**
@@ -463,39 +470,37 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 
 	return array_merge(
 		$context,
-		[
-			'svg'  => [
+		array(
+			'svg'  => array(
 				'viewBox' => true,
 				'fill'    => true,
 				'width'   => true,
 				'height'  => true,
 				'class'   => true,
 				'xmlns'   => true,
-			],
-			'path' => [
-				'd'         => true,
-				'clip-rule' => true,
-				'fill'      => true,
-				'fill-rule' => true,
-			],
-			'rect' => [
+			),
+			'path' => array(
+				'd'    => true,
+				'fill' => true,
+			),
+			'rect' => array(
 				'fill'   => true,
 				'width'  => true,
 				'height' => true,
 				'x'      => true,
 				'y'      => true,
-			],
-			'use' => [
+			),
+			'use'  => array(
 				'xlink:href' => true,
 				'href'       => true,
-			],
-			'h1' => array_merge(
-				$context['h1'],
-				[
-					'lang'  => true,
-				]
 			),
-		]
+			'h1'   => array_merge(
+				$context['h1'],
+				array(
+					'lang' => true,
+				)
+			),
+		)
 	);
 }
 add_filter( 'wp_kses_allowed_html', 'wmf_filter_post_kses_tags', 10, 2 );
@@ -529,7 +534,8 @@ function shiro_link_reusable_blocks_url() {
 		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
 		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
 		'manage_options',
-		'edit.php?post_type=wp_block', '',
+		'edit.php?post_type=wp_block',
+		'',
 		'dashicons-editor-table',
 		22
 	);
@@ -546,7 +552,7 @@ add_action( 'admin_menu', 'shiro_link_reusable_blocks_url' );
 function shiro_add_slug_body_class( $classes ) {
 	global $post;
 
-	// ignore it for search pages
+	// Ignore it for search pages.
 	if ( is_search() ) {
 		return $classes;
 	}
@@ -568,10 +574,10 @@ add_filter( 'body_class', 'shiro_add_slug_body_class' );
 function shiro_safe_title( string $title ): void {
 	echo wp_kses(
 		$title,
-		[
-			'span' => [ 'class' ],
-			'em' => [],
-		]
+		array(
+			'span' => array( 'class' ),
+			'em'   => array(),
+		)
 	);
 }
 
@@ -579,3 +585,10 @@ function shiro_safe_title( string $title ): void {
  * Disable JetPack Blaze.
  */
 add_filter( 'jetpack_blaze_enabled', '__return_false' );
+
+
+/**
+ * Profiles Order customizations.
+ */
+require get_template_directory() . '/inc/profile-order.php';
+WMF\Profile_Order\bootstrap();

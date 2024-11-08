@@ -1,6 +1,8 @@
 <?php
 /**
  * Server-side registration for the shiro/blog-post block.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Blocks\DoubleHeading;
@@ -20,10 +22,10 @@ function bootstrap() {
 function register_block() {
 	register_block_type(
 		BLOCK_NAME,
-		[
+		array(
 			'apiVersion'      => 2,
 			'render_callback' => __NAMESPACE__ . '\\render_block',
-		]
+		)
 	);
 }
 
@@ -34,14 +36,14 @@ function register_block() {
  * @return string HTML markup.
  */
 function render_block( $attributes ) {
-	$site_language = wmf_get_translations()[0] ?? [];
-	$translated_headings = [];
+	$site_language         = wmf_get_translations()[0] ?? array();
+	$translated_headings   = array();
 	$site_language_heading = null;
-	$customClass = $attributes['className'] ?? false;
-	$className = $customClass ? "double-heading $customClass" : 'double-heading';
+	$custom_class          = $attributes['class_name'] ?? false;
+	$class_name            = $custom_class ? "double-heading $custom_class" : 'double-heading';
 
-	foreach ( ( $attributes['secondaryHeadings'] ?? [] ) as $heading ) {
-		if ( $site_language['shortname'] ?? null === ( $heading['lang'] ?? '' ) ) {
+	foreach ( ( $attributes['secondaryHeadings'] ?? array() ) as $heading ) {
+		if ( $site_language['shortname'] ?? ( $heading['lang'] ?? '' ) === null ) {
 			$site_language_heading = $heading;
 			continue;
 		}
@@ -50,9 +52,9 @@ function render_block( $attributes ) {
 			continue;
 		}
 
-		$heading['className'] = '';
+		$heading['class_name'] = '';
 		if ( $heading['switchRtl'] ?? false ) {
-			$heading['className'] = 'switch-rtl';
+			$heading['class_name'] = 'switch-rtl';
 		}
 		$translated_headings[] = $heading;
 	}
@@ -62,18 +64,18 @@ function render_block( $attributes ) {
 		$random_key         = array_rand( $translated_headings );
 		$translated_heading = $translated_headings[ $random_key ];
 	}
-	$primary_heading    = $attributes['primaryHeading'] ?? null;
+	$primary_heading = $attributes['primaryHeading'] ?? null;
 
 	ob_start()
 	?>
-		<div class="<?php echo esc_attr( $className ); ?>">
+		<div class="<?php echo esc_attr( $class_name ); ?>">
 			<?php if ( ! empty( $site_language_heading ) ) : ?>
 				<p class="double-heading__secondary is-style-h5">
 					<span><?php echo esc_html( $site_language_heading['text'] ); ?></span>
 					<?php if ( ! empty( $translated_heading ) ) : ?>
 						—
 						<span
-							class="<?php echo esc_attr( $translated_heading['className'] ); ?>"
+							class="<?php echo esc_attr( $translated_heading['class_name'] ); ?>"
 							lang="<?php echo esc_attr( $translated_heading['lang'] ?? '' ); ?>"
 						>
 							<?php echo esc_html( $translated_heading['text'] ); ?>

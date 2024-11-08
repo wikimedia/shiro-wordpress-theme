@@ -1,6 +1,8 @@
 <?php
 /**
  * Functionality related to finding and loading assets.
+ *
+ * @package shiro
  */
 
 namespace WMF\Assets;
@@ -12,11 +14,11 @@ use Asset_Loader\Manifest;
  *
  * @return array
  */
-function get_manifests() : array {
-	return [
+function get_manifests(): array {
+	return array(
 		get_template_directory() . '/assets/dist/development-asset-manifest.json',
 		get_template_directory() . '/assets/dist/production-asset-manifest.json',
-	];
+	);
 }
 
 /**

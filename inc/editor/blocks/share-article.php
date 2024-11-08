@@ -1,6 +1,8 @@
 <?php
 /**
  * Server-side registration for the shiro/share-article block.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Blocks\ShareArticle;
@@ -20,10 +22,10 @@ function bootstrap() {
 function register_block() {
 	register_block_type(
 		BLOCK_NAME,
-		[
+		array(
 			'apiVersion'      => 2,
 			'render_callback' => __NAMESPACE__ . '\\render_block',
-		]
+		)
 	);
 }
 
@@ -34,7 +36,7 @@ function register_block() {
  * @return string HTML markup.
  */
 function render_block( $attributes ) {
-	$enable_twitter = $attributes['enableTwitter'] ?? true;
+	$enable_twitter  = $attributes['enableTwitter'] ?? true;
 	$enable_facebook = $attributes['enableFacebook'] ?? true;
 
 	if ( ! $enable_twitter && ! $enable_facebook ) {

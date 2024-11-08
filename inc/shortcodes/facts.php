@@ -20,11 +20,11 @@
  * @return string Rendered shortcode output.
  */
 function wmf_fact_shortcode_callback( $atts, $content = '' ) {
-	$defaults = [
+	$defaults = array(
 		'value' => 0,
 		'label' => '',
 		'color' => '',
-	];
+	);
 	$atts     = shortcode_atts( $defaults, $atts, 'wmf_fact' );
 	$style    = ! empty( $atts['color'] ) ? 'color:' . $atts['color'] : '';
 
@@ -48,7 +48,7 @@ add_shortcode( 'wmf_fact', 'wmf_fact_shortcode_callback' );
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_facts_shortcode_callback( $atts = [], $content = '' ) {
+function wmf_facts_shortcode_callback( $atts = array(), $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
 	return '<div class="facts-wrapper">' . wp_kses_post( $content ) . '</div>';
