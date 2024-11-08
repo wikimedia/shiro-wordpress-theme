@@ -25,7 +25,7 @@ function pattern(): string {
 
 	return <<<CONTENT
 <!-- wp:shiro/landing-page-hero {"className":"is-style-yellow50"} -->
-<div class="wp-block-shiro-landing-page-hero hero is-style-yellow50"><header class="hero__header"><div class="hero__text-column"><small class="hero__kicker"></small><h1 class="hero__title"></h1></div><figure class="hero__image-container image-filter-inherit"><img alt="" class="hero__image"/></figure></header><div class="hero__intro"><p></p></div></div>
+<div class="wp-block-shiro-landing-page-hero hero is-style-yellow50"><header class="hero__header"><div class="hero__text-column"><small class="hero__kicker"></small><h1 class="hero__title"></h1></div><figure class="hero__image-container image-filter-inherit"><img alt="" class="hero__image"/></figure></header><div class="hero__intro"></div></div>
 <!-- /wp:shiro/landing-page-hero -->
 
 <!-- wp:shiro/stairs -->

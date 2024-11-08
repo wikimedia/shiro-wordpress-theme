@@ -84,6 +84,36 @@ function wmf_get_header_cta_button_class() {
 }
 
 /**
+ * Sort an associative array of roles keyed by role ID based on each roles'
+ * role_order meta field, ordering defined values before 0/empty.
+ *
+ * Iteratively sorts child roles as well.
+ *
+ * NOTE: Intended for use only within role hierarchy getter functions!
+ *
+ * @param array $roles Keyed array of shape [ term_id => term_details_arr ].
+ */
+function wmf_sort_role_list( &$roles ) {
+	uasort( $roles, function( $a, $b ) {
+		$order_a = $a['order'];
+		if ( empty( $order_a ) ) {
+			$order_a = 1000;
+		}
+		$order_b = $b['order'];
+		if ( empty( $order_b ) ) {
+			$order_b = 1000;
+		}
+		return $order_a - $order_b;
+	} );
+
+	foreach ( $roles as $role ) {
+		if ( ! empty( $role['children'] ) ) {
+			wmf_sort_role_list( $role['children'] );
+		}
+	}
+}
+
+/**
  * Get all the child terms for a parent organized by hierarchy
  *
  * @param int $parent_id The ID of the parent term to query against.
@@ -94,7 +124,8 @@ function wmf_get_role_hierarchy( int $parent_id ) {
 	$children   = array();
 	$term_array = array();
 	$terms      = get_terms(
-		'role', array(
+		'role',
+		array(
 			'orderby' => 'name',
 			'fields'  => 'id=>parent',
 			'get'     => 'all',
@@ -114,6 +145,8 @@ function wmf_get_role_hierarchy( int $parent_id ) {
 	foreach ( $children[ $parent_id ] as $child_id ) {
 		$term_array[ $child_id ] = isset( $children[ $child_id ] ) ? $children[ $child_id ] : array();
 	}
+
+	wmf_sort_role_list( $term_array );
 
 	return $term_array;
 }
@@ -158,12 +191,13 @@ function wmf_get_role_posts( $term_id ) {
 	$profile_list = array_unique( $profile_list );
 
 	// Sort by last_name. Unusual profile ordering may occur if this field is not set.
-	usort( $profile_list, fn( $profile_id ) => get_post_meta( $profile_id, 'last_name', true ) );
+	$profile_list = wmf_sort_profiles( $profile_list );
 
 	return array(
 		'posts' => $profile_list,
 		'name'  => $term_query->name,
 		'slug'  => $term_query->slug,
+		'order' => get_term_meta( $term_id, 'role_order', true ) ?: 0,
 	);
 }
 
@@ -215,9 +249,30 @@ function wmf_get_posts_by_child_roles( int $term_id ) {
 		}
 	}
 
+	wmf_sort_role_list( $post_list );
+
 	wp_cache_set( 'wmf_terms_list_' . $term_id, $post_list );
 
 	return $post_list;
+}
+
+/**
+ * Sort an array of profiles based on the profile's assigned last_name
+ * sorting value and return the sorted array.
+ *
+ * @param WP_Post[]|int[] $profiles Array of profiles (or profile post IDs) to sort.
+ * @return WP_Post[]|int[] Input array, sorted by last name.
+ */
+function wmf_sort_profiles( $profiles ) {
+	// The sort order is defined by the `last_name` meta field, which is
+	// actually exclusively used for alphabetical ordering.
+	usort( $profiles, function( $a, $b ) {
+		$last_name_a = get_post_meta( $a, 'last_name', true ) ?: 'z';
+		$last_name_b = get_post_meta( $b, 'last_name', true ) ?: 'z';
+
+		return strnatcasecmp( $last_name_a, $last_name_b );
+	} );
+	return $profiles;
 }
 
 /**

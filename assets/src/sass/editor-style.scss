@@ -3,26 +3,27 @@ $content-wrapper: ".block-editor-block-list__layout";
 // Import helpers first.
 @import "helpers/helpers";
 
-/* ==================
-    # Base Styles
-  =================== */
-@import "base/base";
-@import "content/content";
-@import "objects/objects";
-@import "utilities/utilities";
-@import "editor/global";
+.editor-styles-wrapper {
+  /* ==================
+      # Base Styles
+    =================== */
+  @import "base/base";
+  @import "content/content";
+  @import "objects/objects";
+  @import "utilities/utilities";
+  @import "editor/global";
 
-/* ==================
-    # Custom CSS
-  =================== */
-@import "components/alerts";
-@import "components/blackout-modal";
-@import "components/ltr";
-@import "components/tables";
-@import "components/header";
-@import "components/accessibility";
-@import "components/icons";
-@import "components/fitvids";
-@import "components/profiles";
+  /* ==================
+      # Custom CSS
+    =================== */
+  @import "components/alerts";
+  @import "components/blackout-modal";
+  @import "components/ltr";
+  @import "components/tables";
+  @import "components/header";
+  @import "components/accessibility";
+  @import "components/icons";
+  @import "components/profiles";
 
-@import "blocks/index";
+  @import "blocks/index";
+}
