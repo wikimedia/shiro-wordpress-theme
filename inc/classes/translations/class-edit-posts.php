@@ -22,8 +22,7 @@ class Edit_Posts {
 	 * Edit_Posts constructor.
 	 */
 	public function __construct() {
-        // phpcs:ignore WordPress.VIP.SuperGlobalInputUsage.AccessDetected,WordPress.Security.NonceVerification.Recommended
-		$this->translation_status = isset( $_GET['translation-status'] ) ? sanitize_title( wp_unslash( $_GET['translation-status'] ) ) : '';
+		$this->translation_status = isset( $_GET['translation-status'] ) ? sanitize_title( wp_unslash( $_GET['translation-status'] ) ) : ''; // phpcs:ignore WordPress.VIP.SuperGlobalInputUsage.AccessDetected,WordPress.CSRF.NonceVerification.NoNonceVerification
 	}
 
 	/**
@@ -71,4 +70,5 @@ class Edit_Posts {
 			wp_dropdown_categories( $dropdown_options );
 		}
 	}
+
 }

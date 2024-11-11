@@ -39,7 +39,7 @@ $h3_class = is_front_page() ? 'no-border' : '';
 	<?php
 	if ( ! empty( $links ) ) :
 		foreach ( $links as $link ) :
-			++$count;
+			$count++;
 
 			$class = ( $count > 1 && $count === $link_count ) ? 'mar-bottom_lg' : 'mar-bottom';
 			?>

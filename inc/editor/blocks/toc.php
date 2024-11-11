@@ -12,7 +12,7 @@ namespace WMF\Editor\Blocks\TOC;
 use DOMDocument;
 use DOMXPath;
 
-const BLOCK_NAME  = 'shiro/toc';
+const BLOCK_NAME = 'shiro/toc';
 const PLACEHOLDER = '%MENU_PLACEHOLDER%';
 
 /**
@@ -29,7 +29,7 @@ function bootstrap() {
  * @param string $content Post content (before block parsing).
  * @return array Array of headings with anchor IDs.
  */
-function get_headings_from_post_content( string $content ): array {
+function get_headings_from_post_content( string $content ) : array {
 	// Block attributes stored in post markup are not available on their own
 	// within PHP rendering code, even once the content is parsed as blocks.
 	// DOMDocument is the most reliable tool to locate the values we want.
@@ -48,18 +48,18 @@ function get_headings_from_post_content( string $content ): array {
 	$xpath = new DOMXPath( $heading_block_doc );
 
 	// Query for h2 and h3 elements that have an id attribute.
-	// TODO: Fix "$matching_elements = $xpath->query( '//h2[@id] | //h3[@id]' );".
+	// $matching_elements = $xpath->query( '//h2[@id] | //h3[@id]' );
 	$matching_elements = $xpath->query( '//h2[@id]' ); // quickfix regarding to ticket #873.
 
-	$headings = array();
+	$headings = [];
 	foreach ( $matching_elements as $header_element ) {
 		// DOMDocument properties do not follow WP style guidelines.
 		/* phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase */
-		$headings[] = array(
+		$headings[] = [
 			'node'    => $header_element->tagName,
 			'id'      => $header_element->getAttribute( 'id' ),
 			'content' => $header_element->nodeValue,
-		);
+		];
 		/* eslint-enable */
 	}
 
@@ -78,9 +78,9 @@ function get_headings_from_post_content( string $content ): array {
  * @param string $max_depth Smallest level of heading to include.
  * @return array Array of headings nested by hierarchy.
  */
-function headings_to_nested_list( array $headings, $max_depth = 'h3' ): array {
+function headings_to_nested_list( array $headings, $max_depth = 'h3' ) : array {
 	if ( empty( $headings ) ) {
-		return array();
+		return [];
 	}
 
 	// Break headings into a naively nested structure where any heading
@@ -88,11 +88,11 @@ function headings_to_nested_list( array $headings, $max_depth = 'h3' ): array {
 	// prior h2. The first heading is always treated as top level.
 	// This should work properly in a well-ordered document, and be
 	// resilient to poorly constructed heading hierarchies otherwise.
-	$nested_headings = array();
+	$nested_headings = [];
 
 	foreach ( $headings as $idx => $heading ) {
-		if ( 0 === $idx || $heading['node'] < 'h3' ) {
-			$nested_headings[] = array_merge( $heading, array( 'children' => array() ) );
+		if ( $idx === 0 || $heading['node'] < 'h3' ) {
+			$nested_headings[] = array_merge( $heading, [ 'children' => [] ] );
 			continue;
 		}
 		if ( $heading['node'] > $max_depth ) {
@@ -117,7 +117,7 @@ function headings_to_nested_list( array $headings, $max_depth = 'h3' ): array {
  * @param array   $headings            List of headings.
  * @param boolean $render_nested_items Whether to render subitems.
  */
-function render_headings_list( $headings, $render_nested_items = true ): void {
+function render_headings_list( $headings, $render_nested_items = true ) : void {
 	if ( empty( $headings ) ) {
 		return;
 	}
@@ -150,8 +150,8 @@ function render_headings_list( $headings, $render_nested_items = true ): void {
  * @param array  $block         Block array.
  * @return string Rendered block content.
  */
-function render_toc_block( string $block_content, array $block ): string {
-	if ( BLOCK_NAME !== $block['blockName'] ) {
+function render_toc_block( string $block_content, array $block ) : string {
+	if ( $block['blockName'] !== BLOCK_NAME ) {
 		return $block_content;
 	}
 
@@ -159,10 +159,10 @@ function render_toc_block( string $block_content, array $block ): string {
 		return '';
 	}
 
-	$headings  = get_headings_from_post_content( get_post()->post_content ?? '' );
+	$headings = get_headings_from_post_content( get_post()->post_content ?? '' );
 	$max_depth = ( $block['attrs']['includeH3s'] ?? false ) ? 'h3' : 'h2';
 	$max_depth = 'h2'; // quickfix regarding to ticket #873.
-	$headings  = headings_to_nested_list( $headings, $max_depth );
+	$headings = headings_to_nested_list( $headings, $max_depth );
 
 	if ( empty( $headings ) ) {
 		return '';

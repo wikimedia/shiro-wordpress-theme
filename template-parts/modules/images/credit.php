@@ -55,7 +55,7 @@ if ( empty( $author ) && empty( $license ) && empty( $url ) ) {
 
 <div class="attribution-item">
 	<div class="attribution-item__image">
-		<?php echo wp_get_attachment_image( $image_id, array( 63, 63 ) ); ?>
+		<?php echo wp_get_attachment_image( $image_id, [ 63, 63 ] ); ?>
 	</div>
 
 	<div class="attribution-item__content">

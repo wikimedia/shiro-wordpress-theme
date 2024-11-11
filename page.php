@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // When everything is build with the block editor, this entire file can be
-// replaced by page-block-editor.php.
+// replaced by page-block-editor.php
 if ( has_blocks() ) {
 	get_template_part( 'page-block-editor' );
 	exit;

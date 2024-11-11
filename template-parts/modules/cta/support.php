@@ -15,8 +15,7 @@ if ( $reusable_block ) {
 				echo apply_filters( 'the_content', $reusable_block->post_content );
 				?>
 		</div>
-		<?php 
-	}
+	<?php }
 } else {
 	// When the updates to how this section works are rolled out, the ability
 	// to edit the data originally stored here will be lost. This will use that
