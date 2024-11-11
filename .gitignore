@@ -1,7 +1,9 @@
-.DS_Store
-
-assets/dist/
-assets/src/svg/package-lock.json
-
-node_modules/
+node_modules
 vendor/
+map
+assets/dist/
+editor-style.css
+editor-style.rtl.css
+style.css
+rtl.css
+.DS_Store

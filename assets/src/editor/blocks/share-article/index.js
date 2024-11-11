@@ -9,8 +9,8 @@ import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { ReactComponent as FacebookIcon } from '../../../svg/individual/social-facebook.svg';
-import { ReactComponent as TwitterIcon } from '../../../svg/individual/social-twitter.svg';
+import FacebookIcon from '../../../svg/individual/social-facebook.svg';
+import TwitterIcon from '../../../svg/individual/social-twitter.svg';
 
 export const name = 'shiro/share-article';
 

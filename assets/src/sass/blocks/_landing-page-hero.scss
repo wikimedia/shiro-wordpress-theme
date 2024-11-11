@@ -4,17 +4,12 @@
 
 	&__header {
 
+		@include alignfull-padded;
 		@include block-style-background-color;
 		@include block-style-text-color;
 
 		display: flex;
 		padding: rem(28) rem(20);
-		width: 100%;
-
-		@media ( min-width: #{$width-breakpoint-desktop} ) {
-			padding-left: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
-			padding-right: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
-		}
 	}
 
 	&__image-container {
@@ -98,16 +93,13 @@
 
 		border-left: 1px solid var(--accent-color);
 
-		margin: rem(-32) rem(20) 0;
+		margin: rem(-32) 0 0 0;
 		padding: rem(72) rem(10) rem(40) rem(30);
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
-			margin: 0 rem(20);
-			max-width: var(--wp--style--global--content-size);
-		}
-
-		@media ( min-width: #{$width-breakpoint-desktop} ) {
-			margin: 0 auto;
+			margin-top: 0;
+			padding-bottom: rem(60);
+			padding-top: rem(60);
 		}
 
 		p {
@@ -134,7 +126,7 @@
 
 			&::before {
 				@include button-icon-rules;
-				background-image: url("../../assets/src/svg/individual/info.svg") !important;
+				background-image: url("./assets/src/svg/individual/info.svg") !important;
 			}
 
 			&:hover {
@@ -151,7 +143,7 @@
 
 			&::before {
 				@include button-icon-rules;
-				background-image: url("../../assets/src/svg/individual/info.svg") !important;
+				background-image: url("./assets/src/svg/individual/info.svg") !important;
 			}
 
 			&:hover {
@@ -167,7 +159,7 @@
 
 			&::before {
 				@include button-icon-rules;
-				background-image: url("../../assets/src/svg/individual/downTriangle.svg") !important;
+				background-image: url("./assets/src/svg/individual/downTriangle.svg") !important;
 			}
 
 			&:hover {

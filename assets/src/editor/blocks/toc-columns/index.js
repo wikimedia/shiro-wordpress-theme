@@ -1,7 +1,7 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
-import { ReactComponent as BlockIcon } from '../../../svg/blocks/table-of-contents.svg';
+import BlockIcon from '../../../svg/blocks/table-of-contents.svg';
 
 const BLOCKS_TEMPLATE = [
 	[

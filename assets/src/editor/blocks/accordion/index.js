@@ -8,8 +8,7 @@
 
 import { ReactNode } from 'react';
 
-import { registerBlockType } from '@wordpress/blocks';
-import { InnerBlocks, useBlockProps, InspectorControls, useSettings } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps, InspectorControls, useSetting } from '@wordpress/block-editor';
 import { Panel, PanelBody, ColorPalette } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -17,11 +16,26 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 
-import metadata from './block.json';
-
 import '../../helpers/accordion/toggler';
 
-registerBlockType( metadata.name, {
+export const name = 'shiro/accordion';
+
+export const settings = {
+	apiVersion: 2,
+	title: __( 'Accordion', 'shiro-admin' ),
+	icon: 'menu',
+	category: 'wikimedia',
+	supports: {
+		align: [ 'center', 'full' ],
+	},
+	attributes: {
+		fontColor: {
+			type: 'string',
+		},
+	},
+	providesContext: {
+		'accordion/fontColor': 'fontColor',
+	},
 	/**
 	 * Render the editor UI for the block.
 	 *
@@ -30,10 +44,9 @@ registerBlockType( metadata.name, {
 	 * @param {Function} props.setAttributes Block attribute setter.
 	 * @returns {ReactNode} Rendered edit note.
 	 */
-	edit: function Edit( { attributes, setAttributes,  } ) {
-		const blockProps = useBlockProps();
+	edit: function Edit( { attributes, setAttributes } ) {
+		const blockProps = useBlockProps(); // eslint-disable-line react-hooks/rules-of-hooks
 		const { fontColor } = attributes;
-		const [ colorSettings ] = useSettings( 'color.palette' );
 		return (
 			<>
 				<InspectorControls>
@@ -41,7 +54,7 @@ registerBlockType( metadata.name, {
 						<PanelBody>
 							<ColorPalette
 								value={ fontColor }
-								colors={ [ ...colorSettings ] }
+								colors={ [ ...useSetting( 'color.palette' ) ] }
 								onChange={ ( fontColor ) => setAttributes( { fontColor } ) }
 							/>
 						</PanelBody>
@@ -68,12 +81,4 @@ registerBlockType( metadata.name, {
 
 		);
 	},
-} );
-
-// Block HMR boilerplate.
-if ( module.hot ) {
-	module.hot.accept();
-	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
-	module.hot.dispose( deregister( metadata.name ) );
-	refresh( metadata.name, module.hot.data );
-}
+};

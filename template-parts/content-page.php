@@ -10,9 +10,9 @@
 ?>
 
 
-<div class="mod-margin-bottom">
+<div class="mw-980 mod-margin-bottom">
 	<?php get_sidebar(); ?>
-	<div class="article-main wysiwyg is-layout-constrained">
+	<div class="article-main wysiwyg">
 		<?php the_content(); ?>
 	</div>
 </div>

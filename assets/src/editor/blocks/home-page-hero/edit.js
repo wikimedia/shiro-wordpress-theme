@@ -93,6 +93,7 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 						<RichText
 							allowedFormats={ [ 'core/italic', 'core/link', 'core/subscript', 'core/superscript' ] }
 							className="hero-home__heading"
+							keepPlaceholderOnFocus
 							placeholder={ __( 'Add a heading', 'shiro-admin' ) }
 							tagName="div"
 							value={ headings[0]?.text || '' }
@@ -121,6 +122,7 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 								<RichText
 									allowedFormats={ [ 'core/italic', 'core/link', 'core/subscript', 'core/superscript' ] }
 									className="hero-home__heading"
+									keepPlaceholderOnFocus
 									placeholder={ __( 'Add a rotating heading', 'shiro-admin' ) }
 									tagName="div"
 									value={ heading.text }

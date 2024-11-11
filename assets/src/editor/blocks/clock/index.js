@@ -74,6 +74,7 @@ export const settings = {
 			<div { ...blockProps }>
 				<RichText
 					className="clock__title is-style-h2"
+					keepPlaceholderOnFocus
 					placeholder={ __( 'Title of the clock', 'shiro-admin' ) }
 					tagName="h2"
 					value={ title }
@@ -104,6 +105,7 @@ export const settings = {
 								<div className="clock__contents__count-right-column wp-block-column">
 									<RichText
 										className="clock__contents__count-label"
+										keepPlaceholderOnFocus
 										placeholder={ __( 'Label for Counter', 'shiro-admin' ) }
 										tagName="div"
 										value={ countTitle }
@@ -117,6 +119,7 @@ export const settings = {
 					/>
 					<RichText
 						className="clock__contents__disclaimer"
+						keepPlaceholderOnFocus
 						placeholder={ __( 'Disclaimers', 'shiro-admin' ) }
 						tagName="div"
 						value={ disclaimer }

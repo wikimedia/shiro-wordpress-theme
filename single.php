@@ -75,7 +75,7 @@ while ( have_posts() ) {
 		</div>
 	<?php endif; ?>
 
-	<article class="wysiwyg is-layout-constrained">
+	<article class="mw-784 wysiwyg">
 		<?php the_content(); ?>
 
 		<?php

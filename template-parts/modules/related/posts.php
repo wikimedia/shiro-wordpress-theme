@@ -23,7 +23,8 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_related_posts_title' 
 
 ?>
 
-<div class="block-area is-layout-constrained">
+<div class="block-area">
+	<div class="wysiwyg mw-980">
 		<?php
 		/*
 		This uses the structure & styles of the double heading, but can't
@@ -54,4 +55,5 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_related_posts_title' 
 		}
 		// phpcs:enable
 		?>
+	</div>
 </div>

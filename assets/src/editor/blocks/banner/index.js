@@ -5,32 +5,93 @@
 /**
  * WordPress dependencies
  */
-import { registerBlockType, registerBlockStyle } from '@wordpress/blocks';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import { ReactComponent as BlockIcon } from '../../../svg/blocks/banner.svg';
+import BlockIcon from '../../../svg/blocks/banner.svg';
 import Cta from '../../components/cta/index';
 import ImageFilter, { DEFAULT_IMAGE_FILTER } from '../../components/image-filter';
 import ImagePicker from '../../components/image-picker/index.js';
 import sharedStyles, { applyDefaultStyle } from '../../helpers/block-styles';
-
-import metadata from './block.json';
-
 import './style.scss';
 
-registerBlockType( metadata.name, {
-	...metadata,
+export const name = 'shiro/banner',
+	styles = sharedStyles;
+
+export const settings = {
+	title: __( 'Banner', 'shiro-admin' ),
+
+	category: 'wikimedia',
+
+	apiVersion: 2,
 
 	icon: BlockIcon,
 
-	// Inject the imported default into a specific attribute.
+	description: __(
+		'Banner with an image and call to action.',
+		'shiro-admin'
+	),
+
 	attributes: {
-		...metadata.attributes,
+		imageID: {
+			type: 'integer',
+		},
+		imageSrc: {
+			type: 'string',
+			source: 'attribute',
+			selector: '.banner__image',
+			attribute: 'src',
+		},
+		imageAlt: {
+			type: 'string',
+			source: 'attribute',
+			selector: '.banner__image',
+			attribute: 'alt',
+		},
 		imageFilter: {
-			...metadata.attributes.imageFilter,
+			type: 'string',
 			default: DEFAULT_IMAGE_FILTER,
+		},
+		align: {
+			type: 'string',
+			default: 'wide',
+		},
+		heading: {
+			type: 'string',
+			source: 'html',
+			selector: '.banner__heading',
+		},
+		text: {
+			type: 'string',
+			source: 'html',
+			selector: '.banner__text',
+		},
+		url: {
+			type: 'string',
+			source: 'attribute',
+			selector: '.banner__cta',
+			attribute: 'href',
+		},
+		buttonText: {
+			type: 'string',
+			source: 'html',
+			selector: '.banner__cta',
+		},
+	},
+
+	example: {
+		attributes: {
+			imageID: 0,
+			// This is the same image and source that the core Image block uses
+			// @see https://github.com/WordPress/gutenberg/blob/trunk/packages/block-library/src/image/index.js#L32
+			imageSrc: 'https://s.w.org/images/core/5.3/MtBlanc1.jpg',
+			imageAlt: '',
+			align: 'wide',
+			heading: 'Banner Heading',
+			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+			url: 'https://wikimediafoundation.org/',
+			buttonText: 'Call to Action',
 		},
 	},
 
@@ -78,6 +139,7 @@ registerBlockType( metadata.name, {
 					<RichText
 						allowedFormats={ [ 'core/bold', 'core/italic' ] }
 						className="banner__heading is-style-h4"
+						keepPlaceholderOnFocus
 						placeholder={ __( 'Heading for banner', 'shiro-admin' ) }
 						tagName="h2"
 						value={ heading }
@@ -167,14 +229,4 @@ registerBlockType( metadata.name, {
 			</div>
 		);
 	},
-} );
-
-sharedStyles.forEach( ( style ) => registerBlockStyle( metadata.name, style ) );
-
-// Block HMR boilerplate.
-if ( module.hot ) {
-	module.hot.accept();
-	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
-	module.hot.dispose( deregister( metadata.name, { styles: sharedStyles } ) );
-	refresh( metadata.name, module.hot.data );
-}
+};
