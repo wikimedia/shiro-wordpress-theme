@@ -45,6 +45,9 @@
       "selector": ".banner__cta",
       "attribute": "href"
     },
+    "openInNewTab": {
+      "type": "boolean"
+    },
     "buttonText": {
       "type": "string",
       "source": "html",

@@ -85,6 +85,9 @@ export const settings = {
 			selector: '.content-card__call-to-action',
 			attribute: 'href',
 		},
+		openInNewTab: {
+			type: 'boolean'
+		},
 	},
 
 	/**
@@ -101,6 +104,7 @@ export const settings = {
 			linkUrl,
 			imageWidth,
 			imageHeight,
+			openInNewTab,
 		} = attributes;
 
 		const onSelectImage = useCallback( ( { id, src, alt, width, height } ) => {
@@ -136,6 +140,8 @@ export const settings = {
 						url={ linkUrl }
 						onChangeLink={ ( linkUrl ) => setAttributes( { linkUrl } ) }
 						onChangeText={ ( linkText ) => setAttributes( { linkText } ) }
+						openInNewTab={ openInNewTab }
+						onChangeOpenInNewTab={ ( openInNewTab ) => setAttributes( { openInNewTab } ) }
 					/>
 				</div>
 				<ImagePicker
@@ -165,6 +171,7 @@ export const settings = {
 			linkUrl,
 			imageWidth,
 			imageHeight,
+			openInNewTab,
 		} = attributes;
 
 		return (
@@ -184,6 +191,7 @@ export const settings = {
 						className="content-card__call-to-action call-to-action"
 						text={ linkText }
 						url={ linkUrl }
+						openInNewTab={ openInNewTab }
 					/>
 				</div>
 				<ImagePicker.Content
