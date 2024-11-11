@@ -1,0 +1,71 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "shiro/banner",
+  "title": "Banner",
+  "textdomain": "shiro-admin",
+  "category": "wikimedia",
+  "description": "Banner with an image and call to action.",
+  "attributes": {
+    "imageID": {
+      "type": "integer"
+    },
+    "imageSrc": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".banner__image",
+      "attribute": "src"
+    },
+    "imageAlt": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".banner__image",
+      "attribute": "alt"
+    },
+    "imageFilter": {
+      "type": "string"
+    },
+    "align": {
+      "type": "string",
+      "default": "wide"
+    },
+    "heading": {
+      "type": "string",
+      "source": "html",
+      "selector": ".banner__heading"
+    },
+    "text": {
+      "type": "string",
+      "source": "html",
+      "selector": ".banner__text"
+    },
+    "url": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".banner__cta",
+      "attribute": "href"
+    },
+    "openInNewTab": {
+      "type": "boolean"
+    },
+    "buttonText": {
+      "type": "string",
+      "source": "html",
+      "selector": ".banner__cta"
+    }
+  },
+  "example": {
+    "attributes": {
+      "imageID": 0,
+      "imageSrc": "https//s.w.org/images/core/5.3/MtBlanc1.jpg",
+      "imageAlt": "",
+      "align": "wide",
+      "heading": "Banner Heading",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "url": "https://wikimediafoundation.org/",
+      "buttonText": "Call to Action"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css"
+}

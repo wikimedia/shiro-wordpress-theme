@@ -11,7 +11,7 @@ import { Button, PanelBody, SelectControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import BlockIcon from '../../../svg/blocks/double-heading.svg';
+import { ReactComponent as BlockIcon } from '../../../svg/blocks/double-heading.svg';
 import {
 	ensureEmptyHeading,
 	prepareHeadings,
@@ -157,7 +157,6 @@ export const name = 'shiro/double-heading',
 									>
 										<RichText
 											allowedFormats={ [] }
-											keepPlaceholderOnFocus
 											placeholder={ __(
 												'Write secondary heading',
 												'shiro-admin'
@@ -175,7 +174,6 @@ export const name = 'shiro/double-heading',
 										&nbsp;—&nbsp;
 										<RichText
 											allowedFormats={ [] }
-											keepPlaceholderOnFocus
 											placeholder={ __(
 												'Write translated secondary heading',
 												'shiro-admin'
@@ -200,7 +198,6 @@ export const name = 'shiro/double-heading',
 							<RichText
 								allowedFormats={ [] }
 								className=""
-								keepPlaceholderOnFocus
 								placeholder={ __(
 									'Write secondary heading',
 									'shiro-admin'
@@ -227,7 +224,6 @@ export const name = 'shiro/double-heading',
 					<RichText
 						allowedFormats={ [] }
 						className="double-heading__primary is-style-h3"
-						keepPlaceholderOnFocus
 						placeholder={ __(
 							'Write primary heading',
 							'shiro-admin'

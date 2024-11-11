@@ -14,12 +14,24 @@ use WMF\Assets;
  * Bootstrap hooks relevant to the block editor.
  */
 function bootstrap() {
+	add_filter( 'init', __NAMESPACE__ . '\\register_blocks' );
 	add_filter( 'body_class', __NAMESPACE__ . '\\body_class' );
 	add_filter( 'allowed_block_types_all', __NAMESPACE__ . '\\filter_blocks', 10, 2 );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\register_core_block_styles' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
-	add_filter( 'block_categories', __NAMESPACE__ . '\\add_block_categories' );
+	add_filter( 'block_categories_all', __NAMESPACE__ . '\\add_block_categories' );
+}
+
+/**
+ * Register blocks which use the block.json standard.
+ */
+function register_blocks() {
+	$block_dirs = glob( get_template_directory() . '/assets/dist/blocks/*/block.json' );
+
+	foreach ( $block_dirs as $block_dir ) {
+		register_block_type_from_metadata( $block_dir );
+	}
 }
 
 /**
@@ -485,18 +497,27 @@ function enqueue_block_editor_assets() {
 		array(
 			'themeUrl'      => get_template_directory_uri(),
 			'languages'     => $languages,
-			'siteLanguage'  => $languages[0]['shortname'],
+			'siteLanguage'  => $languages[0]['shortname'] ?? '',
 			'wmfIsMainSite' => wmf_is_main_site(),
 		)
 	);
 
-	$css_asset = is_rtl() ? 'editor.rtl.css' : 'editor.css';
+	$editor_css_asset = is_rtl() ? 'editor.rtl.css' : 'editor.css';
 	Asset_Loader\enqueue_asset(
-		Assets\get_manifest_path( $css_asset ),
-		$css_asset,
+		Assets\get_manifest_path( $$editor_css_asset ),
+		$$editor_css_asset,
 		array(
 			'handle' => 'shiro_editor_css',
 		)
+	);
+
+	$editor_style_css_asset = is_rtl() ? 'editor-style.rtl.css' : 'editor-style.css';
+	Asset_Loader\enqueue_asset(
+		Assets\get_manifest_path( $editor_style_css_asset ),
+		$editor_style_css_asset,
+		[
+			'handle' => 'shiro_editor_style_css',
+		]
 	);
 }
 

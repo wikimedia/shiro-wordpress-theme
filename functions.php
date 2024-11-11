@@ -128,10 +128,11 @@ function wmf_scripts() {
 	$style_version  = md5_file( get_theme_file_path( 'style.css' ) );
 	$script_version = md5_file( get_theme_file_path( 'assets/dist/scripts.min.js' ) );
 
-	wp_enqueue_style( 'shiro-style', get_template_directory_uri() . '/style.css', array(), $style_version );
+	wp_enqueue_style( 'shiro-style', get_template_directory_uri() . '/assets/dist/style.css', array(), $style_version );
 
 	if ( get_theme_mod( 'wmf_enable_rtl' ) ) {
-		wp_enqueue_style( 'shiro-style-rtl', get_template_directory_uri() . '/rtl.css', array(), $style_version );
+		wp_dequeue_style( 'shiro-style' );
+		wp_enqueue_style( 'shiro-style-rtl', get_template_directory_uri() . '/assets/dist/style-rtl.css', array(), $style_version );
 	}
 	wp_enqueue_script( 'shiro-svg4everybody', get_template_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'shiro-script', get_template_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-svg4everybody' ), $script_version, true );
@@ -271,11 +272,11 @@ require get_template_directory() . '/inc/ajax.php';
  * Block editor functionality.
  */
 require get_template_directory() . '/inc/editor/namespace.php';
-require get_template_directory() . '/inc/editor/blocks/blog-list.php';
 require get_template_directory() . '/inc/editor/blocks/blog-post.php';
 require get_template_directory() . '/inc/editor/blocks/clock.php';
 require get_template_directory() . '/inc/editor/blocks/double-heading.php';
 require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
+require get_template_directory() . '/inc/editor/blocks/landing-page-hero.php';
 require get_template_directory() . '/inc/editor/blocks/linked-toc-item.php';
 require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
 require get_template_directory() . '/inc/editor/blocks/read-more-categories.php';
@@ -300,11 +301,11 @@ require get_template_directory() . '/inc/editor/patterns/template-report-section
 
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
-WMF\Editor\Blocks\BlogList\bootstrap();
 WMF\Editor\Blocks\BlogPost\bootstrap();
 WMF\Editor\Blocks\Clock\bootstrap();
 WMF\Editor\Blocks\InlineLanguages\bootstrap();
 WMF\Editor\Blocks\DoubleHeading\bootstrap();
+WMF\Editor\Blocks\LandingPageHero\bootstrap();
 WMF\Editor\Blocks\LinkedTOCItem\bootstrap();
 WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
 WMF\Editor\Blocks\ReadMoreCategories\bootstrap();
@@ -472,6 +473,7 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 		array(
 			'svg'  => array(
 				'viewBox' => true,
+				'fill'    => true,
 				'width'   => true,
 				'height'  => true,
 				'class'   => true,

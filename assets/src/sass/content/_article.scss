@@ -1,9 +1,5 @@
 article {
-	width: 40rem;
-
-	@media (max-width: $medium-bp) {
-		width: 100%;
-	}
+	width: 100%;
 
 	// Handle errant h1s in old posts.
 	.single-post:not(.has-blocks) & > h1 {

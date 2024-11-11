@@ -114,7 +114,6 @@ export const settings = {
 				<div className="article-title">
 					<RichText
 						className="post-heading__intro"
-						keepPlaceholderOnFocus
 						multiline="p"
 						placeholder={ __( 'Add a post intro', 'shiro-admin' ) }
 						tagName="div"
