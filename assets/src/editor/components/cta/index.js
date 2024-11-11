@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React from 'react';
 
-import { BlockControls, InspectorControls, RichText } from '@wordpress/block-editor';
-import { withFocusOutside, Panel, PanelRow, PanelBody, ToggleControl, ToolbarButton } from '@wordpress/components';
+import { InspectorControls, RichText } from '@wordpress/block-editor';
+import { withFocusOutside, Panel, PanelRow, PanelBody, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import './style.scss';
@@ -83,8 +83,6 @@ const CtaWithFocusOutside = withFocusOutside(
 						isSelected={ showButtons }
 						url={ url }
 						onChangeLink={ onChangeLink }
-						openInNewTab={ openInNewTab }
-						onChangeOpenInNewTab={ onChangeOpenInNewTab }
 					/>
 					{ ! ! onChangeOpenInNewTab && (
 						<InspectorControls>
