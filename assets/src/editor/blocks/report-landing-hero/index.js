@@ -93,6 +93,7 @@ export const settings = {
 					<div className="hero-report__text-column">
 						<RichText
 							className="hero-report__kicker"
+							keepPlaceholderOnFocus
 							placeholder={ __( 'Kicker', 'shiro-admin' ) }
 							tagName="small"
 							value={ kicker }
@@ -100,6 +101,7 @@ export const settings = {
 						/>
 						<RichText
 							className="hero-report__title"
+							keepPlaceholderOnFocus
 							placeholder={ __( 'Title for the page', 'shiro-admin' ) }
 							tagName="h1"
 							value={ title }

@@ -4,8 +4,8 @@ import { __ } from '@wordpress/i18n';
 
 import './style.scss';
 
-import { ReactComponent as BlockIcon } from '../../../svg/blocks/mailchimp.svg';
-import { ReactComponent as EmailIcon } from '../../../svg/individual/email.svg';
+import BlockIcon from '../../../svg/blocks/mailchimp.svg';
+import EmailIcon from '../../../svg/individual/email.svg';
 
 const BLOCKS_TEMPLATE = [
 	[ 'core/heading', {

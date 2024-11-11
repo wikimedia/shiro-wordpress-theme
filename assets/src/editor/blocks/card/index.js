@@ -9,7 +9,7 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import { ReactComponent as BlockIcon } from '../../../svg/blocks/card.svg';
+import BlockIcon from '../../../svg/blocks/card.svg';
 import CallToActionPicker from '../../components/cta';
 import ImagePicker from '../../components/image-picker';
 import sharedStyles from '../../helpers/block-styles';
@@ -85,9 +85,6 @@ export const settings = {
 			selector: '.content-card__call-to-action',
 			attribute: 'href',
 		},
-		openInNewTab: {
-			type: 'boolean'
-		},
 	},
 
 	/**
@@ -104,7 +101,6 @@ export const settings = {
 			linkUrl,
 			imageWidth,
 			imageHeight,
-			openInNewTab,
 		} = attributes;
 
 		const onSelectImage = useCallback( ( { id, src, alt, width, height } ) => {
@@ -122,6 +118,7 @@ export const settings = {
 				<div className="content-card__contents">
 					<RichText
 						className="content-card__heading is-style-h3"
+						keepPlaceholderOnFocus
 						placeholder={ __( 'Heading of the card', 'shiro-admin' ) }
 						tagName="h2"
 						value={ heading }
@@ -129,6 +126,7 @@ export const settings = {
 					/>
 					<RichText
 						className="content-card__body has-small-font-size"
+						keepPlaceholderOnFocus
 						placeholder={ __( 'Body of the card', 'shiro-admin' ) }
 						tagName="p"
 						value={ body }
@@ -140,8 +138,6 @@ export const settings = {
 						url={ linkUrl }
 						onChangeLink={ ( linkUrl ) => setAttributes( { linkUrl } ) }
 						onChangeText={ ( linkText ) => setAttributes( { linkText } ) }
-						openInNewTab={ openInNewTab }
-						onChangeOpenInNewTab={ ( openInNewTab ) => setAttributes( { openInNewTab } ) }
 					/>
 				</div>
 				<ImagePicker
@@ -171,7 +167,6 @@ export const settings = {
 			linkUrl,
 			imageWidth,
 			imageHeight,
-			openInNewTab,
 		} = attributes;
 
 		return (
@@ -191,7 +186,6 @@ export const settings = {
 						className="content-card__call-to-action call-to-action"
 						text={ linkText }
 						url={ linkUrl }
-						openInNewTab={ openInNewTab }
 					/>
 				</div>
 				<ImagePicker.Content

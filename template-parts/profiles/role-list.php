@@ -161,7 +161,7 @@ foreach ( $post_list as $term_id => $term_data ) {
 			?>
 		<ul class="role__staff-list">
 			<?php
-			foreach ( wmf_sort_profiles( $term_data['posts'] ) as $term_data_post_id ) {
+			foreach ( $term_data['posts'] as $term_data_post_id ) {
 				get_template_part(
 					'template-parts/profiles/role',
 					'item',

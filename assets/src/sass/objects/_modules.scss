@@ -52,6 +52,12 @@
 		margin-bottom: 2rem;
 	}
 
+	.wysiwyg {
+		& + div {
+			@include responsive-margin(24, 32, top);
+		}
+	}
+
 	.external-link-icon {
 		font-size: 1.5rem;
 		vertical-align: middle;

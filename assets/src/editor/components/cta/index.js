@@ -1,40 +1,13 @@
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 
-import { BlockControls, InspectorControls, RichText } from '@wordpress/block-editor';
-import { withFocusOutside, Panel, PanelRow, PanelBody, ToggleControl, ToolbarButton } from '@wordpress/components';
+import { RichText } from '@wordpress/block-editor';
+import { withFocusOutside } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import './style.scss';
 import URLPicker from '../url-picker';
-
-/**
- * The props object for the CTA Content (save) component.
- *
- * @typedef {object} CtaContentProps
- *
- * @property {string}  url          CTA target link
- * @property {string}  text         CTA label text.
- * @property {string}  className    CTA element class name.
- * @property {boolean} openInNewTab Whether to open target link in new tab.
- */
-
-/**
- * Edit-specific component properties for the CTA Edit component.
- *
- * @typedef {object} CtaEditChangeHandlers
- *
- * @property {(url: string) => void}        onChangeLink         Change handler for link URL.
- * @property {(text: string) => void}       onChangeText         Change handler for link text.
- * @property {(openInNewTab: bool) => void} onChangeOpenInNewTab Change handler for link target behavior.
- */
-
-/**
- * React props object for the CTA edit component.
- *
- * @typedef {CtaEditChangeHandlers & CtaContentProps} CtaEditProps;
- */
-
 
 /**
  * Render a component that can be used to set the URL and text for a CTA.
@@ -66,13 +39,10 @@ const CtaWithFocusOutside = withFocusOutside(
 
 		render() {
 			const { showButtons } = this.state;
-			/** @type CtaEditProps */
 			const {
 				text,
 				onChangeText,
 				onChangeLink,
-				onChangeOpenInNewTab,
-				openInNewTab,
 				className,
 				url,
 			} = this.props;
@@ -83,22 +53,7 @@ const CtaWithFocusOutside = withFocusOutside(
 						isSelected={ showButtons }
 						url={ url }
 						onChangeLink={ onChangeLink }
-						openInNewTab={ openInNewTab }
-						onChangeOpenInNewTab={ onChangeOpenInNewTab }
 					/>
-					{ ! ! onChangeOpenInNewTab && (
-						<InspectorControls>
-							<Panel>
-								<PanelBody title={ __( 'CTA link behavior', 'shiro-admin' ) } initialOpen>
-									<ToggleControl
-										label={ __( 'Open in new tab', 'shiro-admin' ) }
-										checked={ openInNewTab }
-										onChange={ onChangeOpenInNewTab }
-									/>
-								</PanelBody>
-							</Panel>
-						</InspectorControls>
-					) }
 					<div className={
 						classNames(
 							'call-to-action-wrapper',
@@ -106,8 +61,8 @@ const CtaWithFocusOutside = withFocusOutside(
 						)
 					}>
 						<RichText
-							// For some reason withoutInteractiveFormatting doesn't
-							// work here, but this does.
+						// For some reason withoutInteractiveFormatting doesn't
+						// work here, but this does.
 							allowedFormats={ [] }
 							className={
 								classNames(
@@ -133,32 +88,34 @@ const CtaWithFocusOutside = withFocusOutside(
 	}
 );
 
+CtaWithFocusOutside.propTypes = {
+	text: PropTypes.string,
+	onChangeText: PropTypes.func.isRequired,
+	onChangeLink: PropTypes.func.isRequired,
+	className: PropTypes.string,
+	url: PropTypes.string,
+};
+
 /**
  * Provide a ready-made element for `save()`.
- *
- * @param {CtaContentProps} props React component props.
  */
-CtaWithFocusOutside.Content = ( { url, text, className, openInNewTab = false, ...props } ) => {
+CtaWithFocusOutside.Content = ( { url, text, className, ...props } ) => {
 	if ( ! url ) {
 		return null;
-	}
-
-	const linkTargetProps = {};
-	if ( openInNewTab ) {
-		linkTargetProps.target = "_blank";
-		linkTargetProps.rel = "noreferrer noopener";
 	}
 
 	return (
 		<a
 			className={ className }
 			href={ url }
-			{ ...props }
-			{ ...linkTargetProps }
-		>
-			{ text }
-		</a>
+			{ ...props }>{ text }</a>
 	);
+};
+
+CtaWithFocusOutside.Content.propTypes = {
+	url: PropTypes.string,
+	text: PropTypes.string,
+	className: PropTypes.string,
 };
 
 export default CtaWithFocusOutside;

@@ -101,6 +101,7 @@ export const settings = {
 					<RichText
 						allowedFormats={ [] }
 						className="read-more-categories__text"
+						keepPlaceholderOnFocus
 						placeholder={ __( 'Write read more text', 'shiro-admin' ) }
 						tagName="span"
 						value={ readMoreText }

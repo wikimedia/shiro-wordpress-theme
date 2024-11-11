@@ -5,7 +5,6 @@
 /**
  * WordPress dependencies
  */
-import { registerBlockType } from '@wordpress/blocks';
 import apiFetch from '@wordpress/api-fetch';
 import { InspectorControls, InspectorAdvancedControls, useBlockProps } from '@wordpress/block-editor';
 import { PanelBody, QueryControls, FormTokenField } from '@wordpress/components';
@@ -14,12 +13,53 @@ import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
 import { addQueryArgs } from '@wordpress/url';
 
-import metadata from './block.json';
-
 import './style.scss';
 
-registerBlockType( metadata.name, {
-	...metadata,
+export const name = 'shiro/blog-list';
+
+export const settings = {
+	title: __( 'Blog list', 'shiro-admin' ),
+
+	category: 'wikimedia',
+
+	apiVersion: 2,
+
+	icon: 'list-view',
+
+	description: __(
+		'Dynamic list of recent posts',
+		'shiro-admin'
+	),
+
+	attributes: {
+		postsToShow: {
+			type: 'integer',
+			default: 2,
+		},
+		categories: {
+			type: 'array',
+			items: {
+				type: 'object',
+			},
+		},
+		excludedCategories: {
+			type: 'array',
+			items: {
+				type: 'object',
+			},
+		},
+		order: {
+			type: 'string',
+			default: 'desc',
+		},
+		orderBy: {
+			type: 'string',
+			default: 'date',
+		},
+		selectedAuthor: {
+			type: 'number',
+		},
+	},
 
 	/**
 	 * Edit component used to manage featured image and page intro.
@@ -171,7 +211,7 @@ registerBlockType( metadata.name, {
 				</InspectorAdvancedControls>
 				<ServerSideRender
 					attributes={ attributes }
-					block={ metadata.name }
+					block={ name }
 				/>
 			</div>
 		);
@@ -183,12 +223,4 @@ registerBlockType( metadata.name, {
 	save: function () {
 		return null;
 	},
-} );
-
-// Block HMR boilerplate.
-if ( module.hot ) {
-	module.hot.accept();
-	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
-	module.hot.dispose( deregister( metadata.name ) );
-	refresh( metadata.name, module.hot.data );
-}
+};

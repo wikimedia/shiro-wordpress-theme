@@ -52,6 +52,7 @@ export const settings = {
 					<div className="clock-stat__left-column wp-block-column">
 						<RichText
 							className="clock-stat__stat"
+							keepPlaceholderOnFocus
 							placeholder={ 'Stat' }
 							tagName="div"
 							value={ stat }
@@ -62,6 +63,7 @@ export const settings = {
 					<div className="clock-stat__right-column wp-block-column">
 						<RichText
 							className="clock-stat__label"
+							keepPlaceholderOnFocus
 							placeholder={ __( 'Label', 'shiro-admin' ) }
 							tagName="div"
 							value={ label }

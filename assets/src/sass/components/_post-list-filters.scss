@@ -21,7 +21,7 @@
 	&__toggle {
 		&::before {
 			@include button-icon-rules;
-			background-image: url("../../assets/src/svg/individual/filter.svg");
+			background-image: url("./assets/src/svg/individual/filter.svg");
 		}
 
 		// Initial toggle button message states.
