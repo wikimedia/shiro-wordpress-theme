@@ -41,6 +41,7 @@ registerBlockType( metadata.name, {
 			linkUrl,
 			imageWidth,
 			imageHeight,
+			openInNewTab,
 		} = attributes;
 
 		const onSelectImage = useCallback( ( { id, src, alt, width, height } ) => {
@@ -76,6 +77,8 @@ registerBlockType( metadata.name, {
 						url={ linkUrl }
 						onChangeLink={ ( linkUrl ) => setAttributes( { linkUrl } ) }
 						onChangeText={ ( linkText ) => setAttributes( { linkText } ) }
+						openInNewTab={ openInNewTab }
+						onChangeOpenInNewTab={ ( openInNewTab ) => setAttributes( { openInNewTab } ) }
 					/>
 				</div>
 				<ImagePicker
@@ -105,6 +108,7 @@ registerBlockType( metadata.name, {
 			linkUrl,
 			imageWidth,
 			imageHeight,
+			openInNewTab,
 		} = attributes;
 
 		return (
@@ -124,6 +128,7 @@ registerBlockType( metadata.name, {
 						className="content-card__call-to-action call-to-action"
 						text={ linkText }
 						url={ linkUrl }
+						openInNewTab={ openInNewTab }
 					/>
 				</div>
 				<ImagePicker.Content

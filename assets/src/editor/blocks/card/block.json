@@ -59,6 +59,9 @@
 			"source": "attribute",
 			"selector": ".content-card__call-to-action",
 			"attribute": "href"
+		},
+		"openInNewTab": {
+			"type": "boolean"
 		}
 	},
 	"editorScript": "file:./index.js",
