@@ -11,7 +11,7 @@ const init = () => {
 	donationButtons.forEach( link => {
 		const { search } = link;
 		const params = new URLSearchParams( search );
-		params.set( 'utm_source', object_id );
+		params.set( 'wmf_source', object_id );
 		link.href = link.href.replace( search, `?${ params.toString() }` );
 	} );
 };
