@@ -219,7 +219,7 @@
 					<br />
 					<?php echo esc_html_x( 'Help us improve!', 'maintenance-mode', 'shiro' ); ?>
 				</h3>
-				<button onclick="javascript:window.location='https://donate.wikimedia.org/?utm_medium=wmfSite&utm_campaign=maintenanceMode';" class="neutral">
+				<button onclick="javascript:window.location='https://donate.wikimedia.org/?wmf_medium=wmfSite&wmf_campaign=maintenanceMode';" class="neutral">
 					<?php echo esc_html_x( 'Make $5 donation', 'maintenance-mode', 'shiro' ); ?>
 				</button>
 			</div>
