@@ -46,7 +46,7 @@ $class    = empty( $template_args['class'] ) ? $bg_class . ' cta-primary' : $tem
 				<a class="btn " href="<?php echo esc_url( $template_args['link_uri'] ); ?>"><span class="cta-btn-text"><?php echo esc_html( $template_args['link_text'] ); ?></span></a>
 
 				<?php elseif ( ! empty( $template_args['link_uri'] ) && ! empty( $template_args['link_text'] ) ) : ?>
-				<a class="btn " href="<?php echo esc_url( $template_args['link_uri'] ); ?>&utm_source=<?php echo esc_attr( $page_id ); ?>"><span class="cta-btn-text"><?php echo esc_html( $template_args['link_text'] ); ?></span></a>
+				<a class="btn " href="<?php echo esc_url( $template_args['link_uri'] ); ?>&wmf_source=<?php echo esc_attr( $page_id ); ?>"><span class="cta-btn-text"><?php echo esc_html( $template_args['link_text'] ); ?></span></a>
 				<?php endif; ?>
 
 			</div>
