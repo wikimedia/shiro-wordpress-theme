@@ -1,5 +1,5 @@
 /**
- * Collect any "Donate" buttons on the page and set their utm_source.
+ * Collect any "Donate" buttons on the page and set their wmf_source.
  *
  * Searches for any links to donate.wikimedia.org, and replaces their hrefs to
  * include UTM parameters in the query strings.
