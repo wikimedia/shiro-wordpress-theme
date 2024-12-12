@@ -131,6 +131,33 @@ class Social extends Base {
 			)
 		);
 
+		$control_id = 'wmf_linkedin_label';
+		$this->customize->add_setting(
+			$control_id,
+			array(
+				'default' => __( 'LinkedIn', 'shiro-admin' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id,
+			array(
+				'label'   => __( 'LinkedIn Label', 'shiro-admin' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
+		$control_id = 'wmf_linkedin_url';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id,
+			array(
+				'label'   => __( 'LinkedIn URI', 'shiro-admin' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
 		$control_id = 'wmf_instagram_label';
 		$this->customize->add_setting(
 			$control_id,
@@ -142,6 +169,33 @@ class Social extends Base {
 			$control_id,
 			array(
 				'label'   => __( 'Instagram Label', 'shiro-admin' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
+		$control_id = 'wmf_email_label';
+		$this->customize->add_setting(
+			$control_id,
+			array(
+				'default' => __( 'Email', 'shiro-admin' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id,
+			array(
+				'label'   => __( 'Email Label', 'shiro-admin' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
+		$control_id = 'wmf_email_url';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id,
+			array(
+				'label'   => __( 'Email URI', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
