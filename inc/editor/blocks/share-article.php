@@ -46,7 +46,7 @@ function render_block( $attributes ) {
 
 	ob_start()
 	?>
-		<div class="share-button-container">
+		<div class="share-button-container share-article">
 			<button 
 				class="share-button" 
 				id="shareButton" 
@@ -67,16 +67,16 @@ function render_block( $attributes ) {
 				aria-labelledby="shareButton" 
 				hidden
 			>
-				<a href="#" class="share-option" role="menuitem" tabindex="-1" data-platform="Facebook">
+				<a href="<?php echo esc_url( wmf_get_share_url( 'facebook' ) ); ?>" class="share-option" role="menuitem" tabindex="-1" data-platform="Facebook">
 					<?php wmf_show_icon( 'social-facebook-blue' ); ?> Facebook
 				</a>
-				<a href="#" class="share-option" role="menuitem" tabindex="-1" data-platform="Twitter">
+				<a href="<?php echo esc_url( wmf_get_share_url( 'twitter' ) ); ?>" class="share-option" role="menuitem" tabindex="-1" data-platform="Twitter">
 					<?php wmf_show_icon( 'social-twitter-blue' ); ?> Twitter
 				</a>
-				<a href="#" class="share-option" role="menuitem" tabindex="-1" data-platform="LinkedIn">
+				<a href="<?php echo esc_url( wmf_get_share_url( 'linkedin' ) ); ?>" class="share-option" role="menuitem" tabindex="-1" data-platform="LinkedIn">
 				<?php wmf_show_icon( 'social-linkedin-blue' ); ?> LinkedIn
 				</a>
-				<a href="#" class="share-option" role="menuitem" tabindex="-1" data-platform="Email">
+				<a href="<?php echo esc_url( wmf_get_share_url( 'email' ) ); ?>" class="share-option" role="menuitem" tabindex="-1" data-platform="Email">
 					<?php wmf_show_icon( 'mail-blue' ); ?> Email
 				</a>
 				<button class="share-option copy-link" role="menuitem" tabindex="-1">
