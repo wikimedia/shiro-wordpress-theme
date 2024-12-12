@@ -36,6 +36,9 @@ function register_block() {
 function render_block( $attributes ) {
 	$enable_twitter = $attributes['enableTwitter'] ?? true;
 	$enable_facebook = $attributes['enableFacebook'] ?? true;
+	$enable_linkedin= $attributes['enableLinkedIn'] ?? true;
+	$enable_mail = $attributes['enableMail'] ?? true;
+
 
 	if ( ! $enable_twitter && ! $enable_facebook ) {
 		return '';
@@ -43,19 +46,46 @@ function render_block( $attributes ) {
 
 	ob_start()
 	?>
-	<div class="share-article">
-		<?php if ( $enable_twitter ) : ?>
-			<a class="share-article__link" href="<?php echo esc_url( wmf_get_share_url( 'twitter' ) ); ?>" target="_blank" rel="noreferrer noopener">
-				<?php wmf_show_icon( 'social-twitter' ); ?>
-			</a>
-		<?php endif; ?>
+		<div class="share-button-container">
+			<button 
+				class="share-button" 
+				id="shareButton" 
+				aria-expanded="false" 
+				aria-controls="shareOptions"
+			>
+				<span class="share-icon" aria-hidden="true">
+				<?php wmf_show_icon( 'social-share' ); ?>
+				</span>
+				<span class="share-text">
+					Share
+				</span>
+			</button>
+			<div 
+				class="share-options" 
+				id="shareOptions" 
+				role="menu" 
+				aria-labelledby="shareButton" 
+				hidden
+			>
+				<a href="#" class="share-option" role="menuitem" tabindex="-1" data-platform="Facebook">
+					<?php wmf_show_icon( 'social-facebook-blue' ); ?> Facebook
+				</a>
+				<a href="#" class="share-option" role="menuitem" tabindex="-1" data-platform="Twitter">
+					<?php wmf_show_icon( 'social-twitter-blue' ); ?> Twitter
+				</a>
+				<a href="#" class="share-option" role="menuitem" tabindex="-1" data-platform="LinkedIn">
+				<?php wmf_show_icon( 'social-linkedin-blue' ); ?> LinkedIn
+				</a>
+				<a href="#" class="share-option" role="menuitem" tabindex="-1" data-platform="Email">
+					<?php wmf_show_icon( 'mail-blue' ); ?> Email
+				</a>
+				<button class="share-option copy-link" role="menuitem" tabindex="-1">
+					<?php wmf_show_icon( 'social-link' ); ?> Copy Link
+				</button>
+				<span class="copy-feedback" aria-live="polite" hidden>Link copied!</span>
+			</div>
+		</div>
 
-		<?php if ( $enable_facebook ) : ?>
-			<a class="share-article__link" href="<?php echo esc_url( wmf_get_share_url( 'facebook' ) ); ?>" target="_blank" rel="noreferrer noopener">
-				<?php wmf_show_icon( 'social-facebook' ); ?>
-			</a>
-		<?php endif; ?>
-	</div>
 	<?php
 	return ob_get_clean();
 }
