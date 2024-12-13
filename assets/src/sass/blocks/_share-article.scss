@@ -1,6 +1,14 @@
 .share-button-container {
 	width: 150px;
     position: relative;
+
+	> button {
+		display: inline-flex;
+		svg {	
+			width: rem(20);
+			height: rem(20);
+		}
+	}
 }
 
 body {
