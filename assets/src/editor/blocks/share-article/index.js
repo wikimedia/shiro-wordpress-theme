@@ -86,8 +86,8 @@ export const settings = {
 						aria-controls="shareOptionsList"
 					>
 						<span className="share-icon" aria-hidden="true">
-						<ShareIcon /> { __( 'Share', 'shiro-admin') }
-					</span>
+							<ShareIcon /> { __( 'Share', 'shiro-admin') }
+						</span>
 					</button>
 					<Disabled>
 						<div 
