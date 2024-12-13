@@ -38,6 +38,7 @@ function render_block( $attributes ) {
 	$enable_facebook = !empty($attributes['enableFacebook']) && wmf_get_share_url('facebook') ? true : false;
 	$enable_linkedin = !empty($attributes['enableLinkedIn']) && wmf_get_share_url('linkedin') ? true : false;
 	$enable_mail = $attributes['enableMail'] ? true : false;
+	$enable_link = $attributes['enableCopyLink'] ? true : false;
 
 
 	if ( ! $enable_twitter && ! $enable_facebook && ! $enable_linkedin && ! $enable_mail ) {
@@ -82,10 +83,12 @@ function render_block( $attributes ) {
 					<?php wmf_show_icon( 'mail-blue' ); ?> Email
 				</a>
 				<?php endif; ?>
-				<button class="share-option copy-link" role="menuitem" tabindex="-1">
-					<?php wmf_show_icon( 'social-link' ); ?><?php echo esc_html__( 'Copy Link', 'shiro-admin' ); ?>
-				</button>
-				<span class="copy-feedback" aria-live="polite" hidden><?php echo esc_html__( 'Link copied!', 'shiro-admin' ); ?></span>
+				<?php if ( $enable_link ) : ?>
+					<button class="share-option copy-link" role="menuitem" tabindex="-1">
+						<?php wmf_show_icon( 'social-link' ); ?><?php echo esc_html__( 'Copy Link', 'shiro-admin' ); ?>
+					</button>
+					<span class="copy-feedback" aria-live="polite" hidden><?php echo esc_html__( 'Link copied!', 'shiro-admin' ); ?></span>
+				<?php endif; ?>
 			</div>
 		</div>
 
