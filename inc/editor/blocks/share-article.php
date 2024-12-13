@@ -83,9 +83,9 @@ function render_block( $attributes ) {
 				</a>
 				<?php endif; ?>
 				<button class="share-option copy-link" role="menuitem" tabindex="-1">
-					<?php wmf_show_icon( 'social-link' ); ?><?php echo esc_html__( 'Copy Link', 'shiro-admin' );?>
+					<?php wmf_show_icon( 'social-link' ); ?><?php echo esc_html__( 'Copy Link', 'shiro-admin' ); ?>
 				</button>
-				<span class="copy-feedback" aria-live="polite" hidden><?php echo esc_html__( 'Link copied!', 'shiro-admin' );?></span>
+				<span class="copy-feedback" aria-live="polite" hidden><?php echo esc_html__( 'Link copied!', 'shiro-admin' ); ?></span>
 			</div>
 		</div>
 
