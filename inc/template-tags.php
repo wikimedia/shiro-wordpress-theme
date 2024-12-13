@@ -126,6 +126,7 @@ function wmf_get_share_url( $service, $args = [] ) {
 	$default = array(
 		'uri'     => get_permalink(),
 		'message' => '',
+		'title'   => get_the_title(),
 	);
 
 	$args = wp_parse_args( $args, $default );
@@ -158,7 +159,7 @@ function wmf_get_share_url( $service, $args = [] ) {
 			$uri = sprintf(
 				'mailto:?subject=%2$s&body=%1$s',
 				$args['uri'],
-				$args['message']
+				$args['title']
 			);
 			break;
 	}
