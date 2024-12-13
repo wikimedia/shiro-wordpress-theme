@@ -1,16 +1,21 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /**
- * Block for sharing an article on Twitter or Facebook
+ * Block for sharing an article on Twitter, Facebook, LinkedIn, or via Email, with a Copy Link option.
  */
 
 /**
  * WordPress dependencies
  */
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, PanelBody } from '@wordpress/components';
+import { ToggleControl, PanelBody, Disabled } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { ReactComponent as FacebookIcon } from '../../../svg/individual/social-facebook.svg';
-import { ReactComponent as TwitterIcon } from '../../../svg/individual/social-twitter.svg';
+import { ReactComponent as FacebookIcon } from '../../../svg/individual/social-facebook-blue.svg';
+import { ReactComponent as TwitterIcon } from '../../../svg/individual/social-twitter-blue.svg';
+import { ReactComponent as LinkedInIcon } from '../../../svg/individual/social-linkedin-blue.svg';
+import { ReactComponent as EmailIcon } from '../../../svg/individual/mail-blue.svg';
+import { ReactComponent as LinkIcon } from '../../../svg/individual/social-link.svg';
+import { ReactComponent as ShareIcon } from '../../../svg/individual/social-share.svg';
 
 export const name = 'shiro/share-article';
 
@@ -24,7 +29,7 @@ export const settings = {
 	icon: 'share',
 
 	description: __(
-		'A Twitter and a Facebook button to share an article.',
+		'Buttons to share an article on Twitter, Facebook, LinkedIn, via Email, or to copy a link.',
 		'shiro-admin'
 	),
 
@@ -37,37 +42,128 @@ export const settings = {
 			type: 'boolean',
 			default: true,
 		},
+		enableLinkedIn: {
+			type: 'boolean',
+			default: true,
+		},
+		enableEmail: {
+			type: 'boolean',
+			default: true,
+		},
+		enableCopyLink: {
+			type: 'boolean',
+			default: true,
+		},
 	},
 
 	example: {},
 
 	/**
-	 * Edit component used to manage featured image and page intro.
+	 * Edit component for managing social share settings.
 	 */
 	edit: function ShareArticleBlock( { attributes, setAttributes } ) {
 		const {
 			enableTwitter,
 			enableFacebook,
+			enableLinkedIn,
+			enableEmail,
+			enableCopyLink,
 		} = attributes;
 
 		const blockProps = useBlockProps( {
 			className: 'share-article',
 		} );
 
+		const handleCopyLink = () => {
+			const link = window.location.href;
+			navigator.clipboard.writeText(link)
+				.then(() => {
+					alert( __( 'Link copied to clipboard!', 'shiro-admin' ) );
+				})
+				.catch(() => {
+					alert( __( 'Failed to copy link.', 'shiro-admin' ) );
+				});
+		};
+
 		return (
-			<div { ...blockProps } >
-				{ ( ! enableTwitter && ! enableFacebook ) && (
+			<div { ...blockProps }>
+				{ ( ! enableTwitter && ! enableFacebook && ! enableLinkedIn && ! enableEmail && ! enableCopyLink ) && (
 					<small>{ __( '(No social share will be shown)', 'shiro-admin' ) }</small>
 				) }
-				<div className="share-article">
-					{ enableTwitter && ( <div className="share-article__link">
-						<TwitterIcon />
-					</div> ) }
+				<Disabled>
+					<div className="share-button-container share-article">
+					<button 
+						class="share-button"  
+						aria-expanded="false" 
+						aria-controls="shareOptionsList"
+					>
+						<span class="share-icon" aria-hidden="true">
+						<ShareIcon /> { __( 'Share', 'shiro-admin') }
+					</span>
+					</button>
+						{ enableTwitter && (
+							<div className="share-article__link">
+								<a 
+									href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`} 
+									target="_blank" 
+									rel="noopener noreferrer"
+								>
+									<TwitterIcon />
+								</a>
+							</div>
+						) }
 
-					{ enableFacebook && ( <div className="share-article__link">
-						<FacebookIcon />
-					</div> ) }
-				</div>
+						{ enableFacebook && (
+							<div className="share-article__link">
+								<a 
+									href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} 
+									target="_blank" 
+									rel="noopener noreferrer"
+								>
+									<FacebookIcon />
+								</a>
+							</div>
+						) }
+
+						{ enableLinkedIn && (
+							<div className="share-article__link">
+								<a 
+									href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`} 
+									target="_blank" 
+									rel="noopener noreferrer"
+								>
+									<LinkedInIcon />
+								</a>
+							</div>
+						) }
+
+						{ enableEmail && (
+							<div className="share-article__link">
+								<a 
+									href={`mailto:?subject=${encodeURIComponent(document.title)}&body=${encodeURIComponent(window.location.href)}`} 
+									target="_blank" 
+									rel="noopener noreferrer"
+								>
+									<EmailIcon />
+								</a>
+							</div>
+						) }
+
+						{ enableCopyLink && (
+							<div
+								className="share-article__link share-article__copy-link" 
+								onClick={ handleCopyLink } 
+								role="button" 
+								tabIndex="0"
+							>
+								<LinkIcon />
+								<span className="screen-reader-text">
+									{ __( 'Copy Link', 'shiro-admin' ) }
+								</span>
+							</div>
+						) }
+					</div>
+				</Disabled>
 				<InspectorControls>
 					<PanelBody initialOpen title={ __( 'Social settings', 'shiro-admin' ) }>
 						<ToggleControl
@@ -79,6 +175,21 @@ export const settings = {
 							checked={ enableFacebook }
 							label={ __( 'Enable Facebook share', 'shiro-admin' ) }
 							onChange={ ( enableFacebook ) => setAttributes( { enableFacebook } ) }
+						/>
+						<ToggleControl
+							checked={ enableLinkedIn }
+							label={ __( 'Enable LinkedIn share', 'shiro-admin' ) }
+							onChange={ ( enableLinkedIn ) => setAttributes( { enableLinkedIn } ) }
+						/>
+						<ToggleControl
+							checked={ enableEmail }
+							label={ __( 'Enable Email share', 'shiro-admin' ) }
+							onChange={ ( enableEmail ) => setAttributes( { enableEmail } ) }
+						/>
+						<ToggleControl
+							checked={ enableCopyLink }
+							label={ __( 'Enable Copy Link', 'shiro-admin' ) }
+							onChange={ ( enableCopyLink ) => setAttributes( { enableCopyLink } ) }
 						/>
 					</PanelBody>
 				</InspectorControls>
