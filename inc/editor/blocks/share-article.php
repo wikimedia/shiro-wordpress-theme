@@ -54,10 +54,7 @@ function render_block( $attributes ) {
 				aria-controls="shareOptions"
 			>
 				<span class="share-icon" aria-hidden="true">
-				<?php wmf_show_icon( 'social-share' ); ?>
-				</span>
-				<span class="share-text">
-					Share
+				<?php wmf_show_icon( 'social-share' ); ?> Share
 				</span>
 			</button>
 			<div 
@@ -80,9 +77,9 @@ function render_block( $attributes ) {
 					<?php wmf_show_icon( 'mail-blue' ); ?> Email
 				</a>
 				<button class="share-option copy-link" role="menuitem" tabindex="-1">
-					<?php wmf_show_icon( 'social-link' ); ?> Copy Link
+					<?php wmf_show_icon( 'social-link' ); ?><?php echo esc_html('Copy Link', 'shiro-admin');?>
 				</button>
-				<span class="copy-feedback" aria-live="polite" hidden>Link copied!</span>
+				<span class="copy-feedback" aria-live="polite" hidden><?php echo esc_html('Link copied!', 'shiro-admin');?></span>
 			</div>
 		</div>
 
