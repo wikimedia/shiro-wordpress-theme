@@ -74,96 +74,91 @@ export const settings = {
 			className: 'share-article',
 		} );
 
-		const handleCopyLink = () => {
-			const link = window.location.href;
-			navigator.clipboard.writeText(link)
-				.then(() => {
-					alert( __( 'Link copied to clipboard!', 'shiro-admin' ) );
-				})
-				.catch(() => {
-					alert( __( 'Failed to copy link.', 'shiro-admin' ) );
-				});
-		};
-
 		return (
 			<div { ...blockProps }>
 				{ ( ! enableTwitter && ! enableFacebook && ! enableLinkedIn && ! enableEmail && ! enableCopyLink ) && (
 					<small>{ __( '(No social share will be shown)', 'shiro-admin' ) }</small>
 				) }
-				<Disabled>
 					<div className="share-button-container share-article">
 					<button 
-						class="share-button"  
+						className="share-button"  
 						aria-expanded="false" 
 						aria-controls="shareOptionsList"
 					>
-						<span class="share-icon" aria-hidden="true">
+						<span className="share-icon" aria-hidden="true">
 						<ShareIcon /> { __( 'Share', 'shiro-admin') }
 					</span>
 					</button>
-						{ enableTwitter && (
-							<div className="share-article__link">
-								<a 
-									href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`} 
-									target="_blank" 
-									rel="noopener noreferrer"
-								>
-									<TwitterIcon />
-								</a>
-							</div>
-						) }
+					<Disabled>
+						<div 
+							className="share-options"  
+							role="menu" 
+							aria-labelledby="shareButton" 
+							hidden
+						>
+							{ enableTwitter && (
+								<div className="share-article__link">
+									<a 
+										href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`} 
+										target="_blank" 
+										rel="noopener noreferrer"
+									>
+										<TwitterIcon />
+									</a>
+								</div>
+							) }
 
-						{ enableFacebook && (
-							<div className="share-article__link">
-								<a 
-									href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} 
-									target="_blank" 
-									rel="noopener noreferrer"
-								>
-									<FacebookIcon />
-								</a>
-							</div>
-						) }
+							{ enableFacebook && (
+								<div className="share-article__link">
+									<a 
+										href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} 
+										target="_blank" 
+										rel="noopener noreferrer"
+									>
+										<FacebookIcon />
+									</a>
+								</div>
+							) }
 
-						{ enableLinkedIn && (
-							<div className="share-article__link">
-								<a 
-									href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`} 
-									target="_blank" 
-									rel="noopener noreferrer"
-								>
-									<LinkedInIcon />
-								</a>
-							</div>
-						) }
+							{ enableLinkedIn && (
+								<div className="share-article__link">
+									<a 
+										href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`} 
+										target="_blank" 
+										rel="noopener noreferrer"
+									>
+										<LinkedInIcon />
+									</a>
+								</div>
+							) }
 
-						{ enableEmail && (
-							<div className="share-article__link">
-								<a 
-									href={`mailto:?subject=${encodeURIComponent(document.title)}&body=${encodeURIComponent(window.location.href)}`} 
-									target="_blank" 
-									rel="noopener noreferrer"
-								>
-									<EmailIcon />
-								</a>
-							</div>
-						) }
+							{ enableEmail && (
+								<div className="share-article__link">
+									<a 
+										href={`mailto:?subject=${encodeURIComponent(document.title)}&body=${encodeURIComponent(window.location.href)}`} 
+										target="_blank" 
+										rel="noopener noreferrer"
+									>
+										<EmailIcon />
+									</a>
+								</div>
+							) }
 
-						{ enableCopyLink && (
-							<div
-								className="share-article__link share-article__copy-link" 
-								onClick={ handleCopyLink } 
-								role="button" 
-								tabIndex="0"
-							>
-								<LinkIcon />
-								<span className="screen-reader-text">
-									{ __( 'Copy Link', 'shiro-admin' ) }
-								</span>
-							</div>
-						) }
-					</div>
+							{ enableCopyLink && (
+								<div
+									className="share-article__link share-article__copy-link" 
+									role="button" 
+									tabIndex="0"
+								>
+									<LinkIcon />
+									<span className="screen-reader-text">
+										{ __( 'Copy Link', 'shiro-admin' ) }
+									</span>
+								</div>
+							) }
+						</div>
 				</Disabled>
+				</div>
 				<InspectorControls>
 					<PanelBody initialOpen title={ __( 'Social settings', 'shiro-admin' ) }>
 						<ToggleControl

@@ -74,7 +74,7 @@ function render_block( $attributes ) {
 				<?php endif; ?>
 				<?php if ( $enable_linkedin ) : ?>
 				<a href="<?php echo esc_url( wmf_get_share_url( 'linkedin' ) ); ?>" class="share-option" role="menuitem" tabindex="-1" data-platform="LinkedIn" target="_blank" rel="noreferrer noopener">
-				<?php wmf_show_icon( 'social-linkedin-blue' ); ?> LinkedIn
+					<?php wmf_show_icon( 'social-linkedin-blue' ); ?> LinkedIn
 				</a>
 				<?php endif; ?>
 				<?php if ( $enable_mail ) : ?>
