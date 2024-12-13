@@ -36,7 +36,7 @@ function register_block() {
 function render_block( $attributes ) {
 	$enable_twitter = $attributes['enableTwitter'] ?? true;
 	$enable_facebook = $attributes['enableFacebook'] ?? true;
-	$enable_linkedin= $attributes['enableLinkedIn'] ?? true;
+	$enable_linkedin = $attributes['enableLinkedIn'] ?? true;
 	$enable_mail = $attributes['enableMail'] ?? true;
 
 
@@ -83,9 +83,9 @@ function render_block( $attributes ) {
 				</a>
 				<?php endif; ?>
 				<button class="share-option copy-link" role="menuitem" tabindex="-1">
-					<?php wmf_show_icon( 'social-link' ); ?><?php echo esc_html('Copy Link', 'shiro-admin');?>
+					<?php wmf_show_icon( 'social-link' ); ?><?php echo esc_html__( 'Copy Link', 'shiro-admin' );?>
 				</button>
-				<span class="copy-feedback" aria-live="polite" hidden><?php echo esc_html('Link copied!', 'shiro-admin');?></span>
+				<span class="copy-feedback" aria-live="polite" hidden><?php echo esc_html__( 'Link copied!', 'shiro-admin' );?></span>
 			</div>
 		</div>
 
