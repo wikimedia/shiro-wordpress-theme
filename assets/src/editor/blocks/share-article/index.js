@@ -79,7 +79,7 @@ export const settings = {
 				{ ( ! enableTwitter && ! enableFacebook && ! enableLinkedIn && ! enableEmail && ! enableCopyLink ) && (
 					<small>{ __( '(No social share will be shown)', 'shiro-admin' ) }</small>
 				) }
-					<div className="share-button-container share-article">
+				<div className="share-button-container share-article">
 					<button 
 						className="share-button"  
 						aria-expanded="false" 
