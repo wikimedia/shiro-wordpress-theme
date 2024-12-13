@@ -4,6 +4,11 @@
 
 	> button {
 		display: inline-flex;
+		
+		span {
+			display: contents;
+		}
+
 		svg {	
 			width: rem(20);
 			height: rem(20);
