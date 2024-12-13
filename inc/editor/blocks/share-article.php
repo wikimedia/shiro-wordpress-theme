@@ -48,18 +48,16 @@ function render_block( $attributes ) {
 	?>
 		<div class="share-button-container share-article">
 			<button 
-				class="share-button" 
-				id="shareButton" 
+				class="share-button"  
 				aria-expanded="false" 
-				aria-controls="shareOptions"
+				aria-controls="shareOptionsList"
 			>
 				<span class="share-icon" aria-hidden="true">
 				<?php wmf_show_icon( 'social-share' ); ?> Share
 				</span>
 			</button>
 			<div 
-				class="share-options" 
-				id="shareOptions" 
+				class="share-options"  
 				role="menu" 
 				aria-labelledby="shareButton" 
 				hidden
