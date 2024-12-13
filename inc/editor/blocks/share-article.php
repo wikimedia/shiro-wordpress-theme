@@ -40,7 +40,7 @@ function render_block( $attributes ) {
 	$enable_mail = $attributes['enableMail'] ?? true;
 
 
-	if ( ! $enable_twitter && ! $enable_facebook ) {
+	if ( ! $enable_twitter && ! $enable_facebook && ! $enable_linkedin && ! $enable_mail ) {
 		return '';
 	}
 
@@ -62,18 +62,26 @@ function render_block( $attributes ) {
 				aria-labelledby="shareButton" 
 				hidden
 			>
+				<?php if ( $enable_facebook ) : ?>
 				<a href="<?php echo esc_url( wmf_get_share_url( 'facebook' ) ); ?>" class="share-option" role="menuitem" tabindex="-1" data-platform="Facebook" target="_blank" rel="noreferrer noopener">
 					<?php wmf_show_icon( 'social-facebook-blue' ); ?> Facebook
 				</a>
+				<?php endif; ?>
+				<?php if ( $enable_twitter ) : ?>
 				<a href="<?php echo esc_url( wmf_get_share_url( 'twitter' ) ); ?>" class="share-option" role="menuitem" tabindex="-1" data-platform="Twitter" target="_blank" rel="noreferrer noopener">
 					<?php wmf_show_icon( 'social-twitter-blue' ); ?> Twitter
 				</a>
+				<?php endif; ?>
+				<?php if ( $enable_linkedin ) : ?>
 				<a href="<?php echo esc_url( wmf_get_share_url( 'linkedin' ) ); ?>" class="share-option" role="menuitem" tabindex="-1" data-platform="LinkedIn" target="_blank" rel="noreferrer noopener">
 				<?php wmf_show_icon( 'social-linkedin-blue' ); ?> LinkedIn
 				</a>
+				<?php endif; ?>
+				<?php if ( $enable_mail ) : ?>
 				<a href="<?php echo esc_url( wmf_get_share_url( 'email' ) ); ?>" class="share-option" role="menuitem" tabindex="-1" data-platform="Email" target="_blank" rel="noreferrer noopener">
 					<?php wmf_show_icon( 'mail-blue' ); ?> Email
 				</a>
+				<?php endif; ?>
 				<button class="share-option copy-link" role="menuitem" tabindex="-1">
 					<?php wmf_show_icon( 'social-link' ); ?><?php echo esc_html('Copy Link', 'shiro-admin');?>
 				</button>
