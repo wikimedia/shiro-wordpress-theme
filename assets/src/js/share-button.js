@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						}, 2000);
 					})
 					.catch((err) => {
+						// eslint-disable-next-line no-console
 						console.error("Failed to copy link: ", err);
 					});
 			});
