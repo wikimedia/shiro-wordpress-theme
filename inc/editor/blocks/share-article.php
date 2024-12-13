@@ -34,10 +34,10 @@ function register_block() {
  * @return string HTML markup.
  */
 function render_block( $attributes ) {
-	$enable_twitter = $attributes['enableTwitter'] ?? true;
-	$enable_facebook = $attributes['enableFacebook'] ?? true;
-	$enable_linkedin = $attributes['enableLinkedIn'] ?? true;
-	$enable_mail = $attributes['enableMail'] ?? true;
+	$enable_twitter = !empty($attributes['enableTwitter']) && wmf_get_share_url('twitter') ? true : false;
+	$enable_facebook = !empty($attributes['enableFacebook']) && wmf_get_share_url('facebook') ? true : false;
+	$enable_linkedin = !empty($attributes['enableLinkedIn']) && wmf_get_share_url('linkedin') ? true : false;
+	$enable_mail = $attributes['enableMail'] ? true : false;
 
 
 	if ( ! $enable_twitter && ! $enable_facebook && ! $enable_linkedin && ! $enable_mail ) {
