@@ -6,6 +6,7 @@
 /**
  * WordPress dependencies
  */
+import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, PanelBody, Disabled } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -17,46 +18,10 @@ import { ReactComponent as EmailIcon } from '../../../svg/individual/mail-blue.s
 import { ReactComponent as LinkIcon } from '../../../svg/individual/social-link.svg';
 import { ReactComponent as ShareIcon } from '../../../svg/individual/social-share.svg';
 
-export const name = 'shiro/share-article';
+import metadata from './block.json';
 
-export const settings = {
-	title: __( 'Share article', 'shiro-admin' ),
-
-	category: 'wikimedia',
-
-	apiVersion: 2,
-
-	icon: 'share',
-
-	description: __(
-		'Buttons to share an article on Twitter, Facebook, LinkedIn, via Email, or to copy a link.',
-		'shiro-admin'
-	),
-
-	attributes: {
-		enableTwitter: {
-			type: 'boolean',
-			default: true,
-		},
-		enableFacebook: {
-			type: 'boolean',
-			default: true,
-		},
-		enableLinkedIn: {
-			type: 'boolean',
-			default: true,
-		},
-		enableEmail: {
-			type: 'boolean',
-			default: true,
-		},
-		enableCopyLink: {
-			type: 'boolean',
-			default: true,
-		},
-	},
-
-	example: {},
+registerBlockType( metadata.name, {
+	...metadata,
 
 	/**
 	 * Edit component for managing social share settings.
@@ -80,9 +45,9 @@ export const settings = {
 					<small>{ __( '(No social share will be shown)', 'shiro-admin' ) }</small>
 				) }
 				<div className="share-button-container share-article">
-					<button 
-						className="share-button"  
-						aria-expanded="false" 
+					<button
+						className="share-button"
+						aria-expanded="false"
 						aria-controls="shareOptionsList"
 					>
 						<span className="share-icon" aria-hidden="true">
@@ -90,17 +55,17 @@ export const settings = {
 						</span>
 					</button>
 					<Disabled>
-						<div 
-							className="share-options"  
-							role="menu" 
-							aria-labelledby="shareButton" 
+						<div
+							className="share-options"
+							role="menu"
+							aria-labelledby="shareButton"
 							hidden
 						>
 							{ enableTwitter && (
 								<div className="share-article__link">
-									<a 
-										href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`} 
-										target="_blank" 
+									<a
+										href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`}
+										target="_blank"
 										rel="noopener noreferrer"
 									>
 										<TwitterIcon />
@@ -110,9 +75,9 @@ export const settings = {
 
 							{ enableFacebook && (
 								<div className="share-article__link">
-									<a 
-										href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} 
-										target="_blank" 
+									<a
+										href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+										target="_blank"
 										rel="noopener noreferrer"
 									>
 										<FacebookIcon />
@@ -122,9 +87,9 @@ export const settings = {
 
 							{ enableLinkedIn && (
 								<div className="share-article__link">
-									<a 
-										href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`} 
-										target="_blank" 
+									<a
+										href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
+										target="_blank"
 										rel="noopener noreferrer"
 									>
 										<LinkedInIcon />
@@ -134,9 +99,9 @@ export const settings = {
 
 							{ enableEmail && (
 								<div className="share-article__link">
-									<a 
-										href={`mailto:?subject=${encodeURIComponent(document.title)}&body=${encodeURIComponent(window.location.href)}`} 
-										target="_blank" 
+									<a
+										href={`mailto:?subject=${encodeURIComponent(document.title)}&body=${encodeURIComponent(window.location.href)}`}
+										target="_blank"
 										rel="noopener noreferrer"
 									>
 										<EmailIcon />
@@ -146,8 +111,8 @@ export const settings = {
 
 							{ enableCopyLink && (
 								<div
-									className="share-article__link share-article__copy-link" 
-									role="button" 
+									className="share-article__link share-article__copy-link"
+									role="button"
 									tabIndex="0"
 								>
 									<LinkIcon />
@@ -198,4 +163,12 @@ export const settings = {
 	save: function Save( { attributes } ) {
 		return null;
 	},
-};
+} );
+
+// Block HMR boilerplate.
+if ( module.hot ) {
+	module.hot.accept();
+	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
+	module.hot.dispose( deregister( metadata.name ) );
+	refresh( metadata.name, module.hot.data );
+}

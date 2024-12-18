@@ -1,50 +1,19 @@
 <?php
 /**
- * Server-side registration for the shiro/share-article block.
- */
-
-namespace WMF\Editor\Blocks\ShareArticle;
-
-const BLOCK_NAME = 'shiro/share-article';
-
-/**
- * Bootstrap this block functionality.
- */
-function bootstrap() {
-	add_action( 'init', __NAMESPACE__ . '\\register_block' );
-}
-
-/**
- * Register the block here.
- */
-function register_block() {
-	register_block_type(
-		BLOCK_NAME,
-		[
-			'apiVersion'      => 2,
-			'render_callback' => __NAMESPACE__ . '\\render_block',
-		]
-	);
-}
-
-/**
- * Render this block, given its attributes.
+ * Callback for server-side rendering for the blog-list block.
  *
- * @param [] $attributes Block attributes.
+ * @param array $attributes Parsed block attributes.
+ *
  * @return string HTML markup.
  */
-function render_block( $attributes ) {
-	$enable_twitter = ( ! empty( $attributes['enableTwitter'] ) && ! empty( wmf_get_share_url( 'twitter' ) ) ) ? true : false;
-	$enable_facebook = ( ! empty( $attributes['enableFacebook'] ) && wmf_get_share_url( 'facebook' ) ) ? true : false;
-	$enable_linkedin = ( ! empty( $attributes['enableLinkedIn'] ) && wmf_get_share_url( 'linkedin' ) ) ? true : false;
-	$enable_mail = $attributes['enableMail'] ? true : false;
-	$enable_link = $attributes['enableCopyLink'] ? true : false;
 
-	if ( ! ( $enable_twitter || $enable_facebook || $enable_linkedin || $enable_mail || $enable_link ) ) {
-		return '';
-	}
+$enable_twitter = ( ! empty( $attributes['enableTwitter'] ) && ! empty( wmf_get_share_url( 'twitter' ) ) ) ? true : false;
+$enable_facebook = ( ! empty( $attributes['enableFacebook'] ) && wmf_get_share_url( 'facebook' ) ) ? true : false;
+$enable_linkedin = ( ! empty( $attributes['enableLinkedIn'] ) && wmf_get_share_url( 'linkedin' ) ) ? true : false;
+$enable_mail = $attributes['enableEmail'] ? true : false;
+$enable_link = $attributes['enableCopyLink'] ? true : false;
 
-	ob_start()
+if ( $enable_twitter || $enable_facebook || $enable_linkedin || $enable_mail || $enable_link ) :
 	?>
 		<div class="share-button-container share-article">
 			<button
@@ -90,7 +59,5 @@ function render_block( $attributes ) {
 				<?php endif; ?>
 			</div>
 		</div>
-
 	<?php
-	return ob_get_clean();
-}
+endif;
