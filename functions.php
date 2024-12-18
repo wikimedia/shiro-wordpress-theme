@@ -273,7 +273,6 @@ require get_template_directory() . '/inc/editor/blocks/landing-page-hero.php';
 require get_template_directory() . '/inc/editor/blocks/linked-toc-item.php';
 require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
 require get_template_directory() . '/inc/editor/blocks/read-more-categories.php';
-require get_template_directory() . '/inc/editor/blocks/share-article.php';
 require get_template_directory() . '/inc/editor/blocks/profile.php';
 require get_template_directory() . '/inc/editor/blocks/profile-list.php';
 require get_template_directory() . '/inc/editor/blocks/toc.php';
