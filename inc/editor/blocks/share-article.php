@@ -47,19 +47,19 @@ function render_block( $attributes ) {
 	ob_start()
 	?>
 		<div class="share-button-container share-article">
-			<button 
-				class="share-button"  
-				aria-expanded="false" 
+			<button
+				class="share-button"
+				aria-expanded="false"
 				aria-controls="shareOptionsList"
 			>
 				<span class="share-icon" aria-hidden="true">
 				<?php wmf_show_icon( 'social-share' ); ?> Share
 				</span>
 			</button>
-			<div 
-				class="share-options"  
-				role="menu" 
-				aria-labelledby="shareButton" 
+			<div
+				class="share-options"
+				role="menu"
+				aria-labelledby="shareButton"
 				hidden
 			>
 				<?php if ( $enable_facebook ) : ?>
