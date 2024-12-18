@@ -80,7 +80,16 @@ while ( have_posts() ) {
 
 		<?php
 		if ( ! $has_social_share ) {
-			echo do_blocks( '<!-- wp:shiro/share-article {"enableLinkedIn":false,"enableEmail":false,"enableCopyLink":false} /-->' );
+			echo wp_kses_post(
+				render_block( [
+					'blockName' => 'shiro/share-article',
+					'attrs' => [
+						'enableLinkedIn' => false,
+						'enableEmail'    => false,
+						'enableCopyLink' => false,
+					],
+				] )
+			);
 		}
 
 		if ( ! $has_read_more_categories ) {

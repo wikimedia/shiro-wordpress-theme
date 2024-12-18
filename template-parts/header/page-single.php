@@ -52,7 +52,16 @@ $allowed_tags = [
 			<?php endif; ?>
 
 			<?php
-			echo do_blocks( '<!-- wp:shiro/share-article {"enableLinkedIn":false,"enableEmail":false,"enableCopyLink":false} /-->' );
+			echo wp_kses_post(
+				render_block( [
+					'blockName' => 'shiro/share-article',
+					'attrs' => [
+						'enableLinkedIn' => false,
+						'enableEmail'    => false,
+						'enableCopyLink' => false,
+					],
+				] )
+			);
 			?>
 		</div>
 	</div>
