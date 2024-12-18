@@ -81,12 +81,14 @@ while ( have_posts() ) {
 		<?php
 		if ( ! $has_social_share ) {
 			echo wp_kses_post(
-				\WMF\Editor\Blocks\ShareArticle\render_block(
-					array(
-						'enableTwitter'  => true,
-						'enableFacebook' => true,
-					)
-				)
+				render_block( [
+					'blockName' => 'shiro/share-article',
+					'attrs' => [
+						'enableLinkedIn' => false,
+						'enableEmail'    => false,
+						'enableCopyLink' => false,
+					],
+				] )
 			);
 		}
 
