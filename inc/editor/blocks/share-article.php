@@ -40,7 +40,7 @@ function render_block( $attributes ) {
 	$enable_mail = $attributes['enableMail'] ? true : false;
 	$enable_link = $attributes['enableCopyLink'] ? true : false;
 
-	if ( ! $enable_twitter && ! $enable_facebook && ! $enable_linkedin && ! $enable_mail ) {
+	if ( ! ( $enable_twitter || $enable_facebook || $enable_linkedin || $enable_mail || $enable_link ) ) {
 		return '';
 	}
 
