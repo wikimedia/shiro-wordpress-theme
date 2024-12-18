@@ -301,7 +301,6 @@ WMF\Editor\Blocks\LandingPageHero\bootstrap();
 WMF\Editor\Blocks\LinkedTOCItem\bootstrap();
 WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
 WMF\Editor\Blocks\ReadMoreCategories\bootstrap();
-WMF\Editor\Blocks\ShareArticle\bootstrap();
 WMF\Editor\Blocks\Profile\bootstrap();
 WMF\Editor\Blocks\ProfileList\bootstrap();
 WMF\Editor\Blocks\TOC\bootstrap();
