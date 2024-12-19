@@ -13,8 +13,16 @@ The `inc` folder contains all PHP files that aren't required in the root directo
 
 The `template-parts` folder contains template parts used by larger templates in the root directory.
 
-Deploy Process
+Branches & Deploy Process
 ---------------
+
+Branch | Purpose | Contains built code
+---- | ----- | -----
+`main` | Primary repository branch; should be the branch base and target branch when creating pull requests for new features. | NO
+`release` | Release branch, updated automatically by Actions when code is merged to `main`. Should never be PR'd to directly. | YES
+`develop` | Test branch; PR branches can be merged into this to generate a test release. Should be periodically reset to `main`. | NO
+`release-develop` | Test build, updated automatically by Actions when code is merged to `develop`. Should never be PR'd to directly. | YES
+
 The release and release-develop versions of the Shiro theme are built using [GitHub Actions](https://github.com/features/actions). Any time a pull request is merged into the `main` or `develop` branches, that code is built and pushed to the corresponding `release` and `release-develop` branches. **You should not commit to the release branches directly,** nor submit pull requests against them.
 
 Development workflow:

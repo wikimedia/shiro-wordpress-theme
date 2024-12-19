@@ -52,11 +52,16 @@ $allowed_tags = [
 			<?php endif; ?>
 
 			<?php
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo \WMF\Editor\Blocks\ShareArticle\render_block( [
-				'enableTwitter'  => true,
-				'enableFacebook' => true,
-			] );
+			echo wp_kses_post(
+				render_block( [
+					'blockName' => 'shiro/share-article',
+					'attrs' => [
+						'enableLinkedIn' => false,
+						'enableEmail'    => false,
+						'enableCopyLink' => false,
+					],
+				] )
+			);
 			?>
 		</div>
 	</div>
