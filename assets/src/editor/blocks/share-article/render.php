@@ -13,6 +13,25 @@ $enable_linkedin = ( ! empty( $attributes['enableLinkedIn'] ) && wmf_get_share_u
 $enable_mail = $attributes['enableEmail'] ? true : false;
 $enable_link = $attributes['enableCopyLink'] ? true : false;
 
+// WIKI-1010: Temporarily reinstate old non-dropdown version, per review feedback.
+if ( $enable_twitter || $enable_facebook ) :
+	?>
+	<div class="share-article">
+		<?php if ( $enable_twitter ) : ?>
+			<a class="share-article__link" href="<?php echo esc_url( wmf_get_share_url( 'twitter' ) ); ?>" target="_blank" rel="noreferrer noopener">
+				<?php wmf_show_icon( 'social-twitter' ); ?>
+			</a>
+		<?php endif; ?>
+
+		<?php if ( $enable_facebook ) : ?>
+			<a class="share-article__link" href="<?php echo esc_url( wmf_get_share_url( 'facebook' ) ); ?>" target="_blank" rel="noreferrer noopener">
+				<?php wmf_show_icon( 'social-facebook' ); ?>
+			</a>
+		<?php endif; ?>
+	</div>
+	<?php
+elseif ( false ) :
+// Temporarily disabled with the `false` condition above.
 if ( $enable_twitter || $enable_facebook || $enable_linkedin || $enable_mail || $enable_link ) :
 	?>
 		<div class="share-button-container share-article">
@@ -60,4 +79,5 @@ if ( $enable_twitter || $enable_facebook || $enable_linkedin || $enable_mail || 
 			</div>
 		</div>
 	<?php
+endif;
 endif;
