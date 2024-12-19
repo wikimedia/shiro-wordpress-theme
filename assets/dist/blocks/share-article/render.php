@@ -30,8 +30,11 @@ if ( $enable_twitter || $enable_facebook ) :
 		<?php endif; ?>
 	</div>
 	<?php
-elseif ( false ) :
-// Temporarily disabled with the `false` condition above.
+endif;
+
+// phpcs:disable Squiz.PHP.NonExecutableCode.Unreachable
+return;
+
 if ( $enable_twitter || $enable_facebook || $enable_linkedin || $enable_mail || $enable_link ) :
 	?>
 		<div class="share-button-container share-article">
@@ -79,5 +82,4 @@ if ( $enable_twitter || $enable_facebook || $enable_linkedin || $enable_mail || 
 			</div>
 		</div>
 	<?php
-endif;
 endif;
