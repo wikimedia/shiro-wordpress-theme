@@ -27,7 +27,8 @@ while ( have_posts() ) :
 	if ( ! empty( $roles ) && ! is_wp_error( $roles ) ) {
 		$team_name  = $roles;
 		$ancestors  = get_ancestors( $roles[0]->term_id, 'role' );
-		$referer_id = isset( $_GET['referer'] ) ? absint( $_GET['referer'] ) : null; // phpcs:ignore Processing form data without nonce verification.
+		// phpcs:ignore Processing form data without nonce verification
+		$referer_id = isset( $_GET['referer'] ) ? absint( $_GET['referer'] ) : null;
 		$referer_link = get_term_link( $referer_id );
 
 		// Check if referer query parameter is set to determine $parent_id before lookup for ancestors.
