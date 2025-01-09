@@ -37,7 +37,7 @@ if ( $profile_data['role'] ?? false ) {
 	<li class="<?php echo esc_attr( $profile_class ); ?>">
 <?php else : ?>
 	<div class="<?php echo esc_attr( $profile_class ); ?>">
-	<?php 
+	<?php
 endif;
 
 if ( $profile_img ) :
@@ -48,7 +48,7 @@ if ( $profile_img ) :
 	<?php endif; ?>
 
 	<h4>
-		<a href="<?php the_permalink( $profile_id ); ?>">
+		<a href="<?php echo add_query_arg( 'referer', get_queried_object_id(), get_the_permalink( $profile_id ) ); ?>">
 			<?php echo esc_html( $profile->post_title ); ?>
 		</a>
 	</h4>
