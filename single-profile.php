@@ -25,13 +25,14 @@ while ( have_posts() ) :
 	$connected_user = get_post_meta( get_the_ID(), 'connected_user', true );
 
 	if ( ! empty( $roles ) && ! is_wp_error( $roles ) ) {
-		$team_name = $roles;
-		$ancestors = get_ancestors( $roles[0]->term_id, 'role' );
-		$referer   = get_term_link( absint( $_GET['referer'] ) ) ?? null;
+		$team_name  = $roles;
+		$ancestors  = get_ancestors( $roles[0]->term_id, 'role' );
+		$referer_id = absint( $_GET['referer'] ) ?? null;
+		$referer_link = get_term_link( $referer_id );
 
 		// Check if referer query parameter is set to determine $parent_id before lookup for ancestors.
-		if ( ! empty( $referer ) && ! is_wp_error( $referer ) ) {
-			$parent_id = absint( $_GET['referer'] );
+		if ( ! empty( $referer_link ) && ! is_wp_error( $referer_link ) ) {
+			$parent_id = $referer_id;
 		} else {
 			$parent_id = is_array( $ancestors ) ? end( $ancestors ) : false;
 		}
