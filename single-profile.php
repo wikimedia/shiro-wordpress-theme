@@ -25,9 +25,19 @@ while ( have_posts() ) :
 	$connected_user = get_post_meta( get_the_ID(), 'connected_user', true );
 
 	if ( ! empty( $roles ) && ! is_wp_error( $roles ) ) {
-		$team_name = $roles;
-		$ancestors = get_ancestors( $roles[0]->term_id, 'role' );
-		$parent_id = is_array( $ancestors ) ? end( $ancestors ) : false;
+		$team_name  = $roles;
+		$ancestors  = get_ancestors( $roles[0]->term_id, 'role' );
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$referer_id = isset( $_GET['referer'] ) ? absint( $_GET['referer'] ) : null;
+		$referer_link = get_term_link( $referer_id );
+
+		// Check if referer query parameter is set to determine $parent_id before lookup for ancestors.
+		if ( ! empty( $referer_link ) && ! is_wp_error( $referer_link ) ) {
+			$parent_id = $referer_id;
+		} else {
+			$parent_id = is_array( $ancestors ) ? end( $ancestors ) : false;
+		}
 
 		if ( $parent_id ) {
 			$parent_term = get_term( $parent_id );
