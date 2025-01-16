@@ -11,12 +11,13 @@
 		}
 
 		span {
-			display: contents;
+			display: inline-block;
 		}
 
-		svg {	
+		svg {
 			width: rem(20);
 			height: rem(20);
+			vertical-align: text-bottom;
 		}
 	}
 }
