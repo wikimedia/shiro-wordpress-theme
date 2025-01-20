@@ -5,11 +5,6 @@ $header-bp-mw: 1049px;
 	text-shadow: 0 2px 2px $color-blue;
 }
 
-@mixin pinkTextShadow() {
-	text-shadow: 0 2px 2px $color-pink;
-}
-
-
 .header-default {
 	margin-bottom: 0;
 	position: relative;
@@ -144,37 +139,12 @@ $header-bp-mw: 1049px;
 				@include font-size(22, 18);
 			}
 		}
-
-
-		&--photo-centered {
-			//margin-bottom: rem(75);
-			@media (min-width: $large-bp) {
-				//margin-bottom: rem(400);
-			}
-
-			@media (min-width: $medium-bp) {
-				//margin-bottom: rem(100);
-			}
-		}
-
 	}
 
 	.header-inner {
 		display: flex;
 		flex-direction: column;
 		position: relative;
-
-		@media (min-width: $header-bp) and (max-height: 930px) {
-			//min-height: calc(100vh - 80px);
-		}
-
-		@media (min-height: 931px) {
-			//min-height: rem(850);
-		}
-
-		@media (max-width: $header-bp-mw) {
-			//min-height: initial;
-		}
 
 		&.nav-open {
 			background: $color-blue;

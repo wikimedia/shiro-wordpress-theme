@@ -140,8 +140,3 @@ $block-styles:
 	color: $wmui-color-base0;
 	color: var(--text-color);
 }
-
-@mixin block-style-accent-color {
-	color: $wmui-color-base0;
-	color: var(--accent-color);
-}
