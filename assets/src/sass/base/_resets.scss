@@ -2,7 +2,6 @@
 
 /*Nice text rendering and sizing*/
 html {
-  -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -110,23 +109,14 @@ textarea {
   outline: none;
 
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
 }
 
 input[type="checkbox"] {
   appearance: checkbox;
-  -webkit-appearance: checkbox;
-  -moz-appearance: checkbox;
-  -o-appearance: checkbox;
 }
 
 input[type="radio"] {
   appearance: radio;
-  -webkit-appearance: radio;
-  -moz-appearance: radio;
-  -o-appearance: radio;
 }
 
 /*TABLE*/
