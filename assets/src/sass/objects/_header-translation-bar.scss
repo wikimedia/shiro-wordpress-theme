@@ -8,7 +8,6 @@ $translation-label-width: rem(180);
 	position: relative;
 	color: $color-turquoise;
 	z-index: 9;
-  // box-shadow: 1px 1px 9px rgba(0,0,0,0.2);
 	height: 45px;
 	border-top: 1px solid $wmui-color-base70;
 	margin-bottom: 5rem;
@@ -119,17 +118,16 @@ $translation-label-width: rem(180);
 	}
 
 	.translation-icon {
-		// 	left: rem(20);
-		// 	background: $color-dark-dark-blue;
-			padding-right: rem(10);
-		// 	vertical-align: middle;
-			@media (min-width: $header-bp) {
-				font-size: $translation-font;
-			}
-			@media (max-width: $small-bp) {
-				display: none;
-			}
+		padding-right: rem(10);
+
+		@media (min-width: $header-bp) {
+			font-size: $translation-font;
 		}
+
+		@media (max-width: $small-bp) {
+			display: none;
+		}
+	}
 
 	.elipsis {
 		color: #2087E8;
