@@ -266,7 +266,6 @@ require get_template_directory() . '/inc/ajax.php';
  */
 require get_template_directory() . '/inc/editor/namespace.php';
 require get_template_directory() . '/inc/editor/blocks/blog-post.php';
-require get_template_directory() . '/inc/editor/blocks/clock.php';
 require get_template_directory() . '/inc/editor/blocks/double-heading.php';
 require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
 require get_template_directory() . '/inc/editor/blocks/landing-page-hero.php';
@@ -294,7 +293,6 @@ require get_template_directory() . '/inc/editor/patterns/template-report-section
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
 WMF\Editor\Blocks\BlogPost\bootstrap();
-WMF\Editor\Blocks\Clock\bootstrap();
 WMF\Editor\Blocks\InlineLanguages\bootstrap();
 WMF\Editor\Blocks\DoubleHeading\bootstrap();
 WMF\Editor\Blocks\LandingPageHero\bootstrap();
