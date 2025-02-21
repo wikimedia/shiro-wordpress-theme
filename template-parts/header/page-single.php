@@ -55,11 +55,6 @@ $allowed_tags = [
 			echo wp_kses_post(
 				render_block( [
 					'blockName' => 'shiro/share-article',
-					'attrs' => [
-						'enableLinkedIn' => false,
-						'enableEmail'    => false,
-						'enableCopyLink' => false,
-					],
 				] )
 			);
 			?>

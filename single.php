@@ -80,16 +80,13 @@ while ( have_posts() ) {
 
 		<?php
 		if ( ! $has_social_share ) {
-			echo wp_kses_post(
-				render_block( [
-					'blockName' => 'shiro/share-article',
-					'attrs' => [
-						'enableLinkedIn' => false,
-						'enableEmail'    => false,
-						'enableCopyLink' => false,
-					],
-				] )
-			);
+			echo '<div>';
+				echo wp_kses_post(
+					render_block( [
+						'blockName' => 'shiro/share-article',
+					] )
+				);
+			echo '</div>';
 		}
 
 		if ( ! $has_read_more_categories ) {
