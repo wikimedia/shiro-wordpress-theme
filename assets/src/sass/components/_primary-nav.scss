@@ -19,11 +19,6 @@
 
 		[data-dropdown-status="uninitialized"] & {
 			display: none;
-
-			@include target-ie {
-				display: flex;
-				flex-direction: column-reverse;
-			}
 		}
 
 		/**
