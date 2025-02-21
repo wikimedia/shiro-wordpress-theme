@@ -13,6 +13,7 @@ import { __ } from '@wordpress/i18n';
 
 import { ReactComponent as FacebookIcon } from '../../../svg/individual/social-facebook-blue.svg';
 import { ReactComponent as TwitterIcon } from '../../../svg/individual/social-twitter-blue.svg';
+import { ReactComponent as BlueskyIcon } from '../../../svg/individual/social-bluesky-blue.svg';
 import { ReactComponent as LinkedInIcon } from '../../../svg/individual/social-linkedin-blue.svg';
 import { ReactComponent as EmailIcon } from '../../../svg/individual/mail-blue.svg';
 import { ReactComponent as LinkIcon } from '../../../svg/individual/social-link.svg';
@@ -29,6 +30,7 @@ registerBlockType( metadata.name, {
 	edit: function ShareArticleBlock( { attributes, setAttributes } ) {
 		const {
 			enableTwitter,
+			enableBluesky,
 			enableFacebook,
 			enableLinkedIn,
 			enableEmail,
@@ -41,7 +43,7 @@ registerBlockType( metadata.name, {
 
 		return (
 			<div { ...blockProps }>
-				{ ( ! enableTwitter && ! enableFacebook && ! enableLinkedIn && ! enableEmail && ! enableCopyLink ) && (
+				{ ( ! enableTwitter && ! enableBluesky && ! enableFacebook && ! enableLinkedIn && ! enableEmail && ! enableCopyLink ) && (
 					<small>{ __( '(No social share will be shown)', 'shiro-admin' ) }</small>
 				) }
 				<div className="share-button-container share-article">
@@ -69,6 +71,18 @@ registerBlockType( metadata.name, {
 										rel="noopener noreferrer"
 									>
 										<TwitterIcon />
+									</a>
+								</div>
+							) }
+
+							{ enableBluesky && (
+								<div className="share-article__link">
+									<a
+										href={`https://bsky.app/intent/compose?text=${encodeURIComponent(window.location.href)}`}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										<BlueskyIcon />
 									</a>
 								</div>
 							) }
@@ -130,6 +144,11 @@ registerBlockType( metadata.name, {
 							checked={ enableTwitter }
 							label={ __( 'Enable Twitter share', 'shiro-admin' ) }
 							onChange={ ( enableTwitter ) => setAttributes( { enableTwitter } ) }
+						/>
+						<ToggleControl
+							checked={ enableBluesky }
+							label={ __( 'Enable Bluesky share', 'shiro-admin' ) }
+							onChange={ ( enableBluesky ) => setAttributes( { enableBluesky } ) }
 						/>
 						<ToggleControl
 							checked={ enableFacebook }
