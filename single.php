@@ -81,11 +81,7 @@ while ( have_posts() ) {
 		<?php
 		if ( ! $has_social_share ) {
 			echo '<div>';
-				echo wp_kses_post(
-					render_block( [
-						'blockName' => 'shiro/share-article',
-					] )
-				);
+				block_template_part( 'share-article' );
 			echo '</div>';
 		}
 

@@ -398,6 +398,10 @@ function add_theme_supports() {
 
 	// Allow for "wide" and "full" alignment options on blocks that support them.
 	add_theme_support( 'align-wide' );
+
+	// Add support for block template parts.
+	// See https://learn.wordpress.org/tutorial/using-block-template-parts-in-classic-themes/.
+	add_theme_support( 'block-template-parts' );
 }
 
 /**

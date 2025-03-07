@@ -1,10 +1,10 @@
 .share-button-container {
-	width: 150px;
 	position: relative;
 
 	> button {
 		cursor: pointer;
 		display: inline-flex;
+		width: 150px;
 
 		&:focus {
 			box-shadow: 0 0 0 2.5px $color-blue;
