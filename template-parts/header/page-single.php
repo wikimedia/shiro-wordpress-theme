@@ -51,13 +51,7 @@ $allowed_tags = [
 				</div>
 			<?php endif; ?>
 
-			<?php
-			echo wp_kses_post(
-				render_block( [
-					'blockName' => 'shiro/share-article',
-				] )
-			);
-			?>
+			<?php block_template_part( 'share-article' ); ?>
 		</div>
 	</div>
 </div>
