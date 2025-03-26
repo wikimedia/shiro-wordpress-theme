@@ -11,7 +11,7 @@ const { dirname, resolve, basename } = require( 'path' );
 const { globSync } = require( 'glob' );
 const CopyPlugin = require( 'copy-webpack-plugin' );
 const MiniCSSExtractPlugin = require( 'mini-css-extract-plugin' );
-const RtlCssPlugin = require( 'rtlcss-webpack-plugin' );
+const RtlCssPlugin = require( '@wordpress/scripts/plugins/rtlcss-webpack-plugin' );
 const { WebpackManifestPlugin } = require( 'webpack-manifest-plugin' );
 
 // Import the original config from the @wordpress/scripts package.
