@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "title": "Post Heading controls",
+  "name": "shiro/blog-post-heading",
+  "textdomain": "shiro-admin",
+  "category": "wikimedia",
+  "icon": "cover-image",
+  "description": "Editor controls for selecting featured image and post intro.",
+  "supports": {
+    "inserter": false,
+    "multiple": false,
+    "reusable": false
+  },
+  "attributes": {
+    "postIntro": {
+      "type": "string",
+      "multiline": "p",
+      "source": "meta",
+      "meta": "page_intro"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css"
+}
