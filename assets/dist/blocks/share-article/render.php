@@ -8,12 +8,13 @@
  */
 
 $enable_twitter = ( ! empty( $attributes['enableTwitter'] ) && ! empty( wmf_get_share_url( 'twitter' ) ) ) ? true : false;
+$enable_bluesky = ( ! empty( $attributes['enableBluesky'] ) && ! empty( wmf_get_share_url( 'bluesky' ) ) ) ? true : false;
 $enable_facebook = ( ! empty( $attributes['enableFacebook'] ) && wmf_get_share_url( 'facebook' ) ) ? true : false;
 $enable_linkedin = ( ! empty( $attributes['enableLinkedIn'] ) && wmf_get_share_url( 'linkedin' ) ) ? true : false;
 $enable_mail = $attributes['enableEmail'] ? true : false;
 $enable_link = $attributes['enableCopyLink'] ? true : false;
 
-if ( $enable_twitter || $enable_facebook || $enable_linkedin || $enable_mail || $enable_link ) :
+if ( $enable_twitter || $enable_bluesky || $enable_facebook || $enable_linkedin || $enable_mail || $enable_link ) :
 	?>
 		<div class="share-button-container share-article">
 			<button
@@ -39,6 +40,11 @@ if ( $enable_twitter || $enable_facebook || $enable_linkedin || $enable_mail || 
 				<?php if ( $enable_twitter ) : ?>
 				<a href="<?php echo esc_url( wmf_get_share_url( 'twitter' ) ); ?>" class="share-option" role="menuitem" tabindex="-1" data-platform="Twitter" target="_blank" rel="noreferrer noopener">
 					<?php wmf_show_icon( 'social-twitter-blue' ); ?> Twitter
+				</a>
+				<?php endif; ?>
+				<?php if ( $enable_bluesky ) : ?>
+				<a href="<?php echo esc_url( wmf_get_share_url( 'bluesky' ) ); ?>" class="share-option" role="menuitem" tabindex="-1" data-platform="Bluesky" target="_blank" rel="noreferrer noopener">
+					<?php wmf_show_icon( 'social-bluesky-blue' ); ?> Bluesky
 				</a>
 				<?php endif; ?>
 				<?php if ( $enable_linkedin ) : ?>
