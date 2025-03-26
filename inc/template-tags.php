@@ -148,6 +148,13 @@ function wmf_get_share_url( $service, $args = [] ) {
 				$args['message']
 			);
 			break;
+		case 'bluesky':
+			$uri = sprintf(
+				'https://bsky.app/intent/compose?text=%2$s%1$s',
+				$args['uri'],
+				$args['message']
+			);
+			break;
 		case 'linkedin':
 			$uri = sprintf(
 				'https://www.linkedin.com/shareArticle?mini=true&url=%1$s&title=%2$s',

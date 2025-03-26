@@ -1,9 +1,10 @@
 .share-button-container {
-	width: 150px;
-    position: relative;
+	position: relative;
 
 	> button {
+		cursor: pointer;
 		display: inline-flex;
+		width: 150px;
 
 		&:focus {
 			box-shadow: 0 0 0 2.5px $color-blue;
@@ -11,20 +12,22 @@
 		}
 
 		span {
-			display: inline-block;
+			display: flex;
+			align-items: center;
 		}
 
 		svg {
 			width: rem(20);
 			height: rem(20);
+			margin: 0 .25rem;
 			vertical-align: text-bottom;
 		}
 	}
 }
 
 .share-options {
-	top: 100%;
-	left: 0;
+	top: calc( 100% + 5px );
+	left: -10px;
 	background: white;
 	border: 1px solid #ddd;
 	border-radius: 4px;
@@ -51,7 +54,7 @@
 	}
 
 	.share-option {
-		padding: 10px 15px;
+		padding: 10px 15px 10px 10px;
 		text-decoration: none;
 		color: #333;
 		font-size: 14px;
