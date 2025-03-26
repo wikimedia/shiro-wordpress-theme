@@ -23,7 +23,7 @@
     "bump:major": "bump major --tag --commit 'Prepare v%s release' package.json assets/src/sass/style.scss"
   },
   "engines": {
-    "node": ">=20",
+    "node": ">=22",
     "npm": ">=10"
   },
   "repository": {
