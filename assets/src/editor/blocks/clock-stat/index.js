@@ -9,32 +9,13 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import './style.scss';
+import metadata from './block.json';
 import wrapCharacters from '../clock/wrap-characters';
 
-export const name = 'shiro/clock-stat';
+import './style.scss';
 
-export const settings = {
-	icon: 'star-filled',
-	title: __( 'Clock Stat', 'shiro-admin' ),
-	category: 'wikimedia',
-	description: __(
-		'Adds a stat row to the clock block.',
-		'shiro-admin'
-	),
-	attributes: {
-		label: {
-			type: 'string',
-			source: 'html',
-			selector: '.clock-stat__label',
-		},
-		stat: {
-			type: 'string',
-			source: 'html',
-			selector: '.clock-stat__stat',
-		},
-	},
-	parent: [ 'shiro/clock' ],
+registerBlockType( metadata.name, {
+	...metadata,
 
 	/**
 	 * Edit component used to manage the clock block.
@@ -105,4 +86,12 @@ export const settings = {
 			</div>
 		);
 	},
-};
+} );
+
+// Block HMR boilerplate.
+if ( module.hot ) {
+	module.hot.accept();
+	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
+	module.hot.dispose( deregister( metadata.name ) );
+	refresh( metadata.name, module.hot.data );
+}
