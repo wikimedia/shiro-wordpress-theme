@@ -12,22 +12,12 @@ concurrency:
 jobs:
   release:
     name: "Update release branch"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-
-      - uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
-        with:
-          node-version: '22'
-          cache: 'npm'
-
-      - name: Merge and build
-        uses: ./.github/actions/build-to-release-branch
-        with:
-          source_branch: main
-          release_branch: release
-          built_asset_paths: assets/dist
-          build_script: |
-            npm ci
-            npm run build
+    uses: humanmade/hm-github-actions/.github/workflows/build-and-release-node.yml@a9a243d6c42fbff4a967d7ce0a6b307bc77251b7 # v0.1.0
+    with:
+      node_version: 22
+      source_branch: main
+      release_branch: release
+      built_asset_paths: assets/dist
+      build_script: |
+        npm ci
+        npm run build
