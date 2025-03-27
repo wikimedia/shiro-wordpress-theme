@@ -80,14 +80,9 @@ while ( have_posts() ) {
 
 		<?php
 		if ( ! $has_social_share ) {
-			echo wp_kses_post(
-				\WMF\Editor\Blocks\ShareArticle\render_block(
-					array(
-						'enableTwitter'  => true,
-						'enableFacebook' => true,
-					)
-				)
-			);
+			echo '<div>';
+				block_template_part( 'share-article' );
+			echo '</div>';
 		}
 
 		if ( ! $has_read_more_categories ) {

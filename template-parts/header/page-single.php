@@ -51,13 +51,7 @@ $allowed_tags = [
 				</div>
 			<?php endif; ?>
 
-			<?php
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo \WMF\Editor\Blocks\ShareArticle\render_block( [
-				'enableTwitter'  => true,
-				'enableFacebook' => true,
-			] );
-			?>
+			<?php block_template_part( 'share-article' ); ?>
 		</div>
 	</div>
 </div>

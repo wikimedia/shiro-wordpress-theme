@@ -1,5 +1,5 @@
 /**
- * Collect any "Donate" buttons on the page and set their utm_source.
+ * Collect any "Donate" buttons on the page and set their wmf_source.
  *
  * Searches for any links to donate.wikimedia.org, and replaces their hrefs to
  * include UTM parameters in the query strings.
@@ -11,7 +11,7 @@ const init = () => {
 	donationButtons.forEach( link => {
 		const { search } = link;
 		const params = new URLSearchParams( search );
-		params.set( 'utm_source', object_id );
+		params.set( 'wmf_source', object_id );
 		link.href = link.href.replace( search, `?${ params.toString() }` );
 	} );
 };

@@ -14,7 +14,7 @@ runs:
 
   steps:
     - name: Set up PHP
-      uses: shivammathur/setup-php@v2
+      uses: shivammathur/setup-php@9e72090525849c5e82e596468b86eb55e9cc5401 # v2.32.0
       with:
         php-version: ${{ matrix.php-version }}
         coverage: none
@@ -29,7 +29,7 @@ runs:
 
     - name: Cache dependencies
       id: cache-php-dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
       with:
         path: ${{ steps.composer-cache.outputs.dir }}
         key: php-${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('composer.lock') }}-${{ inputs.cache_version }}

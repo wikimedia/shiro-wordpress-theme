@@ -126,6 +126,7 @@ function wmf_get_share_url( $service, $args = [] ) {
 	$default = array(
 		'uri'     => get_permalink(),
 		'message' => '',
+		'title'   => get_the_title(),
 	);
 
 	$args = wp_parse_args( $args, $default );
@@ -145,6 +146,27 @@ function wmf_get_share_url( $service, $args = [] ) {
 				'http://twitter.com/intent/tweet?text=%2$s %1$s',
 				$args['uri'],
 				$args['message']
+			);
+			break;
+		case 'bluesky':
+			$uri = sprintf(
+				'https://bsky.app/intent/compose?text=%2$s%1$s',
+				$args['uri'],
+				$args['message']
+			);
+			break;
+		case 'linkedin':
+			$uri = sprintf(
+				'https://www.linkedin.com/shareArticle?mini=true&url=%1$s&title=%2$s',
+				$args['uri'],
+				$args['message']
+			);
+			break;
+		case 'email':
+			$uri = sprintf(
+				'mailto:?subject=%2$s&body=%1$s',
+				$args['uri'],
+				$args['title']
 			);
 			break;
 	}

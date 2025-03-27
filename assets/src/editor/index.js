@@ -27,7 +27,6 @@ import * as profile from './blocks/profile';
 import * as profileList from './blocks/profile-list';
 import * as readMoreCategories from './blocks/read-more-categories';
 import * as reportLandingHero from './blocks/report-landing-hero';
-import * as shareArticle from './blocks/share-article';
 import * as spotlight from './blocks/spotlight';
 import * as stair from './blocks/stair';
 import * as stairs from './blocks/stairs';
@@ -63,7 +62,6 @@ const blocks = [
 	profileList,
 	readMoreCategories,
 	reportLandingHero,
-	shareArticle,
 	spotlight,
 	stair,
 	stairs,
