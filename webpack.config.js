@@ -62,7 +62,6 @@ const legacyEntries = {
 const hashedEntries = {
 	shiro: './assets/src/scripts/shiro.js',
 	editor: './assets/src/editor/index.js',
-	'blocks/clock': './assets/src/editor/blocks/clock/view.js',
 };
 
 const themeStylesheets = {
