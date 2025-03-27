@@ -31,7 +31,7 @@
   "shiro.php": "shiro-6fd1f2e792d9a56e0483.asset.php",
   "editor.css": "editor-2ec1252720bcf921daaf.css",
   "editor.js": "editor-2ec1252720bcf921daaf.js",
-  "editor-rtl.css": "editor-2ec1252720bcf921daaf-rtl.css",
+  "editor-rtl.css": "editor-rtl.css",
   "editor.php": "editor-2ec1252720bcf921daaf.asset.php",
   "blocks/clock.js": "blocks/clock-2bba1c02883f5875cd70.js",
   "blocks/clock.php": "blocks/clock-2bba1c02883f5875cd70.asset.php",
