@@ -7,6 +7,8 @@
  * @package shiro
  */
 
+use WMF\Images\Credits;
+
 // phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 // TODO: Consider namespacing more of these template functions.
 
@@ -224,6 +226,30 @@ function wmf_is_main_site( $site_id = 0 ) {
 	$site_id = empty( $site_id ) ? get_current_blog_id() : $site_id;
 	return (int) get_main_site_id() === (int) $site_id;
 }
+
+/**
+ * Add wp_head output for Mastodon and other custom meta tags.
+ */
+function wmf_add_wp_head_output( $headers ) {
+	// Automatically add credits to all content that is not an archive or search.
+	if ( ! is_archive() && ! is_home() ) {
+		Credits::get_instance( get_the_ID() );
+	}
+	?>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<?php
+	// If set, configure Mastodon handle for verification.
+	$wmf_mastodon_handle_verify = get_site_option( 'mastodon_handle_verify' );
+	if ( ! $wmf_mastodon_handle_verify ) {
+		return;
+	} ?>
+
+	<link rel="me" href="https://wikimedia.social/@<?php echo esc_attr( $wmf_mastodon_handle_verify ); ?>">
+
+	<?php
+}
+add_action( 'wp_head', 'wmf_add_wp_head_output' );
 
 /**
  * Filter X-hacker output.
