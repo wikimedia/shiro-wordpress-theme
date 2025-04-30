@@ -23,8 +23,6 @@ $translations = array_filter( wmf_get_translations(), function ( $translation ) 
 			data-dropdown-content=".language-switcher__content"
 			data-visible="no" data-trap="inactive" data-backdrop="inactive" data-toggleable="yes"
 		<?php endif; ?>>
-		<?php get_template_part( 'template-parts/site-header/toggle' ); ?>
-		<?php get_template_part( 'template-parts/site-header/logo' ); ?>
 		<div class='nav-search nav-search--desktop'>
 			<?php get_template_part( 'template-parts/site-navigation/search' ); ?>
 		</div>
