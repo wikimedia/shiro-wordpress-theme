@@ -2,7 +2,7 @@
 @mixin alignfull( $content-column: 1200px ) {
 	margin-left: calc( var(--wp--style--root--padding-left) * -1 ) !important;
 	margin-right: calc( var(--wp--style--root--padding-right) * -1 ) !important;
-	max-width: unset;
+	max-width: none !important;
 	width: 100vw;
 }
 

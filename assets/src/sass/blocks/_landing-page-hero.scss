@@ -1,5 +1,4 @@
 .hero {
-	@include alignfull;
 	@include global-margin-bottom;
 
 	&__header {
@@ -19,6 +18,8 @@
 	}
 
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
+		max-width: none !important;
+		overflow: hidden;
 
 		&__header {
 			box-sizing: content-box;
