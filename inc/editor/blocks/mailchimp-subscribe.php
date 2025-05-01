@@ -28,10 +28,18 @@ function render_block( $block_attributes, $content ) {
 	$group_number_id = 'mce-group[' . $group_number . ']-' . $group_number . '-1';
 
 	$input_placeholder = empty( $block_attributes['inputPlaceholder'] ) ?
-		__( 'Email address', 'shiro' ) :
+		__( 'Enter your email', 'shiro' ) :
 		$block_attributes['inputPlaceholder'];
 
-	$form_start = '<form action="' . esc_url( $action ) . '" method="POST" class="mailchimp-subscribe__form">';
+	$form_class = 'mailchimp-subscribe__form';
+	if ( $block_attributes['align'] ) {
+		$form_class .= ' align' . $block_attributes['align'];
+	}
+	if ( $block_attributes['backgroundColor'] ) {
+		$form_class .= ' has-background has-' . $block_attributes['backgroundColor'] . '-background-color';
+	}
+
+	$form_start = '<form action="' . esc_url( $action ) . '" method="POST" class="' . esc_attr( $form_class ) . '">';
 	$form_end   = '</form>';
 	$input_field = '<input' .
 		' class="mailchimp-subscribe__input-field"' .
