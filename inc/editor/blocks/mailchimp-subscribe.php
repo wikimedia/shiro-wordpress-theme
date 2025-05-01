@@ -23,17 +23,9 @@ function bootstrap() {
  * @param string $content          Rendered block inner content.
  */
 function render_block( $block_attributes, $content ) {
-	$action            = get_theme_mod( 'wmf_subscribe_action', Connect::defaults( 'wmf_subscribe_action' ) );
-	$additional_fields = get_theme_mod( 'wmf_subscribe_additional_fields',
-	Connect::defaults( 'wmf_subscribe_additional_fields' ) );
-	$additional_fields = kses_input_fields( $additional_fields );
-
-	/*
-	 * This setting was misused for actual content, strip the current content on
-	 * production. **Can be removed once the setting is correctly used with only
-	 * fields**
-	 */
-	$additional_fields = str_replace( "This mailing list is powered by MailChimp. The Wikimedia Foundation will handle your personal information in accordance with this site's privacy policy.", '', $additional_fields );
+	$action          = get_theme_mod( 'wmf_subscribe_action', Connect::defaults( 'wmf_subscribe_action' ) );
+	$group_number    = get_theme_mod( 'wmf_subscribe_group_number', Connect::defaults( 'wmf_subscribe_group_number' ) );
+	$group_number_id = 'mce-group[' . $group_number . ']-' . $group_number . '-1';
 
 	$input_placeholder = empty( $block_attributes['inputPlaceholder'] ) ?
 		__( 'Email address', 'shiro' ) :
@@ -48,6 +40,7 @@ function render_block( $block_attributes, $content ) {
 		' placeholder="' . esc_attr( $input_placeholder ) . '"' .
 		' required=""' .
 		' type="email" />';
+	$additional_fields = '<input type="hidden" value="2" name="group[' . esc_attr( $group_number ) . ']" id="' . esc_attr( $group_number_id ) . '" />';
 
 	$content = str_replace( '<!-- input_field -->', $input_field, $content );
 
@@ -62,43 +55,4 @@ function register() {
 		'apiVersion' => 2,
 		'render_callback' => __NAMESPACE__ . '\\render_block',
 	) );
-}
-
-/**
- * Strip all HTML except input fields.
- *
- * @param string $input_fields Input fields as set in the post editor.
- *
- * @return string Input fields without other HTML.
- */
-function kses_input_fields( string $input_fields ): string {
-	return wp_kses(
-		$input_fields,
-		array(
-			'input'  => array(
-				'type'        => array(),
-				'name'        => array(),
-				'id'          => array(),
-				'class'       => array(),
-				'required'    => array(),
-				'value'       => array(),
-				'checked'     => array(),
-				'placeholder' => array(),
-			),
-			'label'  => array(
-				'for'   => array(),
-				'class' => array(),
-			),
-			'select' => array(
-				'name'     => array(),
-				'id'       => array(),
-				'class'    => array(),
-				'required' => array(),
-			),
-			'option' => array(
-				'value'    => array(),
-				'selected' => array(),
-			),
-		)
-	);
 }
