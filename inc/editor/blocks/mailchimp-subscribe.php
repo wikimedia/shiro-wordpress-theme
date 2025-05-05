@@ -44,6 +44,19 @@ function mailchimp_resources_dequeue() {
  * @return $block_content The updated block content.
  */
 function filter_mailchimp_output( $block_content, $block ) {
+	// Main block.
+	if ( 'mailchimp/mailchimp' === $block['blockName'] ) {
+		// Remove empty message blocks.
+		$block_content = preg_replace(
+			'/<div class="mc_message_wrapper" id="mc_message">\s*<\/div>/',
+			'',
+			$block_content
+		);
+	
+		return $block_content;
+	}
+	
+	// Form field block.
 	if ( 'mailchimp/mailchimp-form-field' !== $block['blockName'] ) {
 		return $block_content;
 	}
