@@ -11,15 +11,15 @@ namespace WMF\Editor\Blocks\MailChimpSubscribe;
 function bootstrap() {
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\mailchimp_resources_dequeue', 11 );
 	add_filter( 'render_block', __NAMESPACE__ . '\\filter_mailchimp_output', 10, 2 );
+
+	// Remove Mailchimp styles, we'll provide our own.
+	update_option( 'mc_nuke_all_styles', true );
 }
 
 /**
  * Remove uneeded Mailchimp styles & JS that are loaded by the Mailchimp plugin.
  */
 function mailchimp_resources_dequeue() {
-	// Remove Mailchimp styles, we'll provide our own.
-	update_option( 'mc_nuke_all_styles', true );
-
 	// Dequeue resources that aren't needed for the email address field, like datepicker.
 	wp_dequeue_style( 'flick' );
 	wp_dequeue_script( 'jquery-ui-datepicker' );
