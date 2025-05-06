@@ -230,7 +230,7 @@ function wmf_is_main_site( $site_id = 0 ) {
 /**
  * Add wp_head output for Mastodon and other custom meta tags.
  */
-function wmf_add_wp_head_output( $headers ) {
+function wmf_add_wp_head_output() {
 	// Automatically add credits to all content that is not an archive or search.
 	if ( ! is_archive() && ! is_home() ) {
 		Credits::get_instance( get_the_ID() );
