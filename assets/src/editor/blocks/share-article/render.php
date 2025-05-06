@@ -59,9 +59,9 @@ if ( $enable_twitter || $enable_bluesky || $enable_facebook || $enable_linkedin 
 				<?php endif; ?>
 				<?php if ( $enable_link ) : ?>
 					<button class="share-option copy-link" role="menuitem" tabindex="-1">
-						<?php wmf_show_icon( 'social-link' ); ?><?php echo esc_html__( 'Copy Link', 'shiro-admin' ); ?>
+						<?php wmf_show_icon( 'social-link' ); ?><?php echo esc_html__( 'Copy Link', 'shiro' ); ?>
 					</button>
-					<span class="copy-feedback" aria-live="polite" hidden><?php echo esc_html__( 'Link copied!', 'shiro-admin' ); ?></span>
+					<span class="copy-feedback" aria-live="polite" hidden><?php echo esc_html__( 'Link copied', 'shiro' ); ?></span>
 				<?php endif; ?>
 			</div>
 		</div>

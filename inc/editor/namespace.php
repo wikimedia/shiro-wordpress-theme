@@ -79,7 +79,6 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		'shiro/toc',
 		'shiro/toc-columns',
 		'shiro/tweet-this',
-		'shiro/mailchimp-subscribe',
 		'shiro/inline-languages',
 		'shiro/external-link',
 		'shiro/profile',
@@ -93,6 +92,9 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 
 		// Plugin blocks
 		'gravityforms/form',
+		'mailchimp/mailchimp',
+		'mailchimp/mailchimp-form-field',
+		'mailchimp/mailchimp-audience-group',
 
 		// Core blocks
 		'core/paragraph',

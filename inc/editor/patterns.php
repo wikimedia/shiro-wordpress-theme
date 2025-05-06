@@ -76,6 +76,12 @@ function register_pattern() {
 		'content' => CommunicationModule\PATTERN,
 	] );
 
+	register_block_pattern( EmailSubscriptionForm\NAME, [
+		'title' => __( 'Email subscription form', 'shiro-admin' ),
+		'categories' => [ MAIN_CATEGORY_NAME ],
+		'content' => EmailSubscriptionForm\PATTERN,
+	] );
+
 	register_block_pattern( TemplateDefault\NAME, [
 		'title' => __( 'Default Template', 'shiro-admin' ),
 		'categories' => [ TEMPLATE_CATEGORY_NAME ],
