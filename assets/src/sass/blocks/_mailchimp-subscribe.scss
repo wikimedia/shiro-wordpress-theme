@@ -63,6 +63,10 @@
 		flex-grow: 1;
 	}
 
+	.wp-block-mailchimp-mailchimp-form-field .mc_merge_var {
+		margin: 0;
+	}
+
 	.mc_input {
 		background: $background-color-base;
 		border: 1px solid $wmui-color-base0;
@@ -76,18 +80,24 @@
 		}
 	}
 
-	.mc_signup_submit_button,
-	.mc_signup_submit .button {
+	#mc_signup_submit {
 		@include button-black();
 		@include has-font-size("medium");
 		border-radius: 4px;
+		font-weight: 700;
 		margin: 0;
 		padding: rem( 6 ) rem( 22 );
+		width: 100%;
+
+		@media (min-width: #{ ($width-breakpoint-tablet) }) {
+			width: auto;
+		}
 	}
 
 	#mc_unsub_link {
 		@include has-font-size("small");
 		line-height: 1.5;
+		margin: 0;
 		text-align: left;
 
 		a {

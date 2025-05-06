@@ -18,9 +18,7 @@ function bootstrap() {
  */
 function mailchimp_resources_dequeue() {
 	// Remove Mailchimp styles, we'll provide our own.
-	add_filter( 'option_mc_nuke_all_styles', function() {
-		return '1';
-	} );
+	update_option( 'mc_nuke_all_styles', true );
 
 	// Dequeue resources that aren't needed for the email address field, like datepicker.
 	wp_dequeue_style( 'flick' );
