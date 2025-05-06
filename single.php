@@ -95,7 +95,7 @@ while ( have_posts() ) {
 }
 
 $has_blog_list = wmf_enhanced_has_block( 'shiro/blog-list' );
-$has_connect   = wmf_enhanced_has_block( 'shiro/mailchimp-subscribe' ) || wmf_enhanced_has_block( 'shiro/contact' );
+$has_connect   = wmf_enhanced_has_block( 'shiro/contact' );
 $has_spotlight = wmf_enhanced_has_block( 'shiro/spotlight' );
 
 $modules = array(
