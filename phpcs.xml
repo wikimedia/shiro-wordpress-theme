@@ -93,6 +93,4 @@
 			<property name="blank_line_check" value="true"/>
 		</properties>
 	</rule>
-	<!-- Allow short syntax arrays. -->
-	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
 </ruleset>
