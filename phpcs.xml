@@ -94,4 +94,7 @@
 			<property name="blank_line_check" value="true"/>
 		</properties>
 	</rule>
+	<rule ref="Generic.Arrays.DisallowShortArraySyntax.Found">
+		<exclude-pattern>*</exclude-pattern>
+	</rule>
 </ruleset>
