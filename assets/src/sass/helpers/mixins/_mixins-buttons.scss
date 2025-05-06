@@ -102,6 +102,7 @@
 @mixin button-black() {
 	background-color: $wmui-color-base0;
 	border: 2px solid $wmui-color-base0;
+	color: $color-base--inverted;
 	transition: $transition-duration-base background-color;
 
 	&:hover,

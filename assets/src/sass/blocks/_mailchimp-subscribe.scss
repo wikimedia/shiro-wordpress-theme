@@ -1,3 +1,4 @@
+.block-editor-block-list__block.wp-block-mailchimp-mailchimp,
 .mc_container {
 	display: grid;
 	column-gap: rem(40);
@@ -52,6 +53,10 @@
 
 	.mc_message_wrapper {
 		flex-basis: 100%;
+
+		&:empty {
+			display: none;
+		}
 	}
 
 	.wp-block-mailchimp-mailchimp-form-field {
@@ -71,7 +76,8 @@
 		}
 	}
 
-	.mc_signup_submit_button {
+	.mc_signup_submit_button,
+	.mc_signup_submit .button {
 		@include button-black();
 		@include has-font-size("medium");
 		border-radius: 4px;
@@ -86,6 +92,7 @@
 
 		a {
 			color: inherit;
+			font-size: inherit;
 		}
 	}
 }
