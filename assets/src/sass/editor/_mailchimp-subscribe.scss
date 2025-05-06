@@ -1,21 +1,6 @@
 .block-editor-block-list__block.wp-block-mailchimp-mailchimp {
-	.wp-block-mailchimp-mailchimp-form-field .mc_merge_var {
-		margin: 0;
-	}
-
-	#mc_unsub_link {
-		margin: 0;
-	}
-
 	.mc_input {
 		line-height: normal;
-	}
-
-	#mc_signup_submit {
-		font-weight: 700;
-		margin: 0;
-		padding: rem( 6 ) rem( 22 );
-		width: 100%;
 	}
 
 	@media (min-width: #{ ($width-breakpoint-tablet) }) {
@@ -47,10 +32,6 @@
 
 		.block-editor-inner-blocks {
 			flex-grow: 1;
-		}
-
-		#mc_signup_submit {
-			width: auto;
 		}
 	}
 }
