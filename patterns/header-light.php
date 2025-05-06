@@ -11,7 +11,6 @@
  * Inserter: true
  */
 
-//phpcs:ignore WordPressVIPMinimum.Security.Mustache
 ?>
 
 <!-- wp:group {"tagName":"header","metadata":{"name":"Header"},"align":"full","className":"site-header","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","right":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}},"elements":{"link":{"color":{"text":"var:preset|color|main"}}},"border":{"bottom":{"color":"var:preset|color|border-light","width":"1px"},"top":{},"right":{},"left":{}}},"backgroundColor":"base","layout":{"inherit":true,"type":"constrained"}} -->
