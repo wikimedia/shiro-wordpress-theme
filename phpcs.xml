@@ -39,6 +39,7 @@
 		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
 		<exclude name="Internal.NoCodeFound"/>
 		<!-- We prefer short arrays. -->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
 		<!-- Do not require = and => alignment. -->
 		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned"/>
