@@ -25,12 +25,7 @@ function mailchimp_resources_dequeue() {
 	wp_dequeue_script( 'jquery-ui-datepicker' );
 	remove_action( 'wp_head', 'mc_datepicker_load' );
 
-	// Get blocks and dequeue all other mailchimp resources if the block isn't in use.
-	if ( has_block( 'mailchimp/mailchimp' ) ) {
-		return;
-	}
-
-	// If the block isn't present, remove the main Mailchimp JS.
+	// Remove the main Mailchimp JS. It doesn't seem to be needed for the form validation.
 	wp_dequeue_script( 'mailchimp_sf_main_js' );
 }
 
