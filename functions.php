@@ -313,6 +313,7 @@ require get_template_directory() . '/inc/classes/class-autoload.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/classes/customizer/class-base.php';
+WMF\Customizer\bootstrap();
 
 /**
  * Custom Fields functions.

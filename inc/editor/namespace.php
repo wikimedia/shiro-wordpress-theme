@@ -418,7 +418,7 @@ function add_theme_supports() {
  * Register block styles for core blocks, to correspond with CSS classes loaded
  * by the theme which apply different rules to those blocks' frontend display.
  */
-function register_core_block_styles() : void {
+function register_core_block_styles(): void {
 	// Add styles to Table block.
 	register_block_style(
 		'core/table',

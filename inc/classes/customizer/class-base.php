@@ -91,6 +91,13 @@ abstract class Base {
 }
 
 /**
+ * Bootstrap customizer functionality.
+ */
+function bootstrap() {
+	add_action( 'init', '\\' . __NAMESPACE__ . '\load_customizer_classes' );
+}
+
+/**
  * Instantiates and loads the various customizer classes.
  */
 function load_customizer_classes() {
@@ -111,4 +118,3 @@ function load_customizer_classes() {
 		$customizer_obj->run();
 	}
 }
-add_action( 'init', '\\' . __NAMESPACE__ . '\load_customizer_classes' );
