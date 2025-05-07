@@ -18,8 +18,6 @@ $template_args = array(
 	'h1_title' => get_theme_mod( 'wmf_404_title', __( 'Imagine a world in which there is a page here', 'shiro-admin' ) ),
 );
 
-$wmf_search_button      = get_theme_mod( 'wmf_search_button_copy', __( 'Search', 'shiro-admin' ) );
-$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'What are you looking for?', 'shiro-admin' ) );
 $wmf_404_copy           = get_theme_mod( 'wmf_404_copy' );
 $wmf_404_search_text    = get_theme_mod( 'wmf_404_search_text', __( 'What are you looking for?', 'shiro-admin' ) );
 
@@ -39,7 +37,7 @@ get_template_part( 'template-parts/header/page', '404', $template_args );
 	<div class="search-container no-margin aligncenter">
 		<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<input class="search-input mar-bottom" type="search" placeholder="<?php echo esc_attr( $wmf_404_search_text ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s">
-			<button class="btn btn-blue search-btn" type="submit"><?php echo esc_html( $wmf_search_button ); ?></button>
+			<button class="btn btn-blue search-btn" type="submit"><?php echo esc_html( __( 'Search', 'shiro-admin' ) ); ?></button>
 		</form>
 	</div>
 </div>

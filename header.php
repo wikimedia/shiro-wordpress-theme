@@ -15,18 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // File should never be accessed directly.
 }
 
-$wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro-admin' ) );
-$wmf_translations         = array_filter( wmf_get_translations(), function ( $translation ) {
-	return $translation['uri'] !== '';
-} );
-
-$wmf_donate_button = get_theme_mod( 'wmf_donate_now_copy', __( 'Donate', 'shiro-admin' ) );
-$wmf_donate_uri    = get_theme_mod( 'wmf_donate_now_uri', 'https://donate.wikimedia.org/?wmf_medium=wmfSite&wmf_campaign=comms' );
-$wmf_toggle_menu_label = get_theme_mod( 'wmf_toggle_menu_label', __( 'Toggle menu', 'shiro-admin' ) );
 $wmf_skip2_content_label = get_theme_mod( 'wmf_skip2_content_label', __( 'Skip to content', 'shiro-admin' ) );
-$wmf_skip2_navigation_label = get_theme_mod( 'wmf_skip2_navigation_label', __( 'Skip to navigation', 'shiro-admin' ) );
-$wmf_select_language_label = get_theme_mod( 'wmf_select_language_label', __( 'Select language', 'shiro-admin' ) );
-$wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( 'Current language:', 'shiro-admin' ) );
 $wmf_post_thumbnail_url = get_the_post_thumbnail_url( get_the_ID() );
 $wmf_ogmeta_ogimageurl = get_site_option( 'ogmeta_ogimageurl' );
 ?>
@@ -53,11 +42,9 @@ elseif ( $wmf_ogmeta_ogimageurl && ! ( is_plugin_active( 'wordpress-seo/wp-seo.p
 <body <?php body_class(); ?>>
 	<div data-dropdown-backdrop></div>
 	<a class="skip-link screen-reader-text" href="#content"><?php echo esc_html( $wmf_skip2_content_label ); ?></a>
-<div class="mobile-cover"></div>
-<div id="page" class="site">
-	<?php block_template_part( 'header' ); ?>
-	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>">
-		<div class="header-inner mw-980">
-			<?php wmf_translation_alert(); ?>
-
+	<div id="page" class="site">
+		<?php block_template_part( 'header' ); ?>
+		<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>">
+			<div class="header-inner mw-980">
+				<?php wmf_translation_alert(); ?>
 <?php

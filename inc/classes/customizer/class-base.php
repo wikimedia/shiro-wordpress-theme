@@ -99,7 +99,6 @@ function load_customizer_classes() {
 		'Identity',
 		'Connect',
 		'General',
-		'Header',
 		'Social',
 		'Profile',
 		'Page',

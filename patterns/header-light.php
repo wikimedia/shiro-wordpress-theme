@@ -35,7 +35,7 @@ $translations = array_filter( wmf_get_translations(), function ( $translation ) 
 		<?php endif; ?>>
 	<!-- wp:site-logo {"width":144,"shouldSyncIcon":false} /-->
 
-	<!-- wp:navigation {"openSubmenusOnClick":true,"icon":"menu","style":{"spacing":{"blockGap":"var:preset|spacing|small"},"layout":{"selfStretch":"fit","flexSize":null}},"fontSize":"small"} /-->
+	<!-- wp:navigation {"ref":77177,"openSubmenusOnClick":true,"icon":"menu","style":{"spacing":{"blockGap":"var:preset|spacing|small"},"layout":{"selfStretch":"fit","flexSize":null}},"fontSize":"small"} /-->
 	<?php get_template_part( 'template-parts/site-header/language-switcher', null, [ 'translations' => $translations ] ); ?>
 	<!-- wp:buttons -->
 	<div class="wp-block-buttons"><!-- wp:button -->

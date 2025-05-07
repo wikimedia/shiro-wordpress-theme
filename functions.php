@@ -37,13 +37,6 @@ function wmf_setup() {
 	 */
 	add_theme_support( 'post-thumbnails' );
 
-	/*
-	 * Enable support for Custom Header.
-	 *
-	 * @link https://codex.wordpress.org/Custom_Headers
-	 */
-	add_theme_support( 'custom-header' );
-
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
