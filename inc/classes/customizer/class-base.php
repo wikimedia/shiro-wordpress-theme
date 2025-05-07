@@ -100,7 +100,6 @@ function load_customizer_classes() {
 		'Connect',
 		'General',
 		'Header',
-		'Footer',
 		'Social',
 		'Profile',
 		'Page',
