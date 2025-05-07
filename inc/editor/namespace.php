@@ -131,6 +131,16 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		$blocks[] = 'shiro/report-landing-hero';
 	}
 
+	if ( ( $block_editor_context->name ?? '' ) === 'core/edit-site' ) {
+		$blocks[] = 'core/navigation';
+		$blocks[] = 'core/search';
+		$blocks[] = 'core/site-logo';
+		$blocks[] = 'core/site-tagline';
+		$blocks[] = 'core/site-title';
+		$blocks[] = 'core/social-links';
+		$blocks[] = 'core/social-link';
+	}
+
 	return $blocks;
 }
 
