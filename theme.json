@@ -116,39 +116,39 @@
 			"defaultSpacingSizes": false,
 			"spacingSizes": [
 				{
-					"name": "Small",
-					"size": "clamp(.5rem, 2.5vw, 1rem)",
-					"slug": "small"
+					"name": "8",
+					"size": "0.5rem",
+					"slug": "8"
 				},
 				{
-					"name": "Medium",
-					"size": "clamp(1.5rem, 4vw, 2rem)",
-					"slug": "medium"
+					"name": "16",
+					"size": "clamp(0.5rem, 0.91vw + 0.32rem, 1rem)",
+					"slug": "16"
 				},
 				{
-					"name": "Large",
-					"size": "clamp(2rem, 5vw, 3rem)",
-					"slug": "large"
+					"name": "24",
+					"size": "clamp(1rem, 0.91vw + 0.82rem, 1.5rem)",
+					"slug": "24"
 				},
 				{
-					"name": "Extra Large",
-					"size": "clamp(3rem, 7vw, 5rem)",
-					"slug": "x-large"
+					"name": "32",
+					"size": "clamp(1rem, 1.82vw + 0.64rem, 2rem)",
+					"slug": "32"
 				},
 				{
-					"name": "2xl",
-					"size": "clamp(4rem, 9vw, 7rem)",
-					"slug": "xx-large"
+					"name": "40",
+					"size": "clamp(1rem, 2.73vw + 0.45rem, 2.5rem)",
+					"slug": "40"
 				},
 				{
-					"name": "3xl",
-					"size": "clamp(5rem, 12vw, 9rem)",
-					"slug": "xxx-large"
+					"name": "64",
+					"size": "clamp(2rem, 3.64vw + 1.27rem, 4rem)",
+					"slug": "64"
 				},
 				{
-					"name": "4xl",
-					"size": "clamp(6rem, 14vw, 13rem)",
-					"slug": "xxxx-large"
+					"name": "80",
+					"size": "clamp(2.5rem, 4.55vw + 1.59rem, 5rem)",
+					"slug": "80"
 				}
 			],
 			"blockGap": true,
