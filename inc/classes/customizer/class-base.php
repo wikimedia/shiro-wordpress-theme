@@ -5,6 +5,8 @@
  * @package shiro
  */
 
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
+
 namespace WMF\Customizer;
 
 use WP_Query;
