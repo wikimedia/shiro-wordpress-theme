@@ -1,16 +1,13 @@
 @use "sass:math";
 
 .blog-list {
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 100%;
-	width: rem(980);
+	margin-bottom: var(--wp--preset--spacing--80);
+	margin-top: var(--wp--preset--spacing--80);
 }
 
 .blog-post {
 	display: flex;
 	flex-direction: column;
-	padding: rem(20) 0;
 
 	// Blog posts have too small a width to properly display blog lists, so
 	// they need special handling if inserted directly into the editor.
@@ -24,6 +21,11 @@
 			margin-left: rem(math.div(980 - 640, -2));
 			margin-right: rem(math.div(980 - 640, -2));
 		}
+	}
+
+	&:not(:last-of-type) {
+		border-bottom: 1px solid var(--wp--preset--color--border-base);
+		padding-bottom: var(--wp--preset--spacing--40);
 	}
 
 	&__image {
@@ -121,7 +123,6 @@
 		align-items: stretch;
 		flex-direction: row-reverse;
 		justify-content: flex-end;
-		padding: rem(40) 0;
 
 		&__image-link,
 		&__content {

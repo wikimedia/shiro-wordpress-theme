@@ -32,7 +32,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 <?php get_template_part( 'template-parts/post-list-filters' ); ?>
 
 <div class="mw-980">
-	<div class="blog-list">
+	<div class="blog-list is-layout-flow">
 
 		<?php
 		$post = get_post( $featured_post_id );

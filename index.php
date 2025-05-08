@@ -35,7 +35,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 <div class="w-100p news-list-container news-card-list mod-margin-bottom">
 	<div class="mw-980">
 		<?php if ( have_posts() ) : ?>
-		<div class="blog-list">
+		<div class="blog-list is-layout-flow">
 			<?php
 			while ( have_posts() ) :
 				the_post();
