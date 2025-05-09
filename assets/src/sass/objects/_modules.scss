@@ -260,29 +260,6 @@ a.hover-img-zoom {
 	}
 }
 
-.card-list-container {
-
-	.img-container {
-		position: relative;
-
-		&:after {
-			@include absolute-full-cover();
-			background: rgba(0, 0, 0, 0);
-			transition: 0.3s all;
-		}
-	}
-
-	.darken-img {
-
-		.img-container {
-
-			&:after {
-				background: rgba(0, 0, 0, .25);
-			}
-		}
-	}
-}
-
 // Social module on single post
 .social-share-aside {
 	width: 120px;

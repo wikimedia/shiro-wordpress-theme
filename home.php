@@ -31,7 +31,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 <?php get_template_part( 'template-parts/post-list-filters' ); ?>
 
-<div class="mw-980">
+<div class="module-area is-layout-constrained">
 	<div class="blog-list is-layout-flow">
 
 		<?php
@@ -74,7 +74,10 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 if ( have_posts() ) :
 	get_template_part( 'template-parts/pagination' );
 endif;
+?>
 
+<div class="module-area is-layout-constrained">
+<?php
 $modules = array(
 	'support',
 	'connect',
@@ -83,5 +86,8 @@ $modules = array(
 foreach ( $modules as $module ) {
 	get_template_part( 'template-parts/page/page', $module );
 }
+?>
+</div>
 
+<?php
 get_footer();

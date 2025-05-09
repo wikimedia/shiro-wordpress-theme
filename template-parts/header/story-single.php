@@ -28,4 +28,4 @@ $story_name   = ! empty( $story_header_data['back_to_label'] ) ? $story_header_d
 </div>
 </header>
 
-<main id="content">
+<main id="content" class="module-area is-layout-constrained">

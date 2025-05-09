@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Automatically add credits to all content that is not an archive or search.
-if ( ! is_archive() && ! is_home() ) {
+if ( ! is_archive() && ! is_home() && ! is_404() ) {
 	get_template_part( 'template-parts/modules/images/credits', null, array( 'image_ids' => Credits::get_instance()->get_ids() ) );
 }
 ?>

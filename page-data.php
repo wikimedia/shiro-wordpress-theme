@@ -30,8 +30,8 @@ while ( have_posts() ) {
 	} else {
 		get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 		?>
-		<div class="mw-980">
-			<div class="page-intro wysiwyg">
+		<div class="alignwide">
+			<div class="page-intro">
 				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
 			</div>
 		</div>
@@ -46,7 +46,7 @@ while ( have_posts() ) {
 	get_template_part( 'template-parts/page/page', 'stats-profiles' );
 	?>
 
-	<div class="mw-980 mod-margin-bottom_sm flex flex-medium data-template toc__section">
+	<div class="alignwide flex flex-medium data-template toc__section">
 
 		<div class="w-32p toc__sidebar">
 			<?php get_sidebar( 'list' ); ?>
@@ -59,7 +59,8 @@ while ( have_posts() ) {
 		</div>
 
 	</div>
-
+	
+	<div class="module-area is-layout-constrained">
 	<?php
 	$modules = array(
 		'social',
@@ -77,5 +78,9 @@ while ( have_posts() ) {
 	foreach ( $modules as $module ) {
 		get_template_part( 'template-parts/page/page', $module );
 	}
+	?>
+	</div>
+
+<?php
 }
 get_footer();

@@ -27,11 +27,14 @@ while ( have_posts() ) {
 	get_template_part( 'template-parts/header/page', 'noimage', $template_args );
 
 	?>
-		<div class="freeform-content">
-			<?php the_content(); ?>
-		</div>
+	<div class="freeform-content">
+		<?php the_content(); ?>
+	</div>
 
-	<?php
-	get_template_part( 'template-parts/page/page', 'connect' );
+	<div class="module-area is-layout-constrained">
+	<?php get_template_part( 'template-parts/page/page', 'connect' ); ?>
+	</div>
+
+<?php
 }
 get_footer();

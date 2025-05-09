@@ -61,4 +61,4 @@ if ( is_countable( $team_name ) && count( $team_name ) > 1 ) {
 </div>
 </header>
 
-<main id="content">
+<main id="content" class="module-area is-layout-constrained">

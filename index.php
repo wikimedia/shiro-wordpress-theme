@@ -32,27 +32,25 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 ?>
 
-<div class="w-100p news-list-container news-card-list mod-margin-bottom">
-	<div class="mw-980">
-		<?php if ( have_posts() ) : ?>
-		<div class="blog-list is-layout-flow">
-			<?php
-			while ( have_posts() ) :
-				the_post();
+<div class="module-area is-layout-constrained">
+	<?php if ( have_posts() ) : ?>
+	<div class="blog-list is-layout-flow">
+		<?php
+		while ( have_posts() ) :
+			the_post();
 
-				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaping is done within wrapped template part.
-				echo WMF\Editor\Blocks\BlogPost\render_block(
-					[ 'post_id' => $post->ID ]
-				);
-			endwhile;
-			?>
-		</div>
-			<?php
-		else :
-			get_template_part( 'template-parts/content', 'none' );
-		endif;
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaping is done within wrapped template part.
+			echo WMF\Editor\Blocks\BlogPost\render_block(
+				[ 'post_id' => $post->ID ]
+			);
+		endwhile;
 		?>
 	</div>
+		<?php
+	else :
+		get_template_part( 'template-parts/content', 'none' );
+	endif;
+	?>
 </div>
 
 <?php

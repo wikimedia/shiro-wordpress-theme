@@ -19,4 +19,4 @@ $bg_color         = $bg_opts['color'] ? 'pink' : 'blue';
 </div>
 </header>
 
-<main id="content">
+<main id="content" class="module-area is-layout-constrained">

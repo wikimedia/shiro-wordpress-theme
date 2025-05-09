@@ -34,7 +34,7 @@ while ( have_posts() ) {
 	get_template_part( 'template-parts/header/index' );
 	?>
 
-	<div class="mw-980 mod-margin-bottom flex flex-medium report-template toc__section">
+	<div class="alignwide flex flex-medium report-template toc__section">
 		<div class="w-32p toc__sidebar">
 			<?php get_sidebar( 'report' ); ?>
 		</div>
@@ -44,6 +44,7 @@ while ( have_posts() ) {
 		</div>
 	</div>
 
+	<div class="module-area is-layout-constrained">
 	<?php
 	$modules = array(
 		'support',
@@ -52,5 +53,9 @@ while ( have_posts() ) {
 	foreach ( $modules as $module ) {
 		get_template_part( 'template-parts/page/page', $module );
 	}
+	?>
+	</div>
+
+<?php
 }
 get_footer();

@@ -33,13 +33,14 @@ while ( have_posts() ) {
 	?>
 
 	<?php if ( ! has_post_thumbnail() ) : ?>
-		<div class="mw-980">
-			<div class="page-intro wysiwyg">
+		<div class="alignwide">
+			<div class="page-intro">
 				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
 			</div>
 		</div>
 	<?php endif; ?>
 
+	<div class="module-area is-layout-constrained">
 	<?php
 	$modules = array(
 		'social',
@@ -58,5 +59,9 @@ while ( have_posts() ) {
 	foreach ( $modules as $module ) {
 		get_template_part( 'template-parts/page/page', $module );
 	}
+	?>
+	</div>
+
+<?php
 }
 get_footer();

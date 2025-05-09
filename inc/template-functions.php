@@ -31,9 +31,9 @@ add_filter( 'body_class', 'wmf_body_classes' );
  */
 function wmf_get_header_container_class() {
 	if ( is_front_page() && ! has_blocks() ) {
-		$class = 'header-home';
+		$class = 'module-area is-layout-constrained header-home';
 	} else {
-		$class = 'header-default';
+		$class = 'module-area is-layout-constrained header-default';
 	}
 
 	if ( ( is_single() || is_page() ) && has_post_thumbnail() ) {

@@ -23,7 +23,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 ?>
 
 <?php if ( have_posts() ) : ?>
-	<div class="search-results__count mw-980">
+	<div class="search-results__count alignwide">
 		<?php
 		$total_results = $wp_query->found_posts;
 		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
@@ -44,7 +44,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 		?>
 	</div>
 
-	<div class="search-results__tabs mw-980">
+	<div class="search-results__tabs alignwide">
 		<?php
 			$sorting_options = [
 				'relevance' => [
@@ -169,35 +169,34 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 <?php endif; ?>
 
-<div class="mw-980 mod-margin-bottom flex flex-medium news-card-list">
+<div class="module-area is-layout-constrained">
 
-	<div id="search-results" class="card-list-container">
-
-			<?php
-			if ( have_posts() ) {
-				while ( have_posts() ) {
-					the_post();
-
-					// Render the block for the current post
-					echo WMF\Editor\Blocks\BlogPost\render_block( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-						[ 'post_id' => $post->ID ]
-					);
-				}
-			} else {
-				// If there are no posts, display a "content-none" template
-				get_template_part( 'template-parts/content', 'none' );
-			}
-			?>
-		</div>
-	</div>
-
-	<div id="pagination">
+	<div id="search-results">
 		<?php
-		if ( have_posts() ) :
-			get_template_part( 'template-parts/pagination' );
-		endif;
+		if ( have_posts() ) {
+			while ( have_posts() ) {
+				the_post();
+
+				// Render the block for the current post
+				echo WMF\Editor\Blocks\BlogPost\render_block( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					[ 'post_id' => $post->ID ]
+				);
+			}
+		} else {
+			// If there are no posts, display a "content-none" template
+			get_template_part( 'template-parts/content', 'none' );
+		}
 		?>
 	</div>
+</div>
+
+<div id="pagination">
+	<?php
+	if ( have_posts() ) :
+		get_template_part( 'template-parts/pagination' );
+	endif;
+	?>
+</div>
 
 <?php
 get_footer();

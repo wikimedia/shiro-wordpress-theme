@@ -36,7 +36,7 @@ while ( have_posts() ) :
 		get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 	}
 	?>
-<div class="mw-980 mod-margin-bottom flex flex-medium report-template toc__section">
+<div class="alignwide flex flex-medium report-template toc__section">
 	<div class="w-32p toc__sidebar">
 		<?php get_sidebar( 'report' ); ?>
 	</div>
@@ -47,7 +47,7 @@ while ( have_posts() ) :
 		</h2>
 
 		<?php if ( $has_content ) : ?>
-		<div class="page-intro mod-margin-bottom wysiwyg">
+		<div class="page-intro">
 			<?php if ( ! has_post_thumbnail() ) : ?>
 				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
 			<?php endif; ?>
@@ -60,8 +60,9 @@ while ( have_posts() ) :
 		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
 	</div>
 </div>
-	<?php
 
+<div class="module-area is-layout-constrained">
+	<?php
 	$modules = array(
 		'stories',
 		'cta',
@@ -73,6 +74,10 @@ while ( have_posts() ) :
 	foreach ( $modules as $module ) {
 		get_template_part( 'template-parts/page/page', $module );
 	}
+	?>
+</div>
+
+<?php
 endwhile;
 
 get_footer();
