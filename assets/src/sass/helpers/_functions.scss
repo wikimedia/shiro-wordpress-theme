@@ -1,9 +1,11 @@
 @use "sass:math";
 
 $browser-context: 16; // Default
+$default-min-bp: 320;
+$default-max-bp: 1200;
 
 @function rem($pixels, $context: $browser-context) {
-	@return #{math.div($pixels, $context)}rem;
+	@return math.div($pixels, $context) * 1rem;
 }
 
 @function strip-px($value) {
@@ -12,4 +14,58 @@ $browser-context: 16; // Default
 
 @function px-to-rem($value, $context: $browser-context) {
 	@return rem(strip-px($value), $context);
+}
+
+/*
+ * Rounding function.
+ *
+ * @param {string} $number The number we want to round.
+ * @param {string} $decimals The number of decimal places we want to keep.
+ *
+ * @return {string} The rounded number.
+ */
+ @function round( $number, $decimals: 0 ) {
+	$n: 1;
+	@if $decimals > 0 {
+		@for $i from 1 through $decimals {
+			$n: $n * 10;
+		}
+	}
+	@return math.div( math.round( $number * $n ), $n );
+}
+
+/*
+ * CSS clamp function.
+ *
+ * @param {string} $min-size       The minimum value we want to use.
+ * @param {string} $max-size       The maximum value we want to use.
+ * @param {string} $min-breakpoint The min breakpoint (for mobile).
+ * @param {string} $max-breakpoint The max breakpoint (for desktop).
+ * @param {string} $unit           The unit for the scaling middle part.
+ *
+ * @return {string} The z-indez value.
+ */
+ @function fluid(
+	$min-size,
+	$max-size,
+	$min-breakpoint: $default-min-bp,
+	$max-breakpoint: $default-max-bp,
+	$unit: vw
+) {
+	$slope: math.div(
+		rem( $max-size ) - rem( $min-size ),
+		rem( $max-breakpoint ) - rem( $min-breakpoint )
+	);
+	$slope-to-unit: round( $slope * 100, 2 );
+	$intercept-rem: round(
+		rem( $min-size ) - $slope * rem( $min-breakpoint ),
+		2
+	);
+	$min-size-rem: round( rem( $min-size ), 2 );
+	$max-size-rem: round( rem( $max-size ), 2 );
+	@return clamp(
+		#{$min-size-rem},
+		#{$slope-to-unit}#{$unit} + #{$intercept-rem},
+		#{$max-size-rem}
+	);
 }
