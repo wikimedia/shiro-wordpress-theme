@@ -4,7 +4,7 @@
 	"settings": {
 		"appearanceTools": true,
 		"border": {
-			"radius": false, 
+			"radius": false,
 			"color": false,
 			"style": false,
 			"width": false
@@ -235,67 +235,55 @@
 			],
 			"fontSizes": [
 				{
-					"fluid": {
-						"min": ".825rem",
-						"max": ".95rem"
-					},
-					"size": ".95rem",
+					"size": "0.75rem",
 					"slug": "x-small",
-					"name": "Extra Small"
+					"name": "Body: Extra Small"
 				},
 				{
-					"fluid": {
-						"min": ".9rem",
-						"max": "1.05rem"
-					},
-					"size": "1.05rem",
+					"size": "0.875rem",
 					"slug": "small",
-					"name": "Small"
+					"name": "Body: Small"
 				},
 				{
-					"fluid": {
-						"min": "1rem",
-						"max": "1.165rem"
-					},
-					"size": "1.165rem",
-					"slug": "base",
-					"name": "Base"
-				},
-				{
-					"fluid": {
-						"min": "1.2rem",
-						"max": "1.65rem"
-					},
-					"size": "1.65rem",
+					"size": "1rem",
 					"slug": "medium",
-					"name": "Medium"
+					"name": "Body: Medium"
+				},
+				{
+					"fluid": {
+						"min": "1.125rem",
+						"max": "1.25rem"
+					},
+					"size": "1.25rem",
+					"slug": "large",
+					"name": "Body: Large"
+				},
+				{
+					"fluid": {
+						"min": "1.25rem",
+						"max": "1.5rem"
+					},
+					"size": "1.5rem",
+					"slug": "header-3",
+					"name": "Title: Header 3"
 				},
 				{
 					"fluid": {
 						"min": "1.5rem",
-						"max": "2.75rem"
+						"max": "2rem"
 					},
-					"size": "2.75rem",
-					"slug": "large",
-					"name": "Large"
+					"size": "2rem",
+					"slug": "header-2",
+					"name": "Title: Header 2"
 				},
 				{
 					"fluid": {
-						"min": "1.875rem",
-						"max": "3.5rem"
+						"min": "2rem",
+						"max": "3rem"
 					},
-					"size": "3.5rem",
-					"slug": "x-large",
-					"name": "Extra Large"
-				},
-				{
-					"fluid": {
-						"min": "2.25rem",
-						"max": "4.3875rem"
-					},
-					"size": "4.3875rem",
-					"slug": "xx-large",
-					"name": "Extra Extra Large"
+					"size": "3rem",
+					"slug": "header-1",
+					"name": "Title: Header 1"
 				}
 			],
 			"lineHeight": true
