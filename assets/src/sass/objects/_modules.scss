@@ -553,6 +553,7 @@ a.hover-img-zoom {
 }
 
 .stats-featured-container {
+	@include alignwide;
 	margin-bottom: 3rem;
 
 	.primary-stat {
@@ -577,7 +578,9 @@ a.hover-img-zoom {
 }
 
 .stats-graph-container {
-	padding: 3rem 0;
+	@include alignfull-padded;
+	padding-bottom: 3rem;
+	padding-top: 3rem;
 
 	#linechart-label {
 		transition: 0.3s all;
@@ -716,7 +719,7 @@ a.hover-img-zoom {
 }
 
 .module-404 {
-	margin-top: 220px;
+	margin-top: var(--wp--preset--spacing--80);
 	text-align: center;
 	width: 100%;
 

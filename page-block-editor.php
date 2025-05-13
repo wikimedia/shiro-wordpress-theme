@@ -73,7 +73,7 @@ while ( have_posts() ) {
 		</div>
 	</header>
 
-	<main id="content" class="module-area article-main is-layout-constrained">
+	<main id="content" class="module-area article-main is-layout-constrained has-global-padding">
 		<?php
 	}
 

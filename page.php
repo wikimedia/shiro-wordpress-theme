@@ -44,7 +44,6 @@ while ( have_posts() ) {
 	get_template_part( 'template-parts/content', 'page' );
 	?>
 
-	<div class="module-area is-layout-constrained">
 	<?php
 	$modules = array(
 		'framing-copy',
@@ -59,7 +58,6 @@ while ( have_posts() ) {
 		get_template_part( 'template-parts/page/page', $module );
 	}
 	?>
-	</div>
 
 <?php
 }

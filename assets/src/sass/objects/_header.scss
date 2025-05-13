@@ -182,6 +182,10 @@ $header-bp-mw: 1049px;
 		margin-top: rem(30);
 		width: 100%;
 
+		h1:is(.archive h1, .page-template-page-list h1) {
+			margin-bottom: var(--wp--preset--spacing--80);
+		}
+
 		body.hide-page-title & h1 {
 			@extend .visually-hidden
 		}

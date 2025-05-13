@@ -61,21 +61,19 @@ while ( have_posts() ) :
 	</div>
 </div>
 
-<div class="module-area is-layout-constrained">
-	<?php
-	$modules = array(
-		'stories',
-		'cta',
-		'related',
-		'support',
-		'connect',
-	);
+<?php
+$modules = array(
+	'stories',
+	'cta',
+	'related',
+	'support',
+	'connect',
+);
 
-	foreach ( $modules as $module ) {
-		get_template_part( 'template-parts/page/page', $module );
-	}
-	?>
-</div>
+foreach ( $modules as $module ) {
+	get_template_part( 'template-parts/page/page', $module );
+}
+?>
 
 <?php
 endwhile;

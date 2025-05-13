@@ -169,28 +169,25 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 <?php endif; ?>
 
-<div class="module-area is-layout-constrained">
+<div id="search-results" class="blog-list is-layout-flow alignwide">
+	<?php
+	if ( have_posts() ) {
+		while ( have_posts() ) {
+			the_post();
 
-	<div id="search-results">
-		<?php
-		if ( have_posts() ) {
-			while ( have_posts() ) {
-				the_post();
-
-				// Render the block for the current post
-				echo WMF\Editor\Blocks\BlogPost\render_block( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					[ 'post_id' => $post->ID ]
-				);
-			}
-		} else {
-			// If there are no posts, display a "content-none" template
-			get_template_part( 'template-parts/content', 'none' );
+			// Render the block for the current post
+			echo WMF\Editor\Blocks\BlogPost\render_block( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				[ 'post_id' => $post->ID ]
+			);
 		}
-		?>
-	</div>
+	} else {
+		// If there are no posts, display a "content-none" template
+		get_template_part( 'template-parts/content', 'none' );
+	}
+	?>
 </div>
 
-<div id="pagination">
+<div id="pagination" class="alignfull">
 	<?php
 	if ( have_posts() ) :
 		get_template_part( 'template-parts/pagination' );

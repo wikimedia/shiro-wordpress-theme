@@ -49,7 +49,7 @@ if ( isset( $_GET['post_list_filters_nonce'] ) && wp_verify_nonce( sanitize_text
 
 ?>
 
-<section class="post-list-filter mw-980">
+<section class="post-list-filter alignwide">
 
 	<div class="post-list-filter__head">
 

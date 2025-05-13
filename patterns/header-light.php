@@ -33,9 +33,9 @@ $translations = array_filter( wmf_get_translations(), function ( $translation ) 
 			data-dropdown-content=".language-switcher__content"
 			data-visible="no" data-trap="inactive" data-backdrop="inactive" data-toggleable="yes"
 		<?php endif; ?>>
-	<!-- wp:site-logo {"width":144,"shouldSyncIcon":false} /-->
+	<!-- wp:site-logo {"width":206,"shouldSyncIcon":false} /-->
 
-	<!-- wp:navigation {"ref":77177,"openSubmenusOnClick":true,"icon":"menu","style":{"spacing":{"blockGap":"var:preset|spacing|16"},"layout":{"selfStretch":"fit","flexSize":null}},"fontSize":"small"} /-->
+	<!-- wp:navigation {"ref":77251,"openSubmenusOnClick":true,"icon":"menu","style":{"spacing":{"blockGap":"var:preset|spacing|16"},"layout":{"selfStretch":"fit","flexSize":null}},"fontSize":"small"} /-->
 	<?php get_template_part( 'template-parts/site-header/language-switcher', null, [ 'translations' => $translations ] ); ?>
 	<!-- wp:buttons -->
 	<div class="wp-block-buttons"><!-- wp:button -->

@@ -59,8 +59,7 @@ while ( have_posts() ) {
 		</div>
 
 	</div>
-	
-	<div class="module-area is-layout-constrained">
+
 	<?php
 	$modules = array(
 		'social',
@@ -79,7 +78,6 @@ while ( have_posts() ) {
 		get_template_part( 'template-parts/page/page', $module );
 	}
 	?>
-	</div>
 
 <?php
 }

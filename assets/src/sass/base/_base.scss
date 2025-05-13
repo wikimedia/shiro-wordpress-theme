@@ -18,43 +18,10 @@
 
 /* Layout (block style)
 --------------------------------------------- */
-:root {
-	--wp--style--global--content-size: 980px;
-	--wp--style--global--wide-size: 1020px;
-}
-.single-post {
-	--wp--style--global--content-size: 40rem;
-	--wp--style--global--wide-size: 980px;
-}
-
-@media screen and (max-width: #{$width-breakpoint-desktop}) {
-	:root {
-		--wp--style--global--content-size: calc( 100vw - 5rem );
-		--wp--style--global--wide-size: calc( 100vw - 5rem );
-	}
-	.single-post {
-		--wp--style--global--content-size: calc( 100vw - 5rem );
-		--wp--style--global--wide-size: calc( 100vw - 5rem );
-	}
-}
-
-@media screen and (max-width: #{$width-breakpoint-tablet}) {
-	:root {
-		--wp--style--global--content-size: calc( 100vw - 40px );
-		--wp--style--global--wide-size: calc( 100vw - 40px );
-	}
-	.single-post {
-		--wp--style--global--content-size: calc( 100vw - 40px );
-		--wp--style--global--wide-size: calc( 100vw - 40px );
-	}
-}
-
-.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)),
-// For now, top-level groups with background colors also behave as layout-constrained.
-.page .article-main > .has-background.alignfull > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-	max-width: var(--wp--style--global--content-size);
-	margin-left: auto !important;
-	margin-right: auto !important;
+.has-background + .has-background,
+.has-background + .spotlight,
+.spotlight + .has-background {
+	margin-top: 0;
 }
 
 // These blocks behave as full-width containers.
@@ -70,10 +37,6 @@
 }
 // Related blog post list on post pages is wide.
 .single-post article + .block-area.is-layout-constrained > * {
-	max-width: var(--wp--style--global--wide-size);
-}
-
-.is-layout-constrained > .alignwide {
 	max-width: var(--wp--style--global--wide-size);
 }
 

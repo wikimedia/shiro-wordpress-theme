@@ -31,9 +31,7 @@ while ( have_posts() ) {
 		<?php the_content(); ?>
 	</div>
 
-	<div class="module-area is-layout-constrained">
 	<?php get_template_part( 'template-parts/page/page', 'connect' ); ?>
-	</div>
 
 <?php
 }

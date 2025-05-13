@@ -23,12 +23,12 @@
 	}
 
 	&__header {
+		@include global-padding;
 		height: rem( 454 );
 		left: 50%;
 		margin-left: -50vw;
 		margin-right: -50vw;
 		overflow: hidden;
-		padding: 0;
 		position: relative;
 		right: 50%;
 		width: 100vw;
@@ -50,9 +50,7 @@
 	}
 
 	&__heading-wrapper {
-		margin: 0 auto;
-		max-width: $content-column-padded-rem;
-		@include responsive-padding(0 20, 0 strip-px($block-padding));
+		@include alignwide;
 	}
 
 	&__heading-color {

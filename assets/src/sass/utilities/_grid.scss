@@ -19,9 +19,7 @@
 }
 
 .mw-980 {
-	margin: 0 auto;
-	max-width: rem(1060);
-	@include responsive-padding(0 20, 0 40);
+	@include alignwide;
 }
 
 .mw-900 {

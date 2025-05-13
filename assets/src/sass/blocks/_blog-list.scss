@@ -9,6 +9,10 @@
 	display: flex;
 	flex-direction: column;
 
+	&.alignwide {
+		@include alignwide;
+	}
+
 	// Blog posts have too small a width to properly display blog lists, so
 	// they need special handling if inserted directly into the editor.
 	article.mw-784 > & {
@@ -30,6 +34,7 @@
 
 	&__image {
 		@include hover-box-shadow;
+		display: block;
 	}
 
 	&__image-link:focus {
