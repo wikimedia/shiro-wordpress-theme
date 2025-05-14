@@ -176,9 +176,11 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			the_post();
 
 			// Render the block for the current post
-			echo WMF\Editor\Blocks\BlogPost\render_block( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo WMF\Editor\Blocks\BlogPost\render_block(
 				[ 'post_id' => $post->ID ]
 			);
+			// phpcs:enable
 		}
 	} else {
 		// If there are no posts, display a "content-none" template

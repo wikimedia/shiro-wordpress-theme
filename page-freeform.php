@@ -33,6 +33,6 @@ while ( have_posts() ) {
 
 	<?php get_template_part( 'template-parts/page/page', 'connect' ); ?>
 
-<?php
+	<?php
 }
 get_footer();

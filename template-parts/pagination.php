@@ -47,10 +47,10 @@ if ( ! empty( $additional_args ) ) {
 
 		<div class="pagination__page-numbers">
 			<?php
-				echo wp_kses_post(
-					paginate_links( $pagination_args )
-				);
-				?>
+			echo wp_kses_post(
+				paginate_links( $pagination_args )
+			);
+			?>
 		</div>
 
 		<div class="pagination__next-page">
