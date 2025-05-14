@@ -6,6 +6,7 @@ $header-bp-mw: 1049px;
 }
 
 .header-default {
+	@include global-padding;
 	margin-bottom: 0;
 	position: relative;
 
@@ -186,6 +187,10 @@ $header-bp-mw: 1049px;
 			margin-bottom: var(--wp--preset--spacing--80);
 		}
 
+		body.hide-page-title &:not(:has(h2)) {
+			margin-top: 0;
+		}
+
 		body.hide-page-title & h1 {
 			@extend .visually-hidden
 		}
@@ -269,8 +274,10 @@ $header-bp-mw: 1049px;
 	}
 
 	.ungrid {
+		@include global-padding;
 		background: #fffd33;
-		padding: 2.5rem 0;
+		padding-bottom: 2.5rem;
+		padding-top: 2.5rem;
 		width: 100vw;
 		position: relative;
 		left: 50%;
@@ -279,6 +286,10 @@ $header-bp-mw: 1049px;
 		margin-right: -50vw;
 		margin-top: -2rem;
 		max-height: 24rem;
+
+		.alignwide {
+			@include alignwide;
+		}
 
 		.page-template-page-data &,
 		.page-template-page-report & {

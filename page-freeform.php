@@ -27,7 +27,7 @@ while ( have_posts() ) {
 	get_template_part( 'template-parts/header/page', 'noimage', $template_args );
 
 	?>
-	<div class="freeform-content">
+	<div class="freeform-content alignfull">
 		<?php the_content(); ?>
 	</div>
 

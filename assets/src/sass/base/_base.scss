@@ -20,7 +20,8 @@
 --------------------------------------------- */
 .has-background + .has-background,
 .has-background + .spotlight,
-.spotlight + .has-background {
+.spotlight + .has-background,
+.wp-block-spacer + * {
 	margin-top: 0;
 }
 
@@ -34,10 +35,6 @@
 // yet expose controls for this in the editor.
 .single-post .alignwide > .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
 	max-width: unset;
-}
-// Related blog post list on post pages is wide.
-.single-post article + .block-area.is-layout-constrained > * {
-	max-width: var(--wp--style--global--wide-size);
 }
 
 // Some buttons may end up as inline-block, which breaks layout because

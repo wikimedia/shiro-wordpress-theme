@@ -22,6 +22,10 @@
 	@include alignwide;
 }
 
+.page-template-page-freeform .mw-980 {
+	@include global-padding;
+}
+
 .mw-900 {
 	margin: 0 auto;
 	max-width: rem(940);

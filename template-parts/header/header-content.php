@@ -44,11 +44,6 @@ if ( is_page() ) {
 	} elseif ( $breadcrumb_link_switch === 'off' ) {
 		$h4_link = '';
 		$h4_title = '';
-		?>
-		<h2 class="h4 eyebrow">
-			&nbsp;
-		</h2>
-		<?php
 	} elseif ( $breadcrumb_link_switch === '' ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedElseif
 		// Don't do anything, page wasn't yet edited with this component on the page.
 		// Breadcumb link will be displayed with default values.
@@ -106,7 +101,7 @@ if ( is_page() ) {
 		<!-- h2 and title, with image -->
 		<?php if ( ! empty( $image ) && ! empty( $h2_title ) && ! empty( $title ) ) { ?>
 			<div class="ungrid <?php echo esc_attr( $extra_height_class ); ?>">
-				<div class="mw-980">
+				<div class="alignwide">
 					<?php if ( ! empty( $image ) && ! empty( $h2_title ) && ! empty( $title ) ) { ?>
 						<div class="flex flex-medium page-landing fifty-fifty">
 							<div class="module-mu w-50p">
