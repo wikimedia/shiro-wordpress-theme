@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // File should never be accessed directly.
 }
 
-// Automatically add credits to all content that is not an archive or search.
+// Automatically add credits to all content that is not an archive, search, or 404 page.
 if ( ! is_archive() && ! is_home() && ! is_404() ) {
 	get_template_part( 'template-parts/modules/images/credits', null, array( 'image_ids' => Credits::get_instance()->get_ids() ) );
 }
