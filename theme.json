@@ -471,6 +471,11 @@
 			"name": "footer",
 			"title": "Footer",
 			"area": "footer"
+		},
+		{
+			"name": "mega-search",
+			"title": "Mega search",
+			"area": "menu"
 		}
 	]
 }

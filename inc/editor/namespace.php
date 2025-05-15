@@ -139,6 +139,7 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		$blocks[] = 'core/site-title';
 		$blocks[] = 'core/social-links';
 		$blocks[] = 'core/social-link';
+		$blocks[] = 'hm-blocks/hm-mega-menu-block';
 	}
 
 	return $blocks;

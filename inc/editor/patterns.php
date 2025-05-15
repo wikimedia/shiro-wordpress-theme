@@ -33,6 +33,10 @@ function bootstrap() {
  */
 function register_pattern() {
 	register_block_pattern_category( MAIN_CATEGORY_NAME, [
+		'label' => __( 'Menu', 'shiro-admin' ),
+	] );
+
+	register_block_pattern_category( MAIN_CATEGORY_NAME, [
 		'label' => __( 'Wikimedia', 'shiro-admin' ),
 	] );
 
