@@ -85,15 +85,9 @@
 		},
 		"custom": {
 			"fontWeight": {
-				"thin": 100,
-				"extra-light": 200,
-				"light": 300,
-				"regular": 425,
-				"medium": 500,
+				"regular": 400,
 				"semi-bold": 600,
-				"bold": 700,
-				"extra-bold": 800,
-				"black": 900
+				"bold": 700
 			},
 			"lineHeight": {
 				"tight": 1.25,
@@ -164,9 +158,8 @@
 						{
 							"fontDisplay": "swap",
 							"fontFamily": "Inter",
-							"fontStyle": "auto",
-							"fontWeight": "100 200 300 400 500 600 700 800 900 1000",
-							"fontVariationSettings": "'wght' 100 200 300 400 500 600 700 800 900 1000",
+							"fontStyle": "normal",
+							"fontWeight": "400 600 700",
 							"src": [
 								"file:./assets/src/fonts/inter.ttf"
 							]
@@ -175,8 +168,7 @@
 							"fontDisplay": "swap",
 							"fontFamily": "Inter",
 							"fontStyle": "italic",
-							"fontWeight": "100 200 300 400 500 600 700 800 900 1000",
-							"fontVariationSettings": "'wght' 100 200 300 400 500 600 700 800 900 1000",
+							"fontWeight": "400 600 700",
 							"src": [
 								"file:./assets/src/fonts/inter-italic.ttf"
 							]
@@ -191,9 +183,8 @@
 						{
 							"fontDisplay": "swap",
 							"fontFamily": "Montserrat",
-							"fontStyle": "auto",
-							"fontWeight": "100 200 300 400 500 600 700 800 900 1000",
-							"fontVariationSettings": "'wght' 100 200 300 400 500 600 700 800 900 1000",
+							"fontStyle": "normal",
+							"fontWeight": "400 600 700",
 							"src": [
 								"file:./assets/src/fonts/montserrat.ttf"
 							]
