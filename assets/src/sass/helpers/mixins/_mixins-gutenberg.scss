@@ -1,5 +1,5 @@
 // Mixins to support block editor content.
-@mixin alignfull( $content-column: 1200px ) {
+@mixin alignfull() {
 	margin-left: calc( var(--wp--style--root--padding-left) * -1 ) !important;
 	margin-right: calc( var(--wp--style--root--padding-right) * -1 ) !important;
 	max-width: none !important;
@@ -11,7 +11,14 @@
 	padding-right: var(--wp--style--root--padding-right);
 }
 
-@mixin alignfull-padded( $content-column: 1200px ) {
-	@include alignfull( $content-column );
+@mixin alignfull-padded() {
+	@include alignfull;
 	@include global-padding;
+}
+
+@mixin alignwide() {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: var(--wp--style--global--wide-size);
+	width: 100%;
 }

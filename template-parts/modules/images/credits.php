@@ -15,16 +15,18 @@ $header = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro-
 
 ?>
 
-<section class="photo-attribution">
-	<?php if ( ! empty( $header ) ) : ?>
-		<h2 class="photo-attribution__heading"><?php echo esc_html( $header ); ?></h2>
-	<?php endif; ?>
+<section class="wp-block-group alignfull photo-attribution has-background has-bright-yellow-70-background-color is-layout-constrained">
+	<div class="alignwide">
+		<?php if ( ! empty( $header ) ) : ?>
+			<h2 class="photo-attribution__heading"><?php echo esc_html( $header ); ?></h2>
+		<?php endif; ?>
 
-	<div class="photo-attribution__inner">
-		<?php
-		foreach ( $image_ids as $image_id ) {
-			get_template_part( 'template-parts/modules/images/credit', null, array( 'image_id' => $image_id ) );
-		}
-		?>
+		<div class="photo-attribution__inner">
+			<?php
+			foreach ( $image_ids as $image_id ) {
+				get_template_part( 'template-parts/modules/images/credit', null, array( 'image_id' => $image_id ) );
+			}
+			?>
+		</div>
 	</div>
 </section>
