@@ -160,75 +160,48 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"fontFamily": "Mona Sans, sans-serif",
-					"name": "Mona Sans",
-					"slug": "primary",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
-							"fontFamily": "Mona Sans",
-							"fontStretch": "75% 125%",
-							"fontStyle": "normal",
-							"fontWeight": "300 900",
-							"src": [ "file:./assets/fonts/mona-sans/Mona-Sans.woff2"]
-						}
-					]
-				},
-				{
-					"fontFamily": "Mona Sans Expanded, sans-serif",
-					"name": "Mona Sans Expanded",
-					"slug": "expanded",
-					"fontFace": [
-						{
-							"fontDisplay": "block",
-							"fontFamily": "Mona Sans Expanded",
-							"fontStretch": "125%",
-							"fontStyle": "normal",
-							"fontWeight": "300 900",
+							"fontDisplay": "swap",
+							"fontFamily": "Inter",
+							"fontStyle": "auto",
+							"fontWeight": "100 200 300 400 500 600 700 800 900 1000",
+							"fontVariationSettings": "'wght' 100 200 300 400 500 600 700 800 900 1000",
 							"src": [
-								"file:./assets/fonts/mona-sans/Mona-Sans.woff2"
+								"file:./assets/src/fonts/inter.ttf"
+							]
+						},
+						{
+							"fontDisplay": "swap",
+							"fontFamily": "Inter",
+							"fontStyle": "italic",
+							"fontWeight": "100 200 300 400 500 600 700 800 900 1000",
+							"fontVariationSettings": "'wght' 100 200 300 400 500 600 700 800 900 1000",
+							"src": [
+								"file:./assets/src/fonts/inter-italic.ttf"
 							]
 						}
-					]
+					],
+					"fontFamily": "Inter, sans-serif",
+					"name": "Default (Inter)",
+					"slug": "default"
 				},
 				{
-					"fontFamily": "Mona Sans Condensed, sans-serif",
-					"name": "Mona Sans Condensed",
-					"slug": "condensed",
 					"fontFace": [
 						{
-							"fontDisplay": "block",
-							"fontFamily": "Mona Sans Condensed",
-							"fontStretch": "94%",
-							"fontStyle": "normal",
-							"fontWeight": "300 900",
+							"fontDisplay": "swap",
+							"fontFamily": "Montserrat",
+							"fontStyle": "auto",
+							"fontWeight": "100 200 300 400 500 600 700 800 900 1000",
+							"fontVariationSettings": "'wght' 100 200 300 400 500 600 700 800 900 1000",
 							"src": [
-								"file:./assets/fonts/mona-sans/Mona-Sans.woff2"
+								"file:./assets/src/fonts/montserrat.ttf"
 							]
 						}
-					]
-				},
-				{
-					"fontFamily": "Mona Sans Narrow, sans-serif",
-					"name": "Mona Sans Narrow",
-					"slug": "narrow",
-					"fontFace": [
-						{
-							"fontDisplay": "block",
-							"fontFamily": "Mona Sans Narrow",
-							"fontStretch": "75%",
-							"fontStyle": "normal",
-							"fontWeight": "300 900",
-							"src": [
-								"file:./assets/fonts/mona-sans/Mona-Sans.woff2"
-							]
-						}
-					]
-				},
-				{
-					"fontFamily": "monospace",
-					"name": "Monospace",
-					"slug": "monospace"
+					],
+					"fontFamily": "Montserrat, Inter, sans-serif",
+					"name": "Display (Montserrat)",
+					"slug": "display"
 				}
 			],
 			"fontSizes": [
