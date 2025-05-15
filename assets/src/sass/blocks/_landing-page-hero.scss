@@ -1,20 +1,15 @@
 .hero {
-
 	@include global-margin-bottom;
 
 	&__header {
-
 		@include block-style-background-color;
 		@include block-style-text-color;
+		@include global-padding;
 
 		display: flex;
-		padding: rem(28) rem(20);
+		padding-bottom: rem(28);
+		padding-top: rem(28);
 		width: 100%;
-
-		@media ( min-width: #{$width-breakpoint-desktop} ) {
-			padding-left: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
-			padding-right: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
-		}
 	}
 
 	&__image-container {
@@ -23,13 +18,27 @@
 	}
 
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
+		max-width: none !important;
+		overflow: hidden;
 
 		&__header {
+			box-sizing: content-box;
 			flex-flow: row nowrap;
+			margin:  0 auto;
+			max-width: var(--wp--style--global--content-size);
+			position: relative;
+
+			&::before {
+				@include absolute-full-cover();
+				@include block-style-background-color;
+				width: 200vw;
+				left: -50%;
+			}
 		}
 
 		&__text-column,
 		&__image-container {
+			position: relative;
 			width: 50%;
 		}
 

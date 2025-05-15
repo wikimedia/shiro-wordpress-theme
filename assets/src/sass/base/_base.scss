@@ -60,7 +60,7 @@
 // These blocks behave as full-width containers.
 .wp-block-shiro-landing-page-hero,
 .wp-block-shiro-report-landing-hero {
-	max-width: unset;
+	max-width: none !important;
 }
 
 // Treat wide alignment in POSTS specifically as unconstrained. We do not

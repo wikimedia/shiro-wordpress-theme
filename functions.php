@@ -37,13 +37,6 @@ function wmf_setup() {
 	 */
 	add_theme_support( 'post-thumbnails' );
 
-	/*
-	 * Enable support for Custom Header.
-	 *
-	 * @link https://codex.wordpress.org/Custom_Headers
-	 */
-	add_theme_support( 'custom-header' );
-
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
@@ -319,7 +312,9 @@ require get_template_directory() . '/inc/classes/class-autoload.php';
 /**
  * Customizer additions.
  */
+require get_template_directory() . '/inc/classes/customizer/namespace.php';
 require get_template_directory() . '/inc/classes/customizer/class-base.php';
+WMF\Customizer\bootstrap();
 
 /**
  * Custom Fields functions.
@@ -497,27 +492,6 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 	);
 }
 add_filter( 'wp_kses_allowed_html', 'wmf_filter_post_kses_tags', 10, 2 );
-
-/**
- * Insert a span element to all header nav menu items.
- *
- * @param stdClass $args An object of wp_nav_menu() arguments.
- * @param WP_Post  $item Menu item data object.
- * @param int      $depth Depth of menu item. Used for padding.
- *
- * @return stdClass
- */
-function wmf_filter_nav_menu_items( $args, $item, $depth ) {
-	if ( 'header' !== $args->theme_location ) {
-		return $args;
-	}
-
-	$args->link_before = '<span>';
-	$args->link_after  = '</span>';
-
-	return $args;
-}
-add_filter( 'nav_menu_item_args', 'wmf_filter_nav_menu_items', 10, 3 );
 
 /**
  * Add reusable blocks link to admin menu.

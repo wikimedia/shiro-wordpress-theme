@@ -131,6 +131,16 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		$blocks[] = 'shiro/report-landing-hero';
 	}
 
+	if ( ( $block_editor_context->name ?? '' ) === 'core/edit-site' ) {
+		$blocks[] = 'core/navigation';
+		$blocks[] = 'core/search';
+		$blocks[] = 'core/site-logo';
+		$blocks[] = 'core/site-tagline';
+		$blocks[] = 'core/site-title';
+		$blocks[] = 'core/social-links';
+		$blocks[] = 'core/social-link';
+	}
+
 	return $blocks;
 }
 
@@ -408,7 +418,7 @@ function add_theme_supports() {
  * Register block styles for core blocks, to correspond with CSS classes loaded
  * by the theme which apply different rules to those blocks' frontend display.
  */
-function register_core_block_styles() : void {
+function register_core_block_styles(): void {
 	// Add styles to Table block.
 	register_block_style(
 		'core/table',

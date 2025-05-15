@@ -14,7 +14,7 @@ const _languagePicker = document.querySelector(
 );
 
 // Get all primary nav items with children.
-const _subNavMenus = _primaryNav.querySelectorAll(
+const _subNavMenus = _primaryNav?.querySelectorAll(
 	'.menu-item[data-dropdown]'
 );
 
@@ -152,10 +152,8 @@ function handleLanguagePickerVisibleChange( dropdown ) {
 	handleVisibleChange( dropdown );
 	if ( _primaryNav ) {
 		const menuIsVisible = dropdown.dataset.visible === 'yes';
-		const {
-			visible: navIsVisible,
-			toggleable: navIsToggleable,
-		} = _primaryNav.dataset;
+		const { visible: navIsVisible, toggleable: navIsToggleable } =
+			_primaryNav.dataset;
 
 		if ( menuIsVisible && navIsVisible && navIsToggleable === 'yes' ) {
 			_primaryNav.dataset.visible = 'no';
@@ -170,7 +168,8 @@ function initializeSiteHeader() {
 	if ( _primaryNav ) {
 		// Ensure correct state on load
 		handlePrimaryNavVisibleChange( _primaryNav );
-		_primaryNav.dropdown.handlers.visibleChange = handlePrimaryNavVisibleChange;
+		_primaryNav.dropdown.handlers.visibleChange =
+			handlePrimaryNavVisibleChange;
 		const headerContent = _primaryNav.querySelector( '.header-content' );
 		const translationBar = _primaryNav.querySelector( '.translation-bar' );
 		const skip = [
@@ -203,7 +202,8 @@ function initializeSiteHeader() {
 	if ( _languagePicker ) {
 		// Ensure correct state on load
 		handleLanguagePickerVisibleChange( _languagePicker );
-		_languagePicker.dropdown.handlers.visibleChange = handleLanguagePickerVisibleChange;
+		_languagePicker.dropdown.handlers.visibleChange =
+			handleLanguagePickerVisibleChange;
 	}
 }
 
@@ -232,6 +232,4 @@ function teardown() {
 }
 
 export default initialize( setup, teardown );
-export {
-	setup, teardown,
-};
+export { setup, teardown };
