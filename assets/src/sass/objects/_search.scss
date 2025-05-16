@@ -1,16 +1,6 @@
 .search-container {
-  width: 550px;
-  margin: 140px auto;
-  display: block;
-
-  &.no-margin {
-    margin-top: 50px;
-  }
-
-  @media (max-width: $medium-bp) {
-    width: 300px;
-  }
-
+  margin: var(--wp--preset--spacing--80) auto;
+  max-width: rem(550);
 
   form {
     width: 100%;
@@ -102,16 +92,14 @@
   }
 }
 
+.error404 main.is-layout-constrained > .search-container:last-child {
+	margin-bottom: var(--wp--preset--spacing--80);
+}
+
 .search-cta-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
-
-.search-container {
-  @media (min-width: 1024px) {
-    position: relative;
-  }
 }
 
 .search-bar-container {
