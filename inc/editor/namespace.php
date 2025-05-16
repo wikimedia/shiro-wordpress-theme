@@ -133,6 +133,8 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 
 	if ( ( $block_editor_context->name ?? '' ) === 'core/edit-site' ) {
 		$blocks[] = 'core/navigation';
+		$blocks[] = 'core/navigation-link';
+		$blocks[] = 'core/navigation-submenu';
 		$blocks[] = 'core/search';
 		$blocks[] = 'core/site-logo';
 		$blocks[] = 'core/site-tagline';
@@ -140,6 +142,7 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		$blocks[] = 'core/social-links';
 		$blocks[] = 'core/social-link';
 		$blocks[] = 'hm-blocks/hm-mega-menu-block';
+		$blocks[] = 'shiro/language-switcher-list';
 	}
 
 	return $blocks;

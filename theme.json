@@ -473,6 +473,11 @@
 			"area": "footer"
 		},
 		{
+			"name": "mega-languages",
+			"title": "Mega languages",
+			"area": "menu"
+		},
+		{
 			"name": "mega-search",
 			"title": "Mega search",
 			"area": "menu"
