@@ -15,8 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // File should never be accessed directly.
 }
 
-// Automatically add credits to all content that is not an archive or search.
-if ( ! is_archive() && ! is_home() ) {
+// Automatically add credits to all content that is not an archive, search, or 404 page.
+if ( ! is_archive() && ! is_home() && ! is_404() ) {
 	get_template_part( 'template-parts/modules/images/credits', null, array( 'image_ids' => Credits::get_instance()->get_ids() ) );
 }
 ?>
@@ -46,8 +46,7 @@ $wmf_blackout_modal_cookie_expiration = get_theme_mod( 'wmf_blackout_modal_cooki
 	</div>
 	<!-- /Blackout Modal -->
 <?php endif; ?>
-
-<?php get_template_part( 'template-parts/site-footer/wrapper' ); ?>
+<?php block_template_part( 'footer' ); ?>
 
 <?php wp_footer(); ?>
 

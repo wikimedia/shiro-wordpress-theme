@@ -46,6 +46,11 @@ $wp20_font: "Linux Libertine", "Georgia", "Times", serif;
 	li {
 		margin-bottom: 1.125rem;
 	}
+
+	#video {
+		overflow: hidden;
+		z-index: 0 !important;
+	}
 }
 
 // WP20 variables
