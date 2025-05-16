@@ -61,7 +61,6 @@ $font-sizes: (
 @mixin h1 {
 	@extend .has-jumbo-font-size;
 	@include h-margins;
-	font-family: $font-family-sans;
 	font-weight: 700;
 }
 
@@ -80,14 +79,12 @@ $font-sizes: (
 }
 
 @mixin h3-sans {
-	font-family: $font-family-sans;
 	font-weight: 700;
 }
 
 @mixin h4 {
 	@extend .has-medium-font-size;
 	@include h-margins;
-	font-family: $font-family-sans;
 	font-weight: 700;
 }
 

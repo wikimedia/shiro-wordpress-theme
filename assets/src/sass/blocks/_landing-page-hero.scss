@@ -77,7 +77,6 @@
 	&__title {
 
 		@include has-font-size("jumbo");
-		font-family: $font-family-sans;
 		line-height: 1.25;
 		width: 100%;
 	}
@@ -186,5 +185,3 @@
 		}
 	}
 }
-
-

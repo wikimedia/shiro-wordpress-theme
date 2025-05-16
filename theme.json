@@ -431,10 +431,10 @@
 			}
 		},
 		"typography": {
-			"fontFamily": "var:preset|font-family|primary",
-			"fontSize": "var:preset|font-size|base",
-			"fontWeight": "430",
-			"lineHeight": "var:custom|line-height|body"
+			"fontFamily": "var:preset|font-family|default",
+			"fontSize": "var:preset|font-size|large",
+			"fontWeight": "400",
+			"lineHeight": "var:custom|line-height|base"
 		}
 	},
 	"templateParts": [
