@@ -1,5 +1,6 @@
 .block-editor-block-list__block.wp-block-mailchimp-mailchimp,
 .mc_container {
+	@include alignwide;
 	display: grid;
 	column-gap: rem(40);
 	padding: fluid(40, 80) 0;
