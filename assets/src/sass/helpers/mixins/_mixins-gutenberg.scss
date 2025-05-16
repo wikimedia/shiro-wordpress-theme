@@ -22,3 +22,10 @@
 	max-width: var(--wp--style--global--wide-size);
 	width: 100%;
 }
+
+@mixin alignwide() {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: var(--wp--style--global--wide-size);
+	width: 100%;
+}
