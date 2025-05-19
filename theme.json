@@ -85,7 +85,7 @@
 		},
 		"custom": {
 			"fontWeight": {
-				"regular": 400,
+				"normal": 400,
 				"semi-bold": 600,
 				"bold": 700
 			},
@@ -378,41 +378,42 @@
 			},
 			"h1": {
 				"typography": {
-					"fontSize": "var:preset|font-size|x-large",
+					"fontSize": "var:preset|font-size|header-1",
 					"lineHeight": "var:custom|line-height|snug"
-				}
+        }
 			},
 			"h2": {
 				"typography": {
-					"fontSize": "var:preset|font-size|large",
+					"fontSize": "var:preset|font-size|header-2",
 					"lineHeight": "var:custom|line-height|snug"
 				}
 			},
 			"h3": {
 				"typography": {
-					"fontSize": "var:preset|font-size|medium"
+					"fontSize": "var:preset|font-size|header-3"
 				}
 			},
 			"h4": {
 				"typography": {
-					"fontSize": "var:preset|font-size|base"
+					"fontSize": "var:preset|font-size|header-3",
+          "fontWeight": "var:custom|font-weight|semi-bold"
 				}
 			},
 			"h5": {
 				"typography": {
-					"fontSize": "var:preset|font-size|small"
+					"fontSize": "var:preset|font-size|header-3",
+          "fontWeight": "var:custom|font-weight|normal"
 				}
 			},
 			"h6": {
 				"typography": {
-					"fontSize": "var:preset|font-size|x-small"
+					"fontSize": "var:preset|font-size|body-large"
 				}
 			},
 			"heading": {
 				"typography": {
-					"fontFamily": "var:preset|font-family|primary",
-					"fontWeight": "600",
-					"lineHeight": "var:custom|line-height|body"
+					"fontFamily": "var:preset|font-family|display",
+					"fontWeight": "var:custom|font-weight|bold"
 				}
 			},
 			"link": {
@@ -433,7 +434,7 @@
 		"typography": {
 			"fontFamily": "var:preset|font-family|default",
 			"fontSize": "var:preset|font-size|large",
-			"fontWeight": "400",
+			"fontWeight": "var:custom|font-weight|normal",
 			"lineHeight": "var:custom|line-height|base"
 		}
 	},

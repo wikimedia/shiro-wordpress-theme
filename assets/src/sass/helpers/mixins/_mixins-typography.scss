@@ -49,56 +49,53 @@ $font-sizes: (
 	line-height: $line-height;
 }
 
-@mixin article-font {
-	@include has-font-size("default");
-}
-
-@mixin h-margins {
+@mixin h-defaults {
+	font-family: var(--wp--preset--font-family--display);
 	margin-bottom: 0.5em;
 }
 
 @mixin h1 {
-	@extend .has-jumbo-font-size;
-	@include h-margins;
+	@include h-defaults;
+	font-size: var(--wp--preset--font-size--header-1);
 	font-weight: 700;
 }
 
 @mixin h2 {
-	@extend .has-xlarge-font-size;
-	@include h-margins;
-	font-weight: 400;
+	@include h-defaults;
+	font-size: var(--wp--preset--font-size--header-2);
+	font-weight: 700;
 }
 
 @mixin h3 {
-	@extend .has-large-font-size;
-	@include h-margins;
-	font-weight: 400;
+	@include h-defaults;
+	font-size: var(--wp--preset--font-size--header-3);
+	font-weight: 700;
 }
 
 @mixin h3-sans {
-	font-weight: 700;
+	font-weight: 400;
 }
 
 @mixin h4 {
-	@extend .has-medium-font-size;
-	@include h-margins;
-	font-weight: 700;
+	@include h-defaults;
+	font-size: var(--wp--preset--font-size--header-3);
+	font-weight: 600;
 }
 
 @mixin h5 {
-	@extend .has-default-font-size;
-	@include h-margins;
-	color: unset;
-	font-weight: 700;
-	text-transform: unset;
+	@include h-defaults;
+	font-size: var(--wp--preset--font-size--header-3);
+	font-weight: 400;
 }
 
 @mixin h6 {
-	@include h5;
+	@include h-defaults;
+	font-size: var(--wp--preset--font-size--body-large);
+	font-weight: 700;
 }
 
 @mixin p {
-	@include article-font;
+	font-size: var(--wp--preset--font-size--body-large);
 	margin-bottom: 1rem;
 }
 
