@@ -10,7 +10,7 @@ namespace WMF\Editor\Blocks\MegaMenu;
  *
  * @return void
  */
-function bootstrap() : void {
+function bootstrap(): void {
 	add_filter( 'render_block', __NAMESPACE__ . '\\render_navigation', 10, 2 );
 }
 
