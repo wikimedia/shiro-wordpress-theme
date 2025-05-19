@@ -68,7 +68,6 @@
 
 		@include has-font-size("large");
 		display: block;
-		font-family: $font-family-serif;
 		font-weight: 400;
 		line-height: 1.5;
 		margin-bottom: rem(5);
@@ -121,7 +120,6 @@
 		p {
 
 			@include has-font-size("large");
-			font-family: $font-family-serif;
 			line-height: 1.5;
 
 			&:last-child {

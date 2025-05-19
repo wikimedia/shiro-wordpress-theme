@@ -368,7 +368,6 @@ $header-bp-mw: 1049px;
 
 	.post-meta {
 		@include has-font-size( large );
-		font-family: $font-family-serif;
 		margin: 0;
 
 		> span {

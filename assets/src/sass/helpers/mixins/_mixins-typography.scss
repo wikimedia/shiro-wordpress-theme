@@ -51,7 +51,6 @@ $font-sizes: (
 
 @mixin article-font {
 	@include has-font-size("default");
-	font-family: $font-family-serif;
 }
 
 @mixin h-margins {
@@ -67,14 +66,12 @@ $font-sizes: (
 @mixin h2 {
 	@extend .has-xlarge-font-size;
 	@include h-margins;
-	font-family: $font-family-serif;
 	font-weight: 400;
 }
 
 @mixin h3 {
 	@extend .has-large-font-size;
 	@include h-margins;
-	font-family: $font-family-serif;
 	font-weight: 400;
 }
 
