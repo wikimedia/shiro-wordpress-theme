@@ -473,13 +473,33 @@
 			"area": "footer"
 		},
 		{
+			"name": "mega-get-involved",
+			"title": "Mega get involved",
+			"area": "menu"
+		},
+		{
 			"name": "mega-languages",
 			"title": "Mega languages",
 			"area": "menu"
 		},
 		{
+			"name": "mega-news",
+			"title": "Mega news",
+			"area": "menu"
+		},
+		{
 			"name": "mega-search",
 			"title": "Mega search",
+			"area": "menu"
+		},
+		{
+			"name": "mega-what-we-do",
+			"title": "Mega what we do",
+			"area": "menu"
+		},
+		{
+			"name": "mega-who-we-are",
+			"title": "Mega who we are",
 			"area": "menu"
 		}
 	]
