@@ -71,6 +71,11 @@
 					"color": "#f8f7fc"
 				},
 				{
+					"name": "Black 5",
+					"slug": "black-05",
+					"color": "#F2F2F2"
+				},
+				{
 					"name": "Border Light",
 					"slug": "border-light",
 					"color": "#E5E5E5"
@@ -114,7 +119,14 @@
 			"wideSize": "1200px"
 		},
 		"shadow": {
-			"defaultPresets": false
+			"defaultPresets": false,
+			"presets": [
+				{
+					"name": "Shadow 16px blur",
+					"slug": "shadow-16-blur",
+					"shadow": "0 0 var(--wp--preset--spacing--16) 0 rgba(0, 0, 0, 0.25)"
+				}
+			]
         },
 		"spacing": {
 			"customSpacingSize": false,

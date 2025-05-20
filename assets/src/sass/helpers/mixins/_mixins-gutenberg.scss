@@ -1,14 +1,20 @@
 // Mixins to support block editor content.
-@mixin alignfull() {
-	margin-left: calc( var(--wp--style--root--padding-left) * -1 ) !important;
-	margin-right: calc( var(--wp--style--root--padding-right) * -1 ) !important;
-	max-width: none !important;
-	width: 100vw;
-}
+$global-padding-added: calc( var(--wp--style--root--padding-left) + var(--wp--style--root--padding-right) );
 
 @mixin global-padding {
 	padding-left: var(--wp--style--root--padding-left);
 	padding-right: var(--wp--style--root--padding-right);
+}
+
+@mixin global-negative-margin {
+	margin-left: calc( var(--wp--style--root--padding-left) * -1 ) !important;
+	margin-right: calc( var(--wp--style--root--padding-right) * -1 ) !important;
+}
+
+@mixin alignfull() {
+	@include global-negative-margin;
+	max-width: none !important;
+	width: 100vw;
 }
 
 @mixin alignfull-padded() {

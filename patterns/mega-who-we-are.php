@@ -13,8 +13,8 @@
 
 ?>
 
-<!-- wp:group {"backgroundColor":"base90","layout":{"type":"default"}} -->
-<div class="wp-block-group has-base90-background-color has-background"><!-- wp:columns -->
+<!-- wp:group {"backgroundColor":"black-05","layout":{"type":"default"}} -->
+<div class="wp-block-group has-black-05-background-color has-background"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column {"metadata":{"name":"Intro"}} -->
 <div class="wp-block-column"><!-- wp:heading -->
 <h2 class="wp-block-heading">We are the non-profit organization behind Wikipedia and 13 other free knowledge projects.</h2>

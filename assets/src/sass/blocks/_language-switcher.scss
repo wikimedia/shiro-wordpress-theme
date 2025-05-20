@@ -1,3 +1,9 @@
+.language-switcher-nav {
+	&:empty {
+		display: none;
+	}
+}
+
 .language-switcher {
 	order: 30;
 	position: relative;
