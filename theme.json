@@ -159,7 +159,7 @@
 							"fontDisplay": "swap",
 							"fontFamily": "Inter",
 							"fontStyle": "normal",
-							"fontWeight": "400 600 700",
+							"fontWeight": "100 1000",
 							"src": [
 								"file:./assets/src/fonts/inter.ttf"
 							]
@@ -168,7 +168,7 @@
 							"fontDisplay": "swap",
 							"fontFamily": "Inter",
 							"fontStyle": "italic",
-							"fontWeight": "400 600 700",
+							"fontWeight": "100 1000",
 							"src": [
 								"file:./assets/src/fonts/inter-italic.ttf"
 							]
@@ -184,7 +184,7 @@
 							"fontDisplay": "swap",
 							"fontFamily": "Montserrat",
 							"fontStyle": "normal",
-							"fontWeight": "400 600 700",
+							"fontWeight": "100 1000",
 							"src": [
 								"file:./assets/src/fonts/montserrat.ttf"
 							]
