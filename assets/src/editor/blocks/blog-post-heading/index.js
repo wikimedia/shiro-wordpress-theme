@@ -7,11 +7,14 @@ import classNames from 'classnames';
 /**
  * WordPress dependencies
  */
+import { registerBlockType } from '@wordpress/blocks';
 import { RichText } from '@wordpress/block-editor';
 import { createBlock } from '@wordpress/blocks';
 import { Icon } from '@wordpress/components';
 import { useSelect, select, dispatch, subscribe } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
+
+import metadata from './block.json';
 
 /**
  * Internal dependencies
@@ -36,41 +39,17 @@ const openFeaturedImageSelector = () => {
 
 	setTimeout( () => {
 		const button = document.querySelector( '.editor-post-featured-image__container .components-button' );
-		const panel = button.closest( '.components-panel__body' );
-		panel.scrollIntoView();
+		if ( ! button ) {
+			return;
+		}
+		button.scrollIntoViewIfNeeded();
 		button.focus();
 		button.click();
 	} );
 };
 
-export const name = 'shiro/blog-post-heading';
-
-export const settings = {
-	title: __( 'Post Heading controls', 'shiro-admin' ),
-
-	category: 'wikimedia',
-
-	icon: 'cover-image',
-
-	description: __(
-		'Editor controls for selecting featured image and post intro.',
-		'shiro-admin'
-	),
-
-	supports: {
-		inserter: false,
-		multiple: false,
-		reusable: false,
-	},
-
-	attributes: {
-		postIntro: {
-			type: 'string',
-			multiline: 'p',
-			source: 'meta',
-			meta: 'page_intro',
-		},
-	},
+registerBlockType( metadata.name, {
+	...metadata,
 
 	/**
 	 * Edit component used to manage featured image and page intro.
@@ -102,9 +81,11 @@ export const settings = {
 						)
 					}
 				>
-					{ featuredImageUrl ?
-						<img alt="" className="post-heading__image" src={ featuredImageUrl } /> :
-						<div className="post-heading__image--empty">{ __( 'No featured image selected', 'shiro-admin' ) }</div> }
+					{ featuredImageUrl ? (
+						<img alt="" className="post-heading__image" src={ featuredImageUrl } />
+					) : (
+						<div className="post-heading__image--empty">{ __( 'No featured image selected', 'shiro-admin' ) }</div>
+					) }
 					<button className="post-heading__click-overlay" onClick={ openFeaturedImageSelector }>
 						<span className="dashicon-wrapper">
 							<Icon icon="edit-large" />
@@ -124,7 +105,7 @@ export const settings = {
 			</div>
 		);
 	},
-};
+} );
 
 subscribe( () => {
 	const { replaceBlocks, removeBlock, selectBlock } = dispatch( 'core/block-editor' );
@@ -143,8 +124,8 @@ subscribe( () => {
 	}
 
 	// Ensure that the first block is a blog post heading.
-	if ( firstBlock.name !== name ) {
-		const blogPostHeaderBlock = createBlock( name );
+	if ( firstBlock.name !== metadata.name ) {
+		const blogPostHeaderBlock = createBlock( metadata.name );
 		replaceBlocks(
 			firstBlock.clientId,
 			[
@@ -156,6 +137,14 @@ subscribe( () => {
 	}
 
 	// Ensure that the blog post heading hasn't been moved anywhere but the first slot.
-	otherBlocks.filter( ( block ) => block.name === name )
+	otherBlocks.filter( ( block ) => block.name === metadata.name )
 		.forEach( ( block ) => removeBlock( block.clientId ) );
 } );
+
+// Block HMR boilerplate.
+if ( module.hot ) {
+	module.hot.accept();
+	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
+	module.hot.dispose( deregister( metadata.name ) );
+	refresh( metadata.name, module.hot.data );
+}
