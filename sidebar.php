@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $facts     = get_post_meta( get_the_ID(), 'sidebar_facts', true );
 $downloads = get_post_meta( get_the_ID(), 'sidebar_downloads', true );
 
-if ( empty( $facts ) && empty( $downloads ) ) {
+if ( empty( $facts['callout'] ) && empty( $facts['caption'] ) && empty( $downloads ) ) {
 	return;
 }
 ?>

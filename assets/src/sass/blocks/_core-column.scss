@@ -1,42 +1,5 @@
-.wp-block-column {
-	> .contact:only-child,
-	> .wp-block-group:only-child,
-	> .wp-block-group:only-child .wp-block-group__inner-container {
-		height: 100%;
-	}
-
-	@media (max-width: #{ ($core-gutenberg-break-small - 1) }) {
-		&:not(:first-child) {
-			margin-top: $wm-column-gutter;
-		}
-	}
-
-	// Gutenberg allows 2 columns between these two sizes and wraps the rest
-	@media (min-width: #{ ($core-gutenberg-break-small) }) and (max-width: #{ ($core-gutenberg-break-medium - 1) }) {
-		&:not(:nth-child(1)):not(:nth-child(2)) {
-			margin-top: $wm-column-gutter;
-		}
-
-		&:nth-child(even) {
-			margin-left: $wm-column-gutter;
-		}
-	}
-
-	@media (min-width: $core-gutenberg-break-medium) {
-		&:not(:first-child) {
-			margin-left: $wm-column-gutter;
-		}
-	}
-}
-
-/**
- * This is a core style that is for some reason over-riden in the editor,
- * making the editor and front-end not match. Redefining it here provides
- * enough specificity for the rule to apply correctly. We're also making
- * it match our default margins.
- */
-.wp-block-columns {
-	@include global-margin-bottom;
+.wp-block-column > .wp-block-group:only-child {
+	height: 100%;
 }
 
 .wp-block-columns.tweet-columns {

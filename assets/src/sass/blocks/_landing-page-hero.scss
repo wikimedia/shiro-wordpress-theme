@@ -1,15 +1,28 @@
 .hero {
-	@include global-margin-bottom;
+	@include alignfull-padded;
+	margin-bottom: var(--wp--preset--spacing--80);
 
 	&__header {
+		@include alignwide;
 		@include block-style-background-color;
 		@include block-style-text-color;
-		@include global-padding;
 
 		display: flex;
-		padding-bottom: rem(28);
-		padding-top: rem(28);
-		width: 100%;
+		padding-bottom: var(--wp--preset--spacing--80);
+		padding-top: var(--wp--preset--spacing--80);
+		position: relative;
+
+		&::before {
+			@include absolute-full-cover();
+			@include block-style-background-color;
+			width: 200vw;
+			left: -50%;
+		}
+	}
+
+	&__text-column,
+	&__image-container {
+		position: relative;
 	}
 
 	&__image-container {
@@ -18,27 +31,14 @@
 	}
 
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
-		max-width: none !important;
 		overflow: hidden;
 
 		&__header {
-			box-sizing: content-box;
 			flex-flow: row nowrap;
-			margin:  0 auto;
-			max-width: var(--wp--style--global--content-size);
-			position: relative;
-
-			&::before {
-				@include absolute-full-cover();
-				@include block-style-background-color;
-				width: 200vw;
-				left: -50%;
-			}
 		}
 
 		&__text-column,
 		&__image-container {
-			position: relative;
 			width: 50%;
 		}
 
@@ -47,14 +47,6 @@
 			display: flex;
 			flex-flow: column nowrap;
 			margin-right: rem(40);
-
-			&::after {
-				border-left: 1px solid var(--accent-color);
-				content: "";
-				flex-grow: 1;
-				margin-bottom: rem(-28);
-				min-height: rem(28);
-			}
 		}
 
 		&__image,
@@ -102,20 +94,8 @@
 	}
 
 	&__intro {
-
-		border-left: 1px solid var(--accent-color);
-
-		margin: rem(-32) rem(20) 0;
-		padding: rem(72) rem(10) rem(40) rem(30);
-
-		@media ( min-width: #{$width-breakpoint-tablet} ) {
-			margin: 0 rem(20);
-			max-width: var(--wp--style--global--content-size);
-		}
-
-		@media ( min-width: #{$width-breakpoint-desktop} ) {
-			margin: 0 auto;
-		}
+		@include alignwide;
+		margin-top: var(--wp--preset--spacing--80);
 
 		p {
 

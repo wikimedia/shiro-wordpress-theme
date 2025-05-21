@@ -1,9 +1,12 @@
 .pagination {
-	border-bottom: 1px solid $wmui-color-base70;
-	border-top: 1px solid $wmui-color-base70;
 	margin-bottom: 7rem;
 	@include has-font-size("default");
 	@include responsive-padding(24 20, 32 40);
+
+	&:has( .pagination__inner ) {
+		border-bottom: 1px solid $wmui-color-base70;
+		border-top: 1px solid $wmui-color-base70;
+	}
 
 	&__inner {
 		display: flex;
