@@ -99,6 +99,20 @@
 	}
 }
 
+@mixin button-black() {
+	background-color: $wmui-color-base0;
+	border: 2px solid $wmui-color-base0;
+	color: $color-base--inverted;
+	transition: $transition-duration-base background-color;
+
+	&:hover,
+	&:focus {
+		background-color: $wmui-color-base80;
+		color: $wmui-color-base0;
+		text-decoration: underline;
+	}
+}
+
 @mixin button-link() {
 	@include style-guide-button(
 		transparent,
