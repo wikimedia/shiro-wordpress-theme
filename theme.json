@@ -204,17 +204,17 @@
 				{
 					"size": "0.75rem",
 					"slug": "x-small",
-					"name": "Body: Extra Small"
+					"name": "Extra Small"
 				},
 				{
 					"size": "0.875rem",
 					"slug": "small",
-					"name": "Body: Small"
+					"name": "Small"
 				},
 				{
 					"size": "1rem",
 					"slug": "medium",
-					"name": "Body: Medium"
+					"name": "Medium"
 				},
 				{
 					"fluid": {
@@ -223,7 +223,7 @@
 					},
 					"size": "1.25rem",
 					"slug": "large",
-					"name": "Body: Large"
+					"name": "Large"
 				},
 				{
 					"fluid": {
@@ -231,8 +231,8 @@
 						"max": "1.5rem"
 					},
 					"size": "1.5rem",
-					"slug": "header-3",
-					"name": "Title: Header 3"
+					"slug": "x-large",
+					"name": "Extra Large (Header 3)"
 				},
 				{
 					"fluid": {
@@ -240,8 +240,8 @@
 						"max": "2rem"
 					},
 					"size": "2rem",
-					"slug": "header-2",
-					"name": "Title: Header 2"
+					"slug": "xx-large",
+					"name": "XX Large (Header 2)"
 				},
 				{
 					"fluid": {
@@ -249,8 +249,8 @@
 						"max": "3rem"
 					},
 					"size": "3rem",
-					"slug": "header-1",
-					"name": "Title: Header 1"
+					"slug": "jumbo",
+					"name": "Jumbo (Header 1)"
 				}
 			],
 			"lineHeight": true
@@ -352,31 +352,31 @@
 			},
 			"h1": {
 				"typography": {
-					"fontSize": "var:preset|font-size|header-1",
+					"fontSize": "var:preset|font-size|jumbo",
 					"lineHeight": "var:custom|line-height|snug"
         }
 			},
 			"h2": {
 				"typography": {
-					"fontSize": "var:preset|font-size|header-2",
+					"fontSize": "var:preset|font-size|xx-large",
 					"lineHeight": "var:custom|line-height|tight"
 				}
 			},
 			"h3": {
 				"typography": {
-					"fontSize": "var:preset|font-size|header-3",
+					"fontSize": "var:preset|font-size|x-large",
 					"lineHeight": "var:custom|line-height|snug"
 				}
 			},
 			"h4": {
 				"typography": {
-					"fontSize": "var:preset|font-size|header-3",
+					"fontSize": "var:preset|font-size|x-large",
           "fontWeight": "var:custom|font-weight|semi-bold"
 				}
 			},
 			"h5": {
 				"typography": {
-					"fontSize": "var:preset|font-size|header-3",
+					"fontSize": "var:preset|font-size|x-large",
           "fontWeight": "var:custom|font-weight|normal"
 				}
 			},
