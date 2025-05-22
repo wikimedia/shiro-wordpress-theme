@@ -2,6 +2,11 @@
 # Helpers
 --------------------------------------------------------------*/
 
+/* Vendor files that are order dependent.
+--------------------------------------------- */
+// https://eduardoboucas.github.io/include-media/
+@import "../../../../node_modules/include-media/dist/include-media";
+
 /* Functions
 --------------------------------------------- */
 @import "functions";
@@ -12,6 +17,7 @@
 
 /* Mixins
 --------------------------------------------- */
+@import "../utilities/breakpoints";
 @import "../utilities/theme-supports";
 @import "mixins/mixins-ally";
 @import "mixins/mixins-general";

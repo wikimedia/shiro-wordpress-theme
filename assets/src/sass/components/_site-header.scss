@@ -12,10 +12,7 @@
 	.wp-block-site-logo {
 		@include media("<mobile") {
 			margin-right: auto;
-
-			img {
-				max-width: rem(120);
-			}
+			max-width: min( rem(172), 35% );
 		}
 
 		a {
@@ -33,12 +30,26 @@
 		}
 	}
 
-	.donate-nav mark {
-		background-color: transparent !important;
-		color: inherit !important;
+	li {
+		margin: 0;
+	}
 
-		@include media("<mobile") {
-			@include visually-hidden;
+	.donate-nav {
+		.wp-block-button__link {
+			@include media("<mobile") {
+				font-size: rem(16);
+				line-height: var(--wp--custom--line-height--relaxed);
+				padding-inline: rem(8);
+			}
+		}
+
+		mark {
+			background-color: transparent !important;
+			color: inherit !important;
+
+			@include media("<mobile") {
+				@include visually-hidden;
+			}
 		}
 	}
 }

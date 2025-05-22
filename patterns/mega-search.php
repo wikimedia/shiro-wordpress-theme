@@ -13,6 +13,6 @@
 
 ?>
 
-<!-- wp:group {"backgroundColor":"black-05","layout":{"type":"default"}} -->
-<div class="wp-block-group has-black-05-background-color has-background"><!-- wp:search {"label":"Search","buttonText":"Search"} /--></div>
+<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|64","bottom":"var:preset|spacing|64"}}},"backgroundColor":"black-05","layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-black-05-background-color has-background" style="padding-top:var(--wp--preset--spacing--64);padding-bottom:var(--wp--preset--spacing--64)"><!-- wp:search {"label":"Search","placeholder":"Search site","buttonText":"Search"} /--></div>
 <!-- /wp:group -->

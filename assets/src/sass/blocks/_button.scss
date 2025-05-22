@@ -123,7 +123,7 @@
 }
 
 .wp-block-button__link {
-	font-size: unset;
+	// font-size: unset;
 }
 
 @include button-wrapper( ".wp-block-shiro-button", "&" );
