@@ -2,7 +2,6 @@
 	background: $background-color-framed;
 	border: 1px solid $border-color-framed;
 	border-radius: $border-radius-big;
-	font-family: $font-family-sans;
 	padding: rem(25);
 
 	h3 {
@@ -14,7 +13,6 @@
 	}
 
 	p {
-		font-family: $font-family-sans;
 		margin-bottom: rem(20);
 	}
 
