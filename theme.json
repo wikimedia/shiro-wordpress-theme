@@ -407,7 +407,7 @@
 		},
 		"typography": {
 			"fontFamily": "var:preset|font-family|default",
-			"fontSize": "var:preset|font-size|large",
+			"fontSize": "var:preset|font-size|medium",
 			"fontWeight": "var:custom|font-weight|normal",
 			"lineHeight": "var:custom|line-height|base"
 		}
