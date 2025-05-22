@@ -359,12 +359,13 @@
 			"h2": {
 				"typography": {
 					"fontSize": "var:preset|font-size|header-2",
-					"lineHeight": "var:custom|line-height|snug"
+					"lineHeight": "var:custom|line-height|tight"
 				}
 			},
 			"h3": {
 				"typography": {
-					"fontSize": "var:preset|font-size|header-3"
+					"fontSize": "var:preset|font-size|header-3",
+					"lineHeight": "var:custom|line-height|snug"
 				}
 			},
 			"h4": {
@@ -381,7 +382,7 @@
 			},
 			"h6": {
 				"typography": {
-					"fontSize": "var:preset|font-size|body-large"
+					"fontSize": "var:preset|font-size|large"
 				}
 			},
 			"heading": {
