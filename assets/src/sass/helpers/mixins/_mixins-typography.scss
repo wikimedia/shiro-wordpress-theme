@@ -31,80 +31,78 @@
 
 // Font-sizes: desktop, mobile, line-height.
 $font-sizes: (
-	"default": 18 16 1.75,
-	"small":   14 12 1.75,
-	"medium":  20 18 1.5,
-	"large":   24 21 1.25,
-	"xlarge":  32 24 1.25,
-	"jumbo":   40 30 1.25
+	"x-small":  var(--wp--preset--font-size--x-small) var(--wp--custom--line-height--base),
+	"small":    var(--wp--preset--font-size--small) var(--wp--custom--line-height--base),
+	"medium":   var(--wp--preset--font-size--medium) var(--wp--custom--line-height--relaxed),
+	"default":  var(--wp--preset--font-size--large) var(--wp--custom--line-height--base),
+	"large":    var(--wp--preset--font-size--large) var(--wp--custom--line-height--base),
+	"x-large": var(--wp--preset--font-size--x-large) var(--wp--custom--line-height--snug),
+	"xx-large": var(--wp--preset--font-size--xx-large) var(--wp--custom--line-height--tight),
+	"jumbo": var(--wp--preset--font-size--jumbo) var(--wp--custom--line-height--snug),
+	// Legacy slugs.
+	"xlarge": var(--wp--preset--font-size--xx-large) var(--wp--custom--line-height--tight)
 );
 
 @mixin has-font-size( $size ) {
 	$values: map-get($font-sizes, $size);
-	$desktop: nth($values, 1);
-	$mobile: nth($values, 2);
-	$line-height: nth($values, 3);
-
-	@include font-size( $desktop, $mobile );
-	line-height: $line-height;
+	font-size: nth($values, 1);
+	line-height: nth($values, 2);
 }
 
-@mixin article-font {
-	@include has-font-size("default");
-	font-family: $font-family-serif;
-}
-
-@mixin h-margins {
+@mixin h-defaults {
+	font-family: var(--wp--preset--font-family--display);
 	margin-bottom: 0.5em;
 }
 
 @mixin h1 {
-	@extend .has-jumbo-font-size;
-	@include h-margins;
-	font-family: $font-family-sans;
+	@include h-defaults;
+	font-size: var(--wp--preset--font-size--jumbo);
+	line-height: var(--wp--custom--line-height--snug);
 	font-weight: 700;
 }
 
 @mixin h2 {
-	@extend .has-xlarge-font-size;
-	@include h-margins;
-	font-family: $font-family-serif;
-	font-weight: 400;
+	@include h-defaults;
+	font-size: var(--wp--preset--font-size--xx-large);
+	line-height: var(--wp--custom--line-height--tight);
+	font-weight: 700;
 }
 
 @mixin h3 {
-	@extend .has-large-font-size;
-	@include h-margins;
-	font-family: $font-family-serif;
-	font-weight: 400;
+	@include h-defaults;
+	font-size: var(--wp--preset--font-size--x-large);
+	line-height: var(--wp--custom--line-height--snug);
+	font-weight: 700;
 }
 
 @mixin h3-sans {
-	font-family: $font-family-sans;
-	font-weight: 700;
+	font-weight: 600;
 }
 
 @mixin h4 {
-	@extend .has-medium-font-size;
-	@include h-margins;
-	font-family: $font-family-sans;
-	font-weight: 700;
+	@include h-defaults;
+	font-size: var(--wp--preset--font-size--x-large);
+	line-height: var(--wp--custom--line-height--base);
+	font-weight: 600;
 }
 
 @mixin h5 {
-	@extend .has-default-font-size;
-	@include h-margins;
-	color: unset;
-	font-weight: 700;
-	text-transform: unset;
+	@include h-defaults;
+	font-size: var(--wp--preset--font-size--x-large);
+	line-height: var(--wp--custom--line-height--base);
+	font-weight: 400;
 }
 
 @mixin h6 {
-	@include h5;
+	@include h-defaults;
+	font-size: var(--wp--preset--font-size--large);
+	line-height: var(--wp--custom--line-height--base);
+	font-weight: 700;
 }
 
 @mixin p {
-	@include article-font;
+	font-size: var(--wp--preset--font-size--large);
+	line-height: var(--wp--custom--line-height--base);
 	margin-bottom: 1rem;
 }
 

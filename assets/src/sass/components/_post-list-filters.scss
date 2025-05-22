@@ -1,7 +1,4 @@
 .post-list-filter {
-
-	font-family: $font-family-system-sans;
-
 	&__head {
 		display: flex;
 		align-items: center;
@@ -11,10 +8,6 @@
 		@media (max-width: $small-bp) {
 			flex-direction: column;
 			margin-bottom: 0;
-		}
-
-		h3 {
-			font-family: $font-family-system-sans;
 		}
 	}
 
@@ -129,7 +122,6 @@
 	display: flex;
 	align-items: center;
 	cursor: pointer;
-	font-family: $font-family-system-sans;
 	font-size: 0.75rem;
 	background-color: $color-periwinkle;
 	border-radius: 0.25rem;

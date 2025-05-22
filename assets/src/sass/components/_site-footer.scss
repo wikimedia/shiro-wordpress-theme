@@ -1,5 +1,4 @@
 .site-footer {
-	font-family: $font-family-sans;
 
 	li {
 		list-style: none;
@@ -47,7 +46,6 @@
 
 		p {
 			@include reset-p-margin;
-			font-family: $font-family-sans;
 			font-size: inherit;
 			line-height: inherit;
 		}
