@@ -259,7 +259,6 @@ require get_template_directory() . '/inc/ajax.php';
  */
 require get_template_directory() . '/inc/editor/namespace.php';
 require get_template_directory() . '/inc/editor/blocks/blog-post.php';
-require get_template_directory() . '/inc/editor/blocks/clock.php';
 require get_template_directory() . '/inc/editor/blocks/donation-portal-form.php';
 require get_template_directory() . '/inc/editor/blocks/double-heading.php';
 require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
