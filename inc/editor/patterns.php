@@ -82,6 +82,12 @@ function register_pattern() {
 		'content' => EmailSubscriptionForm\PATTERN,
 	] );
 
+	register_block_pattern( DonationBar\NAME, [
+		'title' => __( 'Donation bar template', 'shiro-admin' ),
+		'categories' => [ MAIN_CATEGORY_NAME ],
+		'content' => DonationBar\PATTERN,
+	] );
+
 	register_block_pattern( TemplateDefault\NAME, [
 		'title' => __( 'Default Template', 'shiro-admin' ),
 		'categories' => [ TEMPLATE_CATEGORY_NAME ],

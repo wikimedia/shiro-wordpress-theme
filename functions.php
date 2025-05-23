@@ -259,6 +259,8 @@ require get_template_directory() . '/inc/ajax.php';
  */
 require get_template_directory() . '/inc/editor/namespace.php';
 require get_template_directory() . '/inc/editor/blocks/blog-post.php';
+require get_template_directory() . '/inc/editor/blocks/clock.php';
+require get_template_directory() . '/inc/editor/blocks/donation-portal-form.php';
 require get_template_directory() . '/inc/editor/blocks/double-heading.php';
 require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
 require get_template_directory() . '/inc/editor/blocks/landing-page-hero.php';
@@ -273,6 +275,7 @@ require get_template_directory() . '/inc/editor/intro.php';
 require get_template_directory() . '/inc/editor/patterns.php';
 require get_template_directory() . '/inc/editor/patterns/blog-list.php';
 require get_template_directory() . '/inc/editor/patterns/card-columns.php';
+require get_template_directory() . '/inc/editor/patterns/donation-bar.php';
 require get_template_directory() . '/inc/editor/patterns/fact-columns.php';
 require get_template_directory() . '/inc/editor/patterns/link-columns.php';
 require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
@@ -288,6 +291,7 @@ WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
 WMF\Editor\Blocks\BlogPost\bootstrap();
 WMF\Editor\Blocks\InlineLanguages\bootstrap();
+WMF\Editor\Blocks\DonationPortalForm\bootstrap();
 WMF\Editor\Blocks\DoubleHeading\bootstrap();
 WMF\Editor\Blocks\LandingPageHero\bootstrap();
 WMF\Editor\Blocks\LinkedTOCItem\bootstrap();
@@ -550,3 +554,9 @@ function shiro_safe_title( string $title ): void {
  * Disable JetPack Blaze.
  */
 add_filter( 'jetpack_blaze_enabled', '__return_false' );
+
+/**
+ * GeoIP related functions.
+ */
+require get_template_directory() . '/inc/geoip.php';
+add_action( 'after_setup_theme', 'wmf_maybe_enable_geoip' );
