@@ -21,7 +21,7 @@ function bootstrap() {
 /**
  * Localise currencies for block UI.
  */
-function action_enqueue_block_editor_assets() : void {
+function action_enqueue_block_editor_assets() {
 	wp_add_inline_script(
 		WP_Block_Type_Registry::get_instance()->get_registered( BLOCK_NAME )->editor_script_handles[0],
 		sprintf(
@@ -42,7 +42,7 @@ function action_enqueue_block_editor_assets() : void {
  * @param int     $post_id Post ID.
  * @param WP_Post $post    Post object.
  */
-function action_wp_after_insert_post( $post_id, WP_Post $post ) : void {
+function action_wp_after_insert_post( $post_id, WP_Post $post ) {
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		return;
 	}
