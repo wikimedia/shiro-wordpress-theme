@@ -26,7 +26,7 @@ function wmf_maybe_enable_geoip() {
 		return;
 	}
 
-	$path = wp_parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+	$path = wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH );
 
 	if ( ! in_array( $path, $geoip_paths, true ) ) {
 		return;
@@ -54,7 +54,7 @@ function wmf_enable_geoip_for_current_path() {
 		return;
 	}
 
-	$path = wp_parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+	$path = wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH );
 
 	if ( is_admin() || strpos( $path, rest_url() ) === 0 ) {
 		return;
