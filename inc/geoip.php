@@ -26,7 +26,7 @@ function wmf_maybe_enable_geoip() {
 		return;
 	}
 
-	$path = wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH );
+	$path = wp_parse_url( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), PHP_URL_PATH );
 
 	if ( ! in_array( $path, $geoip_paths, true ) ) {
 		return;
@@ -54,7 +54,7 @@ function wmf_enable_geoip_for_current_path() {
 		return;
 	}
 
-	$path = wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH );
+	$path = wp_parse_url( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), PHP_URL_PATH );
 
 	if ( is_admin() || strpos( $path, rest_url() ) === 0 ) {
 		return;
@@ -107,7 +107,17 @@ function wmf_get_currency_code( $country_code ) {
  * @return string|null Currency symbol or null if not found.
  */
 function wmf_get_currency_symbol( $currency_code ) {
-	$symbols = [
+	$symbols = wmf_get_currency_to_symbol_map();
+	return isset( $symbols[ $currency_code ] ) ? $symbols[ $currency_code ] : $currency_code;
+}
+
+/**
+ * Get the currency code to symbol map array.
+ *
+ * @return array Currency code to symbol map.
+ */
+function wmf_get_currency_to_symbol_map() : array {
+	return [
 		'USD' => '$',
 		'CAD' => 'CA$',
 		'AUD' => 'A$',
@@ -187,8 +197,6 @@ function wmf_get_currency_symbol( $currency_code ) {
 		'XCD' => 'EC$',
 		'ZAR' => 'R',
 	];
-
-	return isset( $symbols[ $currency_code ] ) ? $symbols[ $currency_code ] : $currency_code;
 }
 
 /**

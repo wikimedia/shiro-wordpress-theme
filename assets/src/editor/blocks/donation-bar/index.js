@@ -24,85 +24,11 @@ import metadata from './block.json';
 
 import './index.css';
 
-const supportedCurrencies = [
-	{ label: 'USD ($)', value: 'USD' },
-	{ label: 'CAD (CA$)', value: 'CAD' },
-	{ label: 'AUD (A$)', value: 'AUD' },
-	{ label: 'NZD (NZ$)', value: 'NZD' },
-	{ label: 'GBP (£)', value: 'GBP' },
-	{ label: 'EUR (€)', value: 'EUR' },
-	{ label: 'AED (د.إ)', value: 'AED' },
-	{ label: 'ANG (ƒ)', value: 'ANG' },
-	{ label: 'ARS ($)', value: 'ARS' },
-	{ label: 'AOA (Kz)', value: 'AOA' },
-	{ label: 'BBD (Bds$)', value: 'BBD' },
-	{ label: 'BDT (৳)', value: 'BDT' },
-	{ label: 'BGN (лв)', value: 'BGN' },
-	{ label: 'BHD (.د.ب)', value: 'BHD' },
-	{ label: 'BMD ($)', value: 'BMD' },
-	{ label: 'BOB (Bs.)', value: 'BOB' },
-	{ label: 'BRL (R$)', value: 'BRL' },
-	{ label: 'BZD (BZ$)', value: 'BZD' },
-	{ label: 'CHF (Fr.)', value: 'CHF' },
-	{ label: 'CLP ($)', value: 'CLP' },
-	{ label: 'CNY (¥)', value: 'CNY' },
-	{ label: 'COP ($)', value: 'COP' },
-	{ label: 'CRC (₡)', value: 'CRC' },
-	{ label: 'CZK (Kč)', value: 'CZK' },
-	{ label: 'DKK (kr)', value: 'DKK' },
-	{ label: 'DOP (RD$)', value: 'DOP' },
-	{ label: 'DZD (دج)', value: 'DZD' },
-	{ label: 'EGP (£)', value: 'EGP' },
-	{ label: 'FJD (FJ$)', value: 'FJD' },
-	{ label: 'GHS (₵)', value: 'GHS' },
-	{ label: 'GTQ (Q)', value: 'GTQ' },
-	{ label: 'HKD (HK$)', value: 'HKD' },
-	{ label: 'HNL (L)', value: 'HNL' },
-	{ label: 'HUF (Ft)', value: 'HUF' },
-	{ label: 'IDR (Rp)', value: 'IDR' },
-	{ label: 'ILS (₪)', value: 'ILS' },
-	{ label: 'INR (₹)', value: 'INR' },
-	{ label: 'JMD (J$)', value: 'JMD' },
-	{ label: 'JOD (JD)', value: 'JOD' },
-	{ label: 'JPY (¥)', value: 'JPY' },
-	{ label: 'KES (KSh)', value: 'KES' },
-	{ label: 'KHR (៛)', value: 'KHR' },
-	{ label: 'KRW (₩)', value: 'KRW' },
-	{ label: 'KWD (د.ك)', value: 'KWD' },
-	{ label: 'KZT (₸)', value: 'KZT' },
-	{ label: 'LBP (ل.ل)', value: 'LBP' },
-	{ label: 'LKR (Rs)', value: 'LKR' },
-	{ label: 'MAD (د.م.)', value: 'MAD' },
-	{ label: 'MKD (ден)', value: 'MKD' },
-	{ label: 'MXN ($)', value: 'MXN' },
-	{ label: 'MYR (RM)', value: 'MYR' },
-	{ label: 'MVR (Rf)', value: 'MVR' },
-	{ label: 'NOK (kr)', value: 'NOK' },
-	{ label: 'NPR (₨)', value: 'NPR' },
-	{ label: 'OMR (ر.ع.)', value: 'OMR' },
-	{ label: 'PAB (B/.)', value: 'PAB' },
-	{ label: 'PEN (S/)', value: 'PEN' },
-	{ label: 'PGK (K)', value: 'PGK' },
-	{ label: 'PHP (₱)', value: 'PHP' },
-	{ label: 'PKR (₨)', value: 'PKR' },
-	{ label: 'PLN (zł)', value: 'PLN' },
-	{ label: 'QAR (ر.ق)', value: 'QAR' },
-	{ label: 'RON (lei)', value: 'RON' },
-	{ label: 'RUB (₽)', value: 'RUB' },
-	{ label: 'SAR (ر.س)', value: 'SAR' },
-	{ label: 'SEK (kr)', value: 'SEK' },
-	{ label: 'SGD (S$)', value: 'SGD' },
-	{ label: 'THB (฿)', value: 'THB' },
-	{ label: 'TRY (₺)', value: 'TRY' },
-	{ label: 'TTD (TT$)', value: 'TTD' },
-	{ label: 'TWD (NT$)', value: 'TWD' },
-	{ label: 'UAH (₴)', value: 'UAH' },
-	{ label: 'UYU ($U)', value: 'UYU' },
-	{ label: 'UZS (soʻm)', value: 'UZS' },
-	{ label: 'VND (₫)', value: 'VND' },
-	{ label: 'XCD (EC$)', value: 'XCD' },
-	{ label: 'ZAR (R)', value: 'ZAR' },
-];
+const SUPPORTED_CURRENCIES = Object.entries( DONATION_FORM_CURRENCIES )
+	.map( ( [ code, symbol ] ) => ( {
+		label: `${code} (${symbol})`,
+		value: code
+	} ) );
 
 registerBlockType( metadata.name, {
 	...metadata,
@@ -134,7 +60,7 @@ registerBlockType( metadata.name, {
 
 		const addCurrencyAmount = () => {
 			const usedCurrencies = defaultCurrencyAmount.map( item => item.currency );
-			const availableCurrencies = supportedCurrencies.filter(
+			const availableCurrencies = SUPPORTED_CURRENCIES.filter(
 				(supported) => ! usedCurrencies.includes( supported.value )
 			);
 			setAttributes( { defaultCurrencyAmount: [ ...defaultCurrencyAmount, { currency: availableCurrencies[0].value, amount: 10 } ] } );
@@ -182,7 +108,7 @@ registerBlockType( metadata.name, {
 							const usedCurrencies = defaultCurrencyAmount
 								.filter( ( _, i ) => i !== idx )
 								.map( ( entry ) => entry.currency );
-							const availableCurrencies = supportedCurrencies.filter(
+							const availableCurrencies = SUPPORTED_CURRENCIES.filter(
 								(opt) => ! usedCurrencies.includes( opt.value ) || opt.value === item.currency
 							);
 							return (
@@ -221,7 +147,7 @@ registerBlockType( metadata.name, {
 						<Button
 							variant="secondary"
 							onClick={ addCurrencyAmount }
-							disabled={ defaultCurrencyAmount.length >= supportedCurrencies.length }
+							disabled={ defaultCurrencyAmount.length >= SUPPORTED_CURRENCIES.length }
 						>
 							{ __( 'Add Currency Amount', 'shiro' ) }
 						</Button>
@@ -235,13 +161,6 @@ registerBlockType( metadata.name, {
 				</div>
 			</>
 		);
-	},
-
-	/**
-	 * Save the share article block, it's a dynamic block.
-	 */
-	save: function Save( { attributes } ) {
-		return null;
 	},
 } );
 
