@@ -25,70 +25,170 @@
 			],
 			"gradients": [],
 			"palette": [
-				{
-					"name": "Brand",
-					"slug": "primary",
-					"color": "#5344F4"
-				},
-				{
-					"name": "Brand Accent",
-					"slug": "primary-accent",
-					"color": "#e9e7ff"
-				},
-				{
-					"name": "Brand Alt",
-					"slug": "primary-alt",
-					"color": "#DEC9FF"
-				},
-				{
-					"name": "Brand Alt Accent",
-					"slug": "primary-alt-accent",
-					"color": "#3d386b"
-				},
-				{
-					"name": "Contrast",
+        {
+          "name": "Green (AA)",
+          "slug": "green",
+          "color": "#339966"
+        },
+        {
+          "name": "Green (AAA)",
+          "slug": "green-aaa",
+          "color": "#246342"
+        },
+        {
+          "name": "Blue (AA)",
+          "slug": "blue",
+          "color": "#0063BF"
+        },
+        {
+          "name": "Blue (AAA)",
+          "slug": "blue-aaa",
+          "color": "#0C57A8"
+        },
+        {
+          "name": "Red (AA)",
+          "slug": "red",
+          "color": "#990000"
+        },
+        {
+          "name": "Red (AAA)",
+          "slug": "red-aaa",
+          "color": "#970302"
+        },
+        {
+          "name": "Orange",
+          "slug": "orange",
+          "color": "#EE8019"
+        },
+        {
+          "name": "Yellow",
+          "slug": "yellow",
+          "color": "#F0BC00"
+        },
+        {
+          "name": "Pink",
+          "slug": "pink",
+          "color": "#E679A6"
+        },
+        {
+          "name": "Purple",
+          "slug": "purple",
+          "color": "#5748B5"
+        },
+        {
+          "name": "Bright Blue",
+          "slug": "bright-blue",
+          "color": "#049DFF"
+        },
+        {
+          "name": "Bright Green",
+          "slug": "bright-green",
+          "color": "#71D1B3"
+        },
+        {
+          "name": "Bright Yellow",
+          "slug": "bright-yellow",
+          "color": "#E9E7C4"
+        },
+        {
+          "name": "Light Pink",
+          "slug": "light-pink",
+          "color": "#F9DDE9"
+        },
+        {
+          "name": "Light Purple",
+          "slug": "light-purple",
+          "color": "#D5D1EC"
+        },
+        {
+          "name": "Light Bright Blue",
+          "slug": "light-bright-blue",
+          "color": "#C0E6FF"
+        },
+        {
+          "name": "Light Bright Green",
+          "slug": "light-bright-green",
+          "color": "#DBF3EC"
+        },
+        {
+          "name": "Lightest Pink",
+          "slug": "lightest-pink",
+          "color": "#FDF1F6"
+        },
+        {
+          "name": "Mid - Bright Yellow",
+          "slug": "mid-bright-yellow",
+          "color": "#F3F3E2"
+        },
+        {
+          "name": "Light Bright Yellow",
+          "slug": "light-bright-yellow",
+          "color": "#F9F9F0"
+        },
+        {
+          "name": "Lightest Yellow",
+          "slug": "lightest-yellow",
+          "color": "#FFFDF9"
+        },
+                {
+          "name": "Lightest Purple",
+          "slug": "lightest-purple",
+          "color": "#F9F7FF"
+        },
+        {
+          "name": "Lightest Blue",
+          "slug": "lightest-blue",
+          "color": "#F2FAFF"
+        },
+        {
+          "name": "Lightest Green",
+          "slug": "lightest-green",
+          "color": "#F1FAF7"
+        },
+        {
+          "name": "Base",
+          "slug": "base",
+          "color": "#FFFFFF"
+        },
+        {
+					"name": "Main",
 					"slug": "main",
 					"color": "#000000"
 				},
 				{
-					"name": "Contrast Accent",
-					"slug": "main-accent",
-					"color": "#d4d4ec"
+					"name": "Black 75",
+					"slug": "black-75",
+					"color": "#404040"
 				},
 				{
-					"name": "Base",
-					"slug": "base",
-					"color": "#fff"
+					"name": "Black 50",
+					"slug": "black-50",
+					"color": "#7F7F7F"
 				},
 				{
-					"name": "Base Accent",
-					"slug": "secondary",
-					"color": "#545473"
+					"name": "Black 25",
+					"slug": "black-25",
+					"color": "#BFBFBF"
 				},
 				{
-					"name": "Tint",
-					"slug": "tertiary",
-					"color": "#f8f7fc"
+          "name": "Black 10",
+					"slug": "black-10",
+					"color": "#E5E5E5"
 				},
-				{
-					"name": "Black 5",
-					"slug": "black-05",
-					"color": "#F2F2F2"
-				},
+        {
+          "name": "Black 05",
+          "slug": "black-05",
+          "color": "#F2F2F2"
+        },
 				{
 					"name": "Border Light",
 					"slug": "border-light",
-					"color": "#E5E5E5"
+					"color": "var:preset|color|black-10"
 				},
 				{
 					"name": "Border Base",
 					"slug": "border-base",
-					"color": "#BFBFBF"
-				},
-				{
-					"name": "Border Contrast",
-					"slug": "border-dark",
-					"color": "#4E4E60"
+					"color": "var:preset|color|black-25"
 				}
 			],
 			"link": false
