@@ -21,7 +21,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><a href="https://wikimedia.vipdev.lndo.site/news/" data-type="page" data-id="11">Find out more</a></p>
+<p><a href="/news/">Find out more</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 

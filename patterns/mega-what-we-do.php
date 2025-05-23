@@ -21,7 +21,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><a href="https://wikimedia.vipdev.lndo.site/our-work/" data-type="page" data-id="121">Learn more about our work</a></p>
+<p><a href="/our-work/">Learn more about our work</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 

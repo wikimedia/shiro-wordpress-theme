@@ -15,14 +15,18 @@ function bootstrap(): void {
 }
 
 /**
- * Make sure main group block on News+ has 'alignwide' class.
+ * Adjust the mega menu button content for search and language switcher.
  *
  * @param string $block_content The block content.
  * @param array  $block The full block, including name and attributes.
  * @return $block_content The updated block content.
  */
 function render_navigation( $block_content, $block ) {
-	if ( 'hm-blocks/hm-mega-menu-block' !== $block['blockName'] && ! in_array( $block['attrs']['className'], [ 'language-switcher', 'search' ], true ) ) {
+	if ( 'hm-blocks/hm-mega-menu-block' !== $block['blockName'] ) {
+		return $block_content;
+	}
+
+	if ( ! $block['attrs']['className'] || ! in_array( $block['attrs']['className'], [ 'language-switcher', 'search' ], true ) ) {
 		return $block_content;
 	}
 

@@ -13,7 +13,11 @@
 }
 
 .wp-block-search__input {
-	background: var(--wp--preset--color--base) calc( 100% - rem(10) ) center / rem(18) no-repeat url("../../assets/src/svg/search-grey.svg");
+	background-color: var(--wp--preset--color--base);
+	background-image: url("../../assets/src/svg/search-grey.svg");
+	background-position: calc( 100% - rem(10) ) center;
+	background-repeat: no-repeat;
+	background-size: rem(18);
 	border-color: var(--wp--preset--color--border-base);
 	border-radius: rem(4);
 	font-size: 1rem;
