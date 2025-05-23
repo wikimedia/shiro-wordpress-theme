@@ -26,7 +26,7 @@ function render_navigation( $block_content, $block ) {
 		return $block_content;
 	}
 
-	if ( ! $block['attrs']['className'] || ! in_array( $block['attrs']['className'], [ 'language-switcher', 'search' ], true ) ) {
+	if ( ! array_key_exists( 'className', $block['attrs'] ) || ! in_array( $block['attrs']['className'], [ 'language-switcher', 'search' ], true ) ) {
 		return $block_content;
 	}
 
@@ -34,7 +34,7 @@ function render_navigation( $block_content, $block ) {
 		// Replace the editor supplied button label with the current language label.
 		$block_content = preg_replace(
 			'>\s*(.*)<span class="wp-block-hm-mega-menu__toggle-icon">',
-			$button_content . '<span class="screen-reader-text">$1</span><span class="wp-block-hm-mega-menu__toggle-icon"',
+			'<span class="screen-reader-text">$1</span><span class="wp-block-hm-mega-menu__toggle-icon"',
 			$block_content
 		);
 
