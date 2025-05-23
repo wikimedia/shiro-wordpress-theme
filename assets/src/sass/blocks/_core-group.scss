@@ -7,6 +7,10 @@
 			> :last-child {
 				margin-bottom: 0;
 			}
+			> .alignwide {
+				margin-left: rem(-20) !important;
+				margin-right: rem(-20) !important;
+			}
 		}
 	}
 
