@@ -22,16 +22,14 @@ function bootstrap() {
  * Localise currencies for block UI.
  */
 function action_enqueue_block_editor_assets() : void {
-
 	wp_add_inline_script(
 		WP_Block_Type_Registry::get_instance()->get_registered( BLOCK_NAME )->editor_script_handles[0],
 		sprintf(
-			 'const DONATION_FORM_CURRENCIES = %s;',
-			  wp_json_encode( wmf_get_currency_to_symbol_map() )
+			'const DONATION_FORM_CURRENCIES = %s;',
+			wp_json_encode( wmf_get_currency_to_symbol_map() )
 		),
 		'before'
 	);
-
 }
 
 /**
