@@ -10,7 +10,7 @@
     margin: 0;
     padding: 0;
     display: flex;
-    gap: var(--wp--preset--spacing--40);
+    gap: 1rem;
 }
 
 .wp-block-shiro-donation-portal-form legend {
@@ -26,8 +26,8 @@
     align-items: stretch;
     justify-content: baseline;
     gap: 0;
-    background: var(--wp--preset--color--base-100);
-    color: var(--wp--preset--color--base-0);
+    background: var(--wp--preset--color--base);
+    color: var(--wp--preset--color--main);
     border-radius: 4px;
     box-shadow: 0 0 1px rgba(0, 0, 0, .2);
     font-size: 1rem;
@@ -40,18 +40,18 @@
     background: var(--wp--preset--color--bright-blue-70);
     border-radius: 4px 0 0 4px;
     text-align: center;
-    padding: calc( 4px + var(--wp--preset--spacing--30) ) var(--wp--preset--spacing--30);
+    padding: calc( 2px + var(--wp--preset--spacing--30) ) var(--wp--preset--spacing--30);
     width: 48px;
     box-sizing: border-box;
 }
 
 .wp-block-shiro-donation-portal-form .wp-block-shiro-donation-portal-form__amount input[type="number"] {
     flex: 1 0 6rem;
-    background: var(--wp--preset--color--base-100);
+    background: var(--wp--preset--color--base);
     border-radius: 0 4px 4px 0;
     border: 0;
     margin: 0;
-    padding: calc( 4px + var(--wp--preset--spacing--30) ) var(--wp--preset--spacing--30);
+    padding: calc( 2px + var(--wp--preset--spacing--30) ) var(--wp--preset--spacing--30);
     width: 6rem;
 }
 
@@ -104,6 +104,7 @@
 .wp-block-shiro-donation-portal-form .wp-block-button.wp-block-button.is-style-transparent .wp-element-button,
 .wp-block-shiro-donation-portal-form .wp-block-button.wp-block-button.is-style-transparent .wp-element-button:is(:hover, :focus, :active) {
     padding: var(--wp--preset--spacing--30);
+    background-color: transparent;
     box-sizing: border-box;
     font-size: inherit !important;
     border-radius: 4px;
@@ -114,4 +115,5 @@
 
 .pattern-donation-bar p a {
     text-decoration: underline;
+    font-family: var(--wp--preset--font-family--default);
 }

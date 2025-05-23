@@ -1,0 +1,90 @@
+// General search form styles.
+.wp-block-search__inside-wrapper {
+	gap: var(--wp--preset--spacing--16);
+
+	@include media("<mobile") {
+		flex-direction: column;
+	}
+}
+
+.wp-block-search__input,
+.wp-block-search__button {
+	margin: 0;
+}
+
+.wp-block-search__input {
+	background-color: var(--wp--preset--color--base);
+	background-image: url("../../assets/src/svg/search-grey.svg");
+	background-position: calc( 100% - rem(10) ) center;
+	background-repeat: no-repeat;
+	background-size: rem(18);
+	border-color: var(--wp--preset--color--border-base);
+	border-radius: rem(4);
+	font-size: 1rem;
+	font-weight: var(--wp--custom--font-weight--normal);
+	padding: rem(12) rem(36) rem(12) rem(10);
+
+	&:hover {
+		border-color: var(--wp--preset--color--main);
+	}
+}
+
+.wp-block-search__button {
+	@include media("<mobile") {
+		font-size: rem(20);
+	}
+}
+
+// Styles related to the primary nav search menu and form.
+.primary-nav .search {
+	@include media(">=mobile") {
+		margin-left: auto;
+	}
+
+	.wp-block-hm-mega-menu__toggle {
+		@include media("<mobile") {
+			display: none;
+		}
+
+		@include media(">=mobile") {
+			padding: var(--wp--preset--spacing--24);
+		}
+
+		&::before {
+			background: center / contain no-repeat url("../../assets/src/svg/search.svg");
+			border-bottom: 2px solid transparent;
+			content: "";
+			display: block;
+			height: rem(26);
+			width: rem(18);
+		}
+
+		&:hover::before {
+			border-color: currentColor;
+		}
+	}
+
+	.wp-block-hm-mega-menu__menu-container {
+		@include media("<mobile") {
+			opacity: 100;
+			position: static;
+			visibility: visible;
+
+			> .wp-block-group {
+				background-color: transparent !important;
+				padding-block: rem(16) !important;
+			}
+		}
+	}
+
+	.menu-container__close-button {
+		@include media(">=mobile") {
+			background: transparent;
+			opacity: 100;
+		}
+	}
+
+	.wp-block-search__label {
+		@include visually-hidden;
+	}
+}

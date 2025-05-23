@@ -1,280 +1,122 @@
 .primary-nav {
-	border-top: 1px solid $wmui-color-base80;
-	display: flex;
-	justify-content: space-between;
-	margin-top: rem(66);
-	padding: 0;
-	width: 100%;
-
-	@media ( min-width: #{$primary-nav-breakpoint} ) {
-		min-height: rem(56); // Prevent content shift when loading
+	@include media("<mobile") {
+		order: -1;
 	}
 
-	&__drawer {
-		width: 100%;
-
-		@media ( min-width: #{$primary-nav-breakpoint} ) {
-			width: 100%;
-		}
-
-		[data-dropdown-status="uninitialized"] & {
-			display: none;
-		}
-
-		/**
-		 * "mobile-first" is generally preferable, but in this case "unsetting"
-		 * the mobile styles on desktop would be overly-complicated for no real
-		 * benefit, hence this "backwards" query.
-		 */
-		[data-dropdown-status="initialized"][data-visible="yes"] & {
-			@media ( max-width: $medium-landscape ) {
-				--full-window-height: calc(var(--vh, 1vh) * 100);
-				background: $color-white;
-				color: #fff;
-				display: block;
-				left: 0;
-				max-height: calc(var(--full-window-height, 100vh) - #{$primary-nav-mobile-height});
-				overflow: auto;
-				padding: 1.5rem;
-				position: fixed;
-				top: $primary-nav-mobile-height;
-				width: 100%;
-				z-index: 3000;
-			}
-
-			.admin-bar & {
-				@media ( min-width: 600px ) and ( max-width: $medium-landscape ) {
-					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + #{$admin-bar-mobile-height}));
-					top: $primary-nav-mobile-height + $admin-bar-mobile-height;
-				}
-
-				@media ( min-width: 784px ) and ( max-width: $medium-landscape ) {
-					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + #{$admin-bar-desktop-height}));
-					top: $primary-nav-mobile-height + $admin-bar-desktop-height;
-				}
-			}
-		}
-
-		@media ( min-width: #{$primary-nav-breakpoint} ) {
-			[data-subnav-visible="yes"] & {
-				margin-bottom: calc(var(--subnav-margin-bottom) * 1px);
-				position: relative;
-			}
-		}
+	@include media(">=mobile") {
+		flex-grow: 1;
 	}
 
-	&__items {
-		@include list-reset;
-		align-items: start;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		list-style: none;
-
-		[data-dropdown-status="initialized"] & {
-			flex-direction: column;
-			flex-wrap: nowrap;
-			margin-top: rem(21);
-
-			@media ( min-width: #{$primary-nav-breakpoint} ) {
-				align-items: center;
-				flex-direction: row;
-				flex-wrap: wrap;
-				margin-top: 0;
-				padding: rem(6) 0;
-			}
-		}
-
-		li {
-			display: inline-block;
-			margin: 0;
-			padding: rem(9) 0;
-
-			@media ( max-width: $medium-landscape ) {
-				width: 100%;
-			}
-
-			@media ( min-width: #{$primary-nav-breakpoint} ) {
-				margin-right: rem(24);
-				padding: rem(6) 0;
-			}
-
-			&.current-menu-item,
-			&.current-menu-ancestor {
-				> a {
-					@media ( min-width: #{$primary-nav-breakpoint} ) {
-						color: $wmui-color-blue50;
-					}
-
-					span {
-						border: 0;
-					}
-
-					span::after {
-						background-color: $wmui-color-blue50;
-					}
-
-				}
-			}
-
-			&.menu-item-bottom-line > a span:after {
-				@media ( min-width: #{$primary-nav-breakpoint} ) {
-					transform: translateY(rem(18));
-				}
-			}
-
-			&[data-visible="yes"] .sub-menu {
-				display: flex;
-				flex-wrap: wrap;
-			}
-
-			a {
-				align-items: flex-start;
-				color: $wmui-color-base0;
-				display: flex;
-				flex-direction: column;
-				font-size: rem( 14 );
-				font-weight: 500;
-				justify-content: center;
-
-				span {
-					display: inline-block;
-					margin: 0 rem(-10);
-					padding: rem(7) rem(10);
-
-					@media ( min-width: #{$primary-nav-breakpoint} ) {
-						padding: rem(8) rem(10) rem(6);
-					}
-				}
-
-				span::after {
-					border: 0;
-					content: "";
-					display: block;
-					height: 3px;
-					pointer-events: none;
-					position: relative;
-					transform: translateY(rem(10));
-					z-index: 10;
-				}
-
-				&:hover {
-					text-decoration: none;
-
-					span {
-						@media ( min-width: #{$primary-nav-breakpoint} ) {
-							background-color: $wmui-color-blue90;
-							color: $wmui-color-blue50;
-						}
-					}
-				}
-
-				&:focus {
-					@include focus-reset;
-
-					span {
-						@include focus-ring;
-					}
-				}
-			}
-		}
-
-		> li {
-			@media ( max-width: $medium-landscape ) {
-				border-bottom: 1px solid $wmui-color-base80;
-
-				&:first-child {
-					border-top: 1px solid $wmui-color-base80;
-				}
-
-				> a span::after {
-					display: none;
-				}
-			}
-		}
-	}
-
-	.menu-item[data-dropdown] {
-		display: flex;
-		flex-wrap: wrap;
+	// Set these to static so the megamenus can be relative to the inner site header.
+	&.wp-block-navigation,
+	.wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open),
+	.wp-block-navigation__responsive-dialog {
 		position: static;
-
-		> a {
-			flex-grow: 1;
-		}
 	}
 
-	.menu-item__expand {
-		@include style-guide-dropdown-toggle();
-		background-color: transparent;
-		background-position: center;
-		background-size: 55%;
-		border: 0 none;
-		padding: rem(6) rem(16);
-		transition: $transition-ease-medium transform;
+	li {
+		align-self: stretch;
+		font-weight: var(--wp--custom--font-weight--bold);
+		margin: 0;
 
-		&[aria-expanded="true"] {
-			transform: rotateX( 180deg );
+		@include media("<mobile") {
+			font-size: rem(20);
 		}
 
-		&[hidden] {
-			display: none;
+		@include media(">=mobile") {
+			@include has-font-size( "medium" );
+			font-weight: var(--wp--custom--font-weight--semi-bold);
+		}
+	}
+	
+	// Mega menu toggle buttons are used as top level nav items.
+	.wp-block-hm-mega-menu__toggle {
+		transition: all 300ms ease;
+
+		&:hover {
+			text-decoration: underline currentColor 2px;
+			text-underline-offset: fluid( 4, 8 );
 		}
 
-		&:focus {
+		&:focus-visible {
 			@include focus-ring;
 		}
-	}
 
-	.sub-menu {
-		display: none;
-		margin: rem( 15 ) 0 rem( 10 );
-		padding-left: rem( 32 );
-		width: 100%;
+		@include media("<mobile") {
+			padding: rem(20) rem(16);
+			width: 100%;
 
-		@media ( min-width: #{$primary-nav-breakpoint} ) {
-			@include list-reset;
-			border-top: 1px solid $wmui-color-base80;
-			border-bottom: 1px solid $wmui-color-base80;
-			left: 0;
-			padding: rem(6) 0;
-			position: absolute;
-			right: 0;
-			top: 100%;
+			&:not(li:first-child > button) {
+				border-top: 1px solid var(--wp--preset--color--border-light);
+			}
 		}
 
-		a {
-			font-weight: 400;
+		@include media(">=mobile") {
+			border-left: 1px solid transparent;
+			border-right: 1px solid transparent;
+			height: calc( 100% + 1px );
+			margin-bottom: -1px;
+			padding: var(--wp--preset--spacing--24) var(--wp--preset--spacing--16);
+
+			&[aria-expanded=true] {
+				background-color: var(--wp--preset--color--black-05);
+				border-color: var(--wp--preset--color--border-light);
+			}
 		}
 	}
-}
 
-/**
- * This prevents users from inadvertently scrolling the site when the nav is open.
- */
-body.disable-body-scrolling {
-	overflow-y: hidden;
+	// Mega menu content container.
+	.wp-block-hm-mega-menu__menu-container {
+		> .wp-block-group {
+			@include media("<mobile") {
+				background-color: rgba(#fff, 0.5) !important;
+				border-top: 1px solid var(--wp--preset--color--border-light);
+			}
+		}
 
-	@media (min-width: $primary-nav-breakpoint) {
-		overflow-y: auto;
+		.menu-container__close-button {
+			&:focus-visible {
+				@include focus-ring;
+			}
 
-		& [data-dropdown-backdrop][data-active-dropdowns="primary-nav"] {
-			display: none;
+			@include media("<mobile") {
+				display: none;
+			}
+
+			svg {
+				height: rem(24);
+				stroke: currentColor;
+				stroke-width: 0.5px;
+				width: rem(24);
+			}
+		}
+		
+		.alignwide &.menu-width-wide {
+			max-width: none !important;
+			width: 100% !important;
+
+			@include media(">=mobile") {
+				@include global-negative-margin;
+				top: calc( 100% + 1px );
+				width: calc( 100% + $global-padding-added ) !important;
+			}
 		}
 	}
-}
 
-/**
- * This handles a somewhat complex condition:
- * - The admin bar is present
- * - The viewport is < 600px wide
- * - The user has not scrolled down
- * In *only* this condition, the primary nav drawer needs a little tweak or
- * will be positioned too far down the screen.
- */
-.admin-bar .site-header:not(.site-header--pinned) + .header-inner .primary-nav__drawer {
-	@media (max-width: 599px) {
-		max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 46px));
-		top: $primary-nav-mobile-height + 46px;
+	// Mega menu content container for an active menu item.
+	.wp-block-hm-mega-menu__toggle[aria-expanded=true] ~ .wp-block-hm-mega-menu__menu-container {
+		@include media("<mobile") {
+			box-shadow: none;
+			position: static;
+		}
+
+		@include media(">=mobile") {
+			box-shadow: var(--wp--preset--shadow--shadow-16-blur);
+			clip-path: inset(
+				0
+				calc( var(--wp--preset--spacing--16) * -1 )
+				calc( var(--wp--preset--spacing--16) * -1 )
+			);
+		}
 	}
 }

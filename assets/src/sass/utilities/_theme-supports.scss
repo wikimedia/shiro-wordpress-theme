@@ -61,6 +61,7 @@ $color-palette:
 		color: $text-color;
 		color: var(--text-color);
 
+		&.wp-block-button__link,
 		.wp-block-shiro-button.is-style-as-link {
 			color: $link-color;
 			color: var(--link-color);

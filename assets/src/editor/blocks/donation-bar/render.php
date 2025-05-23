@@ -40,7 +40,7 @@ if ( ! empty( $attributes['defaultCurrencyAmount'] ) ) {
 			</div>
 		</fieldset>
 
-		<fieldset class="has-medium-font-size">
+		<fieldset>
 			<legend><?php esc_html_e( 'Frequency', 'shiro' ); ?></legend>
 			<label>
 				<input type="radio" name="frequency" value="onetime" checked />
@@ -58,8 +58,8 @@ if ( ! empty( $attributes['defaultCurrencyAmount'] ) ) {
 			<?php endif; ?>
 		</fieldset>
 
-		<div class="wp-block-button is-style-transparent has-medium-font-size">
-			<button class="wp-block-button__link wp-element-button" type="submit"><?php esc_html_e( 'Donate', 'shiro' ); ?></button>
+		<div class="wp-block-button is-style-transparent">
+			<button class="wp-block-button__link wp-element-button" type="submit"><?php esc_html_e( 'Donate now', 'shiro' ); ?></button>
 		</div>
 	</form>
 </div>

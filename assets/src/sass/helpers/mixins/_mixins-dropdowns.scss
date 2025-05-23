@@ -11,23 +11,26 @@
 }
 
 @mixin style-guide-dropdown-base() {
-	@include style-guide-button-reset();
 	align-items: center;
-	background-color: $wmui-color-base90;
-	background-position: calc(100% - #{rem(12)}) center;
+	background-color: var(--wp--preset--color--base);
+	background-position: calc(100% - #{rem(10)}) center;
 	background-repeat: no-repeat;
-	border: 1px solid $border-color-base;
-	border-radius: 2px;
-	box-sizing: border-box;
-	color: $wmui-color-base10;
-	display: inline-flex;
-	flex-direction: row;
-	font-size: rem(14);
-	font-weight: 700;
-	justify-content: flex-end;
-	line-height: 1.43;
-	padding: rem(6) rem(30) rem(6) rem(10);
+	background-size: rem(12);
+	border: 1px solid var(--wp--preset--color--border-light);
+	border-radius: rem(4);
+	color: var(--wp--preset--color--main);
+	display: flex;
+	font-size: 1rem;
+	font-weight: var(--wp--custom--font-weight--normal);
+	gap: var(--wp--preset--spacing--8);
+	line-height: var(--wp--custom--line-height--relaxed);
+	padding: rem(8) rem(30) rem(8) rem(10);
 	text-transform: uppercase;
+
+	@include media(">=mobile") {
+		background-position: calc(100% - #{rem(16)}) center;
+		padding: rem(11) rem(40) rem(11) rem(16);
+	}
 }
 
 @mixin style-guide-dropdown-toggle() {
