@@ -34,7 +34,7 @@ registerBlockType( metadata.name, {
 		);
 	},
 	/**
-	 * Save nothing, to allow for server-size rendering.
+	 * Save nothing, to allow for server-side rendering.
 	 */
 	save: function () {
 		return null;
