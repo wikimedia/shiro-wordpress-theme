@@ -19,12 +19,10 @@ function bootstrap() {
 /**
  * Fires once a post, its terms and meta data has been saved.
  *
- * @param int           $post_id     Post ID.
- * @param \WP_Post      $post        Post object.
- * @param bool          $update      Whether this is an existing post being updated.
- * @param null|\WP_Post $post_before Null for new posts, the WP_Post object prior to the update for updated posts.
+ * @param int     $post_id Post ID.
+ * @param WP_Post $post    Post object.
  */
-function action_wp_after_insert_post( $post_id, WP_Post $post, $update, ?WP_Post $post_before ) : void {
+function action_wp_after_insert_post( $post_id, WP_Post $post ) : void {
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		return;
 	}
@@ -49,7 +47,7 @@ function action_wp_after_insert_post( $post_id, WP_Post $post, $update, ?WP_Post
 	if ( has_block( BLOCK_NAME, $post ) ) {
 		$geoip_paths[] = $path;
 		$should_update = true;
-	} else if ( in_array( $path, $geoip_paths, true ) ) {
+	} elseif ( in_array( $path, $geoip_paths, true ) ) {
 		$geoip_paths = array_filter( $geoip_paths, function ( $_path ) use ( $path ) {
 			return $_path !== $path;
 		} );

@@ -1,14 +1,23 @@
 <?php
 /**
- * Check to see if the current path page cache should be bucketed by country code.
+ * GeoIP and currency helper functions.
  *
  * @see https://docs.wpvip.com/infrastructure/ip-geolocation/
+ */
+
+/**
+ * Check to see if the current path page cache should be bucketed by country code.
  *
  * @return void
  */
 function wmf_maybe_enable_geoip() {
 	if ( did_action( 'init' ) ) {
 		_doing_it_wrong( __FUNCTION__, 'This function must be called before the init hook', '2025-05-22' );
+		return;
+	}
+
+	if ( ! isset( $_SERVER['REQUEST_URI'] ) ) {
+		return;
 	}
 
 	$geoip_paths = apply_filters( 'wmf_geoip_paths', get_option( 'wmf_geoip_paths', [] ) );
@@ -41,6 +50,10 @@ function wmf_enable_geoip() {
  * @return void
  */
 function wmf_enable_geoip_for_current_path() {
+	if ( ! isset( $_SERVER['REQUEST_URI'] ) ) {
+		return;
+	}
+
 	$path = wp_parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
 
 	if ( is_admin() || strpos( $path, rest_url() ) === 0 ) {
@@ -71,7 +84,7 @@ function wmf_get_country_code() {
 		return null;
 	}
 
-	return strtoupper( $_SERVER['GEOIP_COUNTRY_CODE'] );
+	return strtoupper( sanitize_key( wp_unslash( $_SERVER['GEOIP_COUNTRY_CODE'] ) ) );
 }
 
 /**
@@ -90,7 +103,7 @@ function wmf_get_currency_code( $country_code ) {
 /**
  * Get the currency symbol for a given currency code.
  *
- * @param string $currency_code
+ * @param string $currency_code The currency code to get the symbol for.
  * @return string|null Currency symbol or null if not found.
  */
 function wmf_get_currency_symbol( $currency_code ) {
@@ -192,7 +205,42 @@ function wmf_get_country_to_currency_map() : array {
 		'AU' => 'AUD',
 		'NZ' => 'NZD',
 		'GB' => 'GBP',
-		'AD' => 'EUR', 'AL' => 'EUR', 'AM' => 'EUR', 'AT' => 'EUR', 'AZ' => 'EUR', 'BE' => 'EUR', 'BY' => 'EUR', 'CI' => 'EUR', 'CY' => 'EUR', 'DE' => 'EUR', 'EE' => 'EUR', 'ES' => 'EUR', 'FI' => 'EUR', 'FR' => 'EUR', 'GF' => 'EUR', 'GR' => 'EUR', 'HR' => 'EUR', 'IE' => 'EUR', 'IT' => 'EUR', 'LT' => 'EUR', 'LU' => 'EUR', 'LV' => 'EUR', 'LY' => 'EUR', 'MC' => 'EUR', 'ME' => 'EUR', 'MG' => 'EUR', 'MT' => 'EUR', 'NL' => 'EUR', 'PT' => 'EUR', 'RE' => 'EUR', 'RS' => 'EUR', 'SI' => 'EUR', 'SK' => 'EUR', 'SM' => 'EUR', 'SR' => 'EUR', 'VA' => 'EUR',
+		'AD' => 'EUR',
+		'AL' => 'EUR',
+		'AM' => 'EUR',
+		'AT' => 'EUR',
+		'AZ' => 'EUR',
+		'BE' => 'EUR',
+		'BY' => 'EUR',
+		'CI' => 'EUR',
+		'CY' => 'EUR',
+		'DE' => 'EUR',
+		'EE' => 'EUR',
+		'ES' => 'EUR',
+		'FI' => 'EUR',
+		'FR' => 'EUR',
+		'GF' => 'EUR',
+		'GR' => 'EUR',
+		'HR' => 'EUR',
+		'IE' => 'EUR',
+		'IT' => 'EUR',
+		'LT' => 'EUR',
+		'LU' => 'EUR',
+		'LV' => 'EUR',
+		'LY' => 'EUR',
+		'MC' => 'EUR',
+		'ME' => 'EUR',
+		'MG' => 'EUR',
+		'MT' => 'EUR',
+		'NL' => 'EUR',
+		'PT' => 'EUR',
+		'RE' => 'EUR',
+		'RS' => 'EUR',
+		'SI' => 'EUR',
+		'SK' => 'EUR',
+		'SM' => 'EUR',
+		'SR' => 'EUR',
+		'VA' => 'EUR',
 		'AE' => 'AED',
 		'AF' => 'USD',
 		'AG' => 'XCD',

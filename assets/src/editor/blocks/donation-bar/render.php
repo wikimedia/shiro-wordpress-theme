@@ -1,10 +1,6 @@
 <?php
 /**
  * Callback for server-side rendering for the donation portal form block.
- *
- * @param array $attributes Parsed block attributes.
- *
- * @return string HTML markup.
  */
 
 // Additional check for whether this path should have GeoIP enabled or not.
@@ -26,7 +22,7 @@ if ( ! empty( $attributes['defaultCurrencyAmount'] ) ) {
 
 ?>
 
-<div <?php echo get_block_wrapper_attributes(); ?>>
+<div <?php echo get_block_wrapper_attributes(); // phpcs:ignore ?>>
 	<form method="get" action="https://donate.wikimedia.org">
 		<input type="hidden" name="wmf_medium" value="<?php echo esc_attr( $attributes['medium'] ?? '' ); ?>" />
 		<input type="hidden" name="wmf_campaign" value="<?php echo esc_attr( $attributes['campaign'] ?? '' ); ?>" />
@@ -40,7 +36,7 @@ if ( ! empty( $attributes['defaultCurrencyAmount'] ) ) {
 				<abbr title="<?php echo esc_attr( $currency_code ); ?>">
 					<?php echo esc_html( $currency_symbol ); ?>
 				</abbr>
-				<input type="number" name="preSelect" placeholder="<?php echo esc_attr( $default_amount ) ?>" value="<?php echo esc_attr( $default_amount ) ?>" min="1" step="any" required />
+				<input type="number" name="preSelect" placeholder="<?php echo esc_attr( $default_amount ); ?>" value="<?php echo esc_attr( $default_amount ); ?>" min="1" step="any" required />
 			</div>
 		</fieldset>
 
