@@ -33,7 +33,11 @@ function action_enqueue_block_editor_assets() : void {
 }
 
 /**
- * Fires once a post, its terms and meta data has been saved.
+ * On post save, check if the donation form block is used to add the
+ * page URL to the list of paths to enable GeoIP variations for.
+ *
+ * We have to do this because the header must be sent before the `init`
+ * hook, and block parsing is too late.
  *
  * @param int     $post_id Post ID.
  * @param WP_Post $post    Post object.
