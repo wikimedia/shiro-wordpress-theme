@@ -13,23 +13,23 @@
 
 ?>
 
-<!-- wp:group {"backgroundColor":"black-05","layout":{"type":"default"}} -->
-<div class="wp-block-group has-black-05-background-color has-background"><!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column {"metadata":{"name":"Intro"}} -->
-<div class="wp-block-column"><!-- wp:heading -->
-<h2 class="wp-block-heading">We are the non-profit organization behind Wikipedia and 13 other free knowledge projects.</h2>
+<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"backgroundColor":"black-05","layout":{"type":"default"}} -->
+<div class="wp-block-group has-black-05-background-color has-background" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column {"width":"21.75rem","metadata":{"name":"Intro"},"className":"intro","style":{"spacing":{"blockGap":"var:preset|spacing|16"}}} -->
+<div class="wp-block-column intro" style="flex-basis:21.75rem"><!-- wp:heading {"fontSize":"x-large"} -->
+<h2 class="wp-block-heading has-x-large-font-size">We are the non-profit organization behind Wikipedia and 13 other free knowledge projects.</h2>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph -->
-<p><a href="/about/">Learn more about us</a></p>
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary-legacy-blue-aaa"}}}}} -->
+<p class="has-link-color"><a href="/about/">Learn more about us</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"metadata":{"name":"Pages"}} -->
-<div class="wp-block-column"><!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"top"}} -->
+<!-- wp:column {"metadata":{"name":"Pages"},"className":"pages"} -->
+<div class="wp-block-column pages"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|24"}},"layout":{"type":"grid","minimumColumnWidth":"14rem"}} -->
 <div class="wp-block-group"><!-- wp:group {"metadata":{"name":"People"},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="#">People</a></h3>
+<div class="wp-block-group"><!-- wp:heading {"level":3,"fontSize":"large"} -->
+<h3 class="wp-block-heading has-large-font-size"><a href="#">People</a></h3>
 <!-- /wp:heading -->
 
 <!-- wp:list -->
@@ -48,8 +48,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"metadata":{"name":"Reports"},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="#">Reports</a></h3>
+<div class="wp-block-group"><!-- wp:heading {"level":3,"fontSize":"large"} -->
+<h3 class="wp-block-heading has-large-font-size"><a href="#">Reports</a></h3>
 <!-- /wp:heading -->
 
 <!-- wp:list -->
@@ -68,8 +68,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"metadata":{"name":"Careers"},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="#">Careers</a></h3>
+<div class="wp-block-group"><!-- wp:heading {"level":3,"fontSize":"large"} -->
+<h3 class="wp-block-heading has-large-font-size"><a href="#">Careers</a></h3>
 <!-- /wp:heading --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

@@ -13,23 +13,23 @@
 
 ?>
 
-<!-- wp:group {"backgroundColor":"black-05","layout":{"type":"default"}} -->
-<div class="wp-block-group has-black-05-background-color has-background"><!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column {"metadata":{"name":"Intro"}} -->
-<div class="wp-block-column"><!-- wp:heading -->
-<h2 class="wp-block-heading">From technology to advocacy efforts, we provide the backbone of knowledge online.</h2>
+<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"backgroundColor":"black-05","layout":{"type":"default"}} -->
+<div class="wp-block-group has-black-05-background-color has-background" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column {"width":"21.75rem","metadata":{"name":"Intro"},"className":"intro","style":{"spacing":{"blockGap":"var:preset|spacing|16"}}} -->
+<div class="wp-block-column intro" style="flex-basis:21.75rem"><!-- wp:heading {"fontSize":"x-large"} -->
+<h2 class="wp-block-heading has-x-large-font-size">From technology to advocacy efforts, we provide the backbone of knowledge online.</h2>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph -->
-<p><a href="/our-work/">Learn more about our work</a></p>
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary-legacy-blue-aaa"}}}}} -->
+<p class="has-link-color"><a href="/our-work/">Learn more about our work</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"metadata":{"name":"Pages"}} -->
-<div class="wp-block-column"><!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"}} -->
+<!-- wp:column {"metadata":{"name":"Pages"},"className":"pages"} -->
+<div class="wp-block-column pages"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|24"}},"layout":{"type":"grid","minimumColumnWidth":"14rem"}} -->
 <div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Wikimedia projects"},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="#">Wikimedia projects</a></h3>
+<div class="wp-block-group"><!-- wp:heading {"level":3,"fontSize":"large"} -->
+<h3 class="wp-block-heading has-large-font-size"><a href="#">Wikimedia projects</a></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -38,8 +38,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"metadata":{"name":"Technology"},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="#">Technology</a></h3>
+<div class="wp-block-group"><!-- wp:heading {"level":3,"fontSize":"large"} -->
+<h3 class="wp-block-heading has-large-font-size"><a href="#">Technology</a></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -48,8 +48,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"metadata":{"name":"Public policy"},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="#">Public policy</a></h3>
+<div class="wp-block-group"><!-- wp:heading {"level":3,"fontSize":"large"} -->
+<h3 class="wp-block-heading has-large-font-size"><a href="#">Public policy</a></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -58,8 +58,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"metadata":{"name":"Closing knowledge gaps"},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="#">Closing knowledge gaps</a></h3>
+<div class="wp-block-group"><!-- wp:heading {"level":3,"fontSize":"large"} -->
+<h3 class="wp-block-heading has-large-font-size"><a href="#">Closing knowledge gaps</a></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -68,8 +68,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"metadata":{"name":"Volunteer safety"},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="#">Volunteer safety</a></h3>
+<div class="wp-block-group"><!-- wp:heading {"level":3,"fontSize":"large"} -->
+<h3 class="wp-block-heading has-large-font-size"><a href="#">Volunteer safety</a></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
