@@ -46,5 +46,4 @@ elseif ( $wmf_ogmeta_ogimageurl && ! ( is_plugin_active( 'wordpress-seo/wp-seo.p
 		<?php block_template_part( 'header' ); ?>
 		<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>">
 			<div class="header-inner alignwide">
-				<?php wmf_translation_alert(); ?>
 <?php

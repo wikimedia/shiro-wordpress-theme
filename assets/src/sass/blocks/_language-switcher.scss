@@ -1,9 +1,24 @@
-.language-switcher {
-	order: 30;
-	position: relative;
+.language-switcher-nav {
+	&:empty {
+		display: none;
+	}
+}
 
+.language-switcher {
 	&__button {
 		@include style-guide-dropdown-toggle();
+
+		@include media(">=mobile") {
+			&::before {
+				background: url("../../assets/src/svg/individual/translate.svg");
+				background-repeat: no-repeat;
+				background-size: contain;
+				content: "";
+				display: block;
+				height: rem(20);
+				width: rem(20);
+			}
+		}
 
 		&:focus,
 		&[aria-expanded=true] {
@@ -16,7 +31,7 @@
 			}
 		}
 
-		&[hidden] {
+		.wp-block-hm-mega-menu__toggle-icon {
 			display: none;
 		}
 	}
@@ -27,15 +42,6 @@
 		margin: 0;
 		margin-right: 6px;
 		width: rem(20);
-	}
-
-	&__label {
-		// Hidden on mobile
-		display: none;
-
-		@media ( min-width: #{$width-breakpoint-tablet} ) {
-			display: inline-block;
-		}
 	}
 
 	&__content {

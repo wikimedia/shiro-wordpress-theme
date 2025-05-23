@@ -48,7 +48,7 @@
 				{
 					"name": "Contrast",
 					"slug": "main",
-					"color": "#1E1E26"
+					"color": "#000000"
 				},
 				{
 					"name": "Contrast Accent",
@@ -69,6 +69,11 @@
 					"name": "Tint",
 					"slug": "tertiary",
 					"color": "#f8f7fc"
+				},
+				{
+					"name": "Black 5",
+					"slug": "black-05",
+					"color": "#F2F2F2"
 				},
 				{
 					"name": "Border Light",
@@ -106,7 +111,14 @@
 			"wideSize": "1200px"
 		},
 		"shadow": {
-			"defaultPresets": false
+			"defaultPresets": false,
+			"presets": [
+				{
+					"name": "Shadow 16px blur",
+					"slug": "shadow-16-blur",
+					"shadow": "0 0 var(--wp--preset--spacing--16) 0 rgba(0, 0, 0, 0.25)"
+				}
+			]
         },
 		"spacing": {
 			"customSpacingSize": false,
@@ -321,29 +333,66 @@
 		"elements": {
 			"button": {
 				"border": {
-					"radius": "5px",
-					"width": "0"
+					"color": "transparent",
+					"radius": "4px",
+					"style": "solid",
+					"width": "2px"
 				},
 				"color": {
 					"background": "var:preset|color|main",
 					"text": "var:preset|color|base"
 				},
+				"css": "text-underline-offset:3px",
 				"spacing": {
 					"padding": {
-						"top": ".6em",
-						"right": "1em",
-						"bottom": ".6em",
-						"left": "1em"
+						"top": "0.475em",
+						"right": "0.8em",
+						"bottom": "0.475em",
+						"left": "0.8em"
 					}
 				},
 				"typography": {
-					"fontSize": "var:preset|font-size|small",
-					"fontWeight": "500"
+					"fontSize": "var:preset|font-size|large",
+					"fontWeight": "var:custom|font-weight|bold",
+					"lineHeight": "var:custom|line-height|tight"
 				},
 				":hover": {
+					"border": {
+						"color": "var:preset|color|main"
+					},
 					"color": {
-						"background": "var:preset|color|main",
-						"text": "var:preset|color|base"
+						"background": "var:preset|color|border-light",
+						"text": "var:preset|color|main"
+					},
+					"typography": {
+						"textDecoration": "underline"
+					}
+				},
+				":active": {
+					"border": {
+						"color": "var:preset|color|main"
+					},
+					"color": {
+						"background": "var:preset|color|border-base",
+						"text": "var:preset|color|main"
+					},
+					"typography": {
+						"textDecoration": "underline"
+					}
+				},
+				":focus": {
+					"border": {
+						"color": "var:preset|color|main"
+					},
+					"color": {
+						"background": "var:preset|color|border-light",
+						"text": "var:preset|color|main"
+					},
+					"outline": {
+						"offset": "2px",
+						"width": "2px",
+						"style": "solid",
+						"color": "var:preset|color|main"
 					},
 					"typography": {
 						"textDecoration": "underline"
@@ -371,13 +420,13 @@
 			"h4": {
 				"typography": {
 					"fontSize": "var:preset|font-size|x-large",
-          "fontWeight": "var:custom|font-weight|semi-bold"
+					"fontWeight": "var:custom|font-weight|semi-bold"
 				}
 			},
 			"h5": {
 				"typography": {
 					"fontSize": "var:preset|font-size|x-large",
-          "fontWeight": "var:custom|font-weight|normal"
+					"fontWeight": "var:custom|font-weight|normal"
 				}
 			},
 			"h6": {
@@ -423,6 +472,36 @@
 			"name": "footer",
 			"title": "Footer",
 			"area": "footer"
+		},
+		{
+			"name": "mega-get-involved",
+			"title": "Mega get involved",
+			"area": "menu"
+		},
+		{
+			"name": "mega-languages",
+			"title": "Mega languages",
+			"area": "menu"
+		},
+		{
+			"name": "mega-news",
+			"title": "Mega news",
+			"area": "menu"
+		},
+		{
+			"name": "mega-search",
+			"title": "Mega search",
+			"area": "menu"
+		},
+		{
+			"name": "mega-what-we-do",
+			"title": "Mega what we do",
+			"area": "menu"
+		},
+		{
+			"name": "mega-who-we-are",
+			"title": "Mega who we are",
+			"area": "menu"
 		}
 	]
 }
