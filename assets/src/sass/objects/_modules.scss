@@ -128,6 +128,7 @@
 
 // Page Intro
 .page-intro {
+	margin-bottom: var(--wp--preset--spacing--80);
 	margin-left: 0;
 
 	.list-template & {
@@ -260,29 +261,6 @@ a.hover-img-zoom {
 	}
 }
 
-.card-list-container {
-
-	.img-container {
-		position: relative;
-
-		&:after {
-			@include absolute-full-cover();
-			background: rgba(0, 0, 0, 0);
-			transition: 0.3s all;
-		}
-	}
-
-	.darken-img {
-
-		.img-container {
-
-			&:after {
-				background: rgba(0, 0, 0, .25);
-			}
-		}
-	}
-}
-
 // Social module on single post
 .social-share-aside {
 	width: 120px;
@@ -382,7 +360,6 @@ a.hover-img-zoom {
 		margin-top: -32px;
 		margin-left: 7px;
 		margin-bottom: 1rem;
-		z-index: 1000;
 		position: relative;
 		height: 224px;
 		width: 1px;
@@ -545,7 +522,6 @@ a.hover-img-zoom {
 		margin-left: 7px;
 		margin-right: 12px;
 		position: relative;
-		z-index: 1000;
 		background: $color-blue;
 
 		&.pink {
@@ -576,11 +552,8 @@ a.hover-img-zoom {
 }
 
 .stats-featured-container {
+	@include alignwide;
 	margin-bottom: 3rem;
-
-	.primary-stat {
-		z-index: 1000;
-	}
 
 	.explanation, .secondary-stats {
 		margin-top: 6rem;
@@ -600,7 +573,9 @@ a.hover-img-zoom {
 }
 
 .stats-graph-container {
-	padding: 3rem 0;
+	@include alignfull-padded;
+	padding-bottom: 3rem;
+	padding-top: 3rem;
 
 	#linechart-label {
 		transition: 0.3s all;
@@ -739,7 +714,7 @@ a.hover-img-zoom {
 }
 
 .module-404 {
-	margin-top: 220px;
+	margin-top: var(--wp--preset--spacing--80);
 	text-align: center;
 	width: 100%;
 

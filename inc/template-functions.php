@@ -31,9 +31,9 @@ add_filter( 'body_class', 'wmf_body_classes' );
  */
 function wmf_get_header_container_class() {
 	if ( is_front_page() && ! has_blocks() ) {
-		$class = 'header-home';
+		$class = 'module-area is-layout-constrained header-home';
 	} else {
-		$class = 'header-default';
+		$class = 'module-area is-layout-constrained header-default';
 	}
 
 	if ( ( is_single() || is_page() ) && has_post_thumbnail() ) {
@@ -94,7 +94,7 @@ function wmf_get_header_cta_button_class() {
  * @param array $roles Keyed array of shape [ term_id => term_details_arr ].
  */
 function wmf_sort_role_list( &$roles ) {
-	uasort( $roles, function( $a, $b ) {
+	uasort( $roles, function ( $a, $b ) {
 		$order_a = $a['order'];
 		if ( empty( $order_a ) ) {
 			$order_a = 1000;
@@ -123,6 +123,7 @@ function wmf_sort_role_list( &$roles ) {
 function wmf_get_role_hierarchy( int $parent_id ) {
 	$children   = array();
 	$term_array = array();
+	// phpcs:ignore WordPress.WP.DeprecatedParameters.Get_termsParam2Found
 	$terms      = get_terms(
 		'role',
 		array(
@@ -197,6 +198,7 @@ function wmf_get_role_posts( $term_id ) {
 		'posts' => $profile_list,
 		'name'  => $term_query->name,
 		'slug'  => $term_query->slug,
+		// phpcs:ignore Universal.Operators.DisallowShortTernary.Found
 		'order' => get_term_meta( $term_id, 'role_order', true ) ?: 0,
 	);
 }
@@ -266,9 +268,11 @@ function wmf_get_posts_by_child_roles( int $term_id ) {
 function wmf_sort_profiles( $profiles ) {
 	// The sort order is defined by the `last_name` meta field, which is
 	// actually exclusively used for alphabetical ordering.
-	usort( $profiles, function( $a, $b ) {
+	usort( $profiles, function ( $a, $b ) {
+		// phpcs:disable Universal.Operators.DisallowShortTernary.Found
 		$last_name_a = get_post_meta( $a, 'last_name', true ) ?: 'z';
 		$last_name_b = get_post_meta( $b, 'last_name', true ) ?: 'z';
+		// phpcs:enable
 
 		return strnatcasecmp( $last_name_a, $last_name_b );
 	} );
@@ -581,7 +585,7 @@ add_filter( 'img_caption_shortcode', 'wmf_filter_caption_shortcode', 10, 3 );
 function wmf_rss_templates() {
 	foreach ( array( 'offset1', 'images' ) as $name ) {
 		add_feed( $name,
-			function() use ( $name ) {
+			function () use ( $name ) {
 				get_template_part( 'feed', $name );
 			}
 		);
@@ -675,7 +679,7 @@ function wmf_get_report_sidebar_data() {
 		),
 		// Continue with all direct child pages.
 		array_map(
-			function( $page ) use ( $current_page ) {
+			function ( $page ) use ( $current_page ) {
 				return array(
 					'id'     => $page->ID,
 					'title'  => $page->post_title,

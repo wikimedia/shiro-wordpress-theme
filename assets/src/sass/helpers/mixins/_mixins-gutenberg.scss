@@ -1,32 +1,31 @@
 // Mixins to support block editor content.
-@mixin alignfull( $content-column: 980px ) {
-	margin-left: rem(-20);
-	margin-right: rem(-20);
-	min-width: 100%;
-
-	@media ( min-width: #{$width-breakpoint-tablet} ) {
-		margin-left: rem(-40);
-		margin-right: rem(-40);
-	}
-
-	@media ( min-width: #{$width-breakpoint-desktop} ) {
-		margin-left: calc(#{$content-column * 0.5} - 50vw + #{$half-scrollbar-width});
-		margin-right: calc(#{$content-column * 0.5} - 50vw + #{$half-scrollbar-width});
-	}
+@mixin alignfull() {
+	margin-left: calc( var(--wp--style--root--padding-left) * -1 ) !important;
+	margin-right: calc( var(--wp--style--root--padding-right) * -1 ) !important;
+	max-width: none !important;
+	width: 100vw;
 }
 
-@mixin alignfull-padded( $content-column: 980px ) {
-	@include alignfull( $content-column );
-	padding-left: rem(20);
-	padding-right: rem(20);
+@mixin global-padding {
+	padding-left: var(--wp--style--root--padding-left);
+	padding-right: var(--wp--style--root--padding-right);
+}
 
-	@media ( min-width: #{$width-breakpoint-tablet} ) {
-		padding-left: rem(40);
-		padding-right: rem(40);
-	}
+@mixin alignfull-padded() {
+	@include alignfull;
+	@include global-padding;
+}
 
-	@media ( min-width: #{$width-breakpoint-desktop} ) {
-		padding-left: calc(50vw - #{$content-column * 0.5} - #{$half-scrollbar-width});
-		padding-right: calc(50vw - #{$content-column * 0.5} - #{$half-scrollbar-width});
-	}
+@mixin alignwide() {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: var(--wp--style--global--wide-size);
+	width: 100%;
+}
+
+@mixin alignwide() {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: var(--wp--style--global--wide-size);
+	width: 100%;
 }
