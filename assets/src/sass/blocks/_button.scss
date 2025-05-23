@@ -124,6 +124,7 @@
 
 .wp-block-button__link {
 	// font-size: unset;
+	width: max-content;
 }
 
 @include button-wrapper( ".wp-block-shiro-button", "&" );
