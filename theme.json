@@ -89,7 +89,12 @@
 					"name": "Border Contrast",
 					"slug": "border-dark",
 					"color": "#4E4E60"
-				}
+				},
+        {
+          "name": "Bright Blue 70",
+          "slug": "bright-blue-70",
+          "color": "#c0e6ff"
+        }
 			],
 			"link": false
 		},
