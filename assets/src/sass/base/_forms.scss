@@ -37,6 +37,10 @@ textarea {
 	width: 100%;
 }
 
+::placeholder {
+	font-weight: var(--wp--custom--font-weight--normal);
+}
+
 .select-wrapper {
 	position: relative;
 

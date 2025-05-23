@@ -25,9 +25,7 @@
 					}
 				}
 			},
-			"default": [
-				{ "currency": "USD", "amount": 10 }
-			]
+			"default": []
 		},
 		"showAnnual": {
 			"type": "boolean",

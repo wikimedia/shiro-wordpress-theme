@@ -116,13 +116,12 @@ function wmf_get_currency_symbol( $currency_code ) {
  *
  * @return array Currency code to symbol map.
  */
-function wmf_get_currency_to_symbol_map() : array {
+function wmf_get_currency_to_symbol_map(): array {
 	return [
 		'USD' => '$',
 		'CAD' => 'CA$',
 		'AUD' => 'A$',
 		'NZD' => 'NZ$',
-		'GBP' => '£',
 		'EUR' => '€',
 		'AED' => 'د.إ',
 		'ANG' => 'ƒ',
@@ -206,7 +205,7 @@ function wmf_get_currency_to_symbol_map() : array {
  *
  * @return array
  */
-function wmf_get_country_to_currency_map() : array {
+function wmf_get_country_to_currency_map(): array {
 	return [
 		'US' => 'USD',
 		'CA' => 'CAD',

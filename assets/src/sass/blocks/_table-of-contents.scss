@@ -222,3 +222,14 @@
 		}
 	}
 }
+
+/**
+ * This prevents users from inadvertently scrolling the site when the toc nav is open.
+ */
+body.disable-body-scrolling {
+	overflow-y: hidden;
+
+	@media (min-width: $primary-nav-breakpoint) {
+		overflow-y: auto;
+	}
+}
