@@ -309,7 +309,6 @@ $header-bp-mw: 1049px;
 		.h2.eyebrow {
 			border: none;
 			color: $color-blue;
-			font-family: $font-family-sans;
 			margin-bottom: 1rem;
 			text-transform: uppercase;
 			@include font-size( 24, 22);
@@ -384,7 +383,6 @@ $header-bp-mw: 1049px;
 
 	.post-meta {
 		@include has-font-size( large );
-		font-family: $font-family-serif;
 		margin: 0;
 
 		> span {
