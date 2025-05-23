@@ -16,7 +16,6 @@
 	}
 
 	h2, h3 {
-		font-family: var(--wp--preset--font-family--default);
 		margin: 0;
 	}
 
@@ -27,6 +26,8 @@
 
 	h3 {
 		@include has-font-size("medium");
+		font-family: var(--wp--preset--font-family--default);
+		font-weight: var(--wp--custom--font-weight--normal);
 	}
 
 
