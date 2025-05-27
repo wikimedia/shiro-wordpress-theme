@@ -34,7 +34,7 @@
 <div class="wp-block-group">
 <!-- wp:post-terms {"term":"category"} /-->
 <!-- wp:post-title {"level":4,"isLink":true} /-->
- </div>
+</div>
 <!-- /wp:group -->
 
 <!-- /wp:post-template --></div>
