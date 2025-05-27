@@ -71,6 +71,11 @@
 					"color": "#f8f7fc"
 				},
 				{
+					"name": "Black 75",
+					"slug": "black-75",
+					"color": "#404040"
+				},
+				{
 					"name": "Black 5",
 					"slug": "black-05",
 					"color": "#F2F2F2"

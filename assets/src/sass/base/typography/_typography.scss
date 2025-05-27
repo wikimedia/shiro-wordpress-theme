@@ -3,7 +3,9 @@ a {
 
 	// TODO: This is not valid html, we should really fix all of these.
 	div, ul, p, #{$headings}, #{$heading-classes} {
-		color: $wmui-color-base10;
+		&:not(.block-editor-rich-text__editable) {
+			color: $wmui-color-base10;
+		}
 	}
 }
 
