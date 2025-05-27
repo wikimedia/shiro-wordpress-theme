@@ -1,6 +1,23 @@
 .language-switcher-nav {
+	position: relative;
+
 	&:empty {
 		display: none;
+	}
+
+	.wp-block-hm-mega-menu__menu-container {
+		left: 0;
+		top: 100%;
+		width: fluid( 150, 255 ) !important;
+
+		> .wp-block-group {
+			border: 1px solid var(--wp--preset--color--border-base);
+			border-radius: 0 0 rem(4) rem(4);
+		}
+
+		.menu-container__close-button {
+			display: none;
+		}
 	}
 }
 
@@ -20,15 +37,20 @@
 			}
 		}
 
+		&:hover {
+			background-color: #DADDE3;
+			border-color: #27292D;
+		}
+
 		&:focus,
 		&[aria-expanded=true] {
-			@include focus-ring($hex: false, $inset: false, $width: 4px, $transparency: 0.3);
+			@include focus-ring($hex: #3366CC, $inset: true, $width: 1px, $transparency: 1);
+			border-color: #3366CC;
+			border-radius: rem(4);
+		}
 
-			@media screen and (min-width: #{$primary-nav-breakpoint}) {
-				@include style-guide-dropdown-caret-blue();
-				border-color: currentColor;
-				color: $wmui-color-blue50;
-			}
+		&[aria-expanded=true] {
+			border-radius: rem(4) rem(4) 0 0;
 		}
 
 		.wp-block-hm-mega-menu__toggle-icon {
@@ -36,120 +58,30 @@
 		}
 	}
 
-	&__icon {
-		fill: currentColor;
-		height: rem(20);
-		margin: 0;
-		margin-right: 6px;
-		width: rem(20);
-	}
-
 	&__content {
-		[data-dropdown-status="initialized"] & {
-			background: #fff;
-			box-sizing: border-box;
-			flex-direction: column;
-			padding: rem(30) rem(12);
-			position: fixed;
-			right: 0;
-			top: $primary-nav-mobile-height;
-			width: 100%;
-
-			@media (min-width: #{$width-breakpoint-tablet}) {
-				border: 1px solid $wmui-color-blue50;
-				max-width: 100vw;
-				padding: rem(12);
-				position: absolute;
-				right: 0;
-				// This aligns the top of the content with the bottom of the button
-				top: calc(100% - 1px);
-				width: 200px;
-			}
-
-			@media (min-width: #{$width-breakpoint-desktop}) {
-				left: 0;
-				right: unset;
-			}
-		}
-
-		&[hidden] {
-			display: none;
-		}
-
-		/**
-		 * The presence--and behavior--of the WordPress admin bar means that we
-		 * need to get a little weird with some of the positioning for the open
-		 * content drawer.
-		 */
-		.admin-bar & {
-			top: $primary-nav-mobile-height + 46px;
-
-			@media ( min-width: #{$width-breakpoint-tablet} ) {
-				top: calc(100% - 1px);
-			}
-		}
-
-		.admin-bar .site-header--pinned & {
-
-			@media (max-width: 599px) {
-				top: $primary-nav-mobile-height;
-			}
-		}
-
-		ul {
-			@include list-reset;
-			display: flex;
-
-			[data-dropdown-status="initialized"] & {
-				flex-direction: column;
-			}
-
-			li {
-				font-size: rem(14);
-				font-weight: 500;
-				line-height: 175%;
-				list-style: none;
-				margin: 0;
-				margin-bottom: rem(19);
-
-				@media ( min-width: #{$width-breakpoint-tablet} ) {
-					margin-bottom: rem(14);
-				}
-
-				[data-dropdown-status="uninitialized"] & {
-					margin-bottom: 0;
-				}
-
-				a {
-
-					/** Necessary to override some pre-existing styles */
-					font-size: inherit;
-					font-weight: inherit;
-				}
-
-				&:last-child {
-					margin-bottom: 0;
-				}
-			}
-		}
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--16);
+		padding: var(--wp--preset--spacing--8) 0 !important;
 	}
 
 	&__language {
 		--language-picker-item-border-color: transparent;
-
-		&--selected {
-			--language-picker-item-border-color: #{$wmui-color-blue50};
-		}
+		--language-picker-item-border-width: 1px;
+		font-size: var(--wp--preset--font-size--medium);
+		line-height: var(--wp--custom--line-height--relaxed);
 
 		a {
 			color: $wmui-color-base0;
 			display: block;
-			padding-left: rem(8);
-			padding-right: rem(8);
-			padding-top: rem(4);
+			padding: var(--wp--preset--spacing--8) var(--wp--preset--spacing--16);
 
 			&:hover {
-				background-color: $wmui-color-blue90;
+				background-color: $wmui-color-base80;
+			}
+
+			&:active {
+				background-color: #DADDE3;
 			}
 
 			&:focus {
@@ -158,16 +90,21 @@
 		}
 
 		&--selected a {
-			color: $wmui-color-blue50;
+			--language-picker-item-border-width: 2px;
+			color: var(--wp--preset--color--primary-legacy-blue-aaa) !important;
 		}
 
+		&--selected a,
+		a:hover {
+			--language-picker-item-border-color: currentColor;
+		}
 	}
 
 	&__language-name {
 		display: inline-block;
 
 		&::after {
-			border-bottom: 3px solid var(--language-picker-item-border-color);
+			border-bottom: var(--language-picker-item-border-width) solid var(--language-picker-item-border-color);
 			content: "";
 			display: block;
 		}

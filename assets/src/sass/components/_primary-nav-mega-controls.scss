@@ -13,7 +13,7 @@
 		}
 
 		&:focus-visible {
-			@include focus-ring;
+			@include focus-ring($inset:true);
 		}
 
 		@include media("<mobile") {

@@ -288,9 +288,9 @@
 				"css": "text-underline-offset:3px",
 				"spacing": {
 					"padding": {
-						"top": "0.475em",
+						"top": "0.4875em",
 						"right": "0.8em",
-						"bottom": "0.475em",
+						"bottom": "0.4875em",
 						"left": "0.8em"
 					}
 				},
