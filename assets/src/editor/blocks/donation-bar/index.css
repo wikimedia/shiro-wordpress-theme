@@ -10,6 +10,7 @@
     margin: 0;
     padding: 0;
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -111,6 +112,14 @@
     border-width: 2px;
     border-color: currentColor;
     color: inherit;
+}
+
+.wp-block-shiro-donation-portal-form.is-fallback {
+    flex: 1;
+}
+
+.wp-block-shiro-donation-portal-form.is-fallback p {
+    margin: 0;
 }
 
 .pattern-donation-bar p a {

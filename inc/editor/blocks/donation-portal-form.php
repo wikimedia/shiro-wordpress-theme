@@ -25,8 +25,9 @@ function action_enqueue_block_editor_assets() {
 	wp_add_inline_script(
 		WP_Block_Type_Registry::get_instance()->get_registered( BLOCK_NAME )->editor_script_handles[0],
 		sprintf(
-			'const DONATION_FORM_CURRENCIES = %s;',
-			wp_json_encode( wmf_get_currency_to_symbol_map() )
+			'const WMF_DONATION_FORM_BLOCK = { currencies: %s, countries: %s };',
+			wp_json_encode( wmf_get_currency_to_symbol_map() ),
+			wp_json_encode( array_keys( wmf_get_country_to_currency_map() ) )
 		),
 		'before'
 	);

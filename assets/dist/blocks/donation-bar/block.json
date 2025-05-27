@@ -4,7 +4,7 @@
   "name": "shiro/donation-portal-form",
   "title": "Donation Portal Form",
   "category": "wikimedia",
-  "icon": "share",
+  "icon": "money",
   "description": "A form to direct users to donate.wikimedia.org portal",
   "attributes": {
     "defaultAmount": {
@@ -27,6 +27,10 @@
       },
       "default": []
     },
+    "fallbackText": {
+      "type": "string",
+      "default": ""
+    },
     "showAnnual": {
       "type": "boolean",
       "default": false
@@ -41,7 +45,14 @@
     },
     "source": {
       "type": "string",
-      "default": ""
+      "default": "10"
+    },
+    "unsupportedCountries": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
     }
   },
   "example": {},
