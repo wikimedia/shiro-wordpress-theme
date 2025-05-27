@@ -7,28 +7,35 @@
  * WordPress dependencies
  */
 import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls, RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
 import {
+	ComboboxControl,
 	PanelBody,
 	TextControl,
 	ToggleControl,
 	Button,
 	Flex,
 	FlexItem,
-	SelectControl
+	SelectControl,
+	Disabled
 } from '@wordpress/components';
 
 import metadata from './block.json';
 
 import './index.css';
 
-const SUPPORTED_CURRENCIES = Object.entries( DONATION_FORM_CURRENCIES )
+const SUPPORTED_CURRENCIES = Object.entries( WMF_DONATION_FORM_BLOCK.currencies )
 	.map( ( [ code, symbol ] ) => ( {
 		label: `${code} (${symbol})`,
 		value: code
 	} ) );
+const COUNTRY_NAMES = new Intl.DisplayNames( [ navigator.language || 'en' ], { type: 'region' } );
+const COUNTRIES = WMF_DONATION_FORM_BLOCK.countries.map( countryCode => ( {
+	label: COUNTRY_NAMES.of( countryCode ),
+	value: countryCode,
+} ) );
 
 registerBlockType( metadata.name, {
 	...metadata,
@@ -36,14 +43,16 @@ registerBlockType( metadata.name, {
 	/**
 	 * Edit component for managing social share settings.
 	 */
-	edit: function DonationFormBlock( { attributes, setAttributes } ) {
+	edit: function DonationFormBlock( { attributes, isSelected, setAttributes } ) {
 		const {
 			defaultAmount,
 			defaultCurrencyAmount = [],
+			fallbackText,
 			showAnnual,
 			medium,
 			campaign,
-			source
+			source,
+			unsupportedCountries,
 		} = attributes;
 
 		const blockProps = useBlockProps( {
@@ -74,36 +83,36 @@ registerBlockType( metadata.name, {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title={ __( 'Donation Bar Settings', 'shiro' ) }>
+					<PanelBody title={ __( 'Donation Bar Settings', 'shiro-admin' ) }>
 						<TextControl
-							label={ __( 'Default Donation Amount', 'shiro' ) }
+							label={ __( 'Default Donation Amount', 'shiro-admin' ) }
 							type="number"
 							min="1"
 							value={ defaultAmount }
 							onChange={ ( value ) => setAttributes( { defaultAmount: value } ) }
 						/>
 						<ToggleControl
-							label={ __( 'Show Annual Option', 'shiro' ) }
+							label={ __( 'Show Annual Option', 'shiro-admin' ) }
 							checked={ showAnnual }
 							onChange={ () => setAttributes( { showAnnual: ! showAnnual } ) }
 						/>
 						<TextControl
-							label={ __( 'UTM Medium', 'shiro' ) }
+							label={ __( 'UTM Medium', 'shiro-admin' ) }
 							value={ medium }
 							onChange={ ( value ) => setAttributes( { medium: value } ) }
 						/>
 						<TextControl
-							label={ __( 'UTM Campaign', 'shiro' ) }
+							label={ __( 'UTM Campaign', 'shiro-admin' ) }
 							value={ campaign }
 							onChange={ ( value ) => setAttributes( { campaign: value } ) }
 						/>
 						<TextControl
-							label={ __( 'UTM Source', 'shiro' ) }
+							label={ __( 'UTM Source', 'shiro-admin' ) }
 							value={ source }
 							onChange={ ( value ) => setAttributes( { source: value } ) }
 						/>
 					</PanelBody>
-					<PanelBody title={ __( 'Default Amounts by Currency', 'shiro' ) } initialOpen={ false }>
+					<PanelBody title={ __( 'Default Amounts by Currency', 'shiro-admin' ) }>
 						{ defaultCurrencyAmount.map( ( item, idx ) => {
 							const usedCurrencies = defaultCurrencyAmount
 								.filter( ( _, i ) => i !== idx )
@@ -115,7 +124,7 @@ registerBlockType( metadata.name, {
 								<Flex key={ idx } align="center" style={ { marginBottom: 8 } }>
 									<FlexItem>
 										<SelectControl
-											label={ idx === 0 ? __( 'Currency', 'shiro' ) : '' }
+											label={ idx === 0 ? __( 'Currency', 'shiro-admin' ) : '' }
 											value={ item.currency }
 											options={ availableCurrencies }
 											onChange={ ( value ) => updateCurrencyAmount( idx, 'currency', value ) }
@@ -124,7 +133,7 @@ registerBlockType( metadata.name, {
 									</FlexItem>
 									<FlexItem>
 										<TextControl
-											label={ idx === 0 ? __( 'Amount', 'shiro' ) : '' }
+											label={ idx === 0 ? __( 'Amount', 'shiro-admin' ) : '' }
 											type="number"
 											min="1"
 											value={ item.amount }
@@ -137,7 +146,7 @@ registerBlockType( metadata.name, {
 										<Button
 											isDestructive
 											icon="no-alt"
-											label={ __( 'Remove', 'shiro' ) }
+											label={ __( 'Remove', 'shiro-admin' ) }
 											onClick={ () => removeCurrencyAmount( idx ) }
 										/>
 									</FlexItem>
@@ -149,15 +158,65 @@ registerBlockType( metadata.name, {
 							onClick={ addCurrencyAmount }
 							disabled={ defaultCurrencyAmount.length >= SUPPORTED_CURRENCIES.length }
 						>
-							{ __( 'Add Currency Amount', 'shiro' ) }
+							{ __( 'Add Currency Amount', 'shiro-admin' ) }
 						</Button>
+					</PanelBody>
+					<PanelBody title={ __( 'Unsupported Countries', 'shiro-admin' ) }>
+						<ComboboxControl
+							label={ __( 'Add Unsupported Country', 'shiro-admin' ) }
+							options={ COUNTRIES.filter(
+								(opt) => !(unsupportedCountries || []).includes(opt.value)
+							) }
+							placeholder={ __( 'Search...', 'shiro-admin' ) }
+							onChange={ ( value ) => {
+								if ( value && !(unsupportedCountries || []).includes( value ) ) {
+									setAttributes( {
+										unsupportedCountries: [ ...(unsupportedCountries || []), value ]
+									} );
+								}
+							} }
+						/>
+						{ (unsupportedCountries || []).length > 0 && (
+							<ul style={ { marginTop: 12, paddingLeft: 0 } }>
+								{ unsupportedCountries.map( ( code ) => (
+									<li key={ code } style={ { display: 'flex', alignItems: 'center', margin: 0, listStyle: 'none' } }>
+										<span style={ { flex: 1 } }>{ COUNTRY_NAMES.of( code ) }</span>
+										<Button
+											isDestructive
+											icon="no-alt"
+											label={ __( 'Remove', 'shiro-admin' ) }
+											onClick={ () => {
+												setAttributes( {
+													unsupportedCountries: unsupportedCountries.filter( c => c !== code )
+												} );
+											} }
+											style={ { marginLeft: 8 } }
+										/>
+									</li>
+								) ) }
+							</ul>
+						) }
 					</PanelBody>
 				</InspectorControls>
 				<div { ...blockProps }>
-					<ServerSideRender
-						block={ metadata.name }
-						attributes={ attributes }
-					/>
+					<Disabled>
+						<ServerSideRender
+							block={ metadata.name }
+							attributes={ attributes }
+						/>
+					</Disabled>
+					{ isSelected && (
+						<RichText
+							tagName="p"
+							placeholder={ __( 'Fallback text for unsupported countries...', 'shiro-admin' ) }
+							value={ fallbackText }
+							onChange={ ( value ) => setAttributes( { fallbackText: value } ) }
+							style={ {
+								marginTop: 16,
+								marginBottom: 0,
+							} }
+						/>
+					) }
 				</div>
 			</>
 		);

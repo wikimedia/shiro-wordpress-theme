@@ -7,6 +7,32 @@
 wmf_enable_geoip_for_current_path();
 
 $country_code = wmf_get_country_code();
+
+// Check if this country is not supported.
+if (
+	strpos( $_SERVER['REQUEST_URI'], '/block-renderer/' ) === false &&
+	in_array( $country_code, (array) ( $attributes['unsupportedCountries'] ?? [] ), true )
+) :
+	// translators: Only basic inline HTML is allowed, anything else will be stripped on output.
+	$fallback = __( 'We are not fundraising in your country at this time, but monetary contributions are not your only option for donating to and supporting Wikipedia. <a href="/participate/">Learn how to participate</a>.', 'shiro' );
+	$allowed_html = [
+		'a' => [
+			'href' => true,
+			'rel' => true,
+			'target' => true,
+		],
+		'strong' => [],
+		'em' => [],
+		'span' => [],
+	];
+	?>
+	<div <?php echo get_block_wrapper_attributes( [ 'class' => 'is-fallback' ] ); // phpcs:ignore ?>>
+		<p><?php echo wp_kses( $attributes['fallbackText'] ?: $fallback, $allowed_html ); ?></p>
+	</div>
+	<?php
+	return;
+endif;
+
 $currency_code = wmf_get_currency_code( $country_code );
 $currency_symbol = wmf_get_currency_symbol( $currency_code );
 $default_amount = $attributes['defaultAmount'] ?? '10';
