@@ -52,7 +52,38 @@
       "items": {
         "type": "string"
       },
-      "default": []
+      "default": [
+        "AE",
+        "AF",
+        "AX",
+        "BY",
+        "CD",
+        "CI",
+        "CU",
+        "FI",
+        "ID",
+        "IQ",
+        "IR",
+        "KP",
+        "KR",
+        "LB",
+        "LY",
+        "MM",
+        "PY",
+        "RU",
+        "SA",
+        "SD",
+        "SO",
+        "SS",
+        "SY",
+        "TM",
+        "TR",
+        "UA",
+        "UZ",
+        "XK",
+        "YE",
+        "ZW"
+      ]
     }
   },
   "example": {},
