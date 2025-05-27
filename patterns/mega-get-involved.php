@@ -17,11 +17,11 @@
 <div class="wp-block-group has-black-05-background-color has-background" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column {"width":"21.75rem","metadata":{"name":"Intro"},"className":"intro","style":{"spacing":{"blockGap":"var:preset|spacing|16"}}} -->
 <div class="wp-block-column intro" style="flex-basis:21.75rem"><!-- wp:heading {"fontSize":"x-large"} -->
-<h2 class="wp-block-heading has-x-large-font-size">We are the non-profit organization behind Wikipedia and 13 other free knowledge projects.</h2>
+<h2 class="wp-block-heading has-x-large-font-size">Our projects are made by humans. The more people take part, the better the internet's knowledge gets.</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary-legacy-blue-aaa"}}}}} -->
-<p class="has-link-color"><a href="/about/">Learn more about us</a></p>
+<p class="has-link-color"><a href="#">Join us</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 

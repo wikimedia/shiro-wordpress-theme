@@ -3,6 +3,11 @@
 	// Mega menu content container.
 	.wp-block-hm-mega-menu__menu-container {
 		> .wp-block-group > .wp-block-columns {
+			@include media("<mobile") {
+				gap: rem(24);
+				padding-block: rem(8);
+			}
+
 			@include media(">=mobile") {
 				gap: rem(48);
 			}
@@ -10,7 +15,8 @@
 
 		h2 {
 			@include media("<mobile") {
-				font-size: rem(16);
+				font-family: var(--wp--preset--font-family--default);
+				font-size: rem(16) !important;
 				font-weight: var(--wp--custom--font-weight--normal);
 				line-height: var(--wp--custom--line-height--relaxed);
 			}
@@ -18,6 +24,9 @@
 
 		h3 {
 			font-family: var(--wp--preset--font-family--default);
+			@include media("<mobile") {
+				font-size: rem(20) !important;
+			}
 
 			a {
 				text-underline-offset: fluid( 3, 7 );
@@ -35,12 +44,21 @@
 		.intro {
 			position: relative;
 
-			&::after {
-				@include absolute-full-cover;
-				border-right: 1px solid #D9D9D9;
-				left: auto;
-				right: calc( var(--wp--preset--spacing--24) * -1 );
-				width: 0;
+			@include media(">=mobile") {
+				&::after {
+					@include absolute-full-cover;
+					border-right: 1px solid #D9D9D9;
+					left: auto;
+					right: calc( var(--wp--preset--spacing--24) * -1 );
+					width: 0;
+				}
+			}
+
+			p {
+				@include media("<mobile") {
+					font-size: rem(16);
+					margin-top: rem(16);
+				}
 			}
 
 			a {
@@ -50,11 +68,23 @@
 		}
 
 		.pages {
+			.is-layout-grid {
+				@include media("<mobile") {
+					gap: rem(24);
+
+					> .wp-block-group {
+						border-top: 1px solid var(--wp--preset--color--border-light);
+						padding-top: rem(24);
+					}
+				}
+			}
+
 			.wp-block-list {
 				margin-block-start: var(--wp--preset--spacing--32);
 
 				li {
-					margin-block-start: var(--wp--preset--spacing--16);
+					font-size: rem(16);
+					margin-block-start: rem(16);
 				}
 
 				a {
@@ -71,17 +101,37 @@
 
 		.post {
 			display: flex;
-			flex-direction: column;
-			gap: var(--wp--preset--spacing--16);
+			gap: rem(16);
 
-			.wp-block-post-featured-image :where(img) {
-				aspect-ratio: 1.42 / 1;
-				object-fit: cover;
+			@include media("<mobile") {
+				border-top: 1px solid var(--wp--preset--color--border-light);
+				padding-top: rem(24);
+			}
+
+			@include media(">=mobile") {
+				flex-direction: column;
+			}
+
+			.wp-block-post-featured-image {
+				@include media("<mobile") {
+					flex: 0 0 rem(104);
+				}
+
+				:where(img) {
+					aspect-ratio: 1.42 / 1;
+					border-radius: rem(4);
+					object-fit: cover;
+				}
+			}
+
+			.wp-block-post-terms {
+				font-size: rem(14);
 			}
 
 			h4 {
-				font-size: var(--wp--preset--font-size--large);
+				font-size: rem(20);
 				font-weight: var(--wp--custom--font-weight--bold);
+				margin-block-start: var(--wp--preset--spacing--16);
 			}
 		}
 	}
