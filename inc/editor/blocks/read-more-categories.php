@@ -47,7 +47,7 @@ function render_block( $attributes ) {
 
 	<div class="read-more-categories">
 		<span class="read-more-categories__text">
-			<?php echo esc_html( $attributes['readMoreText'] ?? __( 'Read more', 'shiro' ) ); ?>
+			<?php echo esc_html( $attributes['readMoreText'] ?? __( 'Read more:', 'shiro' ) ); ?>
 		</span>
 		<span class="read-more-categories__links">
 			<?php $i = 0; ?>
@@ -60,11 +60,7 @@ function render_block( $attributes ) {
 
 					$is_last = ++$i === count( $terms );
 				?>
-				<a href="<?php echo esc_url( $term_link ); ?>"><?php echo esc_html( $term->name ); ?></a><?php
-				if ( ! $is_last ) {
-					echo ',';
-				}
-				?>
+				<a href="<?php echo esc_url( $term_link ); ?>"><?php echo esc_html( $term->name ); ?></a>
 			<?php endforeach; ?>
 		</span>
 	</div>
