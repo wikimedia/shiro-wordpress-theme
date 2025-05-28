@@ -67,7 +67,7 @@ function render_block( $attributes ) {
 			? yoast_get_primary_term_id( 'category', $post_id )
 			: 0;
 		$yoast_primary    = $yoast_primary_id ? get_category( $yoast_primary_id ) : 0;
-		$primary_category = $yoast_primary ?: get_the_category()[0];
+		$primary_category = $yoast_primary ? $yoast_primary : get_the_category()[0];
 
 		get_template_part(
 			'template-parts/modules/cards/card',
