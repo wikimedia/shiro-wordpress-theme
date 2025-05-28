@@ -2,9 +2,9 @@
 /**
  * Title: Footer
  * Slug: shiro/footer-dark
- * Description: 
+ * Description:
  * Categories: footer
- * Keywords: 
+ * Keywords:
  * Viewport Width: 1500
  * Block Types: core/template-part/footer
  * Post Types: wp_template
@@ -24,7 +24,7 @@
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:paragraph {"textColor":"main-accent","fontSize":"small"} -->
+<div class="wp-block-column"><!-- wp:paragraph {"textColor":"base","fontSize":"small"} -->
 <p class="has-small-font-size">Easily create beautiful, fully-customizable websites with the new WordPress Site Editor and the Shiro block theme.</p>
 <!-- /wp:paragraph -->
 
