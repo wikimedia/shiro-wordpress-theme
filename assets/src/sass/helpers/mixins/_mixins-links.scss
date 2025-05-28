@@ -71,17 +71,25 @@
  * Link styles
  */
 @mixin style-guide-link {
-	color: $color-primary;
-	color: var(--link-color);
+	color: var(--wp--preset--color--blue-aaa);
+	text-underline-offset: fluid( 3, 5 );
 
 	&:focus {
-		@include style-guide-darken-color($color-primary);
-		@include focus-ring;
+		border-radius: rem(2);
+		outline: 2px solid var(--wp--preset--color--blue-aaa);
+		outline-offset: 2px;
+		text-underline-offset: rem(3);
 	}
 
-	&:hover {
-		@include style-guide-darken-color($color-primary);
-		text-decoration: underline;
+	&:hover,
+	&:focus,
+	&:active {
+		text-decoration: underline currentColor 2px;
+	}
+
+	&:active {
+		background-color: var(--wp--preset--color--black-05);
+		color: #233566;
 	}
 }
 
