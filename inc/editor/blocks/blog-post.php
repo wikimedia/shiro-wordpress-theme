@@ -63,6 +63,12 @@ function render_block( $attributes ) {
 	while ( $post_query->have_posts() ) {
 		$post_query->the_post();
 
+		$yoast_primary_id = function_exists( 'yoast_get_primary_term_id' )
+			? yoast_get_primary_term_id( 'category', $post_id )
+			: 0;
+		$yoast_primary    = $yoast_primary_id ? get_category( $yoast_primary_id ) : 0;
+		$primary_category = $yoast_primary ?: get_the_category()[0];
+
 		get_template_part(
 			'template-parts/modules/cards/card',
 			'horizontal',
@@ -73,7 +79,7 @@ function render_block( $attributes ) {
 				'authors'    => wmf_byline(),
 				'date'       => get_the_date(),
 				'excerpt'    => get_the_excerpt(),
-				'categories' => get_the_category(),
+				'category'   => $primary_category,
 				'class'      => 'blog-post' .
 					( ! empty( $attributes['is_featured'] ) ? ' blog-post--featured' : '' ) .
 					( ( ( $attributes['align'] ?? '' ) === 'wide' ) ? ' alignwide' : '' ),
