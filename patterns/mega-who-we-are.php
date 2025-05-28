@@ -20,7 +20,7 @@
 <h2 class="wp-block-heading has-x-large-font-size">We are the non-profit organization behind Wikipedia and 13 other free knowledge projects.</h2>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary-legacy-blue-aaa"}}}}} -->
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|blue-aaa"}}}}} -->
 <p class="has-link-color"><a href="/about/">Learn more about us</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->

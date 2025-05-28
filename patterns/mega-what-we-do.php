@@ -20,7 +20,7 @@
 <h2 class="wp-block-heading has-x-large-font-size">From technology to advocacy efforts, we provide the backbone of knowledge online.</h2>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary-legacy-blue-aaa"}}}}} -->
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|blue-aaa"}}}}} -->
 <p class="has-link-color"><a href="/our-work/">Learn more about our work</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
