@@ -1,21 +1,19 @@
 .site-footer {
-	a {
-		&:focus {
-			@include focus-ring($hex: true, $inset: false);
-		}
+	a[target="_blank"] {
+		align-items: baseline;
+		display: flex;
+		gap: var(--wp--preset--spacing--8);
 
-		&[target="_blank"] {
-			align-items: baseline;
-			display: flex;
-			gap: var(--wp--preset--spacing--8);
-
-			&::after {
-				background: center / contain no-repeat url("../../assets/src/svg/link-external.svg");
-				content: "";
-				height: rem(16);
-				width: rem(16);
-			}
+		&::after {
+			background: center / contain no-repeat url("../../assets/src/svg/link-external.svg");
+			content: "";
+			height: rem(16);
+			width: rem(16);
 		}
+	}
+
+	&.has-base-color a:focus {
+		outline-color: var(--wp--preset--color--base);
 	}
 
 	&.has-base-color a[target="_blank"]::after {
