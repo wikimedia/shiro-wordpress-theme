@@ -29,14 +29,5 @@
 				display: none;
 			}
 		}
-
-		a {
-			color: $wmui-color-blue50;
-
-			&:focus,
-			&:hover {
-				color: #3200be;
-			}
-		}
 	}
 }

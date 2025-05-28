@@ -69,7 +69,7 @@
 
 		li.active a,
 		.current {
-			background: $color-blue;
+			background: var(--wp--preset--color--blue-aaa);
 			color: #fff;
 		}
 
