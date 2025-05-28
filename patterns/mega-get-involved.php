@@ -20,7 +20,7 @@
 <h2 class="wp-block-heading has-x-large-font-size">Our projects are made by humans. The more people take part, the better the internet's knowledge gets.</h2>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary-legacy-blue-aaa"}}}}} -->
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|blue-aaa"}}}}} -->
 <p class="has-link-color"><a href="#">Join us</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->

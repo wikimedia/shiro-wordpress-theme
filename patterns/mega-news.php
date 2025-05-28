@@ -20,7 +20,7 @@
 <h2 class="wp-block-heading has-x-large-font-size">Now more than ever, people need access to information they can trust. Stay up to date on our efforts to maintain free knowledge.</h2>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|primary-legacy-blue-aaa"}}}}} -->
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|blue-aaa"}}}}} -->
 <p class="has-link-color"><a href="/news/">Find out more</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
