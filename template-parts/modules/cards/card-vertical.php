@@ -18,7 +18,7 @@ $authors    = ! empty( $card_data['authors'] ) ? $card_data['authors'] : '';
 $date       = ! empty( $card_data['date'] ) ? $card_data['date'] : '';
 $isodate    = ! empty( $card_data['isodate'] ) ? $card_data['isodate'] : '';
 $excerpt    = ! empty( $card_data['excerpt'] ) ? $card_data['excerpt'] : '';
-$categories = ! empty( $card_data['categories'] ) ? $card_data['categories'] : '';
+$category   = ! empty( $card_data['category'] ) ? $card_data['category'] : '';
 $sidebar    = ! empty( $card_data['sidebar'] ) && true === $card_data['sidebar'] ? true : false;
 $image_size = true === $sidebar ? 'image_4x5_large' : 'image_4x3_large';
 
@@ -40,12 +40,10 @@ $image_size = true === $sidebar ? 'image_4x5_large' : 'image_4x3_large';
 			</h3>
 			<?php endif; ?>
 
-			<?php if ( ! empty( $categories ) ) : ?>
+			<?php if ( ! empty( $category ) ) : ?>
 			<h4>
 				<?php
-				foreach ( $categories as $category ) {
-					printf( '<a class="blog-post__category-link mar-right" href="%1$s">%2$s</a> ', esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) );
-				}
+				printf( '<a class="blog-post__category-link mar-right category-%s" href="%s">%s</a> ', esc_attr( $category->slug ), esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) );
 				?>
 			</h4>
 			<?php endif; ?>

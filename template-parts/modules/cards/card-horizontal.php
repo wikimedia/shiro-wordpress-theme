@@ -18,7 +18,7 @@ $authors    = $card_data['authors'] ?? '';
 $date       = $card_data['date'] ?? '';
 $isodate    = $card_data['isodate'] ?? '';
 $excerpt    = $card_data['excerpt'] ?? '';
-$categories = $card_data['categories'] ?? [];
+$category   = $card_data['category'] ?? [];
 $sidebar    = boolval( $card_data['sidebar'] ?? false );
 $image_size = $sidebar ? 'image_4x5_large' : 'image_4x3_large';
 $class      = $card_data['class'] ?? 'blog-post';
@@ -46,12 +46,10 @@ $class      = $card_data['class'] ?? 'blog-post';
 			</h3>
 		<?php endif; ?>
 
-		<?php if ( ! empty( $categories ) ) : ?>
+		<?php if ( ! empty( $category ) ) : ?>
 			<div class="blog-post__categories">
 				<?php
-				foreach ( $categories as $category ) {
-					printf( '<a class="blog-post__category-link" href="%1$s">%2$s</a> ', esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) );
-				}
+				printf( '<a class="blog-post__category-link category-%s" href="%s">%s</a> ', esc_attr( $category->slug ), esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) );
 				?>
 			</div>
 		<?php endif; ?>

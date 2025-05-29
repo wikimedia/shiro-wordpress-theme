@@ -34,11 +34,13 @@ function register_block() {
  * @return string HTML markup.
  */
 function render_block( $attributes ) {
+	// phpcs:disable Universal.Operators.DisallowShortTernary.Found
 	$categories = get_the_terms( get_the_ID(), 'category' ) ?: [];
 	$tags = get_the_terms( get_the_ID(), 'post_tag' ) ?: [];
 	$terms = array_merge( $categories, $tags );
+	// phpcs:enable
 
-	usort( $terms, function( $a, $b ) {
+	usort( $terms, function ( $a, $b ) {
 		return strcmp( $a->name, $b->name );
 	} );
 
@@ -47,7 +49,7 @@ function render_block( $attributes ) {
 
 	<div class="read-more-categories">
 		<span class="read-more-categories__text">
-			<?php echo esc_html( $attributes['readMoreText'] ?? __( 'Read more', 'shiro' ) ); ?>
+			<?php echo esc_html( $attributes['readMoreText'] ?? __( 'Read more:', 'shiro' ) ); ?>
 		</span>
 		<span class="read-more-categories__links">
 			<?php $i = 0; ?>
@@ -60,11 +62,7 @@ function render_block( $attributes ) {
 
 					$is_last = ++$i === count( $terms );
 				?>
-				<a href="<?php echo esc_url( $term_link ); ?>"><?php echo esc_html( $term->name ); ?></a><?php
-				if ( ! $is_last ) {
-					echo ',';
-				}
-				?>
+				<a href="<?php echo esc_url( $term_link ); ?>"><?php echo esc_html( $term->name ); ?></a>
 			<?php endforeach; ?>
 		</span>
 	</div>

@@ -71,7 +71,7 @@ while ( have_posts() ) {
 	} else {
 		?>
 		</div>
-	</header>
+	</div><!-- Close out the secondary header. -->
 
 	<main id="content" class="module-area article-main is-layout-constrained has-global-padding">
 		<?php

@@ -38,7 +38,7 @@
     text-decoration: none;
     font-weight: 600;
     flex: 0 0 48px;
-    background: var(--wp--preset--color--bright-blue-70);
+    background: var(--wp--preset--color--light-bright-blue);
     border-radius: 4px 0 0 4px;
     text-align: center;
     padding: calc( 2px + var(--wp--preset--spacing--30) ) var(--wp--preset--spacing--30);

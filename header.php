@@ -44,6 +44,6 @@ elseif ( $wmf_ogmeta_ogimageurl && ! ( is_plugin_active( 'wordpress-seo/wp-seo.p
 	<a class="skip-link screen-reader-text" href="#content"><?php echo esc_html( $wmf_skip2_content_label ); ?></a>
 	<div id="page" class="site">
 		<?php block_template_part( 'header' ); ?>
-		<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>">
+		<div class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>">
 			<div class="header-inner alignwide">
 <?php
