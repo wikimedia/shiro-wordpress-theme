@@ -43,10 +43,6 @@
 		@include reset-p-margin;
 	}
 
-	a {
-		color: $color-primary;
-	}
-
 	@media (min-width: $width-breakpoint-tablet) {
 		width: calc( 33% - #{rem(8)} );
 	}

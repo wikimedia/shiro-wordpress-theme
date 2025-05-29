@@ -71,17 +71,25 @@
  * Link styles
  */
 @mixin style-guide-link {
-	color: $color-primary;
-	color: var(--link-color);
+	color: var(--wp--preset--color--blue-aaa);
+	text-underline-offset: fluid( 3, 5 );
 
 	&:focus {
-		@include style-guide-darken-color($color-primary);
-		@include focus-ring;
+		border-radius: rem(2);
+		outline: 2px solid var(--wp--preset--color--blue-aaa);
+		outline-offset: 2px;
+		text-underline-offset: rem(3);
 	}
 
-	&:hover {
-		@include style-guide-darken-color($color-primary);
-		text-decoration: underline;
+	&:hover,
+	&:focus,
+	&:active {
+		text-decoration: underline currentColor 2px;
+	}
+
+	&:active {
+		background-color: var(--wp--preset--color--black-05);
+		color: #233566;
 	}
 }
 
@@ -125,5 +133,40 @@
 				transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
 			}
 		}
+	}
+}
+
+@mixin category-links {
+	@include has-font-size( "small" );
+	align-items: baseline;
+	color: var(--wp--preset--color--main);
+	display: inline-flex;
+	gap: var(--wp--preset--spacing--8);
+
+	&::before {
+		background-color: var(--wp--preset--color--blue-aaa);
+		border-radius: 50%;
+		content: "";
+		height: rem(10);
+		width: rem(10);
+	}
+
+	&.category-technology::before {
+		background-color: var(--wp--preset--color--bright-blue);
+	}
+	&.category-public-policy::before {
+		background-color: var(--wp--preset--color--bright-green);
+	}
+	&.category-our-community::before {
+		background-color: var(--wp--preset--color--orange);
+	}
+	&.category-equity::before {
+		background-color: var(--wp--preset--color--yellow);
+	}
+	&.category-wikimedia-foundation::before {
+		background-color: var(--wp--preset--color--red-aaa);
+	}
+	&.category-our-projects::before {
+		background-color: var(--wp--preset--color--pink);
 	}
 }

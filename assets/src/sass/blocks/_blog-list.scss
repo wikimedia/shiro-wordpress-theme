@@ -67,27 +67,14 @@
 	}
 
 	&__categories {
-		margin-bottom: rem(6);
+		font-size: var(--wp--preset--font-size--small);
+		font-weight: var(--wp--custom--font-weight--semi-bold);
+		line-height: var(--wp--custom--line-height--relaxed);
+		margin-bottom: rem(16);
 	}
 
 	&__category-link {
-		@include has-font-size( "small" );
-		background-color: $wmui-color-blue90;
-		border-radius: rem(4);
-		color: $color-primary;
-		display: inline-block;
-		font-weight: 700;
-		margin: 0 10px 10px 0;
-		padding: 0 $padding-horizontal-base;
-
-		&:hover {
-			background-color: $wmui-color-blue50;
-			color: $wmui-color-base100;
-			// The alternative is to *significantly* increase the complexity,
-			// making this much less readable, hence the !important.
-			// When old styles are removed, we may be able to revisit this.
-			text-decoration: none !important;
-		}
+		@include category-links;
 	}
 
 	&__excerpt p {
