@@ -30,7 +30,7 @@
 	@include media("<mobile") {
 		// Core navigation main inner container - sibling of the button.
 		.wp-block-navigation__responsive-container.has-modal-open.is-menu-open {
-			height: calc( 100vh - var(--site-header-height, 0) - var(--wp-admin--admin-bar--height, 0) - 1px );
+			height: calc( 100vh - var(--site-header-height, 0px) - var(--wp-admin--admin-bar--height, 0px) - 1px );
 			overflow: visible;
 			position: absolute;
 			top: calc( 100% + 1px );
