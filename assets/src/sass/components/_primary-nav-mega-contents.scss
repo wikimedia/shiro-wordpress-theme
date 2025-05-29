@@ -13,6 +13,10 @@
 			}
 		}
 
+		a:active {
+			background-color: var(--wp--preset--color--black-10);
+		}
+
 		h2 {
 			@include media("<mobile") {
 				font-family: var(--wp--preset--font-family--default);
@@ -126,6 +130,18 @@
 
 			.wp-block-post-terms {
 				font-size: rem(14);
+			}
+
+			.wp-block-post-terms a {
+				@include category-links;
+
+				&:not(:first-of-type) {
+					display: none;
+				}
+			}
+
+			.wp-block-post-terms__separator {
+				display: none;
 			}
 
 			h4 {
