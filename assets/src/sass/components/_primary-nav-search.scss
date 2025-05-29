@@ -2,7 +2,7 @@
 .wp-block-search__inside-wrapper {
 	gap: var(--wp--preset--spacing--16);
 
-	@include media("<mobile") {
+	@include media("<sm_desktop") {
 		flex-direction: column;
 	}
 }
@@ -30,23 +30,23 @@
 }
 
 .wp-block-search__button {
-	@include media("<mobile") {
+	@include media("<sm_desktop") {
 		font-size: rem(20);
 	}
 }
 
 // Styles related to the primary nav search menu and form.
 .primary-nav .search {
-	@include media(">=mobile") {
+	@include media(">=sm_desktop") {
 		margin-left: auto;
 	}
 
 	.wp-block-hm-mega-menu__toggle {
-		@include media("<mobile") {
+		@include media("<sm_desktop") {
 			display: none;
 		}
 
-		@include media(">=mobile") {
+		@include media(">=sm_desktop") {
 			padding: var(--wp--preset--spacing--24);
 		}
 
@@ -65,7 +65,7 @@
 	}
 
 	.wp-block-hm-mega-menu__menu-container {
-		@include media("<mobile") {
+		@include media("<sm_desktop") {
 			opacity: 100;
 			position: static;
 			visibility: visible;
@@ -78,7 +78,7 @@
 	}
 
 	.menu-container__close-button {
-		@include media(">=mobile") {
+		@include media(">=sm_desktop") {
 			background: transparent;
 			opacity: 100;
 		}

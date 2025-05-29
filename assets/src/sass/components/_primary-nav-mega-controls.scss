@@ -16,7 +16,7 @@
 			@include focus-ring($inset:true);
 		}
 
-		@include media("<mobile") {
+		@include media("<sm_desktop") {
 			font-weight: var(--wp--custom--font-weight--bold);
 			padding: rem(20) rem(16);
 			width: 100%;
@@ -26,7 +26,7 @@
 			}
 		}
 
-		@include media(">=mobile") {
+		@include media(">=sm_desktop") {
 			border-left: 1px solid transparent;
 			border-right: 1px solid transparent;
 			height: calc( 100% + 1px );
@@ -46,7 +46,7 @@
 			margin: 0;
 		}
 
-		@include media("<mobile") {
+		@include media("<sm_desktop") {
 			height: rem(24);
 			width: rem(24);
 
@@ -59,7 +59,7 @@
 			}
 		}
 
-		@include media(">=mobile") {
+		@include media(">=sm_desktop") {
 			display: none;
 		}
 	}
@@ -67,7 +67,7 @@
 	// Mega menu content container.
 	.wp-block-hm-mega-menu__menu-container {
 		> .wp-block-group {
-			@include media("<mobile") {
+			@include media("<sm_desktop") {
 				background-color: rgba(#fff, 0.5) !important;
 				border-top: 1px solid var(--wp--preset--color--border-light);
 			}
@@ -78,7 +78,7 @@
 				@include focus-ring;
 			}
 
-			@include media("<mobile") {
+			@include media("<sm_desktop") {
 				display: none;
 			}
 
@@ -94,7 +94,7 @@
 			max-width: none !important;
 			width: 100% !important;
 
-			@include media(">=mobile") {
+			@include media(">=sm_desktop") {
 				@include global-negative-margin;
 				top: calc( 100% + 1px );
 				width: calc( 100% + $global-padding-added ) !important;
@@ -104,12 +104,12 @@
 
 	// Mega menu content container for an active menu item.
 	.wp-block-hm-mega-menu__toggle[aria-expanded=true] ~ .wp-block-hm-mega-menu__menu-container {
-		@include media("<mobile") {
+		@include media("<sm_desktop") {
 			box-shadow: none;
 			position: static;
 		}
 
-		@include media(">=mobile") {
+		@include media(">=sm_desktop") {
 			box-shadow: var(--wp--preset--shadow--shadow-16-blur);
 			clip-path: inset(
 				0
