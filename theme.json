@@ -189,12 +189,7 @@
 					"name": "Border Base",
 					"slug": "border-base",
 					"color": "var:preset|color|black-25"
-				},
-        {
-          "name": "Bright Blue 70",
-          "slug": "bright-blue-70",
-          "color": "#c0e6ff"
-        }
+				}
 			],
 			"link": false
 		},
