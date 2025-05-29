@@ -51,9 +51,20 @@
 	$width: 2px,
 	$transparency: 0.8
 ) {
+	--hex-color: #{$wmui-color-focus-ring-hex};
+	@if $hex and not ($hex == true) {
+		--hex-color: #{$hex};
+	}
+
 	border-radius: rem(2);
-	box-shadow: if($inset, inset, #{""}) 0 0 0 $width if($hex, $wmui-color-focus-ring-hex, rgba($wmui-color-focus-ring, $transparency));
+	box-shadow: if($inset, inset, #{""}) 0 0 0 $width if($hex, var(--hex-color), rgba($wmui-color-focus-ring, $transparency));
 	outline: none;
+
+	&:is(button):not(.language-switcher__button[aria-expanded=true]),
+	&:is(.wp-block-button__link),
+	&:is(.primary-nav .wp-block-post-featured-image a) {
+		border-radius: rem(4);
+	}
 }
 
 /**

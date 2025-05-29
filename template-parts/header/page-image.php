@@ -17,6 +17,6 @@ $bg_color         = $bg_opts['color'] ? 'pink' : 'blue';
 	<?php get_template_part( 'template-parts/header/social' ); ?>
 
 </div>
-</header>
+</div><!-- Close out the secondary header. -->
 
 <main id="content" class="module-area is-layout-constrained has-global-padding">
