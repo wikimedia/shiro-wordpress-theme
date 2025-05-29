@@ -69,6 +69,7 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		'shiro/clock-stat',
 		'shiro/collapsible-text',
 		'shiro/contact',
+		'shiro/donation-portal-form',
 		'shiro/double-heading',
 		'shiro/linked-toc-columns',
 		'shiro/linked-toc-item',

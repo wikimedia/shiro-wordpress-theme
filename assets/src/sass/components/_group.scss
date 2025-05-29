@@ -11,6 +11,8 @@
 	&.has-red-background-color,
 	&.has-red-50-background-color,
 	&.has-red-aaa-background-color  {
+		a,
+		a:hover,
 		.wp-block-button.is-style-as-link .wp-block-button__link,
 		.wp-block-button.is-style-as-link .wp-block-button__link:hover,
 		.wp-block-shiro-button.is-style-as-link:hover {
