@@ -249,6 +249,11 @@
 					"slug": "40"
 				},
 				{
+					"name": "48",
+					"size": "clamp(1.5rem, 2.73vw + 0.95rem, 3rem)",
+					"slug": "48"
+				},
+				{
 					"name": "64",
 					"size": "clamp(2rem, 3.64vw + 1.27rem, 4rem)",
 					"slug": "64"

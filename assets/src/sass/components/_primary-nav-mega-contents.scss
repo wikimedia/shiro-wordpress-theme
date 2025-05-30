@@ -2,17 +2,6 @@
 .primary-nav {
 	// Mega menu content container.
 	.wp-block-hm-mega-menu__menu-container {
-		> .wp-block-group > .wp-block-columns {
-			@include media("<tablet") {
-				gap: rem(24);
-				padding-block: rem(8);
-			}
-
-			@include media(">=tablet") {
-				gap: rem(48);
-			}
-		}
-
 		h2 {
 			@include media("<tablet") {
 				font-family: var(--wp--preset--font-family--default);
@@ -49,7 +38,7 @@
 					@include absolute-full-cover;
 					border-right: 1px solid #D9D9D9;
 					left: auto;
-					right: calc( var(--wp--preset--spacing--24) * -1 );
+					right: calc( var(--wp--preset--spacing--48) * -0.5 );
 					width: 0;
 				}
 			}
@@ -70,16 +59,16 @@
 		.pages {
 			.is-layout-grid {
 				@include media("<tablet") {
-					gap: rem(24);
+					gap: var(--wp--preset--spacing--48);
 
 					> .wp-block-group {
 						border-top: 1px solid var(--wp--preset--color--border-light);
-						padding-top: rem(24);
+						padding-top: var(--wp--preset--spacing--48);
 					}
 				}
 
-				@include media(">=tablet", "<desktop") {
-					row-gap: rem(40);
+				@include media(">=tablet") {
+					row-gap: var(--wp--preset--spacing--32);
 				}
 			}
 
@@ -109,7 +98,7 @@
 
 			@include media("<=mobile") {
 				border-top: 1px solid var(--wp--preset--color--border-light);
-				padding-top: rem(24);
+				padding-top: var(--wp--preset--spacing--48);
 			}
 
 			@include media(">mobile") {

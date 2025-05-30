@@ -5,7 +5,7 @@
 		display: flex;
 		gap: var(--wp--preset--spacing--16);
 		justify-content: space-between;
-		transition: all 300ms ease;
+		transition: text-decoration 300ms ease, border-color 300ms ease, background-color 300ms ease;
 
 		&:hover {
 			text-decoration: underline currentColor 2px;
