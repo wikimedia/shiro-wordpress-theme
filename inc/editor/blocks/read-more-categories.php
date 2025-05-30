@@ -34,11 +34,9 @@ function register_block() {
  * @return string HTML markup.
  */
 function render_block( $attributes ) {
-	// phpcs:disable Universal.Operators.DisallowShortTernary.Found
 	$categories = get_the_terms( get_the_ID(), 'category' ) ?: [];
 	$tags = get_the_terms( get_the_ID(), 'post_tag' ) ?: [];
 	$terms = array_merge( $categories, $tags );
-	// phpcs:enable
 
 	usort( $terms, function ( $a, $b ) {
 		return strcmp( $a->name, $b->name );

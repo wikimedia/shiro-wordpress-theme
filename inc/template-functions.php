@@ -198,7 +198,6 @@ function wmf_get_role_posts( $term_id ) {
 		'posts' => $profile_list,
 		'name'  => $term_query->name,
 		'slug'  => $term_query->slug,
-		// phpcs:ignore Universal.Operators.DisallowShortTernary.Found
 		'order' => get_term_meta( $term_id, 'role_order', true ) ?: 0,
 	);
 }
@@ -269,10 +268,8 @@ function wmf_sort_profiles( $profiles ) {
 	// The sort order is defined by the `last_name` meta field, which is
 	// actually exclusively used for alphabetical ordering.
 	usort( $profiles, function ( $a, $b ) {
-		// phpcs:disable Universal.Operators.DisallowShortTernary.Found
 		$last_name_a = get_post_meta( $a, 'last_name', true ) ?: 'z';
 		$last_name_b = get_post_meta( $b, 'last_name', true ) ?: 'z';
-		// phpcs:enable
 
 		return strnatcasecmp( $last_name_a, $last_name_b );
 	} );
