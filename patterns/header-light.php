@@ -17,7 +17,7 @@
 <header class="wp-block-group alignfull site-header has-base-background-color has-background has-link-color" style="border-bottom-color:var(--wp--preset--color--border-light);border-bottom-width:1px;padding-top:0;padding-bottom:0"><!-- wp:group {"align":"wide","className":"site-header\u002d\u002dinner","style":{"spacing":{"blockGap":"var:preset|spacing|16"}},"layout":{"type":"flex","justifyContent":"space-between"}} -->
 <div class="wp-block-group alignwide site-header--inner"><!-- wp:site-logo {"width":172,"shouldSyncIcon":false} /-->
 
-<!-- wp:navigation {"ref":77251,"openSubmenusOnClick":true,"icon":"menu","className":"primary-nav","style":{"spacing":{"blockGap":"0"},"layout":{"selfStretch":"fit","flexSize":null}}} /-->
+<!-- wp:navigation {"ref":77251,"openSubmenusOnClick":true,"overlayMenu":"always","icon":"menu","className":"primary-nav","style":{"spacing":{"blockGap":"0"},"layout":{"selfStretch":"fit","flexSize":null}}} /-->
 
 <!-- wp:navigation {"ref":77284,"overlayMenu":"never","className":"language-switcher-nav","style":{"spacing":{"blockGap":"0"}}} /-->
 

@@ -1,9 +1,9 @@
 .primary-nav {
-	@include media("<mobile") {
+	@include media("<sm_desktop") {
 		order: -1;
 	}
 
-	@include media(">=mobile") {
+	@include media(">=sm_desktop") {
 		flex-grow: 1;
 	}
 
@@ -19,11 +19,11 @@
 		font-weight: var(--wp--custom--font-weight--semi-bold);
 		margin: 0;
 
-		@include media("<mobile") {
+		@include media("<sm_desktop") {
 			font-size: rem(20);
 		}
 
-		@include media(">=mobile") {
+		@include media(">=sm_desktop") {
 			@include has-font-size( "medium" );
 		}
 	}
