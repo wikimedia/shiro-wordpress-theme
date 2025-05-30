@@ -12,12 +12,18 @@
 		}
 	}
 
-	&.has-base-color a:focus {
-		outline-color: var(--wp--preset--color--base);
-	}
+	&.has-base-color a {
+		&:focus {
+			outline-color: var(--wp--preset--color--base);
+		}
 
-	&.has-base-color a[target="_blank"]::after {
-		background-image: url("../../assets/src/svg/link-external-reverse.svg");
+		&:active {
+			background-color: initial;
+		}
+
+		&[target="_blank"]::after {
+			background-image: url("../../assets/src/svg/link-external-reverse.svg");
+		}
 	}
 
 	.org-info-columns {

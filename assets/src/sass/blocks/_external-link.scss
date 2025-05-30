@@ -14,16 +14,8 @@
 
 	&__link {
 		align-items: center;
-		color: $wmui-color-base0;
+		color: inherit;
 		display: flex;
-
-		&:hover {
-			color: $wmui-color-blue50;
-		}
-
-		&:focus {
-			color: $wmui-color-base0;
-		}
 	}
 
 	&__icon {

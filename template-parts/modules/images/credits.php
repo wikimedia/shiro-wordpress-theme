@@ -15,7 +15,7 @@ $header = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro-
 
 ?>
 
-<section class="wp-block-group alignfull photo-attribution has-background has-bright-yellow-70-background-color is-layout-constrained">
+<section class="wp-block-group alignfull photo-attribution has-background has-light-bright-yellow-background-color has-link-color is-layout-constrained">
 	<div class="alignwide">
 		<?php if ( ! empty( $header ) ) : ?>
 			<h2 class="photo-attribution__heading"><?php echo esc_html( $header ); ?></h2>

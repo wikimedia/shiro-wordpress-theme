@@ -21,10 +21,6 @@
 		box-shadow: 0 0 20px 5px rgba($color-base--active, 0.15);
 	}
 
-	&:hover &__call-to-action::after {
-		transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
-	}
-
 	&__contents {
 		display: flex;
 		flex: 1;
