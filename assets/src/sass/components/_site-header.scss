@@ -1,5 +1,5 @@
 .site-header {
-	@include media(">=mobile") {
+	@include media(">=sm_desktop") {
 		&:has( .primary-nav .wp-block-hm-mega-menu__toggle[aria-expanded=true] ) {
 			box-shadow: var(--wp--preset--shadow--shadow-16-blur);
 		}
@@ -10,7 +10,7 @@
 	}
 
 	.wp-block-site-logo {
-		@include media("<mobile") {
+		@include media("<desktop") {
 			margin-right: auto;
 			max-width: min( rem(172), 35% );
 		}
@@ -18,15 +18,9 @@
 		a {
 			padding: var(--wp--preset--spacing--16);
 
-			@include media(">=mobile") {
+			@include media(">=sm_desktop") {
 				margin-left: calc( var(--wp--preset--spacing--16) * -1 );
 			}
-		}
-	}
-
-	.wp-block-hm-mega-menu__toggle-icon {
-		@media ( min-width: 600px ) {
-			display: none;
 		}
 	}
 
@@ -36,7 +30,7 @@
 
 	.donate-nav {
 		.wp-block-button__link {
-			@include media("<mobile") {
+			@include media("<sm_desktop") {
 				font-size: rem(16);
 				line-height: var(--wp--custom--line-height--relaxed);
 				padding-inline: rem(8);
@@ -47,7 +41,7 @@
 			background-color: transparent !important;
 			color: inherit !important;
 
-			@include media("<mobile") {
+			@include media("<sm_desktop") {
 				@include visually-hidden;
 			}
 		}

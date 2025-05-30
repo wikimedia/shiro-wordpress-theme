@@ -190,8 +190,7 @@
 					"slug": "border-base",
 					"color": "var:preset|color|black-25"
 				}
-			],
-			"link": false
+			]
 		},
 		"custom": {
 			"fontWeight": {
@@ -248,6 +247,11 @@
 					"name": "40",
 					"size": "clamp(1rem, 2.73vw + 0.45rem, 2.5rem)",
 					"slug": "40"
+				},
+				{
+					"name": "48",
+					"size": "clamp(1.5rem, 2.73vw + 0.95rem, 3rem)",
+					"slug": "48"
 				},
 				{
 					"name": "64",
@@ -370,62 +374,6 @@
 		"useRootPaddingAwareAlignments": true
 	},
 	"styles": {
-		"blocks": {
-			"core/navigation": {
-				"typography": {
-					"fontWeight": "500"
-				},
-				"elements": {
-					"link": {
-						":hover": {
-							"typography": {
-								"textDecoration": "underline"
-							}
-						}
-					}
-				}
-			},
-			"core/quote": {
-				"elements": {
-					"cite": {
-						"typography": {
-							"fontSize": "var:preset|font-size|small"
-						},
-						"color": {
-							"text": "var:preset|color|secondary"
-						}
-					}
-				},
-				"css": "& :where(cite) { display: block }",
-				"border": {
-					"radius": "0",
-					"style": "solid",
-					"width": "0 0 0 5px !important",
-					"color": "var:preset|color|primary"
-				},
-				"spacing": {
-					"padding": {
-						"top": "var:preset|spacing|40",
-						"bottom": "var:preset|spacing|40"
-					}
-				},
-				"typography": {
-					"lineHeight": "var:custom|line-height|body",
-					"fontSize": "var:preset|font-size|medium",
-					"fontWeight": "500"
-				}
-			},
-			"core/separator": {
-				"color": {
-					"text": "var:preset|color|main"
-				}
-			},
-			"core/table": {
-				"typography": {
-					"fontSize": "var:preset|font-size|small"
-				}
-			}
-		},
 		"color": {
 			"background": "var:preset|color|base",
 			"text": "var:preset|color|main"
@@ -445,9 +393,9 @@
 				"css": "text-underline-offset:3px",
 				"spacing": {
 					"padding": {
-						"top": "0.475em",
+						"top": "0.4875em",
 						"right": "0.8em",
-						"bottom": "0.475em",
+						"bottom": "0.4875em",
 						"left": "0.8em"
 					}
 				},
@@ -542,7 +490,7 @@
 			},
 			"link": {
 				"color": {
-					"text": "var:preset|color|main"
+					"text": "var:preset|color|blue-aaa"
 				}
 			}
 		},
