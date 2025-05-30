@@ -77,14 +77,14 @@
 	&:focus {
 		border-radius: rem(2);
 		outline: 2px solid var(--wp--preset--color--blue-aaa);
-		outline-offset: 2px;
+		outline-offset: max(2px, 0.1em);
 		text-underline-offset: 0.15em !important;
 	}
 
 	&:hover,
 	&:focus,
 	&:active {
-		text-decoration: underline currentColor 2px;
+		text-decoration: underline currentColor max(1px, 0.1em);
 	}
 
 	&:active {
@@ -92,7 +92,7 @@
 		color: #233566;
 	}
 
-	&:is( .has-background:not(.has-link-color) a ) {
+	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ) {
 		color: inherit;
 		outline-color: currentColor;
 
