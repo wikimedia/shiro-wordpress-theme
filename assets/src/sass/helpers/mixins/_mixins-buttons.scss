@@ -100,28 +100,14 @@
 }
 
 @mixin button-link() {
-	@include style-guide-button(
-		transparent,
-		transparent,
-		$color-primary,
-	);
 	@include has-font-size("default");
-	margin: 0 rem(-1);
-	padding: 0 rem(1);
-
-	&:hover {
-		box-shadow: none;
-		color: $color-primary--hover;
-	}
-
-	&:focus {
-		border-color: transparent;
-	}
+	font-weight: var(--wp--custom--font-weight--semi-bold);
 
 	&:disabled,
 	&:is(a):not([href]) {
 		background-color: transparent;
-		color: $background-color-filled--disabled;
+		color: var(--wp--preset--color--black-50);
+		text-decoration: none !important
 	}
 }
 

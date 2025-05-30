@@ -78,7 +78,7 @@
 		border-radius: rem(2);
 		outline: 2px solid var(--wp--preset--color--blue-aaa);
 		outline-offset: 2px;
-		text-underline-offset: rem(3);
+		text-underline-offset: 0.15em !important;
 	}
 
 	&:hover,
@@ -91,14 +91,27 @@
 		background-color: var(--wp--preset--color--black-05);
 		color: #233566;
 	}
+
+	&:is( .has-background:not(.has-link-color) a ) {
+		color: inherit;
+		outline-color: currentColor;
+
+		&:not(:hover):not(:focus):not(:active) {
+			text-decoration: underline currentColor 1px;
+		}
+
+		&:active {
+			background-color: initial;
+		}
+	}
 }
 
 @mixin style-guide-arrow-content {
-	content: " →" #{"/*rtl:'← '*/;"};
+	content: "\00a0 →" #{"/*rtl:'←\00a0'*/;"};
 }
 
 @mixin style-guide-arrow-content-back {
-	content: "← " #{"/*rtl:'→ '*/;"};
+	content: "←\00a0" #{"/*rtl:'\00a0 →'*/;"};
 }
 
 @mixin style-guide-arrow($back: false) {
@@ -109,28 +122,36 @@
 		&::before {
 			@include style-guide-arrow-content-back;
 			color: currentColor;
-			margin-right: rem(4); /*rtl: margin: 0 0 0 rem(4);*/
-			transition: 300ms ease-in transform;
+			font-weight: var(--wp--custom--font-weight--normal);
+			transition: font-weight 300ms ease;
+			transition-property: font-weight, letter-spacing;
 		}
 	} @else {
 		&::after {
 			@include style-guide-arrow-content;
+			clip-path: rect(0 100% 100% 0);
 			color: currentColor;
-			margin-left: rem(4); /*rtl: margin: 0 rem(4) 0 0;*/
-			transition: 300ms ease-in transform;
+			font-weight: var(--wp--custom--font-weight--normal);
+			transition: font-weight 300ms ease;
+			transition-property: clip-path, font-weight, letter-spacing;
 		}
 	}
 
-	&:hover {
-		text-decoration: none;
-
+	&:hover,
+	&:focus,
+	&:active,
+	&:disabled,
+	&:is(a):not([href]) {
 		@if $back {
 			&::before {
-				transform: translateX(rem(-5)); /*rtl: transform: translateX(rem(5));*/
+				font-weight: var(--wp--custom--font-weight--bold);
+				letter-spacing: 2px;
 			}
 		} @else {
 			&::after {
-				transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
+				clip-path: rect(0 calc(100% - 4px) 100% 0);
+				font-weight: var(--wp--custom--font-weight--bold);
+				letter-spacing: 4px;
 			}
 		}
 	}
