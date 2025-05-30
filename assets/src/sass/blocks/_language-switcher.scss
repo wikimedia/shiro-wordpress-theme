@@ -38,7 +38,7 @@
 		}
 
 		&:hover {
-			background-color: #DADDE3;
+			background-color: var(--wp--preset--color--black-10);
 			border-color: #27292D;
 		}
 
@@ -81,7 +81,7 @@
 			}
 
 			&:active {
-				background-color: #DADDE3;
+				background-color: var(--wp--preset--color--black-10);
 			}
 
 			&:focus {
