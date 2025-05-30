@@ -21,14 +21,14 @@
 	}
 
 	.org-info-columns {
-		@include media("<mobile") {
-			gap: rem( 16 );
+		@include media("<tablet") {
+			gap: var(--wp--preset--spacing--24);
 		}
 
 		.wp-block-column:not(:last-child) {
 			position: relative;
 
-			@include media(">=mobile") {
+			@include media(">=tablet") {
 				&::after {
 					@include absolute-full-cover;
 					border-right: 1px solid currentColor;
@@ -43,7 +43,7 @@
 		.is-layout-grid {
 			grid-template-columns: rem(104) 1fr;
 
-			@include media(">=mobile") {
+			@include media(">=tablet") {
 				grid-template-columns: max-content 1fr;
 				row-gap: var(--wp--preset--spacing--8);
 			}
@@ -51,7 +51,7 @@
 	}
 
 	.wp-block-navigation {
-		@include media("<mobile") {
+		@include media("<tablet") {
 			gap: rem(16);
 		}
 	}
@@ -61,20 +61,20 @@
 		line-height: var(--wp--custom--line-height--relaxed);
 		margin: 0;
 
-		@include media(">=mobile") {
+		@include media(">=tablet") {
 			font-size: rem(16);
 		}
 	}
 
 	.wp-block-image {
-		@include media("<mobile") {
+		@include media("<tablet") {
 			grid-row: span 1;
 			text-align: center;
 		}
 	}
 
 	.wp-block-social-links {
-		@include media("<mobile") {
+		@include media("<tablet") {
 			border-bottom: 1px solid rgba(#fff, 0.5);
 			border-top: 1px solid rgba(#fff, 0.5);
 			grid-column: span 2;
@@ -89,18 +89,18 @@
 	.wp-block-separator {
 		border-top: 1px solid currentColor;
 
-		@include media("<mobile") {
+		@include media("<tablet") {
 			display: none;
 		}
 	}
 
 	.footer-nav-columns {
-		@include media("<mobile") {
-			gap: rem(16);
+		@include media("<tablet") {
+			gap: var(--wp--preset--spacing--24);
 
 			.wp-block-column {
 				border-bottom: 1px solid rgba(#fff, 0.5);
-				padding-bottom: rem(16);
+				padding-bottom: var(--wp--preset--spacing--24);
 			}
 		}
 	}
