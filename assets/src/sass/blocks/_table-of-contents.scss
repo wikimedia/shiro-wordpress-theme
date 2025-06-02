@@ -25,16 +25,17 @@
 	// Mobile specific styles for when the menu is open.
 	[data-dropdown-status="initialized"][data-visible="yes"] > & {
 		@media ( max-width: #{$core-gutenberg-break-small} ) {
-			background: var(--wp--preset--color--base);
-			color: var(--wp--preset--color--main);
-			display: block;
+			@include style-guide-dropdown-contents;
+			border: 0 none;
+			border-radius: rem(4);
 			left: 0;
 			max-height: calc(var(--full-window-height, 100vh) - 102px);
 			overflow: auto;
+			padding-top: 0 !important;
 			position: absolute;
 			top: var(--toc-h2-padding-top);
 			width: 100%;
-			z-index: 3000;
+			z-index: 1;
 		}
 	}
 
@@ -76,11 +77,9 @@
 		background-image: none;
 		border: 0 none;
 		color: var(--wp--preset--color--base);
-		font-size: rem(16);
+		gap: 0;
 		font-weight: 700;
-		justify-content: flex-start;
-		line-height: 1.75;
-		padding: rem(10) 0 rem(14) rem(18);
+		padding: rem(11) 0 rem(11) rem(16);
 		text-align: left;
 		text-transform: none;
 		width: 100%;
@@ -93,19 +92,20 @@
 			background-size: rem(16);
 			content: "";
 			display: block;
-			margin: rem(-10) 0 rem(-14);
-			padding: rem(10) rem(25) rem(14);
+			margin: rem(-11) 0;
+			padding-inline: rem(16);
 			position: relative;
 			width: rem(16);
-			z-index: 3001;
-		}
-
-		&:focus {
-			@include focus-outline;
+			z-index: 2;
 		}
 
 		&[aria-expanded=true]::after {
 			background: none;
+		}
+
+		&:hover {
+			background-color: var(--wp--preset--color--blue-aaa);
+			color: var(--wp--preset--color--base);
 		}
 
 		.btn-label-active-item {
@@ -126,24 +126,11 @@
 	}
 
 	&__link {
-		color: var(--wp--preset--color--main);
-		display: block;
-		line-height: 1.75;
-		padding: rem(10) rem(27) rem(14) rem(18);
-		text-decoration: none;
-
-		@media ( min-width: #{$core-gutenberg-break-small} ) {
-			font-size: rem(14);
-			padding: rem(9) rem(15);
-		}
-
-		&:hover {
-			background-color: var(--wp--preset--color--black-05);
-			text-decoration: none;
-		}
+		@include style-guide-dropdown-item;
+		padding-inline: rem(16);
 
 		&:focus {
-			@include focus-outline(-4px);
+			outline-offset: -4px;
 		}
 
 		&--active,

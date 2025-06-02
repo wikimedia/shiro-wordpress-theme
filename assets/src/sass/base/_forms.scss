@@ -25,7 +25,8 @@
 
 // Form elements
 input,
-textarea {
+textarea,
+select {
 	@include field-styling;
 }
 
@@ -55,30 +56,6 @@ button {
 
 ::placeholder {
 	font-weight: var(--wp--custom--font-weight--normal);
-}
-
-.select-wrapper {
-	position: relative;
-
-	&::after {
-		background: url('assets/dist/fonts/raw-icons/arrow-down.svg') no-repeat;
-		content: "";
-		display: block;
-		fill: $color-dark-gray;
-		font-size: rem( 35 );
-		height: rem( 35 );
-		pointer-events: none;
-		position: absolute;
-		right: rem( 5 );
-		top: rem( 5 );
-		width: rem( 35 );
-	}
-}
-
-select {
-	display: block;
-	width: 100%;
-	@include field-styling;
 }
 
 .checkbox-row {

@@ -6,14 +6,10 @@
 	}
 
 	.wp-block-hm-mega-menu__menu-container {
+		box-shadow: none !important;
 		left: 0;
 		top: 100%;
 		width: fluid( 150, 255 ) !important;
-
-		> .wp-block-group {
-			border: 1px solid var(--wp--preset--color--border-base);
-			border-radius: 0 0 rem(4) rem(4);
-		}
 
 		.menu-container__close-button {
 			display: none;
@@ -37,75 +33,23 @@
 			}
 		}
 
-		&:hover {
-			background-color: var(--wp--preset--color--black-10);
-			border-color: var(--wp--preset--color--main);
-		}
-
-		&:focus,
-		&[aria-expanded=true] {
-			@include focus-outline(-2px, rem(4));
-			border-color: var(--wp--preset--color--blue-aaa);
-		}
-
-		&[aria-expanded=true] {
-			border-radius: rem(4) rem(4) 0 0;
-		}
-
 		.wp-block-hm-mega-menu__toggle-icon {
 			display: none;
 		}
 	}
 
 	&__content {
-		display: flex;
-		flex-direction: column;
-		gap: var(--wp--preset--spacing--16);
-		padding: var(--wp--preset--spacing--8) 0 !important;
+		@include style-guide-dropdown-contents;
 	}
 
 	&__language {
-		--language-picker-item-border-color: transparent;
-		--language-picker-item-border-width: 1px;
-		font-size: var(--wp--preset--font-size--medium);
-		line-height: var(--wp--custom--line-height--relaxed);
-
 		a {
-			color: var(--wp--preset--color--main);
-			display: block;
-			padding: var(--wp--preset--spacing--8) var(--wp--preset--spacing--16);
-
-			&:hover {
-				background-color: var(--wp--preset--color--black-05);
-			}
-
-			&:active {
-				background-color: var(--wp--preset--color--black-10);
-			}
-
-			&:focus {
-				@include focus-outline(0);
-			}
+			@include style-guide-dropdown-item;
 		}
 
 		&--selected a {
-			--language-picker-item-border-width: 2px;
 			color: var(--wp--preset--color--blue-aaa) !important;
-		}
-
-		&--selected a,
-		a:hover {
-			--language-picker-item-border-color: currentColor;
-		}
-	}
-
-	&__language-name {
-		display: inline-block;
-
-		&::after {
-			border-bottom: var(--language-picker-item-border-width) solid var(--language-picker-item-border-color);
-			content: "";
-			display: block;
+			text-decoration: underline currentColor 2px;
 		}
 	}
 }
