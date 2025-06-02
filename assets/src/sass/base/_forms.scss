@@ -84,18 +84,6 @@ select {
 	@include field-styling;
 }
 
-.search-input,
-.search-btn {
-	@include field-styling;
-	display: inline-block;
-}
-.search-input {
-	background: url('assets/dist/fonts/raw-icons/icon-search-grey.svg') rem( 10 ) rem( 10 ) no-repeat;
-	padding-left: rem( 45 );
-	position: relative;
-	width: 80%;
-}
-
 .checkbox-row {
 	margin-bottom: rem( 10 );
 
