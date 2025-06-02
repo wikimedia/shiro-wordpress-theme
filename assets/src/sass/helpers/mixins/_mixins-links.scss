@@ -39,6 +39,16 @@
 
 /**
  * Focus faux outline styles.
+ */
+@mixin focus-outline() {
+	border-radius: rem(2);
+	outline: 2px solid var(--wp--preset--color--blue-aaa);
+	outline-offset: max(2px, 0.1em);
+	text-underline-offset: 0.15em !important;
+}
+
+/**
+ * Focus faux outline styles.
  *
  * @param {Boolean}  $hex          Is color solid or rgba?
  * @param {Boolean}  $inset        Should the box shadow be inset?
@@ -75,10 +85,7 @@
 	text-underline-offset: fluid( 3, 5 );
 
 	&:focus {
-		border-radius: rem(2);
-		outline: 2px solid var(--wp--preset--color--blue-aaa);
-		outline-offset: max(2px, 0.1em);
-		text-underline-offset: 0.15em !important;
+		@include focus-outline;
 	}
 
 	&:hover,
@@ -122,6 +129,7 @@
 		&::before {
 			@include style-guide-arrow-content-back;
 			color: currentColor;
+			font-family: var(--wp--preset--font-family--default);
 			font-weight: var(--wp--custom--font-weight--normal);
 			transition: font-weight 300ms ease;
 			transition-property: font-weight, letter-spacing;
@@ -131,6 +139,7 @@
 			@include style-guide-arrow-content;
 			clip-path: rect(0 100% 100% 0);
 			color: currentColor;
+			font-family: var(--wp--preset--font-family--default);
 			font-weight: var(--wp--custom--font-weight--normal);
 			transition: font-weight 300ms ease;
 			transition-property: clip-path, font-weight, letter-spacing;

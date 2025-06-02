@@ -1,12 +1,27 @@
 @mixin field-styling {
-	background: none;
-	border: 1px solid $color-ltgray;
-	border-radius: 0;
-	margin: rem(3) 0;
-	padding: rem(10);
+	background-color: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--border-base);
+	border-radius: rem(4);
+	font-family: var(--wp--preset--font-family--default);
+	font-size: 1rem;
+	font-weight: var(--wp--custom--font-weight--normal);
+	padding: rem(12) rem(10);
+
+	&:hover {
+		border-color: var(--wp--preset--color--main);
+	}
 
 	&:focus {
-		@include focus-ring($hex: false, $inset: false, $width: 3px, $transparency: 0.6);
+		@include focus-outline;
+		border-color: var(--wp--preset--color--blue-aaa);
+		border-radius: rem(4);
+		outline-offset: 0;
+		outline-width: 1px;
+	}
+
+	&:disabled {
+		background-color: var(--wp--preset--color--black-10);
+		border-color: var(--wp--preset--color--black-25);
 	}
 }
 
@@ -35,6 +50,10 @@ input[type="color"],
 textarea {
 	display: block;
 	width: 100%;
+}
+
+button {
+	@include style-guide-link;
 }
 
 ::placeholder {

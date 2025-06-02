@@ -12,8 +12,13 @@
 			text-underline-offset: fluid( 4, 8 );
 		}
 
-		&:focus-visible {
-			@include focus-ring($inset:true);
+		&:focus-visible:not([aria-expanded=true]) {
+			border-radius: rem(10);
+			outline-offset: -6px;
+		}
+
+		&:focus:not(:focus-visible) {
+			outline: none;
 		}
 
 		@include media("<sm_desktop") {

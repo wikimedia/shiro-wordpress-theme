@@ -18,6 +18,11 @@
 		a {
 			padding: var(--wp--preset--spacing--16);
 
+			&:focus {
+				border-radius: rem(6);
+				outline-offset: -2px;
+			}
+
 			@include media(">=sm_desktop") {
 				margin-left: calc( var(--wp--preset--spacing--16) * -1 );
 			}
