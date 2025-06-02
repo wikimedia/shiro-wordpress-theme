@@ -41,7 +41,7 @@
 		@include focus-reset;
 
 		.blog-post__image {
-			@include focus-ring;
+			@include focus-outline;
 		}
 	}
 

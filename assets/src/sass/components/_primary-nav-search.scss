@@ -70,8 +70,11 @@
 
 	.menu-container__close-button {
 		@include media(">=sm_desktop") {
-			background: transparent;
 			opacity: 100;
+
+			&:not(:hover):not(:focus) {
+				background: transparent;
+			}
 		}
 	}
 

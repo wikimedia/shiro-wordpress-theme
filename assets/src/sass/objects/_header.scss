@@ -301,7 +301,7 @@ $header-bp-mw: 1049px;
 
 		.h2.eyebrow {
 			border: none;
-			color: $color-blue;
+			color: var(--wp--preset--color--blue-aaa);
 			margin-bottom: 1rem;
 			text-transform: uppercase;
 			@include font-size( 24, 22);

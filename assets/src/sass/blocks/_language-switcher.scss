@@ -39,14 +39,13 @@
 
 		&:hover {
 			background-color: var(--wp--preset--color--black-10);
-			border-color: #27292D;
+			border-color: var(--wp--preset--color--main);
 		}
 
 		&:focus,
 		&[aria-expanded=true] {
-			@include focus-ring($hex: #3366CC, $inset: true, $width: 1px, $transparency: 1);
-			border-color: #3366CC;
-			border-radius: rem(4);
+			@include focus-outline(-2px, rem(4));
+			border-color: var(--wp--preset--color--blue-aaa);
 		}
 
 		&[aria-expanded=true] {
@@ -72,12 +71,12 @@
 		line-height: var(--wp--custom--line-height--relaxed);
 
 		a {
-			color: $wmui-color-base0;
+			color: var(--wp--preset--color--main);
 			display: block;
 			padding: var(--wp--preset--spacing--8) var(--wp--preset--spacing--16);
 
 			&:hover {
-				background-color: $wmui-color-base80;
+				background-color: var(--wp--preset--color--black-05);
 			}
 
 			&:active {
@@ -85,7 +84,7 @@
 			}
 
 			&:focus {
-				@include focus-ring;
+				@include focus-outline(0);
 			}
 		}
 

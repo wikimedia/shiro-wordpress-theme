@@ -39,11 +39,19 @@
 
 /**
  * Focus faux outline styles.
+ *
+ * @param {String} $offset        Outline offset width value.
+ * @param {String} $border-radius Element border radius.
+ * @param {String} $width         Outline stroke width value.
  */
-@mixin focus-outline() {
-	border-radius: rem(2);
-	outline: 2px solid var(--wp--preset--color--blue-aaa);
-	outline-offset: max(2px, 0.1em);
+@mixin focus-outline(
+	$offset: max(2px, 0.1em),
+	$border-radius: rem(2),
+	$width: 2px
+) {
+	border-radius: $border-radius;
+	outline-offset: $offset;
+	outline: $width solid var(--wp--preset--color--blue-aaa);
 	text-underline-offset: 0.15em !important;
 }
 

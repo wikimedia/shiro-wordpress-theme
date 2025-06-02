@@ -79,8 +79,15 @@
 		}
 
 		.menu-container__close-button {
+			border: 1px solid transparent;
+			color: var(--wp--preset--color--main);
+
+			&:hover {
+				border-color: var(--wp--preset--color--border-base);
+			}
+
 			&:focus-visible {
-				@include focus-ring;
+				@include focus-outline(0, 50%);
 			}
 
 			@include media("<sm_desktop") {

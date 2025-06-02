@@ -12,11 +12,8 @@
 	}
 
 	&:focus {
-		@include focus-outline;
+		@include focus-outline(-1px, rem(4));
 		border-color: var(--wp--preset--color--blue-aaa);
-		border-radius: rem(4);
-		outline-offset: 0;
-		outline-width: 1px;
 	}
 
 	&:disabled {

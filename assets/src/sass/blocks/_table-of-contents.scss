@@ -25,8 +25,8 @@
 	// Mobile specific styles for when the menu is open.
 	[data-dropdown-status="initialized"][data-visible="yes"] > & {
 		@media ( max-width: #{$core-gutenberg-break-small} ) {
-			background: $wmui-color-base90;
-			color: $wmui-color-base0;
+			background: var(--wp--preset--color--base);
+			color: var(--wp--preset--color--main);
 			display: block;
 			left: 0;
 			max-height: calc(var(--full-window-height, 100vh) - 102px);
@@ -72,10 +72,10 @@
 
 	&__button {
 		@include style-guide-dropdown-toggle();
-		background-color: $wmui-color-blue50;
+		background-color: var(--wp--preset--color--blue-aaa);
 		background-image: none;
 		border: 0 none;
-		color: $wmui-color-base100;
+		color: var(--wp--preset--color--base);
 		font-size: rem(16);
 		font-weight: 700;
 		justify-content: flex-start;
@@ -101,7 +101,7 @@
 		}
 
 		&:focus {
-			@include focus-ring(true, true);
+			@include focus-outline;
 		}
 
 		&[aria-expanded=true]::after {
@@ -126,7 +126,7 @@
 	}
 
 	&__link {
-		color: $wmui-color-base0;
+		color: var(--wp--preset--color--main);
 		display: block;
 		line-height: 1.75;
 		padding: rem(10) rem(27) rem(14) rem(18);
@@ -138,8 +138,12 @@
 		}
 
 		&:hover {
-			background-color: $wmui-color-blue90;
+			background-color: var(--wp--preset--color--black-05);
 			text-decoration: none;
+		}
+
+		&:focus {
+			@include focus-outline(-4px);
 		}
 
 		&--active,
@@ -148,13 +152,10 @@
 		&--active-page,
 		&--active-page:hover,
 		&--active-page:focus {
-			background-color: $wmui-color-blue50;
-			color: $wmui-color-base100;
+			background-color: var(--wp--preset--color--blue-aaa);
+			color: var(--wp--preset--color--base);
 			font-weight: 700;
-		}
-
-		&:focus {
-			@include focus-ring(true, true);
+			outline-color: currentColor;
 		}
 
 		@media ( max-width: #{$core-gutenberg-break-small} ) {
@@ -176,7 +177,7 @@
 					width: rem(16);
 				}
 
-				&--active::after {
+				&--active-page::after {
 					@include style-guide-dropdown-caret-white();
 				}
 			}
