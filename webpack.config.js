@@ -102,6 +102,14 @@ defaultConfig.module.rules.forEach( ( rule ) => {
 	}
 	// We've isolated SCSS build.
 	rule.use.forEach( ( loader ) => {
+		if ( /\/sass-loader/.test( loader.loader ) ) {
+			// Turn off verbose and repetitive SASS deprecation warnings.
+			loader.options.sassOptions = {
+				...loader.options.sassOptions,
+				silenceDeprecations: [ 'mixed-decls' ],
+			};
+		}
+
 		if ( ! /\/css-loader/.test( loader.loader ) ) {
 			return;
 		}
