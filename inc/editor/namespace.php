@@ -284,6 +284,14 @@ function enqueue_block_editor_assets() {
 		true
 	);
 
+	if ( in_array( 'wp-react-refresh-runtime', $editor_asset['dependencies'] ) ) {
+		wp_add_inline_script(
+			'shiro_editor_js',
+			sprintf( 'window.__webpack_public_path__ = %s;', wp_json_encode( get_theme_file_uri( 'assets/dist/' ) ) ),
+			'before'
+		);
+	}
+
 	$languages = wmf_get_translations();
 
 	wp_localize_script(
