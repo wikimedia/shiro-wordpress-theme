@@ -106,7 +106,7 @@ defaultConfig.module.rules.forEach( ( rule ) => {
 			// Turn off verbose and repetitive SASS deprecation warnings.
 			loader.options.sassOptions = {
 				...loader.options.sassOptions,
-				silenceDeprecations: [ 'mixed-decls' ],
+				silenceDeprecations: [ 'import', 'mixed-decls' ],
 			};
 		}
 
