@@ -198,7 +198,6 @@ function wmf_get_role_posts( $term_id ) {
 		'posts' => $profile_list,
 		'name'  => $term_query->name,
 		'slug'  => $term_query->slug,
-		// phpcs:ignore Universal.Operators.DisallowShortTernary.Found
 		'order' => get_term_meta( $term_id, 'role_order', true ) ?: 0,
 	);
 }
@@ -269,10 +268,8 @@ function wmf_sort_profiles( $profiles ) {
 	// The sort order is defined by the `last_name` meta field, which is
 	// actually exclusively used for alphabetical ordering.
 	usort( $profiles, function ( $a, $b ) {
-		// phpcs:disable Universal.Operators.DisallowShortTernary.Found
 		$last_name_a = get_post_meta( $a, 'last_name', true ) ?: 'z';
 		$last_name_b = get_post_meta( $b, 'last_name', true ) ?: 'z';
-		// phpcs:enable
 
 		return strnatcasecmp( $last_name_a, $last_name_b );
 	} );
@@ -891,4 +888,33 @@ function wmf_get_reusable_block_module_insert( string $module ): string {
 	}
 
 	return sprintf( '<!-- wp:block {"ref":%d} /-->', $id );
+}
+
+/**
+ * Returns the primary cetegory for a post.
+ *
+ * Returns false if no categories exist.
+ * 
+ * @param int $post_id Current post id.
+ *
+ * @return WP_Term|false
+ */
+function wmf_get_primary_category( $post_id ) {
+	if ( empty( $post_id ) ) {
+		$post_id = get_the_ID();
+	}
+
+	$all_categories = get_the_category( $post_id );
+
+	if ( empty( $all_categories ) ) {
+		return false;
+	}
+
+	$yoast_primary_id = function_exists( 'yoast_get_primary_term_id' )
+		? yoast_get_primary_term_id( 'category', $post_id )
+		: 0;
+	$yoast_primary    = $yoast_primary_id ? get_category( $yoast_primary_id ) : 0;
+	$primary_category = $yoast_primary ? $yoast_primary : $all_categories[0];
+
+	return $primary_category;
 }

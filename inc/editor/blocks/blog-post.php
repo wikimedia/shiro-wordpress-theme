@@ -63,11 +63,7 @@ function render_block( $attributes ) {
 	while ( $post_query->have_posts() ) {
 		$post_query->the_post();
 
-		$yoast_primary_id = function_exists( 'yoast_get_primary_term_id' )
-			? yoast_get_primary_term_id( 'category', $post_id )
-			: 0;
-		$yoast_primary    = $yoast_primary_id ? get_category( $yoast_primary_id ) : 0;
-		$primary_category = $yoast_primary ? $yoast_primary : get_the_category()[0];
+		$primary_category = wmf_get_primary_category( $id );
 
 		get_template_part(
 			'template-parts/modules/cards/card',
