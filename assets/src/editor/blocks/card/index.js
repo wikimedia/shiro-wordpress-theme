@@ -5,6 +5,7 @@
 /**
  * WordPress dependencies
  */
+import { registerBlockType, registerBlockStyle } from '@wordpress/blocks';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -14,81 +15,17 @@ import CallToActionPicker from '../../components/cta';
 import ImagePicker from '../../components/image-picker';
 import sharedStyles from '../../helpers/block-styles';
 
+import metadata from './block.json';
+
 /**
  * Internal dependencies
  */
 import './style.scss';
 
-export const name = 'shiro/card';
-export const styles = sharedStyles;
-
-export const settings = {
-	apiVersion: 2,
+registerBlockType( metadata.name, {
+	...metadata,
 
 	icon: BlockIcon,
-
-	title: __( 'Card', 'shiro-admin' ),
-
-	category: 'wikimedia',
-
-	description: __(
-		'Card creates a call to action with an image, heading and paragraph.',
-		'shiro-admin'
-	),
-
-	attributes: {
-		imageId: {
-			type: 'number',
-		},
-		imageSrc: {
-			type: 'string',
-			source: 'attribute',
-			selector: '.content-card__image',
-			attribute: 'src',
-		},
-		imageAlt: {
-			type: 'string',
-			source: 'attribute',
-			selector: '.content-card__image',
-			attribute: 'alt',
-		},
-		imageWidth: {
-			type: 'string',
-			source: 'attribute',
-			selector: '.content-card__image',
-			attribute: 'width',
-		},
-		imageHeight: {
-			type: 'string',
-			source: 'attribute',
-			selector: '.content-card__image',
-			attribute: 'height',
-		},
-		heading: {
-			type: 'string',
-			source: 'html',
-			selector: '.content-card__heading',
-		},
-		body: {
-			type: 'string',
-			source: 'html',
-			selector: '.content-card__body',
-		},
-		linkText: {
-			type: 'string',
-			source: 'html',
-			selector: '.content-card__call-to-action',
-		},
-		linkUrl: {
-			type: 'string',
-			source: 'attribute',
-			selector: '.content-card__call-to-action',
-			attribute: 'href',
-		},
-		openInNewTab: {
-			type: 'boolean'
-		},
-	},
 
 	/**
 	 * Edit component used to manage featured image and page intro.
@@ -205,4 +142,14 @@ export const settings = {
 			</div>
 		);
 	},
-};
+} );
+
+sharedStyles.forEach( ( style ) => registerBlockStyle( metadata.name, style ) );
+
+// Block HMR boilerplate.
+if ( module.hot ) {
+	module.hot.accept();
+	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
+	module.hot.dispose( deregister( metadata.name, { styles: sharedStyles } ) );
+	refresh( metadata.name, module.hot.data );
+}

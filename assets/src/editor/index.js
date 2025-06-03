@@ -6,12 +6,6 @@ import { registerBlockType, registerBlockStyle } from '@wordpress/blocks';
 import { addFilter } from '@wordpress/hooks';
 
 // List of non-autoloaded blocks.
-import * as blogPostHeading from './blocks/blog-post-heading';
-import * as card from './blocks/card';
-import * as carousel from './blocks/carousel';
-import * as clock from './blocks/clock';
-import * as clockStat from './blocks/clock-stat';
-import * as collapsibleText from './blocks/collapsible-text';
 import * as contact from './blocks/contact';
 import * as coreButton from './blocks/core-button';
 import * as coreColumns from './blocks/core-columns';
@@ -47,12 +41,6 @@ import * as unseenIntro from './blocks/unseen-intro';
 import './style.scss';
 
 const blocks = [
-	blogPostHeading,
-	card,
-	carousel,
-	clock,
-	clockStat,
-	collapsibleText,
 	contact,
 	coreButton,
 	coreColumns,

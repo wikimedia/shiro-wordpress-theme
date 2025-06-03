@@ -6,7 +6,11 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
-import { getBlockTypes } from '@wordpress/blocks';
+import {
+	getBlockTypes,
+	registerBlockStyle,
+	registerBlockType,
+} from '@wordpress/blocks';
 import {
 	PanelBody,
 	RangeControl,
@@ -47,11 +51,7 @@ const TEMPLATE = [
 	[ 'shiro/home-page-hero' ],
 ];
 
-export const { name } = metadata;
-
-export const styles = sharedStyles;
-
-export const settings = {
+registerBlockType( metadata.name, {
 	...metadata,
 
 	/**
@@ -226,4 +226,14 @@ export const settings = {
 			</div>
 		);
 	},
-};
+} );
+
+sharedStyles.forEach( ( style ) => registerBlockStyle( metadata.name, style ) );
+
+// Block HMR boilerplate.
+if ( module.hot ) {
+	module.hot.accept();
+	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
+	module.hot.dispose( deregister( metadata.name, { styles: sharedStyles } ) );
+	refresh( metadata.name, module.hot.data );
+}
