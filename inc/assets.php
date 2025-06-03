@@ -7,7 +7,10 @@ namespace WMF\Assets;
 
 use Asset_Loader\Manifest;
 
-function bootstrap() : void {
+/**
+ * Connect namespace functions to hooks.
+ */
+function bootstrap(): void {
 	if ( wp_get_environment_type() === 'local' ) {
 		add_action( 'wp_footer', __NAMESPACE__ . '\\suppress_dev_server_error_overlay' );
 		add_action( 'admin_footer', __NAMESPACE__ . '\\suppress_dev_server_error_overlay' );
@@ -19,7 +22,7 @@ function bootstrap() : void {
  *
  * @return array
  */
-function get_manifests() : array {
+function get_manifests(): array {
 	return [
 		get_template_directory() . '/assets/dist/development-asset-manifest.json',
 		get_template_directory() . '/assets/dist/production-asset-manifest.json',
