@@ -3,6 +3,8 @@
  */
 import wrapCharacters from './wrap-characters';
 
+import './frontend.scss';
+
 /**
  * A collection of all clock blocks on the page.
  *
