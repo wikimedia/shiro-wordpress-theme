@@ -166,6 +166,7 @@
 			}
 		} @else {
 			&::after {
+				// Clip path hides the text decoration on the extra space after the icon.
 				clip-path: rect(0 calc(100% - 4px) 100% 0);
 				font-weight: var(--wp--custom--font-weight--bold);
 				letter-spacing: 4px;

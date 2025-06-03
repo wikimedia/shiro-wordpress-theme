@@ -11,14 +11,12 @@
 }
 
 @mixin style-guide-button-reset() {
+	@include has-font-size("medium");
+	background: none;
 	border: none;
-	border-radius: $border-radius-base;
+	border-radius: 0;
 	cursor: pointer;
-	display: inline-block;
-	font-weight: 700;
 	padding: rem(6) rem(12);
-	@include font-size(14, 16);
-	@include line-height(20, 22);
 }
 
 @mixin style-guide-button(
@@ -27,6 +25,7 @@
 	$color-text,
 	$border-color: transparent,
 ) {
+	cursor: pointer;
 	// @include style-guide-button-reset;
 	// background-color: $color;
 	// border: 1px solid $border-color; // Buttons with and without borders take up the same space

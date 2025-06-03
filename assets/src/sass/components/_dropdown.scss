@@ -39,3 +39,22 @@
 	opacity: 0.5;
 	pointer-events: none;
 }
+
+.dropdown-toggle {
+	@include style-guide-dropdown-toggle();
+
+	+ .wp-block-list {
+		@include style-guide-dropdown-contents;
+		@include list-reset;
+		list-style-type: none;
+
+		button {
+			@include style-guide-button-reset;
+		}
+
+		a,
+		button {
+			@include style-guide-dropdown-item;
+		}
+	}
+}
