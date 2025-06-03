@@ -20,14 +20,12 @@ if ( empty( $translations ) && ! $is_editor ) {
 
 <ul class="language-switcher__content">
 	<?php foreach ( $translations as $translation ) : ?>
-		<li class="language-switcher__language <?php echo $translation['selected'] ? 'language-switcher__language--selected' : ''; ?>">
-		<span lang="<?php echo esc_attr( $translation['shortname'] ); ?>">
+		<li class="language-switcher__language <?php echo $translation['selected'] ? 'language-switcher__language--selected' : ''; ?>" lang="<?php echo esc_attr( $translation['shortname'] ); ?>">
 			<a href="<?php echo esc_url( $translation['uri'] ); ?>">
 				<span class="language-switcher__language-name">
 					<?php echo esc_html( $translation['name'] ); ?>
 				</span>
 			</a>
-		</span>
 		</li>
 	<?php endforeach ?>
 </ul>

@@ -14,7 +14,7 @@
 ?>
 
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|48","bottom":"var:preset|spacing|48"}}},"backgroundColor":"black-05","layout":{"type":"default"}} -->
-<div class="wp-block-group has-black-05-background-color has-background" style="padding-top:var(--wp--preset--spacing--48);padding-bottom:var(--wp--preset--spacing--48)"><!-- wp:columns {"className":"mega-menu-columns","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|48","left":"var:preset|spacing|48"}}}} -->
+<div class="wp-block-group has-black-05-background-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--48);padding-bottom:var(--wp--preset--spacing--48)"><!-- wp:columns {"className":"mega-menu-columns","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|48","left":"var:preset|spacing|48"}}}} -->
 <div class="wp-block-columns mega-menu-columns"><!-- wp:column {"width":"21.75rem","metadata":{"name":"Intro"},"className":"intro","style":{"spacing":{"blockGap":"var:preset|spacing|16"}}} -->
 <div class="wp-block-column intro" style="flex-basis:21.75rem"><!-- wp:heading {"fontSize":"x-large"} -->
 <h2 class="wp-block-heading has-x-large-font-size">Our projects are made by humans. The more people take part, the better the internet's knowledge gets.</h2>

@@ -35,8 +35,8 @@ get_template_part( 'template-parts/header/page', '404', $template_args );
 
 <div class="search-container aligncenter">
 	<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-		<input class="search-input mar-bottom" type="search" placeholder="<?php echo esc_attr( $wmf_404_search_text ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s">
-		<button class="btn btn-blue search-btn" type="submit"><?php echo esc_html( __( 'Search', 'shiro-admin' ) ); ?></button>
+		<input class="search-input" type="search" placeholder="<?php echo esc_attr( $wmf_404_search_text ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s">
+		<button class="btn btn-blue search-btn wp-element-button" type="submit"><?php echo esc_html( __( 'Search', 'shiro-admin' ) ); ?></button>
 	</form>
 </div>
 

@@ -1,19 +1,32 @@
 @mixin field-styling {
-	background: none;
-	border: 1px solid $color-ltgray;
-	border-radius: 0;
-	margin: rem(3) 0;
-	padding: rem(10);
+	background-color: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--border-base);
+	border-radius: rem(4);
+	font-family: var(--wp--preset--font-family--default);
+	font-size: 1rem;
+	font-weight: var(--wp--custom--font-weight--normal);
+	padding: rem(12) rem(10);
+
+	&:hover {
+		border-color: var(--wp--preset--color--main);
+	}
 
 	&:focus {
-		@include focus-ring($hex: false, $inset: false, $width: 3px, $transparency: 0.6);
+		@include focus-outline(-1px, rem(4));
+		border-color: var(--wp--preset--color--blue-aaa);
+	}
+
+	&:disabled {
+		background-color: var(--wp--preset--color--black-10);
+		border-color: var(--wp--preset--color--black-25);
 	}
 }
 
 
 // Form elements
 input,
-textarea {
+textarea,
+select {
 	@include field-styling;
 }
 
@@ -37,44 +50,12 @@ textarea {
 	width: 100%;
 }
 
+button {
+	@include style-guide-link;
+}
+
 ::placeholder {
 	font-weight: var(--wp--custom--font-weight--normal);
-}
-
-.select-wrapper {
-	position: relative;
-
-	&::after {
-		background: url('assets/dist/fonts/raw-icons/arrow-down.svg') no-repeat;
-		content: "";
-		display: block;
-		fill: $color-dark-gray;
-		font-size: rem( 35 );
-		height: rem( 35 );
-		pointer-events: none;
-		position: absolute;
-		right: rem( 5 );
-		top: rem( 5 );
-		width: rem( 35 );
-	}
-}
-
-select {
-	display: block;
-	width: 100%;
-	@include field-styling;
-}
-
-.search-input,
-.search-btn {
-	@include field-styling;
-	display: inline-block;
-}
-.search-input {
-	background: url('assets/dist/fonts/raw-icons/icon-search-grey.svg') rem( 10 ) rem( 10 ) no-repeat;
-	padding-left: rem( 45 );
-	position: relative;
-	width: 80%;
 }
 
 .checkbox-row {

@@ -40,6 +40,24 @@
 /**
  * Focus faux outline styles.
  *
+ * @param {String} $offset        Outline offset width value.
+ * @param {String} $border-radius Element border radius.
+ * @param {String} $width         Outline stroke width value.
+ */
+@mixin focus-outline(
+	$offset: max(2px, 0.1em),
+	$border-radius: rem(2),
+	$width: 2px
+) {
+	border-radius: $border-radius;
+	outline-offset: $offset;
+	outline: $width solid var(--wp--preset--color--blue-aaa);
+	text-underline-offset: 0.15em !important;
+}
+
+/**
+ * Focus faux outline styles.
+ *
  * @param {Boolean}  $hex          Is color solid or rgba?
  * @param {Boolean}  $inset        Should the box shadow be inset?
  * @param {String}   $width        Px width for outline.
@@ -75,30 +93,40 @@
 	text-underline-offset: fluid( 3, 5 );
 
 	&:focus {
-		border-radius: rem(2);
-		outline: 2px solid var(--wp--preset--color--blue-aaa);
-		outline-offset: 2px;
-		text-underline-offset: rem(3);
+		@include focus-outline;
 	}
 
 	&:hover,
 	&:focus,
 	&:active {
-		text-decoration: underline currentColor 2px;
+		text-decoration: underline currentColor max(1px, 0.1em);
 	}
 
 	&:active {
 		background-color: var(--wp--preset--color--black-05);
 		color: #233566;
 	}
+
+	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ) {
+		color: inherit;
+		outline-color: currentColor;
+
+		&:not(:hover):not(:focus):not(:active) {
+			text-decoration: underline currentColor 1px;
+		}
+
+		&:active {
+			background-color: initial;
+		}
+	}
 }
 
 @mixin style-guide-arrow-content {
-	content: " →" #{"/*rtl:'← '*/;"};
+	content: "\00a0 →" #{"/*rtl:'←\00a0'*/;"};
 }
 
 @mixin style-guide-arrow-content-back {
-	content: "← " #{"/*rtl:'→ '*/;"};
+	content: "←\00a0" #{"/*rtl:'\00a0 →'*/;"};
 }
 
 @mixin style-guide-arrow($back: false) {
@@ -109,28 +137,39 @@
 		&::before {
 			@include style-guide-arrow-content-back;
 			color: currentColor;
-			margin-right: rem(4); /*rtl: margin: 0 0 0 rem(4);*/
-			transition: 300ms ease-in transform;
+			font-family: var(--wp--preset--font-family--default);
+			font-weight: var(--wp--custom--font-weight--normal);
+			transition: font-weight 300ms ease;
+			transition-property: font-weight, letter-spacing;
 		}
 	} @else {
 		&::after {
 			@include style-guide-arrow-content;
+			clip-path: rect(0 100% 100% 0);
 			color: currentColor;
-			margin-left: rem(4); /*rtl: margin: 0 rem(4) 0 0;*/
-			transition: 300ms ease-in transform;
+			font-family: var(--wp--preset--font-family--default);
+			font-weight: var(--wp--custom--font-weight--normal);
+			transition: font-weight 300ms ease;
+			transition-property: clip-path, font-weight, letter-spacing;
 		}
 	}
 
-	&:hover {
-		text-decoration: none;
-
+	&:hover,
+	&:focus,
+	&:active,
+	&:disabled,
+	&:is(a):not([href]) {
 		@if $back {
 			&::before {
-				transform: translateX(rem(-5)); /*rtl: transform: translateX(rem(5));*/
+				font-weight: var(--wp--custom--font-weight--bold);
+				letter-spacing: 2px;
 			}
 		} @else {
 			&::after {
-				transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
+				// Clip path hides the text decoration on the extra space after the icon.
+				clip-path: rect(0 calc(100% - 4px) 100% 0);
+				font-weight: var(--wp--custom--font-weight--bold);
+				letter-spacing: 4px;
 			}
 		}
 	}
