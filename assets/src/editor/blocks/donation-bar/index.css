@@ -32,6 +32,11 @@
     border-radius: 4px;
     box-shadow: 0 0 1px rgba(0, 0, 0, .2);
     font-size: 1rem;
+
+    &:focus-within {
+        outline: 2px solid var(--wp--preset--color--base);
+        outline-offset: 2px;
+    }
 }
 
 .wp-block-shiro-donation-portal-form__amount abbr {
@@ -52,6 +57,7 @@
     border-radius: 0 4px 4px 0;
     border: 0;
     margin: 0;
+    outline: none;
     padding: calc( 2px + var(--wp--preset--spacing--30) ) var(--wp--preset--spacing--30);
     width: 6rem;
 }
@@ -70,7 +76,6 @@
     border: 2px solid currentColor;
     border-radius: 50%;
     background: transparent;
-    outline: none;
     display: inline-block;
     position: relative;
     transition: border-color 0.2s ease-in;
@@ -84,6 +89,7 @@
 
     &::before {
         content: '';
+        cursor: pointer;
         display: block;
         width: 75%;
         height: 75%;
@@ -94,6 +100,11 @@
         top: 12.5%;
         left: 12.5%;
         transition: background 0.2s ease-in-out;
+    }
+
+    &:focus {
+        outline-color: currentColor;
+        outline-offset: 2px;
     }
 }
 
