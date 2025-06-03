@@ -13,41 +13,29 @@
 
 ?>
 
-<!-- wp:group {"backgroundColor":"black-05","layout":{"type":"default"}} -->
-<div class="wp-block-group has-black-05-background-color has-background"><!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column {"metadata":{"name":"Intro"}} -->
-<div class="wp-block-column"><!-- wp:heading -->
-<h2 class="wp-block-heading">Now more than ever, people need access to information they can trust. Stay up to date on our efforts to maintain free knowledge.</h2>
+<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|48","bottom":"var:preset|spacing|48"}}},"backgroundColor":"black-05","layout":{"type":"default"}} -->
+<div class="wp-block-group has-black-05-background-color has-background" style="padding-top:var(--wp--preset--spacing--48);padding-bottom:var(--wp--preset--spacing--48)"><!-- wp:columns {"className":"mega-menu-columns","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|48","left":"var:preset|spacing|48"}}}} -->
+<div class="wp-block-columns mega-menu-columns"><!-- wp:column {"width":"21.75rem","metadata":{"name":"Intro"},"className":"intro","style":{"spacing":{"blockGap":"var:preset|spacing|16"}}} -->
+<div class="wp-block-column intro" style="flex-basis:21.75rem"><!-- wp:heading {"fontSize":"x-large"} -->
+<h2 class="wp-block-heading has-x-large-font-size">Now more than ever, people need access to information they can trust. Stay up to date on our efforts to maintain free knowledge.</h2>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph -->
-<p><a href="/news/">Find out more</a></p>
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|blue-aaa"}}}}} -->
+<p class="has-link-color"><a href="/news/">Find out more</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"metadata":{"name":"Pages"}} -->
-<div class="wp-block-column"><!-- wp:query {"queryId":0,"query":{"perPage":3,"pages":"1","offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"taxQuery":null,"parents":[],"format":[]},"layout":{"type":"default"}} -->
-<div class="wp-block-query"><!-- wp:post-template -->
-<!-- wp:post-featured-image /-->
+<!-- wp:column {"metadata":{"name":"Pages"},"className":"pages"} -->
+<div class="wp-block-column pages"><!-- wp:query {"queryId":0,"query":{"perPage":3,"pages":"1","offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"taxQuery":null,"parents":[],"format":[]},"layout":{"type":"default"}} -->
+<div class="wp-block-query"><!-- wp:post-template {"style":{"spacing":{"blockGap":"var:preset|spacing|24"}},"layout":{"type":"grid","columnCount":null,"minimumColumnWidth":"14rem"}} -->
+<!-- wp:post-featured-image {"isLink":true,"sizeSlug":"medium"} /-->
 
-<!-- wp:post-terms {"term":"category"} /-->
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:post-terms {"term":"category"} /-->
 
-<!-- wp:post-title /-->
-<!-- /wp:post-template -->
-
-<!-- wp:query-pagination -->
-<!-- wp:query-pagination-previous /-->
-
-<!-- wp:query-pagination-numbers /-->
-
-<!-- wp:query-pagination-next /-->
-<!-- /wp:query-pagination -->
-
-<!-- wp:query-no-results -->
-<!-- wp:paragraph {"placeholder":"Add text or blocks that will display when a query returns no results."} -->
-<p></p>
-<!-- /wp:paragraph -->
-<!-- /wp:query-no-results --></div>
+<!-- wp:post-title {"level":4,"isLink":true} /--></div>
+<!-- /wp:group -->
+<!-- /wp:post-template --></div>
 <!-- /wp:query --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>

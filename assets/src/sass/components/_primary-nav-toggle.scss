@@ -1,8 +1,8 @@
-// Styles related to the toggling of the mobile primary nav.
+// Styles related to the toggling of the sm_desktop primary nav (top level core block).
 .primary-nav {
 	--site-header-height: #{rem(64)};
 
-	@include media(">=mobile") {
+	@include media(">=sm_desktop") {
 		--site-header-height: #{rem(80)};
 	}
 
@@ -16,6 +16,10 @@
 	// Core navigation toggle open button.
 	.wp-block-navigation__responsive-container-open {
 		margin-left: calc( var(--wp--style--root--padding-left) * -1 );
+
+		@include media(">=sm_desktop") {
+			display: none;
+		}
 	}
 
 	// Core navigation toggle close button.
@@ -27,10 +31,17 @@
 		top: auto;
 	}
 
-	@include media("<mobile") {
+	.wp-block-navigation__responsive-container {
+		@include media(">=sm_desktop") {
+			display: block;
+			position: static;
+		}
+	}
+
+	@include media("<sm_desktop") {
 		// Core navigation main inner container - sibling of the button.
 		.wp-block-navigation__responsive-container.has-modal-open.is-menu-open {
-			height: calc( 100vh - var(--site-header-height, 0) - var(--wp-admin--admin-bar--height, 0) - 1px );
+			height: calc( 100vh - var(--site-header-height, 0px) - var(--wp-admin--admin-bar--height, 0px) - 1px );
 			overflow: visible;
 			position: absolute;
 			top: calc( 100% + 1px );
@@ -50,6 +61,7 @@
 			}
 
 			.wp-block-navigation__container {
+				flex-wrap: nowrap;
 				width: 100%;
 			}
 		}
@@ -57,7 +69,7 @@
 }
 
 html.has-modal-open {
-	@include media("<mobile") {
+	@include media("<sm_desktop") {
 		&,
 		.wp-block-navigation__responsive-container {
 			max-height: 100vh;
