@@ -251,6 +251,8 @@ if (
 	module.exports.devServer = {
 		...module.exports.devServer,
 		allowedHosts: 'all',
+		// Reload DevServer when non-built files change.
+		watchFiles: [ 'theme.json' ],
 		proxy: { '/assets/dist': { pathRewrite: { '^/assets/dist': '' } } }
 	};
 	module.exports.optimization = {
