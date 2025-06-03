@@ -46,5 +46,8 @@
       "selector": ".clock__title"
     }
   },
-  "viewScript": "clock-frontend"
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css",
+  "style": "file:/view.css",
+  "viewScript": "file:./view.js"
 }

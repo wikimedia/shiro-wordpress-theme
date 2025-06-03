@@ -1,3 +1,7 @@
+@import "sass-lib/helpers/_functions.scss";
+@import "sass-lib/helpers/_style-guide-variables.scss";
+@import "sass-lib/helpers/_style-guide-variables-overrides.scss";
+
 .clock {
   border: rem(1) solid darkgrey;
   margin: 2rem auto;
@@ -50,6 +54,7 @@
         border: rem(2) solid darkgrey;
         display: flex;
         font-weight: bold;
+				min-height: rem(19);
         width: fit-content;
 
         span {

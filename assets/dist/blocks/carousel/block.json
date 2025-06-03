@@ -1,6 +1,6 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "shiro/carousel",
   "title": "Carousel",
   "category": "media",
@@ -55,5 +55,7 @@
       "type": "integer",
       "default": 5000
     }
-  }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css"
 }
