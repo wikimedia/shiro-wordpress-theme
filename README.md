@@ -58,6 +58,9 @@ Lints only PHP files which have changed in the current branch, using `phpcs`.  T
 * `npm run start`
 Begins watching front-end assets (scripts and styles) and compiles them when changed. This will also start the livereload script, which refreshes the page when changes are made.
 
+> [!WARNING]
+> When running the `npm start` development server, WordPress [requires](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/) SCRIPT_DEBUG to be enabled. On a macOS host system you can edit the configuration for VIP's dev-env environment at `~/.local/share/vip/dev-environment/wikimedia/config/wp-config.php` (assuming `wikimedia` is your environment slug.). Add `define( 'SCRIPT_DEBUG', true );` to permit WordPress to load files from our development server.
+
 * `npm run download-style-guide-sass`
 Download the variables file in the style-guide. This is only required when the style guide has changed.
 
