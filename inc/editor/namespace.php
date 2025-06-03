@@ -274,23 +274,14 @@ function is_using_block_editor(): bool {
  * Enqueue assets used only in the block editor.
  */
 function enqueue_block_editor_assets() {
-	Asset_Loader\enqueue_asset(
-		Assets\get_manifest_path( 'editor.js' ),
-		'editor.js',
-		[
-			'dependencies' => [
-				'wp-dom-ready',
-				'wp-i18n',
-				'wp-blocks',
-				'wp-block-editor',
-				'wp-components',
-				'wp-compose',
-				'wp-element',
-				'wp-hooks',
-				'wp-token-list',
-			],
-			'handle' => 'shiro_editor_js',
-		]
+	$editor_asset = include get_theme_file_path( 'assets/dist/editor.asset.php' );
+
+	wp_enqueue_script(
+		'shiro_editor_js',
+		get_theme_file_uri( 'assets/dist/editor.js' ),
+		$editor_asset['dependencies'],
+		$editor_asset['version'],
+		true
 	);
 
 	$languages = wmf_get_translations();

@@ -61,7 +61,6 @@ const legacyEntries = {
 /** Bundles migrated from 1st-gen Shiro Webpack build. */
 const hashedEntries = {
 	shiro: './assets/src/scripts/shiro.js',
-	editor: './assets/src/editor/index.js',
 };
 
 const themeStylesheets = {
@@ -174,6 +173,7 @@ module.exports = {
 		...legacyEntries,
 		...hashedEntries,
 		...themeStylesheets,
+		editor: './assets/src/editor/index.js',
    	},
 	resolve: {
 		...defaultConfig.resolve,
