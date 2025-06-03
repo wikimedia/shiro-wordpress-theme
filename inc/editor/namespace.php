@@ -8,6 +8,8 @@ namespace WMF\Editor;
 use Asset_Loader;
 use WMF\Assets;
 
+const SCRIPT_DEBUG_WARNING = 'Hot reloading was requested but SCRIPT_DEBUG is false. Your bundle will not load. Please enable SCRIPT_DEBUG or disable hot reloading.';
+
 /**
  * Bootstrap hooks relevant to the block editor.
  */
@@ -19,6 +21,9 @@ function bootstrap() {
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\register_core_block_styles' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
 	add_filter( 'block_categories_all', __NAMESPACE__ . '\\add_block_categories' );
+
+	// Disable block directory, we cannot (and would not want to) dynamically add plugins.
+	remove_action( 'enqueue_block_editor_assets', 'wp_enqueue_editor_block_directory_assets' );
 }
 
 /**
@@ -272,24 +277,24 @@ function is_using_block_editor(): bool {
  * Enqueue assets used only in the block editor.
  */
 function enqueue_block_editor_assets() {
-	Asset_Loader\enqueue_asset(
-		Assets\get_manifest_path( 'editor.js' ),
-		'editor.js',
-		[
-			'dependencies' => [
-				'wp-dom-ready',
-				'wp-i18n',
-				'wp-blocks',
-				'wp-block-editor',
-				'wp-components',
-				'wp-compose',
-				'wp-element',
-				'wp-hooks',
-				'wp-token-list',
-			],
-			'handle' => 'shiro_editor_js',
-		]
+	$editor_asset = include get_theme_file_path( 'assets/dist/editor.asset.php' );
+
+	wp_enqueue_script(
+		'shiro_editor_js',
+		get_theme_file_uri( 'assets/dist/editor.js' ),
+		$editor_asset['dependencies'],
+		$editor_asset['version'],
+		true
 	);
+
+	if ( wp_get_environment_type() === 'local' && in_array( 'wp-react-refresh-runtime', $editor_asset['dependencies'] ) ) {
+		warn_if_script_debug_not_enabled();
+		wp_add_inline_script(
+			'shiro_editor_js',
+			sprintf( 'window.__webpack_public_path__ = %s;', wp_json_encode( get_theme_file_uri( 'assets/dist/' ) ) ),
+			'before'
+		);
+	}
 
 	$languages = wmf_get_translations();
 
@@ -339,4 +344,44 @@ function add_block_categories( $categories ) {
 		),
 		$categories
 	);
+}
+
+/**
+ * Show a visible warning if we try to use a hot-reloading dev server while
+ * SCRIPT_DEBUG is false: otherwise, the script will silently fail to load.
+ */
+function warn_if_script_debug_not_enabled(): void {
+	static $has_shown;
+
+	$is_script_debug_mode = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+
+	if ( $has_shown || $is_script_debug_mode || ! is_admin() ) {
+		return;
+	}
+
+	// Runtime only loads in SCRIPT_DEBUG mode. Show a warning.
+	wp_enqueue_script( 'wp-data' );
+	add_action( 'admin_footer', __NAMESPACE__ . '\\show_editor_debug_mode_warning', 100 );
+
+	$has_shown = true;
+}
+
+/**
+ * Use the block editor notices package to show a warning in the editor if
+ * hot reloading is required by a script when SCRIPT_DEBUG is disabled.
+ */
+function show_editor_debug_mode_warning(): void {
+	?>
+	<script>
+	window.addEventListener( 'DOMContentLoaded', () => {
+		wp.data.dispatch( 'core/notices' ).createNotice(
+			'warning',
+			<?php echo wp_json_encode( SCRIPT_DEBUG_WARNING ); ?>,
+			{
+				isDismissible: false,
+			}
+		);
+	} );
+	</script>
+	<?php
 }
