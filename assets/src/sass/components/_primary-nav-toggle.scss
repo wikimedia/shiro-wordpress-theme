@@ -11,15 +11,15 @@
 	.wp-block-navigation__responsive-container-close {
 		border-right: 1px solid var(--wp--preset--color--border-light);
 		padding: rem(20);
+
+		@include media(">=sm_desktop") {
+			display: none;
+		}
 	}
 
 	// Core navigation toggle open button.
 	.wp-block-navigation__responsive-container-open {
 		margin-left: calc( var(--wp--style--root--padding-left) * -1 );
-
-		@include media(">=sm_desktop") {
-			display: none;
-		}
 	}
 
 	// Core navigation toggle close button.

@@ -17,7 +17,7 @@
 
 	@supports #{"\selector(*:focus-within)"} {
 		&:focus-within {
-			@include focus-ring($hex: true, $inset: false);
+			@include focus-outline(0);
 		}
 	}
 

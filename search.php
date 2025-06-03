@@ -145,8 +145,8 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				<div class="search-results__tabs__sort">
 
 					<button aria-haspopup="true" aria-expanded="false">
-						<span>Sort by</span>&nbsp;<span class="selected-sort"><?php echo esc_html( $current_sort_label ); ?></span>
-						<span class="dropdown-icon"></span>
+						<span>Sort by</span>
+						<span class="selected-sort"><?php echo esc_html( $current_sort_label ); ?></span>
 					</button>
 
 					<div class="sort-dropdown" role="menu">

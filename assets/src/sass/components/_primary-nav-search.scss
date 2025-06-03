@@ -13,20 +13,11 @@
 }
 
 .wp-block-search__input {
-	background-color: var(--wp--preset--color--base);
 	background-image: url("../../assets/src/svg/search-grey.svg");
 	background-position: calc( 100% - rem(10) ) center;
 	background-repeat: no-repeat;
 	background-size: rem(18);
-	border-color: var(--wp--preset--color--border-base);
-	border-radius: rem(4);
-	font-size: 1rem;
-	font-weight: var(--wp--custom--font-weight--normal);
-	padding: rem(12) rem(36) rem(12) rem(10);
-
-	&:hover {
-		border-color: var(--wp--preset--color--main);
-	}
+	padding-right: rem(36);
 }
 
 .wp-block-search__button {
@@ -79,8 +70,11 @@
 
 	.menu-container__close-button {
 		@include media(">=sm_desktop") {
-			background: transparent;
 			opacity: 100;
+
+			&:not(:hover):not(:focus) {
+				background: transparent;
+			}
 		}
 	}
 
