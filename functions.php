@@ -284,6 +284,7 @@ require get_template_directory() . '/inc/editor/patterns/template-list.php';
 require get_template_directory() . '/inc/editor/patterns/template-report-landing.php';
 require get_template_directory() . '/inc/editor/patterns/template-report-section.php';
 
+WMF\Assets\bootstrap();
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
 WMF\Editor\Blocks\BlogPost\bootstrap();

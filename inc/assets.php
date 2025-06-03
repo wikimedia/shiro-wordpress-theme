@@ -7,6 +7,13 @@ namespace WMF\Assets;
 
 use Asset_Loader\Manifest;
 
+function bootstrap() : void {
+	if ( wp_get_environment_type() === 'local' ) {
+		add_action( 'wp_footer', __NAMESPACE__ . '\\suppress_dev_server_error_overlay' );
+		add_action( 'admin_footer', __NAMESPACE__ . '\\suppress_dev_server_error_overlay' );
+	}
+}
+
 /**
  * Get the array of valid theme build manifests.
  *
@@ -34,4 +41,17 @@ function get_manifest_path( $target_asset ) {
 			return $manifest_path;
 		}
 	}
+}
+
+/**
+ * Manually hide the Webpack DevServer error overlay using CSS.
+ *
+ * There is not a clean way to disable the overlay in code due a DevServer bug,
+ * and it is very distracting when benign-in-practice errors in third-party code
+ * or low-impact SCSS warnings trigger it to appear while working on features.
+ *
+ * @return void
+ */
+function suppress_dev_server_error_overlay(): void {
+	echo '<style type="text/css">#webpack-dev-server-client-overlay,#react-refresh-overlay{display:none;}</style>';
 }
