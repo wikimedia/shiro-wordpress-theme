@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 /**
  * Sass mixin for responsive margins and paddings
  *
@@ -24,30 +26,30 @@
 			$values: $spacingValues;
 
 			// Allow for setting a single side.
-			@if length($spacingValues) == 1 and $singleSide {
-				$side: index($sides, $singleSide);
+			@if list.length($spacingValues) == 1 and $singleSide {
+				$side: list.index($sides, $singleSide);
 				$values: null null null null;
-				$values: set-nth($values, $side, $spacingValues);
+				$values: list.set-nth($values, $side, $spacingValues);
 			}
 
 			// Convert numeric values to rems.
-			@for $i from 1 through length($values) {
-				$value: nth($values, $i);
-				$values: set-nth($values, $i, if($value != null, rem($value), null));
+			@for $i from 1 through list.length($values) {
+				$value: list.nth($values, $i);
+				$values: list.set-nth($values, $i, if($value != null, rem($value), null));
 			}
 
 			// Set them separate if any values are null, otherwise together.
-			@if index($values, null) != null {
+			@if list.index($values, null) != null {
 
 				// If top/bottom and left/right have the same value, make sure they get set.
-				@if length($values) == 2 {
-					$values: nth($values, 1) nth($values, 2) nth($values, 1) nth($values, 2);
+				@if list.length($values) == 2 {
+					$values: list.nth($values, 1) list.nth($values, 2) list.nth($values, 1) list.nth($values, 2);
 				}
 
 				@include bp($breakpoint) {
-					@for $i from 1 through length($sides) {
-						$side: nth($sides, $i);
-						$value: nth($values, $i);
+					@for $i from 1 through list.length($sides) {
+						$side: list.nth($sides, $i);
+						$value: list.nth($values, $i);
 
 						// Only set the props that have a value.
 						@if $side and $value {
