@@ -65,7 +65,7 @@ Begins watching front-end assets (scripts and styles) and compiles them when cha
 Download the variables file in the style-guide. This is only required when the style guide has changed.
 
 > [!IMPORTANT]
-> This theme's dependencies currently require Node 14. If you use [nvm](https://github.com/nvm-sh/nvm) to manage your local Node install, you may run `nvm use` to select the appropriate Node version for the commands above.
+> This theme's dependencies currently require Node 22. If you use [nvm](https://github.com/nvm-sh/nvm) to manage your local Node install, you may run `nvm use` to select the appropriate Node version for the commands above.
 
 CSS
 ---------------
