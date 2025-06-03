@@ -22,7 +22,6 @@ import * as landingPageHero from './blocks/landing-page-hero';
 import * as linkedTableOfContents from './blocks/linked-table-of-contents';
 import * as linkedTocColumns from './blocks/linked-toc-columns';
 import * as linkedTocItem from './blocks/linked-toc-item';
-import * as mailchimpSubscribe from './blocks/mailchimp-subscribe';
 import * as profile from './blocks/profile';
 import * as profileList from './blocks/profile-list';
 import * as readMoreCategories from './blocks/read-more-categories';
@@ -57,7 +56,6 @@ const blocks = [
 	linkedTableOfContents,
 	linkedTocColumns,
 	linkedTocItem,
-	mailchimpSubscribe,
 	profile,
 	profileList,
 	readMoreCategories,
@@ -78,7 +76,7 @@ for ( const blockModule of blocks ) {
 	const { name, settings, filters, styles } = blockModule;
 
 	if ( ( name || settings?.name ) && settings ) {
-		registerBlockType( ( name || settings?.name ), settings );
+		registerBlockType( name || settings?.name, settings );
 	}
 
 	if ( filters && Array.isArray( filters ) ) {
@@ -88,7 +86,7 @@ for ( const blockModule of blocks ) {
 	}
 
 	if ( styles && Array.isArray( styles ) ) {
-		styles.forEach( ( style ) => registerBlockStyle( name, style ) );
+		styles.forEach( style => registerBlockStyle( name, style ) );
 	}
 }
 
