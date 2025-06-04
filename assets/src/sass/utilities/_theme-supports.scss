@@ -60,6 +60,8 @@ $color-palette-old:
 	--background-color: #{$wmui-color-base100};
 	--text-color: #{$wmui-color-base10};
 	--link-color: #{$wmui-color-blue50};
+	--link-active-color--blue: #233566;
+	--link-active-color--green: #19452E;
 }
 
 @each $color, $background-color, $text-color, $link-color in $color-palette-old {
