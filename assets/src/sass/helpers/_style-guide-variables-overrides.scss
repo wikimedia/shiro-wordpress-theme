@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // Some styles on the Wikimedia Foundation website diverge from those defined
 // in the Wikimedia Base UI Style Guide, which are imported into this build in
 // the _style-guide-variables.scss file. Local overrides are defined here,
@@ -53,7 +55,7 @@ $wmui-color-image-filter-yellow: rgba(255, 254, 168, .85);
 
 $wmui-color-focus-ring: rgba(#007dfa, 0.8);
 // Match the focus ring color for the footer (and meet contrast requirement).
-$wmui-color-focus-ring-hex: scale-color(#007dfa, $lightness: 40%);
+$wmui-color-focus-ring-hex: color.scale(#007dfa, $lightness: 40%);
 
 // Updated branded colors for primary buttons.
 $color-primary:         $wmui-color-blue50;
