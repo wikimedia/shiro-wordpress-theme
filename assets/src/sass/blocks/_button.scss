@@ -55,14 +55,6 @@
 			#{ $inner-selector }:before {
 				@include button-icon-rules;
 			}
-
-			&.is-style-tertiary,
-			&.is-style-as-link {
-				#{ $inner-selector }:hover,
-				#{ $inner-selector }:focus {
-					@include style-guide-filter-color($color-primary);
-				}
-			}
 		}
 
 		@include button-icon("lock", "lock", $inner-selector);
