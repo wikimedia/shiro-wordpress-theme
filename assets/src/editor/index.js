@@ -39,6 +39,14 @@ import * as unseenIntro from './blocks/unseen-intro';
 
 import './style.scss';
 
+if ( process.env.NODE_ENV.trim() === 'development' && window.__webpack_public_path__ ) {
+	// Set the Webpack public path "free variable" to the expected location of
+	// hot-update chunks. This fixes an issue where hot-reloading in the editor
+	// tries to load files relative to /wp-admin/. May be unnecessary once all
+	// blocks have been converted to block.json structure.
+	__webpack_public_path__ = window.__webpack_public_path__;
+}
+
 const blocks = [
 	contact,
 	coreButton,

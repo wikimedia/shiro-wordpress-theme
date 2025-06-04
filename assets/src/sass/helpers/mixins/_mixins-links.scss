@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 /**
  * Darkens a color by 30%, using Sass color scale.
  *
@@ -7,7 +9,7 @@
  * @param {Color}  $color   Base color.
  */
 @mixin style-guide-darken-color( $color ) {
-	color: scale-color($color, $lightness: -30%);
+	color: color.scale($color, $lightness: -30%);
 }
 
 /**
@@ -107,7 +109,8 @@
 		color: #233566;
 	}
 
-	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ) {
+	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ):not(.wp-block-button__link),
+	&:is( .has-text-color:not(.has-link-color) a ) {
 		color: inherit;
 		outline-color: currentColor;
 

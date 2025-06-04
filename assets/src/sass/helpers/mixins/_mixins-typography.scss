@@ -1,3 +1,6 @@
+@use 'sass:list';
+@use "sass:map";
+
 // Fonts/Typography
 @mixin font-size($desktop, $mobile) {
 	// Mobile
@@ -44,9 +47,9 @@ $font-sizes: (
 );
 
 @mixin has-font-size( $size ) {
-	$values: map-get($font-sizes, $size);
-	font-size: nth($values, 1);
-	line-height: nth($values, 2);
+	$values: map.get($font-sizes, $size);
+	font-size: list.nth($values, 1);
+	line-height: list.nth($values, 2);
 }
 
 @mixin h-defaults {
