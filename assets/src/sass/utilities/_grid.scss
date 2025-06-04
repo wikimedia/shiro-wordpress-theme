@@ -126,8 +126,8 @@
 
 	@media ( min-width: #{$core-gutenberg-break-small} ) {
 		.w-32p > nav {
-			margin-right: rem(20);
-			padding-bottom: rem(62);
+			margin-right: var(--wp--preset--spacing--40);
+			padding-bottom: var(--wp--preset--spacing--64);
 		}
 	}
 }

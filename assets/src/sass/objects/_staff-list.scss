@@ -130,8 +130,7 @@
 		}
 
 		&__item:focus-within a::after {
-			@include focus-ring($hex: true, $inset: false);
-			margin: rem(-5);
+			@include focus-outline;
 		}
 
 		p {
