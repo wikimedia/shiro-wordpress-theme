@@ -259,7 +259,6 @@ require get_template_directory() . '/inc/ajax.php';
  */
 require get_template_directory() . '/inc/editor/namespace.php';
 require get_template_directory() . '/inc/editor/blocks/blog-post.php';
-require get_template_directory() . '/inc/editor/blocks/clock.php';
 require get_template_directory() . '/inc/editor/blocks/donation-portal-form.php';
 require get_template_directory() . '/inc/editor/blocks/double-heading.php';
 require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
@@ -287,10 +286,10 @@ require get_template_directory() . '/inc/editor/patterns/template-list.php';
 require get_template_directory() . '/inc/editor/patterns/template-report-landing.php';
 require get_template_directory() . '/inc/editor/patterns/template-report-section.php';
 
+WMF\Assets\bootstrap();
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
 WMF\Editor\Blocks\BlogPost\bootstrap();
-WMF\Editor\Blocks\Clock\bootstrap();
 WMF\Editor\Blocks\InlineLanguages\bootstrap();
 WMF\Editor\Blocks\DonationPortalForm\bootstrap();
 WMF\Editor\Blocks\DoubleHeading\bootstrap();

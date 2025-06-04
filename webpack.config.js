@@ -61,8 +61,6 @@ const legacyEntries = {
 /** Bundles migrated from 1st-gen Shiro Webpack build. */
 const hashedEntries = {
 	shiro: './assets/src/scripts/shiro.js',
-	editor: './assets/src/editor/index.js',
-	'blocks/clock': './assets/src/editor/blocks/clock/view.js',
 };
 
 const themeStylesheets = {
@@ -103,6 +101,14 @@ defaultConfig.module.rules.forEach( ( rule ) => {
 	}
 	// We've isolated SCSS build.
 	rule.use.forEach( ( loader ) => {
+		if ( /\/sass-loader/.test( loader.loader ) ) {
+			// Turn off verbose and repetitive SASS deprecation warnings.
+			loader.options.sassOptions = {
+				...loader.options.sassOptions,
+				silenceDeprecations: [ 'import', 'mixed-decls' ],
+			};
+		}
+
 		if ( ! /\/css-loader/.test( loader.loader ) ) {
 			return;
 		}
@@ -167,6 +173,7 @@ module.exports = {
 		...legacyEntries,
 		...hashedEntries,
 		...themeStylesheets,
+		editor: './assets/src/editor/index.js',
    	},
 	resolve: {
 		...defaultConfig.resolve,
@@ -252,6 +259,8 @@ if (
 	module.exports.devServer = {
 		...module.exports.devServer,
 		allowedHosts: 'all',
+		// Reload DevServer when non-built files change.
+		watchFiles: [ 'theme.json' ],
 		proxy: { '/assets/dist': { pathRewrite: { '^/assets/dist': '' } } }
 	};
 	module.exports.optimization = {

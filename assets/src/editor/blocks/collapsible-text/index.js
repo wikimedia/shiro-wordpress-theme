@@ -6,36 +6,16 @@ import { ReactNode } from 'react';
 /**
  * WordPress dependencies
  */
-import { InnerBlocks, RichText, InspectorControls, useSetting } from '@wordpress/block-editor';
+import { InnerBlocks, RichText, InspectorControls, useSettings } from '@wordpress/block-editor';
 import { Panel, PanelBody, ColorPalette } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
 
+import metadata from './block.json';
 import './style.scss';
 
-export const name = 'shiro/collapsible-text';
-
-export const settings = {
-		 apiVersion: 2,
-		 title: __( 'Collapsible text', 'shiro-admin' ),
-		 icon: 'ellipsis',
-		 category: 'wikimedia',
-		 attributes: {
-		fontColor: {
-			type: 'string',
-		},
-		readMore: {
-			type: 'string',
-			source: 'html',
-			selector: '.expand',
-			default: __( 'Read More', 'shiro-admin' ),
-		},
-		readLess: {
-			type: 'string',
-			source: 'html',
-			selector: '.collapse',
-			default: __( 'Read Less', 'shiro-admin' ),
-		},
-	},
+registerBlockType(metadata.name, {
+	...metadata,
 
 	/**
 	 * Render the editor UI for the block.
@@ -46,16 +26,17 @@ export const settings = {
 	 * @returns {ReactNode} Rendered edit note.
 	 */
 	edit: function Edit( { attributes, setAttributes } ) {
-			 const { fontColor, readMore, readLess } = attributes;
+		const { fontColor, readMore, readLess } = attributes;
+		const [ colorSettings ] = useSettings( 'color.palette' );
 
-			 return (
+		return (
 			<>
 				<InspectorControls>
 					<Panel header= { __( 'Set button text color:', 'shiro-admin' ) } >
 						<PanelBody>
 							<ColorPalette
 								value={ fontColor }
-								colors={ [ ...useSetting( 'color.palette' ) ] }
+								colors={ colorSettings }
 								onChange={ ( fontColor ) => setAttributes( { fontColor } ) }
 							/>
 						</PanelBody>
@@ -63,9 +44,7 @@ export const settings = {
 				</InspectorControls>
 				<div className="collapsible-text expanded">
 					<div className="collapsible-text__content">
-
 						<InnerBlocks />
-
 						<div className="collapsible-text__button-settings" style={ fontColor && { color: fontColor } }>
 							<div className="collapsible-text__toggle">
 								<label>
@@ -91,13 +70,12 @@ export const settings = {
 					</div>
 				</div>
 			</>
-			 );
-		 },
+		);
+	},
+	save: ( { attributes } ) => {
+		const { fontColor, readMore, readLess } = attributes;
 
-		 save: ( { attributes } ) => {
-			 const { fontColor, readMore, readLess } = attributes;
-
-			 return (
+		return (
 			<div className="collapsible-text">
 				<div className="collapsible-text__content">
 					<InnerBlocks.Content />
@@ -114,7 +92,15 @@ export const settings = {
 						value={ readLess }
 					/>
 				</button>
-			  	</div>
-			 );
-		 },
-	 };
+			</div>
+		);
+	},
+});
+
+// Block HMR boilerplate.
+if ( module.hot ) {
+	module.hot.accept();
+	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
+	module.hot.dispose( deregister( metadata.name ) );
+	refresh( metadata.name, module.hot.data );
+}
