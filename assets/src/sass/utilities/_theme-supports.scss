@@ -1,4 +1,7 @@
 // Definitions of editor styles registered as theme supports.
+.has-background > .wp-block-shiro-button.is-style-as-link::before {
+	filter: brightness(0);
+}
 
 // Support accessible color combinations for background colors.
 $color-palette-reverse:
@@ -15,6 +18,10 @@ $color-palette-reverse:
 @each $color in $color-palette-reverse {
 	.has-#{$color}-background-color {
 		color: var(--wp--preset--color--base) !important;
+
+		.wp-block-shiro-button.is-style-as-link::before {
+			filter: brightness(0) invert(1);
+		}
 	}
 }
 
@@ -70,6 +77,8 @@ $color-palette-old:
 			color: var(--link-color) !important;
 
 			&::before {
+				filter: none;
+
 				@if $link-color == $wmui-color-base100 or $link-color == $wmui-color-blue90 or $link-color ==  $wmui-color-accent90 {
 					filter: brightness(0) invert(1);
 				} @else if $link-color == $wmui-color-base0 {
