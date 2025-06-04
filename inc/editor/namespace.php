@@ -402,6 +402,10 @@ function add_theme_supports() {
 	// Add support for block template parts.
 	// See https://learn.wordpress.org/tutorial/using-block-template-parts-in-classic-themes/.
 	add_theme_support( 'block-template-parts' );
+
+	// Add support for block Appearance Tools.
+	// See https://developer.wordpress.org/themes/global-settings-and-styles/settings/appearance-tools/.
+	add_theme_support( 'appearance-tools' );
 }
 
 /**

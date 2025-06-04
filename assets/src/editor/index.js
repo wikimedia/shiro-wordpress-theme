@@ -13,6 +13,7 @@ import * as coreGroup from './blocks/core-group';
 import * as coreHeading from './blocks/core-heading';
 import * as coreParagraph from './blocks/core-paragraph';
 import * as coreQuote from './blocks/core-quote';
+import * as coreSettings from './blocks/core-settings';
 import * as doubleHeading from './blocks/double-heading';
 import * as externalLink from './blocks/external-link';
 import * as filterColorSupport from './blocks/filter-color-support';
@@ -48,6 +49,7 @@ const blocks = [
 	coreHeading,
 	coreParagraph,
 	coreQuote,
+	coreSettings,
 	doubleHeading,
 	externalLink,
 	filterColorSupport,
