@@ -11,6 +11,7 @@
 	.wp-block-navigation__responsive-container-close {
 		border-right: 1px solid var(--wp--preset--color--border-light);
 		padding: rem(20);
+		outline: none;
 
 		@include media(">=sm_desktop") {
 			display: none;
