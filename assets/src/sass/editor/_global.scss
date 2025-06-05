@@ -7,6 +7,7 @@ body {
 	--wp--style--global--content-size: 980px;
 	--wp--style--global--wide-size: 1020px;
 }
+
 .post-type-post {
 	--wp--style--global--content-size: 40rem;
 	--wp--style--global--wide-size: 980px;
@@ -23,7 +24,10 @@ body {
 		max-width: 40rem;
 	}
 }
+
 .wp-block[data-align='wide'] {
+	max-width: 1020px;
+
 	.post-type-post & {
 		max-width: 980px;
 
@@ -38,4 +42,23 @@ body {
 	max-width: none;
 }
 
-// Handle wide width in post.
+// Carousel navigation component.
+.inner-block-slider__navigation {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+}
+
+.inner-block-slider__navigation > button:last-child {
+	background: #1e1e1e;
+	box-shadow: inset 0 0 0 1px #1e1e1e, 0 0 0 currentColor;
+	color: #fff;
+	transition: none;
+
+	&:hover {
+		background: var( --wp-admin-theme-color );
+		box-shadow: inset 0 0 0 1px var( --wp-admin-theme-color ), 0 0 0 currentColor;
+		color: #fff;
+	}
+}

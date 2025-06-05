@@ -12,4 +12,12 @@ Editor styles for the carousel block.
 	.inner-block-slider__navigation {
 		margin-top: 20px;
 	}
+
+	.wp-block-group:not( .has-background ) {
+		border: 1px solid #e0e0e0;
+	}
+
+	.wp-block-group.has-background +:where( :not( .has-background ) ) {
+		padding-top: initial;
+	}
 }
