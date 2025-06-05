@@ -154,7 +154,7 @@
 	&.category-technology::before {
 		background-color: var(--wp--preset--color--bright-blue);
 	}
-	&.category-policy::before {
+	&.category-public-policy::before {
 		background-color: var(--wp--preset--color--bright-green);
 	}
 	&.category-community::before {
@@ -163,10 +163,10 @@
 	&.category-equity::before {
 		background-color: var(--wp--preset--color--yellow);
 	}
-	&.category-foundation::before {
+	&.category-wikimedia-foundation::before {
 		background-color: var(--wp--preset--color--red-aaa);
 	}
-	&.category-projects-initiatives::before {
+	&.category-our-projects::before {
 		background-color: var(--wp--preset--color--pink);
 	}
 }
