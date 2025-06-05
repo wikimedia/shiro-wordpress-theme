@@ -22,8 +22,8 @@
 <!-- wp:navigation {"ref":77284,"overlayMenu":"never","className":"language-switcher-nav","style":{"spacing":{"blockGap":"0"}}} /-->
 
 <!-- wp:buttons {"className":"donate-nav"} -->
-<div class="wp-block-buttons donate-nav"><!-- wp:button {"backgroundColor":"green-aaa"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-green-aaa-background-color has-background wp-element-button" href="https://donate.wikimedia.org/?wmf_medium=wmfSite&amp;wmf_campaign=navButton&amp;uselang=en&amp;wmf_source=10">Donate <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-base-color">now</mark></a></div>
+<div class="wp-block-buttons donate-nav"><!-- wp:button {"className":"is-style-donate"} -->
+<div class="wp-block-button is-style-donate"><a class="wp-block-button__link wp-element-button" href="https://donate.wikimedia.org/?wmf_medium=wmfSite&amp;wmf_campaign=navButton&amp;uselang=en&amp;wmf_source=10">Donate <mark style="background-color:#246342" class="has-inline-color has-base-color">now</mark></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></header>

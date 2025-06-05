@@ -51,6 +51,12 @@
 			}
 		}
 
+		&.is-style-donate {
+			#{ $inner-selector } {
+				@include button-donate;
+			}
+		}
+
 		&.has-icon {
 			#{ $inner-selector }:before {
 				@include button-icon-rules;
