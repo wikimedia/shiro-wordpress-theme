@@ -9,6 +9,9 @@ Editor styles for the carousel block.
 }
 
 .editor-styles-wrapper .wp-block-shiro-carousel {
+	--carousel-side-padding: clamp( 1.25rem, 1.25rem + ( ( 1vw - 0.23375rem ) * 2.91 ), 2.5rem );
+	--carousel-vertical-padding: clamp( 1.25rem, 1.25rem + ( ( 1vw - 0.375rem ) * 12.14 ), 7.625rem );
+
 	.inner-block-slider__navigation {
 		margin-top: 20px;
 	}
@@ -19,5 +22,26 @@ Editor styles for the carousel block.
 
 	.wp-block-group.has-background +:where( :not( .has-background ) ) {
 		padding-top: initial;
+	}
+
+	.slides > .wp-block.wp-block-group {
+		padding: var( --carousel-vertical-padding ) var( --carousel-side-padding );
+	}
+}
+
+.editor-styles-wrapper .wp-block[data-align='full'] > .wp-block-shiro-carousel {
+	.slides > .wp-block.wp-block-group {
+		max-width: none;
+	}
+
+	// Increase the max-width for slide content when using a full-width carousel.
+	.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+		max-width: 1200px;
+	}
+}
+
+.editor-styles-wrapper .wp-block[data-align='wide'] > .wp-block-shiro-carousel {
+	.slides > .wp-block.wp-block-group {
+		max-width: var( --wp--style--global--wide-size );
 	}
 }
