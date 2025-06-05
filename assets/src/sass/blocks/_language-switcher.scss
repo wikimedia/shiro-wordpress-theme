@@ -11,6 +11,11 @@
 		top: 100%;
 		width: fluid( 150, 255 ) !important;
 
+		@include media("<mobile") {
+			left: auto;
+			right: 0;
+		}
+
 		.menu-container__close-button {
 			display: none;
 		}
