@@ -20,6 +20,7 @@
 .language-switcher {
 	&__button {
 		@include style-guide-dropdown-toggle();
+		text-transform: uppercase;
 
 		@include media(">=mobile") {
 			&::before {
