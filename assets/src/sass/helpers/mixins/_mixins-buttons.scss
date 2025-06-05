@@ -35,6 +35,55 @@
 	}
 }
 
+/**
+ * These styles are a duplicate of the ones from theme.json, to be used for other buttons
+ * where we can't easily add the classes required to use those styles. If theme.json is
+ * updated, these will need to be as well, or they will get out of date.
+ */
+@mixin button-primary-other-buttons() {
+	background-color: var(--wp--preset--color--main);
+	border-radius: 4px;
+	border-color: transparent;
+	border-width: 2px;
+	border-style: solid;
+	color: var(--wp--preset--color--base);
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: var(--wp--custom--font-weight--bold);
+	line-height: var(--wp--custom--line-height--tight);
+	padding-top: 0.4875em;
+	padding-right: 0.8em;
+	padding-bottom: 0.4875em;
+	padding-left: 0.8em;
+	text-decoration: none;
+	text-underline-offset: 3px;
+
+	&:hover {
+		background-color: var(--wp--preset--color--border-light);
+		border-color: var(--wp--preset--color--main);
+		color: var(--wp--preset--color--main);
+		text-decoration: underline;
+	}
+
+	&:focus {
+		background-color: var(--wp--preset--color--border-light);
+		border-color: var(--wp--preset--color--main);
+		color: var(--wp--preset--color--main);
+		outline-color: var(--wp--preset--color--main);
+		outline-offset: 2px;
+		outline-style: solid;
+		outline-width: 2px;
+		text-decoration: underline;
+	}
+
+	&:active {
+		background-color: var(--wp--preset--color--border-base);
+		border-color: var(--wp--preset--color--main);
+		color: var(--wp--preset--color--main);
+		text-decoration: underline;
+	}
+}
+
 @mixin button-primary() {
 	@include style-guide-button;
 }
@@ -86,6 +135,11 @@
 	@include has-font-size("default");
 	color: var(--wp--preset--color--blue-aaa);
 	font-weight: var(--wp--custom--font-weight--semi-bold);
+
+	&:hover,
+	&:focus {
+		background-color: transparent;
+	}
 
 	&:focus {
 		border-radius: rem(2);
