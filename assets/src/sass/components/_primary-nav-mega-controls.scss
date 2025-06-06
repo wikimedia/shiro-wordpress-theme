@@ -7,9 +7,10 @@
 		justify-content: space-between;
 		transition: text-decoration 300ms ease, border-color 300ms ease, background-color 300ms ease;
 
-		&:hover {
+		&:hover,
+		&:focus {
 			text-decoration: underline currentColor 2px;
-			text-underline-offset: fluid( 4, 8 );
+			text-underline-offset: fluid( 4, 8 ) !important;
 		}
 
 		&:focus-visible:not([aria-expanded=true]) {
@@ -17,8 +18,13 @@
 			outline-offset: -6px;
 		}
 
-		&:focus:not(:focus-visible) {
+		&:focus:not(:focus-visible),
+		&:focus-visible:is([aria-expanded=true]) {
 			outline: none;
+		}
+
+		&:focus:not(:focus-visible):not(:hover) {
+			text-decoration: none;
 		}
 
 		@include media("<sm_desktop") {

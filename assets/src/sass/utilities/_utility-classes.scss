@@ -90,6 +90,7 @@ a.color-blue {
 	// Colors
 	&.btn-blue,
 	.btn-blue & {
+		@include button-primary-other-buttons;
 		@include button-primary();
 	}
 
