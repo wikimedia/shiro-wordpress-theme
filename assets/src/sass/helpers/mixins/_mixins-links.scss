@@ -178,6 +178,18 @@
 	}
 }
 
+@mixin tag-links {
+	border: 1px solid currentColor;
+	border-radius: rem(4);
+	color: var(--wp--preset--color--blue-aaa);
+	cursor: pointer;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: var(--wp--custom--font-weight--semi-bold);
+	line-height: var(--wp--custom--line-height--relaxed);
+	padding: 0 var(--wp--preset--spacing--8);
+	text-underline-offset: rem(2);
+}
+
 @mixin category-links {
 	@include has-font-size( "small" );
 	align-items: baseline;

@@ -121,6 +121,7 @@
 .category-container {
 	display: flex;
 	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--8);
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -131,29 +132,14 @@
 }
 
 .individual-category {
-	display: flex;
+	@include style-guide-link;
+	@include tag-links;
 	align-items: center;
-	cursor: pointer;
-	font-size: 0.75rem;
-	background-color: var(--wp--preset--color--black-05);
-	border-radius: 0.25rem;
-	color: var(--wp--preset--color--blue-aaa);
-	font-weight: 700;
-	margin-bottom: 0.5rem;
-	margin-left: 0.5rem;
-	padding: 0.25rem 0.75rem 0.25rem 0.25rem;
+	display: flex;
+	gap: var(--wp--preset--spacing--8);
 
 	&--applied {
-		background-color: var(--wp--preset--color--black-10);
+		background-color: var(--wp--preset--color--black-05);
 		color: var(--wp--preset--color--main);
-	}
-
-	input {
-		margin: 0.25rem;
-	}
-
-	&:hover {
-		color: var(--wp--preset--color--main);
-		transition: color 0.25s ease-in-out;
 	}
 }
