@@ -189,8 +189,9 @@
 	}
 
 	&:focus {
-		border-radius: rem(2);
+		border-radius: rem(1);
 		outline-color: currentColor;
+		outline-offset: rem(6);
 	}
 
 	&:disabled,
@@ -203,6 +204,10 @@
 	&:is(.has-icon a)::before {
 		filter: brightness(0);
 	}
+
+	&:is( .has-background:not(.has-link-color) a ) {
+		color: var(--wp--preset--color--main);
+	}
 }
 
 @mixin button-transparent() {
@@ -213,6 +218,7 @@
 
 	&:active {
 		background-color: var(--wp--preset--color--black-25);
+		color: var(--wp--preset--color--main) !important;
 	}
 
 	&:disabled,

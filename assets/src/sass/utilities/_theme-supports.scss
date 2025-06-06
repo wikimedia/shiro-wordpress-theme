@@ -22,6 +22,22 @@ $color-palette-reverse:
 		.wp-block-shiro-button.is-style-as-link::before {
 			filter: brightness(0) invert(1);
 		}
+
+		.wp-block-button__link {
+			border-color: var(--wp--preset--color--base) !important;
+			outline-color: var(--wp--preset--color--base) !important;
+		}
+
+		.is-style-transparent .wp-block-button__link,
+		.is-style-as-link .wp-block-button__link {
+			color: var(--wp--preset--color--base) !important;
+
+			&:is(.has-icon a) {
+				&:before {
+					filter: brightness(0) invert(1) !important;
+				}
+			}
+		}
 	}
 }
 
