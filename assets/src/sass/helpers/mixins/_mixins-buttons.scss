@@ -32,6 +32,16 @@
 		color: var(--wp--preset--color--black-50);
 		cursor: text;
 		text-decoration: none;
+
+		&:is(.has-icon a) {
+			&::before {
+				filter: brightness(0) opacity(0.5);
+			}
+		}
+	}
+
+	&:is(.has-icon a)::before {
+		filter: brightness(0) invert(1);
 	}
 }
 
@@ -86,6 +96,14 @@
 
 @mixin button-primary() {
 	@include style-guide-button;
+
+	&:is(.has-icon a) {
+		&:hover::before,
+		&:active::before,
+		&:focus::before {
+			filter: brightness(0);
+		}
+	}
 }
 
 @mixin button-secondary() {
@@ -102,6 +120,17 @@
 		background-color: var( --link-active-color--blue );
 		color: var(--wp--preset--color--base);
 	}
+
+	&:is(.has-icon a) {
+		&:hover::before,
+		&:focus::before {
+			filter: brightness(0);
+		}
+
+		&:active::before {
+			filter: brightness(0) invert(1);
+		}
+	}
 }
 
 @mixin button-tertiary() {
@@ -111,6 +140,12 @@
 		background-color: var(--wp--preset--color--base);
 		border-color: var(--wp--preset--color--blue-aaa);
 		color: var(--wp--preset--color--blue-aaa);
+	}
+
+	&:is(.has-icon a) {
+		&:before {
+			filter: brightness(0);
+		}
 	}
 }
 
@@ -122,11 +157,23 @@
 	&:focus {
 		background-color: var(--wp--preset--color--light-bright-green);
 		border-color: var(--wp--preset--color--green-aaa);
+		color: var(--wp--preset--color--green-aaa);
 	}
 
 	&:active {
 		background-color: var( --link-active-color--green );
 		color: var(--wp--preset--color--base);
+	}
+
+	&:is(.has-icon a) {
+		&:hover::before,
+		&:focus::before {
+			filter: brightness(0);
+		}
+
+		&:active::before {
+			filter: brightness(0) invert(1);
+		}
 	}
 }
 
@@ -152,6 +199,10 @@
 		color: var(--wp--preset--color--black-50);
 		text-decoration: none !important
 	}
+
+	&:is(.has-icon a)::before {
+		filter: brightness(0);
+	}
 }
 
 @mixin button-transparent() {
@@ -169,6 +220,10 @@
 		background-color: transparent;
 		border-color: var(--wp--preset--color--black-50);
 		color: var(--wp--preset--color--black-50);
+	}
+
+	&:is(.has-icon a)::before {
+		filter: brightness(0);
 	}
 }
 
