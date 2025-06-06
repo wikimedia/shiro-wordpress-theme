@@ -27,7 +27,6 @@
 	line-height: var(--wp--custom--line-height--relaxed);
 	padding: rem(8) rem(30) rem(8) rem(10);
 	text-decoration: none !important;
-	text-transform: uppercase;
 
 	@include media(">=mobile") {
 		padding-block: rem(11);

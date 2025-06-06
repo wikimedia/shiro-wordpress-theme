@@ -81,6 +81,7 @@
 		.menu-container__close-button {
 			border: 1px solid transparent;
 			color: var(--wp--preset--color--main);
+			opacity: 1;
 
 			&:hover {
 				border-color: var(--wp--preset--color--border-base);

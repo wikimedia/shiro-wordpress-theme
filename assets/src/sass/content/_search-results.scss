@@ -19,7 +19,6 @@
 		button {
 			@include style-guide-dropdown-toggle();
 			gap: 0.25em;
-			text-transform: none;
 		}
 
 		.selected-sort {
