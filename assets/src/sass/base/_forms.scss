@@ -52,6 +52,7 @@ textarea {
 
 button {
 	@include style-guide-link;
+	font-family: inherit;
 }
 
 ::placeholder {

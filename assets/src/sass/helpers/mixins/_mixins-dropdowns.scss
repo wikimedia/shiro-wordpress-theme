@@ -70,6 +70,7 @@
 
 @mixin style-guide-dropdown-item() {
 	color: var(--wp--preset--color--main);
+	cursor: pointer;
 	display: block;
 	font-size: var(--wp--preset--font-size--medium);
 	line-height: var(--wp--custom--line-height--relaxed);
