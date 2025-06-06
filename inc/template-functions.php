@@ -31,9 +31,9 @@ add_filter( 'body_class', 'wmf_body_classes' );
  */
 function wmf_get_header_container_class() {
 	if ( is_front_page() && ! has_blocks() ) {
-		$class = 'header-home';
+		$class = 'module-area is-layout-constrained header-home';
 	} else {
-		$class = 'header-default';
+		$class = 'module-area is-layout-constrained header-default';
 	}
 
 	if ( ( is_single() || is_page() ) && has_post_thumbnail() ) {
@@ -94,7 +94,7 @@ function wmf_get_header_cta_button_class() {
  * @param array $roles Keyed array of shape [ term_id => term_details_arr ].
  */
 function wmf_sort_role_list( &$roles ) {
-	uasort( $roles, function( $a, $b ) {
+	uasort( $roles, function ( $a, $b ) {
 		$order_a = $a['order'];
 		if ( empty( $order_a ) ) {
 			$order_a = 1000;
@@ -123,6 +123,7 @@ function wmf_sort_role_list( &$roles ) {
 function wmf_get_role_hierarchy( int $parent_id ) {
 	$children   = array();
 	$term_array = array();
+	// phpcs:ignore WordPress.WP.DeprecatedParameters.Get_termsParam2Found
 	$terms      = get_terms(
 		'role',
 		array(
@@ -266,7 +267,7 @@ function wmf_get_posts_by_child_roles( int $term_id ) {
 function wmf_sort_profiles( $profiles ) {
 	// The sort order is defined by the `last_name` meta field, which is
 	// actually exclusively used for alphabetical ordering.
-	usort( $profiles, function( $a, $b ) {
+	usort( $profiles, function ( $a, $b ) {
 		$last_name_a = get_post_meta( $a, 'last_name', true ) ?: 'z';
 		$last_name_b = get_post_meta( $b, 'last_name', true ) ?: 'z';
 
@@ -581,7 +582,7 @@ add_filter( 'img_caption_shortcode', 'wmf_filter_caption_shortcode', 10, 3 );
 function wmf_rss_templates() {
 	foreach ( array( 'offset1', 'images' ) as $name ) {
 		add_feed( $name,
-			function() use ( $name ) {
+			function () use ( $name ) {
 				get_template_part( 'feed', $name );
 			}
 		);
@@ -675,7 +676,7 @@ function wmf_get_report_sidebar_data() {
 		),
 		// Continue with all direct child pages.
 		array_map(
-			function( $page ) use ( $current_page ) {
+			function ( $page ) use ( $current_page ) {
 				return array(
 					'id'     => $page->ID,
 					'title'  => $page->post_title,
@@ -887,4 +888,33 @@ function wmf_get_reusable_block_module_insert( string $module ): string {
 	}
 
 	return sprintf( '<!-- wp:block {"ref":%d} /-->', $id );
+}
+
+/**
+ * Returns the primary cetegory for a post.
+ *
+ * Returns false if no categories exist.
+ * 
+ * @param int $post_id Current post id.
+ *
+ * @return WP_Term|false
+ */
+function wmf_get_primary_category( $post_id ) {
+	if ( empty( $post_id ) ) {
+		$post_id = get_the_ID();
+	}
+
+	$all_categories = get_the_category( $post_id );
+
+	if ( empty( $all_categories ) ) {
+		return false;
+	}
+
+	$yoast_primary_id = function_exists( 'yoast_get_primary_term_id' )
+		? yoast_get_primary_term_id( 'category', $post_id )
+		: 0;
+	$yoast_primary    = $yoast_primary_id ? get_category( $yoast_primary_id ) : 0;
+	$primary_category = $yoast_primary ? $yoast_primary : $all_categories[0];
+
+	return $primary_category;
 }

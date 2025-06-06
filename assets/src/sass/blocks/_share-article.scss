@@ -6,11 +6,6 @@
 		display: inline-flex;
 		width: 150px;
 
-		&:focus {
-			box-shadow: 0 0 0 2.5px $color-blue;
-			border-radius: rem(2);
-		}
-
 		span {
 			display: flex;
 			align-items: center;
@@ -70,9 +65,7 @@
 }
 
 .share-button {
-	outline: none;
 	background: transparent;
 	border: none;
-	color: $color-blue;
 	font-weight: bold;
 }

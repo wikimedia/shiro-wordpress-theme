@@ -1,10 +1,9 @@
 .inline-languages {
-	@include global-margin-bottom;
-	@include list-reset;
 	border-top: 1px solid $wmui-color-base70;
 	text-align: center;
 
 	&__list {
+		@include list-reset;
 		padding-bottom: rem( 21 );
 		padding-top: rem( 19 );
 	}
@@ -28,15 +27,6 @@
 		&:last-child {
 			&::after {
 				display: none;
-			}
-		}
-
-		a {
-			color: $wmui-color-blue50;
-
-			&:focus,
-			&:hover {
-				color: #3200be;
 			}
 		}
 	}

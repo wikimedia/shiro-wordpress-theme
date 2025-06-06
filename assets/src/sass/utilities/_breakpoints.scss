@@ -1,0 +1,31 @@
+/**
+ * Define site breakpoints here using include-media.
+ * https://eduardoboucas.github.io/include-media/
+ *
+ * Use for media queries like @include media("<tablet") {}
+ * or container queries with interpolation
+ * or as variables like map-get( $breakpoints, "content" );
+ */
+
+// Breakpoints
+$breakpoints: (
+	sm_mobile: rem( 375 ),
+	mobile: rem( 600 ),
+	// Wordpress uses 600 for the mobile menu.
+	tablet: rem( 782 ),
+	// WordPress uses 782 when stacking columns on mobile.
+	content: rem( 788 ),
+	// Regular content width from the design.
+	sm_desktop: rem( 1024 ),
+	desktop: rem( 1200 ),
+	// 1200 is also the wide content width from the design.
+	wide: rem( 1440 ),
+);
+
+/* stylelint-disable number-max-precision */
+// Unit intervals for include media. This is needed to set the < value to the right rem amount.
+$unit-intervals: (
+	"px": 1,
+	"em": 0.01,
+	"rem": 0.0625,
+);

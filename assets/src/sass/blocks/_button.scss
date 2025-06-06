@@ -55,14 +55,6 @@
 			#{ $inner-selector }:before {
 				@include button-icon-rules;
 			}
-
-			&.is-style-tertiary,
-			&.is-style-as-link {
-				#{ $inner-selector }:hover,
-				#{ $inner-selector }:focus {
-					@include style-guide-filter-color($color-primary);
-				}
-			}
 		}
 
 		@include button-icon("lock", "lock", $inner-selector);
@@ -123,8 +115,8 @@
 }
 
 .wp-block-button__link {
-	font-size: unset;
-	width: max-content;
+	// font-size: unset;
+	display: initial;
 }
 
 @include button-wrapper( ".wp-block-shiro-button", "&" );

@@ -10,6 +10,6 @@
 ?>
 
 </div>
-</header>
+</div><!-- Close out the secondary header. -->
 
-<main id="content">
+<main id="content" class="module-area is-layout-constrained has-global-padding">

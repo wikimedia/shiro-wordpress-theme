@@ -1,20 +1,4 @@
 .wp-block-group {
-	&.has-background {
-		padding: rem(20);
-
-		&,
-		> .wp-block-group__inner-container {
-			> :last-child {
-				margin-bottom: 0;
-			}
-		}
-	}
-
-	// Ensure elements following background groups have a little extra space.
-	&.has-background + :where(:not(.has-background)) {
-		padding-top: 2.5rem;
-	}
-
 	&.has-radius-big {
 		border-radius: $border-radius-big;
 	}

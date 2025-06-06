@@ -37,13 +37,6 @@ function wmf_setup() {
 	 */
 	add_theme_support( 'post-thumbnails' );
 
-	/*
-	 * Enable support for Custom Header.
-	 *
-	 * @link https://codex.wordpress.org/Custom_Headers
-	 */
-	add_theme_support( 'custom-header' );
-
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
@@ -266,11 +259,13 @@ require get_template_directory() . '/inc/ajax.php';
  */
 require get_template_directory() . '/inc/editor/namespace.php';
 require get_template_directory() . '/inc/editor/blocks/blog-post.php';
+require get_template_directory() . '/inc/editor/blocks/donation-portal-form.php';
 require get_template_directory() . '/inc/editor/blocks/double-heading.php';
 require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
 require get_template_directory() . '/inc/editor/blocks/landing-page-hero.php';
 require get_template_directory() . '/inc/editor/blocks/linked-toc-item.php';
 require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
+require get_template_directory() . '/inc/editor/blocks/mega-menu.php';
 require get_template_directory() . '/inc/editor/blocks/read-more-categories.php';
 require get_template_directory() . '/inc/editor/blocks/profile.php';
 require get_template_directory() . '/inc/editor/blocks/profile-list.php';
@@ -280,6 +275,7 @@ require get_template_directory() . '/inc/editor/intro.php';
 require get_template_directory() . '/inc/editor/patterns.php';
 require get_template_directory() . '/inc/editor/patterns/blog-list.php';
 require get_template_directory() . '/inc/editor/patterns/card-columns.php';
+require get_template_directory() . '/inc/editor/patterns/donation-bar.php';
 require get_template_directory() . '/inc/editor/patterns/fact-columns.php';
 require get_template_directory() . '/inc/editor/patterns/link-columns.php';
 require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
@@ -290,14 +286,17 @@ require get_template_directory() . '/inc/editor/patterns/template-list.php';
 require get_template_directory() . '/inc/editor/patterns/template-report-landing.php';
 require get_template_directory() . '/inc/editor/patterns/template-report-section.php';
 
+WMF\Assets\bootstrap();
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
 WMF\Editor\Blocks\BlogPost\bootstrap();
 WMF\Editor\Blocks\InlineLanguages\bootstrap();
+WMF\Editor\Blocks\DonationPortalForm\bootstrap();
 WMF\Editor\Blocks\DoubleHeading\bootstrap();
 WMF\Editor\Blocks\LandingPageHero\bootstrap();
 WMF\Editor\Blocks\LinkedTOCItem\bootstrap();
 WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
+WMF\Editor\Blocks\MegaMenu\bootstrap();
 WMF\Editor\Blocks\ReadMoreCategories\bootstrap();
 WMF\Editor\Blocks\Profile\bootstrap();
 WMF\Editor\Blocks\ProfileList\bootstrap();
@@ -317,7 +316,9 @@ require get_template_directory() . '/inc/classes/class-autoload.php';
 /**
  * Customizer additions.
  */
+require get_template_directory() . '/inc/classes/customizer/namespace.php';
 require get_template_directory() . '/inc/classes/customizer/class-base.php';
+WMF\Customizer\bootstrap();
 
 /**
  * Custom Fields functions.
@@ -497,27 +498,6 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 add_filter( 'wp_kses_allowed_html', 'wmf_filter_post_kses_tags', 10, 2 );
 
 /**
- * Insert a span element to all header nav menu items.
- *
- * @param stdClass $args An object of wp_nav_menu() arguments.
- * @param WP_Post  $item Menu item data object.
- * @param int      $depth Depth of menu item. Used for padding.
- *
- * @return stdClass
- */
-function wmf_filter_nav_menu_items( $args, $item, $depth ) {
-	if ( 'header' !== $args->theme_location ) {
-		return $args;
-	}
-
-	$args->link_before = '<span>';
-	$args->link_after  = '</span>';
-
-	return $args;
-}
-add_filter( 'nav_menu_item_args', 'wmf_filter_nav_menu_items', 10, 3 );
-
-/**
  * Add reusable blocks link to admin menu.
  */
 function shiro_link_reusable_blocks_url() {
@@ -575,3 +555,9 @@ function shiro_safe_title( string $title ): void {
  * Disable JetPack Blaze.
  */
 add_filter( 'jetpack_blaze_enabled', '__return_false' );
+
+/**
+ * GeoIP related functions.
+ */
+require get_template_directory() . '/inc/geoip.php';
+add_action( 'after_setup_theme', 'wmf_maybe_enable_geoip' );
