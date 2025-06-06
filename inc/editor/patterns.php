@@ -33,6 +33,10 @@ function bootstrap() {
  */
 function register_pattern() {
 	register_block_pattern_category( MAIN_CATEGORY_NAME, [
+		'label' => __( 'Menu', 'shiro-admin' ),
+	] );
+
+	register_block_pattern_category( MAIN_CATEGORY_NAME, [
 		'label' => __( 'Wikimedia', 'shiro-admin' ),
 	] );
 
@@ -74,6 +78,12 @@ function register_pattern() {
 		'title' => __( 'Communication module', 'shiro-admin' ),
 		'categories' => [ MAIN_CATEGORY_NAME ],
 		'content' => CommunicationModule\PATTERN,
+	] );
+
+	register_block_pattern( DonationBar\NAME, [
+		'title' => __( 'Donation bar template', 'shiro-admin' ),
+		'categories' => [ MAIN_CATEGORY_NAME ],
+		'content' => DonationBar\PATTERN,
 	] );
 
 	register_block_pattern( TemplateDefault\NAME, [

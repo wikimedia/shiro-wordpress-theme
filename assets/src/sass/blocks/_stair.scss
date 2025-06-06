@@ -19,7 +19,6 @@
 	&__body {
 		@include reset-p-margin;
 		background: $background-color-base;
-		font-family: $font-family-serif;
 		margin-left: rem(18);
 		margin-top: rem(-41);
 		padding: rem(18) rem(22);

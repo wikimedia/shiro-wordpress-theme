@@ -31,21 +31,21 @@ while ( have_posts() ) :
 		get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 	}
 	?>
-<div class="mw-980 mod-margin-bottom flex flex-medium list-template toc__section">
-	<div class="w-32p toc__sidebar">
-		<?php get_sidebar( 'list' ); ?>
-	</div>
-
-	<div class="w-68p toc__content">
-		<div class="page-intro mod-margin-bottom wysiwyg">
-			<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+	<div class="alignwide flex flex-medium list-template toc__section">
+		<div class="w-32p toc__sidebar">
+			<?php get_sidebar( 'list' ); ?>
 		</div>
 
-		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
-	</div>
-</div>
-	<?php
+		<div class="w-68p toc__content">
+			<div class="page-intro">
+				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+			</div>
 
+			<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
+		</div>
+	</div>
+
+	<?php
 	$modules = array(
 		'cta',
 		'related',
@@ -56,6 +56,9 @@ while ( have_posts() ) :
 	foreach ( $modules as $module ) {
 		get_template_part( 'template-parts/page/page', $module );
 	}
+	?>
+
+	<?php
 endwhile;
 
 get_footer();

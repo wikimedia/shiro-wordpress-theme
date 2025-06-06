@@ -25,20 +25,22 @@
 
 	&__toggle {
 		@include style-guide-button-reset;
-		background: none;
-
-		&:hover {
-			background: #ddd;
-		}
-
+		border-radius: rem(4);
 		bottom: 0;
 		display: block;
+		font-weight: var(--wp--custom--font-weight--bold);
 		position: absolute;
+
+		&:hover {
+			background-color: var(--wp--preset--color--black-10);
+		}
 
 		.collapse {
 			display: none;
 
 			&::before {
+				// Clip path hides the text decoration on the icon.
+				clip-path: rect(0 100% 92% 0);
 				content: "\d7";
 				margin-right: 0.5em;
 			}
@@ -46,6 +48,8 @@
 
 		.expand {
 			&::before {
+				// Clip path hides the text decoration on the icon.
+				clip-path: rect(0 100% 92% 0);
 				content: "\2b";
 				margin-right: 0.5em;
 				transform: rotate(45deg);

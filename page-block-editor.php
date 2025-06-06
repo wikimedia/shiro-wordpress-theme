@@ -69,17 +69,14 @@ while ( have_posts() ) {
 	if ( $show_title || $show_breadcrumb ) {
 		get_template_part( 'template-parts/header/page', 'noimage', $template_args );
 	} else {
-		// Fake header content so we get the same margin before the hero blocks.
 		?>
-		<div class="header-content"></div>
 		</div>
-	</header>
+	</div><!-- Close out the secondary header. -->
 
-	<main id="content">
+	<main id="content" class="module-area article-main is-layout-constrained has-global-padding">
 		<?php
 	}
 
-
-	get_template_part( 'template-parts/content', 'page' );
+	the_content();
 }
 get_footer();

@@ -70,56 +70,6 @@
   }
 }
 
-
-
-// News List
-.news-list-container {
-
-  .card {
-    @include responsive-margin(60, 80, bottom);
-  }
-
-  .card-list-container:not(.alternate-img) {
-
-    .card-content {
-      @include responsive-margin(0, 128, right);
-    }
-  }
-
-  .img-container {
-    display: block;
-    @include responsive-margin(16, 0, bottom);
-  }
-
-  .h3 {
-    @include responsive-margin(4, 4, bottom);
-    @include font-size( 20, 18 );
-
-    a {
-      transition: 0.3s all;
-
-      &:hover {
-        color: $color-blue;
-      }
-    }
-  }
-
-  .h4 {
-    @include responsive-margin(8, 16, bottom);
-  }
-
-  .post-meta {
-    @include responsive-margin(16, 24, bottom);
-    @include font-size( 13, 13 );
-    font-weight: bold;
-
-    span, time {
-      display: block;
-      margin: 0;
-    }
-  }
-}
-
 .alternate-img {
 
   .card {
@@ -236,32 +186,6 @@
 
 .bg-ltgray .related-news .card .date {
   color: $wmui-color-base20;
-}
-
-
-// News List
-.news-card-list {
-
-  .card-list-container {
-
-    .card {
-      margin-right: 0;
-      margin-bottom: 4rem;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    .img-container {
-      order: 2;
-      align-self: flex-start;
-    }
-
-    .card-content {
-      order: 1;
-    }
-  }
 }
 
 // Author link

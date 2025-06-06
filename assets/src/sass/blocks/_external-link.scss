@@ -8,23 +8,14 @@
 
 	&__heading {
 		@include h5;
-		font-family: $font-family-sans;
 		align-items: center;
 		display: flex;
 	}
 
 	&__link {
 		align-items: center;
-		color: $wmui-color-base0;
+		color: inherit;
 		display: flex;
-
-		&:hover {
-			color: $wmui-color-blue50;
-		}
-
-		&:focus {
-			color: $wmui-color-base0;
-		}
 	}
 
 	&__icon {
@@ -36,7 +27,6 @@
 
 	&__text {
 		@include has-font-size("small");
-		font-family: $font-family-sans;
 		margin-top: rem( -6 );
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {

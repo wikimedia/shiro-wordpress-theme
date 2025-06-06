@@ -15,27 +15,3 @@ body {
 .has-background > .wp-block-group__inner-container > :last-child {
 	margin-bottom: 0;
 }
-
-// Set content widths in editor.
-.wp-block {
-	max-width: 980px;
-	.post-type-post & {
-		max-width: 40rem;
-	}
-}
-.wp-block[data-align='wide'] {
-	.post-type-post & {
-		max-width: 980px;
-
-		.is-layout-constrained > .wp-block {
-			// Treat wide post content as unconstrained.
-			max-width: unset;
-		}
-	}
-}
-
-.wp-block[data-align='full'] {
-	max-width: none;
-}
-
-// Handle wide width in post.

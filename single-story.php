@@ -44,7 +44,7 @@ while ( have_posts() ) :
 	$share_links = get_post_meta( get_the_ID(), 'contact_links', true );
 	?>
 
-<div class="mw-980 mar-bottom">
+<div class="alignwide mar-bottom">
 	<div class="flex flex-medium flex-space-between mar-bottom_lg">
 		<div class="w-48p">
 			<?php

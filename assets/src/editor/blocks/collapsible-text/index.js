@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
 /**
  * WordPress dependencies
  */
-import { InnerBlocks, RichText, InspectorControls, useSetting } from '@wordpress/block-editor';
+import { InnerBlocks, RichText, InspectorControls, useSettings } from '@wordpress/block-editor';
 import { Panel, PanelBody, ColorPalette } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
@@ -27,6 +27,7 @@ registerBlockType(metadata.name, {
 	 */
 	edit: function Edit( { attributes, setAttributes } ) {
 		const { fontColor, readMore, readLess } = attributes;
+		const [ colorSettings ] = useSettings( 'color.palette' );
 
 		return (
 			<>
@@ -35,7 +36,7 @@ registerBlockType(metadata.name, {
 						<PanelBody>
 							<ColorPalette
 								value={ fontColor }
-								colors={ [ ...useSetting( 'color.palette' ) ] }
+								colors={ colorSettings }
 								onChange={ ( fontColor ) => setAttributes( { fontColor } ) }
 							/>
 						</PanelBody>

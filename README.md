@@ -58,11 +58,11 @@ Lints only PHP files which have changed in the current branch, using `phpcs`.  T
 * `npm run start`
 Begins watching front-end assets (scripts and styles) and compiles them when changed. This will also start the livereload script, which refreshes the page when changes are made.
 
-* `npm run download-style-guide-sass`
-Download the variables file in the style-guide. This is only required when the style guide has changed.
+> [!WARNING]
+> When running the `npm start` development server, WordPress [requires](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/) SCRIPT_DEBUG to be enabled. On a macOS host system you can edit the configuration for VIP's dev-env environment at `~/.local/share/vip/dev-environment/wikimedia/config/wp-config.php` (assuming `wikimedia` is your environment slug.). Add `define( 'SCRIPT_DEBUG', true );` to permit WordPress to load files from our development server.
 
 > [!IMPORTANT]
-> This theme's dependencies currently require Node 14. If you use [nvm](https://github.com/nvm-sh/nvm) to manage your local Node install, you may run `nvm use` to select the appropriate Node version for the commands above.
+> This theme's dependencies currently require Node 22. If you use [nvm](https://github.com/nvm-sh/nvm) to manage your local Node install, you may run `nvm use` to select the appropriate Node version for the commands above.
 
 CSS
 ---------------

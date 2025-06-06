@@ -16,30 +16,34 @@ import { dispatch, select } from '@wordpress/data';
  *
  * @param {string} hotBlockName Name of block being hot-reloaded.
  * @param {Object} [variants]   Dictionary of { styles, filters } arrays to optionally unbind.
+ * @return {(data: Object) => void} Callback for module.hot.dispose() to deregister the specified block.
  */
-export const deregister = ( hotBlockName, variants = {} ) => ( data ) => {
-	unregisterBlockType( hotBlockName );
+export const deregister =
+	( hotBlockName, variants = {} ) =>
+	( data ) => {
+		unregisterBlockType( hotBlockName );
 
-	if ( Array.isArray( variants?.styles ) ) {
-		variants.styles.forEach( ( style ) => unregisterBlockStyle( hotBlockName, style.name ) );
-	}
+		if ( Array.isArray( variants?.styles ) ) {
+			variants.styles.forEach( ( style ) =>
+				unregisterBlockStyle( hotBlockName, style.name )
+			);
+		}
 
-	if ( Array.isArray( variants?.filters ) ) {
-		variants.filters.forEach( ( { hook, namespace } ) => {
-			removeFilter( hook, namespace );
-		} );
-	}
+		if ( Array.isArray( variants?.filters ) ) {
+			variants.filters.forEach( ( { hook, namespace } ) => {
+				removeFilter( hook, namespace );
+			} );
+		}
 
-	const selectedBlockId =
-		select( 'core/block-editor' ).getSelectedBlockClientId();
+		const selectedBlockId = select( 'core/block-editor' ).getSelectedBlockClientId();
 
-	if ( selectedBlockId ) {
-		dispatch( 'core/block-editor' ).clearSelectedBlock();
-	}
+		if ( selectedBlockId ) {
+			dispatch( 'core/block-editor' ).clearSelectedBlock();
+		}
 
-	// Pass selected ID through hot-reload cycle.
-	data.value = selectedBlockId;
-};
+		// Pass selected ID through hot-reload cycle.
+		data.value = selectedBlockId;
+	};
 
 /**
  * Process an updated block module, refreshing the editor view as needed.

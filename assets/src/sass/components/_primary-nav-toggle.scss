@@ -1,45 +1,81 @@
-.primary-nav-toggle {
-	// button-tertiary
-	@include style-guide-button(
-		$wmui-color-base90,
-		$wmui-color-base90,
-		$color-primary,
-		$border-color-base,
-	);
+// Styles related to the toggling of the sm_desktop primary nav (top level core block).
+.primary-nav {
+	--site-header-height: #{rem(64)};
 
-	align-items: center;
-	display: inline-flex;
-	height: rem(34);
-	justify-content: center;
-	margin-right: rem(17);
-	order: 10;
-	padding: 0;
-	width: rem(40);
-
-	@media screen and (min-width: #{$primary-nav-breakpoint}) {
-		display: none;
+	@include media(">=sm_desktop") {
+		--site-header-height: #{rem(80)};
 	}
 
-	&:hover,
-	&:active,
-	&:focus {
-		@include focus-ring($hex: false, $inset: false, $width: 4px, $transparency: 0.3);
-		border-color: $border-color-base;
-	}
+	// Core navigation toggle buttons.
+	.wp-block-navigation__responsive-container-open,
+	.wp-block-navigation__responsive-container-close {
+		border-right: 1px solid var(--wp--preset--color--border-light);
+		padding: rem(20);
+		outline: none;
 
-	&__icon {
-		display: none;
-		height: rem(20);
-		margin: 0;
-		width: rem(20);
-
-		[aria-expanded="true"] &--opened,
-		[aria-expanded="false"] &--closed {
-			display: block;
+		@include media(">=sm_desktop") {
+			display: none;
 		}
 	}
 
-	&[hidden] {
-		display: none;
+	// Core navigation toggle open button.
+	.wp-block-navigation__responsive-container-open {
+		margin-left: calc( var(--wp--style--root--padding-left) * -1 );
+	}
+
+	// Core navigation toggle close button.
+	.wp-block-navigation__responsive-container-close {
+		background-color: var(--wp--preset--color--black-05);
+		bottom: 100%;
+		left: 0;
+		right: auto;
+		top: auto;
+	}
+
+	.wp-block-navigation__responsive-container {
+		@include media(">=sm_desktop") {
+			display: block;
+			position: static;
+			width: 100%;
+		}
+	}
+
+	@include media("<sm_desktop") {
+		// Core navigation main inner container - sibling of the button.
+		.wp-block-navigation__responsive-container.has-modal-open.is-menu-open {
+			height: calc( 100vh - var(--site-header-height, 0px) - var(--wp-admin--admin-bar--height, 0px) - 1px );
+			overflow: visible;
+			position: absolute;
+			top: calc( 100% + 1px );
+
+			.wp-block-navigation__responsive-close {
+				background-color: var(--wp--preset--color--black-05);
+				height: 100%;
+				overflow: hidden scroll;
+			}
+
+			.wp-block-navigation__responsive-dialog {
+				margin-top: 0;
+			}
+			
+			.wp-block-navigation__responsive-container-content {
+				padding-top: 0;
+			}
+
+			.wp-block-navigation__container {
+				flex-wrap: nowrap;
+				width: 100%;
+			}
+		}
+	}
+}
+
+html.has-modal-open {
+	@include media("<sm_desktop") {
+		&,
+		.wp-block-navigation__responsive-container {
+			max-height: 100vh;
+			overflow: hidden;
+		}
 	}
 }

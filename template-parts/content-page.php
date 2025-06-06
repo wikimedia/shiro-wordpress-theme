@@ -9,10 +9,7 @@
 
 ?>
 
-
-<div class="mod-margin-bottom">
-	<?php get_sidebar(); ?>
-	<div class="article-main wysiwyg is-layout-constrained">
-		<?php the_content(); ?>
-	</div>
+<?php get_sidebar(); ?>
+<div class="article-main alignwide">
+	<?php the_content(); ?>
 </div>

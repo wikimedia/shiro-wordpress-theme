@@ -10,7 +10,7 @@ const _contentColumn = _tocNav
 	?.querySelector( '.toc__content' );
 const headerHeight = document
 	.querySelector( '.site-header' )
-	.getBoundingClientRect()[ 'height' ];
+	?.getBoundingClientRect()[ 'height' ];
 
 /**
  * Does this tag node name correspond to a supported level of header?
@@ -164,7 +164,7 @@ function processActiveLink(
 		toggleText.length > 0
 			? toggleText
 			: _tocNav.dropdown.toggle.querySelector( '.btn-label-a11y' )
-				.innerText;
+					.innerText;
 
 	// Remove existing active classes.
 	_tocNav
@@ -370,6 +370,4 @@ function teardown() {
 }
 
 export default initialize( setup, teardown );
-export {
-	setup, teardown,
-};
+export { setup, teardown };

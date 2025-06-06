@@ -1,21 +1,20 @@
 .spotlight {
-	@include global-margin-bottom;
 	@include block-style-background-color;
 	@include block-style-text-color;
+	@include global-padding;
 	display: flex;
-	min-width: 100%;
+	padding-bottom: var(--wp--preset--spacing--80);
+	padding-top: var(--wp--preset--spacing--80);
 
 	&__inner {
+		@include alignwide;
 		display: flex;
 		flex-direction: column-reverse;
-		margin: rem(20);
-		max-width: 100%;
 		position: relative;
-		width: $content-column-rem;
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
 			flex-direction: row-reverse;
-			margin: rem(40);
+			min-height: rem(384);
 		}
 	}
 
@@ -33,7 +32,6 @@
 		text-align: left;
 
 		p {
-			font-family: $font-family-sans;
 			padding-bottom: rem(26);
 		}
 	}
@@ -105,7 +103,6 @@
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
 		flex-direction: row;
 		justify-content: center;
-		min-height: 340px;
 
 		&__content {
 			margin: 0 rem(30) 0 rem(50);
