@@ -25,10 +25,12 @@
 
 	&__toggle {
 		@include style-guide-button-reset;
+		@include has-font-size("medium");
 		border-radius: rem(4);
 		bottom: 0;
 		display: block;
 		font-weight: var(--wp--custom--font-weight--bold);
+		padding: rem(6) rem(12);
 		position: absolute;
 
 		&:hover {

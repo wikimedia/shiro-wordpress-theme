@@ -11,90 +11,171 @@
 }
 
 @mixin style-guide-button-reset() {
-	@include has-font-size("medium");
 	background: none;
 	border: none;
 	border-radius: 0;
 	cursor: pointer;
-	padding: rem(6) rem(12);
+	padding: 0;
 }
 
-@mixin style-guide-button(
-	$color,
-	$color-hover,
-	$color-text,
-	$border-color: transparent,
-) {
+@mixin style-guide-button() {
 	cursor: pointer;
-	// @include style-guide-button-reset;
-	// background-color: $color;
-	// border: 1px solid $border-color; // Buttons with and without borders take up the same space
-	// color: $color-text;
-	// transition: $transition-duration-base background;
+	display: inline-flex;
+	gap: rem(4.5);
 
-	// &:hover {
-	// 	background-color: $color-hover;
-	// 	box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.15);
-	// 	color: $color-text;
-	// }
-
-	// &:focus {
-	// 	@include focus-ring($hex: false, $inset: false);
-	// 	background-color: $color-hover;
-	// 	border-color: $color-base--inverted;
-	// 	color: $color-text;
-
-	// 	.site-footer & {
-	// 		@include focus-ring($hex: true, $inset: false);
-	// 	}
-	// }
+	&:focus {
+		outline-color: var(--wp--preset--color--main);
+	}
 
 	&:disabled,
 	&:is(a):not([href]) {
-		background-color: $background-color-filled--disabled;
-		box-shadow: none;
+		background-color: var(--wp--preset--color--black-05);
+		border-color: transparent;
+		color: var(--wp--preset--color--black-50);
 		cursor: text;
+		text-decoration: none;
+
+		&:is(.has-icon a) {
+			&::before {
+				filter: brightness(0) opacity(0.5);
+			}
+		}
+	}
+
+	&:is(.has-icon a)::before {
+		filter: brightness(0) invert(1);
+	}
+}
+
+/**
+ * These styles are a duplicate of the ones from theme.json, to be used for other buttons
+ * where we can't easily add the classes required to use those styles. If theme.json is
+ * updated, these will need to be as well, or they will get out of date.
+ */
+@mixin button-primary-other-buttons() {
+	background-color: var(--wp--preset--color--main);
+	border-radius: 4px;
+	border-color: transparent;
+	border-width: 2px;
+	border-style: solid;
+	color: var(--wp--preset--color--base);
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: var(--wp--custom--font-weight--bold);
+	line-height: var(--wp--custom--line-height--tight);
+	padding-top: 0.4875em;
+	padding-right: 0.8em;
+	padding-bottom: 0.4875em;
+	padding-left: 0.8em;
+	text-decoration: none;
+	text-underline-offset: 3px;
+
+	&:hover {
+		background-color: var(--wp--preset--color--border-light);
+		border-color: var(--wp--preset--color--main);
+		color: var(--wp--preset--color--main);
+		text-decoration: underline;
+	}
+
+	&:focus {
+		background-color: var(--wp--preset--color--border-light);
+		border-color: var(--wp--preset--color--main);
+		color: var(--wp--preset--color--main);
+		outline-color: var(--wp--preset--color--main);
+		outline-offset: 2px;
+		outline-style: solid;
+		outline-width: 2px;
+		text-decoration: underline;
+	}
+
+	&:active {
+		background-color: var(--wp--preset--color--border-base);
+		border-color: var(--wp--preset--color--main);
+		color: var(--wp--preset--color--main);
+		text-decoration: underline;
 	}
 }
 
 @mixin button-primary() {
-	@include style-guide-button(
-		$color-primary,
-		$color-primary--hover,
-		$color-base--inverted,
-	);
+	@include style-guide-button;
+
+	&:is(.has-icon a) {
+		&:hover::before,
+		&:active::before,
+		&:focus::before {
+			filter: brightness(0);
+		}
+	}
 }
 
 @mixin button-secondary() {
-	@include style-guide-button(
-		$color-secondary,
-		$color-secondary--hover,
-		$color-base--inverted,
-	);
-}
-
-@mixin button-tertiary() {
-	@include style-guide-button(
-		$color-tertiary,
-		$color-tertiary--hover,
-		$color-primary,
-	);
-	background: linear-gradient(to top, $color-tertiary, $color-tertiary), $color-primary;
-	background-clip: padding-box, border-box;
+	@include style-guide-button();
+	background-color: var(--wp--preset--color--blue-aaa);
 
 	&:hover,
 	&:focus {
-		background: linear-gradient(to top, $color-tertiary--hover, $color-tertiary--hover), $color-primary--hover;
-		background-clip: padding-box, border-box;
-		border-color: transparent;
-		color: $color-primary--hover;
+		background-color: var(--wp--preset--color--light-bright-blue);
+		border-color: var(--wp--preset--color--blue-aaa);
 	}
 
-	&:disabled,
-	&:is(a):not([href]) {
-		background-color: $color-tertiary;
-		border-color: $background-color-filled--disabled;
-		color: $background-color-filled--disabled;
+	&:active {
+		background-color: var( --link-active-color--blue );
+		color: var(--wp--preset--color--base);
+	}
+
+	&:is(.has-icon a) {
+		&:hover::before,
+		&:focus::before {
+			filter: brightness(0);
+		}
+
+		&:active::before {
+			filter: brightness(0) invert(1);
+		}
+	}
+}
+
+@mixin button-tertiary() {
+	@include style-guide-button();
+
+	&:not(:hover):not(:focus):not(:active):not(:disabled):not(:is(a):not([href])) {
+		background-color: var(--wp--preset--color--base);
+		border-color: var(--wp--preset--color--blue-aaa);
+		color: var(--wp--preset--color--blue-aaa);
+	}
+
+	&:is(.has-icon a) {
+		&:before {
+			filter: brightness(0);
+		}
+	}
+}
+
+@mixin button-donate() {
+	@include style-guide-button();
+	background-color: var(--wp--preset--color--green-aaa);
+
+	&:hover,
+	&:focus {
+		background-color: var(--wp--preset--color--light-bright-green);
+		border-color: var(--wp--preset--color--green-aaa);
+		color: var(--wp--preset--color--green-aaa);
+	}
+
+	&:active {
+		background-color: var( --link-active-color--green );
+		color: var(--wp--preset--color--base);
+	}
+
+	&:is(.has-icon a) {
+		&:hover::before,
+		&:focus::before {
+			filter: brightness(0);
+		}
+
+		&:active::before {
+			filter: brightness(0) invert(1);
+		}
 	}
 }
 
@@ -113,8 +194,22 @@
 }
 
 @mixin button-link() {
+	@include style-guide-button-reset;
 	@include has-font-size("default");
+	color: var(--wp--preset--color--blue-aaa);
+	display: inline-flex;
 	font-weight: var(--wp--custom--font-weight--semi-bold);
+
+	&:hover,
+	&:focus {
+		background-color: transparent;
+	}
+
+	&:focus {
+		border-radius: rem(1);
+		outline-color: currentColor;
+		outline-offset: rem(4);
+	}
 
 	&:disabled,
 	&:is(a):not([href]) {
@@ -122,31 +217,50 @@
 		color: var(--wp--preset--color--black-50);
 		text-decoration: none !important
 	}
+
+	&:is(.has-icon a)::before {
+		filter: brightness(0);
+	}
+
+	&:is(.has-icon[class*="blue"] a)::before {
+		filter: none;
+	}
+
+	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ) {
+		color: inherit;
+	}
 }
 
 @mixin button-transparent() {
-	@include style-guide-button(
-		transparent,
-		transparent,
-		black,
-		black
-	);
+	@include style-guide-button();
+	background-color: transparent;
+	border-color: var(--wp--preset--color--main);
+	color: var(--wp--preset--color--main);
 
-	&:focus {
-		border-color: black;
+	&:active {
+		background-color: var(--wp--preset--color--black-25);
+		color: var(--wp--preset--color--main) !important;
+	}
+
+	&:disabled,
+	&:is(a):not([href]) {
+		background-color: transparent;
+		border-color: var(--wp--preset--color--black-25);
+		color: var(--wp--preset--color--black-50);
+	}
+
+	&:is(.has-icon a)::before {
+		filter: brightness(0);
+	}
+
+	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ) {
+		color: inherit;
 	}
 }
 
 @mixin button-link-arrow($back: false) {
 	@include button-link();
 	@include style-guide-arrow($back);
-}
-
-@mixin donate-red90-button {
-	@include button-secondary;
-	&::before {
-		@include button-icon-rules;
-	}
 }
 
 @mixin tab-item {
