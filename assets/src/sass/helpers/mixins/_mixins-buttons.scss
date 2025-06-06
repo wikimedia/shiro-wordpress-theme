@@ -20,6 +20,8 @@
 
 @mixin style-guide-button() {
 	cursor: pointer;
+	display: inline-flex;
+	gap: rem(4.5);
 
 	&:focus {
 		outline-color: var(--wp--preset--color--main);
@@ -181,6 +183,7 @@
 	@include style-guide-button-reset;
 	@include has-font-size("default");
 	color: var(--wp--preset--color--blue-aaa);
+	display: inline-flex;
 	font-weight: var(--wp--custom--font-weight--semi-bold);
 
 	&:hover,
@@ -191,7 +194,7 @@
 	&:focus {
 		border-radius: rem(1);
 		outline-color: currentColor;
-		outline-offset: rem(6);
+		outline-offset: rem(4);
 	}
 
 	&:disabled,
@@ -205,8 +208,12 @@
 		filter: brightness(0);
 	}
 
-	&:is( .has-background:not(.has-link-color) a ) {
-		color: var(--wp--preset--color--main);
+	&:is(.has-icon[class*="blue"] a)::before {
+		filter: none;
+	}
+
+	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ) {
+		color: inherit;
 	}
 }
 
@@ -224,25 +231,22 @@
 	&:disabled,
 	&:is(a):not([href]) {
 		background-color: transparent;
-		border-color: var(--wp--preset--color--black-50);
+		border-color: var(--wp--preset--color--black-25);
 		color: var(--wp--preset--color--black-50);
 	}
 
 	&:is(.has-icon a)::before {
 		filter: brightness(0);
 	}
+
+	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ) {
+		color: inherit;
+	}
 }
 
 @mixin button-link-arrow($back: false) {
 	@include button-link();
 	@include style-guide-arrow($back);
-}
-
-@mixin donate-red90-button {
-	@include button-secondary;
-	&::before {
-		@include button-icon-rules;
-	}
 }
 
 @mixin tab-item {

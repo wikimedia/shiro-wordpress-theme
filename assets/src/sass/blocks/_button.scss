@@ -58,8 +58,16 @@
 		}
 
 		&.has-icon {
+			#{ $inner-selector } {
+				align-items: center;
+				display: inline-flex;
+				gap: var(--wp--preset--spacing--8);
+			}
+
 			#{ $inner-selector }:before {
 				@include button-icon-rules;
+				margin: 0;
+				top: 0;
 			}
 		}
 
@@ -122,14 +130,9 @@
 	}
 }
 
-.wp-block-button__link {
-	// font-size: unset;
-	display: initial;
-}
-
 @include button-wrapper( ".wp-block-shiro-button", "&" );
 @include button-wrapper( ".wp-block-button", ".wp-block-button__link" );
 
-.wp-block-buttons {
-	@include global-margin-bottom;
+.wp-block-buttons.is-layout-flex {
+	gap: var(--wp--preset--spacing--16);
 }
