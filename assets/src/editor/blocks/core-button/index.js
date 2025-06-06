@@ -56,12 +56,11 @@ function changeButtonRegistration( settings, name ) {
 		},
 		variations: [
 			{
-				name: 'donate-pink',
-				title: __( 'Pink donate button', 'shiro' ),
+				name: 'donate-green',
+				title: __( 'Green donate button', 'shiro' ),
 				attributes: {
 					text: __( 'Donate now', 'shiro' ),
-					className:
-						'is-style-secondary has-icon has-icon-lock-white',
+					className: 'is-style-donate',
 				},
 			},
 		],
