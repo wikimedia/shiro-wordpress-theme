@@ -19,8 +19,15 @@ $color-palette-reverse:
 	.has-#{$color}-background-color {
 		color: var(--wp--preset--color--base) !important;
 
-		.wp-block-shiro-button.is-style-as-link::before {
-			filter: brightness(0) invert(1);
+		.wp-block-shiro-button.is-style-as-link::before,
+		.is-style-transparent.has-icon .wp-block-button__link:not(:active)::before,
+		.is-style-as-link.has-icon .wp-block-button__link::before {
+			filter: brightness(0) invert(1) !important;
+		}
+
+		.wp-block-button__link {
+			border-color: var(--wp--preset--color--base) !important;
+			outline-color: var(--wp--preset--color--base) !important;
 		}
 	}
 }
@@ -37,7 +44,7 @@ $color-palette-old:
 	"base-90"          $wmui-color-base90          $wmui-color-base0   $wmui-color-blue50,
 	"base-100"         $wmui-color-base100         $wmui-color-base10  $wmui-color-blue50,
 	"blue-50"          $wmui-color-blue50          $wmui-color-base100 $wmui-color-blue90,
-	"blue-90"          $wmui-color-blue90          $wmui-color-base0   $wmui-color-blue50,
+	"blue-90"          $wmui-color-blue90          $wmui-color-base0   var(--wp--preset--color--blue-aaa),
 	"blue-70"          $wmui-color-blue70          $wmui-color-base0   $wmui-color-base50,
 	"blue50"           $wmui-color-blue50          $wmui-color-base100 $wmui-color-base0,
 	"bright-blue-70"   $wmui-color-bright-blue70   $wmui-color-base0   $wmui-color-base50,
@@ -60,6 +67,8 @@ $color-palette-old:
 	--background-color: #{$wmui-color-base100};
 	--text-color: #{$wmui-color-base10};
 	--link-color: #{$wmui-color-blue50};
+	--link-active-color--blue: #233566;
+	--link-active-color--green: #19452E;
 }
 
 @each $color, $background-color, $text-color, $link-color in $color-palette-old {
@@ -79,10 +88,28 @@ $color-palette-old:
 			&::before {
 				filter: none;
 
-				@if $link-color == $wmui-color-base100 or $link-color == $wmui-color-blue90 or $link-color ==  $wmui-color-accent90 {
+				@if $text-color == $wmui-color-base100 {
 					filter: brightness(0) invert(1);
 				} @else if $link-color == $wmui-color-base0 {
 					filter: brightness(0);
+				}
+			}
+		}
+
+		@if $text-color == $wmui-color-base100 {
+			.wp-block-button__link {
+				border-color: var(--wp--preset--color--base) !important;
+				outline-color: var(--wp--preset--color--base) !important;
+			}
+
+			.is-style-transparent .wp-block-button__link,
+			.is-style-as-link .wp-block-button__link {
+				color: inherit !important;
+
+				&:is(.has-icon a) {
+					&:before {
+						filter: brightness(0) invert(1) !important;
+					}
 				}
 			}
 		}

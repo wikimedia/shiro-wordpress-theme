@@ -130,7 +130,7 @@
 			border-bottom: 0;
 
 			a {
-				color: #3a25ff;
+				color: var(--wp--preset--color--blue-aaa);
 				&:hover, &:focus {
 					text-decoration: underline;
 				}
@@ -264,7 +264,7 @@
 			a {
 				font-size: inherit;
 				font-weight: 500;
-				color: #3a25ff;
+				color: var(--wp--preset--color--blue-aaa);
 
 				&:hover,
 				&:focus {
@@ -301,7 +301,7 @@
 			a {
 				font-size: inherit;
 				font-weight: 500;
-				color: #3a25ff;
+				color: var(--wp--preset--color--blue-aaa);
 
 				&:hover,
 				&:focus {

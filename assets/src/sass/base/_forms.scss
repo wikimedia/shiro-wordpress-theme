@@ -52,6 +52,7 @@ textarea {
 
 button {
 	@include style-guide-link;
+	font-family: inherit;
 }
 
 ::placeholder {
@@ -83,6 +84,7 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"],
 button:not([class]):not([id^="mce"]):not([aria-controls]) {
+	@include button-primary-other-buttons;
 	@include button-primary();
 }
 

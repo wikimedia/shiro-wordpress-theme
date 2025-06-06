@@ -442,12 +442,7 @@ $header-bp-mw: 1049px;
     }
   }
   .header-default .eyebrow.h1 {
-    @media (min-width: $header-bp) {
-      margin-bottom: 5rem;
-    }
-    @media (max-width: $medium-bp - 1 ) {
-      margin-bottom: 1rem;
-    }
+    margin-bottom: var(--wp--preset--spacing--24);
   }
 }
 

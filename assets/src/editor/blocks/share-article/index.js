@@ -11,13 +11,13 @@ import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, PanelBody, Disabled } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { ReactComponent as FacebookIcon } from '../../../svg/individual/social-facebook-blue.svg';
+import { ReactComponent as FacebookIcon } from '../../../svg/individual/social-facebook-round-blue.svg';
 import { ReactComponent as TwitterIcon } from '../../../svg/individual/social-twitter-blue.svg';
 import { ReactComponent as BlueskyIcon } from '../../../svg/individual/social-bluesky-blue.svg';
 import { ReactComponent as LinkedInIcon } from '../../../svg/individual/social-linkedin-blue.svg';
-import { ReactComponent as EmailIcon } from '../../../svg/individual/mail-blue.svg';
-import { ReactComponent as LinkIcon } from '../../../svg/individual/social-link.svg';
-import { ReactComponent as ShareIcon } from '../../../svg/individual/social-share.svg';
+import { ReactComponent as EmailIcon } from '../../../svg/individual/social-mail-blue.svg';
+import { ReactComponent as LinkIcon } from '../../../svg/individual/social-link-blue.svg';
+import { ReactComponent as ShareIcon } from '../../../svg/individual/social-share-arrow.svg';
 
 import metadata from './block.json';
 
@@ -43,9 +43,19 @@ registerBlockType( metadata.name, {
 
 		return (
 			<div { ...blockProps }>
-				{ ( ! enableTwitter && ! enableBluesky && ! enableFacebook && ! enableLinkedIn && ! enableEmail && ! enableCopyLink ) && (
-					<small>{ __( '(No social share will be shown)', 'shiro-admin' ) }</small>
-				) }
+				{ ! enableTwitter &&
+					! enableBluesky &&
+					! enableFacebook &&
+					! enableLinkedIn &&
+					! enableEmail &&
+					! enableCopyLink && (
+						<small>
+							{ __(
+								'(No social share will be shown)',
+								'shiro-admin'
+							) }
+						</small>
+					) }
 				<div className="share-button-container share-article">
 					<button
 						className="share-button"
@@ -53,8 +63,9 @@ registerBlockType( metadata.name, {
 						aria-controls="shareOptionsList"
 					>
 						<span className="share-icon" aria-hidden="true">
-							<ShareIcon /> { __( 'Share', 'shiro-admin') }
+							<ShareIcon />
 						</span>
+						{ __( 'Share', 'shiro-admin' ) }
 					</button>
 					<Disabled>
 						<div
@@ -66,7 +77,9 @@ registerBlockType( metadata.name, {
 							{ enableTwitter && (
 								<div className="share-article__link">
 									<a
-										href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`}
+										href={ `https://twitter.com/intent/tweet?url=${ encodeURIComponent(
+											window.location.href
+										) }` }
 										target="_blank"
 										rel="noopener noreferrer"
 									>
@@ -78,7 +91,9 @@ registerBlockType( metadata.name, {
 							{ enableBluesky && (
 								<div className="share-article__link">
 									<a
-										href={`https://bsky.app/intent/compose?text=${encodeURIComponent(window.location.href)}`}
+										href={ `https://bsky.app/intent/compose?text=${ encodeURIComponent(
+											window.location.href
+										) }` }
 										target="_blank"
 										rel="noopener noreferrer"
 									>
@@ -90,7 +105,9 @@ registerBlockType( metadata.name, {
 							{ enableFacebook && (
 								<div className="share-article__link">
 									<a
-										href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+										href={ `https://www.facebook.com/sharer/sharer.php?u=${ encodeURIComponent(
+											window.location.href
+										) }` }
 										target="_blank"
 										rel="noopener noreferrer"
 									>
@@ -102,7 +119,9 @@ registerBlockType( metadata.name, {
 							{ enableLinkedIn && (
 								<div className="share-article__link">
 									<a
-										href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
+										href={ `https://www.linkedin.com/sharing/share-offsite/?url=${ encodeURIComponent(
+											window.location.href
+										) }` }
 										target="_blank"
 										rel="noopener noreferrer"
 									>
@@ -114,7 +133,11 @@ registerBlockType( metadata.name, {
 							{ enableEmail && (
 								<div className="share-article__link">
 									<a
-										href={`mailto:?subject=${encodeURIComponent(document.title)}&body=${encodeURIComponent(window.location.href)}`}
+										href={ `mailto:?subject=${ encodeURIComponent(
+											document.title
+										) }&body=${ encodeURIComponent(
+											window.location.href
+										) }` }
 										target="_blank"
 										rel="noopener noreferrer"
 									>
@@ -136,39 +159,66 @@ registerBlockType( metadata.name, {
 								</div>
 							) }
 						</div>
-				</Disabled>
+					</Disabled>
 				</div>
 				<InspectorControls>
-					<PanelBody initialOpen title={ __( 'Social settings', 'shiro-admin' ) }>
+					<PanelBody
+						initialOpen
+						title={ __( 'Social settings', 'shiro-admin' ) }
+					>
 						<ToggleControl
 							checked={ enableTwitter }
-							label={ __( 'Enable Twitter share', 'shiro-admin' ) }
-							onChange={ ( enableTwitter ) => setAttributes( { enableTwitter } ) }
+							label={ __(
+								'Enable Twitter share',
+								'shiro-admin'
+							) }
+							onChange={ enableTwitter =>
+								setAttributes( { enableTwitter } )
+							}
 						/>
 						<ToggleControl
 							checked={ enableBluesky }
-							label={ __( 'Enable Bluesky share', 'shiro-admin' ) }
-							onChange={ ( enableBluesky ) => setAttributes( { enableBluesky } ) }
+							label={ __(
+								'Enable Bluesky share',
+								'shiro-admin'
+							) }
+							onChange={ enableBluesky =>
+								setAttributes( { enableBluesky } )
+							}
 						/>
 						<ToggleControl
 							checked={ enableFacebook }
-							label={ __( 'Enable Facebook share', 'shiro-admin' ) }
-							onChange={ ( enableFacebook ) => setAttributes( { enableFacebook } ) }
+							label={ __(
+								'Enable Facebook share',
+								'shiro-admin'
+							) }
+							onChange={ enableFacebook =>
+								setAttributes( { enableFacebook } )
+							}
 						/>
 						<ToggleControl
 							checked={ enableLinkedIn }
-							label={ __( 'Enable LinkedIn share', 'shiro-admin' ) }
-							onChange={ ( enableLinkedIn ) => setAttributes( { enableLinkedIn } ) }
+							label={ __(
+								'Enable LinkedIn share',
+								'shiro-admin'
+							) }
+							onChange={ enableLinkedIn =>
+								setAttributes( { enableLinkedIn } )
+							}
 						/>
 						<ToggleControl
 							checked={ enableEmail }
 							label={ __( 'Enable Email share', 'shiro-admin' ) }
-							onChange={ ( enableEmail ) => setAttributes( { enableEmail } ) }
+							onChange={ enableEmail =>
+								setAttributes( { enableEmail } )
+							}
 						/>
 						<ToggleControl
 							checked={ enableCopyLink }
 							label={ __( 'Enable Copy Link', 'shiro-admin' ) }
-							onChange={ ( enableCopyLink ) => setAttributes( { enableCopyLink } ) }
+							onChange={ enableCopyLink =>
+								setAttributes( { enableCopyLink } )
+							}
 						/>
 					</PanelBody>
 				</InspectorControls>

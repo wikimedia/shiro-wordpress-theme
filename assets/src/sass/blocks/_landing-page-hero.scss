@@ -76,21 +76,8 @@
 
 		margin-bottom: rem(22);
 
+		@include button-primary-other-buttons;
 		@include button-primary;
-
-		.is-style-base0 &,
-		.is-style-blue50 &,
-		.is-style-red50 &,
-		.is-style-red,
-		.is-style-purple &,
-		.is-style-bright-blue & {
-
-			@include button-tertiary;
-		}
-
-		.is-style-donate-red90 & {
-			@include donate-red90-button;
-		}
 	}
 
 	&__intro {

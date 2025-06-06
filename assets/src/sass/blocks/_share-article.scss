@@ -1,39 +1,68 @@
 .share-button-container {
+	margin-left: calc( var(--wp--preset--spacing--16) * -1 );
+	margin-top: var(--wp--preset--spacing--24);
 	position: relative;
+	width: rem(164);
 
 	> button {
-		cursor: pointer;
+		@include style-guide-dropdown-toggle;
+		background-image: none;
+		border-color: transparent !important;
+		color: var(--wp--preset--color--blue-aaa);
+		font-size: var(--wp--preset--font-size--large);
+		font-weight: var(--wp--custom--font-weight--bold);
+		line-height: var(--wp--custom--line-height--tight);
+		padding: var(--wp--preset--spacing--8) var(--wp--preset--spacing--16);
+		width: 100%;
+
+		&[aria-expanded=true] {
+			background-color: var(--wp--preset--color--black-05);
+			border-radius: 0;
+			outline: 0 none;
+		}
+
+		&:hover {
+			text-decoration: underline currentColor max(1px, 0.1em) !important;
+			text-underline-offset: .15em !important;
+		}
+	}
+
+	.share-icon {
+		align-items: center;
 		display: inline-flex;
-		width: 150px;
+	}
 
-		span {
-			display: flex;
-			align-items: center;
-		}
-
-		svg {
-			width: rem(20);
-			height: rem(20);
-			margin: 0 .25rem;
-			vertical-align: text-bottom;
-		}
+	svg {
+		height: rem(24);
+		margin: 0;
+		width: rem(24);
 	}
 }
 
 .share-options {
-	top: calc( 100% + 5px );
-	left: -10px;
-	background: white;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	flex-direction: column;
+	@include style-guide-dropdown-contents;
+	background-color: var(--wp--preset--color--black-05);
+	border-color: var(--wp--preset--color--black-10) transparent transparent;
+	left: 0;
+	padding-block: var(--wp--preset--spacing--16) !important;
 	position: absolute;
-	z-index: 10;
+	width: 100%;
+	z-index: 1;
 
+	a,
 	button {
-		background: transparent;
-		border: none;
+		@include style-guide-dropdown-item;
+		align-items: center;
+		background-color: transparent;
+		border: 0 none;
+		color: var(--wp--preset--color--blue-aaa);
+		display: flex;
+		gap: var(--wp--preset--spacing--8);
+		font-size: var(--wp--preset--font-size--large);
+		font-weight: var(--wp--custom--font-weight--bold);
+		line-height: var(--wp--custom--line-height--tight);
+		padding-block: 0;
+		text-underline-offset: rem(3) !important;
 	}
 
 	&[hidden] {
@@ -41,31 +70,7 @@
 	}
 
 	svg.icon {
-		width: rem(20);
-		height: rem(20);
-		vertical-align: middle;
-		fill: $color-primary;
-		transition: 0.3s transform;
+		width: rem(16);
+		height: rem(16);
 	}
-
-	.share-option {
-		padding: 10px 15px 10px 10px;
-		text-decoration: none;
-		color: #333;
-		font-size: 14px;
-		display: block;
-		transition: background-color 0.2s;
-
-		&:hover,
-		&:focus {
-			background-color: #f5f5f5;
-			outline: none;
-		}
-	}
-}
-
-.share-button {
-	background: transparent;
-	border: none;
-	font-weight: bold;
 }

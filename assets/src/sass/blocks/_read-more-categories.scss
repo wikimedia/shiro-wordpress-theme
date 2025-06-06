@@ -11,9 +11,6 @@
 	}
 
 	&__links a {
-		border: 1px solid currentColor;
-		border-radius: rem(4);
-		padding: 0 var(--wp--preset--spacing--8);
-		text-underline-offset: rem(2);
+		@include tag-links;
 	}
 }

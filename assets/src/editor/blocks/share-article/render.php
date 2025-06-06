@@ -23,8 +23,9 @@ if ( $enable_twitter || $enable_bluesky || $enable_facebook || $enable_linkedin 
 				aria-controls="shareOptionsList"
 			>
 				<span class="share-icon" aria-hidden="true">
-				<?php wmf_show_icon( 'social-share' ); ?> Share
+				<?php wmf_show_icon( 'social-share-arrow' ); ?>
 				</span>
+				Share
 			</button>
 			<div
 				class="share-options"
@@ -34,7 +35,7 @@ if ( $enable_twitter || $enable_bluesky || $enable_facebook || $enable_linkedin 
 			>
 				<?php if ( $enable_facebook ) : ?>
 				<a href="<?php echo esc_url( wmf_get_share_url( 'facebook' ) ); ?>" class="share-option" role="menuitem" tabindex="-1" data-platform="Facebook" target="_blank" rel="noreferrer noopener">
-					<?php wmf_show_icon( 'social-facebook-blue' ); ?> Facebook
+					<?php wmf_show_icon( 'social-facebook-round-blue' ); ?> Facebook
 				</a>
 				<?php endif; ?>
 				<?php if ( $enable_twitter ) : ?>
@@ -54,12 +55,12 @@ if ( $enable_twitter || $enable_bluesky || $enable_facebook || $enable_linkedin 
 				<?php endif; ?>
 				<?php if ( $enable_mail ) : ?>
 				<a href="<?php echo esc_url( wmf_get_share_url( 'email' ) ); ?>" class="share-option" role="menuitem" tabindex="-1" data-platform="Email" target="_blank" rel="noreferrer noopener">
-					<?php wmf_show_icon( 'mail-blue' ); ?> Email
+					<?php wmf_show_icon( 'social-mail-blue' ); ?> Email
 				</a>
 				<?php endif; ?>
 				<?php if ( $enable_link ) : ?>
 					<button class="share-option copy-link" role="menuitem" tabindex="-1">
-						<?php wmf_show_icon( 'social-link' ); ?><?php echo esc_html__( 'Copy Link', 'shiro' ); ?>
+						<?php wmf_show_icon( 'social-link-blue' ); ?><?php echo esc_html__( 'Copy Link', 'shiro' ); ?>
 					</button>
 					<span class="copy-feedback" aria-live="polite" hidden><?php echo esc_html__( 'Link copied', 'shiro' ); ?></span>
 				<?php endif; ?>

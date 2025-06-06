@@ -38,6 +38,8 @@ const icons = [
 	'social-instagram',
 	'social-instagram-blue',
 	'social-pinterest',
+	'social-bluesky',
+	'social-bluesky-blue',
 	'social-twitter',
 	'social-twitter-blue',
 	'social-linkedin',
@@ -108,7 +110,7 @@ function replaceActiveIcon( className, activeIcon, newIcon ) {
  */
 export default function IconSelector( { attributes, setAttributes } ) {
 	const { className } = attributes;
-	const options = icons.map( ( icon ) => ( {
+	const options = icons.map( icon => ( {
 		label: icon || __( 'No icon', 'shiro' ),
 		value: icon,
 	} ) );
@@ -117,7 +119,7 @@ export default function IconSelector( { attributes, setAttributes } ) {
 	/**
 	 * @param {string} selectedIcon Selected icon in the select input.
 	 */
-	const handleIconSelect = ( selectedIcon ) => {
+	const handleIconSelect = selectedIcon => {
 		setAttributes( {
 			className: replaceActiveIcon( className, activeIcon, selectedIcon ),
 		} );
@@ -126,7 +128,10 @@ export default function IconSelector( { attributes, setAttributes } ) {
 	return (
 		<PanelBody title={ __( 'Icons', 'shiro' ) }>
 			<SelectControl
-				help={ __( 'A custom icon can be used by inserting an inline image', 'shiro' ) }
+				help={ __(
+					'A custom icon can be used by inserting an inline image',
+					'shiro'
+				) }
 				label={ __( 'Icon', 'shiro' ) }
 				options={ options }
 				value={ activeIcon }
