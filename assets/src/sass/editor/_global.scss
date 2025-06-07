@@ -3,43 +3,8 @@ body {
 	line-height: normal;
 }
 
-.is-layout-constrained {
-	--wp--style--global--content-size: 980px;
-	--wp--style--global--wide-size: 1020px;
-}
-
-.post-type-post {
-	--wp--style--global--content-size: 40rem;
-	--wp--style--global--wide-size: 980px;
-}
-
 .has-background > .wp-block-group__inner-container > :last-child {
 	margin-bottom: 0;
-}
-
-// Set content widths in editor.
-.wp-block {
-	max-width: 980px;
-	.post-type-post & {
-		max-width: 40rem;
-	}
-}
-
-.wp-block[data-align='wide'] {
-	max-width: 1020px;
-
-	.post-type-post & {
-		max-width: 980px;
-
-		.is-layout-constrained > .wp-block {
-			// Treat wide post content as unconstrained.
-			max-width: unset;
-		}
-	}
-}
-
-.wp-block[data-align='full'] {
-	max-width: none;
 }
 
 // Carousel navigation component.

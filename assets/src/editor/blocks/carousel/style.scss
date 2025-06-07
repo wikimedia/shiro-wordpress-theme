@@ -24,24 +24,11 @@ Editor styles for the carousel block.
 		padding-top: initial;
 	}
 
-	.slides > .wp-block.wp-block-group {
+	.slides > .wp-block.wp-block-group.has-background {
 		padding: var( --carousel-vertical-padding ) var( --carousel-side-padding );
 	}
-}
 
-.editor-styles-wrapper .wp-block[data-align='full'] > .wp-block-shiro-carousel {
-	.slides > .wp-block.wp-block-group {
-		max-width: none;
-	}
-
-	// Increase the max-width for slide content when using a full-width carousel.
-	.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-		max-width: 1200px;
-	}
-}
-
-.editor-styles-wrapper .wp-block[data-align='wide'] > .wp-block-shiro-carousel {
-	.slides > .wp-block.wp-block-group {
-		max-width: var( --wp--style--global--wide-size );
+	.slides > .wp-block.wp-block-group figure.block-editor-block-list__block {
+		margin-bottom: 0;
 	}
 }
