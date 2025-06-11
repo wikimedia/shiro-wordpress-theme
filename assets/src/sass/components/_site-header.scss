@@ -35,7 +35,7 @@
 
 	.donate-nav {
 		.wp-block-button__link {
-			@include media("<sm_desktop") {
+			@include media("<mobile") {
 				font-size: rem(16);
 				line-height: var(--wp--custom--line-height--relaxed);
 				padding-inline: rem(8);
@@ -46,7 +46,7 @@
 			background-color: transparent !important;
 			color: inherit !important;
 
-			@include media("<sm_desktop") {
+			@include media("<mobile") {
 				@include visually-hidden;
 			}
 		}
