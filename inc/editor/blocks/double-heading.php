@@ -64,10 +64,14 @@ function render_block( $attributes ) {
 	}
 	$primary_heading    = $attributes['primaryHeading'] ?? null;
 
-	ob_start()
+	if ( empty( $site_language_heading['text'] ) && empty( $primary_heading ) ) {
+		return '';
+	}
+
+	ob_start();
 	?>
 		<div class="<?php echo esc_attr( $className ); ?>">
-			<?php if ( ! empty( $site_language_heading ) ) : ?>
+			<?php if ( ! empty( $site_language_heading['text'] ) ) : ?>
 				<p class="double-heading__secondary is-style-h5">
 					<span><?php echo esc_html( $site_language_heading['text'] ); ?></span>
 					<?php if ( ! empty( $translated_heading ) ) : ?>

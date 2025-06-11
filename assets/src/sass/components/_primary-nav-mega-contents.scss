@@ -1,0 +1,151 @@
+// Styles related to the primary nav mega menu block content.
+.primary-nav {
+	// Mega menu content container.
+	.wp-block-hm-mega-menu__menu-container {
+		a:active {
+			background-color: var(--wp--preset--color--black-10);
+		}
+
+		a:focus {
+			outline-color: currentColor;
+		}
+
+		h2 {
+			@include media("<tablet") {
+				font-family: var(--wp--preset--font-family--default);
+				font-size: rem(16) !important;
+				font-weight: var(--wp--custom--font-weight--normal);
+				line-height: var(--wp--custom--line-height--relaxed);
+			}
+		}
+
+		h3 {
+			font-family: var(--wp--preset--font-family--default);
+			@include media("<tablet") {
+				font-size: rem(20) !important;
+			}
+
+			a {
+				text-underline-offset: fluid( 3, 7 );
+			}
+		}
+
+		h4 {
+			font-family: var(--wp--preset--font-family--default);
+
+			a {
+				text-underline-offset: fluid( 2, 4 );
+			}
+		}
+
+		.intro {
+			position: relative;
+
+			@include media(">=tablet") {
+				&::after {
+					@include absolute-full-cover;
+					border-right: 1px solid #D9D9D9;
+					left: auto;
+					right: calc( var(--wp--preset--spacing--48) * -0.5 );
+					width: 0;
+				}
+			}
+
+			p {
+				@include media("<tablet") {
+					font-size: rem(16);
+					margin-top: rem(16);
+				}
+			}
+
+			a {
+				@include style-guide-arrow;
+				font-weight: var(--wp--custom--font-weight--bold);
+			}
+		}
+
+		.pages {
+			.is-layout-grid {
+				@include media("<tablet") {
+					gap: var(--wp--preset--spacing--48);
+
+					> .wp-block-group {
+						border-top: 1px solid var(--wp--preset--color--border-light);
+						padding-top: var(--wp--preset--spacing--48);
+					}
+				}
+
+				@include media(">=tablet") {
+					row-gap: var(--wp--preset--spacing--32);
+				}
+			}
+
+			.wp-block-list {
+				margin-block-start: var(--wp--preset--spacing--32);
+
+				li {
+					font-size: rem(16);
+					margin-block-start: rem(16);
+				}
+
+				a {
+					text-underline-offset: fluid( 3, 7 );
+				}
+			}
+
+			p {
+				font-size: var(--wp--preset--font-size--small);
+				font-weight: var(--wp--custom--font-weight--normal);
+				margin-block-start: var(--wp--preset--spacing--8);
+			}
+		}
+
+		.post {
+			display: flex;
+			gap: rem(16);
+
+			@include media("<=mobile") {
+				border-top: 1px solid var(--wp--preset--color--border-light);
+				padding-top: var(--wp--preset--spacing--48);
+			}
+
+			@include media(">mobile") {
+				flex-direction: column;
+			}
+
+			.wp-block-post-featured-image {
+				@include media("<=mobile") {
+					flex: 0 0 rem(104);
+				}
+
+				:where(img) {
+					aspect-ratio: 1.42 / 1;
+					border-radius: rem(4);
+					object-fit: cover;
+				}
+			}
+
+			.wp-block-post-terms {
+				font-size: rem(14);
+			}
+
+			.wp-block-post-terms a {
+				@include category-links;
+
+				&:not(:first-of-type) {
+					display: none;
+				}
+			}
+
+			.wp-block-post-terms__separator {
+				display: none;
+			}
+
+			h4 {
+				font-size: rem(20);
+				font-weight: var(--wp--custom--font-weight--bold);
+				margin-block-start: var(--wp--preset--spacing--16);
+			}
+		}
+	}
+}

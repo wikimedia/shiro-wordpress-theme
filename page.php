@@ -42,7 +42,9 @@ while ( have_posts() ) {
 	}
 
 	get_template_part( 'template-parts/content', 'page' );
+	?>
 
+	<?php
 	$modules = array(
 		'framing-copy',
 		'offsite-links',
@@ -55,5 +57,8 @@ while ( have_posts() ) {
 	foreach ( $modules as $module ) {
 		get_template_part( 'template-parts/page/page', $module );
 	}
+	?>
+
+	<?php
 }
 get_footer();

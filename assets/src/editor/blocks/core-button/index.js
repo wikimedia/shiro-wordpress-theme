@@ -8,7 +8,7 @@ import IconSelector from './IconSelector';
 
 import './style.scss';
 
-const withIconSelector = createHigherOrderComponent( ( ButtonBlockEdit ) => {
+const withIconSelector = createHigherOrderComponent( ButtonBlockEdit => {
 	/**
 	 * Insert the icon selector in the inspector controls for the button block.
 	 */
@@ -56,11 +56,11 @@ function changeButtonRegistration( settings, name ) {
 		},
 		variations: [
 			{
-				name: 'donate-pink',
-				title: __( 'Pink donate button', 'shiro' ),
+				name: 'donate-green',
+				title: __( 'Green donate button', 'shiro' ),
 				attributes: {
 					text: __( 'Donate now', 'shiro' ),
-					className: 'is-style-secondary has-icon has-icon-lock-white',
+					className: 'is-style-donate',
 				},
 			},
 		],
@@ -72,8 +72,7 @@ domReady( () => {
 	unregisterBlockStyle( 'core/button', 'fill' );
 } );
 
-export const
-	name = 'core/button',
+export const name = 'core/button',
 	styles = [
 		{
 			name: 'primary',
@@ -95,6 +94,10 @@ export const
 		{
 			name: 'transparent',
 			label: __( 'Transparent with border', 'shiro' ),
+		},
+		{
+			name: 'donate',
+			label: __( 'Donate button', 'shiro' ),
 		},
 	],
 	filters = [

@@ -1,9 +1,12 @@
 .pagination {
-	border-bottom: 1px solid $wmui-color-base70;
-	border-top: 1px solid $wmui-color-base70;
 	margin-bottom: 7rem;
 	@include has-font-size("default");
 	@include responsive-padding(24 20, 32 40);
+
+	&:has( .pagination__inner ) {
+		border-bottom: 1px solid $wmui-color-base70;
+		border-top: 1px solid $wmui-color-base70;
+	}
 
 	&__inner {
 		display: flex;
@@ -59,7 +62,6 @@
 
 		li {
 			display: inline-block;
-			font-family: $font-family-sans;
 			list-style-type: none;
 			margin-bottom: 0;
 			margin-left: 0;
@@ -67,7 +69,7 @@
 
 		li.active a,
 		.current {
-			background: $color-blue;
+			background: var(--wp--preset--color--blue-aaa);
 			color: #fff;
 		}
 

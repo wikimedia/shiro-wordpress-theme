@@ -1,11 +1,6 @@
 .wp-block-shiro-stairs {
+	@include alignwide;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	margin-top: rem(14);
-
-	@media screen and (max-width: 1020px) {
-		padding-left: rem(20);
-		padding-right: rem(20);
-	}
 }

@@ -27,7 +27,7 @@
 	right: 0;
 	top: 0;
 	transition: 300ms opacity;
-	z-index: 1999;
+	z-index: 1;
 }
 
 [data-dropdown-backdrop="active"] {
@@ -38,4 +38,24 @@
 [data-dropdown-toggle][disabled] {
 	opacity: 0.5;
 	pointer-events: none;
+}
+
+.dropdown-toggle {
+	@include style-guide-dropdown-toggle();
+
+	+ .wp-block-list {
+		@include style-guide-dropdown-contents;
+		@include list-reset;
+		list-style-type: none;
+
+		button {
+			@include style-guide-button-reset;
+			@include has-font-size("medium");
+		}
+
+		a,
+		button {
+			@include style-guide-dropdown-item;
+		}
+	}
 }

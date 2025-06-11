@@ -67,7 +67,7 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 	?>
 
 <?php if ( ! empty( $display_intro ) ) : ?>
-<div class="mw-980 mod-margin-bottom_sm">
+<div class="alignwide mod-margin-bottom_sm">
 	<div class="page-intro wysiwyg taxonomy-role">
 		<?php if ( ! empty( $description ) ) : ?>
 		<p>
@@ -84,7 +84,7 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 </div>
 <?php endif; ?>
 
-<div class="mw-980 mod-margin-bottom flex flex-medium role-template toc__section">
+<div class="alignwide mod-margin-bottom flex flex-medium role-template toc__section">
 	<?php if ( ! empty( $post_list ) && count( $post_list ) > 1 ) : ?>
 		<div class="w-32p toc__sidebar">
 			<?php get_sidebar( 'list', [ 'template_args' => $post_list ] ); ?>

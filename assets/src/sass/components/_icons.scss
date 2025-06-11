@@ -151,11 +151,11 @@ a.teal {
 
 .header-default .social-container {
 	.icon {
-		fill: #3a25ff;
+		fill: var(--wp--preset--color--blue-aaa);
 	}
 
 	a:hover .icon {
-		fill: #2718bd;
+		fill: var(--link-active-color--blue);
 	}
 }
 
