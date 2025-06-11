@@ -287,7 +287,7 @@ function enqueue_block_editor_assets() {
 		true
 	);
 
-	if ( wp_get_environment_type() === 'local' && in_array( 'wp-react-refresh-runtime', $editor_asset['dependencies'] ) ) {
+	if ( wp_get_environment_type() === 'local' && is_array( $editor_asset['dependencies'] ) && in_array( 'wp-react-refresh-runtime', $editor_asset['dependencies'], true ) ) {
 		warn_if_script_debug_not_enabled();
 		wp_add_inline_script(
 			'shiro_editor_js',
