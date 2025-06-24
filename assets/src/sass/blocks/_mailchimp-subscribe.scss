@@ -1,90 +1,109 @@
-.mailchimp-subscribe {
-	background: $background-color-framed;
-	border: 1px solid $border-color-framed;
-	border-radius: $border-radius-big;
-	padding: rem(25);
+.block-editor-block-list__block.wp-block-mailchimp-mailchimp,
+.mc_container {
+	@include alignwide;
+	display: grid;
+	column-gap: rem(40);
+	padding: fluid(40, 80) 0;
+	row-gap: rem(16);
+
+	@media (min-width: #{ ($width-breakpoint-tablet) }) {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	&:not( :is( .alignfull .mc_container ) ) {
+		padding-left: rem(25);
+		padding-right: rem(25);
+	}
+
+	h2, h3 {
+		font-family: $font-family-sans;
+		margin: 0;
+	}
+
+	h2 {
+		align-self: end;
+		font-weight: 700;
+	}
 
 	h3 {
-		@include h3-sans;
+		@include has-font-size("medium");
 	}
 
-	&__form:not(:only-child) {
-		@include global-margin-bottom;
-	}
 
-	p {
-		margin-bottom: rem(20);
-	}
-
-	> p:not(.mailchimp-subscribe__description) {
-		@include has-font-size("default");
-	}
-
-	.icon {
-		margin-left: 0;
-		width: 20px;
-	}
-
-	.wp-block-column > &__form:only-child {
-		@media (min-width: #{$core-gutenberg-break-medium}) {
-			align-items: stretch;
-			display: flex;
-			height: 100%;
+	@media (min-width: #{ ($width-breakpoint-tablet) }) {
+		#mc_signup {
+			grid-column: 2;
+			grid-row: 1 / span 2;
 		}
 	}
 
-	&__input-container {
+	.mc_form_inside {
+		align-items: center;
 		display: flex;
 		flex-wrap: wrap;
-		margin-bottom: rem(20);
-		margin-top: rem(20);
+		gap: rem(16);
+
+		@media (max-width: #{ ($width-breakpoint-tablet) }) {
+			flex-flow: column nowrap;
+
+			* {
+				width: 100%;
+			}
+		}
 	}
 
-	&__column-input {
-		width: 100%;
+	.mc_message_wrapper {
+		flex-basis: 100%;
+
+		&:empty {
+			display: none;
+		}
 	}
 
-	&__column-button {
-		margin-top: 8px;
+	.wp-block-mailchimp-mailchimp-form-field {
+		flex-grow: 1;
 	}
 
-	&__input-field {
-		@include font-size(14, 16);
-		@include line-height(20, 22);
-
-		background: $background-color-base;
-		border: 1px solid $border-color-base;
-		border-radius: $border-radius-base;
+	.wp-block-mailchimp-mailchimp-form-field .mc_merge_var {
 		margin: 0;
-		padding: rem(6) rem(8);
+	}
+
+	.mc_input {
+		background: $background-color-base;
+		border: 1px solid $wmui-color-base0;
+		border-radius: 4px;
+		font-size: rem( 18 );
+		margin: 0;
+		padding: rem(12) rem(10);
 
 		&:focus {
 			@include focus-ring($hex: false, $inset: false, $width: 3px, $transparency: 0.6);
 		}
 	}
 
-	&__description {
+	#mc_signup_submit {
+		@include button-black();
+		@include has-font-size("medium");
+		border-radius: 4px;
+		font-weight: 700;
+		margin: 0;
+		padding: rem( 6 ) rem( 22 );
+		width: 100%;
+
+		@media (min-width: #{ ($width-breakpoint-tablet) }) {
+			width: auto;
+		}
+	}
+
+	#mc_unsub_link {
 		@include has-font-size("small");
-		color: $wmui-color-base30;
-	}
+		line-height: 1.5;
+		margin: 0;
+		text-align: left;
 
-	// Override too specific selector
-	.has-small-font-size {
-		@extend .has-small-font-size;
-	}
-
-	@media (min-width: #{ ($width-breakpoint-desktop) }) {
-		&__input-container {
-			flex-wrap: nowrap;
-		}
-
-		&__column-input {
-			flex: 1;
-		}
-
-		&__column-button {
-			margin-left: 8px;
-			margin-top: 0;
+		a {
+			color: inherit;
+			font-size: inherit;
 		}
 	}
 }
