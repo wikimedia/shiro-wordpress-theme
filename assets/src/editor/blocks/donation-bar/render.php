@@ -8,8 +8,13 @@ wmf_enable_geoip_for_current_path();
 
 $country_code = wmf_get_country_code();
 
+if ( ! isset( $_SERVER['REQUEST_URI'] ) ) {
+	return '';
+}
+
 // Check if this country is not supported.
 if (
+	// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	strpos( $_SERVER['REQUEST_URI'], '/block-renderer/' ) === false &&
 	in_array( $country_code, (array) ( $attributes['unsupportedCountries'] ?? [] ), true )
 ) :
