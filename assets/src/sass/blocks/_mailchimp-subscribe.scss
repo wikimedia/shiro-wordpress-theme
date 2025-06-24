@@ -1,35 +1,28 @@
 .block-editor-block-list__block.wp-block-mailchimp-mailchimp,
 .mc_container {
 	@include alignwide;
+	@include global-padding;
 	display: grid;
-	column-gap: rem(40);
-	padding: fluid(40, 80) 0;
-	row-gap: rem(16);
+	column-gap: var(--wp--preset--spacing--64);
+	padding-bottom: var(--wp--preset--spacing--80);
+	padding-top: var(--wp--preset--spacing--80);
+	row-gap: var(--wp--preset--spacing--16);
 
 	@media (min-width: #{ ($width-breakpoint-tablet) }) {
 		grid-template-columns: 1fr 1fr;
 	}
 
-	&:not( :is( .alignfull .mc_container ) ) {
-		padding-left: rem(25);
-		padding-right: rem(25);
-	}
-
-	h2, h3 {
-		margin: 0;
-	}
-
 	h2 {
 		align-self: end;
 		font-weight: 700;
+		margin: 0;
 	}
 
 	h3 {
-		@include has-font-size("medium");
+		@include has-font-size("large");
 		font-family: var(--wp--preset--font-family--default);
-		font-weight: var(--wp--custom--font-weight--normal);
+		font-weight: 400;
 	}
-
 
 	@media (min-width: #{ ($width-breakpoint-tablet) }) {
 		#mc_signup {
@@ -69,26 +62,7 @@
 		margin: 0;
 	}
 
-	.mc_input {
-		background: $background-color-base;
-		border: 1px solid $wmui-color-base0;
-		border-radius: 4px;
-		font-size: rem( 18 );
-		margin: 0;
-		padding: rem(12) rem(10);
-
-		&:focus {
-			@include focus-ring($hex: false, $inset: false, $width: 3px, $transparency: 0.6);
-		}
-	}
-
 	#mc_signup_submit {
-		@include button-black();
-		@include has-font-size("medium");
-		border-radius: 4px;
-		font-weight: 700;
-		margin: 0;
-		padding: rem( 6 ) rem( 22 );
 		width: 100%;
 
 		@media (min-width: #{ ($width-breakpoint-tablet) }) {

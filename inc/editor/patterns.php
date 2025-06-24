@@ -80,16 +80,16 @@ function register_pattern() {
 		'content' => CommunicationModule\PATTERN,
 	] );
 
-	register_block_pattern( EmailSubscriptionForm\NAME, [
-		'title' => __( 'Email subscription form', 'shiro-admin' ),
-		'categories' => [ MAIN_CATEGORY_NAME ],
-		'content' => EmailSubscriptionForm\PATTERN,
-	] );
-
 	register_block_pattern( DonationBar\NAME, [
 		'title' => __( 'Donation bar template', 'shiro-admin' ),
 		'categories' => [ MAIN_CATEGORY_NAME ],
 		'content' => DonationBar\PATTERN,
+	] );
+
+	register_block_pattern( EmailSubscriptionForm\NAME, [
+		'title' => __( 'Email subscription form', 'shiro-admin' ),
+		'categories' => [ MAIN_CATEGORY_NAME ],
+		'content' => EmailSubscriptionForm\PATTERN,
 	] );
 
 	register_block_pattern( TemplateDefault\NAME, [
