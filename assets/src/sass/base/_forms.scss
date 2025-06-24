@@ -83,7 +83,7 @@ button {
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
-button:not([class]):not([id^="mce"]):not([aria-controls]) {
+button:not([class]):not([id^="mce"]):not([aria-controls]):not([aria-expanded]):not(.dropdown-toggle + .wp-block-list button) {
 	@include button-primary-other-buttons;
 	@include button-primary();
 }
