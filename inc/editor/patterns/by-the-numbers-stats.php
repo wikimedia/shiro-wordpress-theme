@@ -8,8 +8,8 @@ namespace WMF\Editor\Patterns\ByTheNumbersStats;
 const NAME = 'shiro/by-the-numbers-stats';
 
 const PATTERN = <<<HTML
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignwide" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--80);padding-bottom:var(--wp--preset--spacing--80)"><!-- wp:columns {"align":"wide","className":"is-style-default"} -->
+<!-- wp:group {"align":"wide","className":"by-the-numbers-stats","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide by-the-numbers-stats" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--80);padding-bottom:var(--wp--preset--spacing--80)"><!-- wp:columns {"align":"wide","className":"is-style-default"} -->
 <div class="wp-block-columns alignwide is-style-default"><!-- wp:column {"width":"31.112%"} -->
 <div class="wp-block-column" style="flex-basis:31.112%"><!-- wp:heading -->
 <h2 class="wp-block-heading">By the numbers</h2>

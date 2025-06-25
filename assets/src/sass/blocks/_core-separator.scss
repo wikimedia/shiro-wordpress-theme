@@ -4,4 +4,10 @@
 	&.has-text-color {
 		border-color: currentColor;
 	}
+
+	@include media("<tablet") {
+		&:has( + .wp-block-columns.is-style-separators-between ) {
+			display: none;
+		}
+	}
 }

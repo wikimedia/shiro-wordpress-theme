@@ -33,16 +33,30 @@
 
 // Columns style for adding separators between the columns.
 .wp-block-columns.is-style-separators-between {
-	.wp-block-column:not(:last-child) {
-		position: relative;
+	@include media("<tablet") {
+		gap: 0;
+
+		+ .wp-block-separator + .wp-block-columns.is-style-separators-between {
+			margin-top: 0 !important;
+		}
+	}
+
+	.wp-block-column {
+		@include media("<tablet") {
+			border-top: 1px solid var(--wp--preset--color--border-light);
+		}
 
 		@include media(">=tablet") {
-			&::after {
-				@include absolute-full-cover;
-				border-right: 1px solid var(--wp--preset--color--border-light);
-				left: auto;
-				right: calc( var(--wp--preset--spacing--40) / -2 );
-				width: 0;
+			&:not(:last-child) {
+				position: relative;
+
+				&::after {
+					@include absolute-full-cover;
+					border-right: 1px solid var(--wp--preset--color--border-light);
+					left: auto;
+					right: calc( var(--wp--preset--spacing--40) / -2 );
+					width: 0;
+				}
 			}
 		}
 	}
