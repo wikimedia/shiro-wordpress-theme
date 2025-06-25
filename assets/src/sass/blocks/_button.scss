@@ -45,6 +45,16 @@
 			}
 		}
 
+		&.is-style-as-arrow-link {
+			#{ $inner-selector } {
+				@include button-link-arrow;
+
+				&::after {
+					margin-left: rem(-4.5);
+				}
+			}
+		}
+
 		&.is-style-transparent {
 			#{ $inner-selector } {
 				@include button-transparent;
