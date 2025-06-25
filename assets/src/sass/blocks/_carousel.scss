@@ -7,7 +7,6 @@
 	--carousel-arrow-position: clamp( 0.9375rem, 0.9375rem + ( ( 1vw - 0.51875rem ) * 8.03 ), 4rem );
 	container-type: inline-size;
 	// stylelint-disable selector-class-pattern
-	margin-bottom: rem(48);
 
 	.splide__arrow {
 		@include button-transparent;
