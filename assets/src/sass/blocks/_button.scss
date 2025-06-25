@@ -45,6 +45,12 @@
 			}
 		}
 
+		&.is-style-as-arrow-link {
+			#{ $inner-selector } {
+				@include button-link-arrow;
+			}
+		}
+
 		&.is-style-transparent {
 			#{ $inner-selector } {
 				@include button-transparent;
