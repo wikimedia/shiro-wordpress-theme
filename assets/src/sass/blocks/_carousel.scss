@@ -59,6 +59,8 @@
 		background: #{$color-black}60;
 		bottom: 1.5rem;
 		border-radius: 3px;
+		display: flex;
+		gap: rem(16);
 		left: 50%;
 		padding: 2px 4px;
 		position: absolute;
@@ -68,16 +70,11 @@
 		button {
 			background-color: $color-white;
 			border: 1px solid $color-white;
-			border-radius: 6px;
+			border-radius: 50%;
 			cursor: pointer;
-			height: 10px;
-			margin: 6px;
-			width: 10px;
-
-			@container ( min-width: 600px ) {
-				height: 12px;
-				width: 12px;
-			}
+			height: rem(16);
+			padding: 0;
+			width: rem(16);
 
 			&.is-active {
 				background-color: transparent;
@@ -127,10 +124,6 @@
 
 .shiro-carousel.alignfull {
 	--carousel-arrow-position: clamp( 1rem, 1rem + ( ( 1vw - 0.75rem ) * 10 ), 2.5rem );
-	// Increase the max-width for slide content when using a full-width carousel.
-	.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-		max-width: 1200px;
-	}
 
 	.splide__arrow {
 		@container ( min-width: 1200px ) {
