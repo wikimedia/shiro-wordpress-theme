@@ -12,7 +12,7 @@
 	}
 }
 
-// New columns style for aligning the buttons to the bottom of the columns.
+// Columns style for aligning the buttons to the bottom of the columns.
 .wp-block-columns.is-style-align-buttons-bottom {
 	.wp-block-column,
 	.wp-block-group__inner-container {
@@ -27,6 +27,23 @@
 		&:last-child {
 			align-self: flex-start;
 			margin-top: auto;
+		}
+	}
+}
+
+// Columns style for adding separators between the columns.
+.wp-block-columns.is-style-separators-between {
+	.wp-block-column:not(:last-child) {
+		position: relative;
+
+		@include media(">=tablet") {
+			&::after {
+				@include absolute-full-cover;
+				border-right: 1px solid var(--wp--preset--color--border-light);
+				left: auto;
+				right: calc( var(--wp--preset--spacing--40) / -2 );
+				width: 0;
+			}
 		}
 	}
 }
