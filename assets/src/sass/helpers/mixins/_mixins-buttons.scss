@@ -226,7 +226,7 @@
 		filter: none;
 	}
 
-	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ):not( .has-base-90-background-color a) {
+	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ):not( .has-base-90-background-color a ):not( .has-base-background-color a ) {
 		color: inherit;
 	}
 }
