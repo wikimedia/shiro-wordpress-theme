@@ -152,16 +152,3 @@
 		}
 	}
 }
-
-@each $name, $background-color, $text-color, $accent-color, $button-style in $block-styles  {
-	.is-style-#{$name} {
-		.splide__pagination {
-			background: rgba($background-color, 0.5);
-
-			button {
-				background-color: $text-color;
-				border-color: $text-color;
-			}
-		}
-	}
-}
