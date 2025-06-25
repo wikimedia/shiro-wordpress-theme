@@ -48,6 +48,10 @@
 		&.is-style-as-arrow-link {
 			#{ $inner-selector } {
 				@include button-link-arrow;
+
+				&::after {
+					margin-left: rem(-4.5);
+				}
 			}
 		}
 
