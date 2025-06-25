@@ -32,6 +32,10 @@ $color-palette-reverse:
 			border-color: var(--wp--preset--color--base) !important;
 			outline-color: var(--wp--preset--color--base) !important;
 		}
+
+		&.wp-block-separator {
+			color: var(--wp--preset--color--#{$color}) !important;
+		}
 	}
 }
 

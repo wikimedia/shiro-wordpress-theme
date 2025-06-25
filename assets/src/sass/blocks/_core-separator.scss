@@ -1,0 +1,7 @@
+.wp-block-separator {
+	border-top: 1px solid var(--wp--preset--color--border-light);
+
+	&.has-text-color {
+		border-color: currentColor;
+	}
+}
