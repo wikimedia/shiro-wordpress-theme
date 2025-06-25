@@ -45,6 +45,11 @@ p.has-background,
 	max-width: none !important;
 }
 
+.wp-block-shiro-linked-toc-columns,
+.wp-block-shiro-toc-columns {
+	max-width: var(--wp--style--global--wide-size);
+}
+
 // Treat wide alignment in POSTS specifically as unconstrained. We do not
 // yet expose controls for this in the editor.
 .single-post .alignwide > .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {

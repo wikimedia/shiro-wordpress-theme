@@ -50,6 +50,7 @@
 
 		button {
 			@include style-guide-button-reset;
+			@include has-font-size("medium");
 		}
 
 		a,

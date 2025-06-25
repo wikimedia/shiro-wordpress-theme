@@ -1,5 +1,6 @@
 .post-list-filter {
 	&__head {
+		@include has-font-size("default");
 		display: flex;
 		align-items: center;
 		flex-direction: row;
@@ -12,9 +13,23 @@
 	}
 
 	&__toggle {
+		align-items: center;
+		display: flex;
+		gap: rem(8);
+
 		&::before {
 			@include button-icon-rules;
-			background-image: url("../../assets/src/svg/individual/filter.svg");
+			background-image: url("../../assets/src/svg/individual/filter-blue.svg");
+			height: rem(24);
+			margin-right: 0;
+			top: initial;
+			width: rem(24);
+		}
+
+		&:hover::before,
+		&:focus::before,
+		&:active::before {
+			background-image: url("../../assets/src/svg/individual/filter-black.svg");
 		}
 
 		// Initial toggle button message states.
@@ -56,7 +71,8 @@
 	}
 
 	.action-button {
-		@include button-primary();
+		@include button-primary-other-buttons;
+		@include button-link();
 		margin-left: auto;
 		white-space: nowrap;
 
@@ -64,10 +80,6 @@
 			margin-right: auto;
 			margin-top: 1rem;
 			margin-bottom: 2rem;
-		}
-
-		&--clear {
-			background-color: $color-dark-gray;
 		}
 
 		&--right {
@@ -109,6 +121,7 @@
 .category-container {
 	display: flex;
 	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--8);
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -119,28 +132,14 @@
 }
 
 .individual-category {
-	display: flex;
+	@include style-guide-link;
+	@include tag-links;
 	align-items: center;
-	cursor: pointer;
-	font-size: 0.75rem;
-	background-color: $color-periwinkle;
-	border-radius: 0.25rem;
-	color: $color-blue;
-	font-weight: 700;
-	margin-bottom: 0.5rem;
-	margin-left: 0.5rem;
-	padding: 0.25rem 0.75rem 0.25rem 0.25rem;
+	display: flex;
+	gap: var(--wp--preset--spacing--8);
 
 	&--applied {
-		background-color: $link-highlight-color;
-	}
-
-	input {
-		margin: 0.25rem;
-	}
-
-	&:hover {
-		opacity: 0.75;
-		transition: opacity 0.25s ease-in-out;
+		background-color: var(--wp--preset--color--black-05);
+		color: var(--wp--preset--color--main);
 	}
 }

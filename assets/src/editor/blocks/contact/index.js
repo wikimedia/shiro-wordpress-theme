@@ -21,18 +21,18 @@ const BLOCKS_TEMPLATE = [
 			url: 'https://www.facebook.com/wikimediafoundation/',
 		} ],
 		[ 'core/button', {
-			text: 'Twitter',
-			className: 'is-style-as-link has-icon has-icon-social-twitter-blue',
-			linkTarget: '_blank',
-			rel: 'noreferrer noopener',
-			url: 'https://twitter.com/wikimedia',
-		} ],
-		[ 'core/button', {
 			text: 'Instagram',
 			className: 'is-style-as-link has-icon has-icon-social-instagram-blue',
 			linkTarget: '_blank',
 			rel: 'noreferrer noopener',
 			url: 'https://www.instagram.com/wikimediafoundation/',
+		} ],
+		[ 'core/button', {
+			text: 'Bluesky',
+			className: 'is-style-as-link has-icon has-icon-social-bluesky-blue',
+			linkTarget: '_blank',
+			rel: 'noreferrer noopener',
+			url: 'https://bsky.app/profile/wikimediafoundation.org',
 		} ],
 		[ 'core/button', {
 			text: 'LinkedIn',

@@ -51,9 +51,23 @@
 			}
 		}
 
+		&.is-style-donate {
+			#{ $inner-selector } {
+				@include button-donate;
+			}
+		}
+
 		&.has-icon {
+			#{ $inner-selector } {
+				align-items: center;
+				display: inline-flex;
+				gap: var(--wp--preset--spacing--8);
+			}
+
 			#{ $inner-selector }:before {
 				@include button-icon-rules;
+				margin: 0;
+				top: 0;
 			}
 		}
 
@@ -98,6 +112,8 @@
 		@include button-icon("social-instagram", "individual/social-instagram", $inner-selector);
 		@include button-icon("social-instagram-blue", "individual/social-instagram-blue", $inner-selector);
 		@include button-icon("social-pinterest", "individual/social-pinterest", $inner-selector);
+		@include button-icon("social-bluesky", "individual/social-bluesky", $inner-selector);
+		@include button-icon("social-bluesky-blue", "individual/social-bluesky-blue", $inner-selector);
 		@include button-icon("social-twitter", "individual/social-twitter", $inner-selector);
 		@include button-icon("social-twitter-blue", "individual/social-twitter-blue", $inner-selector);
 		@include button-icon("social-linkedin", "individual/social-linkedin", $inner-selector);
@@ -114,14 +130,9 @@
 	}
 }
 
-.wp-block-button__link {
-	// font-size: unset;
-	display: initial;
-}
-
 @include button-wrapper( ".wp-block-shiro-button", "&" );
 @include button-wrapper( ".wp-block-button", ".wp-block-button__link" );
 
-.wp-block-buttons {
-	@include global-margin-bottom;
+.wp-block-buttons.is-layout-flex {
+	gap: var(--wp--preset--spacing--16);
 }
