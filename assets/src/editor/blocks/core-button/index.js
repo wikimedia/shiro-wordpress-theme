@@ -92,6 +92,10 @@ export const name = 'core/button',
 			label: __( 'As link', 'shiro' ),
 		},
 		{
+			name: 'as-arrow-link',
+			label: __( 'As arrow link', 'shiro' ),
+		},
+		{
 			name: 'transparent',
 			label: __( 'Transparent with border', 'shiro' ),
 		},
