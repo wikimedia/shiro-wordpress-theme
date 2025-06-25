@@ -11,8 +11,8 @@
 
 	.splide__arrow {
 		@include button-transparent;
-		background: radial-gradient( $color-black 50%, $color-white 50% );
-		border: 2px solid #dedede;
+		background: radial-gradient( var(--wp--preset--color--main) 50%, var(--wp--preset--color--base) 50% );
+		border: 2px solid var(--wp--preset--color--border-light);
 		border-radius: 50%;
 		bottom: 1rem;
 		box-sizing: content-box;
@@ -32,19 +32,19 @@
 
 		&:focus,
 		&:hover {
-			border-color: #dedede;
+			border-color: var(--wp--preset--color--border-light);
 			border-radius: 50%;
 			box-shadow: none;
 		}
 
 		svg {
-			fill: $color-white;
+			fill: var(--wp--preset--color--base);
 		}
 	}
 
 	.splide__arrow[disabled] {
 		svg {
-			fill: darken( $color-white, 30 );
+			fill: var(--wp--preset--color--black-25);
 		}
 	}
 
@@ -56,20 +56,20 @@
 	}
 
 	.splide__pagination {
-		background: #{$color-black}60;
+		background: rgba(0, 0, 0, 0.3);
 		bottom: 1.5rem;
-		border-radius: 3px;
+		border-radius: rem(15);
 		display: flex;
 		gap: rem(16);
 		left: 50%;
-		padding: 2px 4px;
+		padding: rem(6) rem(10);
 		position: absolute;
 		transform: translateX(-50%);
 		z-index: 1;
 
 		button {
-			background-color: $color-white;
-			border: 1px solid $color-white;
+			background-color: var(--wp--preset--color--base);
+			border: 1px solid var(--wp--preset--color--base);
 			border-radius: 50%;
 			cursor: pointer;
 			height: rem(16);
@@ -78,7 +78,7 @@
 
 			&.is-active {
 				background-color: transparent;
-				border-color: $color-white;
+				border-color: var(--wp--preset--color--base);
 			}
 		}
 	}
