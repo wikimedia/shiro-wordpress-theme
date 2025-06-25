@@ -26,7 +26,7 @@ const PATTERN = <<<HTML
 <!-- wp:columns {"align":"wide","className":"is-style-separators-between","style":{"spacing":{"margin":{"top":"var:preset|spacing|64"}}}} -->
 <div class="wp-block-columns alignwide is-style-separators-between" style="margin-top:var(--wp--preset--spacing--64)"><!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|16","padding":{"top":"var:preset|spacing|24","bottom":"var:preset|spacing|24"}}}} -->
 <div class="wp-block-column" style="padding-top:var(--wp--preset--spacing--24);padding-bottom:var(--wp--preset--spacing--24)"><!-- wp:image {"sizeSlug":"large"} -->
-<figure class="wp-block-image size-large"><img src="https://wikimedia.vipdev.lndo.site/wp-content/themes/shiro/assets/src/svg/wiki-globe.svg" alt=""/></figure>
+<figure class="wp-block-image size-large"><img src="/wp-content/themes/shiro/assets/src/svg/wiki-globe.svg" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph -->
@@ -44,7 +44,7 @@ const PATTERN = <<<HTML
 
 <!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|16","padding":{"top":"var:preset|spacing|24","bottom":"var:preset|spacing|24"}}}} -->
 <div class="wp-block-column" style="padding-top:var(--wp--preset--spacing--24);padding-bottom:var(--wp--preset--spacing--24)"><!-- wp:image {"sizeSlug":"large"} -->
-<figure class="wp-block-image size-large"><img src="https://wikimedia.vipdev.lndo.site/wp-content/themes/shiro/assets/src/svg/wiki-friendship.svg" alt=""/></figure>
+<figure class="wp-block-image size-large"><img src="/wp-content/themes/shiro/assets/src/svg/wiki-friendship.svg" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph -->
@@ -62,7 +62,7 @@ const PATTERN = <<<HTML
 
 <!-- wp:column {"style":{"spacing":{"blockGap":"var:preset|spacing|16","padding":{"top":"var:preset|spacing|24","bottom":"var:preset|spacing|24"}}}} -->
 <div class="wp-block-column" style="padding-top:var(--wp--preset--spacing--24);padding-bottom:var(--wp--preset--spacing--24)"><!-- wp:image {"sizeSlug":"large"} -->
-<figure class="wp-block-image size-large"><img src="https://wikimedia.vipdev.lndo.site/wp-content/themes/shiro/assets/src/svg/wiki-collaboration.svg" alt=""/></figure>
+<figure class="wp-block-image size-large"><img src="/wp-content/themes/shiro/assets/src/svg/wiki-collaboration.svg" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph -->
@@ -86,7 +86,7 @@ const PATTERN = <<<HTML
 <!-- wp:columns {"align":"wide","className":"is-style-separators-between","style":{"spacing":{"margin":{"top":"var:preset|spacing|24"}}}} -->
 <div class="wp-block-columns alignwide is-style-separators-between" style="margin-top:var(--wp--preset--spacing--24)"><!-- wp:column {"width":"50%","style":{"spacing":{"padding":{"top":"var:preset|spacing|24","bottom":"var:preset|spacing|24"},"blockGap":"var:preset|spacing|16"}}} -->
 <div class="wp-block-column" style="padding-top:var(--wp--preset--spacing--24);padding-bottom:var(--wp--preset--spacing--24);flex-basis:50%"><!-- wp:image {"sizeSlug":"large"} -->
-<figure class="wp-block-image size-large"><img src="https://wikimedia.vipdev.lndo.site/wp-content/themes/shiro/assets/src/svg/wiki-global.svg" alt=""/></figure>
+<figure class="wp-block-image size-large"><img src="/wp-content/themes/shiro/assets/src/svg/wiki-global.svg" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph -->
@@ -96,7 +96,7 @@ const PATTERN = <<<HTML
 
 <!-- wp:column {"width":"50%","style":{"spacing":{"padding":{"top":"var:preset|spacing|24","bottom":"var:preset|spacing|24"},"blockGap":"var:preset|spacing|16"}}} -->
 <div class="wp-block-column" style="padding-top:var(--wp--preset--spacing--24);padding-bottom:var(--wp--preset--spacing--24);flex-basis:50%"><!-- wp:image {"sizeSlug":"large"} -->
-<figure class="wp-block-image size-large"><img src="https://wikimedia.vipdev.lndo.site/wp-content/themes/shiro/assets/src/svg/wiki-mobile.svg" alt=""/></figure>
+<figure class="wp-block-image size-large"><img src="/wp-content/themes/shiro/assets/src/svg/wiki-mobile.svg" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph -->
