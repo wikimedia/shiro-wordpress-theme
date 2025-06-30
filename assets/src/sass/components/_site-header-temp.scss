@@ -1,0 +1,35 @@
+.site-header {
+	.wp-block-site-logo {
+		margin-right: auto;
+	}
+
+	.wp-block-search__input {
+		line-height: 1.875;
+
+		&:not(:hover):not(:focus):not(:active) {
+			border-color: var(--wp--preset--color--border-light);
+		}
+	}
+}
+
+@include media("<desktop") {
+	.desktop-nav {
+		display: none !important;
+	}
+}
+
+@include media(">=desktop") {
+	.mobile-nav {
+		display: none !important;
+	}
+
+	.wmf-toc-jumplist {
+		position: absolute;
+		top: calc(128px + var(--wp-admin--admin-bar--height, 0));
+
+		&--pinned {
+			position: fixed;
+			top: calc(71px + var(--wp-admin--admin-bar--height, 0));
+		}
+	}
+}
