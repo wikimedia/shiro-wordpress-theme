@@ -40,8 +40,8 @@
 	}
 
 	&-nav {
-		margin-top: calc(var(--toc-h2-padding-top) * -1);
-		padding-top: var(--toc-h2-padding-top);
+		margin-top: calc(var(--toc-h2-padding-top) * -1) !important;
+		padding-top: var(--toc-h2-padding-top) !important;
 		pointer-events: none;
 		position: relative;
 

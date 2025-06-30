@@ -11,6 +11,7 @@
 }
 
 .hero-home {
+	@include alignfull-padded;
 	@include global-margin-bottom;
 
 	&:focus-within h2,
@@ -23,7 +24,6 @@
 	}
 
 	&__header {
-		@include global-padding;
 		height: rem( 454 );
 		left: 50%;
 		margin-left: -50vw;
@@ -42,15 +42,22 @@
 
 		@media (prefers-reduced-motion: no-preference) {
 			animation: hero-home-animation 300s linear infinite;
-	}
+		}
 
 		&--disable-animation {
 			animation-play-state: paused;
+		}
+
+		img {
+			width: 100%;
 		}
 	}
 
 	&__heading-wrapper {
 		@include alignwide;
+		@include global-padding;
+		box-sizing: content-box;
+		width: calc( 100% - $global-padding-added );
 	}
 
 	&__heading-color {
