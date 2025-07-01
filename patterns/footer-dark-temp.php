@@ -19,7 +19,7 @@
 <div class="wp-block-columns org-info-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|24"}},"layout":{"type":"grid","columnCount":2,"minimumColumnWidth":null}} -->
 <div class="wp-block-group"><!-- wp:image {"id":77235,"width":"auto","height":"80px","style":{"layout":{"rowSpan":2}}} -->
-<figure class="wp-block-image is-resized"><img src="https://wikimedia.vipdev.lndo.site/wp-content/themes/shiro/assets/src/images/logo-stacked-reverse.svg" alt="Wikimedia Foundation" class="wp-image-77235" style="width:auto;height:80px"/></figure>
+<figure class="wp-block-image is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/src/images/logo-stacked-reverse.svg" alt="Wikimedia Foundation" class="wp-image-77235" style="width:auto;height:80px"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"className":"has-small-font-size","style":{"layout":{"rowSpan":1,"columnSpan":1}},"fontSize":"medium"} -->
@@ -41,7 +41,7 @@
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|24"}},"layout":{"type":"grid","columnCount":2,"minimumColumnWidth":null}} -->
 <div class="wp-block-group"><!-- wp:image {"id":77309,"width":"auto","height":"80px","style":{"layout":{"columnSpan":1,"rowSpan":2}}} -->
-<figure class="wp-block-image is-resized"><img src="https://wikimedia.vipdev.lndo.site/wp-content/themes/shiro/assets/src/images/Wikipedia-logo-stacked-reverse.svg" alt="Wikipedia - The Free Encyclopedia" class="wp-image-77309" style="width:auto;height:80px"/></figure>
+<figure class="wp-block-image is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/src/images/Wikipedia-logo-stacked-reverse.svg" alt="Wikipedia - The Free Encyclopedia" class="wp-image-77309" style="width:auto;height:80px"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"className":"has-small-font-size","style":{"layout":{"columnSpan":1}},"fontSize":"medium"} -->
