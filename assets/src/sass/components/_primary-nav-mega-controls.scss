@@ -1,7 +1,10 @@
 // Styles related to the toggling of the primary nav mega menu blocks.
 .primary-nav {
+	gap: 0;
+
 	// Mega menu toggle buttons are used as top level nav items.
-	.wp-block-hm-mega-menu__toggle {
+	.wp-block-hm-mega-menu__toggle,
+	> .wp-block-navigation-item > a {
 		display: flex;
 		gap: var(--wp--preset--spacing--16);
 		justify-content: space-between;
@@ -29,10 +32,10 @@
 
 		@include media("<sm_desktop") {
 			font-weight: var(--wp--custom--font-weight--bold);
-			padding: rem(20) rem(16);
+			padding: rem(20) rem(16) !important;
 			width: 100%;
 
-			&:not(li:first-child > button) {
+			&:not(li:first-child > button):not(li:first-child > a) {
 				border-top: 1px solid var(--wp--preset--color--border-light);
 			}
 		}
