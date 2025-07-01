@@ -102,7 +102,7 @@
 
 	.footer-nav-columns {
 		@include media("<tablet") {
-			gap: var(--wp--preset--spacing--24);
+			row-gap: var(--wp--preset--spacing--24);
 
 			.wp-block-column {
 				border-bottom: 1px solid rgba(#fff, 0.5);

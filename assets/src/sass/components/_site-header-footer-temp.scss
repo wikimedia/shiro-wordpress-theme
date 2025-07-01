@@ -1,3 +1,4 @@
+// This entire file is intended to be removed when the new header and footer are deployed (JK - July 1, 2025).
 .site-header {
 	.wp-block-site-logo {
 		margin-right: auto;
@@ -54,5 +55,30 @@
 
 	.wmf-toc-jumplist__items {
 		justify-content: space-between;
+	}
+}
+
+
+ul.footer-nav-columns {
+	column-gap: var(--wp--preset--spacing--32);
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: repeat(2, auto);
+	grid-template-rows: repeat(7, 1fr);
+	width: 100%;
+
+	@include media(">=mobile") {
+		grid-template-columns: repeat(3, auto);
+		grid-template-rows: repeat(5, 1fr);
+	}
+
+	@include media(">=tablet") {
+		grid-template-columns: repeat(2, auto);
+		grid-template-rows: repeat(7, 1fr);
+	}
+
+	@include media(">=desktop") {
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(5, 1fr);
 	}
 }
