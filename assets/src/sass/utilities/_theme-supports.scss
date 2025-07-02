@@ -1,5 +1,6 @@
 // Definitions of editor styles registered as theme supports.
-.has-background > .wp-block-shiro-button.is-style-as-link::before {
+.has-background > .wp-block-shiro-button.is-style-as-link::before,
+.has-background > .wp-block-shiro-button.is-style-as-arrow-link::before {
 	filter: brightness(0);
 }
 
@@ -20,14 +21,20 @@ $color-palette-reverse:
 		color: var(--wp--preset--color--base) !important;
 
 		.wp-block-shiro-button.is-style-as-link::before,
+		.wp-block-shiro-button.is-style-as-arrow-link::before,
 		.is-style-transparent.has-icon .wp-block-button__link:not(:active)::before,
-		.is-style-as-link.has-icon .wp-block-button__link::before {
+		.is-style-as-link.has-icon .wp-block-button__link::before,
+		.is-style-as-arrow-link.has-icon .wp-block-button__link::before {
 			filter: brightness(0) invert(1) !important;
 		}
 
 		.wp-block-button__link {
 			border-color: var(--wp--preset--color--base) !important;
 			outline-color: var(--wp--preset--color--base) !important;
+		}
+
+		&.wp-block-separator {
+			color: var(--wp--preset--color--#{$color}) !important;
 		}
 	}
 }
@@ -81,7 +88,8 @@ $color-palette-old:
 		color: $text-color;
 		color: var(--text-color);
 
-		.wp-block-shiro-button.is-style-as-link {
+		.wp-block-shiro-button.is-style-as-link,
+		.wp-block-shiro-button.is-style-as-arrow-link {
 			color: $link-color !important;
 			color: var(--link-color) !important;
 
@@ -103,7 +111,8 @@ $color-palette-old:
 			}
 
 			.is-style-transparent .wp-block-button__link,
-			.is-style-as-link .wp-block-button__link {
+			.is-style-as-link .wp-block-button__link,
+			.is-style-as-arrow-link .wp-block-button__link {
 				color: inherit !important;
 
 				&:is(.has-icon a) {
