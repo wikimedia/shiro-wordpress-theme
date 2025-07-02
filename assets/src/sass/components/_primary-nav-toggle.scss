@@ -52,6 +52,7 @@
 				background-color: var(--wp--preset--color--black-05);
 				height: 100%;
 				overflow: hidden scroll;
+				padding-bottom: rem(100); // Allow for mobile browser controls.
 			}
 
 			.wp-block-navigation__responsive-dialog {
