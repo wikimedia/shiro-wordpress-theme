@@ -1,0 +1,61 @@
+.language-switcher-nav {
+	position: relative;
+
+	&:empty {
+		display: none;
+	}
+
+	.wp-block-hm-mega-menu__menu-container {
+		box-shadow: none !important;
+		left: 0;
+		top: 100%;
+		width: fluid( 150, 255 ) !important;
+
+		@include media("<mobile") {
+			left: auto;
+			right: 0;
+		}
+
+		.menu-container__close-button {
+			display: none;
+		}
+	}
+}
+
+.language-switcher {
+	&__button {
+		@include style-guide-dropdown-toggle();
+		text-transform: uppercase;
+
+		@include media(">=mobile") {
+			&::before {
+				background: url("../../assets/src/svg/individual/translate.svg");
+				background-repeat: no-repeat;
+				background-size: contain;
+				content: "";
+				display: block;
+				height: rem(20);
+				width: rem(20);
+			}
+		}
+
+		.wp-block-hm-mega-menu__toggle-icon {
+			display: none;
+		}
+	}
+
+	&__content {
+		@include style-guide-dropdown-contents;
+	}
+
+	&__language {
+		a {
+			@include style-guide-dropdown-item;
+		}
+
+		&--selected a {
+			color: var(--wp--preset--color--blue-aaa) !important;
+			text-decoration: underline currentColor 2px;
+		}
+	}
+}

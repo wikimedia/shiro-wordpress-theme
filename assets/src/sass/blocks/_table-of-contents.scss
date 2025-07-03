@@ -25,22 +25,23 @@
 	// Mobile specific styles for when the menu is open.
 	[data-dropdown-status="initialized"][data-visible="yes"] > & {
 		@media ( max-width: #{$core-gutenberg-break-small} ) {
-			background: $wmui-color-base90;
-			color: $wmui-color-base0;
-			display: block;
+			@include style-guide-dropdown-contents;
+			border: 0 none;
+			border-radius: rem(4);
 			left: 0;
 			max-height: calc(var(--full-window-height, 100vh) - 102px);
 			overflow: auto;
+			padding-top: 0 !important;
 			position: absolute;
 			top: var(--toc-h2-padding-top);
 			width: 100%;
-			z-index: 3000;
+			z-index: 1;
 		}
 	}
 
 	&-nav {
-		margin-top: calc(var(--toc-h2-padding-top) * -1);
-		padding-top: var(--toc-h2-padding-top);
+		margin-top: calc(var(--toc-h2-padding-top) * -1) !important;
+		padding-top: var(--toc-h2-padding-top) !important;
 		pointer-events: none;
 		position: relative;
 
@@ -72,17 +73,14 @@
 
 	&__button {
 		@include style-guide-dropdown-toggle();
-		background-color: $wmui-color-blue50;
+		background-color: var(--wp--preset--color--blue-aaa);
 		background-image: none;
 		border: 0 none;
-		color: $wmui-color-base100;
-		font-size: rem(16);
+		color: var(--wp--preset--color--base);
+		gap: 0;
 		font-weight: 700;
-		justify-content: flex-start;
-		line-height: 1.75;
-		padding: rem(10) 0 rem(14) rem(18);
+		padding: rem(11) 0 rem(11) rem(16);
 		text-align: left;
-		text-transform: none;
 		width: 100%;
 
 		&::after {
@@ -93,19 +91,20 @@
 			background-size: rem(16);
 			content: "";
 			display: block;
-			margin: rem(-10) 0 rem(-14);
-			padding: rem(10) rem(25) rem(14);
+			margin: rem(-11) 0;
+			padding-inline: rem(16);
 			position: relative;
 			width: rem(16);
-			z-index: 3001;
-		}
-
-		&:focus {
-			@include focus-ring(true, true);
+			z-index: 2;
 		}
 
 		&[aria-expanded=true]::after {
 			background: none;
+		}
+
+		&:hover {
+			background-color: var(--wp--preset--color--blue-aaa);
+			color: var(--wp--preset--color--base);
 		}
 
 		.btn-label-active-item {
@@ -126,20 +125,11 @@
 	}
 
 	&__link {
-		color: $wmui-color-base0;
-		display: block;
-		line-height: 1.75;
-		padding: rem(10) rem(27) rem(14) rem(18);
-		text-decoration: none;
+		@include style-guide-dropdown-item;
+		padding-inline: rem(16);
 
-		@media ( min-width: #{$core-gutenberg-break-small} ) {
-			font-size: rem(14);
-			padding: rem(9) rem(15);
-		}
-
-		&:hover {
-			background-color: $wmui-color-blue90;
-			text-decoration: none;
+		&:focus {
+			outline-offset: -4px;
 		}
 
 		&--active,
@@ -148,13 +138,10 @@
 		&--active-page,
 		&--active-page:hover,
 		&--active-page:focus {
-			background-color: $wmui-color-blue50;
-			color: $wmui-color-base100;
+			background-color: var(--wp--preset--color--blue-aaa);
+			color: var(--wp--preset--color--base);
 			font-weight: 700;
-		}
-
-		&:focus {
-			@include focus-ring(true, true);
+			outline-color: currentColor;
 		}
 
 		@media ( max-width: #{$core-gutenberg-break-small} ) {
@@ -176,7 +163,7 @@
 					width: rem(16);
 				}
 
-				&--active::after {
+				&--active-page::after {
 					@include style-guide-dropdown-caret-white();
 				}
 			}
@@ -220,5 +207,16 @@
 		a {
 			pointer-events: initial;
 		}
+	}
+}
+
+/**
+ * This prevents users from inadvertently scrolling the site when the toc nav is open.
+ */
+body.disable-body-scrolling {
+	overflow-y: hidden;
+
+	@media (min-width: $primary-nav-breakpoint) {
+		overflow-y: auto;
 	}
 }

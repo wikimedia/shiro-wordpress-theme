@@ -36,32 +36,32 @@ while ( have_posts() ) :
 		get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 	}
 	?>
-<div class="mw-980 mod-margin-bottom flex flex-medium report-template toc__section">
-	<div class="w-32p toc__sidebar">
-		<?php get_sidebar( 'report' ); ?>
-	</div>
-
-	<div class="w-68p report-content toc__content">
-		<h2 class="report-section-title">
-			<?php echo wp_kses( $template_args['h2_title'], array( 'span' => array( 'class' ) ) ); ?>
-		</h2>
-
-		<?php if ( $has_content ) : ?>
-		<div class="page-intro mod-margin-bottom wysiwyg">
-			<?php if ( ! has_post_thumbnail() ) : ?>
-				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
-			<?php endif; ?>
-			<?php echo wp_kses_post( $bodytext1 ); ?>
+	<div class="alignwide flex flex-medium report-template toc__section">
+		<div class="w-32p toc__sidebar">
+			<?php get_sidebar( 'report' ); ?>
 		</div>
-		<?php endif; ?>
 
-		<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
+		<div class="w-68p report-content toc__content">
+			<h2 class="report-section-title">
+				<?php echo wp_kses( $template_args['h2_title'], array( 'span' => array( 'class' ) ) ); ?>
+			</h2>
 
-		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
+			<?php if ( $has_content ) : ?>
+			<div class="page-intro">
+				<?php if ( ! has_post_thumbnail() ) : ?>
+					<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+				<?php endif; ?>
+				<?php echo wp_kses_post( $bodytext1 ); ?>
+			</div>
+			<?php endif; ?>
+
+			<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
+
+			<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
+		</div>
 	</div>
-</div>
-	<?php
 
+	<?php
 	$modules = array(
 		'stories',
 		'cta',
@@ -73,6 +73,9 @@ while ( have_posts() ) :
 	foreach ( $modules as $module ) {
 		get_template_part( 'template-parts/page/page', $module );
 	}
+	?>
+
+	<?php
 endwhile;
 
 get_footer();

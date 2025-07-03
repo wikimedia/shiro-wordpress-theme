@@ -1,0 +1,143 @@
+// Styles related to the toggling of the primary nav mega menu blocks.
+.primary-nav {
+	gap: 0;
+
+	// Mega menu toggle buttons are used as top level nav items.
+	.wp-block-hm-mega-menu__toggle,
+	> .wp-block-navigation-item > a {
+		display: flex;
+		gap: var(--wp--preset--spacing--16);
+		justify-content: space-between;
+		transition: text-decoration 300ms ease, border-color 300ms ease, background-color 300ms ease;
+
+		&:hover,
+		&:focus {
+			text-decoration: underline currentColor 2px;
+			text-underline-offset: fluid( 4, 8 ) !important;
+		}
+
+		&:focus-visible:not([aria-expanded=true]) {
+			border-radius: rem(10);
+			outline-offset: -6px;
+		}
+
+		&:focus:not(:focus-visible),
+		&:focus-visible:is([aria-expanded=true]) {
+			outline: none;
+		}
+
+		&:focus:not(:focus-visible):not(:hover) {
+			text-decoration: none;
+		}
+
+		@include media("<sm_desktop") {
+			font-weight: var(--wp--custom--font-weight--bold);
+			padding: rem(20) rem(16) !important;
+			width: 100%;
+
+			&:not(li:first-child > button):not(li:first-child > a) {
+				border-top: 1px solid var(--wp--preset--color--border-light);
+			}
+		}
+
+		@include media(">=sm_desktop") {
+			border-left: 1px solid transparent;
+			border-right: 1px solid transparent;
+			height: calc( 100% + 1px );
+			margin-bottom: -1px;
+			padding: var(--wp--preset--spacing--24) var(--wp--preset--spacing--16);
+
+			&[aria-expanded=true] {
+				background-color: var(--wp--preset--color--black-05);
+				border-color: var(--wp--preset--color--border-light);
+			}
+		}
+	}
+
+	.wp-block-hm-mega-menu__toggle-icon {
+		&,
+		svg {
+			margin: 0;
+		}
+
+		@include media("<sm_desktop") {
+			height: rem(24);
+			width: rem(24);
+
+			svg {
+				transform: none;
+			}
+
+			svg:is([aria-expanded=true] svg) {
+				transform: rotate(180deg);
+			}
+		}
+
+		@include media(">=sm_desktop") {
+			display: none;
+		}
+	}
+
+	// Mega menu content container.
+	.wp-block-hm-mega-menu__menu-container {
+		> .wp-block-group {
+			@include media("<sm_desktop") {
+				background-color: rgba(#fff, 0.5) !important;
+				border-top: 1px solid var(--wp--preset--color--border-light);
+			}
+		}
+
+		.menu-container__close-button {
+			border: 1px solid transparent;
+			color: var(--wp--preset--color--main);
+			opacity: 1;
+
+			&:hover {
+				border-color: var(--wp--preset--color--border-base);
+			}
+
+			&:focus-visible {
+				@include focus-outline(0, 50%);
+			}
+
+			@include media("<sm_desktop") {
+				display: none;
+			}
+
+			svg {
+				height: rem(24);
+				stroke: currentColor;
+				stroke-width: 0.5px;
+				width: rem(24);
+			}
+		}
+		
+		.alignwide &.menu-width-wide {
+			max-width: none !important;
+			width: 100% !important;
+
+			@include media(">=sm_desktop") {
+				@include global-negative-margin;
+				top: calc( 100% + 1px );
+				width: calc( 100% + $global-padding-added ) !important;
+			}
+		}
+	}
+
+	// Mega menu content container for an active menu item.
+	.wp-block-hm-mega-menu__toggle[aria-expanded=true] ~ .wp-block-hm-mega-menu__menu-container {
+		@include media("<sm_desktop") {
+			box-shadow: none;
+			position: static;
+		}
+
+		@include media(">=sm_desktop") {
+			box-shadow: var(--wp--preset--shadow--shadow-16-blur);
+			clip-path: inset(
+				0
+				calc( var(--wp--preset--spacing--16) * -1 )
+				calc( var(--wp--preset--spacing--16) * -1 )
+			);
+		}
+	}
+}

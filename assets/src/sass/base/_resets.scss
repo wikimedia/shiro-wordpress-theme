@@ -25,7 +25,6 @@ aside,
 blockquote,
 canvas,
 dd,
-div,
 dl,
 fieldset,
 figcaption,
@@ -95,7 +94,6 @@ dl {
 /*FORMS*/
 
 /*Correct defaults and some inheritance issues*/
-button,
 input,
 optgroup,
 select,
@@ -106,9 +104,6 @@ textarea {
   font: inherit;
   margin: 0;
   padding: 0;
-  outline: none;
-
-  appearance: none;
 }
 
 input[type="checkbox"] {

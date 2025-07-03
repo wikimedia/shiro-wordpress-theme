@@ -1,19 +1,25 @@
 .hero-report {
-
-	@include global-margin-bottom;
-
 	&__header {
-
+		@include alignwide;
 		@include block-style-background-color;
 		@include block-style-text-color;
 
 		display: flex;
-		padding: rem(28) rem(20);
+		padding-bottom: var(--wp--preset--spacing--80);
+		padding-top: var(--wp--preset--spacing--80);
+		position: relative;
 
-		@media ( min-width: #{$width-breakpoint-desktop} ) {
-			padding-left: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
-			padding-right: calc( ( 100vw - var(--wp--style--global--content-size) ) / 2 - var(--scrollbar, 0) / 2 );
+		&::before {
+			@include absolute-full-cover();
+			@include block-style-background-color;
+			width: 200vw;
+			left: -50%;
 		}
+	}
+
+	&__text-column,
+	&__image-container {
+		position: relative;
 	}
 
 	&__image-container {
@@ -43,7 +49,6 @@
 
 		@include has-font-size("large");
 		display: block;
-		font-family: $font-family-serif;
 		font-weight: 400;
 		line-height: 1.5;
 		margin-bottom: rem(5);
@@ -52,7 +57,6 @@
 	&__title {
 
 		@include has-font-size("jumbo");
-		font-family: $font-family-sans;
 		line-height: 1.25;
 		width: 100%;
 	}

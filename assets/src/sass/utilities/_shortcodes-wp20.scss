@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:math";
 
 $wp20_font: "Linux Libertine", "Georgia", "Times", serif;
@@ -45,6 +46,11 @@ $wp20_font: "Linux Libertine", "Georgia", "Times", serif;
 	}
 	li {
 		margin-bottom: 1.125rem;
+	}
+
+	#video {
+		overflow: hidden;
+		z-index: 0 !important;
 	}
 }
 
@@ -118,15 +124,15 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 
 @for $i from 1 to 12 {
 	.wp20-color-#{$i} {
-		border-color: #{nth($wp20_colors, $i)} !important;
+		border-color: #{list.nth($wp20_colors, $i)} !important;
 	}
 	.wp20-fill-color-#{$i},
 	.wp20-fill-color-#{$i}:hover,
 	.wp20-fill-color-#{$i}.active {
-		fill: #{nth($wp20_colors, $i)};
+		fill: #{list.nth($wp20_colors, $i)};
 	}
 	.wp20-underline-color-#{$i} {
-		border-bottom: 0.125em solid #{nth($wp20_colors, $i)};
+		border-bottom: 0.125em solid #{list.nth($wp20_colors, $i)};
 	}
 }
 
@@ -262,10 +268,10 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 @for $i from 1 to 11 {
 	.section[data-confetti-option="#{$i}"] {
 		.intro::after {
-			background-color: #{nth($wp20_colors, $i)};
+			background-color: #{list.nth($wp20_colors, $i)};
 		}
 		.intro::before {
-			background-color: #{nth($wp20_colors, $i + 1)};
+			background-color: #{list.nth($wp20_colors, $i + 1)};
 		}
 	}
 }
@@ -484,7 +490,7 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 
 	@for $i from 1 to 12 {
 		.story-content-container > div:nth-child(11n + #{$i}) .story-image {
-			border-color: #{nth($wp20_colors, $i)};
+			border-color: #{list.nth($wp20_colors, $i)};
 		}
 	}
 
@@ -532,7 +538,7 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 
 	@for $i from 1 to 12 {
 		.story-content-container > div:nth-child(11n + #{$i - 1}) blockquote {
-			border-color: #{nth($wp20_colors, $i)};
+			border-color: #{list.nth($wp20_colors, $i)};
 		}
 	}
 
@@ -687,21 +693,21 @@ $row-gutter-big: 0.625vw;
 		opacity: 1;
 	}
 
-	@for $i from 1 to length($symbols) {
+	@for $i from 1 to list.length($symbols) {
 		.grid-item:nth-child(#{$i}),
 		.grid-item.grid-text > div {
 			animation: fadeIn 0.1s;
-			animation-delay: #{nth($random_delay, $i) * 0.12}s;
+			animation-delay: #{list.nth($random_delay, $i) * 0.12}s;
 			animation-fill-mode: both;
 			opacity: 0;
 		}
 		.grid-item:nth-child(#{$i}) > div:nth-child(1) {
 			animation-direction: alternate;
-			background-image: url(#{nth($symbols, $i)});
+			background-image: url(#{list.nth($symbols, $i)});
 		}
 		.grid-item:nth-child(#{$i}) > div:nth-child(2) {
 			animation-direction: alternate-reverse;
-			background-image: url(#{nth($symbols_alt, $i)});
+			background-image: url(#{list.nth($symbols_alt, $i)});
 		}
 	}
 

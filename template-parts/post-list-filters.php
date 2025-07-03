@@ -35,11 +35,13 @@ $applied_filter_count = 0;
 if ( isset( $_GET['post_list_filters_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_GET['post_list_filters_nonce'] ), 'post_list_filters' ) ) {
 	// Search term.
 	if ( ! empty( $query_var_search_term ) ) {
+		// phpcs:ignore Universal.Operators.DisallowStandalonePostIncrementDecrement.PostIncrementFound
 		$applied_filter_count++;
 	}
 
 	// Date interval.
 	if ( ! empty( $query_var_date_from ) || ! empty( $query_var_date_to ) ) {
+		// phpcs:ignore Universal.Operators.DisallowStandalonePostIncrementDecrement.PostIncrementFound
 		$applied_filter_count++;
 	}
 
@@ -49,7 +51,7 @@ if ( isset( $_GET['post_list_filters_nonce'] ) && wp_verify_nonce( sanitize_text
 
 ?>
 
-<section class="post-list-filter mw-980">
+<section class="post-list-filter alignwide">
 
 	<div class="post-list-filter__head">
 
