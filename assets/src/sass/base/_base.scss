@@ -18,49 +18,36 @@
 
 /* Layout (block style)
 --------------------------------------------- */
-:root {
-	--wp--style--global--content-size: 980px;
-	--wp--style--global--wide-size: 1020px;
-}
-.single-post {
-	--wp--style--global--content-size: 40rem;
-	--wp--style--global--wide-size: 980px;
+.alignfull.has-background + .alignfull.has-background,
+.alignfull.has-background + .spotlight,
+.spotlight + .alignfull.has-background,
+.wp-block-spacer + * {
+	margin-top: 0;
 }
 
-@media screen and (max-width: #{$width-breakpoint-desktop}) {
-	:root {
-		--wp--style--global--content-size: calc( 100vw - 5rem );
-		--wp--style--global--wide-size: calc( 100vw - 5rem );
-	}
-	.single-post {
-		--wp--style--global--content-size: calc( 100vw - 5rem );
-		--wp--style--global--wide-size: calc( 100vw - 5rem );
-	}
+p.has-background,
+.wp-block-group.has-background {
+	@include global-padding;
+	padding-bottom: var(--wp--preset--spacing--24);
+	padding-top: var(--wp--preset--spacing--24);
 }
 
-@media screen and (max-width: #{$width-breakpoint-tablet}) {
-	:root {
-		--wp--style--global--content-size: calc( 100vw - 40px );
-		--wp--style--global--wide-size: calc( 100vw - 40px );
+.wp-block-group {
+	&.has-background.alignfull {
+		padding-bottom: var(--wp--preset--spacing--80);
+		padding-top: var(--wp--preset--spacing--80);
 	}
-	.single-post {
-		--wp--style--global--content-size: calc( 100vw - 40px );
-		--wp--style--global--wide-size: calc( 100vw - 40px );
-	}
-}
-
-.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)),
-// For now, top-level groups with background colors also behave as layout-constrained.
-.page .article-main > .has-background.alignfull > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-	max-width: var(--wp--style--global--content-size);
-	margin-left: auto !important;
-	margin-right: auto !important;
 }
 
 // These blocks behave as full-width containers.
 .wp-block-shiro-landing-page-hero,
 .wp-block-shiro-report-landing-hero {
-	max-width: unset;
+	max-width: none !important;
+}
+
+.wp-block-shiro-linked-toc-columns,
+.wp-block-shiro-toc-columns {
+	max-width: var(--wp--style--global--wide-size);
 }
 
 // Treat wide alignment in POSTS specifically as unconstrained. We do not
@@ -68,18 +55,11 @@
 .single-post .alignwide > .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
 	max-width: unset;
 }
-// Related blog post list on post pages is wide.
-.single-post article + .block-area.is-layout-constrained > * {
-	max-width: var(--wp--style--global--wide-size);
-}
-
-.is-layout-constrained > .alignwide {
-	max-width: var(--wp--style--global--wide-size);
-}
 
 // Some buttons may end up as inline-block, which breaks layout because
 // margin: auto does not work with that display mode.
-.is-layout-constrained > .wp-block-shiro-button.is-style-as-link {
+.is-layout-constrained > .wp-block-shiro-button.is-style-as-link,
+.is-layout-constrained > .wp-block-shiro-button.is-style-as-arrow-link {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;

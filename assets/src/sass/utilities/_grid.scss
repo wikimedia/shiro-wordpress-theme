@@ -19,9 +19,11 @@
 }
 
 .mw-980 {
-	margin: 0 auto;
-	max-width: rem(1060);
-	@include responsive-padding(0 20, 0 40);
+	@include alignwide;
+}
+
+.page-template-page-freeform .mw-980 {
+	@include global-padding;
 }
 
 .mw-900 {
@@ -124,8 +126,8 @@
 
 	@media ( min-width: #{$core-gutenberg-break-small} ) {
 		.w-32p > nav {
-			margin-right: rem(20);
-			padding-bottom: rem(62);
+			margin-right: var(--wp--preset--spacing--40);
+			padding-bottom: var(--wp--preset--spacing--64);
 		}
 	}
 }

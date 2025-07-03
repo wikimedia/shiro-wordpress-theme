@@ -5,6 +5,10 @@ export const name = 'core/columns',
 	styles = [
 		{
 			name: 'align-buttons-bottom',
-			label: __( 'Align Buttons Bottom', 'shiro' ),
+			label: __( 'Align buttons bottom', 'shiro' ),
+		},
+		{
+			name: 'separators-between',
+			label: __( 'Separators between', 'shiro' ),
 		},
 	];

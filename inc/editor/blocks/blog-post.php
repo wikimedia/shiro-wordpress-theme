@@ -63,6 +63,8 @@ function render_block( $attributes ) {
 	while ( $post_query->have_posts() ) {
 		$post_query->the_post();
 
+		$primary_category = wmf_get_primary_category( $id );
+
 		get_template_part(
 			'template-parts/modules/cards/card',
 			'horizontal',
@@ -73,7 +75,7 @@ function render_block( $attributes ) {
 				'authors'    => wmf_byline(),
 				'date'       => get_the_date(),
 				'excerpt'    => get_the_excerpt(),
-				'categories' => get_the_category(),
+				'category'   => $primary_category,
 				'class'      => 'blog-post' .
 					( ! empty( $attributes['is_featured'] ) ? ' blog-post--featured' : '' ) .
 					( ( ( $attributes['align'] ?? '' ) === 'wide' ) ? ' alignwide' : '' ),

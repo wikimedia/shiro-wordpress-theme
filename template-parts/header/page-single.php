@@ -57,5 +57,5 @@ $allowed_tags = [
 </div>
 
 </div>
-</header>
-<main id="content">
+</div><!-- Close out the secondary header. -->
+<main id="content" class="module-area is-layout-constrained has-global-padding">

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "shiro/donation-portal-form",
+  "title": "Donation Portal Form",
+  "category": "wikimedia",
+  "icon": "money",
+  "description": "A form to direct users to donate.wikimedia.org portal",
+  "attributes": {
+    "defaultAmount": {
+      "type": "number",
+      "default": 10,
+      "min": 1
+    },
+    "defaultCurrencyAmount": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "default": []
+    },
+    "fallbackText": {
+      "type": "string",
+      "default": ""
+    },
+    "showAnnual": {
+      "type": "boolean",
+      "default": false
+    },
+    "medium": {
+      "type": "string",
+      "default": "wmfSite"
+    },
+    "campaign": {
+      "type": "string",
+      "default": "herobarButton"
+    },
+    "source": {
+      "type": "string",
+      "default": "10"
+    },
+    "unsupportedCountries": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "AE",
+        "AF",
+        "AX",
+        "BY",
+        "CD",
+        "CI",
+        "CU",
+        "FI",
+        "ID",
+        "IQ",
+        "IR",
+        "KP",
+        "KR",
+        "LB",
+        "LY",
+        "MM",
+        "PY",
+        "RU",
+        "SA",
+        "SD",
+        "SO",
+        "SS",
+        "SY",
+        "TM",
+        "TR",
+        "UA",
+        "UZ",
+        "XK",
+        "YE",
+        "ZW"
+      ]
+    }
+  },
+  "example": {},
+  "render": "file:/render.php",
+  "editorScript": "file:./index.js",
+  "style": "file:./index.css"
+}

@@ -1,0 +1,16 @@
+.by-the-numbers-stats .wp-block-column:has(.wp-block-image) {
+	@include media("<tablet") {
+		align-items: center;
+		display: grid;
+		gap: 0 rem(16);
+		grid-template-columns: rem(102) 1fr;
+
+		.wp-block-image {
+			grid-row: 1 / span 10;
+		}
+
+		.wp-block-image + p {
+			margin-top: 0;
+		}
+	}
+}
