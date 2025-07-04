@@ -1,7 +1,14 @@
 @import "../../../sass/helpers/mixins/mixins-links";
 
 .wp-block-shiro-interactive-card {
-	border-radius: 4px;
+	border-radius: 0.25rem;
+	position: relative;
+
+	&:focus-within {
+		border-radius: 0.125rem;
+		outline: 2px solid var( --wp--preset--color--blue-aaa );
+		outline-offset: max( 2px, 0.1em );
+	}
 
 	.interactive-card-heading,
 	.interactive-card-subheading {
@@ -14,5 +21,24 @@
 
 	.interactive-card-heading {
 		@include style-guide-arrow();
+		// Reset position so we can make card clickable.
+		position: static;
+
+		a {
+			text-decoration: none !important;
+
+			&:hover,
+			&:focus-within {
+				outline: none !important;
+			}
+		}
+	}
+
+	// Make whole card clickable.
+	.interactive-card-heading:not(.block-editor-rich-text__editable) a::after {
+		content: "";
+		inset: 0;
+		position: absolute;
+		z-index: 10;
 	}
 }
