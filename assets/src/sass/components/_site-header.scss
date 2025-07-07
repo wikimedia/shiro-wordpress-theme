@@ -34,7 +34,11 @@
 	}
 
 	.donate-nav {
-		@include media("<mobile") {
+		@include media("<tablet") {
+			max-width: 36%;
+		}
+
+		@include media("<30rem") {
 			max-width: 24.5%;
 		}
 
