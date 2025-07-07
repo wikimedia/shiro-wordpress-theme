@@ -42,7 +42,7 @@ function register_block(): void {
  */
 function render_block( $attributes ) {
 	$translations = array_filter( wmf_get_translations(), function ( $translation ) {
-		return $translation['uri'] !== '';
+		return ! empty( $translation['uri'] );
 	} );
 
 	if ( empty( $translations ) ) {
