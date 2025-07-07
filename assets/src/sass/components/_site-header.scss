@@ -37,7 +37,9 @@
 		.wp-block-button__link {
 			@include media("<mobile") {
 				font-size: rem(16);
-				line-height: var(--wp--custom--line-height--relaxed);
+				margin-block: rem(4);
+				max-width: rem(84);
+				padding-block: rem(9);
 				padding-inline: rem(8);
 			}
 		}
