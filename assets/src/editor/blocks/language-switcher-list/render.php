@@ -10,7 +10,7 @@
 $is_editor = $attributes['isEditor'] ?? false;
 
 $translations = array_filter( wmf_get_translations(), function ( $translation ) {
-	return $translation['uri'] !== '';
+	return ! empty( $translation['uri'] );
 } );
 
 if ( empty( $translations ) && ! $is_editor ) {
