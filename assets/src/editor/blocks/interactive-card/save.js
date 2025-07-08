@@ -19,7 +19,7 @@ const Save = ( props ) => {
 		<div { ...blockProps }>
 			<div className="interactive-card-content">
 				<RichText.Content
-					className="interactive-card-heading"
+					className="interactive-card-heading is-style-h2"
 					tagName={ headingTag }
 					value={ headingText }
 				/>

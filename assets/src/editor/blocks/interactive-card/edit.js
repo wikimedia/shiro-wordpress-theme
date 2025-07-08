@@ -108,7 +108,7 @@ const Edit = ( props ) => {
 				<div className="interactive-card-content">
 					<RichText
 						allowedFormats={ [ 'core/link' ] }
-						className="interactive-card-heading"
+						className="interactive-card-heading is-style-h2"
 						placeholder={ __( 'Heading', 'shiro-admin' ) }
 						tagName={ headingTag }
 						value={ headingText }
