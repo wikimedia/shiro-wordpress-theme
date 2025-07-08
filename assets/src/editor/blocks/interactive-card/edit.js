@@ -104,7 +104,7 @@ const Edit = ( props ) => {
 			</BlockControls>
 
 			<div { ...blockProps }>
-				<div>
+				<div className="interactive-card-content">
 					<RichText
 						allowedFormats={ [ 'core/link' ] }
 						className="interactive-card-heading"
@@ -116,16 +116,17 @@ const Edit = ( props ) => {
 						} }
 					/>
 
-					<RichText
-						allowedFormats={ [ 'core/bold', 'core/italic' ] }
-						className="interactive-card-subheading"
-						placeholder={ __( 'Subheading content...', 'shiro-admin' ) }
-						tagName='p'
-						value={ subHeadingText }
-						onChange={ ( value ) => {
-							setAttributes( { subHeadingText: value } );
-						} }
-					/>
+					<div className="interactive-card-subheading">
+						<RichText
+							allowedFormats={ [ 'core/bold', 'core/italic' ] }
+							placeholder={ __( 'Subheading content...', 'shiro-admin' ) }
+							tagName='p'
+							value={ subHeadingText }
+							onChange={ ( value ) => {
+								setAttributes( { subHeadingText: value } );
+							} }
+						/>
+					</div>
 				</div>
 			</div>
 		</>

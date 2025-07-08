@@ -17,18 +17,19 @@ const Save = ( props ) => {
 
 	return (
 		<div { ...blockProps }>
-			<div>
+			<div className="interactive-card-content">
 				<RichText.Content
 					className="interactive-card-heading"
 					tagName={ headingTag }
 					value={ headingText }
 				/>
 
-				<RichText.Content
-					className="interactive-card-subheading"
-					tagName='p'
-					value={ subHeadingText }
-				/>
+				<div className="interactive-card-subheading">
+					<RichText.Content
+						tagName='p'
+						value={ subHeadingText }
+					/>
+				</div>
 			</div>
 		</div>
 	);

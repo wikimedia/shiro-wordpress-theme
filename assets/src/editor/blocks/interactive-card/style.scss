@@ -2,6 +2,7 @@
 
 .wp-block-shiro-interactive-card {
 	border-radius: 0.25rem;
+	overflow: hidden;
 	position: relative;
 
 	&:focus-within {
@@ -11,18 +12,23 @@
 	}
 
 	.interactive-card-heading,
-	.interactive-card-subheading {
+	.interactive-card-subheading p {
 		margin-block-end: 0;
-	}
-
-	.interactive-card-subheading {
-		margin-block-start: 1rem;
 	}
 
 	.interactive-card-heading {
 		@include style-guide-arrow();
 		// Reset position so we can make card clickable.
 		position: static;
+		// Overwrite block editor inline style that breaks parent grid.
+		min-width: auto !important;
+
+		&:focus,
+		&:hover {
+			&::after {
+				font-weight: normal;
+			}
+		}
 
 		a {
 			text-decoration: none !important;
@@ -40,5 +46,79 @@
 		inset: 0;
 		position: absolute;
 		z-index: 10;
+	}
+
+	// Visually hide card content.
+	.interactive-card-content {
+		display: grid;
+		grid-template-columns: 0fr;
+		justify-content: center;
+		transition: grid-template-columns 0.35s ease, margin 0.35s;
+	}
+
+	.interactive-card-heading::after {
+		opacity: 0;
+		transform: scale(0.95) translateX(-1rem);
+		transform-origin: center right;
+		transition: all 0.25s ease-in-out;
+		transition-delay: 0.2s;
+		width: 0;
+	}
+
+	.interactive-card-subheading {
+		display: grid;
+		grid-template-rows: 0fr;
+		transition: grid-template-rows 0.35s ease, margin 0.35s;
+
+		p {
+			overflow: hidden;
+		}
+	}
+}
+
+// Reveal content on hovwer and focus.
+.wp-block-shiro-interactive-card:not(.block-editor-block-list__block),
+.wp-block-shiro-interactive-card.is-selected {
+	&:focus-within,
+	&:hover {
+		.interactive-card-content {
+			grid-template-columns: 1fr;
+		}
+
+		.interactive-card-heading::after {
+			opacity: 1;
+			transform: scale(1) translateX(0);
+			width: auto;
+		}
+
+		.interactive-card-subheading {
+			grid-template-rows: 1fr;
+			margin-block-start: 1rem;
+		}
+	}
+}
+
+// Overwrite interactivity for reduce motion users.
+@media (prefers-reduced-motion) {
+	.wp-block-shiro-interactive-card {
+		.interactive-card-content {
+			grid-template-columns: 1fr !important;
+		}
+
+		.interactive-card-heading::after,
+		.interactive-card-subheading {
+			transition: none !important;
+		}
+
+		.interactive-card-heading::after {
+			opacity: 1 !important;
+			transform: scale(1) translateX(0) !important;
+			width: auto !important;
+		}
+
+		.interactive-card-subheading {
+			grid-template-rows: 1fr !important;
+			margin-block-start: 1rem !important;
+		}
 	}
 }
