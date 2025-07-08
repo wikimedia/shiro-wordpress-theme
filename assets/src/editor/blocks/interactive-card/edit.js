@@ -21,6 +21,7 @@ const Edit = ( props ) => {
 		headingText,
 		subHeadingText
 	} = attributes;
+
 	const blockProps = useBlockProps();
 
 	const activeIcon = headingTag => {
