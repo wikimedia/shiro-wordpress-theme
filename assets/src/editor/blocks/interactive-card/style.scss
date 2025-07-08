@@ -13,6 +13,17 @@
 		min-height: auto !important;
 	}
 
+	&.has-background {
+		color: var( --wp--preset--color--base );
+	}
+
+	// Add transparent background image overlay.
+	&.has-background[style*='background-image:'] {
+		background-blend-mode: darken;
+		// Overwrite background-color set in editor.
+		background-color: rgba( 0, 0, 0, 0.6 ) !important;
+	}
+
 	&:focus-within {
 		border-radius: 0.125rem;
 		outline: 2px solid var( --wp--preset--color--blue-aaa );
