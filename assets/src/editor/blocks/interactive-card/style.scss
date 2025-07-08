@@ -2,8 +2,15 @@
 
 .wp-block-shiro-interactive-card {
 	border-radius: 0.25rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
 	overflow: hidden;
 	position: relative;
+
+	@media only screen and ( min-width : 625px ) {
+		min-height: 310px;
+	}
 
 	&:focus-within {
 		border-radius: 0.125rem;
@@ -48,14 +55,6 @@
 		z-index: 10;
 	}
 
-	// Visually hide card content.
-	.interactive-card-content {
-		display: grid;
-		grid-template-columns: 0fr;
-		justify-content: center;
-		transition: grid-template-columns 0.35s ease, margin 0.35s;
-	}
-
 	.interactive-card-heading::after {
 		opacity: 0;
 		transform: scale(0.95) translateX(-1rem);
@@ -69,6 +68,8 @@
 		display: grid;
 		grid-template-rows: 0fr;
 		transition: grid-template-rows 0.35s ease, margin 0.35s;
+		// Ask browser to use hardware acceleration if avilable.
+		will-change: transform;
 
 		p {
 			overflow: hidden;
@@ -81,10 +82,6 @@
 .wp-block-shiro-interactive-card.is-selected {
 	&:focus-within,
 	&:hover {
-		.interactive-card-content {
-			grid-template-columns: 1fr;
-		}
-
 		.interactive-card-heading::after {
 			opacity: 1;
 			transform: scale(1) translateX(0);
@@ -101,10 +98,6 @@
 // Overwrite interactivity for reduce motion users.
 @media (prefers-reduced-motion) {
 	.wp-block-shiro-interactive-card {
-		.interactive-card-content {
-			grid-template-columns: 1fr !important;
-		}
-
 		.interactive-card-heading::after,
 		.interactive-card-subheading {
 			transition: none !important;
