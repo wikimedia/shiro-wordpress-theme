@@ -8,8 +8,9 @@
 	overflow: hidden;
 	position: relative;
 
-	@media only screen and ( min-width : 625px ) {
-		min-height: 310px;
+	@media only screen and ( max-width : 624px ) {
+		// Overwrite inline value.
+		min-height: auto !important;
 	}
 
 	&:focus-within {

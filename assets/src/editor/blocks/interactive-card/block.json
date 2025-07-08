@@ -16,6 +16,9 @@
 				"background": true,
 				"text": false
 			},
+			"dimensions": {
+				"minHeight": true
+			},
 			"spacing": {
 				"padding": true,
 				"margin": [
