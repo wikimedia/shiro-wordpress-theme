@@ -98,15 +98,8 @@
 // Overwrite interactivity for reduce motion users.
 @media (prefers-reduced-motion) {
 	.wp-block-shiro-interactive-card {
-		.interactive-card-heading::after,
 		.interactive-card-subheading {
 			transition: none !important;
-		}
-
-		.interactive-card-heading::after {
-			opacity: 1 !important;
-			transform: scale(1) translateX(0) !important;
-			width: auto !important;
 		}
 
 		.interactive-card-subheading {
