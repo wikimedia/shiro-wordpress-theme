@@ -79,20 +79,29 @@
 }
 
 // Reveal content on hover and focus.
-.wp-block-shiro-interactive-card:not(.block-editor-block-list__block),
+.wp-block-shiro-interactive-card:not(.block-editor-block-list__block):focus-within,
+.wp-block-shiro-interactive-card:not(.block-editor-block-list__block):hover,
 .wp-block-shiro-interactive-card.is-selected {
-	&:focus-within,
-	&:hover {
-		.interactive-card-heading::after {
-			opacity: 1;
-			transform: scale(1) translateX(0);
-			width: auto;
-		}
+	.interactive-card-heading::after {
+		opacity: 1;
+		transform: scale(1) translateX(0);
+		width: auto;
+	}
 
-		.interactive-card-subheading {
-			grid-template-rows: 1fr;
-			margin-block-start: 1rem;
-		}
+	.interactive-card-subheading {
+		grid-template-rows: 1fr;
+		margin-block-start: 1rem;
+	}
+}
+
+.wp-block-shiro-interactive-card.block-editor-block-list__block {
+	// Make sure heading is not taking extra height in editor.
+	.interactive-card-heading {
+		display: inline-block;
+	}
+
+	&.is-selected .interactive-card-subheading {
+		transition: none;
 	}
 }
 
