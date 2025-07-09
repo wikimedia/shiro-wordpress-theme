@@ -2,51 +2,86 @@
 @import "../helpers/mixins/mixins-buttons";
 
 .shiro-carousel {
+	--carousel-side-padding: clamp( 1.25rem, 1.25rem + ( ( 1vw - 0.23375rem ) * 2.91 ), 2.5rem );
+	--carousel-vertical-padding: clamp( 1.25rem, 1.25rem + ( ( 1vw - 0.375rem ) * 12.14 ), 7.625rem );
+	--carousel-arrow-position: clamp( 0.9375rem, 0.9375rem + ( ( 1vw - 0.51875rem ) * 8.03 ), 4rem );
+	container-type: inline-size;
 	// stylelint-disable selector-class-pattern
 	margin-bottom: rem(48);
 
 	.splide__arrow {
 		@include button-transparent;
-		border: none;
+		background: radial-gradient( $color-black 50%, $color-white 50% );
+		border: 2px solid #dedede;
+		border-radius: 50%;
+		bottom: 1rem;
 		box-sizing: content-box;
 		height: 40px;
+		padding: 0;
 		position: absolute;
-		top: 50%;
 		z-index: 1;
 
 		&--prev {
-			left: 0;
-			transform: translateY(-50%) rotate(180deg);
+			left: var( --carousel-side-padding );
+			transform: rotate(180deg);
 		}
 
 		&--next {
-			right: 0;
-			transform: translateY(-50%);
+			right: var( --carousel-side-padding );
+		}
+
+		&:focus,
+		&:hover {
+			border-color: #dedede;
+			border-radius: 50%;
+			box-shadow: none;
+		}
+
+		svg {
+			fill: $color-white;
 		}
 	}
 
+	.splide__arrow[disabled] {
+		svg {
+			fill: darken( $color-white, 30 );
+		}
+	}
+
+	.wp-block-group.has-background.splide__slide {
+		padding-top: var( --carousel-vertical-padding );
+		padding-right: var( --carousel-side-padding );
+		padding-bottom: 5.25rem;
+		padding-left: var( --carousel-side-padding );
+	}
+
 	.splide__pagination {
-		background: rgba($wmui-color-base90, 0.5);
-		bottom: 6px;
+		background: #{$color-black}60;
+		bottom: 1.5rem;
+		border-radius: 3px;
 		left: 50%;
-		padding: 6px 12px;
+		padding: 2px 4px;
 		position: absolute;
 		transform: translateX(-50%);
 		z-index: 1;
 
 		button {
-			background-color: $wmui-color-base0;
-			border: none;
+			background-color: $color-white;
+			border: 1px solid $color-white;
 			border-radius: 6px;
-			box-shadow: $box-shadow-dialog;
 			cursor: pointer;
-			height: 12px;
+			height: 10px;
 			margin: 6px;
-			opacity: 0.5;
-			width: 12px;
+			width: 10px;
+
+			@container ( min-width: 600px ) {
+				height: 12px;
+				width: 12px;
+			}
 
 			&.is-active {
-				opacity: 1;
+				background-color: transparent;
+				border-color: $color-white;
 			}
 		}
 	}
@@ -57,32 +92,82 @@
 	}
 }
 
-@each $name, $background-color, $text-color, $accent-color, $button-style in $block-styles  {
-	.is-style-#{$name} {
-		.splide__arrow {
-			background-color: #{$background-color}60;
-			--background-color: #{$background-color};
+.shiro-carousel:not(.alignfull) {
+	.splide__arrow {
+		@container ( min-width: 788px ) {
+			top: 50%;
+			bottom: initial;
+		}
 
-			&:hover,
-			.hero-home__heading-color {
-				background-color: #{$background-color};
-			}
-
-			&[disabled] {
-				background-color: #{$background-color};
-				opacity: 0.5;
-			}
-
-			svg {
-				fill: $text-color;
+		&--prev {
+			@container ( min-width: 788px ) {
+				left: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.
+				transform: translateY(-50%) rotate(180deg);
 			}
 		}
 
+		&--next {
+			@container ( min-width: 788px ) {
+				right: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.;
+				transform: translateY(-50%);
+			}
+		}
+	}
+
+	.wp-block-group.has-background.splide__slide {
+		@container ( min-width: 788px ) {
+			padding-bottom: var( --carousel-vertical-padding );
+		}
+	}
+}
+
+.shiro-carousel.alignwide {
+	--carousel-arrow-position: clamp( 0.9375rem, 0.9375rem + ( ( 1vw - 0.77625rem ) * 24.75 ), 4rem );
+}
+
+.shiro-carousel.alignfull {
+	--carousel-arrow-position: clamp( 1rem, 1rem + ( ( 1vw - 0.75rem ) * 10 ), 2.5rem );
+	// Increase the max-width for slide content when using a full-width carousel.
+	.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+		max-width: 1200px;
+	}
+
+	.splide__arrow {
+		@container ( min-width: 1200px ) {
+			top: 50%;
+			bottom: initial;
+		}
+
+		&--prev {
+			@container ( min-width: 1200px ) {
+				left: var( --carousel-arrow-position );
+				transform: translateY(-50%) rotate(180deg);
+			}
+		}
+
+		&--next {
+			@container ( min-width: 1200px ) {
+				right: var( --carousel-arrow-position );
+				transform: translateY(-50%);
+			}
+		}
+	}
+
+	.wp-block-group.has-background.splide__slide {
+		@container ( min-width: 1200px ) {
+			padding-bottom: var( --carousel-vertical-padding );
+		}
+	}
+}
+
+@each $name, $background-color, $text-color, $accent-color, $button-style in $block-styles  {
+	.is-style-#{$name} {
 		.splide__pagination {
 			background: rgba($background-color, 0.5);
 
 			button {
 				background-color: $text-color;
+				border-color: $text-color;
 			}
 		}
 	}
