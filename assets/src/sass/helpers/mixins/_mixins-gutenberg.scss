@@ -28,3 +28,10 @@ $global-padding-added: calc( var(--wp--style--root--padding-left) + var(--wp--st
 	max-width: var(--wp--style--global--wide-size);
 	width: 100%;
 }
+
+@mixin alignwide() {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: var(--wp--style--global--wide-size);
+	width: 100%;
+}
