@@ -79,6 +79,7 @@
 
 		li {
 			@include has-font-size("small");
+			align-items: flex-start;
 			display: flex;
 			gap: var(--wp--preset--spacing--16);
 			line-height: 1.5;
@@ -89,7 +90,6 @@
 			accent-color: var(--wp--preset--color--border-base);
 			appearance: none;
 			border-radius: rem(4);
-			height: 0;
 			margin: 0;
 			outline: 2px solid transparent;
 			outline-offset: 2px;
