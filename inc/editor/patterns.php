@@ -74,6 +74,12 @@ function register_pattern() {
 		'content' => BlogList\PATTERN,
 	] );
 
+	register_block_pattern( ByTheNumbersStats\NAME, [
+		'title' => __( 'By the numbers stats section', 'shiro-admin' ),
+		'categories' => [ MAIN_CATEGORY_NAME ],
+		'content' => ByTheNumbersStats\PATTERN,
+	] );
+
 	register_block_pattern( CommunicationModule\NAME, [
 		'title' => __( 'Communication module', 'shiro-admin' ),
 		'categories' => [ MAIN_CATEGORY_NAME ],

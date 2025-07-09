@@ -58,7 +58,8 @@ p.has-background,
 
 // Some buttons may end up as inline-block, which breaks layout because
 // margin: auto does not work with that display mode.
-.is-layout-constrained > .wp-block-shiro-button.is-style-as-link {
+.is-layout-constrained > .wp-block-shiro-button.is-style-as-link,
+.is-layout-constrained > .wp-block-shiro-button.is-style-as-arrow-link {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;

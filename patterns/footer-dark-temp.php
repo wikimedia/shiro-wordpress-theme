@@ -1,7 +1,7 @@
 <?php
 /**
- * Title: Footer
- * Slug: shiro/footer-dark
+ * Title: Footer Dark Temp
+ * Slug: shiro/footer-dark-temp
  * Description:
  * Categories: footer
  * Keywords:
@@ -70,20 +70,28 @@
 <!-- /wp:separator -->
 
 <!-- wp:columns {"metadata":{"name":"Nav Columns"},"className":"footer-nav-columns","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|40"}}}} -->
-<div class="wp-block-columns footer-nav-columns"><!-- wp:column {"metadata":{"name":"Nav Column"}} -->
-<div class="wp-block-column"><!-- wp:navigation {"ref":77310,"overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|16"}},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} /--></div>
+<div class="wp-block-columns footer-nav-columns"><!-- wp:column {"width":"50%","metadata":{"name":"Nav Column"},"style":{"spacing":{"blockGap":"var:preset|spacing|16"}}} -->
+<div class="wp-block-column" style="flex-basis:50%"><!-- wp:heading {"style":{"typography":{"textTransform":"uppercase"}},"fontSize":"medium"} -->
+<h2 class="wp-block-heading has-medium-font-size" style="text-transform:uppercase">Projects</h2>
+<!-- /wp:heading -->
+
+<!-- wp:navigation {"ref":77581,"overlayMenu":"never","className":"footer-nav-columns","style":{"spacing":{"blockGap":"var:preset|spacing|16"}},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} /--></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"metadata":{"name":"Nav Column"}} -->
-<div class="wp-block-column"><!-- wp:navigation {"ref":77314,"overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|16"}},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} /--></div>
+<!-- wp:column {"metadata":{"name":"Nav Column"},"style":{"spacing":{"blockGap":"var:preset|spacing|16"}}} -->
+<div class="wp-block-column"><!-- wp:heading {"style":{"typography":{"textTransform":"uppercase"}},"fontSize":"medium"} -->
+<h2 class="wp-block-heading has-medium-font-size" style="text-transform:uppercase">Movement Affiliates</h2>
+<!-- /wp:heading -->
+
+<!-- wp:navigation {"ref":77580,"overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|16"}},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} /--></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"metadata":{"name":"Nav Column"}} -->
-<div class="wp-block-column"><!-- wp:navigation {"ref":77316,"overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|16"}},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} /--></div>
-<!-- /wp:column -->
+<!-- wp:column {"metadata":{"name":"Nav Column"},"style":{"spacing":{"blockGap":"var:preset|spacing|16"}}} -->
+<div class="wp-block-column"><!-- wp:heading {"style":{"typography":{"textTransform":"uppercase"}},"fontSize":"medium"} -->
+<h2 class="wp-block-heading has-medium-font-size" style="text-transform:uppercase">Other</h2>
+<!-- /wp:heading -->
 
-<!-- wp:column {"metadata":{"name":"Nav Column"}} -->
-<div class="wp-block-column"><!-- wp:navigation {"ref":77249,"overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|16"}},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} /--></div>
+<!-- wp:navigation {"ref":77249,"overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|16"}},"layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap"}} /--></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
