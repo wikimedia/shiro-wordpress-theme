@@ -22,6 +22,14 @@
 			}
 		}
 
+		.mc_form_inside:not( .wp-block-mailchimp-mailchimp.alignfull div ) {
+			@include media(">=tablet") {
+				align-items: start;
+				display: grid;
+				grid-template-columns: 1fr auto;
+			}
+		}
+
 		.block-editor-block-list__layout {
 			display: flex;
 			flex-direction: column;
