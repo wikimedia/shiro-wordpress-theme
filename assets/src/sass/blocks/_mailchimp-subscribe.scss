@@ -1,15 +1,24 @@
 .block-editor-block-list__block.wp-block-mailchimp-mailchimp,
 .mc_container {
-	@include alignwide;
-	@include global-padding;
-	display: grid;
-	column-gap: var(--wp--preset--spacing--64);
-	padding-bottom: var(--wp--preset--spacing--80);
-	padding-top: var(--wp--preset--spacing--80);
-	row-gap: var(--wp--preset--spacing--16);
+	&:is( .wp-block-mailchimp-mailchimp.alignfull > div ) {
+		@include alignwide;
+		@include global-padding;
+		box-sizing: content-box;
+		display: grid;
+		column-gap: var(--wp--preset--spacing--64);
+		padding-bottom: var(--wp--preset--spacing--80);
+		padding-top: var(--wp--preset--spacing--80);
+		row-gap: var(--wp--preset--spacing--16);
+		width: calc( 100% - $global-padding-added );
 
-	@media (min-width: #{ ($width-breakpoint-tablet) }) {
-		grid-template-columns: 1fr 1fr;
+		@include media(">=tablet") {
+			grid-template-columns: 1fr 1fr;
+
+			#mc_signup {
+				grid-column: 2;
+				grid-row: 1 / span 2;
+			}
+		}
 	}
 
 	h2 {
@@ -24,20 +33,13 @@
 		font-weight: 400;
 	}
 
-	@media (min-width: #{ ($width-breakpoint-tablet) }) {
-		#mc_signup {
-			grid-column: 2;
-			grid-row: 1 / span 2;
-		}
-	}
-
 	.mc_form_inside {
 		align-items: center;
 		display: flex;
 		flex-wrap: wrap;
 		gap: rem(16);
 
-		@media (max-width: #{ ($width-breakpoint-tablet) }) {
+		@include media("<tablet") {
 			flex-flow: column nowrap;
 
 			* {
@@ -62,10 +64,59 @@
 		margin: 0;
 	}
 
+	.wp-block-mailchimp-mailchimp-form-field:has(input[type=radio]) {
+		order: 10;
+
+		.mc_var_label {
+			@include visually-hidden;
+		}
+
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			@include has-font-size("small");
+			display: flex;
+			gap: var(--wp--preset--spacing--16);
+			line-height: 1.5;
+			margin: 0;
+		}
+
+		input[type=radio] {
+			accent-color: var(--wp--preset--color--border-base);
+			appearance: none;
+			border-radius: rem(4);
+			height: 0;
+			margin: 0;
+			outline: 2px solid transparent;
+			outline-offset: 2px;
+			position: relative;
+			padding: rem(8);
+			transition: background-color 300ms ease;
+			width: 0;
+
+			&:checked {
+				background-color: var(--wp--preset--color--main);
+				outline-color: var(--wp--preset--color--main);
+			}
+		}
+	}
+
+	#mc_unsub_link {
+		order: 11;
+	}
+
+	#mc-indicates-required {
+		display: none;
+	}
+
 	#mc_signup_submit {
 		width: 100%;
 
-		@media (min-width: #{ ($width-breakpoint-tablet) }) {
+		@include media(">=tablet") {
 			width: auto;
 		}
 	}
@@ -81,4 +132,10 @@
 			font-size: inherit;
 		}
 	}
+}
+
+.wp-block-group.has-background .wp-block-mailchimp-mailchimp + p {
+	@include has-font-size("small");
+	line-height: 1.5;
+	margin-left: calc( rem(18) + var(--wp--preset--spacing--16) ); // Width of the radio button plus the gap.
 }
