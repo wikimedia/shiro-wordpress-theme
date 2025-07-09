@@ -279,6 +279,7 @@ require get_template_directory() . '/inc/editor/patterns/card-columns.php';
 require get_template_directory() . '/inc/editor/patterns/donation-bar.php';
 require get_template_directory() . '/inc/editor/patterns/fact-columns.php';
 require get_template_directory() . '/inc/editor/patterns/link-columns.php';
+require get_template_directory() . '/inc/editor/patterns/promo-carousel.php';
 require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
 require get_template_directory() . '/inc/editor/patterns/communication-module.php';
 require get_template_directory() . '/inc/editor/patterns/email-subscription-form.php';
