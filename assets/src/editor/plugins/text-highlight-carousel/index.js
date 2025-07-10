@@ -1,3 +1,4 @@
+import { RichTextToolbarButton } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { Icon, funnel as funnelIcon } from '@wordpress/icons';
 import {
@@ -5,8 +6,6 @@ import {
 	unregisterFormatType,
 	toggleFormat,
 } from '@wordpress/rich-text';
-
-import { RichTextToolbarButton } from '@wordpress/block-editor';
 
 const formatType = 'shiro/text-highlight-carousel';
 
