@@ -9,6 +9,17 @@ const carousels = [
  * Initialize all carousels on page.
  */
 const init = () => {
+	const prefersReducedMotion =
+		window.matchMedia( `(prefers-reduced-motion: reduce)` ) === true ||
+		window.matchMedia( `(prefers-reduced-motion: reduce)` ).matches ===
+			true;
+
+	if ( !! prefersReducedMotion ) {
+		// DON'T use an amination here!
+		return;
+	}
+
+	// DO use an animation here!
 	carousels.forEach( domElement => {
 		// Add all required classnames and elements for splide.
 		domElement.classList.add( 'splide' );
