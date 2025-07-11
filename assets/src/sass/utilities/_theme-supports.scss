@@ -4,8 +4,8 @@
 	filter: brightness(0);
 }
 
-// Support accessible color combinations for background colors.
-$color-palette-reverse:
+// Support accessible color combinations for dark background colors.
+$color-palette-dark:
 	"blue",
 	"blue-aaa",
 	"green",
@@ -16,7 +16,7 @@ $color-palette-reverse:
 	"main",
 	"black-75";
 
-@each $color in $color-palette-reverse {
+@each $color in $color-palette-dark {
 	.has-#{$color}-background-color {
 		color: var(--wp--preset--color--base) !important;
 
@@ -31,6 +31,85 @@ $color-palette-reverse:
 		.wp-block-button__link {
 			border-color: var(--wp--preset--color--base) !important;
 			outline-color: var(--wp--preset--color--base) !important;
+		}
+
+		&.wp-block-separator {
+			color: var(--wp--preset--color--#{$color}) !important;
+		}
+	}
+}
+
+// Support accessible color combinations for light background colors.
+$color-palette-light:
+	"orange",
+	"yellow",
+	"pink",
+	"bright-blue",
+	"bright-green",
+	"bright-yellow",
+	"light-pink",
+	"light-purple",
+	"light-bright-blue",
+	"light-bright-green",
+	"lightest-pink",
+	"mid-bright-yellow",
+	"light-bright-yellow",
+	"lightest-yellow",
+	"lightest-purple",
+	"lightest-blue",
+	"lightest-green",
+	"base",
+	"black-50",
+	"black-25",
+	"black-10",
+	"black-05",
+	"border-light",
+	"border-base";
+
+@each $color in $color-palette-light {
+	.has-#{$color}-background-color {
+		color: var(--wp--preset--color--main) !important;
+
+		.wp-block-shiro-button.is-style-as-link::before,
+		.wp-block-shiro-button.is-style-as-arrow-link::before,
+		.is-style-transparent.has-icon .wp-block-button__link:not(:active)::before,
+		.is-style-as-link.has-icon .wp-block-button__link::before,
+		.is-style-as-arrow-link.has-icon .wp-block-button__link::before {
+			filter: brightness(0) !important;
+		}
+
+		.wp-block-button__link {
+			border-color: var(--wp--preset--color--main) !important;
+			outline-color: var(--wp--preset--color--main) !important;
+		}
+
+		&.has-base-background-color .wp-block-button__link {
+			&:hover,
+			&:focus {
+				border-color: currentColor !important;
+
+				&:is(.is-style-secondary a):not(:active) {
+					border-color: var(--wp--preset--color--blue-aaa) !important;
+				}
+
+				&:is(.is-style-secondary a):active {
+					border-color: var(--link-active-color--blue) !important;
+				}
+
+				&:is(.is-style-donate a):active {
+					border-color: var(--link-active-color--green) !important;
+					outline-color: var(--wp--preset--color--green-aaa) !important;
+				}
+			}
+
+			&:not(.is-style-tertiary a):not(.is-style-transparent a):not(:hover):not(:focus) {
+				border-color: transparent !important;
+			}
+
+			&:is(.is-style-donate a):not(:active),
+			&:is(.is-style-as-link a) {
+				outline-color: currentColor !important;
+			}
 		}
 
 		&.wp-block-separator {
