@@ -16,29 +16,6 @@ $color-palette-reverse-dark:
 	"main",
 	"black-75";
 
-@each $color in $color-palette-reverse-dark {
-	.has-#{$color}-background-color {
-		color: var(--wp--preset--color--base) !important;
-
-		.wp-block-shiro-button.is-style-as-link::before,
-		.wp-block-shiro-button.is-style-as-arrow-link::before,
-		.is-style-transparent.has-icon .wp-block-button__link:not(:active)::before,
-		.is-style-as-link.has-icon .wp-block-button__link::before,
-		.is-style-as-arrow-link.has-icon .wp-block-button__link::before {
-			filter: brightness(0) invert(1) !important;
-		}
-
-		.wp-block-button__link {
-			border-color: var(--wp--preset--color--base) !important;
-			outline-color: var(--wp--preset--color--base) !important;
-		}
-
-		&.wp-block-separator {
-			color: var(--wp--preset--color--#{$color}) !important;
-		}
-	}
-}
-
 // Support accessible color combinations for light background colors.
 $color-palette-reverse-light:
 	"orange",
@@ -66,9 +43,23 @@ $color-palette-reverse-light:
 	"border-light",
 	"border-base";
 
-@each $color in $color-palette-reverse-light {
+@function is-in-list($item, $list) {
+	@each $i in $list {
+		@if $i == $item {
+			@return true;
+		}
+	}
+	@return false;
+}
+
+$color-palette-reverse-all: join($color-palette-reverse-dark, $color-palette-reverse-light);
+
+@each $color in $color-palette-reverse-all {
+	$is-dark: is-in-list($color, $color-palette-reverse-dark);
+	$text-var: if($is-dark, '--wp--preset--color--base', '--wp--preset--color--main');
+
 	.has-#{$color}-background-color {
-		color: var(--wp--preset--color--main) !important;
+		color: var(#{$text-var}) !important;
 
 		.wp-block-shiro-button.is-style-as-link::before,
 		.wp-block-shiro-button.is-style-as-arrow-link::before,
@@ -79,8 +70,8 @@ $color-palette-reverse-light:
 		}
 
 		.wp-block-button__link {
-			border-color: var(--wp--preset--color--main) !important;
-			outline-color: var(--wp--preset--color--main) !important;
+			border-color: var(#{$text-var}) !important;
+			outline-color: var(#{$text-var}) !important;
 		}
 
 		&.wp-block-separator {
