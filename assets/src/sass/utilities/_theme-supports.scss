@@ -5,7 +5,7 @@
 }
 
 // Support accessible color combinations for dark background colors.
-$color-palette-reverse-dark:
+$color-palette-dark:
 	"blue",
 	"blue-aaa",
 	"green",
@@ -16,7 +16,7 @@ $color-palette-reverse-dark:
 	"main",
 	"black-75";
 
-@each $color in $color-palette-reverse-dark {
+@each $color in $color-palette-dark {
 	.has-#{$color}-background-color {
 		color: var(--wp--preset--color--base) !important;
 
@@ -40,7 +40,7 @@ $color-palette-reverse-dark:
 }
 
 // Support accessible color combinations for light background colors.
-$color-palette-reverse-light:
+$color-palette-light:
 	"orange",
 	"yellow",
 	"pink",
@@ -66,7 +66,7 @@ $color-palette-reverse-light:
 	"border-light",
 	"border-base";
 
-@each $color in $color-palette-reverse-light {
+@each $color in $color-palette-light {
 	.has-#{$color}-background-color {
 		color: var(--wp--preset--color--main) !important;
 
