@@ -75,12 +75,41 @@ $color-palette-reverse-light:
 		.is-style-transparent.has-icon .wp-block-button__link:not(:active)::before,
 		.is-style-as-link.has-icon .wp-block-button__link::before,
 		.is-style-as-arrow-link.has-icon .wp-block-button__link::before {
-			filter: brightness(0) invert(1) !important;
+			filter: brightness(0) !important;
 		}
 
 		.wp-block-button__link {
 			border-color: var(--wp--preset--color--main) !important;
 			outline-color: var(--wp--preset--color--main) !important;
+		}
+
+		&.has-base-background-color .wp-block-button__link {
+			&:hover,
+			&:focus {
+				border-color: currentColor !important;
+
+				&:is(.is-style-secondary a):not(:active) {
+					border-color: var(--wp--preset--color--blue-aaa) !important;
+				}
+
+				&:is(.is-style-secondary a):active {
+					border-color: var(--link-active-color--blue) !important;
+				}
+
+				&:is(.is-style-donate a):active {
+					border-color: var(--link-active-color--green) !important;
+					outline-color: var(--wp--preset--color--green-aaa) !important;
+				}
+			}
+
+			&:not(.is-style-tertiary a):not(.is-style-transparent a):not(:hover):not(:focus) {
+				border-color: transparent !important;
+			}
+
+			&:is(.is-style-donate a):not(:active),
+			&:is(.is-style-as-link a) {
+				outline-color: currentColor !important;
+			}
 		}
 
 		&.wp-block-separator {
