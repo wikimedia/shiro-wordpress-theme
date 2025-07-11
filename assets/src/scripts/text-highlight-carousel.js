@@ -25,8 +25,12 @@ const init = () => {
 		domElement.innerHTML = newCarouselContents;
 
 		const options = {
+			arrows: false,
+			autoplay: true,
 			direction: 'ttb',
-			height: '1em',
+			height: 'calc(1.333em + 8px)',
+			pagination: false,
+			type: 'loop',
 		};
 
 		domElement.carousel = new Splide( domElement, options ).mount();
