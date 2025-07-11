@@ -3,7 +3,7 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 /**
  * @param {object} props Block properties.
  *
- * @returns {WPElement} Card Icon save block component.
+ * @returns {WPElement} Interactive Card block save component.
  */
 const Save = ( props ) => {
 	const { attributes } = props;
@@ -17,14 +17,14 @@ const Save = ( props ) => {
 
 	return (
 		<div { ...blockProps }>
-			<div className="interactive-card-content">
+			<div className="interactive-card__content">
 				<RichText.Content
-					className="interactive-card-heading is-style-h2"
+					className="interactive-card__heading"
 					tagName={ headingTag }
 					value={ headingText }
 				/>
 
-				<div className="interactive-card-subheading">
+				<div className="interactive-card__subheading">
 					<RichText.Content
 						tagName='p'
 						value={ subHeadingText }
