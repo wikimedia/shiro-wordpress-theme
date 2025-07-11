@@ -7,6 +7,7 @@ import './block-hero-home';
 import './modules/donate-buttons';
 import './post-list-filters';
 import './search-results-dropdown';
+import './text-highlight-carousel';
 import dimensionShim from './modules/dimension-shim';
 import dropdown from './modules/dropdown';
 import tocNav from './modules/toc-nav';

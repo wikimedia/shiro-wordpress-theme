@@ -1,0 +1,14 @@
+.text-highlight-carousel {
+	display: inline-flex;
+	margin: rem(-4) rem(-8);
+
+	mark {
+		display: block;
+		padding: rem(4) rem(8);
+		text-align: center;
+	}
+
+	&:not(.is-active) mark:not(:first-of-type) {
+		display: none;
+	}
+}
