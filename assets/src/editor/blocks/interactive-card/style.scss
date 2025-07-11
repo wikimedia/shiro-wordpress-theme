@@ -30,17 +30,20 @@
 		outline-offset: max( 2px, 0.1em );
 	}
 
-	.interactive-card-heading,
-	.interactive-card-subheading p {
+	.interactive-card__heading,
+	.interactive-card__subheading p {
 		margin-block-end: 0;
 	}
 
-	.interactive-card-heading {
+	.interactive-card__heading {
 		@include style-guide-arrow();
-		// Reset position so we can make card clickable.
-		position: static;
+		font-size: var( --wp--preset--font-size--xx-large );
+		font-weight: 700;
+		line-height: var( --wp--custom--line-height--tight );
 		// Overwrite block editor inline style that breaks parent grid.
 		min-width: auto !important;
+		// Reset position so we can make card clickable.
+		position: static;
 
 		&:focus,
 		&:hover {
@@ -60,14 +63,14 @@
 	}
 
 	// Make whole card clickable.
-	.interactive-card-heading:not(.block-editor-rich-text__editable) a::after {
+	.interactive-card__heading:not(.block-editor-rich-text__editable) a::after {
 		content: "";
 		inset: 0;
 		position: absolute;
 		z-index: 10;
 	}
 
-	.interactive-card-heading::after {
+	.interactive-card__heading::after {
 		opacity: 0;
 		transform: scale(0.95) translateX(-1rem);
 		transform-origin: center right;
@@ -76,7 +79,7 @@
 		width: 0;
 	}
 
-	.interactive-card-subheading {
+	.interactive-card__subheading {
 		display: grid;
 		grid-template-rows: 0fr;
 		transition: grid-template-rows 0.35s ease, margin 0.35s;
@@ -93,13 +96,13 @@
 .wp-block-shiro-interactive-card:not(.block-editor-block-list__block):focus-within,
 .wp-block-shiro-interactive-card:not(.block-editor-block-list__block):hover,
 .wp-block-shiro-interactive-card.is-selected {
-	.interactive-card-heading::after {
+	.interactive-card__heading::after {
 		opacity: 1;
 		transform: scale(1) translateX(0);
 		width: auto;
 	}
 
-	.interactive-card-subheading {
+	.interactive-card__subheading {
 		grid-template-rows: 1fr;
 		margin-block-start: 1rem;
 	}
@@ -108,11 +111,11 @@
 // Editor-only styles.
 .wp-block-shiro-interactive-card.block-editor-block-list__block {
 	// Make sure heading is not taking extra height in editor.
-	.interactive-card-heading {
+	.interactive-card__heading {
 		display: inline-block;
 	}
 
-	&.is-selected .interactive-card-subheading {
+	&.is-selected .interactive-card__subheading {
 		transition: none;
 	}
 }
@@ -120,7 +123,7 @@
 // Overwrite interactivity for reduce motion users.
 @media (prefers-reduced-motion) {
 	.wp-block-shiro-interactive-card {
-		.interactive-card-subheading {
+		.interactive-card__subheading {
 			transition: none !important;
 			grid-template-rows: 1fr !important;
 			margin-block-start: 1rem !important;
@@ -131,18 +134,18 @@
 // Overwrite styles for browsers with no pointer devices.
 @media (hover: none), (-moz-touch-enabled: 1), (pointer:coarse) {
 	.wp-block-shiro-interactive-card {
-		.interactive-card-heading::after,
-		.interactive-card-subheading {
+		.interactive-card__heading::after,
+		.interactive-card__subheading {
 			transition: none !important;
 		}
 
-		.interactive-card-heading::after {
+		.interactive-card__heading::after {
 			opacity: 1 !important;
 			transform: scale(1) translateX(0) !important;
 			width: auto !important;
 		}
 
-		.interactive-card-subheading {
+		.interactive-card__subheading {
 			grid-template-rows: 1fr !important;
 			margin-block-start: 1rem !important;
 		}
