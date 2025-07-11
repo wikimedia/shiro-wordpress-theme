@@ -17,7 +17,7 @@
 <div class="wp-block-group alignfull hero-rotate-text has-base-background-color has-background"><!-- wp:columns {"verticalAlignment":"center","align":"wide"} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"fontSize":"jumbo"} -->
-<h2 class="wp-block-heading has-jumbo-font-size">We <span class="text-highlight-carousel">support</span> <br>human knowledge</h2>
+<h2 class="wp-block-heading has-jumbo-font-size">We <span class="text-highlight-carousel"><mark style="background-color:#F9DDE9" class="has-inline-color">support</mark> <mark style="background-color:#E9E7C4" class="has-inline-color">protect</mark> <mark style="background-color:#D5D1EC" class="has-inline-color">fund</mark> <mark style="background-color:#C0E6FF" class="has-inline-color">open</mark></span><br>human knowledge</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"x-large","fontFamily":"display"} -->
@@ -26,8 +26,8 @@
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"center"} -->
-<div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"id":77591,"sizeSlug":"large","linkDestination":"none","style":{"border":{"radius":"4px"}}} -->
-<figure class="wp-block-image size-large has-custom-border"><img src="https://wikimedia.vipdev.lndo.site/wp-content/uploads/2025/07/cebf6909176a05bdc94cc979df58803ee690491f.jpg?w=1024" alt="" class="wp-image-77591" style="border-radius:4px"/></figure>
+<div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"sizeSlug":"large","linkDestination":"none","style":{"border":{"radius":"4px"}}} -->
+<figure class="wp-block-image size-large has-custom-border"><img style="border-radius:4px"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
