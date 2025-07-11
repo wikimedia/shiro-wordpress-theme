@@ -228,6 +228,15 @@ function register_core_block_styles(): void {
 			'label' => 'Reports Archive',
 		)
 	);
+
+	// Add styles to Group block.
+	register_block_style(
+		'core/group',
+		array(
+			'name'  => 'clickable-card',
+			'label' => 'Clickable Card',
+		)
+	);
 }
 
 /**
