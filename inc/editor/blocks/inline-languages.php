@@ -41,12 +41,21 @@ function register_block(): void {
  * @return string
  */
 function render_block( $attributes ) {
+	$translations = array_filter( wmf_get_translations(), function ( $translation ) {
+		return ! empty( $translation['uri'] );
+	} );
+
+	if ( empty( $translations ) ) {
+		return '';
+	}
+
 	$class = 'inline-languages';
 	if ( isset( $attributes['align'] ) && $attributes['align'] === 'full' ) {
 		$class .= ' alignfull';
 	}
 	$output = '<div class="' . $class . '"><ul class="inline-languages__list">';
-	foreach ( \wmf_get_translations() as $index => $lang ) {
+	
+	foreach ( $translations as $translation => $lang ) {
 		$el = $lang['selected']
 			? '<span>' . esc_html( $lang['name'] ) . '</span>'
 			: '<a href="' . esc_url( $lang['uri'] ) . '" lang="' . esc_attr( $lang['shortname'] ) . '">' . esc_html( $lang['name'] ) . '</a>';
