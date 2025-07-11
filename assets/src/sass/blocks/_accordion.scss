@@ -18,7 +18,8 @@
 		cursor: pointer;
 		display: flex;
 		font-size: 26px;
-		padding: var( --wp--preset--spacing--24 );
+		// rtl: padding: var( --wp--preset--spacing--24 ) var( --wp--preset--spacing--24 ) var( --wp--preset--spacing--24 ) calc( var( --wp--preset--spacing--24 ) * 4 );
+		padding: var( --wp--preset--spacing--24 ) calc( var( --wp--preset--spacing--24 ) * 4 ) var( --wp--preset--spacing--24 ) var( --wp--preset--spacing--24 );
 		position: relative;
 		text-align: left;
 		width: 100%;
@@ -46,17 +47,16 @@
 			font-family: var( --wp--preset--font-family--default );
 			font-size: var( --wp--preset--font-size--large );
 			font-weight: 700;
-			margin: 0 var( --wp--preset--spacing--24 ) 0 0; /*rtl: margin: 0 0 0 var( --wp--preset--spacing--24 );*/
+			margin: 0;
 		}
 
 		&::after {
 			content: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M10.085 2.943 6.05 6.803l-3.947-3.86L1.05 3.996l5 5 5-5z"/></svg>' );
 			display: flex;
 			font-size: 20px;
-			left: unset; /*rtl: left: calc( var( --wp--preset--spacing--24 ) / 2 );*/
+			left: unset; // rtl: left: calc( var( --wp--preset--spacing--24 ) / 2 );
 			position: absolute;
-			// Cut the value in half, due to the margin on the &-text selector.
-			right: calc( var( --wp--preset--spacing--24 ) / 2 ); /*rtl: right: unset;*/
+			right: calc( var( --wp--preset--spacing--24 ) / 2 ); // rtl: right: unset;
 			zoom: 200%;
 
 			.accordion-item[aria-expanded] & {
