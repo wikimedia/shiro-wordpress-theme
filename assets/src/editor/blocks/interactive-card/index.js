@@ -4,7 +4,7 @@
 
 import { registerBlockType } from '@wordpress/blocks';
 
-import { ReactComponent as BlockIcon } from '../../../svg/blocks/card.svg';
+import { ReactComponent as CardIcon } from '../../../svg/blocks/card.svg';
 
 import metadata from './block.json';
 import Edit from './edit';
@@ -13,7 +13,7 @@ import Save from './save';
 import './style.scss';
 
 registerBlockType( metadata.name, {
-	icon: BlockIcon,
+	icon: CardIcon,
 	edit: Edit,
 	save: Save,
 } );
