@@ -1,4 +1,5 @@
 import Splide from '@splidejs/splide';
+import { Intersection } from '@splidejs/splide-extension-intersection';
 
 const carousels = [
 	...document.querySelectorAll( '.text-highlight-carousel' ),
@@ -26,14 +27,24 @@ const init = () => {
 
 		const options = {
 			arrows: false,
-			autoplay: true,
+			autoplay: 'pause',
+			intersection: {
+				inView: {
+					autoplay: true,
+				},
+				outView: {
+					autoplay: false,
+				},
+			},
 			direction: 'ttb',
 			height: 'calc(1.333em + 8px)',
 			pagination: false,
 			type: 'loop',
 		};
 
-		domElement.carousel = new Splide( domElement, options ).mount();
+		domElement.carousel = new Splide( domElement, options ).mount( {
+			Intersection,
+		} );
 	} );
 };
 
