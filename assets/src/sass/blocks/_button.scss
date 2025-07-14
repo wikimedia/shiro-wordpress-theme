@@ -48,6 +48,7 @@
 		&.is-style-as-arrow-link {
 			#{ $inner-selector } {
 				@include button-link-arrow;
+				display: inline;
 			}
 		}
 
