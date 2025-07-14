@@ -10,3 +10,13 @@
 	height: auto;
 	width: 100%;
 }
+
+.wp-block-embed iframe {
+	border-radius: rem(4);
+}
+
+.hero-rotate-text .wp-block-embed iframe {
+	aspect-ratio: 500 / 281;
+	height: auto;
+	width: 100%;
+}
