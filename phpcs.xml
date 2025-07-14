@@ -39,6 +39,7 @@
 		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
 		<exclude name="Internal.NoCodeFound"/>
 		<!-- We prefer short arrays. -->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
 		<!-- Do not require = and => alignment. -->
 		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned"/>
@@ -92,5 +93,11 @@
 		<properties>
 			<property name="blank_line_check" value="true"/>
 		</properties>
+	</rule>
+	<rule ref="Universal.Arrays.DisallowShortArraySyntax.Found">
+		<exclude-pattern>*</exclude-pattern>
+	</rule>
+	<rule ref="Universal.Operators.DisallowShortTernary.Found">
+		<exclude-pattern>*</exclude-pattern>
 	</rule>
 </ruleset>

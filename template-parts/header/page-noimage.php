@@ -12,6 +12,6 @@ $page_header_data = $args;
 			<?php get_template_part( 'template-parts/header/header', 'content', $page_header_data ); ?>
 		</div>
 	</div>
-</header>
+</div><!-- Close out the secondary header. -->
 
-<main id="content">
+<main id="content" class="module-area is-layout-constrained has-global-padding">

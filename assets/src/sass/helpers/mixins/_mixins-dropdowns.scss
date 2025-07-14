@@ -1,5 +1,5 @@
 @mixin style-guide-dropdown-caret-blue() {
-	background-image: url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9.79922 1.21083L8.87282 0.199951L4.99922 3.90555L1.2101 0.199951L0.199219 1.21083L4.99922 6.01083L9.79922 1.21083Z' fill='%233A25FF'/%3E%3C/svg%3E%0A");
+	background-image: url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9.79922 1.21083L8.87282 0.199951L4.99922 3.90555L1.2101 0.199951L0.199219 1.21083L4.99922 6.01083L9.79922 1.21083Z' fill='%230C57A8'/%3E%3C/svg%3E%0A");
 }
 
 @mixin style-guide-dropdown-caret-black() {
@@ -11,26 +11,83 @@
 }
 
 @mixin style-guide-dropdown-base() {
-	@include style-guide-button-reset();
 	align-items: center;
-	background-color: $wmui-color-base90;
-	background-position: calc(100% - #{rem(12)}) center;
+	background-color: var(--wp--preset--color--base);
+	background-position: calc(100% - #{rem(10)}) center;
 	background-repeat: no-repeat;
-	border: 1px solid $border-color-base;
-	border-radius: 2px;
-	box-sizing: border-box;
-	color: $wmui-color-base10;
-	display: inline-flex;
-	flex-direction: row;
-	font-size: rem(14);
-	font-weight: 700;
-	justify-content: flex-end;
-	line-height: 1.43;
-	padding: rem(6) rem(30) rem(6) rem(10);
-	text-transform: uppercase;
+	background-size: rem(12);
+	border: 1px solid var(--wp--preset--color--border-light);
+	border-radius: rem(4);
+	color: var(--wp--preset--color--main);
+	cursor: pointer;
+	display: flex;
+	font-size: 1rem;
+	font-weight: var(--wp--custom--font-weight--normal);
+	gap: var(--wp--preset--spacing--8);
+	line-height: var(--wp--custom--line-height--relaxed);
+	padding: rem(8) rem(30) rem(8) rem(10);
+	text-decoration: none !important;
+
+	@include media(">=mobile") {
+		padding-block: rem(11);
+
+		&.language-switcher__button {
+			background-position: calc(100% - #{rem(16)}) center;
+			padding-inline: rem(16) rem(40);
+		}
+	}
+
+	&:hover {
+		background-color: var(--wp--preset--color--black-10);
+		border-color: var(--wp--preset--color--main);
+	}
+
+	&:focus,
+	&[aria-expanded=true] {
+		@include focus-outline(-2px, rem(4));
+		border-color: var(--wp--preset--color--blue-aaa);
+	}
+
+	&[aria-expanded=true] {
+		border-radius: rem(4) rem(4) 0 0;
+	}
 }
 
 @mixin style-guide-dropdown-toggle() {
 	@include style-guide-dropdown-base();
 	@include style-guide-dropdown-caret-black();
+}
+
+@mixin style-guide-dropdown-contents() {
+	background-color: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--border-base);
+	border-radius: 0 0 rem(4) rem(4);
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--16);
+	padding: var(--wp--preset--spacing--8) 0 !important;
+}
+
+@mixin style-guide-dropdown-item() {
+	color: var(--wp--preset--color--main);
+	cursor: pointer;
+	display: block;
+	font-size: var(--wp--preset--font-size--medium);
+	line-height: var(--wp--custom--line-height--relaxed);
+	padding: calc( var(--wp--preset--spacing--8) * 1.5 ) var(--wp--preset--spacing--16);
+	text-align: left;
+	text-underline-offset: fluid( 3, 7 ) !important;
+	width: 100%;
+
+	&:hover {
+		background-color: var(--wp--preset--color--black-05);
+	}
+
+	&:focus {
+		outline-offset: 0;
+	}
+
+	&:active {
+		background-color: var(--wp--preset--color--black-10);
+	}
 }

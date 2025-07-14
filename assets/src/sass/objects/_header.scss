@@ -6,11 +6,16 @@ $header-bp-mw: 1049px;
 }
 
 .header-default {
+	@include global-padding;
 	margin-bottom: 0;
 	position: relative;
 
 	@media (max-width: $medium-bp) {
 		padding-bottom: 10px;
+	}
+
+	.home.has-blocks & {
+		padding: 0 !important;
 	}
 
 	a {
@@ -182,6 +187,14 @@ $header-bp-mw: 1049px;
 		margin-top: rem(30);
 		width: 100%;
 
+		h1:is(.archive h1, .page-template-page-list h1) {
+			margin-bottom: var(--wp--preset--spacing--80);
+		}
+
+		body.hide-page-title &:not(:has(h2)) {
+			margin-top: 0;
+		}
+
 		body.hide-page-title & h1 {
 			@extend .visually-hidden
 		}
@@ -215,13 +228,6 @@ $header-bp-mw: 1049px;
 			border-bottom: 3px solid $wmui-color-base0;
 			font-weight: 500;
 			margin-bottom: rem(40);
-		}
-
-		a {
-			color: $color-blue;
-			&:hover {
-				text-decoration: underline;
-			}
 		}
 	}
 
@@ -265,8 +271,10 @@ $header-bp-mw: 1049px;
 	}
 
 	.ungrid {
+		@include global-padding;
 		background: #fffd33;
-		padding: 2.5rem 0;
+		padding-bottom: 2.5rem;
+		padding-top: 2.5rem;
 		width: 100vw;
 		position: relative;
 		left: 50%;
@@ -275,6 +283,10 @@ $header-bp-mw: 1049px;
 		margin-right: -50vw;
 		margin-top: -2rem;
 		max-height: 24rem;
+
+		.alignwide {
+			@include alignwide;
+		}
 
 		.page-template-page-data &,
 		.page-template-page-report & {
@@ -293,8 +305,7 @@ $header-bp-mw: 1049px;
 
 		.h2.eyebrow {
 			border: none;
-			color: $color-blue;
-			font-family: $font-family-sans;
+			color: var(--wp--preset--color--blue-aaa);
 			margin-bottom: 1rem;
 			text-transform: uppercase;
 			@include font-size( 24, 22);
@@ -369,7 +380,6 @@ $header-bp-mw: 1049px;
 
 	.post-meta {
 		@include has-font-size( large );
-		font-family: $font-family-serif;
 		margin: 0;
 
 		> span {
@@ -436,12 +446,7 @@ $header-bp-mw: 1049px;
     }
   }
   .header-default .eyebrow.h1 {
-    @media (min-width: $header-bp) {
-      margin-bottom: 5rem;
-    }
-    @media (max-width: $medium-bp - 1 ) {
-      margin-bottom: 1rem;
-    }
+    margin-bottom: var(--wp--preset--spacing--24);
   }
 }
 

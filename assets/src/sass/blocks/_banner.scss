@@ -27,10 +27,6 @@
 		margin-bottom: rem(17);
 	}
 
-	p {
-		font-family: $font-family-sans;
-	}
-
 	&__image {
 		@include absolute-full-cover();
 		content: unset; // Overwritting content property from the mixin above - see #799
@@ -47,26 +43,8 @@
 	&__cta {
 		margin-right: 1rem;
 
+		@include button-primary-other-buttons;
 		@include button-primary;
-
-		/**
-		 * Tertiary buttons have a border, so this "dummy" border is added
-		 * to make all buttons the same height.
-		 */
-		border: 1px solid transparent;
-
-		.is-style-blue50 &,
-		.is-style-red50 &,
-		.is-style-red &,
-		.is-style-purple &,
-		.is-style-bright-blue {
-
-			@include button-tertiary;
-		}
-
-		.is-style-donate-red90 & {
-			@include donate-red90-button;
-		}
 	}
 
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
@@ -97,4 +75,3 @@
 		}
 	}
 }
-

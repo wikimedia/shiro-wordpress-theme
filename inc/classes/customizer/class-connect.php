@@ -56,5 +56,4 @@ class Connect extends Base {
 			]
 		);
 	}
-
 }

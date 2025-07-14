@@ -26,9 +26,7 @@
 	}
 
 	.wp-block-buttons {
-		display: grid;
-		grid-template-columns: minmax(auto, rem(167)) auto;
-		margin-bottom: 0;
+		margin-top: var(--wp--preset--spacing--16);
 	}
 
 	.wp-block-button {

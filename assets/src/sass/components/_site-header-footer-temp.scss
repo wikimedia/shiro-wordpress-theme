@@ -1,0 +1,84 @@
+// This entire file is intended to be removed when the new header and footer are deployed (JK - July 1, 2025).
+.site-header {
+	.wp-block-site-logo {
+		margin-right: auto;
+	}
+
+	&--inner > .wp-block-search .wp-block-search__input {
+		line-height: 1.875;
+
+		&:not(:hover):not(:focus):not(:active) {
+			border-color: var(--wp--preset--color--border-light);
+		}
+	}
+
+	ul.primary-nav {
+		@include media("<sm_desktop") {
+			+ .wp-block-search {
+				@include global-padding;
+				border-top: 1px solid var(--wp--preset--color--border-light);
+				padding-block: 1rem;
+				width: 100%;
+			}
+		}
+
+		@include media(">=sm_desktop") {
+			> .wp-block-navigation-item a {
+				padding-block: var(--wp--preset--spacing--16);
+			}
+		}
+	}
+}
+
+@include media("<sm_desktop") {
+	.desktop-nav {
+		display: none !important;
+	}
+}
+
+@include media(">=sm_desktop") {
+	.mobile-nav {
+		display: none !important;
+	}
+}
+
+@include media(">=desktop") {
+	.wmf-toc-jumplist {
+		position: absolute;
+		top: calc(126px + var(--wp-admin--admin-bar--height, 0));
+
+		&--pinned {
+			position: fixed;
+			top: calc(70px + var(--wp-admin--admin-bar--height, 0));
+		}
+	}
+
+	.wmf-toc-jumplist__items {
+		justify-content: space-between;
+	}
+}
+
+
+ul.footer-nav-columns {
+	column-gap: var(--wp--preset--spacing--32);
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: repeat(2, auto);
+	grid-template-rows: repeat(7, 1fr);
+	width: 100%;
+
+	@include media(">=mobile") {
+		grid-template-columns: repeat(3, auto);
+		grid-template-rows: repeat(5, 1fr);
+	}
+
+	@include media(">=tablet") {
+		grid-template-columns: repeat(2, auto);
+		grid-template-rows: repeat(7, 1fr);
+	}
+
+	@include media(">=desktop") {
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(5, 1fr);
+	}
+}

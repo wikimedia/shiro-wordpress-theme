@@ -5,6 +5,7 @@
 /**
  * WordPress dependencies
  */
+import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps, InspectorControls, RichText, InnerBlocks } from '@wordpress/block-editor';
 import { DateTimePicker, PanelBody, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
 import { useEffect } from '@wordpress/element';
@@ -40,9 +41,7 @@ const displayOptions = [
 	},
 ];
 
-export const name = metadata.name;
-
-export const settings = {
+registerBlockType( metadata.name, {
 	...metadata,
 
 	/**
@@ -228,7 +227,7 @@ export const settings = {
 			</div>
 		);
 	},
-};
+} );
 
 /**
  * Create a placeholder value that is wrapped in span.
@@ -239,10 +238,17 @@ const wrappedPlaceholder = ( padding ) => {
 	const days = '0'.padStart( padding, '0' );
 
 	let daysArray = days.split( '' );
-	daysArray = daysArray.map( ( placeholder ) => {
-		return ( <span>{ placeholder }</span> );
-	} );
+	daysArray = daysArray.map( ( placeholder, idx ) => (
+		<span key={ placeholder }>{ placeholder }</span>
+	) );
 
 	return daysArray;
 };
 
+// Block HMR boilerplate.
+if ( module.hot ) {
+	module.hot.accept();
+	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
+	module.hot.dispose( deregister( metadata.name ) );
+	refresh( metadata.name, module.hot.data );
+}

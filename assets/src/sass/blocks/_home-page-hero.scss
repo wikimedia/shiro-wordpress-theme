@@ -11,6 +11,7 @@
 }
 
 .hero-home {
+	@include alignfull-padded;
 	@include global-margin-bottom;
 
 	&:focus-within h2,
@@ -28,7 +29,6 @@
 		margin-left: -50vw;
 		margin-right: -50vw;
 		overflow: hidden;
-		padding: 0;
 		position: relative;
 		right: 50%;
 		width: 100vw;
@@ -42,17 +42,22 @@
 
 		@media (prefers-reduced-motion: no-preference) {
 			animation: hero-home-animation 300s linear infinite;
-	}
+		}
 
 		&--disable-animation {
 			animation-play-state: paused;
 		}
+
+		img {
+			width: 100%;
+		}
 	}
 
 	&__heading-wrapper {
-		margin: 0 auto;
-		max-width: $content-column-padded-rem;
-		@include responsive-padding(0 20, 0 strip-px($block-padding));
+		@include alignwide;
+		@include global-padding;
+		box-sizing: content-box;
+		width: calc( 100% - $global-padding-added );
 	}
 
 	&__heading-color {

@@ -1,6 +1,6 @@
 import { ToggleControl } from '@wordpress/components';
 import { select } from '@wordpress/data';
-import { PluginPostStatusInfo } from '@wordpress/edit-post';
+import { PluginPostStatusInfo } from '@wordpress/editor';
 import { __ } from '@wordpress/i18n';
 
 import useMeta from '../../hooks/useMeta';

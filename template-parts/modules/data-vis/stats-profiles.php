@@ -47,7 +47,7 @@ $allowed_tags = [
 
 ?>
 
-<div class="stats-graph-container w-100p mod-margin-bottom_sm bg-ltgray">
+<div class="stats-graph-container mod-margin-bottom_sm bg-ltgray">
 
 	<div class="mw-980 flex flex-medium flex-wrap flex-space-between std-mod">
 		<div class="w-100p heading mar-bottom_lg wysiwyg">

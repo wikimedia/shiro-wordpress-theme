@@ -33,6 +33,10 @@ function bootstrap() {
  */
 function register_pattern() {
 	register_block_pattern_category( MAIN_CATEGORY_NAME, [
+		'label' => __( 'Menu', 'shiro-admin' ),
+	] );
+
+	register_block_pattern_category( MAIN_CATEGORY_NAME, [
 		'label' => __( 'Wikimedia', 'shiro-admin' ),
 	] );
 
@@ -70,10 +74,22 @@ function register_pattern() {
 		'content' => BlogList\PATTERN,
 	] );
 
+	register_block_pattern( ByTheNumbersStats\NAME, [
+		'title' => __( 'By the numbers stats section', 'shiro-admin' ),
+		'categories' => [ MAIN_CATEGORY_NAME ],
+		'content' => ByTheNumbersStats\PATTERN,
+	] );
+
 	register_block_pattern( CommunicationModule\NAME, [
 		'title' => __( 'Communication module', 'shiro-admin' ),
 		'categories' => [ MAIN_CATEGORY_NAME ],
 		'content' => CommunicationModule\PATTERN,
+	] );
+
+	register_block_pattern( DonationBar\NAME, [
+		'title' => __( 'Donation bar template', 'shiro-admin' ),
+		'categories' => [ MAIN_CATEGORY_NAME ],
+		'content' => DonationBar\PATTERN,
 	] );
 
 	register_block_pattern( EmailSubscriptionForm\NAME, [
