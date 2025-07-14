@@ -95,6 +95,7 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		'shiro/unseen-intro',
 		'shiro/accordion',
 		'shiro/accordion-item',
+		'shiro/interactive-card',
 
 		// Plugin blocks
 		'gravityforms/form',
