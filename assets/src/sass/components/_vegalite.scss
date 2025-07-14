@@ -1,0 +1,34 @@
+.visualization-block .vega-embed {
+	align-items: center;
+	aspect-ratio: 1/1;
+	display: flex;
+	justify-content: center;
+	max-height: max-content;
+	max-width: 100%;
+	text-align: center;
+
+	canvas,
+	svg {
+		height: 104% !important;
+		margin: -2%;
+		width: 104% !important;
+	}
+}
+
+.wmf-accordion-item__title mark {
+	background-color: transparent;
+}
+
+.page-template-default .wmf-accordion-wrapper.wp-block-wmf-reports-accordion--alt {
+	+ .wmf-accordion-wrapper {
+		margin-block-start: var(--wp--preset--spacing--24) !important;
+	}
+
+	.wmf-accordion-item {
+		padding-block: var(--wp--preset--spacing--24);
+	}
+
+	.wmf-accordion-item__title-text {
+		font-size: var(--wp--preset--font-size--large);
+	}
+}
