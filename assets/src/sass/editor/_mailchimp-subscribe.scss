@@ -12,12 +12,27 @@
 
 		#mc_signup,
 		#mc_signup_form {
-			grid-column: 1 / span 2;
-			grid-row: 1 / span 2;
+			&:is( .wp-block-mailchimp-mailchimp.alignfull div ) {
+				grid-column: 1 / span 2;
+				grid-row: 1 / span 2;
 
-			// Child grid.
-			display: grid;
-			grid-template-columns: subgrid;
+				// Child grid.
+				display: grid;
+				grid-template-columns: subgrid;
+			}
+		}
+
+		.mc_form_inside:not( .wp-block-mailchimp-mailchimp.alignfull div ) {
+			@include media(">=tablet") {
+				align-items: start;
+				display: grid;
+				grid-template-columns: 1fr auto;
+			}
+		}
+
+		.block-editor-block-list__layout {
+			display: flex;
+			flex-direction: column;
 		}
 
 		#mc_subheader {
