@@ -1,7 +1,7 @@
-.visualization-block .vega-embed {
+.visualization-block .vega-embed[aria-label*="pie chart" i] {
 	align-items: center;
 	aspect-ratio: 1/1;
-	display: flex;
+	display: flex !important;
 	justify-content: center;
 	max-height: max-content;
 	max-width: 100%;
