@@ -10,8 +10,6 @@ import * as contact from './blocks/contact';
 import * as coreButton from './blocks/core-button';
 import * as coreColumns from './blocks/core-columns';
 import * as coreGroup from './blocks/core-group';
-import * as coreHeading from './blocks/core-heading';
-import * as coreParagraph from './blocks/core-paragraph';
 import * as coreQuote from './blocks/core-quote';
 import * as doubleHeading from './blocks/double-heading';
 import * as externalLink from './blocks/external-link';
@@ -52,8 +50,6 @@ const blocks = [
 	coreButton,
 	coreColumns,
 	coreGroup,
-	coreHeading,
-	coreParagraph,
 	coreQuote,
 	doubleHeading,
 	externalLink,

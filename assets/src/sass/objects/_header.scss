@@ -198,6 +198,10 @@ $header-bp-mw: 1049px;
 		body.hide-page-title & h1 {
 			@extend .visually-hidden
 		}
+
+		.home.has-blocks & {
+			display: none;
+		}
 	}
 
 	&.featured-photo--content-left .header-content h2.eyebrow.h4:first-child {
