@@ -179,6 +179,20 @@
 	}
 }
 
+@mixin button-black() {
+	background-color: $wmui-color-base0;
+	border: 2px solid $wmui-color-base0;
+	color: $color-base--inverted;
+	transition: $transition-duration-base background-color;
+
+	&:hover,
+	&:focus {
+		background-color: $wmui-color-base80;
+		color: $wmui-color-base0;
+		text-decoration: underline;
+	}
+}
+
 @mixin button-link() {
 	@include style-guide-button-reset;
 	@include has-font-size("default");
@@ -212,7 +226,7 @@
 		filter: none;
 	}
 
-	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ):not( .has-base-90-background-color a) {
+	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ):not( .has-base-90-background-color a ):not( .has-base-background-color a ) {
 		color: inherit;
 	}
 }

@@ -34,10 +34,19 @@
 	}
 
 	.donate-nav {
+		@include media("<tablet") {
+			max-width: 36%;
+		}
+
+		@include media("<30rem") {
+			max-width: 24.5%;
+		}
+
 		.wp-block-button__link {
 			@include media("<mobile") {
 				font-size: rem(16);
-				line-height: var(--wp--custom--line-height--relaxed);
+				margin-block: rem(4);
+				padding-block: rem(9);
 				padding-inline: rem(8);
 			}
 		}
