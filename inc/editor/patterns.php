@@ -86,12 +86,6 @@ function register_pattern() {
 		'content' => DonationBar\PATTERN,
 	] );
 
-	register_block_pattern( PromoCarousel\NAME, [
-		'title' => __( 'Promo Carousel template', 'shiro-admin' ),
-		'categories' => [ MAIN_CATEGORY_NAME ],
-		'content' => PromoCarousel\PATTERN,
-	] );
-
 	register_block_pattern( TemplateDefault\NAME, [
 		'title' => __( 'Default Template', 'shiro-admin' ),
 		'categories' => [ TEMPLATE_CATEGORY_NAME ],
