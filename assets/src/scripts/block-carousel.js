@@ -41,6 +41,10 @@ const init = () => {
 			};
 		}
 
+		if ( track.classList.contains( 'wp-block-query' ) && perPage > 1 ) {
+			defaultOptions.gap = '3.34%';
+		}
+
 		const options = {
 			...defaultOptions,
 			...domElement.dataset,
