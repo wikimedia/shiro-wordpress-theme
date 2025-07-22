@@ -18,10 +18,11 @@ import { __ } from '@wordpress/i18n';
 import { InnerBlockSlider } from '../../components/inner-block-slider';
 
 import metadata from './block.json';
+import variations from './variations';
 import './style.scss';
 
 // Ensure it is clear to users how to use the block by defining a template.
-const TEMPLATE = [
+const GROUP_TEMPLATE = [
 	[
 		'core/group',
 		{
@@ -29,6 +30,43 @@ const TEMPLATE = [
 				name: 'Carousel Slide',
 			},
 		},
+	],
+];
+
+const NEWS_TEMPLATE = [
+	[
+		'core/query',
+		{
+			className: 'shiro-carousel__track',
+			query: { perPage: 6 },
+		},
+		[
+			[
+				'core/post-template',
+				{
+					className: 'shiro-carousel__list',
+					layout: {
+						type: 'grid',
+						columnCount: null,
+						minimumColumnWidth: '18rem',
+					},
+					style: {
+						spacing: { blockGap: 'var:preset|spacing|40' },
+					},
+				},
+				[
+					[ 'core/post-featured-image', { sizeSlug: 'medium' } ],
+					[
+						'core/group',
+						{},
+						[
+							[ 'core/post-terms', { term: 'category' } ],
+							[ 'core/post-title', { isLink: true, level: 4 } ],
+						],
+					],
+				],
+			],
+		],
 	],
 ];
 
@@ -47,11 +85,31 @@ registerBlockType( metadata.name, {
 	edit: function Edit( props ) {
 		const { attributes, clientId, setAttributes } = props;
 
-		const { title, perPage, arrows, pagination, loop, autoplay, interval } =
-			attributes;
+		const {
+			title,
+			perPage,
+			arrows,
+			pagination,
+			layout,
+			loop,
+			autoplay,
+			interval,
+		} = attributes;
+
+		// Ensure it is clear to users how to use the block by defining a template.
+		const TEMPLATE =
+			layout === 'carousel-groups' ? GROUP_TEMPLATE : NEWS_TEMPLATE;
+
+		const ALLOWED_BLOCKS =
+			layout === 'carousel-groups' ? [ 'core/group' ] : [ 'core/query' ];
 
 		const blockProps = useBlockProps( {
 			className: 'shiro-carousel',
+		} );
+
+		const innerBlocksProps = useInnerBlocksProps( blockProps, {
+			allowedBlocks: ALLOWED_BLOCKS,
+			template: TEMPLATE,
 		} );
 
 		return (
@@ -134,12 +192,16 @@ registerBlockType( metadata.name, {
 					</PanelBody>
 				</InspectorControls>
 
-				<InnerBlockSlider
-					allowedBlocks={ [ 'core/group' ] }
-					parentBlockId={ clientId }
-					slidesPerPage={ 1 }
-					template={ TEMPLATE }
-				/>
+				{ layout === 'carousel-groups' ? (
+					<InnerBlockSlider
+						allowedBlocks={ ALLOWED_BLOCKS }
+						parentBlockId={ clientId }
+						slidesPerPage={ 1 }
+						template={ TEMPLATE }
+					/>
+				) : (
+					<div { ...innerBlocksProps } />
+				) }
 			</div>
 		);
 	},
@@ -154,8 +216,16 @@ registerBlockType( metadata.name, {
 	save: function Save( props ) {
 		const { attributes } = props;
 
-		const { title, perPage, arrows, pagination, loop, autoplay, interval } =
-			attributes;
+		const {
+			title,
+			perPage,
+			arrows,
+			pagination,
+			layout,
+			loop,
+			autoplay,
+			interval,
+		} = attributes;
 
 		const dataSplide = {
 			label: title,
@@ -180,12 +250,17 @@ registerBlockType( metadata.name, {
 
 		return (
 			<div { ...blockProps }>
-				<div className="shiro-carousel__track">
-					<div { ...innerBlocksProps } />
-				</div>
+				{ layout === 'carousel-groups' ? (
+					<div className="shiro-carousel__track">
+						<div { ...innerBlocksProps } />
+					</div>
+				) : (
+					innerBlocksProps.children
+				) }
 			</div>
 		);
 	},
+	variations,
 } );
 
 // Block HMR boilerplate.

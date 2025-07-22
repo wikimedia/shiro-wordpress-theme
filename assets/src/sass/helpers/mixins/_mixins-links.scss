@@ -205,22 +205,28 @@
 		width: rem(10);
 	}
 
-	&.category-technology::before {
+	&.category-technology::before,
+	&:is(.category-technology .wp-block-post-terms a)::before {
 		background-color: var(--wp--preset--color--bright-blue);
 	}
-	&.category-public-policy::before {
+	&.category-public-policy::before,
+	&:is(.category-public-policy .wp-block-post-terms a)::before {
 		background-color: var(--wp--preset--color--bright-green);
 	}
-	&.category-community::before {
+	&.category-community::before,
+	&:is(.category-community .wp-block-post-terms a)::before {
 		background-color: var(--wp--preset--color--orange);
 	}
-	&.category-equity::before {
+	&.category-equity::before,
+	&:is(.category-equity .wp-block-post-terms a)::before {
 		background-color: var(--wp--preset--color--yellow);
 	}
-	&.category-wikimedia-foundation::before {
+	&.category-wikimedia-foundation::before,
+	&:is(.category-wikimedia-foundation .wp-block-post-terms a)::before {
 		background-color: var(--wp--preset--color--red-aaa);
 	}
-	&.category-our-projects::before {
+	&.category-our-projects::before,
+	&:is(.category-our-projects .wp-block-post-terms a)::before {
 		background-color: var(--wp--preset--color--pink);
 	}
 }

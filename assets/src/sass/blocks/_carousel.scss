@@ -2,9 +2,11 @@
 @import "../helpers/mixins/mixins-buttons";
 
 .shiro-carousel {
-	--carousel-side-padding: clamp( 1.25rem, 1.25rem + ( ( 1vw - 0.23375rem ) * 2.91 ), 2.5rem );
-	--carousel-vertical-padding: clamp( 1.25rem, 1.25rem + ( ( 1vw - 0.375rem ) * 12.14 ), 7.625rem );
-	--carousel-arrow-position: clamp( 0.9375rem, 0.9375rem + ( ( 1vw - 0.51875rem ) * 8.03 ), 4rem );
+	--carousel-side-padding: #{fluid( 20, 40 )};
+	--carousel-vertical-padding: #{fluid( 20, 128 )};
+	--carousel-arrow-size: #{rem(44)};
+	--carousel-arrow-position: #{fluid( 16, 44 + 32 )}; // arrow size + 32 margin.
+	--carousel-control-bottom-position: #{rem(16)};
 	container-type: inline-size;
 	// stylelint-disable selector-class-pattern
 
@@ -13,9 +15,9 @@
 		background: radial-gradient( var(--wp--preset--color--main) 50%, var(--wp--preset--color--base) 50% );
 		border: 2px solid var(--wp--preset--color--border-light);
 		border-radius: 50%;
-		bottom: 1rem;
+		bottom: var(--carousel-control-bottom-position);
 		box-sizing: content-box;
-		height: 40px;
+		height: var(--carousel-arrow-size);
 		padding: 0;
 		position: absolute;
 		z-index: 1;
@@ -38,6 +40,8 @@
 
 		svg {
 			fill: var(--wp--preset--color--base);
+			height: 100%;
+			width: 100%;
 		}
 	}
 
@@ -48,22 +52,23 @@
 	}
 
 	.wp-block-group.has-background.splide__slide {
-		padding-top: var( --carousel-vertical-padding );
-		padding-right: var( --carousel-side-padding );
-		padding-bottom: 5.25rem;
-		padding-left: var( --carousel-side-padding );
+		padding-bottom: max( rem(80), var( --carousel-vertical-padding ) );
+		padding-inline: var( --carousel-side-padding );
+		padding-top: min( rem(115), var( --carousel-vertical-padding ) );
 	}
 
 	.splide__pagination {
 		background: rgba(0, 0, 0, 0.3);
-		bottom: 1.5rem;
+		bottom: calc( var(--carousel-control-bottom-position) + 0.5rem );
 		border-radius: rem(15);
 		display: flex;
 		gap: rem(16);
 		left: 50%;
+		max-width: rem(200);
 		padding: rem(6) rem(10);
 		position: absolute;
 		transform: translateX(-50%);
+		width: max-content;
 		z-index: 1;
 
 		button {
@@ -82,6 +87,21 @@
 		}
 	}
 
+	&:has(.wp-block-query).is-active {
+		--carousel-side-padding: 0px;
+		padding-bottom: rem(80);
+
+		.splide__list {
+			display: flex !important;
+			gap: 0 !important;
+		}
+
+		.post {
+			border: 0 none;
+			padding-top: 0;
+		}
+	}
+
 	// Override bottom margin from blocks used as slides
 	.splide__list > * {
 		margin-bottom: 0;
@@ -89,65 +109,92 @@
 }
 
 .shiro-carousel:not(.alignfull) {
-	.splide__arrow {
-		@container ( min-width: 788px ) {
-			top: 50%;
-			bottom: initial;
-		}
+	&:not(.alignwide) {
+		@include media(">=sm_desktop") {
+			.splide__arrow {
+				@container ( width >= #{ map-get( $breakpoints, "content" ) } ) {
+					top: 50%;
+					bottom: initial;
 
-		&--prev {
-			@container ( min-width: 788px ) {
-				left: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.
-				transform: translateY(-50%) rotate(180deg);
-			}
-		}
+					&:is(.shiro-carousel:has(.wp-block-query) .splide__arrow) {
+						top: 40%;
+					}
+				}
 
-		&--next {
-			@container ( min-width: 788px ) {
-				right: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.;
-				transform: translateY(-50%);
+				&--prev {
+					@container ( width >= #{ map-get( $breakpoints, "content" ) } ) {
+						left: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.
+						transform: translateY(-50%) rotate(180deg);
+					}
+				}
+
+				&--next {
+					@container ( width >= #{ map-get( $breakpoints, "content" ) } ) {
+						right: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.;
+						transform: translateY(-50%);
+					}
+				}
 			}
 		}
 	}
 
-	.wp-block-group.has-background.splide__slide {
-		@container ( min-width: 788px ) {
-			padding-bottom: var( --carousel-vertical-padding );
+	&.alignwide {
+		@include media(">=wide") {
+			.splide__arrow {
+				@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
+					top: 50%;
+					bottom: initial;
+
+					&:is(.shiro-carousel:has(.wp-block-query) .splide__arrow) {
+						top: 40%;
+					}
+				}
+
+				&--prev {
+					@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
+						left: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.
+						transform: translateY(-50%) rotate(180deg);
+					}
+				}
+
+				&--next {
+					@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
+						right: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.;
+						transform: translateY(-50%);
+					}
+				}
+			}
 		}
 	}
-}
-
-.shiro-carousel.alignwide {
-	--carousel-arrow-position: clamp( 0.9375rem, 0.9375rem + ( ( 1vw - 0.77625rem ) * 24.75 ), 4rem );
 }
 
 .shiro-carousel.alignfull {
-	--carousel-arrow-position: clamp( 1rem, 1rem + ( ( 1vw - 0.75rem ) * 10 ), 2.5rem );
+	--carousel-arrow-position: #{fluid( 16, 40 )};
 
-	.splide__arrow {
-		@container ( min-width: 1200px ) {
-			top: 50%;
-			bottom: initial;
-		}
+	@include media(">=wide") {
+		.splide__arrow {
+			@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
+				top: 50%;
+				bottom: initial;
 
-		&--prev {
-			@container ( min-width: 1200px ) {
-				left: var( --carousel-arrow-position );
-				transform: translateY(-50%) rotate(180deg);
+				&:is(.shiro-carousel:has(.wp-block-query) .splide__arrow) {
+					top: 40%;
+				}
 			}
-		}
 
-		&--next {
-			@container ( min-width: 1200px ) {
-				right: var( --carousel-arrow-position );
-				transform: translateY(-50%);
+			&--prev {
+				@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
+					left: var( --carousel-arrow-position );
+					transform: translateY(-50%) rotate(180deg);
+				}
 			}
-		}
-	}
 
-	.wp-block-group.has-background.splide__slide {
-		@container ( min-width: 1200px ) {
-			padding-bottom: var( --carousel-vertical-padding );
+			&--next {
+				@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
+					right: var( --carousel-arrow-position );
+					transform: translateY(-50%);
+				}
+			}
 		}
 	}
 }
