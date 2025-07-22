@@ -14,7 +14,11 @@
     "align": [
       "wide",
       "full"
-    ]
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
   },
   "version": "1.0.0",
   "textdomain": "shiro-admin",
@@ -24,7 +28,8 @@
       "default": ""
     },
     "perPage": {
-      "type": "integer"
+      "type": "integer",
+      "default": 1
     },
     "arrows": {
       "type": "boolean",
@@ -33,6 +38,10 @@
     "pagination": {
       "type": "boolean",
       "default": true
+    },
+    "layout": {
+      "type": "string",
+      "default": "carousel-groups"
     },
     "loop": {
       "type": "boolean",
