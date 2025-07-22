@@ -114,6 +114,7 @@
 	}
 
 	#mc_signup_submit {
+		text-align: center;
 		width: 100%;
 
 		@include media(">=tablet") {
