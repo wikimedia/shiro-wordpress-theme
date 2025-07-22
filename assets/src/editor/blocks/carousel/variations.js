@@ -11,6 +11,7 @@ const variations = [
 			'Carousel block containing a query loop of news posts.'
 		),
 		attributes: {
+			align: 'wide',
 			layout: 'carousel-posts',
 			perPage: 3,
 		},

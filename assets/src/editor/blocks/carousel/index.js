@@ -45,6 +45,14 @@ const NEWS_TEMPLATE = [
 				'core/post-template',
 				{
 					className: 'shiro-carousel__list',
+					layout: {
+						type: 'grid',
+						columnCount: null,
+						minimumColumnWidth: '18rem',
+					},
+					style: {
+						spacing: { blockGap: 'var:preset|spacing|40' },
+					},
 				},
 				[
 					[ 'core/post-featured-image', { sizeSlug: 'medium' } ],
@@ -53,7 +61,7 @@ const NEWS_TEMPLATE = [
 						{},
 						[
 							[ 'core/post-terms', { term: 'category' } ],
-							[ 'core/post-title', { isLink: true } ],
+							[ 'core/post-title', { isLink: true, level: 4 } ],
 						],
 					],
 				],
