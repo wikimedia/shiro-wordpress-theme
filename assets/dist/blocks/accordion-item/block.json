@@ -9,12 +9,6 @@
   "parent": [
     "shiro/accordion"
   ],
-  "supports": {
-    "align": [
-      "center",
-      "full"
-    ]
-  },
   "attributes": {
     "fontColor": {
       "type": "string"
