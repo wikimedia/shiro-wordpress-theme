@@ -29,7 +29,7 @@
 <!-- /wp:columns -->
 
 <!-- wp:shiro/carousel {"perPage":3,"layout":"carousel-posts","align":"wide"} -->
-<div class="wp-block-shiro-carousel alignwide shiro-carousel" data-splide="{&quot;label&quot;:&quot;&quot;,&quot;perPage&quot;:3,&quot;arrows&quot;:true,&quot;pagination&quot;:true,&quot;type&quot;:&quot;slide&quot;,&quot;autoplay&quot;:false,&quot;interval&quot;:5000,&quot;arrowPath&quot;:&quot;M20 0c11.046 0 20 8.954 20 20s-8.954 20-20 20S0 31.046 0 20 8.954 0 20 0Zm0 8.87-1.962 1.975 7.764 7.764H8.87v2.782h16.932l-7.764 7.778L20 31.13 31.13 20 20 8.87Z&quot;}"><!-- wp:query {"queryId":5,"query":{"perPage":6},"className":"shiro-carousel__track"} -->
+<div class="wp-block-shiro-carousel alignwide shiro-carousel" data-splide="{&quot;label&quot;:&quot;&quot;,&quot;perPage&quot;:3,&quot;arrows&quot;:true,&quot;pagination&quot;:true,&quot;type&quot;:&quot;slide&quot;,&quot;autoplay&quot;:false,&quot;interval&quot;:5000,&quot;arrowPath&quot;:&quot;M20 0c11.046 0 20 8.954 20 20s-8.954 20-20 20S0 31.046 0 20 8.954 0 20 0Zm0 8.87-1.962 1.975 7.764 7.764H8.87v2.782h16.932l-7.764 7.778L20 31.13 31.13 20 20 8.87Z&quot;}"><!-- wp:query {"queryId":5,"query":{"perPage":6,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"taxQuery":null,"parents":[],"format":[]},"className":"shiro-carousel__track"} -->
 <div class="wp-block-query shiro-carousel__track"><!-- wp:post-template {"className":"shiro-carousel__list","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"grid","columnCount":null,"minimumColumnWidth":"18rem"}} -->
 <!-- wp:post-featured-image {"sizeSlug":"medium"} /-->
 
