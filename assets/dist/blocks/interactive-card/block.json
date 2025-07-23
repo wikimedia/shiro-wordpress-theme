@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "shiro/interactive-card",
+  "title": "Interactive Card",
+  "category": "wikimedia",
+  "description": "Display a clickable card with animated hover reveal effect.",
+  "version": "1.0.0",
+  "textdomain": "shiro-admin",
+  "supports": {
+    "background": {
+      "backgroundImage": true,
+      "backgroundSize": false
+    },
+    "color": {
+      "background": true,
+      "text": false
+    },
+    "dimensions": {
+      "minHeight": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ]
+    }
+  },
+  "attributes": {
+    "headingTag": {
+      "type": "string",
+      "default": "h2"
+    },
+    "headingText": {
+      "type": "rich-text",
+      "source": "rich-text",
+      "selector": "h2,h3,h4,h5,h6",
+      "role": "content"
+    },
+    "subHeadingText": {
+      "type": "string",
+      "source": "html",
+      "selector": "p"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css",
+  "style": "file:./style-index.css"
+}
