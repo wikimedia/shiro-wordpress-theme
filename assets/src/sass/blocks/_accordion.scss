@@ -3,10 +3,13 @@
 }
 
 .accordion-item {
-	border-bottom: 1px solid;
+	border-bottom: 1px solid var( --wp--preset--color--black-25 );
 	overflow: hidden;
-	padding: 14px 20px;
 	scroll-padding-top: $primary-nav-mobile-height;
+
+	&:first-child {
+		border-top: 1px solid var( --wp--preset--color--black-25 );
+	}
 
 	&__title {
 		align-items: center;
@@ -15,27 +18,49 @@
 		cursor: pointer;
 		display: flex;
 		font-size: 26px;
+		// rtl: padding: var( --wp--preset--spacing--24 ) var( --wp--preset--spacing--24 ) var( --wp--preset--spacing--24 ) calc( var( --wp--preset--spacing--24 ) * 4 );
+		padding: var( --wp--preset--spacing--24 ) calc( var( --wp--preset--spacing--24 ) * 4 ) var( --wp--preset--spacing--24 ) var( --wp--preset--spacing--24 );
 		position: relative;
 		text-align: left;
 		width: 100%;
 
+		&:active,
+		&:focus,
+		&:hover {
+			text-decoration: none;
+		}
+
+		&:active {
+			background-color: transparent !important;
+		}
+
+		&:focus:not(:focus-visible) {
+			outline: none;
+		}
+
+		&:focus-visible {
+			outline-offset: -4px;
+		}
+
 		&-text {
-			font-weight: 400;
-			margin: 0 1.5em 0 0; /*rtl: margin: 0 0 0 1.5em;*/
+			color: var( --wp--preset--color--main );
+			font-family: var( --wp--preset--font-family--default );
+			font-size: var( --wp--preset--font-size--large );
+			font-weight: 700;
+			margin: 0;
 		}
 
 		&::after {
-			content: "\d7";
+			content: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M10.085 2.943 6.05 6.803l-3.947-3.86L1.05 3.996l5 5 5-5z"/></svg>' );
 			display: flex;
 			font-size: 20px;
-			left: unset; /*rtl: left: 0;*/
+			left: unset; // rtl: left: calc( var( --wp--preset--spacing--24 ) / 2 );
 			position: absolute;
-			right: 0; /*rtl: right: unset;*/
-			transform: rotate(45deg);
-			width: 20px;
+			right: calc( var( --wp--preset--spacing--24 ) / 2 ); // rtl: right: unset;
+			zoom: 200%;
 
 			.accordion-item[aria-expanded] & {
-				transform: rotate(0deg);
+				transform: rotate(180deg);
 			}
 		}
 	}
@@ -50,9 +75,15 @@
 	}
 
 	&[aria-expanded] {
+		background-color: var( --wp--preset--color--black-05 );
+
+		.accordion-item__title {
+			border-bottom: 1px solid var( --wp--preset--color--black-10 );
+		}
+
 		.accordion-item__content { // stylelint-disable selector-class-pattern
 			height: auto;
-			padding-top: 14px;
+			padding: var( --wp--preset--spacing--24 );
 		}
 	}
 }

@@ -1,0 +1,153 @@
+@import "../../../sass/helpers/mixins/mixins-links";
+
+.wp-block-shiro-interactive-card {
+	border-radius: 0.25rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	overflow: hidden;
+	position: relative;
+
+	@media only screen and ( max-width : 624px ) {
+		// Overwrite inline value.
+		min-height: auto !important;
+	}
+
+	&.has-background {
+		color: var( --wp--preset--color--base );
+	}
+
+	// Add transparent background image overlay.
+	&.has-background[style*='background-image:'] {
+		background-blend-mode: darken;
+		// Overwrite background-color set in editor.
+		background-color: rgba( 0, 0, 0, 0.6 ) !important;
+	}
+
+	&:focus-within {
+		border-radius: 0.125rem;
+		outline: 2px solid var( --wp--preset--color--blue-aaa );
+		outline-offset: max( 2px, 0.1em );
+	}
+
+	.interactive-card__heading,
+	.interactive-card__subheading p {
+		margin-block-end: 0;
+	}
+
+	.interactive-card__heading {
+		@include style-guide-arrow();
+		font-size: var( --wp--preset--font-size--xx-large );
+		font-weight: 700;
+		line-height: var( --wp--custom--line-height--tight );
+		// Overwrite block editor inline style that breaks parent grid.
+		min-width: auto !important;
+		// Reset position so we can make card clickable.
+		position: static;
+
+		&:focus,
+		&:hover {
+			&::after {
+				font-weight: normal;
+			}
+		}
+
+		a {
+			text-decoration: none !important;
+
+			&:hover,
+			&:focus-within {
+				outline: none !important;
+			}
+		}
+	}
+
+	// Make whole card clickable.
+	.interactive-card__heading:not(.block-editor-rich-text__editable) a::after {
+		content: "";
+		inset: 0;
+		position: absolute;
+		z-index: 10;
+	}
+
+	.interactive-card__heading::after {
+		opacity: 0;
+		transform: scale(0.95) translateX(-1rem);
+		transform-origin: center right;
+		transition: all 0.25s ease-in-out;
+		transition-delay: 0.2s;
+		width: 0;
+	}
+
+	.interactive-card__subheading {
+		display: grid;
+		grid-template-rows: 0fr;
+		transition: grid-template-rows 0.35s ease, margin 0.35s;
+		// Ask browser to use hardware acceleration if avilable.
+		will-change: transform;
+
+		p {
+			overflow: hidden;
+		}
+	}
+}
+
+// Reveal content on hover and focus.
+.wp-block-shiro-interactive-card:not(.block-editor-block-list__block):focus-within,
+.wp-block-shiro-interactive-card:not(.block-editor-block-list__block):hover,
+.wp-block-shiro-interactive-card.is-selected {
+	.interactive-card__heading::after {
+		opacity: 1;
+		transform: scale(1) translateX(0);
+		width: auto;
+	}
+
+	.interactive-card__subheading {
+		grid-template-rows: 1fr;
+		margin-block-start: 1rem;
+	}
+}
+
+// Editor-only styles.
+.wp-block-shiro-interactive-card.block-editor-block-list__block {
+	// Make sure heading is not taking extra height in editor.
+	.interactive-card__heading {
+		display: inline-block;
+	}
+
+	&.is-selected .interactive-card__subheading {
+		transition: none;
+	}
+}
+
+// Overwrite interactivity for reduce motion users.
+@media (prefers-reduced-motion) {
+	.wp-block-shiro-interactive-card {
+		.interactive-card__subheading {
+			transition: none !important;
+			grid-template-rows: 1fr !important;
+			margin-block-start: 1rem !important;
+		}
+	}
+}
+
+// Overwrite styles for browsers with no pointer devices.
+@media (hover: none), (-moz-touch-enabled: 1), (pointer:coarse) {
+	.wp-block-shiro-interactive-card {
+		.interactive-card__heading::after,
+		.interactive-card__subheading {
+			transition: none !important;
+		}
+
+		.interactive-card__heading::after {
+			opacity: 1 !important;
+			transform: scale(1) translateX(0) !important;
+			width: auto !important;
+		}
+
+		.interactive-card__subheading {
+			grid-template-rows: 1fr !important;
+			margin-block-start: 1rem !important;
+		}
+	}
+}

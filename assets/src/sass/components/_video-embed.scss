@@ -1,0 +1,57 @@
+.youtube-player {
+	aspect-ratio: 16/9;
+	height: auto;
+	min-width: 321px; /* YouTube shows a low quality thumb image if the width is <= 320px */
+	width: 100%;
+}
+
+.wp-block-embed-youtube.wp-embed-aspect-16-9 iframe {
+	aspect-ratio: 16 / 9;
+	height: auto;
+	width: 100%;
+}
+
+.wp-block-embed iframe {
+	border-radius: rem(4);
+	display: block;
+}
+
+.hero-rotate-text .wp-block-embed iframe {
+	aspect-ratio: 500 / 281;
+	height: auto;
+	width: 100%;
+}
+
+.wp-block-video:has(.video-ambient-controls) {
+	align-items: end;
+	display: flex;
+	justify-content: end;
+	position: relative;
+
+	.wp-block-embed__wrapper {
+		width: 100%;
+	}
+}
+
+.video-ambient-controls {
+	@include masked-icon-button;
+	border: 2px solid currentColor;
+	border-radius: 50%;
+	margin: var(--wp--preset--spacing--24);
+	padding: rem(10);
+	position: absolute;
+	z-index: 1;
+
+	&:hover,
+	&:focus,
+	&:focus-visible {
+		background-color: rgba(#fff, 0.7) !important;
+		border-radius: 50%;
+		color: var( --wp--preset--color--main );
+		outline: 2px solid var( --wp--preset--color--base );
+	}
+
+	&.pause::before {
+		mask-image: url( "../svg/individual/pause.svg" );
+	}
+}
