@@ -38,7 +38,14 @@ const NEWS_TEMPLATE = [
 		'core/query',
 		{
 			className: 'shiro-carousel__track',
-			query: { perPage: 6 },
+			query: {
+				perPage: 6,
+				pages: 0,
+				offset: 0,
+				postType: 'post',
+				order: 'desc',
+				orderBy: 'date',
+			},
 		},
 		[
 			[
