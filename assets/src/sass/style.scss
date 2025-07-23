@@ -24,22 +24,5 @@
 /* ==================
     # Custom CSS
   =================== */
-@import "components/alerts";
-@import "components/blackout-modal";
-@import "components/ltr";
-@import "components/tables";
-@import "components/header";
-@import "components/dropdown";
-@import "components/primary-nav";
-@import "components/photo-attribution";
-@import "components/accessibility";
-@import "components/icons";
-@import "components/pagination";
-@import "components/profiles";
-@import "components/site-header";
-@import "components/site-header-footer-temp";
-@import "components/site-footer";
-@import "components/post-list-filters";
-@import "components/embed-youtube";
-
+@import "components/index";
 @import "blocks/index";

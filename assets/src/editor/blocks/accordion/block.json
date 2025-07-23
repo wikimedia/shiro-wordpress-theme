@@ -7,7 +7,7 @@
 	"icon": "menu",
 	"category": "wikimedia",
 	"supports": {
-		"align": [ "center", "full" ]
+		"align": [ "center", "wide", "full" ]
 	},
 	"attributes": {
 		"fontColor": {
