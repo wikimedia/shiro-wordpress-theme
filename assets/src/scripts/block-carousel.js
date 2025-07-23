@@ -18,6 +18,11 @@ const init = () => {
 			domElement.querySelector( '.shiro-carousel__list' ),
 		];
 
+		// Don't initiate the carousel if there aren't at least 2 slides.
+		if ( [ ...list.children ].length < 2 ) {
+			return;
+		}
+
 		// Add required classes for Splide markup; see
 		// https://splidejs.com/guides/structure/.
 		domElement.classList.add( 'splide' );
