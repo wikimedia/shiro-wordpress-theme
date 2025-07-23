@@ -120,6 +120,7 @@
 
 	&:active {
 		background-color: var( --link-active-color--blue );
+		border-color: var( --link-active-color--blue );
 		color: var(--wp--preset--color--base);
 	}
 
@@ -160,10 +161,12 @@
 		background-color: var(--wp--preset--color--light-bright-green);
 		border-color: var(--wp--preset--color--green-aaa);
 		color: var(--wp--preset--color--green-aaa);
+		outline-color: var(--wp--preset--color--green-aaa);
 	}
 
 	&:active {
 		background-color: var( --link-active-color--green );
+		border-color: var( --link-active-color--green );
 		color: var(--wp--preset--color--base);
 	}
 
