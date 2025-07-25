@@ -16,7 +16,7 @@ function Save( { attributes } ) {
 	} );
 
 	const innerBlocksProps = useInnerBlocksProps.save( {
-		className: 'shiro-tabs__content',
+		className: 'shiro-tabs__content accordion-wrapper',
 	} );
 
 	let activeTab = null;

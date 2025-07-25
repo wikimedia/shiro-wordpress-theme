@@ -1,4 +1,5 @@
 import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
+import { select } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -19,6 +20,18 @@ function Edit( { attributes, clientId, context, setAttributes } ) {
 	if ( fontColor !== attributes.fontColor ) {
 		setTimeout( () => setAttributes( { fontColor } ) );
 	}
+
+	// Check if the parent block is the tabbed block.
+	useEffect( () => {
+		const parentId = select( 'core/block-editor' )
+			.getBlockParents( clientId )
+			.slice( -1 )
+			.toString();
+		const parentName =
+			select( 'core/block-editor' ).getBlocksByClientId( parentId )[ 0 ]
+				?.name;
+		setAttributes( { isTabbed: parentName === 'shiro/tabbed' } );
+	}, [ clientId, attributes.isTabbed, setAttributes ] );
 
 	// Update the block ID.
 	// Always override saved value to ensure we never have duplicates.

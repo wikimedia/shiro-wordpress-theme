@@ -1,5 +1,4 @@
 import {
-	InnerBlocks,
 	RichText,
 	useBlockProps,
 	useInnerBlocksProps,
@@ -14,20 +13,22 @@ import { __ } from '@wordpress/i18n';
  * @returns {ReactNode} Formatted block.
  */
 function Save( { attributes } ) {
-	const { fontColor, id, title } = attributes;
+	const { fontColor, id, isTabbed, title } = attributes;
 
 	const blockProps = useBlockProps.save( {
-		className: 'accordion-item__content',
+		className: 'accordion-item',
 		id: `accordion-item-${ id }`,
-		role: 'tabpanel',
-		'aria-labelledby': `shiro-tabs-nav-${ id }`,
-		tabIndex: 0,
+		role: isTabbed ? 'tabpanel' : '',
+		'aria-labelledby': isTabbed ? `shiro-tabs-nav-${ id }` : '',
+		tabIndex: isTabbed ? 0 : '',
 	} );
 
-	const innerBlocksProps = useInnerBlocksProps.save( blockProps );
+	const innerBlocksProps = useInnerBlocksProps.save( {
+		className: 'accordion-item__content',
+	} );
 
 	return (
-		<div className="accordion-item">
+		<div { ...blockProps }>
 			<button
 				className="accordion-item__title"
 				style={ fontColor && { color: fontColor } }
