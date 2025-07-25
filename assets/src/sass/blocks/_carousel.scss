@@ -87,6 +87,23 @@
 		}
 	}
 
+	&:has(.wp-block-query) {
+		@include media("<mobile") {
+			.splide__list {
+				display: grid !important;
+			}
+
+			.post:nth-child(n+3) {
+				display: none;
+			}
+
+			.post:first-child {
+				border: 0 none;
+				padding-top: 0;
+			}
+		}
+	}
+
 	&:has(.wp-block-query).is-active {
 		--carousel-side-padding: 0px;
 		padding-bottom: rem(80);
@@ -99,6 +116,10 @@
 		.post {
 			border: 0 none;
 			padding-top: 0;
+		}
+
+		+ .wp-block-buttons {
+			margin-top: 0;
 		}
 	}
 

@@ -34,10 +34,12 @@ const init = () => {
 		);
 
 		const perPage = JSON.parse( domElement.dataset.splide ).perPage || 1;
+		const isPostCarousel = track.classList.contains( 'wp-block-query' );
 		if ( perPage > 1 ) {
 			defaultOptions.mediaQuery = 'max';
 			defaultOptions.breakpoints = {
 				599: {
+					destroy: isPostCarousel,
 					perPage: 1,
 				},
 				781: {
@@ -46,7 +48,7 @@ const init = () => {
 			};
 		}
 
-		if ( track.classList.contains( 'wp-block-query' ) && perPage > 1 ) {
+		if ( isPostCarousel && perPage > 1 ) {
 			defaultOptions.gap = '3.34%';
 		}
 
