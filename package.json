@@ -37,6 +37,7 @@
   },
   "homepage": "https://github.com/wikimedia/shiro-wordpress-theme-develop#readme",
   "devDependencies": {
+    "@humanmade/block-editor-components": "^0.10.0",
     "@wordpress/scripts": "^30.17.0",
     "block-editor-hmr": "^0.7.0",
     "classnames": "^2.5.1",
