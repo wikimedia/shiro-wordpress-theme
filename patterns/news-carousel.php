@@ -42,8 +42,8 @@
 <!-- /wp:query --></div>
 <!-- /wp:shiro/carousel -->
 
-<!-- wp:buttons {"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
-<div class="wp-block-buttons alignwide" style="margin-top:0;margin-bottom:0"><!-- wp:button {"className":"is-style-as-arrow-link"} -->
+<!-- wp:buttons {"align":"wide"} -->
+<div class="wp-block-buttons alignwide"><!-- wp:button {"className":"is-style-as-arrow-link"} -->
 <div class="wp-block-button is-style-as-arrow-link"><a class="wp-block-button__link wp-element-button" href="/news">See more updates</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
