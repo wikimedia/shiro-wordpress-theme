@@ -41,7 +41,11 @@
     },
     "layout": {
       "type": "string",
-      "default": "carousel-groups"
+      "default": "carousel-groups",
+      "enum": [
+        "carousel-groups",
+        "carousel-posts"
+      ]
     },
     "loop": {
       "type": "boolean",
