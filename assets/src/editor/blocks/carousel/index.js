@@ -6,49 +6,75 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
-import {
-	getBlockTypes,
-	registerBlockStyle,
-	registerBlockType,
-} from '@wordpress/blocks';
+import { registerBlockType } from '@wordpress/blocks';
 import {
 	PanelBody,
 	RangeControl,
-	SelectControl,
 	TextControl,
 	ToggleControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import { InnerBlockSlider } from '../../components/inner-block-slider';
-import sharedStyles from '../../helpers/block-styles';
 
 import metadata from './block.json';
+import variations from './variations';
 import './style.scss';
 
-// Ensure a better user experience by restricting child blocks to a limited subset.
-const ALLOWED_BLOCKS = [
-	'shiro/home-page-hero',
-	'shiro/landing-page-hero',
-	'shiro/report-landing-hero',
-	'shiro/card',
-	'shiro/profile',
-	'shiro/spotlight',
-	'shiro/stairs',
-	'core/paragraph',
-	'core/heading',
-	'core/quote',
-	'core/freeform',
-	'core/image',
-	'core/audio',
-	'core/video',
-	'core/columns',
-	'core/group',
+// Ensure it is clear to users how to use the block by defining a template.
+const GROUP_TEMPLATE = [
+	[
+		'core/group',
+		{
+			metadata: {
+				name: 'Carousel Slide',
+			},
+		},
+	],
 ];
 
-// Ensure it is clear to users how to use the block by defining a template.
-const TEMPLATE = [
-	[ 'shiro/home-page-hero' ],
+const NEWS_TEMPLATE = [
+	[
+		'core/query',
+		{
+			className: 'shiro-carousel__track',
+			query: {
+				perPage: 6,
+				pages: 0,
+				offset: 0,
+				postType: 'post',
+				order: 'desc',
+				orderBy: 'date',
+			},
+		},
+		[
+			[
+				'core/post-template',
+				{
+					className: 'shiro-carousel__list',
+					layout: {
+						type: 'grid',
+						columnCount: null,
+						minimumColumnWidth: '18rem',
+					},
+					style: {
+						spacing: { blockGap: 'var:preset|spacing|40' },
+					},
+				},
+				[
+					[ 'core/post-featured-image', { sizeSlug: 'medium' } ],
+					[
+						'core/group',
+						{},
+						[
+							[ 'core/post-terms', { term: 'category' } ],
+							[ 'core/post-title', { isLink: true, level: 4 } ],
+						],
+					],
+				],
+			],
+		],
+	],
 ];
 
 registerBlockType( metadata.name, {
@@ -68,97 +94,104 @@ registerBlockType( metadata.name, {
 
 		const {
 			title,
-			currentBlock,
 			perPage,
 			arrows,
 			pagination,
+			layout,
 			loop,
 			autoplay,
 			interval,
 		} = attributes;
 
+		// Ensure it is clear to users how to use the block by defining a template.
+		const TEMPLATE =
+			layout === 'carousel-groups' ? GROUP_TEMPLATE : NEWS_TEMPLATE;
+
+		const ALLOWED_BLOCKS =
+			layout === 'carousel-groups' ? [ 'core/group' ] : [ 'core/query' ];
+
 		const blockProps = useBlockProps( {
 			className: 'shiro-carousel',
 		} );
 
-		// Build options for currentBlock select controller.
-		const allBlocksAvailable = getBlockTypes();
-
-		const blockTypeOptions = ALLOWED_BLOCKS
-			.map( ( blockName ) => {
-				const registeredBlock = allBlocksAvailable.find( ( block ) => block.name === blockName );
-
-				if ( typeof registeredBlock !== 'undefined' ) {
-					return {
-						label: registeredBlock.title,
-						value: registeredBlock.name,
-					};
-				} else {
-					return null;
-				}
-			} );
+		const innerBlocksProps = useInnerBlocksProps( blockProps, {
+			allowedBlocks: ALLOWED_BLOCKS,
+			template: TEMPLATE,
+		} );
 
 		return (
 			<div { ...blockProps }>
 				<InspectorControls>
-					<PanelBody title={ __( 'Carousel settings', 'shiro-admin' ) }>
+					<PanelBody
+						title={ __( 'Carousel settings', 'shiro-admin' ) }
+					>
 						<TextControl
+							help={ __( 'Sets ARIA label', 'shiro-admin' ) }
 							label={ __( 'Carousel name', 'shiro-admin' ) }
 							value={ title }
-							onChange={ ( title ) => setAttributes( { title } ) }
-						/>
-						<SelectControl
-							label={ __( 'Block type to use as template', 'shiro-admin' ) }
-							value={ currentBlock }
-							options={ blockTypeOptions }
-							onChange={ ( currentBlock ) => setAttributes( { currentBlock } ) }
+							onChange={ title => setAttributes( { title } ) }
 						/>
 						<RangeControl
 							label={ __( 'Slides per page', 'shiro-admin' ) }
 							value={ perPage }
-							onChange={ ( perPage ) => setAttributes( { perPage } ) }
+							onChange={ perPage => setAttributes( { perPage } ) }
 							min={ 1 }
 							max={ 4 }
 						/>
 						<ToggleControl
-							label={ __( 'Show navigation arrows?', 'shiro-admin' ) }
+							label={ __(
+								'Show navigation arrows?',
+								'shiro-admin'
+							) }
 							checked={ arrows }
-							onChange={ ( arrows ) => setAttributes( { arrows } ) }
+							onChange={ arrows => setAttributes( { arrows } ) }
 						/>
 						<ToggleControl
-							label={ __( 'Show pagination dots?', 'shiro-admin' ) }
+							label={ __(
+								'Show pagination dots?',
+								'shiro-admin'
+							) }
 							checked={ pagination }
-							onChange={ ( pagination ) => setAttributes( { pagination } ) }
+							onChange={ pagination =>
+								setAttributes( { pagination } )
+							}
 						/>
 						<ToggleControl
 							label={ __( 'Loop carousel?', 'shiro-admin' ) }
 							checked={ loop }
-							onChange={ ( loop ) => setAttributes( { loop } ) }
+							onChange={ loop => setAttributes( { loop } ) }
 						/>
 						<ToggleControl
 							label={ __( 'Enable autoplay?', 'shiro-admin' ) }
 							checked={ autoplay }
-							onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
+							onChange={ autoplay =>
+								setAttributes( { autoplay } )
+							}
 						/>
 						<RangeControl
 							disabled={ ! autoplay }
-							label={ __( 'Interval between autoplaying slides', 'shiro-admin' ) }
+							label={ __(
+								'Interval between autoplaying slides',
+								'shiro-admin'
+							) }
 							value={ interval }
-							onChange={ ( interval ) => setAttributes( { interval } ) }
+							onChange={ interval =>
+								setAttributes( { interval } )
+							}
 							min={ 0 }
 							max={ 10000 }
 							marks={ [
 								/* eslint-disable object-property-newline */
 								/* eslint-disable object-curly-newline */
-								{ 'label': '1s', 'value': 1000 },
-								{ 'label': '2s', 'value': 2000 },
-								{ 'label': '3s', 'value': 3000 },
-								{ 'label': '4s', 'value': 4000 },
-								{ 'label': '5s', 'value': 5000 },
-								{ 'label': '6s', 'value': 6000 },
-								{ 'label': '7s', 'value': 7000 },
-								{ 'label': '8s', 'value': 8000 },
-								{ 'label': '9s', 'value': 9000 },
+								{ label: '1s', value: 1000 },
+								{ label: '2s', value: 2000 },
+								{ label: '3s', value: 3000 },
+								{ label: '4s', value: 4000 },
+								{ label: '5s', value: 5000 },
+								{ label: '6s', value: 6000 },
+								{ label: '7s', value: 7000 },
+								{ label: '8s', value: 8000 },
+								{ label: '9s', value: 9000 },
 								/* eslint-enable object-property-newline */
 								/* eslint-enable object-curly-newline */
 							] }
@@ -166,13 +199,16 @@ registerBlockType( metadata.name, {
 					</PanelBody>
 				</InspectorControls>
 
-				<InnerBlockSlider
-					allowedBlocks={ ALLOWED_BLOCKS }
-					currentBlock={ currentBlock }
-					parentBlockId={ clientId }
-					slidesPerPage={ 1 }
-					template={ TEMPLATE }
-				/>
+				{ layout === 'carousel-groups' ? (
+					<InnerBlockSlider
+						allowedBlocks={ ALLOWED_BLOCKS }
+						parentBlockId={ clientId }
+						slidesPerPage={ 1 }
+						template={ TEMPLATE }
+					/>
+				) : (
+					<div { ...innerBlocksProps } />
+				) }
 			</div>
 		);
 	},
@@ -192,6 +228,7 @@ registerBlockType( metadata.name, {
 			perPage,
 			arrows,
 			pagination,
+			layout,
 			loop,
 			autoplay,
 			interval,
@@ -205,12 +242,12 @@ registerBlockType( metadata.name, {
 			type: loop ? 'loop' : 'slide',
 			autoplay: autoplay,
 			interval: interval,
+			arrowPath:
+				'M20 0c11.046 0 20 8.954 20 20s-8.954 20-20 20S0 31.046 0 20 8.954 0 20 0Zm0 8.87-1.962 1.975 7.764 7.764H8.87v2.782h16.932l-7.764 7.778L20 31.13 31.13 20 20 8.87Z',
 		};
 
 		const blockProps = useBlockProps.save( {
-			className: classNames( [
-				'shiro-carousel',
-			] ),
+			className: classNames( [ 'shiro-carousel' ] ),
 			'data-splide': JSON.stringify( dataSplide ),
 		} );
 
@@ -220,20 +257,23 @@ registerBlockType( metadata.name, {
 
 		return (
 			<div { ...blockProps }>
-				<div className='shiro-carousel__track'>
-					<div { ...innerBlocksProps } />
-				</div>
+				{ layout === 'carousel-groups' ? (
+					<div className="shiro-carousel__track">
+						<div { ...innerBlocksProps } />
+					</div>
+				) : (
+					innerBlocksProps.children
+				) }
 			</div>
 		);
 	},
+	variations,
 } );
-
-sharedStyles.forEach( ( style ) => registerBlockStyle( metadata.name, style ) );
 
 // Block HMR boilerplate.
 if ( module.hot ) {
 	module.hot.accept();
 	const { deregister, refresh } = require( '../../helpers/hot-blocks.js' );
-	module.hot.dispose( deregister( metadata.name, { styles: sharedStyles } ) );
+	module.hot.dispose( deregister( metadata.name ) );
 	refresh( metadata.name, module.hot.data );
 }

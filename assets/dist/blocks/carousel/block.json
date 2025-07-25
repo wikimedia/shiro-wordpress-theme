@@ -12,28 +12,24 @@
   ],
   "supports": {
     "align": [
-      "center",
       "wide",
       "full"
-    ]
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
   },
   "version": "1.0.0",
   "textdomain": "shiro-admin",
   "attributes": {
-    "align": {
-      "type": "string",
-      "default": "full"
-    },
     "title": {
       "type": "string",
       "default": ""
     },
-    "currentBlock": {
-      "type": "string",
-      "default": "shiro/home-page-hero"
-    },
     "perPage": {
-      "type": "integer"
+      "type": "integer",
+      "default": 1
     },
     "arrows": {
       "type": "boolean",
@@ -42,6 +38,14 @@
     "pagination": {
       "type": "boolean",
       "default": true
+    },
+    "layout": {
+      "type": "string",
+      "default": "carousel-groups",
+      "enum": [
+        "carousel-groups",
+        "carousel-posts"
+      ]
     },
     "loop": {
       "type": "boolean",
