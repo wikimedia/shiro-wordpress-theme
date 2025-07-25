@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "shiro/tabbed",
+  "title": "Tabbed",
+  "category": "design",
+  "icon": "block-default",
+  "description": "Preformatted block grouping for a tabbed layout block.",
+  "keywords": [ "tabbed-content", "tabs", "tabbed" ],
+  "version": "1.0.0",
+  "textdomain": "shiro-admin",
+  "attributes": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "default": []
+    }
+  },
+  "supports": {
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js"
+}
