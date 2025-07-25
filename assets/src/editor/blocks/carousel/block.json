@@ -12,7 +12,6 @@
   ],
   "supports": {
     "align": [
-      "center",
       "wide",
       "full"
     ]
@@ -20,17 +19,9 @@
   "version": "1.0.0",
   "textdomain": "shiro-admin",
   "attributes": {
-    "align": {
-      "type": "string",
-      "default": "full"
-    },
     "title": {
       "type": "string",
       "default": ""
-    },
-    "currentBlock": {
-      "type": "string",
-      "default": "shiro/home-page-hero"
     },
     "perPage": {
       "type": "integer"

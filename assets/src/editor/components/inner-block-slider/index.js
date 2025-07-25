@@ -13,7 +13,6 @@ import Navigation from './navigation';
  * @param {object} props - Component props.
  * @param {string} props.parentBlockId - Parent block clientId.
  * @param {Array} props.allowedBlocks - Allowed block types.
- * @param {string} props.currentBlock - Block which will be inserted by the inserter.
  * @param {Array}  props.template - Initial block template.
  * @param {number} props.slideLimit - Maximum allowed slides.
  * @returns {ReactNode} Component.
@@ -21,12 +20,9 @@ import Navigation from './navigation';
 const InnerBlockSlider = ( {
 	parentBlockId,
 	allowedBlocks,
-	currentBlock,
 	template = null,
 	slideLimit = 10,
 } ) => {
-	const innerBlockTemplate = template || [ [ currentBlock ] ];
-
 	const slideBlocks = useSelect(
 		( select ) => select( 'core/block-editor' ).getBlock( parentBlockId ).innerBlocks
 	);
@@ -44,7 +40,14 @@ const InnerBlockSlider = ( {
 	 * @returns {void}
 	 */
 	const addSlide = () => {
-		const created = createBlock( currentBlock );
+		const created = createBlock(
+			'core/group',{
+				metadata: {
+					name: 'Carousel Slide'
+				}
+			}
+		);
+
 		insertBlock( created, undefined, parentBlockId );
 	};
 
@@ -74,7 +77,7 @@ const InnerBlockSlider = ( {
 				className="slides"
 				currentItemIndex={ currentItemIndex }
 				parentBlockId={ parentBlockId }
-				template={ innerBlockTemplate }
+				template={ template }
 			/>
 
 			<Navigation
@@ -93,7 +96,6 @@ const InnerBlockSlider = ( {
 InnerBlockSlider.propTypes = {
 	parentBlockId: PropTypes.string.isRequired,
 	allowedBlocks: PropTypes.arrayOf( PropTypes.string ),
-	currentBlock: PropTypes.string.isRequired,
 	template: PropTypes.array,
 };
 

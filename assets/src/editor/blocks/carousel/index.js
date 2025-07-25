@@ -7,14 +7,12 @@ import {
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 import {
-	getBlockTypes,
 	registerBlockStyle,
 	registerBlockType,
 } from '@wordpress/blocks';
 import {
 	PanelBody,
 	RangeControl,
-	SelectControl,
 	TextControl,
 	ToggleControl,
 } from '@wordpress/components';
@@ -26,29 +24,15 @@ import sharedStyles from '../../helpers/block-styles';
 import metadata from './block.json';
 import './style.scss';
 
-// Ensure a better user experience by restricting child blocks to a limited subset.
-const ALLOWED_BLOCKS = [
-	'shiro/home-page-hero',
-	'shiro/landing-page-hero',
-	'shiro/report-landing-hero',
-	'shiro/card',
-	'shiro/profile',
-	'shiro/spotlight',
-	'shiro/stairs',
-	'core/paragraph',
-	'core/heading',
-	'core/quote',
-	'core/freeform',
-	'core/image',
-	'core/audio',
-	'core/video',
-	'core/columns',
-	'core/group',
-];
-
 // Ensure it is clear to users how to use the block by defining a template.
 const TEMPLATE = [
-	[ 'shiro/home-page-hero' ],
+	[ 'core/group',
+		{
+			metadata: {
+				name: 'Carousel Slide'
+			}
+		}
+	],
 ];
 
 registerBlockType( metadata.name, {
@@ -68,7 +52,6 @@ registerBlockType( metadata.name, {
 
 		const {
 			title,
-			currentBlock,
 			perPage,
 			arrows,
 			pagination,
@@ -81,37 +64,15 @@ registerBlockType( metadata.name, {
 			className: 'shiro-carousel',
 		} );
 
-		// Build options for currentBlock select controller.
-		const allBlocksAvailable = getBlockTypes();
-
-		const blockTypeOptions = ALLOWED_BLOCKS
-			.map( ( blockName ) => {
-				const registeredBlock = allBlocksAvailable.find( ( block ) => block.name === blockName );
-
-				if ( typeof registeredBlock !== 'undefined' ) {
-					return {
-						label: registeredBlock.title,
-						value: registeredBlock.name,
-					};
-				} else {
-					return null;
-				}
-			} );
-
 		return (
 			<div { ...blockProps }>
 				<InspectorControls>
 					<PanelBody title={ __( 'Carousel settings', 'shiro-admin' ) }>
 						<TextControl
+							help={ __( 'Sets ARIA label', 'shiro-admin' ) }
 							label={ __( 'Carousel name', 'shiro-admin' ) }
 							value={ title }
 							onChange={ ( title ) => setAttributes( { title } ) }
-						/>
-						<SelectControl
-							label={ __( 'Block type to use as template', 'shiro-admin' ) }
-							value={ currentBlock }
-							options={ blockTypeOptions }
-							onChange={ ( currentBlock ) => setAttributes( { currentBlock } ) }
 						/>
 						<RangeControl
 							label={ __( 'Slides per page', 'shiro-admin' ) }
@@ -167,8 +128,7 @@ registerBlockType( metadata.name, {
 				</InspectorControls>
 
 				<InnerBlockSlider
-					allowedBlocks={ ALLOWED_BLOCKS }
-					currentBlock={ currentBlock }
+					allowedBlocks={ [ 'core/group' ] }
 					parentBlockId={ clientId }
 					slidesPerPage={ 1 }
 					template={ TEMPLATE }
@@ -205,6 +165,7 @@ registerBlockType( metadata.name, {
 			type: loop ? 'loop' : 'slide',
 			autoplay: autoplay,
 			interval: interval,
+			arrowPath: 'M20 0c11.046 0 20 8.954 20 20s-8.954 20-20 20S0 31.046 0 20 8.954 0 20 0Zm0 8.87-1.962 1.975 7.764 7.764H8.87v2.782h16.932l-7.764 7.778L20 31.13 31.13 20 20 8.87Z',
 		};
 
 		const blockProps = useBlockProps.save( {
