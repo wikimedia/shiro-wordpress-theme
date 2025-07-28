@@ -25,52 +25,40 @@
 			<!-- wp:group {"className":"is-style-clickable-card","style":{"border":{"radius":"4px","width":"1px"}},"backgroundColor":"base","borderColor":"black-10","layout":{"type":"default"}} -->
 			<div class="wp-block-group is-style-clickable-card has-border-color has-black-10-border-color has-base-background-color has-background" style="border-width:1px;border-radius:4px">
 				<!-- wp:image {"id":77676,"width":"auto","height":"64px","sizeSlug":"full","linkDestination":"none"} -->
-				<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/media/give-icon-friendship.svg" alt="" class="wp-image-77676" style="width:auto;height:64px"/></figure>
+				<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/src/svg/give-icon-friendship.svg" alt="" class="wp-image-77676" style="width:auto;height:64px"/></figure>
 				<!-- /wp:image -->
-				<!-- wp:group {"layout":{"type":"default"}} -->
-				<div class="wp-block-group">
-					<!-- wp:heading {"level":3,"fontSize":"x-large","fontFamily":"display"} -->
-					<h3 class="wp-block-heading has-display-font-family has-x-large-font-size"><a href="#">Give once</a></h3>
-					<!-- /wp:heading -->
-					<!-- wp:paragraph -->
-					<p>Make an impact with a quick and secure online donation today.</p>
-					<!-- /wp:paragraph -->
-				</div>
-				<!-- /wp:group -->
+				<!-- wp:heading {"level":3,"fontSize":"x-large","fontFamily":"display"} -->
+				<h3 class="wp-block-heading has-display-font-family has-x-large-font-size"><a href="#">Give once</a></h3>
+				<!-- /wp:heading -->
+				<!-- wp:paragraph -->
+				<p>Make an impact with a quick and secure online donation today.</p>
+				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 			<!-- wp:group {"className":"is-style-clickable-card","style":{"border":{"radius":"4px","width":"1px"}},"backgroundColor":"base","borderColor":"black-10","layout":{"type":"default"}} -->
 			<div class="wp-block-group is-style-clickable-card has-border-color has-black-10-border-color has-base-background-color has-background" style="border-width:1px;border-radius:4px">
 				<!-- wp:image {"id":77683,"width":"auto","height":"64px","sizeSlug":"full","linkDestination":"none"} -->
-				<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/media/give-icon-calendar.svg" alt="" class="wp-image-77683" style="width:auto;height:64px"/></figure>
+				<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/src/svg/give-icon-calendar.svg" alt="" class="wp-image-77683" style="width:auto;height:64px"/></figure>
 				<!-- /wp:image -->
-				<!-- wp:group {"layout":{"type":"default"}} -->
-				<div class="wp-block-group">
-					<!-- wp:heading {"level":3,"fontSize":"x-large","fontFamily":"display"} -->
-					<h3 class="wp-block-heading has-display-font-family has-x-large-font-size"><a href="#">Give monthly</a></h3>
-					<!-- /wp:heading -->
-					<!-- wp:paragraph -->
-					<p>Become a monthly donor to help support Wikipedia all year round.</p>
-					<!-- /wp:paragraph -->
-				</div>
-				<!-- /wp:group -->
+				<!-- wp:heading {"level":3,"fontSize":"x-large","fontFamily":"display"} -->
+				<h3 class="wp-block-heading has-display-font-family has-x-large-font-size"><a href="#">Give monthly</a></h3>
+				<!-- /wp:heading -->
+				<!-- wp:paragraph -->
+				<p>Become a monthly donor to help support Wikipedia all year round.</p>
+				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 			<!-- wp:group {"className":"is-style-clickable-card","style":{"border":{"radius":"4px","width":"1px"}},"backgroundColor":"base","borderColor":"black-10","layout":{"type":"default"}} -->
 			<div class="wp-block-group is-style-clickable-card has-border-color has-black-10-border-color has-base-background-color has-background" style="border-width:1px;border-radius:4px">
 				<!-- wp:image {"id":77684,"width":"auto","height":"64px","sizeSlug":"full","linkDestination":"none"} -->
-				<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/media/give-icon-building.svg" alt="" class="wp-image-77684" style="width:auto;height:64px"/></figure>
+				<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/src/svg/give-icon-building.svg" alt="" class="wp-image-77684" style="width:auto;height:64px"/></figure>
 				<!-- /wp:image -->
-				<!-- wp:group {"layout":{"type":"default"}} -->
-				<div class="wp-block-group">
-					<!-- wp:heading {"level":3,"fontSize":"x-large","fontFamily":"display"} -->
-					<h3 class="wp-block-heading has-display-font-family has-x-large-font-size"><a href="#">Give yearly</a></h3>
-					<!-- /wp:heading -->
-					<!-- wp:paragraph -->
-					<p>Donating once a year is a small commitment that makes a huge difference.</p>
-					<!-- /wp:paragraph -->
-				</div>
-				<!-- /wp:group -->
+				<!-- wp:heading {"level":3,"fontSize":"x-large","fontFamily":"display"} -->
+				<h3 class="wp-block-heading has-display-font-family has-x-large-font-size"><a href="#">Give yearly</a></h3>
+				<!-- /wp:heading -->
+				<!-- wp:paragraph -->
+				<p>Donating once a year is a small commitment that makes a huge difference.</p>
+				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 		</div>
@@ -174,8 +162,8 @@
 		<!-- /wp:group -->
 		<!-- wp:group {"className":"is-style-clickable-card","style":{"border":{"radius":"4px","width":"1px"},"spacing":{"margin":{"top":"var:preset|spacing|24"}}},"backgroundColor":"base","borderColor":"black-10","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 		<div class="wp-block-group is-style-clickable-card has-border-color has-black-10-border-color has-base-background-color has-background" style="border-width:1px;border-radius:4px;margin-top:var(--wp--preset--spacing--24)">
-			<!-- wp:image {"id":77693,"width":"auto","height":"123px","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/patterns/media/give-icon-shirt.svg" alt="" class="wp-image-77693" style="width:auto;height:123px"/></figure>
+			<!-- wp:image {"id":77693,"width":"auto","height":"123px","sizeSlug":"full","linkDestination":"none","className":"display-none_small"} -->
+			<figure class="wp-block-image size-full is-resized display-none_small"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/src/svg/give-icon-shirt.svg" alt="" class="wp-image-77693" style="width:auto;height:123px"/></figure>
 			<!-- /wp:image -->
 			<!-- wp:group {"layout":{"type":"default"}} -->
 			<div class="wp-block-group">
