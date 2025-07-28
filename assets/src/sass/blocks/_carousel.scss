@@ -131,7 +131,8 @@
 	.shiro-carousel__list > .wp-block-group > .wp-block-columns > .wp-block-column {
 		// If it is the second and last child and only contains a spacer or empty group, make it first on mobile.
 		&:nth-child(2):last-child:has(.wp-block-spacer:only-child),
-		&:nth-child(2):last-child:has(.wp-block-group:only-child:empty) {
+		&:nth-child(2):last-child:has(.wp-block-group:only-child:empty),
+		&:nth-child(2):last-child:has(.wp-block-image:only-child) {
 			@include media("<tablet") {
 				order: -1;
 			}
