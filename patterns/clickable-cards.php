@@ -2,7 +2,7 @@
 /**
  * Title: Clickable Cards
  * Slug: clickable-cards
- * Categories: media
+ * Categories: wikimedia
  * Description: Add an clickable CTA cards section.
  * Viewport Width: 1440
  * Inserter: true
