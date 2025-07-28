@@ -130,7 +130,7 @@ function wmf_scripts() {
 		\WMF\Assets\get_manifest_path( 'shiro.js' ),
 		'shiro.js',
 		[
-			'dependencies' => [],
+			'dependencies' => [ 'wp-i18n' ],
 			'handle' => 'shiro-modern',
 		]
 	);
@@ -281,6 +281,7 @@ require get_template_directory() . '/inc/editor/patterns/fact-columns.php';
 require get_template_directory() . '/inc/editor/patterns/link-columns.php';
 require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
 require get_template_directory() . '/inc/editor/patterns/communication-module.php';
+require get_template_directory() . '/inc/editor/patterns/email-subscription-form.php';
 require get_template_directory() . '/inc/editor/patterns/template-default.php';
 require get_template_directory() . '/inc/editor/patterns/template-landing.php';
 require get_template_directory() . '/inc/editor/patterns/template-list.php';

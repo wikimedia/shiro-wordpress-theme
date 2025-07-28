@@ -10,8 +10,6 @@ import * as contact from './blocks/contact';
 import * as coreButton from './blocks/core-button';
 import * as coreColumns from './blocks/core-columns';
 import * as coreGroup from './blocks/core-group';
-import * as coreHeading from './blocks/core-heading';
-import * as coreParagraph from './blocks/core-paragraph';
 import * as coreQuote from './blocks/core-quote';
 import * as doubleHeading from './blocks/double-heading';
 import * as externalLink from './blocks/external-link';
@@ -22,7 +20,6 @@ import * as landingPageHero from './blocks/landing-page-hero';
 import * as linkedTableOfContents from './blocks/linked-table-of-contents';
 import * as linkedTocColumns from './blocks/linked-toc-columns';
 import * as linkedTocItem from './blocks/linked-toc-item';
-import * as mailchimpSubscribe from './blocks/mailchimp-subscribe';
 import * as profile from './blocks/profile';
 import * as profileList from './blocks/profile-list';
 import * as readMoreCategories from './blocks/read-more-categories';
@@ -53,8 +50,6 @@ const blocks = [
 	coreButton,
 	coreColumns,
 	coreGroup,
-	coreHeading,
-	coreParagraph,
 	coreQuote,
 	doubleHeading,
 	externalLink,
@@ -65,7 +60,6 @@ const blocks = [
 	linkedTableOfContents,
 	linkedTocColumns,
 	linkedTocItem,
-	mailchimpSubscribe,
 	profile,
 	profileList,
 	readMoreCategories,
@@ -86,7 +80,7 @@ for ( const blockModule of blocks ) {
 	const { name, settings, filters, styles } = blockModule;
 
 	if ( ( name || settings?.name ) && settings ) {
-		registerBlockType( ( name || settings?.name ), settings );
+		registerBlockType( name || settings?.name, settings );
 	}
 
 	if ( filters && Array.isArray( filters ) ) {
@@ -96,7 +90,7 @@ for ( const blockModule of blocks ) {
 	}
 
 	if ( styles && Array.isArray( styles ) ) {
-		styles.forEach( ( style ) => registerBlockStyle( name, style ) );
+		styles.forEach( style => registerBlockStyle( name, style ) );
 	}
 }
 
