@@ -52,6 +52,13 @@ const init = () => {
 			defaultOptions.gap = '3.34%';
 		}
 
+		const textDirection = window
+			.getComputedStyle( document.body )
+			.getPropertyValue( 'direction' );
+		if ( textDirection === 'rtl' ) {
+			defaultOptions.direction = 'rtl';
+		}
+
 		const options = {
 			...defaultOptions,
 			...domElement.dataset,
