@@ -8,27 +8,45 @@
 	--carousel-arrow-position: #{fluid( 16, 44 + 32 )}; // arrow size + 32 margin.
 	--carousel-control-bottom-position: #{rem(16)};
 	container-type: inline-size;
+	direction: ltr; // rtl: direction: rtl;
 	// stylelint-disable selector-class-pattern
+
+	.splide__arrows {
+		bottom: var(--carousel-control-bottom-position);
+		height: var(--carousel-arrow-size);
+		pointer-events: none;
+		position: absolute;
+		z-index: 1;
+		width: 100%;
+	}
 
 	.splide__arrow {
 		@include button-transparent;
 		background: radial-gradient( var(--wp--preset--color--main) 50%, var(--wp--preset--color--base) 50% );
 		border: 2px solid var(--wp--preset--color--border-light);
 		border-radius: 50%;
-		bottom: var(--carousel-control-bottom-position);
+		bottom: 0;
 		box-sizing: content-box;
 		height: var(--carousel-arrow-size);
 		padding: 0;
+		pointer-events: all;
 		position: absolute;
 		z-index: 1;
 
 		&--prev {
 			left: var( --carousel-side-padding );
-			transform: rotate(180deg);
+
+			&:is(.splide__arrows--ltr .splide__arrow) {
+				rotate: 180deg;
+			}
 		}
 
 		&--next {
 			right: var( --carousel-side-padding );
+
+			&:is(.splide__arrows--rtl .splide__arrow) {
+				rotate: 180deg;
+			}
 		}
 
 		&:focus,
@@ -127,32 +145,44 @@
 	.splide__list > * {
 		margin-bottom: 0;
 	}
+
+	.shiro-carousel__list > .wp-block-group > .wp-block-columns > .wp-block-column {
+		// If it is the second and last child and only contains a spacer or empty group, make it first on mobile.
+		&:nth-child(2):last-child:has(.wp-block-spacer:only-child),
+		&:nth-child(2):last-child:has(.wp-block-group:only-child:empty),
+		&:nth-child(2):last-child:has(.wp-block-image:only-child) {
+			@include media("<tablet") {
+				order: -1;
+			}
+		}
+	}
 }
 
 .shiro-carousel:not(.alignfull) {
 	&:not(.alignwide) {
 		@include media(">=sm_desktop") {
-			.splide__arrow {
+			.splide__arrows {
 				@container ( width >= #{ map-get( $breakpoints, "content" ) } ) {
-					top: 50%;
 					bottom: initial;
+					top: 50%;
+					transform: translateY(-50%);
 
-					&:is(.shiro-carousel:has(.wp-block-query) .splide__arrow) {
+					&:is(.shiro-carousel:has(.wp-block-query) .splide__arrows) {
 						top: 40%;
 					}
 				}
+			}
 
+			.splide__arrow {
 				&--prev {
 					@container ( width >= #{ map-get( $breakpoints, "content" ) } ) {
 						left: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.
-						transform: translateY(-50%) rotate(180deg);
 					}
 				}
 
 				&--next {
 					@container ( width >= #{ map-get( $breakpoints, "content" ) } ) {
 						right: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.;
-						transform: translateY(-50%);
 					}
 				}
 			}
@@ -161,27 +191,28 @@
 
 	&.alignwide {
 		@include media(">=wide") {
-			.splide__arrow {
+			.splide__arrows {
 				@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
-					top: 50%;
 					bottom: initial;
+					top: 50%;
+					transform: translateY(-50%);
 
-					&:is(.shiro-carousel:has(.wp-block-query) .splide__arrow) {
+					&:is(.shiro-carousel:has(.wp-block-query) .splide__arrows) {
 						top: 40%;
 					}
 				}
+			}
 
+			.splide__arrow {
 				&--prev {
 					@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
 						left: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.
-						transform: translateY(-50%) rotate(180deg);
 					}
 				}
 
 				&--next {
 					@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
 						right: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.;
-						transform: translateY(-50%);
 					}
 				}
 			}
@@ -193,27 +224,28 @@
 	--carousel-arrow-position: #{fluid( 16, 40 )};
 
 	@include media(">=wide") {
-		.splide__arrow {
+		.splide__arrows {
 			@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
-				top: 50%;
 				bottom: initial;
+				top: 50%;
+				transform: translateY(-50%);
 
-				&:is(.shiro-carousel:has(.wp-block-query) .splide__arrow) {
+				&:is(.shiro-carousel:has(.wp-block-query) .splide__arrows) {
 					top: 40%;
 				}
 			}
+		}
 
+		.splide__arrow {
 			&--prev {
 				@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
 					left: var( --carousel-arrow-position );
-					transform: translateY(-50%) rotate(180deg);
 				}
 			}
 
 			&--next {
 				@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
 					right: var( --carousel-arrow-position );
-					transform: translateY(-50%);
 				}
 			}
 		}
