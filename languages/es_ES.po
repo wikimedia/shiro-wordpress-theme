@@ -1,0 +1,1053 @@
+# Copyright (C) 2025 Wikimedia Foundation Design
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Shiro 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/shiro\n"
+"POT-Creation-Date: 2025-08-05T01:43:09+00:00\n"
+"PO-Revision-Date: 2025-08-05 15:06-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.6\n"
+"X-Domain: shiro\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Shiro"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://github.com/wikimedia/wikimediafoundation-org"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "Wikimedia Foundation website theme, forked from the Reaktiv theme"
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Wikimedia Foundation Design"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://design.wikimedia.org/"
+msgstr ""
+
+#. translators: Only basic inline HTML is allowed, anything else will be stripped on output.
+#: assets/src/editor/blocks/donation-bar/render.php:22
+msgid ""
+"We are not fundraising in your country at this time, but monetary "
+"contributions are not your only option for donating to and supporting "
+"Wikipedia. <a href=\"/participate/\">Learn how to participate</a>."
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/render.php:65
+msgid "Amount"
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/render.php:75
+msgid "Frequency"
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/render.php:78
+msgid "Just once"
+msgstr "Una vez"
+
+#: assets/src/editor/blocks/donation-bar/render.php:82
+msgid "Give monthly"
+msgstr "Donar mensualmente"
+
+#: assets/src/editor/blocks/donation-bar/render.php:87
+msgid "Annual"
+msgstr "Anual"
+
+#: assets/src/editor/blocks/donation-bar/render.php:93
+#: assets/src/editor/blocks/core-button/index.js:62
+msgid "Donate now"
+msgstr "Donar ahora"
+
+#: assets/src/editor/blocks/share-article/render.php:63
+msgid "Copy Link"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/render.php:65
+msgid "Link copied"
+msgstr ""
+
+#. translators: 1: title.
+#: comments.php:39
+#, php-format
+msgid "One thought on &ldquo;%1$s&rdquo;"
+msgstr ""
+
+#. translators: 1: comment count number, 2: title.
+#: comments.php:45
+#, php-format
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:56 comments.php:79
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:59 comments.php:82
+msgid "Older Comments"
+msgstr ""
+
+#: comments.php:60 comments.php:83
+msgid "Newer Comments"
+msgstr ""
+
+#: comments.php:97
+msgid "Comments are closed."
+msgstr ""
+
+#: footer.php:38
+msgid "Close"
+msgstr ""
+
+#: inc/classes/walkers/class-walker-main-nav.php:105
+msgid "Expand submenu for "
+msgstr ""
+
+#: inc/editor/blocks/mailchimp-subscribe.php:57
+msgid "Enter your email"
+msgstr ""
+
+#: inc/editor/blocks/read-more-categories.php:50
+msgid "Read more:"
+msgstr ""
+
+#: inc/editor/blocks/toc.php:186 sidebar-list.php:35 sidebar-report.php:31
+#: assets/src/editor/blocks/table-of-contents/deprecations.js:53
+#: assets/src/editor/blocks/table-of-contents/deprecations.js:122
+msgid "Table of Contents"
+msgstr ""
+
+#: inc/editor/blocks/toc.php:190 sidebar-list.php:43
+#: assets/src/editor/blocks/table-of-contents/deprecations.js:57
+#: assets/src/editor/blocks/table-of-contents/deprecations.js:130
+msgid "Navigate within this page."
+msgstr ""
+
+#: inc/editor/blocks/toc.php:193 sidebar-list.php:48 sidebar-report.php:44
+#: assets/src/editor/blocks/table-of-contents/deprecations.js:66
+#: assets/src/editor/blocks/table-of-contents/deprecations.js:139
+msgid "Toggle menu"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:32 inc/editor/has-blocks-column.php:80
+msgid "Has blocks"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:47
+msgid "Yes"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:47
+msgid "No"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:72
+msgid "Filter by whether the page has blocks"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:77 search.php:70
+msgid "All"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:83
+msgid "Doesn't have blocks"
+msgstr ""
+
+#: inc/template-functions.php:774
+msgid "File provided by Wikimedia Commons"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:23
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of categories.
+#: inc/template-tags.php:26
+#, php-format
+msgid "Posted in %1$s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:30
+msgctxt "list item separator"
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of tags.
+#: inc/template-tags.php:33
+#, php-format
+msgid "Tagged %1$s"
+msgstr ""
+
+#. translators: %s: post title
+#: inc/template-tags.php:43
+#, php-format
+msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#: inc/template-tags.php:194
+msgid "By "
+msgstr ""
+
+#. Template Name of the theme
+msgid "Data Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Freeform"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Landing Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "List Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Redirect Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Report Landing Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Report Section"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Report page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Stories Page"
+msgstr ""
+
+#: patterns/donate-financial-information.php
+msgctxt "Pattern title"
+msgid "Donate - financial information"
+msgstr ""
+
+#: patterns/donate-financial-information.php
+msgctxt "Pattern description"
+msgid "\"Where your donation goes\" financial information section"
+msgstr ""
+
+#: patterns/footer-dark.php
+msgctxt "Pattern title"
+msgid "Footer"
+msgstr ""
+
+#: patterns/header-light.php
+msgctxt "Pattern title"
+msgid "Header Light"
+msgstr ""
+
+#: patterns/header-light.php
+msgctxt "Pattern description"
+msgid "Header with nav, search, language, and donate button"
+msgstr ""
+
+#: patterns/hero-rotate-text.php
+msgctxt "Pattern title"
+msgid "Hero - rotating text"
+msgstr ""
+
+#: patterns/hero-rotate-text.php
+msgctxt "Pattern description"
+msgid "Hero block pattern with highlighted rotating text."
+msgstr ""
+
+#: patterns/interactive-cards.php
+msgctxt "Pattern title"
+msgid "Interactive Cards"
+msgstr ""
+
+#: patterns/interactive-cards.php
+msgctxt "Pattern description"
+msgid "Add an interactive cards section."
+msgstr ""
+
+#: patterns/mega-get-involved.php
+msgctxt "Pattern title"
+msgid "Mega menu - get involved"
+msgstr ""
+
+#: patterns/mega-get-involved.php
+msgctxt "Pattern description"
+msgid "Mega menu container for the \"get involved\" menu."
+msgstr ""
+
+#: patterns/mega-languages.php
+msgctxt "Pattern title"
+msgid "Mega languages"
+msgstr ""
+
+#: patterns/mega-languages.php
+msgctxt "Pattern description"
+msgid "Mega menu container for the languages menu."
+msgstr ""
+
+#: patterns/mega-news.php
+msgctxt "Pattern title"
+msgid "Mega menu - news"
+msgstr ""
+
+#: patterns/mega-news.php
+msgctxt "Pattern description"
+msgid "Mega menu container for the \"news\" menu."
+msgstr ""
+
+#: patterns/mega-search.php
+msgctxt "Pattern title"
+msgid "Mega search"
+msgstr ""
+
+#: patterns/mega-search.php
+msgctxt "Pattern description"
+msgid "Mega menu container for the search menu."
+msgstr ""
+
+#: patterns/mega-what-we-do.php
+msgctxt "Pattern title"
+msgid "Mega menu - what we do"
+msgstr ""
+
+#: patterns/mega-what-we-do.php
+msgctxt "Pattern description"
+msgid "Mega menu container for the \"what we do\" menu."
+msgstr ""
+
+#: patterns/mega-who-we-are.php
+msgctxt "Pattern title"
+msgid "Mega menu - who we are"
+msgstr ""
+
+#: patterns/mega-who-we-are.php
+msgctxt "Pattern description"
+msgid "Mega menu container for the \"who we are\" menu."
+msgstr ""
+
+#: patterns/news-carousel.php
+msgctxt "Pattern title"
+msgid "Our work news carousel"
+msgstr ""
+
+#: patterns/news-carousel.php
+msgctxt "Pattern description"
+msgid "Block pattern for a full-width news carousel with surrounding elements."
+msgstr ""
+
+#: patterns/promo-carousel.php
+msgctxt "Pattern title"
+msgid "Promo carousel"
+msgstr ""
+
+#: patterns/promo-carousel.php
+msgctxt "Pattern description"
+msgid "Block pattern for a full-width promo carousel."
+msgstr ""
+
+#: search.php:34
+msgid "Showing 1 of 1 result"
+msgstr ""
+
+#. translators: 1. first result, 2. last result, 3. total results
+#: search.php:38
+#, php-format
+msgid "Showing %1$s-%2$s of %3$s results"
+msgstr ""
+
+#: search.php:52
+msgid "Relevance"
+msgstr ""
+
+#: search.php:56
+msgid "Date (newest)"
+msgstr ""
+
+#: search.php:60
+msgid "Date (oldest)"
+msgstr ""
+
+#: search.php:74
+msgid "News"
+msgstr ""
+
+#: search.php:78
+msgid "Pages"
+msgstr ""
+
+#. translators: post type, i.e., News or Pages
+#: search.php:106
+#, php-format
+msgid "Filter search for %s only"
+msgstr ""
+
+#: search.php:108
+msgid "Show all search results"
+msgstr ""
+
+#: sidebar-report.php:39
+msgid "Navigate within this section."
+msgstr ""
+
+#: sidebar-search.php:36
+msgid "Sort By"
+msgstr ""
+
+#. translators: 1. post title
+#: single-profile.php:126
+#, php-format
+msgid "Posts by %s"
+msgstr ""
+
+#. translators: %s represents the page title.
+#: single-story.php:30
+#, php-format
+msgid "%s stories"
+msgstr ""
+
+#: template-maintenance-mode.php:205
+msgctxt "maintenance-mode"
+msgid "We are taking a time out."
+msgstr ""
+
+#: template-maintenance-mode.php:208
+msgctxt "maintenance-mode"
+msgid ""
+"The Wikimedia Foundation website is temporarily offline for maintenance and "
+"will return shortly. Our free knowledge projects remain online and "
+"unaffected."
+msgstr ""
+
+#: template-maintenance-mode.php:217
+msgctxt "maintenance-mode"
+msgid "We do not like errors any more than you do."
+msgstr ""
+
+#: template-maintenance-mode.php:220
+msgctxt "maintenance-mode"
+msgid "Help us improve!"
+msgstr ""
+
+#: template-maintenance-mode.php:223
+msgctxt "maintenance-mode"
+msgid "Make $5 donation"
+msgstr ""
+
+#: template-parts/header/story-single.php:11
+msgid "Transparency Report"
+msgstr ""
+
+#. translators: 1. the post title.
+#: template-parts/modules/cards/card-horizontal.php:81
+#: template-parts/modules/cards/card-vertical.php:75
+#, php-format
+msgid "Read more about %s"
+msgstr ""
+
+#: template-parts/modules/cards/card-horizontal.php:82
+#: template-parts/modules/cards/card-vertical.php:76
+#: template-parts/modules/featured/post-card.php:36
+#: template-parts/modules/stories/excerpt.php:34
+msgid "Read more"
+msgstr ""
+
+#. translators: 1. role 2. team
+#: template-parts/modules/profiles/card.php:43
+#, php-format
+msgid "%1$s, %2$s"
+msgstr ""
+
+#: template-parts/modules/projects/project.php:15
+msgid "Logo image."
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:38
+msgid "Connect with us on Facebook"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:47
+msgid "Connect with us on Twitter"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:56
+msgid "Connect with us on Instagram"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:65
+msgid "Read our blog"
+msgstr ""
+
+#. translators: 1. first result, 2. last result, 3. total results
+#: template-parts/post-list-filters.php:63
+#, php-format
+msgid "Showing %1$d result"
+msgid_plural "Showing %1$d-%2$d of %3$d results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: template-parts/post-list-filters.php:78
+msgid "Hide filters"
+msgstr ""
+
+#: template-parts/post-list-filters.php:81
+msgid "Show filters"
+msgstr ""
+
+#. translators: 1. how many filters were applied
+#: template-parts/post-list-filters.php:85
+#, php-format
+msgid "(%s applied)"
+msgstr ""
+
+#: template-parts/post-list-filters.php:102
+msgid "Filter by text"
+msgstr ""
+
+#: template-parts/post-list-filters.php:104
+#: template-parts/post-list-filters.php:116
+#: template-parts/post-list-filters.php:130
+msgid "applied"
+msgstr ""
+
+#: template-parts/post-list-filters.php:114
+msgid "Filter by date"
+msgstr ""
+
+#: template-parts/post-list-filters.php:122
+msgid "Reset dates"
+msgstr ""
+
+#: template-parts/post-list-filters.php:128
+msgid "Filter by category"
+msgstr ""
+
+#: template-parts/post-list-filters.php:149
+msgid "Clear all filters"
+msgstr ""
+
+#: template-parts/post-list-filters.php:150
+msgid "Apply filters"
+msgstr ""
+
+#. translators: %s: Title of Author
+#: template-parts/profiles/related-posts.php:16
+#, php-format
+msgid "Recent posts by %s"
+msgstr ""
+
+#: template-parts/profiles/role-list.php:28
+msgid "Department Executive"
+msgstr ""
+
+#: template-parts/profiles/role-list.php:33
+msgid "Department Experts"
+msgstr ""
+
+#. translators: The name of the current taxonomy.
+#: template-parts/profiles/role-list.php:177
+#, php-format
+msgid "View full %s team"
+msgstr ""
+
+#: assets/src/editor/blocks/clock/index.js:142
+msgid "Clock Display"
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:58
+msgid "Contact a human"
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:64
+msgid ""
+"Questions about the Wikimedia Foundation or our projects? Get in touch with "
+"our team."
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:70
+msgid "Contact"
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:82
+msgid "Follow"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/IconSelector.js:114
+msgid "No icon"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/IconSelector.js:129
+msgid "Icons"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/IconSelector.js:131
+msgid "A custom icon can be used by inserting an inline image"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/IconSelector.js:135
+msgid "Icon"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:54
+msgid "Call to Action"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:60
+msgid "Green donate button"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:79
+msgid "Primary"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:84
+msgid "Secondary"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:88
+msgid "Tertiary"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:92
+msgid "As link"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:96
+msgid "As arrow link"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:100
+msgid "Transparent with border"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:104
+msgid "Donate button"
+msgstr ""
+
+#: assets/src/editor/blocks/core-columns/index.js:8
+msgid "Align buttons bottom"
+msgstr ""
+
+#: assets/src/editor/blocks/core-columns/index.js:12
+msgid "Separators between"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:8
+msgid "No border radius"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:9
+msgid "Small border radius"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:10
+msgid "Big border radius"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:83
+msgid "Wikimedia group settings"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:85
+msgid ""
+"This will only have an effect when a background color has been chosen for "
+"this group."
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:86
+msgid "Border radius"
+msgstr ""
+
+#: assets/src/editor/blocks/core-quote/index.js:7
+msgid "Default"
+msgstr ""
+
+#: assets/src/editor/blocks/core-quote/index.js:12
+msgid "Pullquote"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:21
+msgid "Tweet this"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:56
+msgid "Write tweet this text"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:62
+msgid "Tweet settings"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:64
+msgid "When clicking the link, this text will be inside the composed tweet"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:65
+msgid "Tweet text"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:72
+msgid "Tweet URL"
+msgstr ""
+
+#: assets/src/editor/components/post-control.js:10
+msgid "HM Gutenberg Tools Plugin not found"
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/block.json
+msgctxt "block title"
+msgid "Donation Portal Form"
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/block.json
+msgctxt "block description"
+msgid "A form to direct users to donate.wikimedia.org portal"
+msgstr ""
+
+#: assets/src/editor/blocks/language-switcher-list/block.json
+msgctxt "block title"
+msgid "Language switcher list"
+msgstr ""
+
+#: assets/src/editor/blocks/language-switcher-list/block.json
+msgctxt "block description"
+msgid ""
+"Language list block to display the available translations for the current "
+"page. Intended to be used inside the core navigation block, within an HM "
+"mega menu block."
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/block.json
+msgctxt "block title"
+msgid "Share article"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/block.json
+msgctxt "block description"
+msgid ""
+"Buttons to share an article on Twitter, Facebook, LinkedIn, via Email, or to "
+"copy a link."
+msgstr ""
+
+#: theme.json
+msgctxt "Duotone name"
+msgid "Black and white"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Green (AA)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Green (AAA)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Blue (AA)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Blue (AAA)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Red (AA)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Red (AAA)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Orange"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Yellow"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Pink"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Purple"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Bright Blue"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Bright Green"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Bright Yellow"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Light Pink"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Light Purple"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Light Bright Blue"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Light Bright Green"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Lightest Pink"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Mid - Bright Yellow"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Light Bright Yellow"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Lightest Yellow"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Lightest Purple"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Lightest Blue"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Lightest Green"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Base"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Main"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Black 75"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Black 50"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Black 25"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Black 10"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Black 05"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Border Light"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Border Base"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Shadow 16px blur"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "8"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "16"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "24"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "32"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "40"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "48"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "64"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "80"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Default (Inter)"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Display (Montserrat)"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra Large (Header 3)"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "XX Large (Header 2)"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Jumbo (Header 1)"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Mega get involved"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Mega languages"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Mega news"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Mega search"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Mega what we do"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Mega who we are"
+msgstr ""
