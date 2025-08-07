@@ -32,7 +32,6 @@ function wmf_focus_blocks_callback( $atts = [], $content = '' ) {
 			'height' => [],
 			'width' => [],
 			'alt' => [],
-			'style' => [],
 			'class' => [],
 			'style' => [],
 		],
