@@ -1,4 +1,4 @@
-# Copyright (C) 2022 Wikimedia Foundation Design
+# Copyright (C) 2025 Wikimedia Foundation Design
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
@@ -9,232 +9,144 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-05-19T13:41:07-04:00\n"
+"POT-Creation-Date: 2025-08-05T01:43:32+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: shiro-admin\n"
 
 #. Theme Name of the theme
+#: style.css
 msgid "Shiro"
 msgstr ""
 
 #. Theme URI of the theme
+#: style.css
 msgid "https://github.com/wikimedia/wikimediafoundation-org"
 msgstr ""
 
 #. Description of the theme
+#: style.css
 msgid "Wikimedia Foundation website theme, forked from the Reaktiv theme"
 msgstr ""
 
 #. Author of the theme
+#: style.css
 msgid "Wikimedia Foundation Design"
 msgstr ""
 
 #. Author URI of the theme
+#: style.css
 msgid "https://design.wikimedia.org/"
 msgstr ""
 
-#: 404.php:13
-#: functions.php:364
-#: inc/classes/customizer/class-general.php:269
+#: 404.php:17
+#: functions.php:402
+#: inc/classes/customizer/class-general.php:271
 msgid "404 Error"
 msgstr ""
 
-#: 404.php:14
-#: inc/classes/customizer/class-general.php:283
+#: 404.php:18
+#: inc/classes/customizer/class-general.php:285
 msgid "Imagine a world in which there is a page here"
 msgstr ""
 
-#: 404.php:17
-#: inc/classes/customizer/class-header.php:231
-#: inc/classes/customizer/class-header.php:240
-#: searchform.php:8
-#: searchform.php:9
-msgid "Search"
-msgstr ""
-
-#: 404.php:18
-#: 404.php:20
-#: inc/classes/customizer/class-header.php:255
+#: 404.php:22
 msgid "What are you looking for?"
 msgstr ""
 
-#: functions.php:46
-#: inc/classes/customizer/class-header.php:24
+#: 404.php:39
+msgid "Search"
+msgstr ""
+
+#: functions.php:43
 msgid "Header"
 msgstr ""
 
-#: functions.php:47
+#: functions.php:44
 msgid "Footer Under Text"
 msgstr ""
 
-#: functions.php:48
+#: functions.php:45
 msgid "Footer Projects"
 msgstr ""
 
-#: functions.php:49
+#: functions.php:46
 msgid "Footer Movement Affiliates"
 msgstr ""
 
-#: functions.php:50
+#: functions.php:47
 msgid "Footer Legal"
 msgstr ""
 
-#: functions.php:100
+#: functions.php:102
 msgid "Sidebar"
 msgstr ""
 
+#. translators: %s: the search query.
+#. translators: Current search term
 #. translators: 1. search query
-#: functions.php:376
-#: search.php:13
+#: functions.php:435
+#: inc/classes/customizer/class-general.php:206
+#: search.php:15
+#, php-format
 msgid "Search results for %s"
 msgstr ""
 
-#: functions.php:463
-#: functions.php:464
+#: functions.php:507
+#: functions.php:508
 msgid "Reusable Blocks"
 msgstr ""
 
-#: header.php:14
-#: inc/classes/customizer/class-header.php:67
-#: template-parts/header/header-content.php:35
-msgid "Languages"
-msgstr ""
-
-#: header.php:19
-#: inc/classes/customizer/class-header.php:134
-#: template-parts/site-header/donate.php:12
-#: assets/src/editor/helpers/block-styles.js:55
-msgid "Donate"
-msgstr ""
-
-#: header.php:21
-#: inc/classes/customizer/class-general.php:363
-#: template-parts/site-header/toggle.php:9
-msgid "Toggle menu"
-msgstr ""
-
-#: header.php:22
-#: inc/classes/customizer/class-general.php:377
+#: header.php:18
+#: inc/classes/customizer/class-general.php:379
 msgid "Skip to content"
 msgstr ""
 
-#: header.php:23
-#: inc/classes/customizer/class-general.php:391
-msgid "Skip to navigation"
+#: inc/breadcrumb-links.php:23
+msgid "Breadcrumb Link Setup"
 msgstr ""
 
-#: header.php:24
-#: inc/classes/customizer/class-general.php:405
-msgid "Select language"
+#: inc/breadcrumb-links.php:47
+msgid "Show Breadcrumb Link"
 msgstr ""
 
-#: header.php:25
-#: inc/classes/customizer/class-general.php:419
-#: template-parts/site-header/language-switcher.php:11
-msgid "Current language:"
+#: inc/breadcrumb-links.php:51
+msgid "Custom Link"
 msgstr ""
 
-#: inc/classes/customizer/class-connect.php:42
+#: inc/breadcrumb-links.php:57
+msgid "Leave blank to use default link"
+msgstr ""
+
+#: inc/breadcrumb-links.php:62
+msgid "Custom Text"
+msgstr ""
+
+#: inc/breadcrumb-links.php:68
+msgid "Leave blank to use default title"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:22
 #: inc/fields/connect.php:50
 #: template-parts/modules/general/connect.php:12
 msgid "Connect"
 msgstr ""
 
-#: inc/classes/customizer/class-connect.php:68
+#: inc/classes/customizer/class-connect.php:47
 msgid "Connect Block"
 msgstr ""
 
-#: inc/classes/customizer/class-connect.php:73
+#: inc/classes/customizer/class-connect.php:52
 msgid "Select a reusable block to be shown in the \"Connect\" area."
 msgstr ""
 
-#: inc/classes/customizer/class-connect.php:74
-msgid "<strong>There are no viable reusable blocks!</strong> This reusable block must include at least one of the the Connect or the Mailchimp Subscribe blocks. Please <a href=\"%s\">create one</a>."
-msgstr ""
-
-#: inc/classes/customizer/class-connect.php:85
-msgid "Subscribe form action URL"
-msgstr ""
-
-#: inc/classes/customizer/class-connect.php:97
-msgid "Subscribe form additional fields"
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:28
-msgid "The Wikimedia Foundation, Inc is a nonprofit charitable organization dedicated to encouraging the growth, development and distribution of free, multilingual content, and to providing the full content of these wiki-based projects to the public free of charge."
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:30
-#: inc/classes/customizer/class-general.php:94
-#: inc/fields/home.php:74
-#: inc/fields/projects.php:52
-#: template-parts/modules/projects/projects.php:18
-msgid "Projects"
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:31
-msgid "Movement Affiliates"
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:32
-msgid "Other"
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:33
-msgid "This work is licensed under a <a href=\"https://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution 3.0</a> unported license. Some images under <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC BY-SA</a>."
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:47
-msgid "Footer"
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:57
-msgid "Footer Logo"
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:71
-msgid "Footer Text"
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:72
-msgid "This changes the large text to the right of the footer logo. This can be set in each translation to localize the button."
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:86
-msgid "Projects Menu Label"
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:87
-msgid "Label above the 3 column projects menu. This can be set in each translation to localize the button."
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:101
-msgid "Movement Affilaites Menu Label"
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:102
-msgid "Label above the 1 column movement affiliates menu. This can be set in each translation to localize the button."
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:116
-msgid "Other Links Menu Label"
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:117
-msgid "Label above the 1 column other links menu. This can be set in each translation to localize the button."
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:131
-msgid "Copyright"
-msgstr ""
-
-#: inc/classes/customizer/class-footer.php:132
-msgid "The copyright statement at the bottom of the page. This can be set in each translation to localize the button."
+#. translators: %s: Link to the admin page for creating a new reusable block.
+#: inc/classes/customizer/class-connect.php:54
+#, php-format
+msgid "<strong>There are no viable reusable blocks!</strong> This reusable block must include the Connect block. Please <a href=\"%s\">create one</a>."
 msgstr ""
 
 #: inc/classes/customizer/class-general.php:23
-#: inc/classes/customizer/class-header.php:58
 msgid "General"
 msgstr ""
 
@@ -255,7 +167,7 @@ msgid "Labels & Headings"
 msgstr ""
 
 #: inc/classes/customizer/class-general.php:63
-#: inc/template-translations.php:281
+#: inc/template-translations.php:287
 msgid "This content has not yet been translated into the current language."
 msgstr ""
 
@@ -280,6 +192,13 @@ msgstr ""
 msgid "Shows above featured posts module in landing page and the home page."
 msgstr ""
 
+#: inc/classes/customizer/class-general.php:94
+#: inc/fields/home.php:74
+#: inc/fields/projects.php:52
+#: template-parts/modules/projects/projects.php:18
+msgid "Projects"
+msgstr ""
+
 #: inc/classes/customizer/class-general.php:99
 msgid "Projects Pre Heading"
 msgstr ""
@@ -302,9 +221,9 @@ msgid "Shows above off site links module throughout the site."
 msgstr ""
 
 #: inc/classes/customizer/class-general.php:124
-#: inc/classes/customizer/class-post.php:33
+#: inc/classes/customizer/class-post.php:35
 #: template-parts/page/page-related-posts.php:10
-#: template-parts/page/page-related.php:9
+#: template-parts/page/page-related.php:14
 msgid "Related"
 msgstr ""
 
@@ -317,7 +236,7 @@ msgid "Shows above related pages module throughout the site."
 msgstr ""
 
 #: inc/classes/customizer/class-general.php:139
-#: inc/shortcodes/wp20.php:449
+#: inc/shortcodes/wp20.php:453
 #: template-parts/modules/images/credits.php:14
 msgid "Photo credits"
 msgstr ""
@@ -335,68 +254,74 @@ msgstr ""
 msgid "Support Module"
 msgstr ""
 
+#: inc/classes/customizer/class-general.php:181
+msgid "Support CTA"
+msgstr ""
+
 #: inc/classes/customizer/class-general.php:186
 msgid "Select a spotlight block to be shown in the \"Support\" area."
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:187
+#. translators: %s: URL of page to create spotlight block.
+#: inc/classes/customizer/class-general.php:188
+#, php-format
 msgid "<strong>There are no spotlight blocks available!</strong> Please <a href=\"%s\">create one</a>."
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:195
+#: inc/classes/customizer/class-general.php:196
 msgid "Search Page"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:209
+#: inc/classes/customizer/class-general.php:211
 msgid "Search results message"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:218
+#: inc/classes/customizer/class-general.php:220
 #: template-parts/content-none.php:10
 msgid "Nothing Found"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:223
+#: inc/classes/customizer/class-general.php:225
 msgid "No Results Title"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:224
+#: inc/classes/customizer/class-general.php:226
 msgid "This displays on archive and search pages when there are no results found."
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:233
+#: inc/classes/customizer/class-general.php:235
 #: template-parts/content-none.php:11
 msgid "Sorry, but no results were found. Perhaps searching can help."
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:238
+#: inc/classes/customizer/class-general.php:240
 msgid "No Results Description"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:248
+#: inc/classes/customizer/class-general.php:250
 msgid "404 Page"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:259
+#: inc/classes/customizer/class-general.php:261
 #: inc/fields/home.php:27
 #: inc/fields/home.php:63
 #: inc/fields/projects.php:41
 msgid "Background Image"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:260
+#: inc/classes/customizer/class-general.php:262
 msgid "Displayed in header."
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:274
+#: inc/classes/customizer/class-general.php:276
 msgid "Header message"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:288
+#: inc/classes/customizer/class-general.php:290
 msgid "Header title"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:301
+#: inc/classes/customizer/class-general.php:303
 #: inc/fields/home.php:29
 #: inc/fields/landing.php:53
 #: inc/fields/landing.php:92
@@ -406,518 +331,331 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:310
+#: inc/classes/customizer/class-general.php:312
 msgid "Or try a search instead"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:315
+#: inc/classes/customizer/class-general.php:317
 msgid "Text above search bar"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:325
+#: inc/classes/customizer/class-general.php:327
 msgid "ARIA Support"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:334
+#: inc/classes/customizer/class-general.php:336
 msgid "Toggle search"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:339
+#: inc/classes/customizer/class-general.php:341
 msgid "Toggle search copy"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:340
+#: inc/classes/customizer/class-general.php:342
 msgid "This changes the labels exposed only to assistive technology. This can be set in each translation to localize the label."
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:349
+#: inc/classes/customizer/class-general.php:351
 msgid "Search Wikimedia Foundation site"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:354
+#: inc/classes/customizer/class-general.php:356
 msgid "Search input label for assistive technology"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:368
+#: inc/classes/customizer/class-general.php:365
+msgid "Toggle menu"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:370
 msgid "Toggle menu label"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:382
+#: inc/classes/customizer/class-general.php:384
 msgid "Skip to content label"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:396
+#: inc/classes/customizer/class-general.php:393
+msgid "Skip to navigation"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:398
 msgid "Skip to navigation label"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:410
+#: inc/classes/customizer/class-general.php:407
+msgid "Select language"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:412
 msgid "Select language label"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:424
+#: inc/classes/customizer/class-general.php:421
+#: inc/editor/blocks/mega-menu.php:58
+msgid "Current language:"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:426
 msgid "Current language label"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:434
+#: inc/classes/customizer/class-general.php:436
 msgid "Blackout Modal"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:448
+#: inc/classes/customizer/class-general.php:450
 msgid "Blackout Modal Enabled"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:469
+#: inc/classes/customizer/class-general.php:471
 msgid "Blackout Modal Content"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:483
+#: inc/classes/customizer/class-general.php:485
 msgid "Blackout Modal Cookie"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:484
+#: inc/classes/customizer/class-general.php:486
 msgid "Useful when changing the content of the modal, adjusting this would allow you to display the modal to users that have dismissed it previously."
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:494
+#: inc/classes/customizer/class-general.php:496
 msgid "Wikipedia 20 content"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:504
+#: inc/classes/customizer/class-general.php:506
 msgid "English Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:505
+#: inc/classes/customizer/class-general.php:507
 msgid "Used e.g. to say \"One human just edited English Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:515
+#: inc/classes/customizer/class-general.php:517
 msgid "Arabic Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:516
+#: inc/classes/customizer/class-general.php:518
 msgid "Used e.g. to say \"One human just edited Arabic Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:526
+#: inc/classes/customizer/class-general.php:528
 msgid "Spanish Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:527
+#: inc/classes/customizer/class-general.php:529
 msgid "Used e.g. to say \"One human just edited Spanish Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:537
+#: inc/classes/customizer/class-general.php:539
 msgid "German Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:538
+#: inc/classes/customizer/class-general.php:540
 msgid "Used e.g. to say \"One human just edited German Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:548
+#: inc/classes/customizer/class-general.php:550
 msgid "French Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:549
+#: inc/classes/customizer/class-general.php:551
 msgid "Used e.g. to say \"One human just edited French Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:559
+#: inc/classes/customizer/class-general.php:561
 msgid "Russian Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:560
+#: inc/classes/customizer/class-general.php:562
 msgid "Used e.g. to say \"One human just edited Russian Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:570
+#: inc/classes/customizer/class-general.php:572
 msgid "Chinese Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:571
+#: inc/classes/customizer/class-general.php:573
 msgid "Used e.g. to say \"One human just edited Chinese Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:579
-#: inc/shortcodes/wp20.php:456
+#: inc/classes/customizer/class-general.php:581
+#: inc/shortcodes/wp20.php:460
 msgid "views"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:583
+#: inc/classes/customizer/class-general.php:585
 msgid "Wikipedia article views"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:584
+#: inc/classes/customizer/class-general.php:586
 msgid "\"views\" - used to show stats about Wikipedia articles"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:594
+#: inc/classes/customizer/class-general.php:596
 msgid "Wikipedia article edits"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:595
+#: inc/classes/customizer/class-general.php:597
 msgid "\"edits\" - used to show stats about Wikipedia articles"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:605
-#: inc/shortcodes/wp20.php:450
+#: inc/classes/customizer/class-general.php:607
+#: inc/shortcodes/wp20.php:454
 msgid "Most viewed articles"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:606
+#: inc/classes/customizer/class-general.php:608
 msgid "\"Most viewed articles\" - used to show stats about Wikipedia articles"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:616
+#: inc/classes/customizer/class-general.php:618
 msgid "Most edited articles"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:617
+#: inc/classes/customizer/class-general.php:619
 msgid "\"Most edited articles\" - used to show stats about Wikipedia articles"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:627
-#: inc/shortcodes/wp20.php:453
+#: inc/classes/customizer/class-general.php:629
+#: inc/shortcodes/wp20.php:457
 msgid "or"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:628
+#: inc/classes/customizer/class-general.php:630
 msgid "\"or\" - used to show stats about Wikipedia articles by edits or views"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:638
-#: inc/shortcodes/wp20.php:452
+#: inc/classes/customizer/class-general.php:640
+#: inc/shortcodes/wp20.php:456
 msgid "in"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:639
+#: inc/classes/customizer/class-general.php:641
 msgid "\"in\" - used to show stats about Wikipedia articles per year"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:649
+#: inc/classes/customizer/class-general.php:651
 msgid "No data message"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:650
+#: inc/classes/customizer/class-general.php:652
 msgid "\"There is not data for the options you selected. Please change the options above.\""
 msgstr ""
 
-#: inc/classes/customizer/class-header.php:34
-msgid "Alternative header image"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:48
-msgid "URL to alternative header image"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:49
-msgid "URL will be applied as inline style background image"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:72
-msgid "Languages Translations Copy"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:73
-msgid "This changes the languages label copy found in the translation bar at the top of the page."
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:82
-msgid "MENU"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:87
-msgid "Menu button copy"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:88
-msgid "This changes the button copy for mobile devices. This can be set in each translation to localize the button."
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:97
-msgid "Header link"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:111
-msgid "Link, clickable on whole header image"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:125
-msgid "Aria label for link"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:143
-msgid "Donate Now"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:148
-msgid "Navigation donate button Copy"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:149
-msgid "This changes the donate copy. This can be set in each translation to localize the button."
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:158
-#: inc/classes/customizer/class-header.php:187
-msgid "#"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:163
-msgid "Navigation donate button URI"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:172
-#: template-parts/header/header-content.php:21
-msgid "Donate now"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:177
-msgid "Homepage donate button copy"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:178
-msgid "This changes the homepage donate button copy. This can be set in each translation to localize the button."
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:192
-msgid "Homepage bonate button URI"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:201
-msgid "Protect and sustain Wikipedia"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:206
-msgid "Homepage bonate button intro"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:207
-msgid "This changes the homepage donate button intro copy."
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:216
-msgid "SECURE DONATIONS"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:221
-msgid "Homepage bonate button secure copy"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:222
-msgid "This changes the homepage donate button secure notice copy."
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:245
-msgid "Search Button Copy"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:246
-msgid "This changes the search button copy. This can be set in each translation to localize the button."
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:260
-msgid "Search Placeholder Copy"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:261
-msgid "This changes the search placeholder copy. This can be set in each translation to localize the button."
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:270
-msgid "esc"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:275
-msgid "Label for escape button in search popup"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:284
-msgid "Vision"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:293
-msgid "Imagine a world in which every single human being can freely share in the sum of all knowledge."
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:298
-msgid "Vision language 1"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:312
-msgid "Vision language 1 - CSS class"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:326
-msgid "Vision language 1 - language code"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:340
-msgid "Vision language 2"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:354
-msgid "Vision language 2 - CSS class"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:368
-msgid "Vision language 2 - language code"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:382
-msgid "Vision language 3"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:396
-msgid "Vision language 3 - CSS class"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:410
-msgid "Vision language 3 - language code"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:424
-msgid "Vision language 4"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:438
-msgid "Vision language 4 - CSS class"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:452
-msgid "Vision language 4 - language code"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:466
-msgid "Vision language 5"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:480
-msgid "Vision language 5 - CSS class"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:494
-msgid "Vision language 5 - language code"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:503
-msgid "Emergency message"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:517
-msgid "Emergency message for display on homepage"
-msgstr ""
-
-#: inc/classes/customizer/class-identity.php:24
+#: inc/classes/customizer/class-identity.php:27
 msgid "Site Logo"
 msgstr ""
 
-#: inc/classes/customizer/class-page.php:23
+#: inc/classes/customizer/class-identity.php:28
+msgid "Set the logo that appears in the site header. <strong>SVGs strongly encouraged.</strong>"
+msgstr ""
+
+#: inc/classes/customizer/class-page.php:24
 msgid "Page Settings"
 msgstr ""
 
-#: inc/classes/customizer/class-page.php:31
-#: template-parts/pagination.php:8
+#: inc/classes/customizer/class-page.php:33
 msgid "Newer"
 msgstr ""
 
-#: inc/classes/customizer/class-page.php:36
+#: inc/classes/customizer/class-page.php:39
 msgid "Newer Posts Copy"
 msgstr ""
 
-#: inc/classes/customizer/class-page.php:37
+#: inc/classes/customizer/class-page.php:40
 msgid "This displays in pagination sections in a link for newer posts."
 msgstr ""
 
-#: inc/classes/customizer/class-page.php:46
-#: template-parts/pagination.php:9
+#: inc/classes/customizer/class-page.php:50
 msgid "Older"
 msgstr ""
 
-#: inc/classes/customizer/class-page.php:51
+#: inc/classes/customizer/class-page.php:56
 msgid "Older Posts Copy"
 msgstr ""
 
-#: inc/classes/customizer/class-page.php:52
+#: inc/classes/customizer/class-page.php:57
 msgid "This displays in pagination sections in a link for older posts."
 msgstr ""
 
-#: inc/classes/customizer/class-page.php:61
+#: inc/classes/customizer/class-page.php:67
 #: inc/fields/default.php:44
-#: inc/post-types/download.php:15
-#: inc/post-types/download.php:39
+#: inc/post-types/download.php:16
+#: inc/post-types/download.php:40
 #: template-parts/sidebar/downloads.php:9
 msgid "Downloads"
 msgstr ""
 
-#: inc/classes/customizer/class-page.php:66
+#: inc/classes/customizer/class-page.php:73
 msgid "Downloads Section Header"
 msgstr ""
 
-#: inc/classes/customizer/class-page.php:67
+#: inc/classes/customizer/class-page.php:74
 msgid "This displays in the sidebar before the downloads list."
 msgstr ""
 
-#: inc/classes/customizer/class-post.php:25
+#: inc/classes/customizer/class-post.php:26
 msgid "Post Settings"
 msgstr ""
 
-#: inc/classes/customizer/class-post.php:38
+#: inc/classes/customizer/class-post.php:41
 msgid "Related Posts Section Title"
 msgstr ""
 
-#: inc/classes/customizer/class-post.php:39
+#: inc/classes/customizer/class-post.php:42
 msgid "This displays at the bottom of each single post."
 msgstr ""
 
-#: inc/classes/customizer/class-post.php:48
+#: inc/classes/customizer/class-post.php:52
 #: template-parts/page/page-related-posts.php:11
 msgid "Read further in the pursuit of knowledge"
 msgstr ""
 
-#: inc/classes/customizer/class-post.php:53
+#: inc/classes/customizer/class-post.php:58
 msgid "Related Posts Section Description"
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:25
+#: inc/classes/customizer/class-profile.php:26
 msgid "Profile Pages"
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:34
+#: inc/classes/customizer/class-profile.php:36
 msgid "Profiles Parent Page"
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:35
+#: inc/classes/customizer/class-profile.php:37
 msgid "This changes the parent link at the top of individual profile pages like Staff & Contractors."
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:46
+#: inc/classes/customizer/class-profile.php:49
 msgid "Community Profiles Parent Page"
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:47
+#: inc/classes/customizer/class-profile.php:50
 msgid "This changes the parent link at the top of the Wikimedia Community profile."
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:57
-#: taxonomy-role.php:41
+#: inc/classes/customizer/class-profile.php:61
+#: taxonomy-role.php:45
 msgid "The Wikimedia Foundation is part of a broad global network of individuals, organizations, chapters, clubs and communities who together work to create the most powerful examples of volunteer collaboration and open content sharing in the world today."
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:62
+#: inc/classes/customizer/class-profile.php:67
 msgid "Profiles List Page Text"
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:71
-#: taxonomy-role.php:42
+#: inc/classes/customizer/class-profile.php:77
+#: taxonomy-role.php:46
 msgid "We're Hiring"
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:76
+#: inc/classes/customizer/class-profile.php:83
 msgid "Profiles List Page Button Label"
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:85
+#: inc/classes/customizer/class-profile.php:93
 #: inc/fields/profiles.php:40
 #: inc/post-types/profile.php:8
 #: inc/post-types/profile.php:17
@@ -926,15 +664,15 @@ msgstr ""
 msgid "Profiles"
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:90
+#: inc/classes/customizer/class-profile.php:99
 msgid "Label for profiles"
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:91
+#: inc/classes/customizer/class-profile.php:100
 msgid "This is the label used to describe the profiles post type."
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:100
+#: inc/classes/customizer/class-profile.php:110
 #: inc/fields/stories.php:40
 #: inc/post-types/story.php:8
 #: inc/post-types/story.php:17
@@ -943,132 +681,147 @@ msgstr ""
 msgid "Stories"
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:105
+#: inc/classes/customizer/class-profile.php:116
 msgid "Label for stories"
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:106
+#: inc/classes/customizer/class-profile.php:117
 msgid "This is the label used to describe the stories post type."
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:116
+#: inc/classes/customizer/class-profile.php:128
 msgid "Profiles List Page Button Link"
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:125
+#: inc/classes/customizer/class-profile.php:138
 #: single-profile.php:21
 msgid "Other members of "
 msgstr ""
 
-#: inc/classes/customizer/class-profile.php:130
+#: inc/classes/customizer/class-profile.php:144
 msgid "Related Profiles default headline"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:23
+#: inc/classes/customizer/class-social.php:24
 msgid "Social"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:31
-#: inc/shortcodes/autotweets.php:66
+#: inc/classes/customizer/class-social.php:33
+#: inc/shortcodes/autotweets.php:94
 #: template-parts/modules/fact/multiple.php:10
 msgid "Tweet this"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:36
+#: inc/classes/customizer/class-social.php:39
 msgid "Tweet this copy"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:37
+#: inc/classes/customizer/class-social.php:40
 msgid "Copy used for \"Tweet this\" label beneath facts."
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:46
+#: inc/classes/customizer/class-social.php:50
 #: template-parts/modules/social/follow-horizontal.php:10
 #: template-parts/modules/social/follow-vertical.php:10
-#: assets/src/editor/blocks/unseen-artist/index.js:166
-#: assets/src/editor/blocks/unseen-artist/index.js:174
-#: assets/src/editor/blocks/unseen-artist/index.js:182
-#: assets/src/editor/blocks/unseen-artist/index.js:190
-#: assets/src/editor/blocks/unseen-artist/index.js:355
-#: assets/src/editor/blocks/unseen-artist/index.js:363
-#: assets/src/editor/blocks/unseen-artist/index.js:371
-#: assets/src/editor/blocks/unseen-artist/index.js:379
+#: assets/src/editor/blocks/unseen-artist/index.js:172
+#: assets/src/editor/blocks/unseen-artist/index.js:180
+#: assets/src/editor/blocks/unseen-artist/index.js:188
+#: assets/src/editor/blocks/unseen-artist/index.js:196
+#: assets/src/editor/blocks/unseen-artist/index.js:204
+#: assets/src/editor/blocks/unseen-artist/index.js:382
+#: assets/src/editor/blocks/unseen-artist/index.js:390
+#: assets/src/editor/blocks/unseen-artist/index.js:398
+#: assets/src/editor/blocks/unseen-artist/index.js:406
+#: assets/src/editor/blocks/unseen-artist/index.js:414
 msgid "Follow"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:51
+#: inc/classes/customizer/class-social.php:56
 #: inc/fields/connect.php:37
 msgid "Follow Text"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:52
+#: inc/classes/customizer/class-social.php:57
 msgid "This is used above follow links in multiple modules."
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:61
+#: inc/classes/customizer/class-social.php:67
 #: template-parts/modules/social/page.php:15
 #: template-parts/modules/social/share-horizontal.php:14
 #: template-parts/modules/social/share-vertical.php:10
+#: assets/src/editor/blocks/share-article/index.js:68
 msgid "Share"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:66
+#: inc/classes/customizer/class-social.php:73
 msgid "Share Text"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:67
+#: inc/classes/customizer/class-social.php:74
 msgid "This is used above share links in multiple modules."
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:81
+#: inc/classes/customizer/class-social.php:90
 msgid "Twitter @"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:91
+#: inc/classes/customizer/class-social.php:101
 msgid "Twitter URI"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:100
+#: inc/classes/customizer/class-social.php:111
 #: inc/fields/common.php:17
 #: inc/fields/landing.php:28
 #: template-parts/modules/social/follow-horizontal.php:16
 msgid "Facebook"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:105
+#: inc/classes/customizer/class-social.php:117
 #: inc/fields/connect.php:39
 msgid "Facebook Label"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:115
+#: inc/classes/customizer/class-social.php:128
 msgid "Facebook URI"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:124
+#: inc/classes/customizer/class-social.php:138
+msgid "LinkedIn"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:144
+msgid "LinkedIn Label"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:155
+msgid "LinkedIn URI"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:165
 #: template-parts/modules/social/follow-horizontal.php:19
 msgid "Instagram"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:129
+#: inc/classes/customizer/class-social.php:171
 #: inc/fields/connect.php:43
 msgid "Instagram Label"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:139
+#: inc/classes/customizer/class-social.php:182
 msgid "Instagram URI"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:148
+#: inc/classes/customizer/class-social.php:192
 #: template-parts/modules/social/follow-horizontal.php:20
 msgid "Wikimedia Blog"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:153
+#: inc/classes/customizer/class-social.php:198
 #: inc/fields/connect.php:45
 msgid "Blog Label"
 msgstr ""
 
-#: inc/classes/customizer/class-social.php:162
+#: inc/classes/customizer/class-social.php:208
 #: inc/fields/connect.php:44
 msgid "Blog URI"
 msgstr ""
@@ -1124,6 +877,7 @@ msgstr ""
 
 #. Translators: The placeholder is for the selected value.
 #: inc/classes/translations/class-metaboxes.php:204
+#, php-format
 msgid "Selected value is: %s"
 msgstr ""
 
@@ -1140,21 +894,21 @@ msgctxt "placeholder for empty translation textarea"
 msgid "No content yet."
 msgstr ""
 
-#: inc/classes/translations/class-metaboxes.php:258
+#: inc/classes/translations/class-metaboxes.php:259
 msgid "Is not checked"
 msgstr ""
 
-#: inc/classes/translations/class-metaboxes.php:258
+#: inc/classes/translations/class-metaboxes.php:259
 msgid "Is checked"
 msgstr ""
 
-#: inc/classes/translations/class-metaboxes.php:295
+#: inc/classes/translations/class-metaboxes.php:296
 msgid "Checked option is:"
 msgid_plural "Checked options are:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/classes/translations/class-metaboxes.php:318
+#: inc/classes/translations/class-metaboxes.php:319
 msgid "Group"
 msgstr ""
 
@@ -1164,8 +918,8 @@ msgid "There is a translation in progress for this content."
 msgstr ""
 
 #: inc/classes/translations/class-notice.php:136
-#: inc/taxonomies.php:102
-#: assets/src/editor/plugins/translation-status/index.js:91
+#: inc/taxonomies.php:104
+#: assets/src/editor/plugins/translation-status/index.js:93
 msgid "Translation Status"
 msgstr ""
 
@@ -1181,157 +935,113 @@ msgstr ""
 msgid "Page Intro"
 msgstr ""
 
-#: inc/editor/namespace.php:123
+#: inc/editor/namespace.php:179
 msgid "Small"
 msgstr ""
 
-#: inc/editor/namespace.php:123
+#: inc/editor/namespace.php:180
 msgid "S"
 msgstr ""
 
-#: inc/editor/namespace.php:124
+#: inc/editor/namespace.php:185
 msgid "Medium"
 msgstr ""
 
-#: inc/editor/namespace.php:124
+#: inc/editor/namespace.php:186
 msgid "M"
 msgstr ""
 
-#: inc/editor/namespace.php:125
+#: inc/editor/namespace.php:191
 msgid "Large"
 msgstr ""
 
-#: inc/editor/namespace.php:125
+#: inc/editor/namespace.php:192
 msgid "L"
 msgstr ""
 
-#: inc/editor/namespace.php:126
+#: inc/editor/namespace.php:197
 msgid "X-Large"
 msgstr ""
 
-#: inc/editor/namespace.php:126
+#: inc/editor/namespace.php:198
 msgid "XL"
 msgstr ""
 
-#: inc/editor/namespace.php:127
+#: inc/editor/namespace.php:203
 msgid "Jumbo"
 msgstr ""
 
-#: inc/editor/namespace.php:127
+#: inc/editor/namespace.php:204
 msgid "J"
 msgstr ""
 
-#: inc/editor/namespace.php:135
-msgid "Base 0"
-msgstr ""
-
-#: inc/editor/namespace.php:136
-msgid "Base 10"
-msgstr ""
-
-#: inc/editor/namespace.php:137
-msgid "Base 20"
-msgstr ""
-
-#: inc/editor/namespace.php:138
-msgid "Base 30"
-msgstr ""
-
-#: inc/editor/namespace.php:139
-msgid "Base 50"
-msgstr ""
-
-#: inc/editor/namespace.php:140
-msgid "Base 70"
-msgstr ""
-
-#: inc/editor/namespace.php:141
-msgid "Base 80"
-msgstr ""
-
-#: inc/editor/namespace.php:142
-msgid "Base 90"
-msgstr ""
-
-#: inc/editor/namespace.php:143
-msgid "Base 100"
-msgstr ""
-
-#: inc/editor/namespace.php:144
-msgid "Blue 50"
-msgstr ""
-
-#: inc/editor/namespace.php:145
-msgid "Blue 90"
-msgstr ""
-
-#: inc/editor/namespace.php:146
-msgid "Red 50"
-msgstr ""
-
-#: inc/editor/namespace.php:147
-msgid "Red 90"
-msgstr ""
-
-#: inc/editor/namespace.php:148
-msgid "Yellow 50"
-msgstr ""
-
-#: inc/editor/namespace.php:149
-msgid "Yellow 90"
-msgstr ""
-
-#: inc/editor/namespace.php:150
-msgid "Light Blue"
-msgstr ""
-
-#: inc/editor/namespace.php:151
-msgid "Wiki Blue"
-msgstr ""
-
-#: inc/editor/namespace.php:262
-#: inc/editor/patterns.php:28
+#: inc/editor/namespace.php:349
+#: inc/editor/patterns.php:40
 msgid "Wikimedia"
 msgstr ""
 
-#: inc/editor/patterns.php:32
+#: inc/editor/patterns.php:36
+msgid "Menu"
+msgstr ""
+
+#: inc/editor/patterns.php:44
 msgid "Wikimedia templates"
 msgstr ""
 
-#: inc/editor/patterns.php:36
+#: inc/editor/patterns.php:48
 msgid "Numbered fact columns"
 msgstr ""
 
-#: inc/editor/patterns.php:42
+#: inc/editor/patterns.php:54
 msgid "Tweet this columns"
 msgstr ""
 
-#: inc/editor/patterns.php:48
+#: inc/editor/patterns.php:60
 msgid "External link columns"
 msgstr ""
 
-#: inc/editor/patterns.php:54
+#: inc/editor/patterns.php:66
 msgid "Cards"
 msgstr ""
 
-#: inc/editor/patterns.php:60
+#: inc/editor/patterns.php:72
 msgid "Blog list section"
 msgstr ""
 
-#: inc/editor/patterns.php:66
-msgid "Communication module"
-msgstr ""
-
-#: inc/editor/patterns.php:72
-msgid "Default Template"
-msgstr ""
-
 #: inc/editor/patterns.php:78
-msgid "Landing page template"
+msgid "By the numbers stats section"
 msgstr ""
 
 #: inc/editor/patterns.php:84
+msgid "Communication module"
+msgstr ""
+
+#: inc/editor/patterns.php:90
+msgid "Donation bar template"
+msgstr ""
+
+#: inc/editor/patterns.php:96
+msgid "Email subscription form"
+msgstr ""
+
+#: inc/editor/patterns.php:102
+msgid "Default Template"
+msgstr ""
+
+#: inc/editor/patterns.php:108
+msgid "Landing page template"
+msgstr ""
+
+#: inc/editor/patterns.php:114
 msgid "List page template"
+msgstr ""
+
+#: inc/editor/patterns.php:120
+msgid "Report landing page template"
+msgstr ""
+
+#: inc/editor/patterns.php:126
+msgid "Report section page template"
 msgstr ""
 
 #: inc/fields/button.php:20
@@ -1340,7 +1050,7 @@ msgstr ""
 
 #: inc/fields/button.php:21
 #: inc/fields/profile.php:31
-#: assets/src/editor/blocks/home-page-hero/edit.js:148
+#: assets/src/editor/blocks/home-page-hero/edit.js:145
 msgid "Link"
 msgstr ""
 
@@ -1410,14 +1120,14 @@ msgid "Contact Link Text"
 msgstr ""
 
 #: inc/fields/connect.php:38
-#: assets/src/editor/blocks/unseen-artist/index.js:260
-#: assets/src/editor/blocks/unseen-facts/index.js:152
+#: assets/src/editor/blocks/unseen-artist/index.js:274
+#: assets/src/editor/blocks/unseen-facts/index.js:166
 msgid "Facebook URL"
 msgstr ""
 
 #: inc/fields/connect.php:40
-#: assets/src/editor/blocks/unseen-artist/index.js:282
-#: assets/src/editor/blocks/unseen-facts/index.js:174
+#: assets/src/editor/blocks/unseen-artist/index.js:296
+#: assets/src/editor/blocks/unseen-facts/index.js:188
 msgid "Twitter URL"
 msgstr ""
 
@@ -1426,8 +1136,8 @@ msgid "Twitter ID"
 msgstr ""
 
 #: inc/fields/connect.php:42
-#: assets/src/editor/blocks/unseen-artist/index.js:271
-#: assets/src/editor/blocks/unseen-facts/index.js:163
+#: assets/src/editor/blocks/unseen-artist/index.js:285
+#: assets/src/editor/blocks/unseen-facts/index.js:177
 msgid "Instagram URL"
 msgstr ""
 
@@ -1588,6 +1298,7 @@ msgid "Default"
 msgstr ""
 
 #: inc/fields/header.php:22
+#: assets/src/editor/helpers/block-styles.js:83
 msgid "Pink"
 msgstr ""
 
@@ -1616,6 +1327,7 @@ msgstr ""
 #: inc/fields/links.php:27
 #: inc/fields/listing.php:20
 #: inc/fields/listing.php:27
+#: assets/src/editor/blocks/interactive-card/edit.js:55
 msgid "Heading"
 msgstr ""
 
@@ -1845,6 +1557,7 @@ msgid "License URL only necessary if not using a standard site media license (CC
 msgstr ""
 
 #: inc/fields/page-cta.php:27
+#: assets/src/editor/helpers/block-styles.js:67
 msgid "Green"
 msgstr ""
 
@@ -1886,11 +1599,11 @@ msgid "Category Filter List"
 msgstr ""
 
 #: inc/fields/profile.php:14
-msgid "Last Name"
+msgid "Sort Name"
 msgstr ""
 
 #: inc/fields/profile.php:15
-msgid "This field is required to enable correct sorting via last name."
+msgid "Profiles are sorted on staff pages in alphabetical order based on this field."
 msgstr ""
 
 #: inc/fields/profile.php:20
@@ -1938,52 +1651,77 @@ msgstr ""
 msgid "Featured Term?"
 msgstr ""
 
-#: inc/fields/profile.php:124
+#: inc/fields/profile.php:97
+msgid "In what position should this role display on the archive page?"
+msgstr ""
+
+#: inc/fields/profile.php:101
+#: inc/fields/profile.php:263
+msgid "Role Order"
+msgstr ""
+
+#: inc/fields/profile.php:136
 msgid "There are no profiles assigned to this role."
 msgstr ""
 
-#: inc/fields/profile.php:134
-msgid "Select a profile to feature as the department executive on the Staff & Contractors page."
+#: inc/fields/profile.php:146
+msgid "Select multiple profiles to feature as the department executives on the Staff & Contractors page."
 msgstr ""
 
-#: inc/fields/profile.php:137
-msgid "Please select an executive for this department"
-msgstr ""
-
-#: inc/fields/profile.php:143
-msgid "Department Executive"
-msgstr ""
-
-#: inc/fields/profile.php:151
-msgid "Select multiple profiles to feature as the department experts on the Staff & Contractors page."
+#: inc/fields/profile.php:152
+msgid "Department Executive(s)"
 msgstr ""
 
 #: inc/fields/profile.php:157
+msgid "If desired, enter a phrase to be used in place of \"Department Executive.\" If this field is empty, \"Department Executive\" will be used."
+msgstr ""
+
+#: inc/fields/profile.php:161
+msgid "Department Executive Title Override"
+msgstr ""
+
+#: inc/fields/profile.php:169
+msgid "Select multiple profiles to feature as the department experts on the Staff & Contractors page."
+msgstr ""
+
+#: inc/fields/profile.php:175
 msgid "Department Experts"
 msgstr ""
 
-#: inc/fields/profile.php:163
+#: inc/fields/profile.php:180
+msgid "If desired, enter a phrase to be used in place of \"Department Experts.\" If this field is empty, \"Department Experts\" will be used."
+msgstr ""
+
+#: inc/fields/profile.php:184
+msgid "Department Experts Title Override"
+msgstr ""
+
+#: inc/fields/profile.php:190
 msgid "Role read more link"
 msgstr ""
 
-#: inc/fields/profile.php:167
+#: inc/fields/profile.php:194
 msgid "Link to archive?"
 msgstr ""
 
-#: inc/fields/profile.php:168
+#: inc/fields/profile.php:195
 msgid "Select this option to display a link to this role archive on the parent archive page."
 msgstr ""
 
-#: inc/fields/profile.php:171
+#: inc/fields/profile.php:198
 msgid "Override link text for archive link"
 msgstr ""
 
-#: inc/fields/profile.php:172
+#: inc/fields/profile.php:199
 msgid "Override link URL for archive link"
 msgstr ""
 
-#: inc/fields/profile.php:177
+#: inc/fields/profile.php:204
 msgid "Output Read More Link?"
+msgstr ""
+
+#: inc/fields/profile.php:245
+msgid "N/A (Top level)"
 msgstr ""
 
 #: inc/fields/profiles.php:22
@@ -2038,110 +1776,159 @@ msgstr ""
 msgid "If enabled, the support module will not be shown with this content."
 msgstr ""
 
-#: inc/post-types/download.php:16
-msgid "Download"
+#: inc/network-settings.php:24
+#: inc/network-settings.php:98
+msgid "Search Engine Optimization and Social Media Settings"
+msgstr ""
+
+#: inc/network-settings.php:25
+msgid "SEO & Social"
+msgstr ""
+
+#: inc/network-settings.php:33
+msgid "Matomo settings"
+msgstr ""
+
+#: inc/network-settings.php:42
+msgid "Enter Matomo Site ID"
+msgstr ""
+
+#: inc/network-settings.php:50
+msgid "Open Graph protocol settings"
+msgstr ""
+
+#: inc/network-settings.php:59
+msgid "Set URL of image for OG:Image"
+msgstr ""
+
+#: inc/network-settings.php:67
+msgid "Mastodon settings"
+msgstr ""
+
+#: inc/network-settings.php:76
+msgid "Set wikimedia.social handle - without \"@\" prefix - for Mastodon verification"
+msgstr ""
+
+#: inc/network-settings.php:92
+msgid "SEO and social media settings were saved."
+msgstr ""
+
+#: inc/network-settings.php:117
+msgid "Use the options below to configure the usage of Matomo"
+msgstr ""
+
+#: inc/network-settings.php:141
+msgid "Use the options below to configure Open Graph protocol values for the entire network of sites."
+msgstr ""
+
+#: inc/network-settings.php:165
+msgid "Use the options below to configure Mastodon values for the entire network of sites."
 msgstr ""
 
 #: inc/post-types/download.php:17
-msgid "All Downloads"
+msgid "Download"
 msgstr ""
 
 #: inc/post-types/download.php:18
-msgid "Download Archives"
+msgid "All Downloads"
 msgstr ""
 
 #: inc/post-types/download.php:19
-msgid "Download Attributes"
+msgid "Download Archives"
 msgstr ""
 
 #: inc/post-types/download.php:20
-msgid "Insert into Download"
+msgid "Download Attributes"
 msgstr ""
 
 #: inc/post-types/download.php:21
-msgid "Uploaded to this Download"
+msgid "Insert into Download"
 msgstr ""
 
 #: inc/post-types/download.php:22
-msgctxt "Download"
-msgid "Featured Image"
+msgid "Uploaded to this Download"
 msgstr ""
 
 #: inc/post-types/download.php:23
 msgctxt "Download"
-msgid "Set featured image"
+msgid "Featured Image"
 msgstr ""
 
 #: inc/post-types/download.php:24
 msgctxt "Download"
-msgid "Remove featured image"
+msgid "Set featured image"
 msgstr ""
 
 #: inc/post-types/download.php:25
 msgctxt "Download"
-msgid "Use as featured image"
+msgid "Remove featured image"
 msgstr ""
 
 #: inc/post-types/download.php:26
-msgid "Filter Downloads list"
+msgctxt "Download"
+msgid "Use as featured image"
 msgstr ""
 
 #: inc/post-types/download.php:27
-msgid "Downloads list navigation"
+msgid "Filter Downloads list"
 msgstr ""
 
 #: inc/post-types/download.php:28
-msgid "Downloads list"
+msgid "Downloads list navigation"
 msgstr ""
 
 #: inc/post-types/download.php:29
-msgid "New Download"
+msgid "Downloads list"
 msgstr ""
 
 #: inc/post-types/download.php:30
+msgid "New Download"
+msgstr ""
+
+#: inc/post-types/download.php:31
 #: inc/post-types/profile.php:32
 #: inc/post-types/story.php:32
 msgid "Add New"
 msgstr ""
 
-#: inc/post-types/download.php:31
+#: inc/post-types/download.php:32
 msgid "Add New Download"
 msgstr ""
 
-#: inc/post-types/download.php:32
+#: inc/post-types/download.php:33
 msgid "Edit Download"
 msgstr ""
 
-#: inc/post-types/download.php:33
+#: inc/post-types/download.php:34
 msgid "View Download"
 msgstr ""
 
-#: inc/post-types/download.php:34
+#: inc/post-types/download.php:35
 msgid "View Downloads"
 msgstr ""
 
-#: inc/post-types/download.php:35
+#: inc/post-types/download.php:36
 msgid "Search Downloads"
 msgstr ""
 
-#: inc/post-types/download.php:36
+#: inc/post-types/download.php:37
 msgid "No Downloads found"
 msgstr ""
 
-#: inc/post-types/download.php:37
+#: inc/post-types/download.php:38
 msgid "No Downloads found in trash"
 msgstr ""
 
-#: inc/post-types/download.php:38
+#: inc/post-types/download.php:39
 msgid "Parent Download:"
 msgstr ""
 
-#: inc/post-types/download.php:49
+#: inc/post-types/download.php:50
 msgid "download"
 msgstr ""
 
 #: inc/post-types/profile.php:18
-#: assets/src/editor/blocks/profile/index.js:24
+#: assets/src/editor/blocks/profile/index.js:23
 msgid "Profile"
 msgstr ""
 
@@ -2239,6 +2026,7 @@ msgstr ""
 
 #. translators: %s: post permalink
 #: inc/post-types/profile.php:76
+#, php-format
 msgid "Profile updated. <a target=\"_blank\" href=\"%s\">View Profile</a>"
 msgstr ""
 
@@ -2256,36 +2044,42 @@ msgstr ""
 msgid "Profile updated."
 msgstr ""
 
-#: inc/post-types/profile.php:82
+#. translators: %s: date and time of the revision
+#: inc/post-types/profile.php:84
+#, php-format
 msgid "Profile restored to revision from %s"
 msgstr ""
 
 #. translators: %s: post permalink
-#: inc/post-types/profile.php:84
+#: inc/post-types/profile.php:90
+#, php-format
 msgid "Profile published. <a href=\"%s\">View Profile</a>"
 msgstr ""
 
-#: inc/post-types/profile.php:85
+#: inc/post-types/profile.php:91
 msgid "Profile saved."
 msgstr ""
 
 #. translators: %s: post permalink
-#: inc/post-types/profile.php:87
+#: inc/post-types/profile.php:93
+#, php-format
 msgid "Profile submitted. <a target=\"_blank\" href=\"%s\">Preview Profile</a>"
 msgstr ""
 
 #. translators: 1: Publish box date format, see https://secure.php.net/date 2: Post permalink
-#: inc/post-types/profile.php:90
+#: inc/post-types/profile.php:96
+#, php-format
 msgid "Profile scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview Profile</a>"
 msgstr ""
 
-#: inc/post-types/profile.php:91
-#: inc/post-types/story.php:91
+#: inc/post-types/profile.php:97
+#: inc/post-types/story.php:97
 msgid "M j, Y @ G:i"
 msgstr ""
 
 #. translators: %s: post permalink
-#: inc/post-types/profile.php:94
+#: inc/post-types/profile.php:100
+#, php-format
 msgid "Profile draft updated. <a target=\"_blank\" href=\"%s\">Preview Profile</a>"
 msgstr ""
 
@@ -2387,6 +2181,7 @@ msgstr ""
 
 #. translators: %s: post permalink
 #: inc/post-types/story.php:76
+#, php-format
 msgid "Story updated. <a target=\"_blank\" href=\"%s\">View Story</a>"
 msgstr ""
 
@@ -2394,43 +2189,49 @@ msgstr ""
 msgid "Story updated."
 msgstr ""
 
-#: inc/post-types/story.php:82
+#. translators: %s: date and time of the revision
+#: inc/post-types/story.php:84
+#, php-format
 msgid "Story restored to revision from %s"
 msgstr ""
 
 #. translators: %s: post permalink
-#: inc/post-types/story.php:84
+#: inc/post-types/story.php:90
+#, php-format
 msgid "Story published. <a href=\"%s\">View Story</a>"
 msgstr ""
 
-#: inc/post-types/story.php:85
+#: inc/post-types/story.php:91
 msgid "Story saved."
 msgstr ""
 
 #. translators: %s: post permalink
-#: inc/post-types/story.php:87
+#: inc/post-types/story.php:93
+#, php-format
 msgid "Story submitted. <a target=\"_blank\" href=\"%s\">Preview Story</a>"
 msgstr ""
 
 #. translators: 1: Publish box date format, see https://secure.php.net/date 2: Post permalink
-#: inc/post-types/story.php:90
+#: inc/post-types/story.php:96
+#, php-format
 msgid "Story scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview Story</a>"
 msgstr ""
 
 #. translators: %s: post permalink
-#: inc/post-types/story.php:94
+#: inc/post-types/story.php:100
+#, php-format
 msgid "Story draft updated. <a target=\"_blank\" href=\"%s\">Preview Story</a>"
 msgstr ""
 
-#: inc/shortcodes/wp20.php:451
+#: inc/shortcodes/wp20.php:455
 msgid "most edited articles"
 msgstr ""
 
-#: inc/shortcodes/wp20.php:454
+#: inc/shortcodes/wp20.php:458
 msgid "There is not data for the options you selected. Please change the options above."
 msgstr ""
 
-#: inc/shortcodes/wp20.php:457
+#: inc/shortcodes/wp20.php:461
 msgid "edits"
 msgstr ""
 
@@ -2518,96 +2319,100 @@ msgstr ""
 msgid "&larr; Back to Roles"
 msgstr ""
 
-#: inc/taxonomies.php:54
+#: inc/taxonomies.php:55
 msgid "role"
 msgstr ""
 
-#: inc/taxonomies.php:62
-#: inc/taxonomies.php:79
+#: inc/taxonomies.php:63
+#: inc/taxonomies.php:80
 msgid "Types"
 msgstr ""
 
-#: inc/taxonomies.php:63
+#: inc/taxonomies.php:64
 msgctxt "taxonomy general name"
 msgid "Type"
 msgstr ""
 
-#: inc/taxonomies.php:64
+#: inc/taxonomies.php:65
 msgid "Search Types"
 msgstr ""
 
-#: inc/taxonomies.php:65
+#: inc/taxonomies.php:66
 msgid "Popular Types"
 msgstr ""
 
-#: inc/taxonomies.php:66
+#: inc/taxonomies.php:67
 msgid "All Types"
 msgstr ""
 
-#: inc/taxonomies.php:67
+#: inc/taxonomies.php:68
 msgid "Parent Type"
 msgstr ""
 
-#: inc/taxonomies.php:68
+#: inc/taxonomies.php:69
 msgid "Parent Type:"
 msgstr ""
 
-#: inc/taxonomies.php:69
+#: inc/taxonomies.php:70
 msgid "Edit Type"
 msgstr ""
 
-#: inc/taxonomies.php:70
+#: inc/taxonomies.php:71
 msgid "Update Type"
 msgstr ""
 
-#: inc/taxonomies.php:71
+#: inc/taxonomies.php:72
 msgid "View Type"
 msgstr ""
 
-#: inc/taxonomies.php:72
 #: inc/taxonomies.php:73
+#: inc/taxonomies.php:74
 msgid "New Type"
 msgstr ""
 
-#: inc/taxonomies.php:74
+#: inc/taxonomies.php:75
 msgid "Separate Types with commas"
 msgstr ""
 
-#: inc/taxonomies.php:75
+#: inc/taxonomies.php:76
 msgid "Add or remove Types"
 msgstr ""
 
-#: inc/taxonomies.php:76
+#: inc/taxonomies.php:77
 msgid "Choose from the most used Types"
 msgstr ""
 
-#: inc/taxonomies.php:77
+#: inc/taxonomies.php:78
 msgid "No Types found."
 msgstr ""
 
-#: inc/taxonomies.php:78
+#: inc/taxonomies.php:79
 msgid "No Types"
 msgstr ""
 
-#: inc/taxonomies.php:80
+#: inc/taxonomies.php:81
 msgid "Types list navigation"
 msgstr ""
 
-#: inc/taxonomies.php:81
+#: inc/taxonomies.php:82
 msgid "Types list"
 msgstr ""
 
-#: inc/taxonomies.php:82
+#: inc/taxonomies.php:83
 msgctxt "story-type"
 msgid "Most Used"
 msgstr ""
 
-#: inc/taxonomies.php:83
+#: inc/taxonomies.php:84
 msgid "&larr; Back to Types"
 msgstr ""
 
-#: inc/taxonomies.php:91
+#: inc/taxonomies.php:93
 msgid "stories"
+msgstr ""
+
+#: inc/taxonomy-content-language.php:25
+msgid "Content Language"
 msgstr ""
 
 #: inc/template-redirect.php:91
@@ -2666,36 +2471,145 @@ msgstr ""
 msgid "Stories Page"
 msgstr ""
 
+#: patterns/donate-financial-information.php
+msgctxt "Pattern title"
+msgid "Donate - financial information"
+msgstr ""
+
+#: patterns/donate-financial-information.php
+msgctxt "Pattern description"
+msgid "\"Where your donation goes\" financial information section"
+msgstr ""
+
+#: patterns/footer-dark.php
+msgctxt "Pattern title"
+msgid "Footer"
+msgstr ""
+
+#: patterns/header-light.php
+msgctxt "Pattern title"
+msgid "Header Light"
+msgstr ""
+
+#: patterns/header-light.php
+msgctxt "Pattern description"
+msgid "Header with nav, search, language, and donate button"
+msgstr ""
+
+#: patterns/hero-rotate-text.php
+msgctxt "Pattern title"
+msgid "Hero - rotating text"
+msgstr ""
+
+#: patterns/hero-rotate-text.php
+msgctxt "Pattern description"
+msgid "Hero block pattern with highlighted rotating text."
+msgstr ""
+
+#: patterns/interactive-cards.php
+msgctxt "Pattern title"
+msgid "Interactive Cards"
+msgstr ""
+
+#: patterns/interactive-cards.php
+msgctxt "Pattern description"
+msgid "Add an interactive cards section."
+msgstr ""
+
+#: patterns/mega-get-involved.php
+msgctxt "Pattern title"
+msgid "Mega menu - get involved"
+msgstr ""
+
+#: patterns/mega-get-involved.php
+msgctxt "Pattern description"
+msgid "Mega menu container for the \"get involved\" menu."
+msgstr ""
+
+#: patterns/mega-languages.php
+msgctxt "Pattern title"
+msgid "Mega languages"
+msgstr ""
+
+#: patterns/mega-languages.php
+msgctxt "Pattern description"
+msgid "Mega menu container for the languages menu."
+msgstr ""
+
+#: patterns/mega-news.php
+msgctxt "Pattern title"
+msgid "Mega menu - news"
+msgstr ""
+
+#: patterns/mega-news.php
+msgctxt "Pattern description"
+msgid "Mega menu container for the \"news\" menu."
+msgstr ""
+
+#: patterns/mega-search.php
+msgctxt "Pattern title"
+msgid "Mega search"
+msgstr ""
+
+#: patterns/mega-search.php
+msgctxt "Pattern description"
+msgid "Mega menu container for the search menu."
+msgstr ""
+
+#: patterns/mega-what-we-do.php
+msgctxt "Pattern title"
+msgid "Mega menu - what we do"
+msgstr ""
+
+#: patterns/mega-what-we-do.php
+msgctxt "Pattern description"
+msgid "Mega menu container for the \"what we do\" menu."
+msgstr ""
+
+#: patterns/mega-who-we-are.php
+msgctxt "Pattern title"
+msgid "Mega menu - who we are"
+msgstr ""
+
+#: patterns/mega-who-we-are.php
+msgctxt "Pattern description"
+msgid "Mega menu container for the \"who we are\" menu."
+msgstr ""
+
+#: patterns/news-carousel.php
+msgctxt "Pattern title"
+msgid "Our work news carousel"
+msgstr ""
+
+#: patterns/news-carousel.php
+msgctxt "Pattern description"
+msgid "Block pattern for a full-width news carousel with surrounding elements."
+msgstr ""
+
+#: patterns/promo-carousel.php
+msgctxt "Pattern title"
+msgid "Promo carousel"
+msgstr ""
+
+#: patterns/promo-carousel.php
+msgctxt "Pattern description"
+msgid "Block pattern for a full-width promo carousel."
+msgstr ""
+
 #: template-parts/modules/general/connect.php:13
 msgid "Stay up-to-date on our work."
 msgstr ""
 
-#: template-parts/modules/general/connect.php:18
-msgid "Subscribe to our newsletter"
-msgstr ""
-
-#: template-parts/modules/general/connect.php:19
-msgid "Here is a brief description of the content and frequency for this newsletter. Also a promise not to spam or share personal data."
-msgstr ""
-
-#: template-parts/modules/general/connect.php:20
-msgid "Email address"
-msgstr ""
-
-#: template-parts/modules/general/connect.php:21
-msgid "Subscribe"
-msgstr ""
-
-#: template-parts/modules/general/connect.php:24
+#: template-parts/modules/general/connect.php:16
 msgid "Say hello"
 msgstr ""
 
-#: template-parts/modules/general/connect.php:25
+#: template-parts/modules/general/connect.php:17
 msgid "How to get in touch with the team connected to this content. Whether it’s a site to visit, contact person, etc. Rich text box."
 msgstr ""
 
-#: template-parts/modules/general/connect.php:26
-#: template-parts/modules/general/connect.php:27
+#: template-parts/modules/general/connect.php:18
+#: template-parts/modules/general/connect.php:19
 msgid "email@domain.url"
 msgstr ""
 
@@ -2703,108 +2617,209 @@ msgstr ""
 msgid "Tweet"
 msgstr ""
 
-#: assets/src/editor/blocks/banner/index.js:23
-msgid "Banner"
+#: template-parts/pagination.php:8
+msgid "Previous"
 msgstr ""
 
-#: assets/src/editor/blocks/banner/index.js:31
-msgid "Banner with an image and call to action."
+#: template-parts/pagination.php:9
+msgid "Next"
 msgstr ""
 
-#: assets/src/editor/blocks/banner/index.js:143
+#: assets/src/editor/blocks/accordion-item/index.js:41
+msgid "Add Accordion Title..."
+msgstr ""
+
+#: assets/src/editor/blocks/accordion/index.js:40
+msgid "Set title font color:"
+msgstr ""
+
+#: assets/src/editor/blocks/banner/index.js:82
 msgid "Heading for banner"
 msgstr ""
 
-#: assets/src/editor/blocks/banner/index.js:151
+#: assets/src/editor/blocks/banner/index.js:90
 msgid "Enter the message for this banner."
 msgstr ""
 
-#: assets/src/editor/blocks/blog-list/index.js:21
-msgid "Blog list"
-msgstr ""
-
-#: assets/src/editor/blocks/blog-list/index.js:29
-msgid "Dynamic list of recent posts"
-msgstr ""
-
-#: assets/src/editor/blocks/blog-post-heading/index.js:49
-msgid "Post Heading controls"
-msgstr ""
-
-#: assets/src/editor/blocks/blog-post-heading/index.js:55
-msgid "Editor controls for selecting featured image and post intro."
-msgstr ""
-
-#: assets/src/editor/blocks/blog-post-heading/index.js:107
+#: assets/src/editor/blocks/blog-post-heading/index.js:87
 msgid "No featured image selected"
 msgstr ""
 
-#: assets/src/editor/blocks/blog-post-heading/index.js:119
+#: assets/src/editor/blocks/blog-post-heading/index.js:99
 msgid "Add a post intro"
 msgstr ""
 
-#: assets/src/editor/blocks/card/index.js:28
-msgid "Card"
-msgstr ""
-
-#: assets/src/editor/blocks/card/index.js:32
-msgid "Card creates a call to action with an image, heading and paragraph."
-msgstr ""
-
-#: assets/src/editor/blocks/card/index.js:120
+#: assets/src/editor/blocks/card/index.js:62
 msgid "Heading of the card"
 msgstr ""
 
-#: assets/src/editor/blocks/card/index.js:128
+#: assets/src/editor/blocks/card/index.js:69
 msgid "Body of the card"
+msgstr ""
+
+#: assets/src/editor/blocks/carousel/index.js:126
+msgid "Carousel settings"
+msgstr ""
+
+#: assets/src/editor/blocks/carousel/index.js:129
+msgid "Sets ARIA label"
+msgstr ""
+
+#: assets/src/editor/blocks/carousel/index.js:130
+msgid "Carousel name"
+msgstr ""
+
+#: assets/src/editor/blocks/carousel/index.js:135
+msgid "Slides per page"
+msgstr ""
+
+#: assets/src/editor/blocks/carousel/index.js:142
+msgid "Show navigation arrows?"
+msgstr ""
+
+#: assets/src/editor/blocks/carousel/index.js:150
+msgid "Show pagination dots?"
+msgstr ""
+
+#: assets/src/editor/blocks/carousel/index.js:160
+msgid "Loop carousel?"
+msgstr ""
+
+#: assets/src/editor/blocks/carousel/index.js:165
+msgid "Enable autoplay?"
+msgstr ""
+
+#: assets/src/editor/blocks/carousel/index.js:173
+msgid "Interval between autoplaying slides"
+msgstr ""
+
+#: assets/src/editor/blocks/clock-stat/index.js:46
+msgid "Label"
+msgstr ""
+
+#: assets/src/editor/blocks/clock/index.js:76
+msgid "Title of the clock"
+msgstr ""
+
+#: assets/src/editor/blocks/clock/index.js:106
+msgid "Label for Counter"
+msgstr ""
+
+#: assets/src/editor/blocks/clock/index.js:119
+msgid "Disclaimers"
+msgstr ""
+
+#: assets/src/editor/blocks/clock/index.js:126
+msgid "Clock settings"
+msgstr ""
+
+#: assets/src/editor/blocks/clock/index.js:127
+msgid "Chose the date and time to count up/down to:"
+msgstr ""
+
+#: assets/src/editor/blocks/clock/index.js:137
+msgid "Stop clock at the time above"
+msgstr ""
+
+#: assets/src/editor/blocks/clock/index.js:141
+msgid "Units to display in clock"
+msgstr ""
+
+#: assets/src/editor/blocks/clock/index.js:148
+msgid "Minimum values before a unit. Minimum 0 and Maximum 5"
+msgstr ""
+
+#: assets/src/editor/blocks/clock/index.js:149
+msgid "Minimum length of display"
+msgstr ""
+
+#: assets/src/editor/blocks/collapsible-text/index.js:35
+msgid "Set button text color:"
+msgstr ""
+
+#: assets/src/editor/blocks/collapsible-text/index.js:51
+msgid "Text of \"Read More\" button state"
+msgstr ""
+
+#: assets/src/editor/blocks/collapsible-text/index.js:61
+msgid "Text of \"Read Less\" button state"
 msgstr ""
 
 #: assets/src/editor/blocks/contact/index.js:51
 msgid "Contact"
 msgstr ""
 
-#: assets/src/editor/blocks/contact/index.js:104
+#: assets/src/editor/blocks/contact/index.js:103
 msgid "Write contact title"
 msgstr ""
 
-#: assets/src/editor/blocks/contact/index.js:112
+#: assets/src/editor/blocks/contact/index.js:110
 msgid "Write contact description"
 msgstr ""
 
-#: assets/src/editor/blocks/contact/index.js:127
+#: assets/src/editor/blocks/contact/index.js:124
 msgid "Write social links title"
 msgstr ""
 
-#: assets/src/editor/blocks/core-heading/index.js:43
-msgid "Sans p"
+#: assets/src/editor/blocks/donation-bar/index.js:86
+msgid "Donation Bar Settings"
 msgstr ""
 
-#: assets/src/editor/blocks/core-heading/index.js:47
-msgid "Mimic h1"
+#: assets/src/editor/blocks/donation-bar/index.js:88
+msgid "Default Donation Amount"
 msgstr ""
 
-#: assets/src/editor/blocks/core-heading/index.js:51
-msgid "Mimic h2"
+#: assets/src/editor/blocks/donation-bar/index.js:95
+msgid "Show Annual Option"
 msgstr ""
 
-#: assets/src/editor/blocks/core-heading/index.js:55
-msgid "Mimic h3"
+#: assets/src/editor/blocks/donation-bar/index.js:100
+msgid "UTM Medium"
 msgstr ""
 
-#: assets/src/editor/blocks/core-heading/index.js:59
-msgid "Sans h3"
+#: assets/src/editor/blocks/donation-bar/index.js:105
+msgid "UTM Campaign"
 msgstr ""
 
-#: assets/src/editor/blocks/core-heading/index.js:63
-msgid "Mimic h4"
+#: assets/src/editor/blocks/donation-bar/index.js:110
+msgid "UTM Source"
 msgstr ""
 
-#: assets/src/editor/blocks/core-heading/index.js:67
-msgid "Mimic h5"
+#: assets/src/editor/blocks/donation-bar/index.js:115
+msgid "Default Amounts by Currency"
 msgstr ""
 
-#: assets/src/editor/blocks/core-heading/index.js:71
-msgid "Mimic h6"
+#: assets/src/editor/blocks/donation-bar/index.js:127
+msgid "Currency"
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/index.js:136
+msgid "Amount"
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/index.js:149
+#: assets/src/editor/blocks/donation-bar/index.js:187
+msgid "Remove"
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/index.js:161
+msgid "Add Currency Amount"
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/index.js:164
+msgid "Unsupported Countries"
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/index.js:166
+msgid "Add Unsupported Country"
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/index.js:170
+msgid "Search..."
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/index.js:211
+msgid "Fallback text for unsupported countries..."
 msgstr ""
 
 #: assets/src/editor/blocks/double-heading/index.js:65
@@ -2815,41 +2830,42 @@ msgstr ""
 msgid "One of these variants will be shown randomly when visiting the site:"
 msgstr ""
 
-#: assets/src/editor/blocks/double-heading/index.js:161
-#: assets/src/editor/blocks/double-heading/index.js:204
+#: assets/src/editor/blocks/double-heading/index.js:160
+#: assets/src/editor/blocks/double-heading/index.js:201
 msgid "Write secondary heading"
 msgstr ""
 
-#: assets/src/editor/blocks/double-heading/index.js:179
+#: assets/src/editor/blocks/double-heading/index.js:177
 msgid "Write translated secondary heading"
 msgstr ""
 
-#: assets/src/editor/blocks/double-heading/index.js:219
+#: assets/src/editor/blocks/double-heading/index.js:216
 msgid "[One of the available translated headings]"
 msgstr ""
 
-#: assets/src/editor/blocks/double-heading/index.js:231
+#: assets/src/editor/blocks/double-heading/index.js:227
 msgid "Write primary heading"
 msgstr ""
 
-#: assets/src/editor/blocks/double-heading/index.js:246
+#: assets/src/editor/blocks/double-heading/index.js:242
 msgid "Hide translated headings"
 msgstr ""
 
-#: assets/src/editor/blocks/double-heading/index.js:250
+#: assets/src/editor/blocks/double-heading/index.js:246
 msgid "Show translated headings"
 msgstr ""
 
-#: assets/src/editor/blocks/double-heading/index.js:260
-#: assets/src/editor/blocks/home-page-hero/edit.js:155
+#: assets/src/editor/blocks/double-heading/index.js:256
+#: assets/src/editor/blocks/home-page-hero/edit.js:152
 msgid "Heading settings"
 msgstr ""
 
-#: assets/src/editor/blocks/double-heading/index.js:266
+#: assets/src/editor/blocks/double-heading/index.js:262
 msgid "Language"
 msgstr ""
 
 #: assets/src/editor/blocks/external-link/index.js:63
+#: assets/src/editor/blocks/linked-toc-item/index.js:58
 msgid "Link heading"
 msgstr ""
 
@@ -2861,40 +2877,40 @@ msgstr ""
 msgid "External Link"
 msgstr ""
 
-#: assets/src/editor/blocks/home-page-hero/edit.js:75
+#: assets/src/editor/blocks/home-page-hero/edit.js:74
 msgid "⚠️ Scrolling images are expected to be 4237px high and 454px wide (or multiples of those values). Using a different resolution will result in strange behavior."
 msgstr ""
 
-#: assets/src/editor/blocks/home-page-hero/edit.js:98
+#: assets/src/editor/blocks/home-page-hero/edit.js:96
 msgid "Add a heading"
 msgstr ""
 
-#: assets/src/editor/blocks/home-page-hero/edit.js:111
+#: assets/src/editor/blocks/home-page-hero/edit.js:109
 msgid "Hide rotating headings"
 msgstr ""
 
-#: assets/src/editor/blocks/home-page-hero/edit.js:112
+#: assets/src/editor/blocks/home-page-hero/edit.js:110
 msgid "Show rotating headings"
 msgstr ""
 
-#: assets/src/editor/blocks/home-page-hero/edit.js:127
+#: assets/src/editor/blocks/home-page-hero/edit.js:124
 msgid "Add a rotating heading"
 msgstr ""
 
-#: assets/src/editor/blocks/home-page-hero/edit.js:138
+#: assets/src/editor/blocks/home-page-hero/edit.js:135
 #: assets/src/editor/components/image-filter/index.js:52
 msgid "Image settings"
 msgstr ""
 
-#: assets/src/editor/blocks/home-page-hero/edit.js:141
+#: assets/src/editor/blocks/home-page-hero/edit.js:138
 msgid "Enable animation"
 msgstr ""
 
-#: assets/src/editor/blocks/home-page-hero/edit.js:145
+#: assets/src/editor/blocks/home-page-hero/edit.js:142
 msgid "Link settings"
 msgstr ""
 
-#: assets/src/editor/blocks/home-page-hero/edit.js:157
+#: assets/src/editor/blocks/home-page-hero/edit.js:154
 msgid "Language code"
 msgstr ""
 
@@ -2910,76 +2926,205 @@ msgstr ""
 msgid "Inline Languages"
 msgstr ""
 
-#: assets/src/editor/blocks/landing-page-hero/index.js:27
-msgid "Landing page hero"
+#: assets/src/editor/blocks/interactive-card/edit.js:33
+msgid "Change heading level"
+msgstr ""
+
+#: assets/src/editor/blocks/interactive-card/edit.js:66
+msgid "Subheading content..."
+msgstr ""
+
+#: assets/src/editor/blocks/interactive-card/helpers.js:21
+#: assets/src/editor/blocks/toc-columns/index.js:48
+msgid "Heading 2"
+msgstr ""
+
+#: assets/src/editor/blocks/interactive-card/helpers.js:25
+msgid "Heading 3"
+msgstr ""
+
+#: assets/src/editor/blocks/interactive-card/helpers.js:29
+msgid "Heading 4"
+msgstr ""
+
+#: assets/src/editor/blocks/interactive-card/helpers.js:33
+msgid "Heading 5"
+msgstr ""
+
+#: assets/src/editor/blocks/interactive-card/helpers.js:37
+msgid "Heading 6"
 msgstr ""
 
 #: assets/src/editor/blocks/landing-page-hero/index.js:33
+msgid "Landing page hero"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:39
 msgid "A hero image and text to be used on \"subsite\" landing pages"
 msgstr ""
 
-#: assets/src/editor/blocks/landing-page-hero/index.js:40
+#: assets/src/editor/blocks/landing-page-hero/index.js:46
 msgid "Our Work"
 msgstr ""
 
-#: assets/src/editor/blocks/landing-page-hero/index.js:41
+#: assets/src/editor/blocks/landing-page-hero/index.js:47
 msgid "We help everyone share in the sum of all knowledge"
 msgstr ""
 
-#: assets/src/editor/blocks/landing-page-hero/index.js:42
+#: assets/src/editor/blocks/landing-page-hero/index.js:48
+msgid "People all over the world ask their voice-activated devices all sorts of questions, and search engines query Wikipedia knowledge to provide them with answers. That is why we are looking to co-create a sound logo that will be played each time a person is served an answer to a question that was responded with Wikimedia projects."
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:49
 msgid "We are the people who keep knowledge free. There is an amazing community of people around the world that makes great projects like Wikipedia. We help them do that work. We take care of the technical infrastructure, the legal challenges, and the growing pains."
 msgstr ""
 
-#: assets/src/editor/blocks/landing-page-hero/index.js:122
-msgid "Kicker"
-msgstr ""
-
-#: assets/src/editor/blocks/landing-page-hero/index.js:130
-msgid "Title for the page"
-msgstr ""
-
-#: assets/src/editor/blocks/landing-page-hero/index.js:168
+#: assets/src/editor/blocks/landing-page-hero/index.js:146
 msgid "Introductory paragraph - some information about this page to guide the reader."
 msgstr ""
 
-#: assets/src/editor/blocks/mailchimp-subscribe/index.js:25
-msgid "Mailchimp subscription form"
+#: assets/src/editor/blocks/landing-page-hero/index.js:158
+msgid "Custom CTA styling"
 msgstr ""
 
-#: assets/src/editor/blocks/profile-list/index.js:24
+#: assets/src/editor/blocks/landing-page-hero/index.js:162
+msgid "Button style"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:166
+msgid "Theme default"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:170
+msgid "Gray background / Black info icon"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:174
+msgid "Transparent background / Black info icon"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:178
+msgid "Gray background / Black down triangle icon"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:191
+#: assets/src/editor/blocks/report-landing-hero/index.js:96
+msgid "Kicker"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:198
+#: assets/src/editor/blocks/report-landing-hero/index.js:103
+msgid "Title for the page"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:205
+msgid "Description text - some additional information on the hero header."
+msgstr ""
+
+#: assets/src/editor/blocks/linked-table-of-contents/index.js:10
+msgid "Linked Table of Contents"
+msgstr ""
+
+#: assets/src/editor/blocks/linked-table-of-contents/index.js:13
+msgid "A table of contents menu for the sidebar that links to other pages."
+msgstr ""
+
+#: assets/src/editor/blocks/linked-toc-columns/index.js:34
+#: assets/src/editor/blocks/toc-columns/index.js:55
+msgid "Purus sit amet volutpat consequat mauris. Sagittis orci a scelerisque purus semper eget duis at. Eget arcu dictum varius duis at consectetur lorem donec massa. Velit dignissim sodales ut eu sem integer vitae justo. Gravida in fermentum et sollicitudin ac orci phasellus. Quam elementum pulvinar etiam non quam lacus."
+msgstr ""
+
+#: assets/src/editor/blocks/linked-toc-columns/index.js:50
+msgid "Linked Table of Contents Columns"
+msgstr ""
+
+#: assets/src/editor/blocks/linked-toc-columns/index.js:52
+#: assets/src/editor/blocks/toc-columns/index.js:73
+msgid "A ready-to-go columns block for list template pages with table of contents menu sidebar."
+msgstr ""
+
+#: assets/src/editor/blocks/linked-toc-item/index.js:103
+msgid "Linked Table Of Contents Item"
+msgstr ""
+
+#: assets/src/editor/blocks/profile-list/index.js:23
 msgid "Profile List"
 msgstr ""
 
-#: assets/src/editor/blocks/profile-list/index.js:28
+#: assets/src/editor/blocks/profile-list/index.js:27
 msgid "Show a list of profile cards"
 msgstr ""
 
-#: assets/src/editor/blocks/profile/index.js:28
+#: assets/src/editor/blocks/profile/index.js:27
 msgid "Show the photo, name and description of a person"
 msgstr ""
 
-#: assets/src/editor/blocks/share-article/index.js:18
-msgid "Share article"
+#: assets/src/editor/blocks/read-more-categories/index.js:58
+msgid "Read more categories"
 msgstr ""
 
-#: assets/src/editor/blocks/share-article/index.js:26
-msgid "A Twitter and a Facebook button to share an article."
+#: assets/src/editor/blocks/read-more-categories/index.js:66
+msgid "A block with a customizable label and links to the current post's categories"
 msgstr ""
 
-#: assets/src/editor/blocks/share-article/index.js:60
+#: assets/src/editor/blocks/read-more-categories/index.js:74
+msgid "Read more"
+msgstr ""
+
+#: assets/src/editor/blocks/read-more-categories/index.js:104
+msgid "Write read more text"
+msgstr ""
+
+#: assets/src/editor/blocks/report-landing-hero/index.js:25
+msgid "Report landing hero"
+msgstr ""
+
+#: assets/src/editor/blocks/report-landing-hero/index.js:31
+msgid "A hero image and text to be used on report landing pages"
+msgstr ""
+
+#: assets/src/editor/blocks/report-landing-hero/index.js:38
+msgid "WIKIMEDIA IN EDUCATION"
+msgstr ""
+
+#: assets/src/editor/blocks/report-landing-hero/index.js:39
+msgid "Supporting teachers, students, and learning worldwide through Wikipedia and other free knowledge projects"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:53
 msgid "(No social share will be shown)"
 msgstr ""
 
-#: assets/src/editor/blocks/share-article/index.js:72
+#: assets/src/editor/blocks/share-article/index.js:157
+msgid "Copy Link"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:167
 msgid "Social settings"
 msgstr ""
 
-#: assets/src/editor/blocks/share-article/index.js:75
+#: assets/src/editor/blocks/share-article/index.js:171
 msgid "Enable Twitter share"
 msgstr ""
 
-#: assets/src/editor/blocks/share-article/index.js:80
+#: assets/src/editor/blocks/share-article/index.js:181
+msgid "Enable Bluesky share"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:191
 msgid "Enable Facebook share"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:201
+msgid "Enable LinkedIn share"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:211
+msgid "Enable Email share"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:218
+msgid "Enable Copy Link"
 msgstr ""
 
 #: assets/src/editor/blocks/spotlight/index.js:23
@@ -2990,11 +3135,11 @@ msgstr ""
 msgid "Spotlight with an image and call to action."
 msgstr ""
 
-#: assets/src/editor/blocks/spotlight/index.js:141
+#: assets/src/editor/blocks/spotlight/index.js:140
 msgid "Heading for spotlight"
 msgstr ""
 
-#: assets/src/editor/blocks/spotlight/index.js:149
+#: assets/src/editor/blocks/spotlight/index.js:148
 msgid "Enter the message for this spotlight."
 msgstr ""
 
@@ -3002,11 +3147,11 @@ msgstr ""
 msgid "Stair"
 msgstr ""
 
-#: assets/src/editor/blocks/stair/index.js:101
+#: assets/src/editor/blocks/stair/index.js:100
 msgid "Write heading"
 msgstr ""
 
-#: assets/src/editor/blocks/stair/index.js:118
+#: assets/src/editor/blocks/stair/index.js:116
 msgid "Start writing your stair contents"
 msgstr ""
 
@@ -3018,15 +3163,31 @@ msgstr ""
 msgid "H2 with no text content."
 msgstr ""
 
-#: assets/src/editor/blocks/table-of-contents/index.js:14
+#: assets/src/editor/blocks/table-of-contents/index.js:16
 msgid "Table of Contents"
 msgstr ""
 
-#: assets/src/editor/blocks/table-of-contents/index.js:17
+#: assets/src/editor/blocks/table-of-contents/index.js:19
 msgid "A table of contents menu for the sidebar on list template pages."
 msgstr ""
 
-#: assets/src/editor/blocks/table-of-contents/index.js:114
+#: assets/src/editor/blocks/table-of-contents/index.js:113
+msgid "Structure"
+msgstr ""
+
+#: assets/src/editor/blocks/table-of-contents/index.js:116
+msgid "Third-level headings"
+msgstr ""
+
+#: assets/src/editor/blocks/table-of-contents/index.js:119
+msgid "Include h3 headings."
+msgstr ""
+
+#: assets/src/editor/blocks/table-of-contents/index.js:120
+msgid "Omit h3 headings."
+msgstr ""
+
+#: assets/src/editor/blocks/table-of-contents/index.js:143
 msgid "Links will appear here when you've added some h2 blocks in the other column."
 msgstr ""
 
@@ -3038,20 +3199,8 @@ msgstr ""
 msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 msgstr ""
 
-#: assets/src/editor/blocks/toc-columns/index.js:48
-msgid "Heading 2"
-msgstr ""
-
-#: assets/src/editor/blocks/toc-columns/index.js:55
-msgid "Purus sit amet volutpat consequat mauris. Sagittis orci a scelerisque purus semper eget duis at. Eget arcu dictum varius duis at consectetur lorem donec massa. Velit dignissim sodales ut eu sem integer vitae justo. Gravida in fermentum et sollicitudin ac orci phasellus. Quam elementum pulvinar etiam non quam lacus."
-msgstr ""
-
 #: assets/src/editor/blocks/toc-columns/index.js:71
 msgid "Table of Contents Columns"
-msgstr ""
-
-#: assets/src/editor/blocks/toc-columns/index.js:73
-msgid "A ready-to-go columns block for list template pages with table of contents menu sidebar."
 msgstr ""
 
 #: assets/src/editor/blocks/unseen-artist/index.js:24
@@ -3075,87 +3224,97 @@ msgid "Add a featured Wiki Unseen artist showcase."
 msgstr ""
 
 #: assets/src/editor/blocks/unseen-artist/index.js:65
-#: assets/src/editor/blocks/unseen-artist/index.js:214
+#: assets/src/editor/blocks/unseen-artist/index.js:228
 msgid "Artist Name"
 msgstr ""
 
 #: assets/src/editor/blocks/unseen-artist/index.js:69
-#: assets/src/editor/blocks/unseen-artist/index.js:101
+#: assets/src/editor/blocks/unseen-artist/index.js:105
 msgid "Behind the picture"
 msgstr ""
 
 #: assets/src/editor/blocks/unseen-artist/index.js:77
-#: assets/src/editor/blocks/unseen-artist/index.js:103
+#: assets/src/editor/blocks/unseen-artist/index.js:107
 msgid "Listen to the Interview"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:100
+#: assets/src/editor/blocks/unseen-artist/index.js:104
 msgid "Esther Griffith"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:113
+#: assets/src/editor/blocks/unseen-artist/index.js:118
 msgid "Who do you picture when<br>you think of an astrophysicist?"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:128
+#: assets/src/editor/blocks/unseen-artist/index.js:133
 msgid "See the woman who made her own space."
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:136
+#: assets/src/editor/blocks/unseen-artist/index.js:141
 msgid "Mercedes Tharam Richards (Kingston, 14 May 1955 - Hershey, 3 February 2016), née Davis, was a Jamaican astronomy and astrophysics professor. Her investigation focused on computational astrophysics, stellar astrophysics and exoplanets and brown dwarfs, and the physical dynamics of interacting binary stars systems."
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:166
-#: assets/src/editor/blocks/unseen-artist/index.js:355
+#: assets/src/editor/blocks/unseen-artist/index.js:172
+#: assets/src/editor/blocks/unseen-artist/index.js:382
 msgid "on Facebook."
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:174
-#: assets/src/editor/blocks/unseen-artist/index.js:363
+#: assets/src/editor/blocks/unseen-artist/index.js:180
+#: assets/src/editor/blocks/unseen-artist/index.js:390
 msgid "on Instagram."
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:182
-#: assets/src/editor/blocks/unseen-artist/index.js:371
+#: assets/src/editor/blocks/unseen-artist/index.js:188
+#: assets/src/editor/blocks/unseen-artist/index.js:398
 msgid "on Twitter."
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:190
-#: assets/src/editor/blocks/unseen-artist/index.js:379
+#: assets/src/editor/blocks/unseen-artist/index.js:196
+#: assets/src/editor/blocks/unseen-artist/index.js:406
 msgid "on LinkedIn."
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:200
+#: assets/src/editor/blocks/unseen-artist/index.js:204
+#: assets/src/editor/blocks/unseen-artist/index.js:414
+msgid "on Behance."
+msgstr ""
+
+#: assets/src/editor/blocks/unseen-artist/index.js:214
 msgid "Artist Info"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:205
+#: assets/src/editor/blocks/unseen-artist/index.js:219
 msgid "Hide artist info on desktop"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:224
+#: assets/src/editor/blocks/unseen-artist/index.js:238
 msgid "Top Heading"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:234
+#: assets/src/editor/blocks/unseen-artist/index.js:248
 msgid "Interview Link URL"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:245
+#: assets/src/editor/blocks/unseen-artist/index.js:259
 msgid "Interview Link Text"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:256
+#: assets/src/editor/blocks/unseen-artist/index.js:270
 msgid "Artist Social"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-artist/index.js:293
-#: assets/src/editor/blocks/unseen-facts/index.js:185
+#: assets/src/editor/blocks/unseen-artist/index.js:307
+#: assets/src/editor/blocks/unseen-facts/index.js:199
 msgid "LinkedIn URL"
 msgstr ""
 
+#: assets/src/editor/blocks/unseen-artist/index.js:318
+#: assets/src/editor/blocks/unseen-facts/index.js:210
+msgid "Behance URL"
+msgstr ""
+
 #: assets/src/editor/blocks/unseen-facts/index.js:20
-#: assets/src/editor/blocks/unseen-facts/index.js:85
+#: assets/src/editor/blocks/unseen-facts/index.js:90
 msgid "Unseen facts:"
 msgstr ""
 
@@ -3167,35 +3326,40 @@ msgstr ""
 msgid "Add the Wiki Unseen facts section."
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-facts/index.js:114
-#: assets/src/editor/blocks/unseen-facts/index.js:259
+#: assets/src/editor/blocks/unseen-facts/index.js:120
+#: assets/src/editor/blocks/unseen-facts/index.js:286
 msgid "Follow us on Facebook"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-facts/index.js:122
-#: assets/src/editor/blocks/unseen-facts/index.js:267
+#: assets/src/editor/blocks/unseen-facts/index.js:128
+#: assets/src/editor/blocks/unseen-facts/index.js:294
 msgid "Follow us on Instagram"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-facts/index.js:130
-#: assets/src/editor/blocks/unseen-facts/index.js:275
+#: assets/src/editor/blocks/unseen-facts/index.js:136
+#: assets/src/editor/blocks/unseen-facts/index.js:302
 msgid "Follow us on Twitter"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-facts/index.js:138
-#: assets/src/editor/blocks/unseen-facts/index.js:283
+#: assets/src/editor/blocks/unseen-facts/index.js:144
+#: assets/src/editor/blocks/unseen-facts/index.js:310
+#: assets/src/editor/blocks/unseen-facts/index.js:318
 msgid "Follow us on LinkedIn"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-facts/index.js:148
+#: assets/src/editor/blocks/unseen-facts/index.js:152
+msgid "Follow us on Behance"
+msgstr ""
+
+#: assets/src/editor/blocks/unseen-facts/index.js:162
 msgid "Social Icons"
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-facts/index.js:208
+#: assets/src/editor/blocks/unseen-facts/index.js:234
 msgid "Add heading..."
 msgstr ""
 
-#: assets/src/editor/blocks/unseen-facts/index.js:218
+#: assets/src/editor/blocks/unseen-facts/index.js:244
 #: assets/src/editor/blocks/unseen-footer/index.js:24
 #: assets/src/editor/blocks/unseen-intro/index.js:25
 msgid "Add content..."
@@ -3235,15 +3399,24 @@ msgstr ""
 msgid "A promise to show the world the people who have shaped the world, but were systematically erased from knowledge spaces. People whose images were taken out of the picture."
 msgstr ""
 
-#: assets/src/editor/components/cta/index.js:73
+#: assets/src/editor/components/cta/index.js:92
+msgid "CTA link behavior"
+msgstr ""
+
+#: assets/src/editor/components/cta/index.js:94
+#: assets/src/editor/components/url-picker/index.js:89
+msgid "Open in new tab"
+msgstr ""
+
+#: assets/src/editor/components/cta/index.js:118
 msgid "Call to action"
 msgstr ""
 
-#: assets/src/editor/components/cta/index.js:80
+#: assets/src/editor/components/cta/index.js:125
 msgid "Warning"
 msgstr ""
 
-#: assets/src/editor/components/cta/index.js:82
+#: assets/src/editor/components/cta/index.js:127
 msgid "Add a URL to this CTA"
 msgstr ""
 
@@ -3256,10 +3429,12 @@ msgid "Inherit from block style"
 msgstr ""
 
 #: assets/src/editor/components/image-filter/index.js:22
+#: assets/src/editor/helpers/block-styles.js:111
 msgid "Red"
 msgstr ""
 
 #: assets/src/editor/components/image-filter/index.js:26
+#: assets/src/editor/helpers/block-styles.js:115
 msgid "Yellow"
 msgstr ""
 
@@ -3288,25 +3463,548 @@ msgid "Blue - Faded"
 msgstr ""
 
 #: assets/src/editor/helpers/block-styles.js:35
-msgid "Blue - Vibrant"
+msgid "Blue - Light"
 msgstr ""
 
 #: assets/src/editor/helpers/block-styles.js:39
-msgid "Red - Faded"
+msgid "Blue - Vibrant"
 msgstr ""
 
 #: assets/src/editor/helpers/block-styles.js:43
-msgid "Red - Vibrant"
+msgid "Blue - Bright"
 msgstr ""
 
 #: assets/src/editor/helpers/block-styles.js:47
-msgid "Yellow - Faded"
+msgid "Blue - Bright Light"
 msgstr ""
 
 #: assets/src/editor/helpers/block-styles.js:51
+msgid "Green - Bright"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:55
+msgid "Green - Bright L"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:59
+msgid "Green - Dark"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:63
+msgid "Green - Dark L"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:71
+msgid "Green - Light"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:75
+msgid "Orange"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:79
+msgid "Orange - Light"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:87
+msgid "Pink - Light"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:91
+msgid "Purple"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:95
+msgid "Purple - Light"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:99
+msgid "Red - Faded"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:103
+msgid "Red - Light"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:107
+msgid "Red - Vibrant"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:119
+msgid "Yellow - Faded"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:123
+msgid "Yellow - Light"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:127
 msgid "Yellow - Vibrant"
 msgstr ""
 
-#: assets/src/editor/plugins/page-migration-flow/index.js:42
-msgid "Proceed with caution: converting to the block editor will remove any legacy elements populated by custom fields. To complete the conversion to the block editor, change the page template to the default template and create blocks for any legacy content that you'd like to migrate. Not ready to convert this page? Delete any blocks that aren't \"Classic blocks\" and make your changes within the existing classic block."
+#: assets/src/editor/helpers/block-styles.js:131
+msgid "Yellow - Bright"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:135
+msgid "Yellow - Bright Light"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:139
+msgid "Donate"
+msgstr ""
+
+#: assets/src/editor/plugins/hide-page-title-controls/index.js:45
+msgid "Hide this page title"
+msgstr ""
+
+#: assets/src/editor/plugins/hide-page-title-controls/index.js:46
+msgid "Use this option to avoid redundant titles, for example if the page hero contains its title."
+msgstr ""
+
+#: assets/src/editor/plugins/text-highlight-carousel/index.js:26
+msgid "Text Highlight Carousel"
+msgstr ""
+
+#: assets/src/scripts/video-ambient-controls.js:28
+msgid "Pause ambient video"
+msgstr ""
+
+#: assets/src/scripts/video-ambient-controls.js:29
+msgid "Play ambient video"
+msgstr ""
+
+#: assets/src/editor/blocks/accordion-item/block.json
+msgctxt "block title"
+msgid "Accordion Item"
+msgstr ""
+
+#: assets/src/editor/blocks/accordion/block.json
+msgctxt "block title"
+msgid "Accordion"
+msgstr ""
+
+#: assets/src/editor/blocks/banner/block.json
+msgctxt "block title"
+msgid "Banner"
+msgstr ""
+
+#: assets/src/editor/blocks/banner/block.json
+msgctxt "block description"
+msgid "Banner with an image and call to action."
+msgstr ""
+
+#: assets/src/editor/blocks/blog-list/block.json
+msgctxt "block title"
+msgid "Blog list"
+msgstr ""
+
+#: assets/src/editor/blocks/blog-list/block.json
+msgctxt "block description"
+msgid "Dynamic list of recent posts"
+msgstr ""
+
+#: assets/src/editor/blocks/blog-post-heading/block.json
+msgctxt "block title"
+msgid "Post Heading controls"
+msgstr ""
+
+#: assets/src/editor/blocks/blog-post-heading/block.json
+msgctxt "block description"
+msgid "Editor controls for selecting featured image and post intro."
+msgstr ""
+
+#: assets/src/editor/blocks/card/block.json
+msgctxt "block title"
+msgid "Card"
+msgstr ""
+
+#: assets/src/editor/blocks/card/block.json
+msgctxt "block description"
+msgid "Card creates a call to action with an image, heading and paragraph."
+msgstr ""
+
+#: assets/src/editor/blocks/carousel/block.json
+msgctxt "block title"
+msgid "Carousel"
+msgstr ""
+
+#: assets/src/editor/blocks/carousel/block.json
+msgctxt "block description"
+msgid "Content carousel"
+msgstr ""
+
+#: assets/src/editor/blocks/carousel/block.json
+msgctxt "block keyword"
+msgid "carousel"
+msgstr ""
+
+#: assets/src/editor/blocks/carousel/block.json
+msgctxt "block keyword"
+msgid "gallery"
+msgstr ""
+
+#: assets/src/editor/blocks/clock-stat/block.json
+msgctxt "block title"
+msgid "Clock Stat"
+msgstr ""
+
+#: assets/src/editor/blocks/clock-stat/block.json
+msgctxt "block description"
+msgid "Adds a stat row to the clock block."
+msgstr ""
+
+#: assets/src/editor/blocks/clock/block.json
+msgctxt "block title"
+msgid "Clock"
+msgstr ""
+
+#: assets/src/editor/blocks/clock/block.json
+msgctxt "block description"
+msgid "Clock creates a block that provides statistics and a count down/up timer."
+msgstr ""
+
+#: assets/src/editor/blocks/collapsible-text/block.json
+msgctxt "block title"
+msgid "Collapsible text"
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/block.json
+msgctxt "block title"
+msgid "Donation Portal Form"
+msgstr ""
+
+#: assets/src/editor/blocks/donation-bar/block.json
+msgctxt "block description"
+msgid "A form to direct users to donate.wikimedia.org portal"
+msgstr ""
+
+#: assets/src/editor/blocks/interactive-card/block.json
+msgctxt "block title"
+msgid "Interactive Card"
+msgstr ""
+
+#: assets/src/editor/blocks/interactive-card/block.json
+msgctxt "block description"
+msgid "Display a clickable card with animated hover reveal effect."
+msgstr ""
+
+#: assets/src/editor/blocks/language-switcher-list/block.json
+msgctxt "block title"
+msgid "Language switcher list"
+msgstr ""
+
+#: assets/src/editor/blocks/language-switcher-list/block.json
+msgctxt "block description"
+msgid "Language list block to display the available translations for the current page. Intended to be used inside the core navigation block, within an HM mega menu block."
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/block.json
+msgctxt "block title"
+msgid "Share article"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/block.json
+msgctxt "block description"
+msgid "Buttons to share an article on Twitter, Facebook, LinkedIn, via Email, or to copy a link."
+msgstr ""
+
+#: theme.json
+msgctxt "Duotone name"
+msgid "Black and white"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Green (AA)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Green (AAA)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Blue (AA)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Blue (AAA)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Red (AA)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Red (AAA)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Orange"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Yellow"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Pink"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Purple"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Bright Blue"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Bright Green"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Bright Yellow"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Light Pink"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Light Purple"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Light Bright Blue"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Light Bright Green"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Lightest Pink"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Mid - Bright Yellow"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Light Bright Yellow"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Lightest Yellow"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Lightest Purple"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Lightest Blue"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Lightest Green"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Base"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Main"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Black 75"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Black 50"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Black 25"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Black 10"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Black 05"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Border Light"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Border Base"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Shadow 16px blur"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "8"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "16"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "24"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "32"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "40"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "48"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "64"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "80"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Default (Inter)"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Display (Montserrat)"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra Large (Header 3)"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "XX Large (Header 2)"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Jumbo (Header 1)"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Mega get involved"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Mega languages"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Mega news"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Mega search"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Mega what we do"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Mega who we are"
 msgstr ""
