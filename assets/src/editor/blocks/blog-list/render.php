@@ -71,6 +71,7 @@ if ( count( $recent_posts ) > 0 ) {
 	foreach ( $recent_posts as $recent_post ) {
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo BlogPost\render_block( [
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Need to reiterate for the dynamic array value.
 			'post_id' => $recent_post->ID,
 			'align' => 'wide',
 		] );
