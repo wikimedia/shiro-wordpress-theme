@@ -6,4 +6,80 @@
 	&.has-radius-small {
 		border-radius: $border-radius-base;
 	}
+
+	&.is-style-clickable-card {
+		position: relative;
+
+		> * {
+			margin: 0;
+		}
+
+		> * + *,
+		.wp-block-group > * + * {
+			margin-block-start: clamp( 0.625rem, 0.625rem + ( ( 1vw - 0.234375rem ) * 0.61 ), 0.9375rem );
+		}
+
+		&:focus-within {
+			border-radius: 0.125rem;
+			outline: 2px solid var( --wp--preset--color--blue-aaa );
+			outline-offset: max( 2px, 0.1em );
+		}
+
+		.wp-block-heading {
+			font-family: var( --wp--preset--font-family--default );
+		}
+
+		.wp-block-heading a {
+			text-decoration: none !important;
+
+			&:hover,
+			&:focus-within {
+				outline: none !important;
+			}
+		}
+
+		.wp-block-heading:has(a[target="_blank"]) {
+			align-items: baseline;
+			display: flex;
+			gap: var( --wp--preset--spacing--8 );
+
+			&::after {
+				background: center / contain no-repeat url( '../../assets/src/svg/link-external.svg' );
+				content: '';
+				height: rem(16);
+				width: rem(16);
+			}
+		}
+
+		// Make whole card clickable.
+		.wp-block-heading:not(.block-editor-rich-text__editable) a::after {
+			content: "";
+			inset: 0;
+			position: absolute;
+			z-index: 10;
+		}
+	}
+
+	&.is-style-clickable-card:has(.wp-block-image:not(.display-none_small)) {
+		@include media( '<tablet' ) {
+			align-items: center;
+			display: grid;
+			gap: 0 rem(16);
+			grid-template-columns: rem(72) 1fr;
+
+			.wp-block-image {
+				grid-row: 1 / span 10;
+			}
+
+			.wp-block-image + .wp-block-heading {
+				margin-block-start: 0;
+			}
+		}
+	}
+
+	&.is-style-clickable-card.is-layout-flex:has(.wp-block-image) {
+		.wp-block-image + .wp-block-group {
+			margin-block-start: 0;
+		}
+	}
 }
