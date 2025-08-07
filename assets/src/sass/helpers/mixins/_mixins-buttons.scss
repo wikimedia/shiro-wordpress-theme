@@ -120,6 +120,7 @@
 
 	&:active {
 		background-color: var( --link-active-color--blue );
+		border-color: var( --link-active-color--blue );
 		color: var(--wp--preset--color--base);
 	}
 
@@ -160,10 +161,12 @@
 		background-color: var(--wp--preset--color--light-bright-green);
 		border-color: var(--wp--preset--color--green-aaa);
 		color: var(--wp--preset--color--green-aaa);
+		outline-color: var(--wp--preset--color--green-aaa);
 	}
 
 	&:active {
 		background-color: var( --link-active-color--green );
+		border-color: var( --link-active-color--green );
 		color: var(--wp--preset--color--base);
 	}
 
@@ -226,7 +229,7 @@
 		filter: none;
 	}
 
-	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ):not( .has-base-90-background-color a ):not( .has-base-background-color a ) {
+	&:is( .has-background:not(.has-link-color) a ):not( .blog-post a ):not( .has-base-90-background-color a ):not( .has-lightest-purple-background-color a ):not( .has-base-background-color a ) {
 		color: inherit;
 	}
 }
@@ -281,4 +284,67 @@
 		background-color: var(--wp--preset--color--black-05);
 		border-color: var(--wp--preset--color--border-light);
 	}
+}
+
+/**
+ * Masked icon
+ *
+ * Mixin to handle using an icon as a colored mask element.
+ *
+ * @param {string} $background-color  The background color for the icon
+ * @param {string} $icon-color        The icon color
+ * @param {string} $icon-path         The icon name
+ * @param {number} $size              The icon size desired
+ *
+ * Usage: @include masked-icon;
+ * Usage: @include masked-icon( var( --color-white ), var( --wp--preset--color--main ) );
+ */
+@mixin masked-icon(
+	$background-color: transparent,
+	$icon-color: var( --wp--preset--color--base ),
+	$icon-path: play,
+	$size: rem( 20 )
+) {
+	align-items: center;
+	aspect-ratio: 1/1;
+	background-color: #{$background-color};
+	color: #{$icon-color};
+	display: flex;
+	justify-content: center;
+
+	&::before {
+		background-color: currentColor;
+		content: "";
+		height: $size;
+		mask: url( "../svg/individual/#{$icon-path}.svg" );
+		mask-position: center;
+		mask-repeat: no-repeat;
+		mask-size: 100%;
+		width: $size;
+	}
+}
+
+/**
+ * Masked icon button
+ *
+ * Mixin to handle using an icon as a colored mask element for a button.
+ *
+ * @param {string} $background-color  The background color for the button
+ * @param {string} $icon-color        The icon color
+ * @param {string} $icon-path         The icon name
+ * @param {number} $size              The icon size desired
+ *
+ * Usage: @include masked-icon-button;
+ * Usage: @include masked-icon-button( var( --color-white ), var( --wp--preset--color--main ) );
+ */
+@mixin masked-icon-button(
+	$background-color: transparent,
+	$icon-color: var( --wp--preset--color--base ),
+	$icon-path: play,
+	$size: rem( 20 )
+) {
+	@include masked-icon( $background-color, $icon-color, $icon-path, $size );
+	border: 0;
+	cursor: pointer;
+	padding: 0;
 }

@@ -95,6 +95,7 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		'shiro/unseen-intro',
 		'shiro/accordion',
 		'shiro/accordion-item',
+		'shiro/interactive-card',
 
 		// Plugin blocks
 		'gravityforms/form',
@@ -124,6 +125,11 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		'core/button',
 		'core/buttons',
 		'core/latest-posts',
+		'core/post-featured-image',
+		'core/post-template',
+		'core/post-terms',
+		'core/post-title',
+		'core/query',
 		'core/quote',
 		'core/shortcode',
 	];
@@ -143,7 +149,6 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		$blocks[] = 'core/navigation';
 		$blocks[] = 'core/navigation-link';
 		$blocks[] = 'core/navigation-submenu';
-		$blocks[] = 'core/query';
 		$blocks[] = 'core/search';
 		$blocks[] = 'core/site-logo';
 		$blocks[] = 'core/site-tagline';
