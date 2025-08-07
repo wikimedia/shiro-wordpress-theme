@@ -259,7 +259,7 @@ add_filter( 'manage_role_custom_column', 'wmf_render_role_order_list_table_colum
  *
  * @param array $columns Associative array of registered columns.
  */
-function wmf_add_role_order_list_table_column( array $columns ) : array {
+function wmf_add_role_order_list_table_column( array $columns ): array {
 	$columns['role_order'] = __( 'Role Order', 'shiro-admin' );
 	return $columns;
 }
@@ -271,7 +271,7 @@ add_filter( 'manage_edit-role_columns', 'wmf_add_role_order_list_table_column' )
  * @param array $sortable_columns Array of sortable columns.
  * @return array Filtered array, with our column added.
  */
-function wmf_make_role_order_column_sortable( array $sortable_columns ) : array {
+function wmf_make_role_order_column_sortable( array $sortable_columns ): array {
 	$sortable_columns['role_order'] = 'role_order';
 	return $sortable_columns;
 }

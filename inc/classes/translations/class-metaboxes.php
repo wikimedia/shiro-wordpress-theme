@@ -325,5 +325,4 @@ class Metaboxes {
 			echo '</div>';
 		}
 	}
-
 }
