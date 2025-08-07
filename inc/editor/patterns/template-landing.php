@@ -5,8 +5,8 @@
 
 namespace WMF\Editor\Patterns\TemplateLanding;
 
+use WMF\Editor\Patterns\LinkColumns;
 use function WMF\Editor\Patterns\TweetColumns\pattern as tweet_columns_pattern;
-use WMF\Editor\Patterns\LinkColumns as LinkColumns;
 
 const NAME = 'shiro/template-landing';
 

@@ -28,7 +28,7 @@ if ( count( $excluded_categories ) > 0 ) {
 	if ( ! isset( $args['cat'] ) ) {
 		$args['cat'] = '';
 	}
-	$args['cat'] = array_reduce( $excluded_categories, function( $carry, $item ) {
+	$args['cat'] = array_reduce( $excluded_categories, function ( $carry, $item ) {
 		return $carry . ",-$item";
 	}, $args['cat'] );
 }
@@ -44,7 +44,7 @@ if ( wmf_get_current_content_language_term() !== null ) {
 		* categories to show, then we *don't* filter out non-main languages.
 		* To do so would almost certainly result in no posts being returned.
 		*/
-	$in_translated = array_reduce( $args['category__in'] ?? [], function( $collected, $cat_id ) {
+	$in_translated = array_reduce( $args['category__in'] ?? [], function ( $collected, $cat_id ) {
 		if ( $collected === true ) {
 			return true;
 		}
@@ -71,6 +71,7 @@ if ( count( $recent_posts ) > 0 ) {
 	foreach ( $recent_posts as $recent_post ) {
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo BlogPost\render_block( [
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Need to reiterate for the dynamic array value.
 			'post_id' => $recent_post->ID,
 			'align' => 'wide',
 		] );

@@ -39,7 +39,7 @@ class Autoload {
 	 * Sets the $path_base variable.
 	 */
 	public function __construct() {
-		$this->path_base = dirname( __FILE__ );
+		$this->path_base = __DIR__;
 	}
 
 	/**
@@ -86,7 +86,7 @@ class Autoload {
 		$parts_count = count( $path_parts );
 
 		foreach ( $path_parts as $part ) {
-			$parts_count--;
+			--$parts_count;
 
 			$part = strtolower( str_replace( '_', '-', $part ) );
 
