@@ -6,10 +6,17 @@
 	"title": "Accordion Item",
 	"icon": "minus",
 	"category": "wikimedia",
-	"parent": [ "shiro/accordion" ],
+	"parent": [ "shiro/accordion", "shiro/tabbed" ],
 	"attributes": {
 		"fontColor": {
 			"type": "string"
+		},
+		"id": {
+			"type": "string"
+		},
+		"isTabbed": {
+			"type": "boolean",
+			"default": false
 		},
 		"title": {
 			"type": "string",
