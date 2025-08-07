@@ -115,8 +115,10 @@ function fadeInCurrentHeading( block ) {
  * @param {object} Slide sub-component that is visible.
  * @param {HTMLElement} Slide.slide Element holding current slide.
  */
-export function slideVisible( { slide } ) {
-	startRotatingHeadings( slide );
+export function slideVisible( Slide ) {
+	if ( Slide?.slide ) {
+		startRotatingHeadings( Slide.slide );
+	}
 }
 
 /**
@@ -125,8 +127,10 @@ export function slideVisible( { slide } ) {
  * @param {object} Slide sub-component that is visible.
  * @param {HTMLElement} Slide.slide Element holding current slide.
  */
-export function slideHidden( { slide } ) {
-	stopRotatingHeadings( slide );
+export function slideHidden( Slide ) {
+	if ( Slide?.slide ) {
+		stopRotatingHeadings( Slide.slide );
+	}
 }
 
 /**
