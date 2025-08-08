@@ -108,17 +108,12 @@ class Credits {
 	/**
 	 * Adds the requested image ID to the list of IDs if not previously set.
 	 *
-	 * @param bool $bool     Override bool value used to replace downsize logic.
-	 * @param int  $image_id The image ID.
-	 *
-	 * @return mixed
+	 * @param int $image_id The image ID.
 	 */
-	public function set_id( $bool, $image_id ) {
+	public function set_id( $image_id ) {
 		if ( true !== $this->pause && ! in_array( $image_id, $this->image_ids, true ) ) {
 			$this->image_ids[] = $image_id;
 		}
-
-		return $bool;
 	}
 
 	/**
@@ -177,7 +172,7 @@ class Credits {
 				continue;
 			}
 
-			$this->set_id( true, $image_id );
+			$this->set_id( $image_id );
 		}
 	}
 
