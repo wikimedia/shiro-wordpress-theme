@@ -119,13 +119,11 @@ class Credits {
 	/**
 	 * Adds the requested image ID based on the attachment source, if not previously set.
 	 *
-	 * @param array|false  $image         Array of image data, or boolean false if no image is available.
-	 * @param int          $attachment_id Image attachment ID.
-	 * @param string|int[] $size          Image size (any registered size name, or [ width, height ] array).
-	 * @param bool         $icon          Whether to fall back to an icon mime type.
+	 * @param array|false $image         Array of image data, or boolean false if no image is available.
+	 * @param int         $attachment_id Image attachment ID.
 	 * @return array|false Unchanged $image.
 	 */
-	public function set_id_from_att_src( $image, $attachment_id, $size, $icon ) {
+	public function set_id_from_att_src( $image, $attachment_id ) {
 		if ( true !== $this->pause && ! in_array( $attachment_id, $this->image_ids, true ) ) {
 			$this->image_ids[] = $attachment_id;
 		}

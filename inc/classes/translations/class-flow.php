@@ -198,13 +198,11 @@ class Flow {
 	/**
 	 * Define which post meta to sync to remote site.
 	 *
-	 * @param string[] $keys    Keys array.
-	 * @param unknown  $context Context.
-	 * @param unknown  $post    Current post.
+	 * @param string[] $keys Keys array.
 	 *
 	 * @return string[]
 	 */
-	public static function sync_meta( $keys, $context, $post ) {
+	public static function sync_meta( $keys ) {
 		return array_merge(
 			$keys,
 			[
