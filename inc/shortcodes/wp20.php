@@ -12,11 +12,10 @@
 /**
  * Define a [symbol_grid] shortcode that renders a grid of images and text.
  *
- * @param array  $atts Shortcode attributes array.
- * @param string $content Content wrapped by shortcode.
+ * @param array $atts Shortcode attributes array.
  * @return string Rendered shortcode output.
  */
-function wmf_symbols_grid_callback( $atts = [], $content = '' ) {
+function wmf_symbols_grid_callback( $atts = [] ) {
 	$defaults = [
 		'title' => '',
 		'text' => '',
@@ -342,7 +341,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ); ?></div>
 				</div>
 			</div>
-		<?php 
+		<?php
 		}
 		return (string) ob_get_clean();
 }
