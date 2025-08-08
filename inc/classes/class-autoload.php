@@ -45,6 +45,8 @@ class Autoload {
 	/**
 	 * Callback for the spl_autoload_register function.
 	 *
+	 * phpcs:disable Universal.NamingConventions.NoReservedKeywordParameterNames.classFound
+	 *
 	 * @param string $class The class being checked.
 	 */
 	public function callback( $class ) {

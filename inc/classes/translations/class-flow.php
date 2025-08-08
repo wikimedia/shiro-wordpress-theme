@@ -301,6 +301,8 @@ class Flow {
 	/**
 	 * Remove any values that are numeric.
 	 *
+	 * phpcs:disable Universal.NamingConventions.NoReservedKeywordParameterNames.arrayFound
+	 *
 	 * @param array $array The array to parse.
 	 *
 	 * @return array
