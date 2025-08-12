@@ -448,7 +448,7 @@ class Flow {
 				'default'           => 1,
 				'single'            => true,
 				'sanitize_callback' => 'absint',
-				'auth_callback'     => function() {
+				'auth_callback'     => function () {
 					return current_user_can( 'edit_posts' );
 				},
 			)
@@ -463,11 +463,10 @@ class Flow {
 				'default'           => 0,
 				'single'            => true,
 				'sanitize_callback' => 'absint',
-				'auth_callback'     => function() {
+				'auth_callback'     => function () {
 					return current_user_can( 'edit_posts' );
 				},
 			)
 		);
 	}
-
 }

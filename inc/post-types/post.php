@@ -16,4 +16,3 @@ function wmf_post_init() {
 	];
 }
 add_action( 'init', 'wmf_post_init' );
-

@@ -655,5 +655,4 @@ class General extends Base {
 			)
 		);
 	}
-
 }
