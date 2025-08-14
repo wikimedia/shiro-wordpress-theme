@@ -1,0 +1,88 @@
+@import "../../../sass/helpers/_functions.scss";
+@import "../../../sass/helpers/_include-media.scss";
+@import "../../../sass/helpers/mixins/_mixins-typography.scss";
+
+.shiro-tabs {
+	.block-editor-button-block-appender {
+		box-shadow: inset 0 0 0 1px currentColor;
+		margin-left: 1rem;
+		width: 3rem;
+	}
+
+	.shiro-tabs__nav {
+		border-bottom: 1px solid var( --color-grey );
+		display: flex;
+		font-size: var( --wp--preset--font-size--h-2-title );
+		justify-content: flex-start;
+		//margin-bottom: rem( 32 );
+		margin-top: 0;
+		padding: 0;
+
+		/* @include media( ">=tablet" ) {
+			justify-content: flex-end;
+		} */
+	}
+
+	.shiro-tabs__nav-item {
+		list-style: none;
+		margin: 0 0 -1px 0;
+		padding: 0;
+		position: relative;
+		text-align: center;
+
+		/* @include media( "<tablet" ) {
+			flex-grow: 1;
+		} */
+	}
+
+	.shiro-tabs__nav-item a:not( :hover ):not( :focus ) {
+		text-decoration: none;
+	}
+
+	/* stylelint-disable no-descending-specificity */
+	.shiro-tabs__nav-item a,
+	.shiro-tabs__nav-button {
+		//@include focus-style( $offset: -12px );
+		//@include font-size( large, large );
+		box-sizing: border-box;
+		color: var( --color-grey-dark );
+		display: block;
+		font-weight: 700;
+		margin-bottom: fluid( 0, 8 );
+		//padding: rem( 10 ) rem( 16 ) rem( 8 );
+		position: relative;
+		transition: color 200ms;
+		width: 100%;
+
+		&::after {
+			border-bottom: 4px solid transparent;
+			content: "";
+			display: block;
+			transform: translateY( fluid( 8, 16 ) );
+			transition: border-bottom-color 200ms;
+
+			/* @include media( "<tablet" ) {
+				margin: 0 rem( -16 );
+			} */
+		}
+
+		&:focus:not( :focus-visible ) {
+			text-decoration: none;
+		}
+
+		&.shiro-tabs__nav-button--active {
+			color: initial;
+
+			// stylelint-disable-next-line  max-nesting-depth
+			&::after {
+				border-bottom-color: var( --color-crimson );
+			}
+		}
+	}
+
+	/* &__content .shiro-tabs-item {
+		&:focus {
+			@include focus-style;
+		}
+	} */
+}
