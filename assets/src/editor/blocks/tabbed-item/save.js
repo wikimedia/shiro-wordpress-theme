@@ -20,7 +20,7 @@ const Save = ( { attributes } ) => {
 		'aria-labelledby': `shiro-tabs-nav-${ id }`,
 		tabIndex: 0,
 		...( ! isFirstChild && {
-			hidden: "true"
+			hidden: 'true'
 		} ),
 	} );
 
