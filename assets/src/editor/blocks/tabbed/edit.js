@@ -16,7 +16,7 @@ import { __ } from '@wordpress/i18n';
 const { ButtonBlockAppender } = InnerBlocks;
 
 const TAB_LIMIT = 4;
-const ALLOWED_BLOCK = 'shiro/accordion-item';
+const ALLOWED_BLOCK = 'shiro/tabbed-item';
 
 /**
  * Provide an interface for editing the block.

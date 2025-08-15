@@ -37,7 +37,7 @@ function Save( { attributes } ) {
 							} ) }
 						>
 							<button
-								aria-controls={ `shiro-tabs-item-${ item.id }` }
+								aria-controls={ `shiro-tabs-nav-${ item.id }` }
 								aria-selected={ i === 0 ? 'true' : 'false' }
 								className={ classNames(
 									'shiro-tabs__nav-button',
