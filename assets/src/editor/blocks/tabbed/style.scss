@@ -10,11 +10,11 @@
 	}
 
 	.shiro-tabs__nav {
-		border-bottom: 1px solid var( --color-grey );
+		//border-bottom: 1px solid var( --color-grey );
 		display: flex;
-		font-size: var( --wp--preset--font-size--h-2-title );
+		gap: rem( 7 );
 		justify-content: flex-start;
-		//margin-bottom: rem( 32 );
+		margin-bottom: 0;
 		margin-top: 0;
 		padding: 0;
 
@@ -24,15 +24,21 @@
 	}
 
 	.shiro-tabs__nav-item {
+		background-color: var( --wp--preset--color--black-05 );
+		border-radius: rem( 4 ) rem( 4 ) 0 0;
 		list-style: none;
-		margin: 0 0 -1px 0;
-		padding: 0;
+		margin: 0;
+		//padding: var( --wp--preset--spacing--32 ) var( --wp--preset--spacing--40 ) var( --wp--preset--spacing--24 );
 		position: relative;
 		text-align: center;
 
 		/* @include media( "<tablet" ) {
 			flex-grow: 1;
 		} */
+
+		&--active {
+			background-color: var( --wp--preset--color--light-bright-blue );
+		}
 	}
 
 	.shiro-tabs__nav-item a:not( :hover ):not( :focus ) {
@@ -43,14 +49,20 @@
 	.shiro-tabs__nav-item a,
 	.shiro-tabs__nav-button {
 		//@include focus-style( $offset: -12px );
-		//@include font-size( large, large );
+		background-color: transparent;
+		border: none;
 		box-sizing: border-box;
-		color: var( --color-grey-dark );
+		color: var( --wp--preset--color--black-75 );
+		cursor: pointer;
 		display: block;
-		font-weight: 700;
-		margin-bottom: fluid( 0, 8 );
+		font-size: var( --wp--preset--font-size--x-large );
+		font-weight: var( --wp--custom--font-weight--semi-bold );
+		//line-height: var( --wp--custom--line-height--relaxed );
+		//margin-bottom: fluid( 0, 8 );
 		//padding: rem( 10 ) rem( 16 ) rem( 8 );
+		padding: var( --wp--preset--spacing--32 ) var( --wp--preset--spacing--40 ) var( --wp--preset--spacing--24 );
 		position: relative;
+		text-underline-offset: rem( 6 ) !important;
 		transition: color 200ms;
 		width: 100%;
 
@@ -58,12 +70,19 @@
 			border-bottom: 4px solid transparent;
 			content: "";
 			display: block;
-			transform: translateY( fluid( 8, 16 ) );
+			//transform: translateY( fluid( 8, 16 ) );
 			transition: border-bottom-color 200ms;
 
 			/* @include media( "<tablet" ) {
 				margin: 0 rem( -16 );
 			} */
+		}
+
+		&:hover,
+		&:focus,
+		&:active {
+			text-decoration: underline var( --wp--preset--color--blue-aaa ) max( 4px, 0.1em );
+			outline-offset: -1px;
 		}
 
 		&:focus:not( :focus-visible ) {
@@ -75,9 +94,15 @@
 
 			// stylelint-disable-next-line  max-nesting-depth
 			&::after {
-				border-bottom-color: var( --color-crimson );
+				border-bottom-color: var( --wp--preset--color--blue-aaa );
 			}
 		}
+	}
+
+	&__content {
+		background-color: var( --wp--preset--color--light-bright-blue );
+		border-radius: 0 rem( 4 ) rem( 4 ) rem( 4 );
+		padding: var( --wp--preset--spacing--40 );
 	}
 
 	/* &__content .shiro-tabs-item {
