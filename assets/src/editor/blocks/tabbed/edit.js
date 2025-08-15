@@ -17,6 +17,7 @@ const { ButtonBlockAppender } = InnerBlocks;
 
 const TAB_LIMIT = 4;
 const ALLOWED_BLOCK = 'shiro/tabbed-item';
+const TEMPLATE = [ [ 'shiro/tabbed-item' ] ];
 
 /**
  * Provide an interface for editing the block.
@@ -191,6 +192,7 @@ function Edit( { attributes, clientId, setAttributes } ) {
 				className={ 'shiro-tabs__content' }
 				currentItemIndex={ selectedItemIndex }
 				parentBlockId={ clientId }
+				template={ TEMPLATE }
 			/>
 		</div>
 	);

@@ -4,6 +4,8 @@ import { __ } from '@wordpress/i18n';
 
 import { ReactNode } from 'react';
 
+const TEMPLATE = [ [ 'core/paragraph' ] ];
+
 /**
  * Provide an interface for editing the block.
  *
@@ -18,7 +20,9 @@ const Edit = ( { attributes, clientId, setAttributes } ) => {
 		className: 'shiro-tabs-item',
 	} );
 
-	const { children, ...innerBlocksProps } = useInnerBlocksProps( blockProps );
+	const { children, ...innerBlocksProps } = useInnerBlocksProps( blockProps, {
+		template: TEMPLATE,
+	} );
 
 	// Update the block ID.
 	// Always override saved value to ensure we never have duplicates.
