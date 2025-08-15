@@ -102,7 +102,6 @@ function handleKeydown( e ) {
 const initTabBlock = ( blockElement ) => {
 	const tabs = blockElement.querySelectorAll( '[role="tab"]' );
 	const tabList = blockElement.querySelector( '[role="tablist"]' );
-	//const tabPanels = blockElement.querySelectorAll( '[role="tabpanel"]' );
 
 	// Add a click event handler to each tab
 	tabs.forEach( ( tab ) => {
@@ -120,15 +119,6 @@ const initTabBlock = ( blockElement ) => {
 		} else {
 			panel.setAttribute( 'hidden', true );
 		}
-
-		// Hide all tab panels
-		/* tabPanels.forEach( ( p ) => {
-			if ( p.getAttribute( 'aria-labelledby' ) === panel.getAttribute( 'id' ) ) {
-				p.removeAttribute( 'hidden' );
-			} else {
-				p.setAttribute( 'hidden', true );
-			}
-		} ); */
 
 		tab.addEventListener( 'click', handleTabClick );
 	} );
