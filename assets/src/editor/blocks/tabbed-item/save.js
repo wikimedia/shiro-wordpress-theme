@@ -11,7 +11,7 @@ import { ReactNode } from 'react';
  * @returns {ReactNode} Formatted block.
  */
 const Save = ( { attributes } ) => {
-	const { id, title } = attributes;
+	const { id, isFirstChild, title } = attributes;
 
 	const blockProps = useBlockProps.save( {
 		className: 'shiro-tabs-item accordion-item',
@@ -19,7 +19,9 @@ const Save = ( { attributes } ) => {
 		role: 'tabpanel',
 		'aria-labelledby': `shiro-tabs-nav-${ id }`,
 		tabIndex: 0,
-		//hidden: true,
+		...( ! isFirstChild && {
+			hidden: "true"
+		} ),
 	} );
 
 	const innerBlocksProps = useInnerBlocksProps.save( {

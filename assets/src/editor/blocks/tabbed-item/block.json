@@ -15,6 +15,10 @@
 			"type": "string",
 			"default": ""
 		},
+		"isFirstChild": {
+			"type": "boolean",
+			"default": false
+		},
 		"title": {
 			"type": "string",
 			"source": "html",

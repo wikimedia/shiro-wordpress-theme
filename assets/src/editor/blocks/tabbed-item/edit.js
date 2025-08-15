@@ -1,4 +1,5 @@
 import { useBlockProps, useInnerBlocksProps, RichText } from '@wordpress/block-editor';
+import { useSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -24,13 +25,31 @@ const Edit = ( { attributes, clientId, setAttributes } ) => {
 		template: TEMPLATE,
 	} );
 
-	// Update the block ID.
-	// Always override saved value to ensure we never have duplicates.
+	// Check if child block is the first one.
+	const { checkFirstChild } = useSelect( ( select ) => {
+		const { getBlockParents, getBlocksByClientId } = select( 'core/block-editor' );
+		const parentId = getBlockParents( clientId ).slice( -1 );
+		const parentBlock = getBlocksByClientId( parentId )[ 0 ];
+		const siblings = parentBlock?.innerBlocks;
+		const isFirstChild = siblings.length > 0 && siblings[0].clientId === clientId;
+
+		return {
+			checkFirstChild: isFirstChild,
+		};
+	}, [ clientId ] );
+
 	useEffect( () => {
+		// Update the block ID.
+		// Always override saved value to ensure we never have duplicates.
 		if ( attributes.id !== clientId ) {
 			setAttributes( { id: clientId } );
 		}
-	}, [ clientId, attributes.id, setAttributes ] );
+
+		// Update isFirstChild attribute.
+		if ( attributes.isFirstChild !== checkFirstChild ) {
+			setAttributes( { isFirstChild: checkFirstChild } );
+		}
+	}, [ checkFirstChild, clientId, attributes.id, attributes.isFirstChild, setAttributes ] );
 
 	return (
 		<div { ...innerBlocksProps }>
