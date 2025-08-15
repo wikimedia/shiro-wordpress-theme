@@ -53,7 +53,7 @@ function Edit( { attributes, clientId, setAttributes } ) {
 	// Memoize an array of tab titles to reduce computation within the effect.
 	const itemList = useMemo( () => {
 		return innerBlocks.map( block => ( {
-			title: block?.attributes?.title ?? '',
+			title: typeof block?.attributes?.title === 'string' ? block?.attributes?.title : block?.attributes?.title?.text,
 			id: block?.attributes?.id || block.clientId,
 		} ) );
 	}, [ innerBlocks ] );
