@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 // Definitions of editor styles registered as theme supports.
 .has-background > .wp-block-shiro-button.is-style-as-link::before,
 .has-background > .wp-block-shiro-button.is-style-as-arrow-link::before {
@@ -52,7 +54,7 @@ $color-palette-light:
 	@return false;
 }
 
-$color-palette-all: join($color-palette-dark, $color-palette-light);
+$color-palette-all: list.join($color-palette-dark, $color-palette-light);
 
 @each $color in $color-palette-all {
 	$is-dark: is-in-list($color, $color-palette-dark);
