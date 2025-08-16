@@ -157,7 +157,7 @@ function Edit( { attributes, clientId, setAttributes } ) {
 					</li>
 				) ) }
 				{ innerBlocks.length < TAB_LIMIT ? (
-					<li key="add-tab" className="shiro-tabs__nav-item">
+					<li key="add-tab" className="shiro-tabs__nav-item shiro-tabs__nav-item--appender">
 						<ButtonBlockAppender rootClientId={ clientId } />
 					</li>
 				) : null }
