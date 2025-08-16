@@ -1,26 +1,19 @@
 @import "../../../sass/helpers/_functions.scss";
-@import "../../../sass/helpers/_include-media.scss";
-@import "../../../sass/helpers/mixins/_mixins-typography.scss";
 
 .shiro-tabs {
-	.block-editor-button-block-appender {
-		box-shadow: inset 0 0 0 1px currentColor;
-		margin-left: 1rem;
-		width: 3rem;
-	}
+	container-type: inline-size;
 
 	.shiro-tabs__nav {
-		//border-bottom: 1px solid var( --color-grey );
-		display: flex;
+		display: none;
 		gap: rem( 7 );
 		justify-content: flex-start;
 		margin-bottom: 0;
 		margin-top: 0;
 		padding: 0;
 
-		/* @include media( ">=tablet" ) {
-			justify-content: flex-end;
-		} */
+		@container ( min-width: 760px ) {
+			display: flex;
+		}
 	}
 
 	.shiro-tabs__nav-item {
@@ -28,13 +21,8 @@
 		border-radius: rem( 4 ) rem( 4 ) 0 0;
 		list-style: none;
 		margin: 0;
-		//padding: var( --wp--preset--spacing--32 ) var( --wp--preset--spacing--40 ) var( --wp--preset--spacing--24 );
 		position: relative;
 		text-align: center;
-
-		/* @include media( "<tablet" ) {
-			flex-grow: 1;
-		} */
 
 		&--active {
 			background-color: var( --wp--preset--color--light-bright-blue );
@@ -48,7 +36,6 @@
 	/* stylelint-disable no-descending-specificity */
 	.shiro-tabs__nav-item a,
 	.shiro-tabs__nav-button {
-		//@include focus-style( $offset: -12px );
 		background-color: transparent;
 		border: none;
 		box-sizing: border-box;
@@ -57,12 +44,8 @@
 		display: block;
 		font-size: var( --wp--preset--font-size--x-large );
 		font-weight: var( --wp--custom--font-weight--semi-bold );
-		//line-height: var( --wp--custom--line-height--relaxed );
-		//margin-bottom: fluid( 0, 8 );
-		//padding: rem( 10 ) rem( 16 ) rem( 8 );
 		padding: var( --wp--preset--spacing--32 ) var( --wp--preset--spacing--40 ) var( --wp--preset--spacing--24 );
 		position: relative;
-		text-underline-offset: rem( 6 ) !important;
 		transition: color 200ms;
 		width: 100%;
 
@@ -70,23 +53,24 @@
 			border-bottom: 4px solid transparent;
 			content: "";
 			display: block;
-			//transform: translateY( fluid( 8, 16 ) );
 			transition: border-bottom-color 200ms;
-
-			/* @include media( "<tablet" ) {
-				margin: 0 rem( -16 );
-			} */
 		}
 
 		&:hover,
-		&:focus,
+		&:focus:not(:focus-visible),
 		&:active {
-			text-decoration: underline var( --wp--preset--color--blue-aaa ) max( 4px, 0.1em );
-			outline-offset: -1px;
+			text-decoration: none;
+			outline: none;
+
+			// stylelint-disable-next-line  max-nesting-depth
+			&::after {
+				border-bottom-color: var( --wp--preset--color--blue-aaa );
+			}
 		}
 
-		&:focus:not( :focus-visible ) {
+		&:focus-visible {
 			text-decoration: none;
+			outline-offset: -1px;
 		}
 
 		&.shiro-tabs__nav-button--active {
@@ -100,14 +84,88 @@
 	}
 
 	&__content {
-		background-color: var( --wp--preset--color--light-bright-blue );
-		border-radius: 0 rem( 4 ) rem( 4 ) rem( 4 );
-		padding: var( --wp--preset--spacing--40 );
+		@container ( max-width: 760px ) {
+			> * + * {
+				margin-top: rem( 8 );
+			}
+		}
+
+		@container ( min-width: 760px ) {
+			background-color: var( --wp--preset--color--light-bright-blue );
+			border-radius: 0 rem( 4 ) rem( 4 ) rem( 4 );
+			padding: var( --wp--preset--spacing--40 );
+		}
+	}
+}
+
+// Tabbed items.
+.shiro-tabs .wp-block-shiro-tabbed-item {
+	border: none;
+
+	&:first-child {
+		border: none;
 	}
 
-	/* &__content .shiro-tabs-item {
-		&:focus {
-			@include focus-style;
+	.accordion-item__title {
+		padding-bottom: calc( var( --wp--preset--spacing--24 ) - 4px );
+
+		&::after {
+			top: 50%;
+			transform: translateY( -50% );
 		}
-	} */
+	}
+
+	.accordion-item__title-text {
+		border-bottom: 4px solid transparent;
+		font-weight: var( --wp--custom--font-weight--semi-bold );
+		transition: border-bottom-color 200ms;
+	}
+
+	&[aria-expanded] {
+		.accordion-item__title::after {
+			transform: translateY( -50% ) rotate( 180deg );
+		}
+
+		.accordion-item__title-text {
+			border-bottom-color: var( --wp--preset--color--blue-aaa );
+		}
+	}
+
+	@container ( max-width: 760px ) {
+		background-color: var( --wp--preset--color--black-05 );
+		border-radius: rem( 4 ) rem( 4 ) 0 0;
+
+		&[aria-expanded] {
+			background-color: var( --wp--preset--color--light-bright-blue );
+
+			// stylelint-disable-next-line  max-nesting-depth
+			.accordion-item__title {
+				border-color: var( --wp--preset--color--base );
+			}
+		}
+
+		// Display all accordions.
+		&[hidden] {
+			display: block;
+		}
+	}
+
+	@container ( min-width: 760px ) {
+		// Remove active accordion background color.
+		&[aria-expanded] {
+			background-color: transparent;
+		}
+
+		// Hide the accordion title.
+		.accordion-item__title {
+			display: none;
+		}
+
+		// Expand the accordion content.
+		.accordion-item__content {
+			height: auto;
+			// Overwrite aria-expanded styles.
+			padding: 0 !important;
+		}
+	}
 }
