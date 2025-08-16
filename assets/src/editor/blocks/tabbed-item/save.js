@@ -18,7 +18,6 @@ const Save = ( { attributes } ) => {
 		id: `accordion-item-${ id }`,
 		role: 'tabpanel',
 		'aria-labelledby': `shiro-tabs-nav-${ id }`,
-		tabIndex: 0,
 		...( ! isFirstChild && {
 			hidden: 'true'
 		} ),
