@@ -532,12 +532,17 @@ add_action( 'admin_menu', 'shiro_link_reusable_blocks_url' );
 
 /**
  * Add page slug as body class.
+ * Add rtl class to body if rtl styles are enqueued.
  *
  * @param array $classes An array of body class names.
  * @return array
  */
 function shiro_add_slug_body_class( $classes ) {
 	global $post;
+
+	if ( get_theme_mod( 'wmf_enable_rtl' ) ) {
+		$classes[] = 'direction-rtl';
+	}
 
 	// ignore it for search pages
 	if ( is_search() ) {
