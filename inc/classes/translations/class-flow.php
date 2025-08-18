@@ -389,7 +389,7 @@ class Flow {
 
 		if ( ! empty( $_POST['_translate_post_global'] ) ) { // Input var okay.
 
-			$remote_posts = wmf_get_translations( false, $post_id, 'post' );
+			$remote_posts = wmf_get_translations();
 
 			foreach ( $remote_posts as $remote_post ) {
 				if ( wmf_is_main_site( $remote_post['site_id'] ) ) {
