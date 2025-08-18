@@ -19,6 +19,9 @@
     }
   },
   "supports": {
+    "align": [
+      "wide"
+    ],
     "spacing": {
       "margin": true,
       "padding": true
