@@ -102,6 +102,7 @@ function handleKeydown( e ) {
 const initTabBlock = ( blockElement ) => {
 	const tabs = blockElement.querySelectorAll( '[role="tab"]' );
 	const tabList = blockElement.querySelector( '[role="tablist"]' );
+	const firstAccordion = blockElement.querySelector( '.wp-block-shiro-tabbed-item' );
 
 	// Add a click event handler to each tab
 	tabs.forEach( ( tab ) => {
@@ -124,6 +125,9 @@ const initTabBlock = ( blockElement ) => {
 	} );
 
 	tabList.addEventListener( 'keydown', handleKeydown );
+
+	// Make the first accordion expanded by default.
+	firstAccordion.toggleAttribute( 'aria-expanded' );
 };
 
 /**
