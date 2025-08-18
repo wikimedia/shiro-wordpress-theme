@@ -42,6 +42,7 @@
 		color: var( --wp--preset--color--black-75 );
 		cursor: pointer;
 		display: block;
+		font-family: var(--wp--preset--font-family--display);
 		font-size: var( --wp--preset--font-size--x-large );
 		font-weight: var( --wp--custom--font-weight--semi-bold );
 		padding: var( --wp--preset--spacing--32 ) var( --wp--preset--spacing--40 ) var( --wp--preset--spacing--24 );
@@ -95,6 +96,11 @@
 			border-radius: 0 rem( 4 ) rem( 4 ) rem( 4 );
 			padding: var( --wp--preset--spacing--40 );
 		}
+
+		.wp-block-heading + p,
+		p + p {
+			margin-block-start: var(--wp--preset--spacing--24);
+		}
 	}
 }
 
@@ -117,6 +123,7 @@
 
 	.accordion-item__title-text {
 		border-bottom: 4px solid transparent;
+		font-family: var(--wp--preset--font-family--display);
 		font-weight: var( --wp--custom--font-weight--semi-bold );
 		transition: border-bottom-color 200ms;
 	}
