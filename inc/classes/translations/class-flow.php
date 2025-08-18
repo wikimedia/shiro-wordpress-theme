@@ -198,13 +198,11 @@ class Flow {
 	/**
 	 * Define which post meta to sync to remote site.
 	 *
-	 * @param string[] $keys    Keys array.
-	 * @param unknown  $context Context.
-	 * @param unknown  $post    Current post.
+	 * @param string[] $keys Keys array.
 	 *
 	 * @return string[]
 	 */
-	public static function sync_meta( $keys, $context, $post ) {
+	public static function sync_meta( $keys ) {
 		return array_merge(
 			$keys,
 			[
@@ -303,6 +301,8 @@ class Flow {
 	/**
 	 * Remove any values that are numeric.
 	 *
+	 * phpcs:disable Universal.NamingConventions.NoReservedKeywordParameterNames.arrayFound
+	 *
 	 * @param array $array The array to parse.
 	 *
 	 * @return array
@@ -389,7 +389,7 @@ class Flow {
 
 		if ( ! empty( $_POST['_translate_post_global'] ) ) { // Input var okay.
 
-			$remote_posts = wmf_get_translations( false, $post_id, 'post' );
+			$remote_posts = wmf_get_translations();
 
 			foreach ( $remote_posts as $remote_post ) {
 				if ( wmf_is_main_site( $remote_post['site_id'] ) ) {

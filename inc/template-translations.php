@@ -147,12 +147,9 @@ add_action( 'admin_notices', 'wmf_progress_notice' );
 /**
  * Gets a formatted array of available translations.
  *
- * @param  bool   $strict     When TRUE (default) only sites with a matching translation for requested page will be included.
- * @param  int    $content_id The ID for the content. e.g post ID.
- * @param  string $type       The type of content. Usually post.
  * @return mixed  array|bool
  */
-function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
+function wmf_get_translations() {
 	$translations     = wmf_multilingualpress_get_translations();
 	$ret_translations = array();
 
@@ -224,8 +221,7 @@ function wmf_get_random_translation( $key, $args = array() ) {
 	);
 
 	$args         = wp_parse_args( $args, $defaults );
-	$strict       = 'meta' === $args['source'] ? true : false;
-	$translations = wmf_get_translations( $strict );
+	$translations = wmf_get_translations();
 
 	if ( false === $translations ) {
 		return false;

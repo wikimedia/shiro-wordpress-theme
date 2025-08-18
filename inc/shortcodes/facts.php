@@ -15,11 +15,10 @@
 /**
  * Define a [wmf_fact] wrapper shortcode that creates a dumb HTML wrapper.
  *
- * @param array  $atts    Shortcode attributes array.
- * @param string $content Content wrapped by shortcode.
+ * @param array $atts Shortcode attributes array.
  * @return string Rendered shortcode output.
  */
-function wmf_fact_shortcode_callback( $atts, $content = '' ) {
+function wmf_fact_shortcode_callback( $atts ) {
 	$defaults = [
 		'value' => 0,
 		'label' => '',
