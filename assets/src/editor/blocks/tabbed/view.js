@@ -11,6 +11,11 @@
  */
 function activateTab( tab ) {
 	const blockElement = tab.closest( '.shiro-tabs' );
+
+	if ( ! blockElement ) {
+		return;
+	}
+
 	const panel = document.getElementById(
 		tab.getAttribute( 'aria-controls' )
 	);
@@ -19,17 +24,15 @@ function activateTab( tab ) {
 	// Remove all current selected tabs
 	blockElement
 		.querySelectorAll( '[role="tab"][aria-selected="true"]' )
-		.forEach( ( t ) => {
+		.forEach( t => {
 			t.setAttribute( 'aria-selected', false );
 			t.setAttribute( 'tabindex', -1 );
 			t.classList.remove( 'shiro-tabs__nav-button--active' );
 		} );
 
-	blockElement
-		.querySelectorAll( '.shiro-tabs__nav-item' )
-		.forEach( ( t ) => {
-			t.classList.remove( 'shiro-tabs__nav-item--active' );
-		} );
+	blockElement.querySelectorAll( '.shiro-tabs__nav-item' ).forEach( t => {
+		t.classList.remove( 'shiro-tabs__nav-item--active' );
+	} );
 
 	// Set this tab as selected
 	tab.setAttribute( 'aria-selected', true );
@@ -40,8 +43,10 @@ function activateTab( tab ) {
 	);
 
 	// Hide all tab panels
-	tabPanels.forEach( ( p ) => {
-		if ( p.getAttribute( 'aria-labelledby' ) === panel.getAttribute( 'id' ) ) {
+	tabPanels.forEach( p => {
+		if (
+			p.getAttribute( 'aria-labelledby' ) === panel.getAttribute( 'id' )
+		) {
 			p.removeAttribute( 'hidden' );
 		} else {
 			p.setAttribute( 'hidden', true );
@@ -75,7 +80,7 @@ function handleKeydown( e ) {
 	const tabs = blockElement.querySelectorAll( '[role="tab"]' );
 
 	const currentTabIndex = Array.from( tabs ).findIndex(
-		( t ) => tab.getAttribute( 'id' ) === t.getAttribute( 'id' )
+		t => tab.getAttribute( 'id' ) === t.getAttribute( 'id' )
 	);
 
 	// Work out the next tab.
@@ -99,13 +104,15 @@ function handleKeydown( e ) {
  *
  * @param {HTMLElement} blockElement Tab block.
  */
-const initTabBlock = ( blockElement ) => {
+const initTabBlock = blockElement => {
 	const tabs = blockElement.querySelectorAll( '[role="tab"]' );
 	const tabList = blockElement.querySelector( '[role="tablist"]' );
-	const firstAccordion = blockElement.querySelector( '.wp-block-shiro-tabbed-item' );
+	const firstAccordion = blockElement.querySelector(
+		'.wp-block-shiro-tabbed-item'
+	);
 
 	// Add a click event handler to each tab
-	tabs.forEach( ( tab ) => {
+	tabs.forEach( tab => {
 		// Use a scoped QS instead of getElementById to guard against malformed
 		// situations where same block instance renders twice on page.
 		const panel = blockElement.querySelector(
@@ -136,7 +143,7 @@ const initTabBlock = ( blockElement ) => {
 const bootstrap = () => {
 	document
 		.querySelectorAll( '.shiro-tabs' )
-		.forEach( ( el ) => initTabBlock( el ) );
+		.forEach( el => initTabBlock( el ) );
 };
 
 bootstrap();
