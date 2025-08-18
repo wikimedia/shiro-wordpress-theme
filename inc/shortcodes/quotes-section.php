@@ -32,7 +32,6 @@ function wmf_quotes_section_callback( $atts = [], $content = '' ) {
 			'height' => [],
 			'width' => [],
 			'alt' => [],
-			'style' => [],
 			'class' => [],
 			'style' => [],
 		],
@@ -89,7 +88,7 @@ function wmf_quote_box_callback( $atts = [], $content = '' ) {
 	$atts = shortcode_atts( $defaults, $atts, 'quote_box' );
 	static $index = 0;
 	$auto_tweet_width = 3 === (int) $atts['count'] ? 'w-32p' : 'w-48p';
-	$index++;
+	++$index;
 
 	ob_start();
 	?>
