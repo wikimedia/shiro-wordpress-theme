@@ -14,7 +14,7 @@
 		"title": {
 			"type": "string",
 			"source": "html",
-			"selector": "h3"
+			"selector": "span"
 		}
 	},
 	"usesContext": [ "accordion/fontColor" ],
