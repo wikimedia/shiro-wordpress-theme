@@ -32,7 +32,6 @@ function wmf_autotweets_callback( $atts = [], $content = '' ) {
 			'height' => [],
 			'width' => [],
 			'alt' => [],
-			'style' => [],
 			'class' => [],
 			'style' => [],
 		],
@@ -89,7 +88,7 @@ function wmf_autotweet_callback( $atts = [], $content = '' ) {
 	$atts = shortcode_atts( $defaults, $atts, 'autotweet' );
 	static $index = 0;
 	$auto_tweet_width = 3 === (int) $atts['count'] ? 'w-32p' : 'w-48p';
-	$index++;
+	++$index;
 
 	$share_text    = get_theme_mod( 'wmf_tweet_this_copy', __( 'Tweet this', 'shiro-admin' ) );
 	$args = array(

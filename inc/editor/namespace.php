@@ -82,6 +82,8 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		'shiro/spotlight',
 		'shiro/stairs',
 		'shiro/stair',
+		'shiro/tabbed',
+		'shiro/tabbed-item',
 		'shiro/toc',
 		'shiro/toc-columns',
 		'shiro/tweet-this',
