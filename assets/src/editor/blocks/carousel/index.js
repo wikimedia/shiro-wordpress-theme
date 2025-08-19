@@ -234,7 +234,7 @@ registerBlockType( metadata.name, {
 			interval,
 		} = attributes;
 
-		const dataSplide = {
+		let dataSplide = {
 			label: title,
 			perPage: perPage,
 			arrows: arrows,
@@ -245,6 +245,14 @@ registerBlockType( metadata.name, {
 			arrowPath:
 				'M20 0c11.046 0 20 8.954 20 20s-8.954 20-20 20S0 31.046 0 20 8.954 0 20 0Zm0 8.87-1.962 1.975 7.764 7.764H8.87v2.782h16.932l-7.764 7.778L20 31.13 31.13 20 20 8.87Z',
 		};
+
+		const blockGapArr =
+			attributes?.style?.spacing?.blockGap?.split( '|' ) || [];
+		const blockGap = blockGapArr[ blockGapArr.length - 1 ];
+
+		if ( blockGap ) {
+			dataSplide.gap = `var(--wp--preset--spacing--${ blockGap })`;
+		}
 
 		const blockProps = useBlockProps.save( {
 			className: classNames( [ 'shiro-carousel' ] ),
