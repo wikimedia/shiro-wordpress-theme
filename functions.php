@@ -451,6 +451,8 @@ add_rewrite_rule( '^role/(.+?)$', 'index.php?role=$matches[1]', 'top' );
  * Whitelist a very limited subset of SVG for use in post content to support
  * the simple_bar_graph shortcode used in transparency report tables.
  *
+ * It also allows tabindex and aria-selected for used in the Tab block.
+ *
  * @param array[]|string $context      Context by which to judge allowed tags.
  * @param string         $context_type Context name.
  * @return mixed Filtered context.
@@ -492,6 +494,19 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 				$context['h1'],
 				[
 					'lang'  => true,
+				]
+			),
+			'button' => array_merge(
+				$context['button'],
+				[
+					'aria-selected' => true,
+					'tabindex'      => true,
+				]
+			),
+			'div' => array_merge(
+				$context['div'],
+				[
+					'tabindex' => true,
 				]
 			),
 		]
