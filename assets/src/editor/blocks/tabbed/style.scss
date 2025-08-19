@@ -1,5 +1,6 @@
 @import "../../../sass/helpers/_functions.scss";
 
+// stylelint-disable max-nesting-depth
 .shiro-tabs {
 	container-type: inline-size;
 
@@ -63,7 +64,6 @@
 			text-decoration: none;
 			outline: none;
 
-			// stylelint-disable-next-line  max-nesting-depth
 			&::after {
 				border-bottom-color: var( --wp--preset--color--blue-aaa );
 			}
@@ -77,7 +77,6 @@
 		&.shiro-tabs__nav-button--active {
 			color: initial;
 
-			// stylelint-disable-next-line  max-nesting-depth
 			&::after {
 				border-bottom-color: var( --wp--preset--color--blue-aaa );
 			}
@@ -145,7 +144,6 @@
 		&[aria-expanded] {
 			background-color: var( --wp--preset--color--light-bright-blue );
 
-			// stylelint-disable-next-line  max-nesting-depth
 			.accordion-item__title {
 				border-color: var( --wp--preset--color--base );
 			}

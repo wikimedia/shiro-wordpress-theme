@@ -42,11 +42,16 @@
 			outline-offset: -4px;
 		}
 
+		&-wrap {
+			margin: 0;
+		}
+
 		&-text {
 			color: var( --wp--preset--color--main );
 			font-family: var( --wp--preset--font-family--default );
 			font-size: var( --wp--preset--font-size--large );
 			font-weight: 700;
+			line-height: var(--wp--custom--line-height--base);
 			margin: 0;
 		}
 

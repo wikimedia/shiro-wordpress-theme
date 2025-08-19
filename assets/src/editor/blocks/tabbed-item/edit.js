@@ -1,4 +1,8 @@
-import { useBlockProps, useInnerBlocksProps, RichText } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	useInnerBlocksProps,
+	RichText,
+} from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -26,17 +30,20 @@ const Edit = ( { attributes, clientId, setAttributes } ) => {
 	} );
 
 	// Check if child block is the first one.
-	const { checkFirstChild } = useSelect( ( select ) => {
-		const { getBlockParents, getBlocksByClientId } = select( 'core/block-editor' );
-		const parentId = getBlockParents( clientId ).slice( -1 );
-		const parentBlock = getBlocksByClientId( parentId )[ 0 ];
-		const siblings = parentBlock?.innerBlocks;
-		const isFirstChild = siblings.length > 0 && siblings[0].clientId === clientId;
+	const checkFirstChild = useSelect(
+		select => {
+			const { getBlockParents, getBlocksByClientId } =
+				select( 'core/block-editor' );
+			const parentId = getBlockParents( clientId ).slice( -1 );
+			const parentBlock = getBlocksByClientId( parentId )[ 0 ];
+			const siblings = parentBlock?.innerBlocks;
+			const isFirstChild =
+				siblings.length > 0 && siblings[ 0 ].clientId === clientId;
 
-		return {
-			checkFirstChild: isFirstChild,
-		};
-	}, [ clientId ] );
+			return isFirstChild;
+		},
+		[ clientId ]
+	);
 
 	useEffect( () => {
 		// Update the block ID.
@@ -49,28 +56,34 @@ const Edit = ( { attributes, clientId, setAttributes } ) => {
 		if ( attributes.isFirstChild !== checkFirstChild ) {
 			setAttributes( { isFirstChild: checkFirstChild } );
 		}
-	}, [ checkFirstChild, clientId, attributes.id, attributes.isFirstChild, setAttributes ] );
+	}, [
+		checkFirstChild,
+		clientId,
+		attributes.id,
+		attributes.isFirstChild,
+		setAttributes,
+	] );
 
 	return (
 		<div { ...innerBlocksProps }>
 			<div className="accordion-item">
-				<div className="accordion-item__title">
-					<RichText
-						className="accordion-item__title-text"
-						allowedFormats={ [] }
-						placeholder={ __( 'Tab Title', 'shiro-admin' ) }
-						tagName="h3"
-						value={ attributes.title }
-						onChange={ title => setAttributes( { title } ) }
-					></RichText>
-				</div>
+				<h3 className="accordion-item__title-wrap">
+					<div className="accordion-item__title">
+						<RichText
+							className="accordion-item__title-text"
+							allowedFormats={ [] }
+							placeholder={ __( 'Tab Title', 'shiro-admin' ) }
+							tagName="span"
+							value={ attributes.title }
+							onChange={ title => setAttributes( { title } ) }
+						></RichText>
+					</div>
+				</h3>
 
-				<div className="accordion-item__content">
-					{ children }
-				</div>
+				<div className="accordion-item__content">{ children }</div>
 			</div>
 		</div>
 	);
-}
+};
 
 export default Edit;
