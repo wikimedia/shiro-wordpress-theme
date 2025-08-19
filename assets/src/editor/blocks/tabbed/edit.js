@@ -53,7 +53,10 @@ function Edit( { attributes, clientId, setAttributes } ) {
 	// Memoize an array of tab titles to reduce computation within the effect.
 	const itemList = useMemo( () => {
 		return innerBlocks.map( block => ( {
-			title: typeof block?.attributes?.title === 'string' ? block?.attributes?.title : block?.attributes?.title?.text,
+			title:
+				block?.attributes?.title?.text ||
+				block?.attributes?.title ||
+				'',
 			id: block?.attributes?.id || block.clientId,
 		} ) );
 	}, [ innerBlocks ] );
@@ -146,7 +149,7 @@ function Edit( { attributes, clientId, setAttributes } ) {
 								// the "space" character.
 								'div'
 							}
-							value={ block?.attributes?.title ?? null }
+							value={ block.attributes?.title || '' }
 							onChange={ title =>
 								updateBlockAttributes( block.clientId, {
 									title,
@@ -157,7 +160,10 @@ function Edit( { attributes, clientId, setAttributes } ) {
 					</li>
 				) ) }
 				{ innerBlocks.length < TAB_LIMIT ? (
-					<li key="add-tab" className="shiro-tabs__nav-item shiro-tabs__nav-item--appender">
+					<li
+						key="add-tab"
+						className="shiro-tabs__nav-item shiro-tabs__nav-item--appender"
+					>
 						<ButtonBlockAppender rootClientId={ clientId } />
 					</li>
 				) : null }

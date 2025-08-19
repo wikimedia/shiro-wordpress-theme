@@ -1,4 +1,8 @@
-import { useBlockProps, useInnerBlocksProps, RichText } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	useInnerBlocksProps,
+	RichText,
+} from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 import { ReactNode } from 'react';
@@ -19,7 +23,7 @@ const Save = ( { attributes } ) => {
 		role: 'tabpanel',
 		'aria-labelledby': `shiro-tabs-nav-${ id }`,
 		...( ! isFirstChild && {
-			hidden: 'true'
+			hidden: 'true',
 		} ),
 	} );
 
@@ -29,19 +33,19 @@ const Save = ( { attributes } ) => {
 
 	return (
 		<div { ...blockProps }>
-			<button
-				className="accordion-item__title"
-			>
-				<RichText.Content
-					className="accordion-item__title-text"
-					tagName="h3"
-					value={ title }
-				/>
-			</button>
+			<h3 className="accordion-item__title-wrap">
+				<button className="accordion-item__title">
+					<RichText.Content
+						className="accordion-item__title-text"
+						tagName="span"
+						value={ title }
+					/>
+				</button>
+			</h3>
 
 			<div { ...innerBlocksProps } />
 		</div>
 	);
-}
+};
 
 export default Save;
