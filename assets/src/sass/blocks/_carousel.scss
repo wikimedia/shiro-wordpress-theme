@@ -18,6 +18,10 @@
 		position: absolute;
 		z-index: 1;
 		width: 100%;
+
+		&:not(:has(.splide__arrow:not([disabled]))) {
+			display: none;
+		}
 	}
 
 	.splide__arrow {
