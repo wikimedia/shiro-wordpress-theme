@@ -75,7 +75,7 @@ while ( have_posts() ) {
 		</div>
 	<?php endif; ?>
 
-	<article class="wysiwyg is-layout-constrained">
+	<article class="wysiwyg alignfull is-layout-constrained has-global-padding">
 		<?php the_content(); ?>
 
 		<?php
