@@ -12,11 +12,10 @@
 /**
  * Define a [symbol_grid] shortcode that renders a grid of images and text.
  *
- * @param array  $atts Shortcode attributes array.
- * @param string $content Content wrapped by shortcode.
+ * @param array $atts Shortcode attributes array.
  * @return string Rendered shortcode output.
  */
-function wmf_symbols_grid_callback( $atts = [], $content = '' ) {
+function wmf_symbols_grid_callback( $atts = [] ) {
 	$defaults = [
 		'title' => '',
 		'text' => '',
@@ -315,8 +314,8 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 				<?php echo esc_html( $atts['title'] ) . wp_kses_post( $content ); ?>
 			</div>
 		</div>
-	<?php } else {
-		if ( $atts['reverse'] === '0' ) { ?>
+	<?php } elseif ( $atts['reverse'] === '0' ) {
+		?>
 			<div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $classes ); ?>">
 				<div class="flex flex-medium flex-space-between <?php echo esc_attr( $atts['class'] ); ?>">
 					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ); ?></div>
@@ -342,9 +341,9 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ); ?></div>
 				</div>
 			</div>
-	<?php }
-	}
-	return (string) ob_get_clean();
+		<?php
+		}
+		return (string) ob_get_clean();
 }
 add_shortcode( 'wmf_section', 'wmf_section_shortcode_callback' );
 

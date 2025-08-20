@@ -42,13 +42,13 @@ class Metaboxes {
 	/**
 	 * Initiates the set_translation_meta_opts method.
 	 *
-	 * @param string              $out    The output.
-	 * @param \Fieldmanager_Field $object The Fieldmanager_Field object.
+	 * @param string              $out   The output.
+	 * @param \Fieldmanager_Field $field The Fieldmanager_Field object.
 	 *
 	 * @return mixed
 	 */
-	public static function fm_element_markup_end( $out, $object ) {
-		static::get_instance()->set_translation_meta_opts( $object );
+	public static function fm_element_markup_end( $out, $field ) {
+		static::get_instance()->set_translation_meta_opts( $field );
 
 		return $out;
 	}
@@ -56,11 +56,11 @@ class Metaboxes {
 	/**
 	 * Sets the $translation_meta_opts property.
 	 *
-	 * @param \Fieldmanager_Field $object The Fieldmanager_Field object.
+	 * @param \Fieldmanager_Field $field The Fieldmanager_Field object.
 	 */
-	public function set_translation_meta_opts( $object ) {
-		if ( ! empty( $object->name ) ) {
-			$this->translation_meta_opts[ $object->name ] = $object;
+	public function set_translation_meta_opts( $field ) {
+		if ( ! empty( $field->name ) ) {
+			$this->translation_meta_opts[ $field->name ] = $field;
 		}
 	}
 
@@ -325,5 +325,4 @@ class Metaboxes {
 			echo '</div>';
 		}
 	}
-
 }

@@ -143,7 +143,7 @@ function wmf_add_default_content_language( int $post_ID ): void {
  * @param \WP_Query $query Query object to filter.
  * @return void
  */
-function wmf_filter_posts_by_content_language( WP_Query $query ) : void {
+function wmf_filter_posts_by_content_language( WP_Query $query ): void {
 
 	// Don't filter the admin.
 	if ( is_admin() ) {
@@ -288,12 +288,12 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			$terms = wp_get_post_terms( $post_id, 'content-language' );
 			if ( is_wp_error( $terms ) ) {
 				WP_CLI::error( "$post_id - Cannot find content-language taxonomy!" );
-				$count++;
+				++$count;
 				continue;
 			}
 			if ( count( $terms ) > 0 ) {
 				WP_CLI::success( "$post_id - Has languages; no need to update." );
-				$count++;
+				++$count;
 				continue;
 			}
 
@@ -301,7 +301,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				wmf_add_default_content_language( $post_id );
 			}
 			WP_CLI::success( "$post_id - Updated content-language terms!" );
-			$count++;
+			++$count;
 			unset( $terms );
 		}
 		wp_defer_term_counting( false );

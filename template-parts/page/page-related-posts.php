@@ -21,5 +21,3 @@ get_template_part(
 		'posts'                  => $related_posts,
 	)
 );
-
-
