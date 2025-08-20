@@ -6,6 +6,7 @@
 	--carousel-vertical-padding: #{fluid( 20, 128 )};
 	--carousel-arrow-size: #{rem(44)};
 	--carousel-arrow-position: #{fluid( 16, 44 + 32 )}; // arrow size + 32 margin.
+	--carousel-arrow-top: 50%;
 	--carousel-control-bottom-position: #{rem(16)};
 	container-type: inline-size;
 	direction: ltr; // rtl: direction: rtl;
@@ -18,6 +19,10 @@
 		position: absolute;
 		z-index: 1;
 		width: 100%;
+
+		&:not(:has(.splide__arrow:not([disabled]))) {
+			display: none;
+		}
 	}
 
 	.splide__arrow {
@@ -66,6 +71,20 @@
 	.splide__arrow[disabled] {
 		svg {
 			fill: var(--wp--preset--color--black-25);
+		}
+	}
+
+	&.is-active:has(.splide__pagination),
+	&.is-active:has(.splide__arrow:not([disabled])) {
+		padding-bottom: rem(80);
+
+		&:has(.wp-block-group.has-background.splide__slide) {
+			padding-bottom: 0;
+		}
+
+		&:not(:has(.wp-block-group.has-background.splide__slide)) {
+			--carousel-side-padding: 0px;
+			--carousel-arrow-top: 40%;
 		}
 	}
 
@@ -123,9 +142,6 @@
 	}
 
 	&:has(.wp-block-query).is-active {
-		--carousel-side-padding: 0px;
-		padding-bottom: rem(80);
-
 		.splide__list {
 			display: flex !important;
 			gap: 0 !important;
@@ -146,6 +162,28 @@
 		margin-bottom: 0;
 	}
 
+	.shiro-carousel__list > .wp-block-group {
+		container: slide / inline-size;
+	}
+
+	.shiro-carousel__list > .wp-block-group > .wp-block-columns {
+		align-content: flex-start;
+		height: 100%;
+
+		@container slide ( width < #{ map-get( $breakpoints, "mobile" ) } ) {
+			img {
+				width: 100%;
+			}
+
+			> .wp-block-column {
+				display: flex;
+				flex-basis: 100% !important;
+				flex-direction: column;
+				gap: var( --wp--preset--spacing--8 );
+			}
+		}
+	}
+
 	.shiro-carousel__list > .wp-block-group > .wp-block-columns > .wp-block-column {
 		// If it is the second and last child and only contains a spacer or empty group, make it first on mobile.
 		&:nth-child(2):last-child:has(.wp-block-spacer:only-child),
@@ -164,12 +202,8 @@
 			.splide__arrows {
 				@container ( width >= #{ map-get( $breakpoints, "content" ) } ) {
 					bottom: initial;
-					top: 50%;
+					top: var(--carousel-arrow-top);
 					transform: translateY(-50%);
-
-					&:is(.shiro-carousel:has(.wp-block-query) .splide__arrows) {
-						top: 40%;
-					}
 				}
 			}
 
@@ -194,12 +228,8 @@
 			.splide__arrows {
 				@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
 					bottom: initial;
-					top: 50%;
+					top: var(--carousel-arrow-top);
 					transform: translateY(-50%);
-
-					&:is(.shiro-carousel:has(.wp-block-query) .splide__arrows) {
-						top: 40%;
-					}
 				}
 			}
 
@@ -227,12 +257,8 @@
 		.splide__arrows {
 			@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
 				bottom: initial;
-				top: 50%;
+				top: var(--carousel-arrow-top);
 				transform: translateY(-50%);
-
-				&:is(.shiro-carousel:has(.wp-block-query) .splide__arrows) {
-					top: 40%;
-				}
 			}
 		}
 
