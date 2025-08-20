@@ -42,7 +42,7 @@ function get_headings_from_post_content( string $content ): array {
 	 * @see Issue #907 for planned enhancements to this approach.
 	 */
 	libxml_use_internal_errors( true );
-	$heading_block_doc->loadHTML( '<?xml encoding="UTF-8">' . $content );
+	$heading_block_doc->loadHTML( '<meta charset="UTF-8">' . $content );
 	libxml_clear_errors(); // Clear any errors that were raised during the loadHTML operation.
 
 	$xpath = new DOMXPath( $heading_block_doc );
