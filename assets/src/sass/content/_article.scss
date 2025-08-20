@@ -1,6 +1,4 @@
 article {
-	width: 100%;
-
 	// Handle errant h1s in old posts.
 	.single-post:not(.has-blocks) & > h1 {
 		@include h2;
@@ -183,7 +181,6 @@ article {
 
 .article-title {
 	margin: rem(45) auto;
-	max-width: rem(640);
 
 	@include responsive-margin(30, 60, bottom);
 
