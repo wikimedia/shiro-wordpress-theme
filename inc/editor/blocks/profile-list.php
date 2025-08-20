@@ -5,7 +5,7 @@
 
 namespace WMF\Editor\Blocks\ProfileList;
 
-use \WMF\Editor\Blocks\Profile;
+use WMF\Editor\Blocks\Profile;
 
 const BLOCK_NAME = 'shiro/profile-list';
 

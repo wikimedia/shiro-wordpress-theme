@@ -29,7 +29,7 @@ function bootstrap() {
  * @param string $content Post content (before block parsing).
  * @return array Array of headings with anchor IDs.
  */
-function get_headings_from_post_content( string $content ) : array {
+function get_headings_from_post_content( string $content ): array {
 	// Block attributes stored in post markup are not available on their own
 	// within PHP rendering code, even once the content is parsed as blocks.
 	// DOMDocument is the most reliable tool to locate the values we want.
@@ -78,7 +78,7 @@ function get_headings_from_post_content( string $content ) : array {
  * @param string $max_depth Smallest level of heading to include.
  * @return array Array of headings nested by hierarchy.
  */
-function headings_to_nested_list( array $headings, $max_depth = 'h3' ) : array {
+function headings_to_nested_list( array $headings, $max_depth = 'h3' ): array {
 	if ( empty( $headings ) ) {
 		return [];
 	}
@@ -117,7 +117,7 @@ function headings_to_nested_list( array $headings, $max_depth = 'h3' ) : array {
  * @param array   $headings            List of headings.
  * @param boolean $render_nested_items Whether to render subitems.
  */
-function render_headings_list( $headings, $render_nested_items = true ) : void {
+function render_headings_list( $headings, $render_nested_items = true ): void {
 	if ( empty( $headings ) ) {
 		return;
 	}
@@ -150,7 +150,7 @@ function render_headings_list( $headings, $render_nested_items = true ) : void {
  * @param array  $block         Block array.
  * @return string Rendered block content.
  */
-function render_toc_block( string $block_content, array $block ) : string {
+function render_toc_block( string $block_content, array $block ): string {
 	if ( $block['blockName'] !== BLOCK_NAME ) {
 		return $block_content;
 	}

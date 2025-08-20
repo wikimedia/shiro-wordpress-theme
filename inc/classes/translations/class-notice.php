@@ -64,7 +64,7 @@ class Notice {
 		if ( ! wmf_is_main_site() ) {
 			return;
 		}
-		$remote_posts = wmf_get_translations( false, $this->post_id, 'post' );
+		$remote_posts = wmf_get_translations();
 
 		if ( empty( $remote_posts ) ) {
 			return;
