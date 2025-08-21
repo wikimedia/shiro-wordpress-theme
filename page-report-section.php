@@ -23,10 +23,10 @@ while ( have_posts() ) :
 	$bodytext1     = get_post_meta( get_the_ID(), 'page_intro', true );
 	$has_content   = ! empty( trim( $bodytext1 . get_the_content() ) );
 	$template_args = array(
-		'h4_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
-		'h4_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
-		'h2_title' => get_the_title(),
-		'h1_title' => get_post_meta( get_the_ID(), 'sub_title', true ),
+		'breadcrumb_parent_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
+		'breadcrumb_parent_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
+		'h2_title'                => get_the_title(),
+		'h1_title'                => get_post_meta( get_the_ID(), 'sub_title', true ),
 	);
 
 	if ( has_post_thumbnail() ) {

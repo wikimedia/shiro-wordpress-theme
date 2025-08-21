@@ -29,9 +29,9 @@ while ( have_posts() ) {
 	$parent_page = wp_get_post_parent_id( get_the_ID() );
 
 	$template_args = array(
-		'h4_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
-		'h4_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
-		'h1_title' => get_the_title(),
+		'breadcrumb_parent_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
+		'breadcrumb_parent_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
+		'h1_title'                => get_the_title(),
 	);
 
 	if ( has_post_thumbnail() ) {

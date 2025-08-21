@@ -7,8 +7,9 @@
 
 $page_header_data = $args;
 
-$h4_link      = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
-$h4_title     = ! empty( $page_header_data['h4_title'] ) ? $page_header_data['h4_title'] : '';
+$breadcrumb_parent_link  = ! empty( $page_header_data['breadcrumb_parent_link'] ) ? $page_header_data['breadcrumb_parent_link'] : '';
+$breadcrumb_parent_title = ! empty( $page_header_data['breadcrumb_parent_title'] ) ? $page_header_data['breadcrumb_parent_title'] : '';
+
 $title        = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_title'] : '';
 $meta         = ! empty( $page_header_data['page_meta'] ) ? $page_header_data['page_meta'] : '';
 $allowed_tags = [
@@ -28,13 +29,13 @@ $allowed_tags = [
 
 <div class="header-main">
 	<div class="header-content mar-bottom_lg header-single">
-		<?php if ( ! empty( $h4_title ) ) : ?>
+		<?php if ( ! empty( $breadcrumb_parent_title ) ) : ?>
 			<h2 class="h4 eyebrow">
-				<?php if ( ! empty( $h4_link ) ) : ?>
-				<a class="back-arrow-link" href="<?php echo esc_url( $h4_link ); ?>">
+				<?php if ( ! empty( $breadcrumb_parent_link ) ) : ?>
+				<a class="back-arrow-link" href="<?php echo esc_url( $breadcrumb_parent_link ); ?>">
 					<?php endif; ?>
-					<?php echo esc_html( $h4_title ); ?>
-					<?php if ( ! empty( $h4_link ) ) : ?>
+					<?php echo esc_html( $breadcrumb_parent_title ); ?>
+					<?php if ( ! empty( $breadcrumb_parent_link ) ) : ?>
 				</a>
 			<?php endif; ?>
 			</h2>

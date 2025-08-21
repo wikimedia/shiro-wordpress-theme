@@ -51,8 +51,8 @@ while ( have_posts() ) {
 		$breadcrumb_link_custom_url = get_post_meta( get_the_ID(), 'breadcrumb_link_url', true );
 		$breakcrumb_link = ( ! empty( $breadcrumb_link_custom_url ) ) ? $breadcrumb_link_custom_url : get_the_permalink( $parent_page );
 
-		$template_args['h4_link'] = $breakcrumb_link;
-		$template_args['h4_title'] = $breadcrumb_link_title;
+		$template_args['breadcrumb_parent_link']  = $breakcrumb_link;
+		$template_args['breadcrumb_parent_title'] = $breadcrumb_link_title;
 
 		$show_breadcrumb = true;
 	} elseif ( $breadcrumb_link_switch === 'off' ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedElseif
@@ -60,8 +60,8 @@ while ( have_posts() ) {
 	} elseif ( $breadcrumb_link_switch === '' && $show_title ) {
 		// Default behavior.
 		if ( ! empty( $parent_page ) ) {
-			$template_args['h4_link'] = get_the_permalink( $parent_page );
-			$template_args['h4_title'] = get_the_title( $parent_page );
+			$template_args['breadcrumb_parent_link']  = get_the_permalink( $parent_page );
+			$template_args['breadcrumb_parent_title'] = get_the_title( $parent_page );
 			$show_breadcrumb = true;
 		}
 	}
