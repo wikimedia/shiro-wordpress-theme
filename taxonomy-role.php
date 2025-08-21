@@ -53,9 +53,9 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 
 <?php
 	$header_args = array(
-		'h1_title'                => single_term_title( '', false ),
-		'breadcrumb_parent_link'  => $breadcrumb_parent_link,
-		'breadcrumb_parent_title' => $breadcrumb_parent_title,
+		'h1_title'                       => single_term_title( '', false ),
+		'breadcrumb_custom_parent_link'  => $breadcrumb_parent_link,
+		'breadcrumb_custom_parent_title' => $breadcrumb_parent_title,
 	);
 
 	get_template_part(

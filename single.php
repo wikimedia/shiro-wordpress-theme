@@ -45,10 +45,9 @@ while ( have_posts() ) {
 		'template-parts/header/page',
 		'single',
 		array(
-			'breadcrumb_parent_link'  => get_the_permalink( $parent_page ),
-			'breadcrumb_parent_title' => get_the_title( $parent_page ),
-			'h1_title'                => get_the_title(),
-			'page_meta'               => sprintf(
+			'breadcrumb_parent' => $parent_page,
+			'h1_title'          => get_the_title(),
+			'page_meta'         => sprintf(
 				'<span>%s</span><span class="separator">&bull;</span><time datetime="%s">%s</time>',
 				wmf_byline(),
 				get_the_date( 'c' ),

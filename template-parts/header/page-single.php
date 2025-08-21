@@ -7,9 +7,6 @@
 
 $page_header_data = $args;
 
-$breadcrumb_parent_link  = ! empty( $page_header_data['breadcrumb_parent_link'] ) ? $page_header_data['breadcrumb_parent_link'] : '';
-$breadcrumb_parent_title = ! empty( $page_header_data['breadcrumb_parent_title'] ) ? $page_header_data['breadcrumb_parent_title'] : '';
-
 $title        = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_title'] : '';
 $meta         = ! empty( $page_header_data['page_meta'] ) ? $page_header_data['page_meta'] : '';
 $allowed_tags = [
@@ -29,17 +26,7 @@ $allowed_tags = [
 
 <div class="header-main">
 	<div class="header-content mar-bottom_lg header-single">
-		<?php if ( ! empty( $breadcrumb_parent_title ) ) : ?>
-			<h2 class="h4 eyebrow">
-				<?php if ( ! empty( $breadcrumb_parent_link ) ) : ?>
-				<a class="back-arrow-link" href="<?php echo esc_url( $breadcrumb_parent_link ); ?>">
-					<?php endif; ?>
-					<?php echo esc_html( $breadcrumb_parent_title ); ?>
-					<?php if ( ! empty( $breadcrumb_parent_link ) ) : ?>
-				</a>
-			<?php endif; ?>
-			</h2>
-		<?php endif; ?>
+		<?php get_template_part( 'template-parts/header/breadcrumbs', null, $breadcrumb_args ); ?>
 
 		<div class="mw-784">
 			<?php if ( ! empty( $title ) ) : ?>

@@ -16,12 +16,9 @@ while ( have_posts() ) {
 	the_post();
 
 	// Page Header.
-	$parent_page   = wp_get_post_parent_id( get_the_ID() );
 	$template_args = array(
-		'breadcrumb_parent_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
-		'breadcrumb_parent_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
-		'h2_title'                => '',
-		'h1_title'                => '',
+		'h2_title' => '',
+		'h1_title' => '',
 	);
 
 	get_template_part( 'template-parts/header/page', 'noimage', $template_args );
