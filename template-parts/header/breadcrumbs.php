@@ -35,7 +35,7 @@ $post_ancestors = is_page() ? get_post_ancestors( $breadcrumb_parent ) : [];
 		<?php
 		if ( ! empty( $post_ancestors ) ) :
 			foreach ( array_reverse( $post_ancestors ) as $ancestor ) :
-			?>
+				?>
 				<li><a href="<?php echo esc_url( get_the_permalink( $ancestor ) ); ?>">
 					<?php echo esc_html( get_the_title( $ancestor ) ); ?>
 				</a></li>
