@@ -15,12 +15,12 @@ $breadcrumb_args = wp_parse_args( $args, $defaults );
 $breadcrumb_parent_link  = $breadcrumb_args['breadcrumb_custom_parent_link'];
 $breadcrumb_parent_title = $breadcrumb_args['breadcrumb_custom_parent_title'];
 
-if ( empty( $breadcrumb_parent_link ) && ! empty( $breadcrumb_args[ 'breadcrumb_parent' ] ) ) {
-	$breadcrumb_parent_link = get_the_permalink( $breadcrumb_args[ 'breadcrumb_parent' ] );
+if ( empty( $breadcrumb_parent_link ) && ! empty( $breadcrumb_args['breadcrumb_parent'] ) ) {
+	$breadcrumb_parent_link = get_the_permalink( $breadcrumb_args['breadcrumb_parent'] );
 }
 
-if ( empty( $breadcrumb_parent_title ) && ! empty( $breadcrumb_args[ 'breadcrumb_parent' ] ) ) {
-	$breadcrumb_parent_title = get_the_title( $breadcrumb_args[ 'breadcrumb_parent' ] );
+if ( empty( $breadcrumb_parent_title ) && ! empty( $breadcrumb_args['breadcrumb_parent'] ) ) {
+	$breadcrumb_parent_title = get_the_title( $breadcrumb_args['breadcrumb_parent'] );
 }
 ?>
 

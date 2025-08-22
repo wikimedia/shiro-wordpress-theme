@@ -26,7 +26,7 @@ $allowed_tags = [
 
 <div class="header-main">
 	<div class="header-content mar-bottom_lg header-single">
-		<?php get_template_part( 'template-parts/header/breadcrumbs', null, $breadcrumb_args ); ?>
+		<?php get_template_part( 'template-parts/header/breadcrumbs', null, $page_header_data ); ?>
 
 		<div class="mw-784">
 			<?php if ( ! empty( $title ) ) : ?>

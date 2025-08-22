@@ -7,8 +7,6 @@
 
 $profile_header_data = $args;
 
-$back_to_link = ! empty( $profile_header_data['back_to_link'] ) ? $profile_header_data['back_to_link'] : '';
-$staff_name   = ! empty( $profile_header_data['back_to_label'] ) ? $profile_header_data['back_to_label'] : '';
 $team_name    = ! empty( $profile_header_data['team_name'] ) ? $profile_header_data['team_name'] : false;
 $role_name    = ! empty( $profile_header_data['role'] ) ? $profile_header_data['role'] : false;
 $share_links  = ! empty( $profile_header_data['share_links'] ) ? $profile_header_data['share_links'] : '';
@@ -34,15 +32,7 @@ if ( is_countable( $team_name ) && count( $team_name ) > 1 ) {
 
 <div class="header-main header-role">
 	<div class="header-content">
-		<h2 class="h4 eyebrow">
-			<?php if ( ! empty( $back_to_link ) && is_string( $back_to_link ) ) : ?>
-			<a class="back-arrow-link" href="<?php echo esc_url( $back_to_link ); ?>">
-			<?php endif; ?>
-				<?php echo esc_html( $staff_name ); ?>
-			<?php if ( ! empty( $back_to_link ) && is_string( $back_to_link ) ) : ?>
-			</a>
-			<?php endif; ?>
-		</h2>
+		<?php get_template_part( 'template-parts/header/breadcrumbs', null, $profile_header_data ); ?>
 
 		<h1><?php the_title(); ?></h1>
 

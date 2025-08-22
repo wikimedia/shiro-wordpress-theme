@@ -21,23 +21,14 @@ while ( have_posts() ) :
 	<?php
 	// The Stories page which contains the list of stories sets the following post meta to the page ID on the
 	// 'update_post_meta' hook.
-	$parent_page_id = get_post_meta( get_the_ID(), '_story_parent_page', true );
-	if ( (int) $parent_page_id > 0 ) {
-		$parent_page = get_post( $parent_page_id );
-		if ( $post instanceof \WP_Post ) {
-			$parent_link = get_permalink( $parent_page->ID );
-			/* translators: %s represents the page title. */
-			$parent_name = sprintf( __( '%s stories', 'shiro' ), get_the_title( $parent_page->post_parent ) );
-		}
-	}
+	$parent_page_id = get_post_meta( get_the_ID(), '_story_parent_page', true ) ?? get_page_by_path( '/who-we-are/' );
 
 	get_template_part(
 		'template-parts/header/story',
 		'single',
 		array(
-			'back_to_link'  => $parent_link ?? '',
-			'back_to_label' => $parent_name ?? '',
-			'share_links'   => get_post_meta( get_the_ID(), 'contact_links', true ),
+			'breadcrumb_parent' => $parent_page_id,
+			'share_links'       => get_post_meta( get_the_ID(), 'contact_links', true )
 		)
 	);
 
