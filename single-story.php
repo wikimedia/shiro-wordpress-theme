@@ -28,7 +28,7 @@ while ( have_posts() ) :
 		'single',
 		array(
 			'breadcrumb_parent' => $parent_page_id,
-			'share_links'       => get_post_meta( get_the_ID(), 'contact_links', true )
+			'share_links'       => get_post_meta( get_the_ID(), 'contact_links', true ),
 		)
 	);
 
