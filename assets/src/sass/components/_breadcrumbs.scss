@@ -1,0 +1,42 @@
+.breadcrumbs {
+	margin-bottom: var(--wp--preset--spacing--24);
+
+	ul {
+		@include has-font-size("small");
+		@include list-reset;
+		display: flex;
+		flex-wrap: wrap;
+		gap: rem(10);
+		list-style-type: none;
+	}
+
+	li {
+		display: flex;
+	}
+
+	li:not(:last-child)::after {
+		content: "/";
+		margin-left: rem(10);
+	}
+
+	@include media("<tablet") {
+		li:nth-last-child(n+4) {
+			display: none;
+		}
+
+		li:nth-last-child(3) {
+			&::before {
+				content: "...";
+			}
+
+			a {
+				display: none;
+			}
+		}
+	}
+
+	a:not( :hover ):not( :focus ):not( :active ) {
+		color: var( --wp--preset--color--main );
+		text-decoration: underline;
+	}
+}
