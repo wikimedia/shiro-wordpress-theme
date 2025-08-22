@@ -18,8 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 
-$h4_title = '';
-$h4_link  = '';
+$breadcrumb_parent_title = '';
+$breadcrumb_parent_link  = '';
 
 $current_term_id = get_queried_object_id();
 $term            = get_term( $current_term_id );
@@ -28,15 +28,15 @@ $profile_parent_page = 'community' === $term->slug ? get_theme_mod( 'wmf_communi
 
 // Set up the back arrow link for top-level terms.
 if ( ! empty( $profile_parent_page ) ) {
-	$h4_title = get_the_title( $profile_parent_page );
-	$h4_link  = get_the_permalink( $profile_parent_page );
+	$breadcrumb_parent_title = get_the_title( $profile_parent_page );
+	$breadcrumb_parent_link  = get_the_permalink( $profile_parent_page );
 }
 
 // If this is a nested term, use its parent for the back arrow link.
 if ( isset( $term->parent ) && 0 !== $term->parent ) {
-	$term_parent = get_term_by( 'id', $term->parent, 'role' );
-	$h4_title    = $term_parent->name;
-	$h4_link     = get_term_link( $term_parent );
+	$term_parent             = get_term_by( 'id', $term->parent, 'role' );
+	$breadcrumb_parent_title = $term_parent->name;
+	$breadcrumb_parent_link  = get_term_link( $term_parent );
 }
 
 $display_intro = get_term_meta( $current_term_id, 'display_intro', true );
@@ -53,9 +53,9 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 
 <?php
 	$header_args = array(
-		'h1_title' => single_term_title( '', false ),
-		'h4_link'  => $h4_link,
-		'h4_title' => $h4_title,
+		'h1_title'                       => single_term_title( '', false ),
+		'breadcrumb_custom_parent_link'  => $breadcrumb_parent_link,
+		'breadcrumb_custom_parent_title' => $breadcrumb_parent_title,
 	);
 
 	get_template_part(
