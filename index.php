@@ -23,9 +23,8 @@ get_header(); ?>
 $posts_page = get_option( 'page_for_posts' );
 
 $template_args = array(
-	'h1_title' => get_the_archive_title(),
-	'h4_link'  => get_permalink( $posts_page ),
-	'h4_title' => get_the_title( $posts_page ),
+	'h1_title'          => get_the_archive_title(),
+	'breadcrumb_parent' => $posts_page,
 );
 
 get_template_part( 'template-parts/header/page-noimage', null, $template_args );

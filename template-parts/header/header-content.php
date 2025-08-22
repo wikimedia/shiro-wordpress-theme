@@ -7,8 +7,6 @@
 
 $page_header_data = $args;
 
-$h4_link              = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
-$h4_title             = ! empty( $page_header_data['h4_title'] ) ? $page_header_data['h4_title'] : '';
 $h2_link              = ! empty( $page_header_data['h2_link'] ) ? $page_header_data['h2_link'] : '';
 $h2_title             = ! empty( $page_header_data['h2_title'] ) ? $page_header_data['h2_title'] : '';
 $title                = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_title'] : '';
@@ -16,9 +14,9 @@ $alt_title            = ! empty( $page_header_data['h1_alt_title'] ) ? $page_hea
 $meta                 = ! empty( $page_header_data['page_meta'] ) ? $page_header_data['page_meta'] : '';
 $allowed_tags         = wp_kses_allowed_html( 'post' );
 $allowed_tags['time'] = true;
-$button = ! empty( get_post_meta( get_the_ID(), 'intro_button', true ) ) ? get_post_meta( get_the_ID(), 'intro_button', true ) : '';
-$extra_height_class = empty( $button['title'] ) ? '' : 'ungrid-extra-height';
-$image            = ! empty( $page_header_data['image'] ) ? $page_header_data['image'] : '';
+$button               = ! empty( get_post_meta( get_the_ID(), 'intro_button', true ) ) ? get_post_meta( get_the_ID(), 'intro_button', true ) : '';
+$extra_height_class   = empty( $button['title'] ) ? '' : 'ungrid-extra-height';
+$image                = ! empty( $page_header_data['image'] ) ? $page_header_data['image'] : '';
 
 $single_title = '';
 if ( ! empty( $h2_title ) xor ! empty( $title ) ) {
@@ -35,18 +33,18 @@ if ( is_page() ) {
 	 * 3. 'off' - set to no
 	 */
 	$breadcrumb_link_switch = get_post_meta( get_the_ID(), 'show_breadcrumb_links', true );
-	if ( $breadcrumb_link_switch === 'on' ) {
-		$breadcrumb_link_custom_title = get_post_meta( get_the_ID(), 'breadcrumb_link_title', true );
-		$h4_title = ! empty( $breadcrumb_link_custom_title ) ? $breadcrumb_link_custom_title : $h4_title;
+	$breadcrumb_args = [];
+	$show_breadcrumb = false;
 
-		$breadcrumb_link_custom_url = get_post_meta( get_the_ID(), 'breadcrumb_link_url', true );
-		$h4_link = ! empty( $breadcrumb_link_custom_url ) ? $breadcrumb_link_custom_url : $h4_link;
-	} elseif ( $breadcrumb_link_switch === 'off' ) {
-		$h4_link = '';
-		$h4_title = '';
-	} elseif ( $breadcrumb_link_switch === '' ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedElseif
-		// Don't do anything, page wasn't yet edited with this component on the page.
-		// Breadcumb link will be displayed with default values.
+	if ( $breadcrumb_link_switch === 'on' ) {
+		$breadcrumb_args['breadcrumb_custom_parent_link']  = get_post_meta( get_the_ID(), 'breadcrumb_link_title', true );
+		$breadcrumb_args['breadcrumb_custom_parent_title'] = get_post_meta( get_the_ID(), 'breadcrumb_link_url', true );
+
+		$show_breadcrumb = true;
+	} elseif ( $breadcrumb_link_switch === 'off' ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedElseif
+		// Does nothing.
+	} elseif ( $breadcrumb_link_switch === '' ) {
+		$show_breadcrumb = true;
 	}
 }
 
@@ -54,18 +52,12 @@ if ( is_page() ) {
 
 <div class="header-content">
 
-	<!-- Top back link -->
-	<?php if ( ! empty( $h4_title ) ) : ?>
-	<h2 class="h4 eyebrow">
-		<?php if ( ! empty( $h4_link ) ) : ?>
-		<a class="back-arrow-link" href="<?php echo esc_url( $h4_link ); ?>">
-		<?php endif; ?>
-			<?php echo esc_html( $h4_title ); ?>
-		<?php if ( ! empty( $h4_link ) ) : ?>
-		</a>
-		<?php endif; ?>
-	</h2>
-	<?php endif; ?>
+	<!-- Breadcrumbs -->
+	<?php
+	if ( $show_breadcrumb ) {
+		get_template_part( 'template-parts/header/breadcrumbs', null, $breadcrumb_args );
+	}
+	?>
 
 	<!-- Blog home  -->
 	<?php if ( is_home() && ! empty( $h2_title ) ) { ?>

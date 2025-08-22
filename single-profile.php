@@ -50,11 +50,11 @@ while ( have_posts() ) :
 		'template-parts/header/profile',
 		'single',
 		array(
-			'back_to_link'  => $parent_link,
-			'back_to_label' => $parent_name,
-			'role'          => get_post_meta( get_the_ID(), 'profile_role', true ),
-			'team_name'     => $team_name,
-			'share_links'   => get_post_meta( get_the_ID(), 'contact_links', true ),
+			'breadcrumb_custom_parent_link'  => $parent_link,
+			'breadcrumb_custom_parent_title' => $parent_name,
+			'role'                           => get_post_meta( get_the_ID(), 'profile_role', true ),
+			'team_name'                      => $team_name,
+			'share_links'                    => get_post_meta( get_the_ID(), 'contact_links', true ),
 		)
 	);
 
