@@ -31,7 +31,7 @@ $home_title = $home_page_id ? get_the_title( $home_page_id ) : __( 'Home', 'shir
 ?>
 
 <nav aria-label="Breadcrumbs" class="breadcrumbs">
-	<h2 class="screen-reader-text"><?php echo esc_html__( 'You are here:' ); ?></h2>
+	<h2 class="screen-reader-text"><?php echo esc_html__( 'You are here:', 'shiro' ); ?></h2>
 	<ul>
 		<li><a href="<?php echo esc_url( home_url() ); ?>">
 			<?php echo esc_html( $home_title ); ?>
