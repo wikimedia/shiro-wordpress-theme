@@ -25,12 +25,17 @@ if ( empty( $breadcrumb_parent_title ) && ! empty( $breadcrumb_parent ) ) {
 }
 
 $post_ancestors = is_page() ? get_post_ancestors( $breadcrumb_parent ) : [];
+
+$home_page_id = get_option( 'page_on_front' );
+$home_title = $home_page_id ? get_the_title( $home_page_id ) : __( 'Home', 'shiro' );
 ?>
 
 <nav aria-label="Breadcrumbs" class="breadcrumbs">
 	<h2 class="screen-reader-text">You are here:</h2>
 	<ul>
-		<li><a href="/">Home</a></li>
+		<li><a href="<?php echo esc_url( home_url() ); ?>">
+			<?php echo esc_html( $home_title ); ?>
+		</a></li>
 
 		<?php
 		if ( ! empty( $post_ancestors ) ) :
@@ -48,6 +53,6 @@ $post_ancestors = is_page() ? get_post_ancestors( $breadcrumb_parent ) : [];
 			</a></li>
 		<?php endif; ?>
 
-		<li><?php the_title(); ?></li>
+		<li aria-current="page"><?php the_title(); ?></li>
 	</ul>
 </nav>
