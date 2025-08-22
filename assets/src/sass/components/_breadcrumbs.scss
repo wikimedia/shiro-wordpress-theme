@@ -19,6 +19,22 @@
 		margin-left: rem(10);
 	}
 
+	@include media("<tablet") {
+		li:nth-last-child(n+4) {
+			display: none;
+		}
+
+		li:nth-last-child(3) {
+			&::before {
+				content: "...";
+			}
+
+			a {
+				display: none;
+			}
+		}
+	}
+
 	a:not( :hover ):not( :focus ):not( :active ) {
 		color: var( --wp--preset--color--main );
 		text-decoration: underline;
