@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { InnerBlocks, RichText } from '@wordpress/block-editor';
 
 /**
- * V1 of the accordion block, which had the h3 nested inside the button element.
+ * Saves the block content for display on the frontend.
  *
  * @param {object} props - Component props.
  * @param {object} props.attributes - Block attributes

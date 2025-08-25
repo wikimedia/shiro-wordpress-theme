@@ -10,6 +10,7 @@
 import { registerBlockType } from '@wordpress/blocks';
 
 import metadata from './block.json';
+import deprecated from './deprecations';
 import edit from './edit';
 import save from './save';
 
@@ -19,6 +20,7 @@ registerBlockType( metadata.name, {
 	...metadata,
 	edit,
 	save,
+	deprecated,
 } );
 
 // Block HMR boilerplate.
