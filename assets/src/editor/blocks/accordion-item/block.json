@@ -13,8 +13,8 @@
 		},
 		"title": {
 			"type": "string",
-			"source": "html",
-			"selector": "span"
+			"source": "text",
+			"selector": ".accordion-item__title-text"
 		}
 	},
 	"usesContext": [ "accordion/fontColor" ],

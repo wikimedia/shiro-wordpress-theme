@@ -6,7 +6,9 @@
 
 import { InnerBlocks, RichText } from '@wordpress/block-editor';
 import metadata from './block.json';
-metadata.attributes.title.selector = 'h3';
+metadata.attributes.title.selector =
+	'.accordion-item__title-text, .accordion-item__title-text strong';
+metadata.attributes.title.source = 'html';
 
 /**
  * Original version of accordion item block, which nested h3s inside of the button.
@@ -37,6 +39,11 @@ const v1 = {
 				</div>
 			</div>
 		);
+	},
+	migrate( { title } ) {
+		return {
+			title: title.replace( /(<([^>]+)>)/gi, '' ),
+		};
 	},
 };
 
