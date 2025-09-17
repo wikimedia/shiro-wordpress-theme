@@ -53,19 +53,25 @@ function filter_mailchimp_output( $block_content, $block ) {
 	}
 
 	$updated_email_field = sprintf(
-		'<input type="text" size="18" placeholder="%s" name="mc_mv_EMAIL" id="mc_mv_EMAIL" class="mc_input"/>',
+		'input type="text" size="18" placeholder="%s" name="mc_mv_EMAIL"',
 		esc_attr__( 'Enter your email', 'shiro' )
 	);
 
 	$block_content = str_replace(
-		'<input type="text" size="18" placeholder="" name="mc_mv_EMAIL" id="mc_mv_EMAIL" class="mc_input"/>',
+		'input type="text" size="18" placeholder="" name="mc_mv_EMAIL"',
 		$updated_email_field,
 		$block_content
 	);
 
 	$block_content = str_replace(
-		'<label for="mc_mv_EMAIL" class="mc_var_label mc_header mc_header_email">',
-		'<label for="mc_mv_EMAIL" class="mc_var_label mc_header mc_header_email screen-reader-text">',
+		'class="mc_var_label mc_header mc_header_email"',
+		'class="mc_var_label mc_header mc_header_email screen-reader-text"',
+		$block_content
+	);
+
+	$block_content = str_replace(
+		'<div class="mc-indicates-required">',
+		'<div class="mc-indicates-required screen-reader-text">',
 		$block_content
 	);
 
