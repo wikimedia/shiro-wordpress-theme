@@ -39,7 +39,7 @@ function filter_mailchimp_output( $block_content, $block ) {
 		// Remove extra space characters from empty message container.
 		// We still need this box for the validation and confirmation messages.
 		$block_content = preg_replace(
-			'/<div class="mc_message_wrapper"(.*)>\s*<\/div>/',
+			'/<div class="mc_message_wrapper"([^>]*)>\s*<\/div>/',
 			'<div class="mc_message_wrapper"$1></div>',
 			$block_content
 		);
