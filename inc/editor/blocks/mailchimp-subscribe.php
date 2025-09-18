@@ -39,8 +39,14 @@ function filter_mailchimp_output( $block_content, $block ) {
 		// Remove extra space characters from empty message container.
 		// We still need this box for the validation and confirmation messages.
 		$block_content = preg_replace(
-			'/<div class="mc_message_wrapper" id="mc_message">\s*<\/div>/',
-			'<div class="mc_message_wrapper" id="mc_message"></div>',
+			'/<div class="mc_message_wrapper"([^>]*)>\s*<\/div>/',
+			'<div class="mc_message_wrapper"$1></div>',
+			$block_content
+		);
+
+		$block_content = str_replace(
+			'class="mc-indicates-required"',
+			'class="mc-indicates-required screen-reader-text"',
 			$block_content
 		);
 	
@@ -53,19 +59,19 @@ function filter_mailchimp_output( $block_content, $block ) {
 	}
 
 	$updated_email_field = sprintf(
-		'<input type="text" size="18" placeholder="%s" name="mc_mv_EMAIL" id="mc_mv_EMAIL" class="mc_input"/>',
+		'input type="text" size="18" placeholder="%s" name="mc_mv_EMAIL"',
 		esc_attr__( 'Enter your email', 'shiro' )
 	);
 
 	$block_content = str_replace(
-		'<input type="text" size="18" placeholder="" name="mc_mv_EMAIL" id="mc_mv_EMAIL" class="mc_input"/>',
+		'input type="text" size="18" placeholder="" name="mc_mv_EMAIL"',
 		$updated_email_field,
 		$block_content
 	);
 
 	$block_content = str_replace(
-		'<label for="mc_mv_EMAIL" class="mc_var_label mc_header mc_header_email">',
-		'<label for="mc_mv_EMAIL" class="mc_var_label mc_header mc_header_email screen-reader-text">',
+		'class="mc_var_label mc_header mc_header_email"',
+		'class="mc_var_label mc_header mc_header_email screen-reader-text"',
 		$block_content
 	);
 
