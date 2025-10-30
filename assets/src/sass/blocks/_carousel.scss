@@ -76,7 +76,7 @@
 
 	&.is-active:has(.splide__pagination),
 	&.is-active:has(.splide__arrow:not([disabled])) {
-		padding-bottom: rem(80);.splide__pagination li:has(> button.is-active) + li
+		padding-bottom: rem(80);
 
 		&:has(.wp-block-group.has-background.splide__slide) {
 			padding-bottom: 0;
