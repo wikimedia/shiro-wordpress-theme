@@ -76,7 +76,7 @@
 
 	&.is-active:has(.splide__pagination),
 	&.is-active:has(.splide__arrow:not([disabled])) {
-		padding-bottom: rem(80);
+		padding-bottom: rem(80);.splide__pagination li:has(> button.is-active) + li
 
 		&:has(.wp-block-group.has-background.splide__slide) {
 			padding-bottom: 0;
@@ -109,6 +109,7 @@
 		z-index: 1;
 
 		button {
+			display: none;
 			background-color: var(--wp--preset--color--base);
 			border: 1px solid var(--wp--preset--color--base);
 			border-radius: 50%;
@@ -121,6 +122,17 @@
 				background-color: transparent;
 				border-color: var(--wp--preset--color--base);
 			}
+		}
+
+		// Hide all dots except the current/previous/next.
+		li {
+			display: none;
+		}
+
+		li:has(> button.is-active),
+		li:has(+ li > button.is-active),
+		li:has(> button.is-active) + li {
+			display: flex;
 		}
 	}
 
