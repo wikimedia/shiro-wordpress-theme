@@ -2,6 +2,17 @@ import { __ } from '@wordpress/i18n';
 
 const videos = [ ...document.querySelectorAll( '.wp-block-video' ) ];
 
+const shouldShowPlayIcon = video => {
+	if ( ! ( video instanceof HTMLVideoElement ) ) {
+		return true; // default to play.
+	}
+
+	const isPlaying = ! video.paused && ! video.ended && video.readyState > 2;
+
+	// Return true when we should show the play icon.
+	return ! isPlaying;
+}
+
 /**
  * Initialize all carousels on page.
  */
@@ -31,8 +42,8 @@ const init = () => {
 			return;
 		}
 
-		const hasAutoplay = ( video && video.autoplay ) ||
-			( iframe && iframe.src.includes( 'autoPlay=1' ) );
+		const showPlayIcon = shouldShowPlayIcon( video ) ||
+			( iframe && ( ! iframe.src.includes( 'autoPlay=1' ) ) );
 
 		const addAmbientControls = document.createElement( 'button' );
 		addAmbientControls.classList.add( 'video-ambient-controls' );
@@ -129,10 +140,10 @@ const init = () => {
 			}
 		};
 
-		if ( hasAutoplay ) {
-			onPlay();
-		} else {
+		if ( showPlayIcon ) {
 			onPause();
+		} else {
+			onPlay();
 		}
 
 		if ( video ) {
