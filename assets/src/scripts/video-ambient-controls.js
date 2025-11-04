@@ -107,7 +107,7 @@ const init = () => {
 					iframe?.contentWindow.postMessage(JSON.stringify(message), '*');
 				}
 			} catch (err) {
-				console.error('iframe message error:', err);
+				// no-op.
 			}
 		};;
 
