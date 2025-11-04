@@ -35,6 +35,7 @@
 
 .video-ambient-controls {
 	@include masked-icon-button;
+	background-color: rgba(#000, 0.1) !important;
 	border: 2px solid currentColor;
 	border-radius: 50%;
 	margin: var(--wp--preset--spacing--24);
