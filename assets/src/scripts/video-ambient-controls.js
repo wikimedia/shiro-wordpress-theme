@@ -1,10 +1,8 @@
 import { __ } from '@wordpress/i18n';
 
-const videos = [ ...document.querySelectorAll( '.wp-block-video' ) ];
-
 const shouldShowPlayIcon = video => {
 	if ( ! ( video instanceof HTMLVideoElement ) ) {
-		return true; // default to play.
+		return false;
 	}
 
 	const isPlaying = ! video.paused && ! video.ended && video.readyState > 2;
@@ -14,20 +12,11 @@ const shouldShowPlayIcon = video => {
 }
 
 /**
- * Initialize all carousels on page.
+ * Initialize all videos on page.
  */
 const init = () => {
+	const videos = [ ...document.querySelectorAll( '.wp-block-video' ) ];
 	if ( videos.length === 0 ) {
-		return;
-	}
-
-	const prefersReducedMotion =
-		window.matchMedia( `(prefers-reduced-motion: reduce)` ) === true ||
-		window.matchMedia( `(prefers-reduced-motion: reduce)` ).matches ===
-			true;
-
-	if ( !! prefersReducedMotion ) {
-		// DON'T use an animation here!
 		return;
 	}
 
@@ -35,44 +24,40 @@ const init = () => {
 	videos.forEach( videoWrapper => {
 		const iframe = videoWrapper.querySelector( 'iframe' );
 		const video = videoWrapper.querySelector( 'video' );
-		const pauseText = __( 'Pause ambient video', 'shiro-admin' );
-		const playText = __( 'Play ambient video', 'shiro-admin' );
 
 		if ( ! ( video || iframe ) ) {
 			return;
 		}
 
-		const showPlayIcon = shouldShowPlayIcon( video ) ||
-			( iframe && ( ! iframe.src.includes( 'autoPlay=1' ) ) );
-
-		const addAmbientControls = document.createElement( 'button' );
-		addAmbientControls.classList.add( 'video-ambient-controls' );
-
-		videoWrapper.appendChild( addAmbientControls );
-
-		const ambientControls = videoWrapper.querySelector(
-			'.video-ambient-controls'
-		);
-
-		// If there are no controls skip.
-		if ( ! ambientControls ) {
+		if ( videoWrapper.querySelector('.video-ambient-controls') ) {
 			return;
 		}
 
+		const showPlayIcon = ( video && shouldShowPlayIcon( video ) ) ||
+			( iframe && ( ! iframe.src.includes( 'autoPlay=1' ) ) );
+
+		const ambientControls = document.createElement( 'button' );
+		ambientControls.classList.add( 'video-ambient-controls' );
+
+		videoWrapper.appendChild( ambientControls );
+
+		const pauseText = __( 'Pause ambient video', 'shiro-admin' );
+		const playText = __( 'Play ambient video', 'shiro-admin' );
+
 		const showPlayButton = () => {
-			addAmbientControls.setAttribute( 'aria-label', playText );
-			addAmbientControls.classList.remove( 'pause' );
-			if ( ! addAmbientControls.classList.contains( 'play' ) ) {
-				addAmbientControls.classList.add( 'play' );
+			ambientControls.setAttribute( 'aria-label', playText );
+			ambientControls.classList.remove( 'pause' );
+			if ( ! ambientControls.classList.contains( 'play' ) ) {
+				ambientControls.classList.add( 'play' );
 			}
 		};
 
 		const showPauseButton = () => {
-			addAmbientControls.setAttribute( 'aria-label', pauseText );
-			addAmbientControls.classList.remove( 'play' );
+			ambientControls.setAttribute( 'aria-label', pauseText );
+			ambientControls.classList.remove( 'play' );
 
-			if ( ! addAmbientControls.classList.contains( 'pause' ) ) {
-				addAmbientControls.classList.add( 'pause' );
+			if ( ! ambientControls.classList.contains( 'pause' ) ) {
+				ambientControls.classList.add( 'pause' );
 			}
 		}
 
@@ -87,54 +72,43 @@ const init = () => {
 
 		// iframe/VideoPress.
 		const onIframeButton = () => {
-			if ( ambientControls.classList.contains( 'play' ) ) {
-				showPlayButton();
-				if (
-					videoWrapper.classList.contains(
-						'is-provider-videopress'
-					)
-				) {
-					iframe?.contentWindow.postMessage(
-						{
-							event: 'videopress_action_pause',
-						},
-						'*'
-					);
-				} else {
-					iframe?.contentWindow.postMessage(
-						JSON.stringify( {
-							event: 'command', // For YouTube.
-							func: 'pauseVideo', // For YouTube.
-							method: 'pause', // For vimeo.
-						} ),
-						'*'
-					);
-				}
-			} else {
+			const isPlaying = ambientControls.classList.contains('play');
+
+			if (isPlaying) {
 				showPauseButton();
-				if (
-					videoWrapper.classList.contains(
-						'is-provider-videopress'
-					)
-				) {
+			} else {
+				showPlayButton();
+			}
+
+			const message = isPlaying
+				? {
+						event: 'command',
+						func: 'playVideo',
+						method: 'play',
+				}
+				: {
+						event: 'command',
+						func: 'pauseVideo',
+						method: 'pause',
+				};
+
+			try {
+				if (videoWrapper.classList.contains('is-provider-videopress')) {
 					iframe?.contentWindow.postMessage(
 						{
-							event: 'videopress_action_play',
+							event: isPlaying
+								? 'videopress_action_play'
+								: 'videopress_action_pause',
 						},
 						'*'
 					);
 				} else {
-					iframe?.contentWindow.postMessage(
-						JSON.stringify( {
-							event: 'command', // For YouTube.
-							func: 'playVideo', // For YouTube.
-							method: 'play', // For vimeo.
-						} ),
-						'*'
-					);
+					iframe?.contentWindow.postMessage(JSON.stringify(message), '*');
 				}
+			} catch (err) {
+				console.error('iframe message error:', err);
 			}
-		};
+		};;
 
 		if ( showPlayIcon ) {
 			showPlayButton();
@@ -151,11 +125,12 @@ const init = () => {
 			// control from the video state.
 			const update = () => {
 				const isPlaying = !video.paused && !video.ended;
+				addAmbientControls.setAttribute('aria-pressed', isPlaying);
 				if ( isPlaying ) {
 					showPauseButton();
 					return;
 				}
-				showPauseButton();
+				showPlayButton();
 			};
 
 			// Fire once metadata is ready
@@ -165,7 +140,7 @@ const init = () => {
 			video.addEventListener('playing', update);
 			video.addEventListener('pause', update);
 			video.addEventListener('ended', update);
-			video.addEventListener('waiting', update);
+			video.addEventListener('error', update);
 
 			// Add click event listeners to play and pause the video.
 			ambientControls.addEventListener( 'click', () => {
