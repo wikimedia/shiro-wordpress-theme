@@ -59,10 +59,7 @@ const init = () => {
 			return;
 		}
 
-		// Disable default controls to avoid duplication if it hasn't already.
-		video.controls = false;
-
-		const onPause = () => {
+		const showPlayButton = () => {
 			addAmbientControls.setAttribute( 'aria-label', playText );
 			addAmbientControls.classList.remove( 'pause' );
 			if ( ! addAmbientControls.classList.contains( 'play' ) ) {
@@ -70,7 +67,7 @@ const init = () => {
 			}
 		};
 
-		const onPlay = () => {
+		const showPauseButton = () => {
 			addAmbientControls.setAttribute( 'aria-label', pauseText );
 			addAmbientControls.classList.remove( 'play' );
 
@@ -79,20 +76,19 @@ const init = () => {
 			}
 		}
 
-		const onButton = () => {
-			// HTML5 Video.
-			if ( video ) {
-				if ( video.paused ) {
-					video.play();
-				} else {
-					video.pause();
-				}
-				return;
+		// HTML5 Video.
+		const onVideoButton = () => {
+			if ( video.paused ) {
+				video.play();
+			} else {
+				video.pause();
 			}
+		};
 
-			// iframe/VideoPress.
+		// iframe/VideoPress.
+		const onIframeButton = () => {
 			if ( ambientControls.classList.contains( 'play' ) ) {
-				onPause();
+				showPlayButton();
 				if (
 					videoWrapper.classList.contains(
 						'is-provider-videopress'
@@ -115,7 +111,7 @@ const init = () => {
 					);
 				}
 			} else {
-				onPlay();
+				showPauseButton();
 				if (
 					videoWrapper.classList.contains(
 						'is-provider-videopress'
@@ -141,42 +137,49 @@ const init = () => {
 		};
 
 		if ( showPlayIcon ) {
-			onPause();
+			showPlayButton();
 		} else {
-			onPlay();
+			showPauseButton();
 		}
 
 		if ( video ) {
+			// Disable default controls to avoid duplication if it hasn't already.
+			video.controls = false;
 
 			// Here we use the player events to trigger the changing of the ambient control UI.
 			// Without this external events such as key presses or clicking would desync the
 			// control from the video state.
-			video.addEventListener( 'canplay', () => {
-				onPlay();
-			} );
+			const update = () => {
+				const isPlaying = !video.paused && !video.ended;
+				if ( isPlaying ) {
+					showPauseButton();
+					return;
+				}
+				showPauseButton();
+			};
 
-			video.addEventListener( 'play', () => {
-				onPlay();
-			} );
+			// Fire once metadata is ready
+			video.addEventListener('loadedmetadata', update);
 
-			video.addEventListener( 'playing', () => {
-				onPlay();
-			} );
+			// Detect actual playback transitions
+			video.addEventListener('playing', update);
+			video.addEventListener('pause', update);
+			video.addEventListener('ended', update);
+			video.addEventListener('waiting', update);
 
-			// Switch to play button for rewatch.
-			video.addEventListener( 'ended', () => {
-				onPause();
-			} );
+			// Add click event listeners to play and pause the video.
+			ambientControls.addEventListener( 'click', () => {
+				onVideoButton();
+			}, false );
 
-			video.addEventListener( 'pause', () => {
-				onPause();
-			} );
 		}
 
-		// Add click event listeners to play and pause the video.
-		ambientControls.addEventListener( 'click', () => {
-			onButton();
-		}, false );
+		if ( iframe ) {
+			// Add click event listeners to play and pause the video.
+			ambientControls.addEventListener( 'click', () => {
+				onIframeButton();
+			}, false );
+		}
 	} );
 };
 
