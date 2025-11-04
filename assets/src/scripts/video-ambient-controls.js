@@ -29,6 +29,7 @@ const init = () => {
 			return;
 		}
 
+		// Don't reprocess the same videos.
 		if ( videoWrapper.querySelector('.video-ambient-controls') ) {
 			return;
 		}
@@ -125,7 +126,7 @@ const init = () => {
 			// control from the video state.
 			const update = () => {
 				const isPlaying = !video.paused && !video.ended;
-				addAmbientControls.setAttribute('aria-pressed', isPlaying);
+				ambientControls.setAttribute('aria-pressed', isPlaying);
 				if ( isPlaying ) {
 					showPauseButton();
 					return;
@@ -141,6 +142,9 @@ const init = () => {
 			video.addEventListener('pause', update);
 			video.addEventListener('ended', update);
 			video.addEventListener('error', update);
+			video.addEventListener( 'click', () => {
+				onVideoButton();
+			}, false );
 
 			// Add click event listeners to play and pause the video.
 			ambientControls.addEventListener( 'click', () => {
@@ -158,4 +162,10 @@ const init = () => {
 	} );
 };
 
-document.addEventListener( 'DOMContentLoaded', init );
+if (document.readyState === 'loading') {
+	document.addEventListener('readystatechange', () => {
+		if (document.readyState === 'interactive') init();
+	});
+} else {
+	init();
+}
