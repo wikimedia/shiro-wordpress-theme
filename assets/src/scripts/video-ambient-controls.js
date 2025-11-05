@@ -109,7 +109,7 @@ const init = () => {
 			} catch (err) {
 				// no-op.
 			}
-		};;
+		};
 
 		if ( showPlayIcon ) {
 			showPlayButton();
