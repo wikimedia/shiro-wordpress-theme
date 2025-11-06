@@ -46,6 +46,9 @@
 
 	&__content {
 		@include style-guide-dropdown-contents;
+
+		max-height: 80vh;
+		overflow-y: scroll;
 	}
 
 	&__language {
