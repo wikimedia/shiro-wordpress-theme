@@ -65,7 +65,9 @@ const init = () => {
 		// HTML5 Video.
 		const onVideoButton = () => {
 			if ( video.paused ) {
-				video.play();
+				video.play().catch( err => {
+					// If iOS prevents playback, don't break the application.
+				} );
 			} else {
 				video.pause();
 			}
@@ -83,14 +85,14 @@ const init = () => {
 
 			const message = isPlaying
 				? {
-						event: 'command',
-						func: 'playVideo',
-						method: 'play',
+					event: 'command',
+					func: 'playVideo',
+					method: 'play',
 				}
 				: {
-						event: 'command',
-						func: 'pauseVideo',
-						method: 'pause',
+					event: 'command',
+					func: 'pauseVideo',
+					method: 'pause',
 				};
 
 			try {
@@ -121,6 +123,16 @@ const init = () => {
 			// Disable default controls to avoid duplication if it hasn't already.
 			video.controls = false;
 
+			// Ensure videos don't take over fullscreen on iOS.
+			if (!video.hasAttribute('playsinline')) {
+				video.setAttribute('playsinline', '');
+			}
+
+			// Improve metadata loading.
+			if (!video.hasAttribute('preload')) {
+				video.setAttribute('preload', 'metadata');
+			}
+
 			// Here we use the player events to trigger the changing of the ambient control UI.
 			// Without this external events such as key presses or clicking would desync the
 			// control from the video state.
@@ -142,30 +154,30 @@ const init = () => {
 			video.addEventListener('pause', update);
 			video.addEventListener('ended', update);
 			video.addEventListener('error', update);
-			video.addEventListener( 'click', () => {
-				onVideoButton();
-			}, false );
+
+			// Fallbacks for older iOS devices.
+			video.addEventListener('webkitbeginfullscreen', update);
+			video.addEventListener('webkitendfullscreen', update);
 
 			// Add click event listeners to play and pause the video.
-			ambientControls.addEventListener( 'click', () => {
-				onVideoButton();
-			}, false );
+			video.addEventListener('click',onVideoButton, false );
+			ambientControls.addEventListener('click', onVideoButton, false );
 
 		}
 
 		if ( iframe ) {
 			// Add click event listeners to play and pause the video.
-			ambientControls.addEventListener( 'click', () => {
-				onIframeButton();
-			}, false );
+			ambientControls.addEventListener( 'click', onIframeButton, false );
 		}
 	} );
 };
 
 if (document.readyState === 'loading') {
 	document.addEventListener('readystatechange', () => {
-		if (document.readyState === 'interactive') init();
-	});
+		if ( document.readyState === 'interactive' ) {
+			init();
+		}
+	} );
 } else {
 	init();
 }
