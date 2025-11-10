@@ -2,8 +2,9 @@ import React from 'react';
 
 import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { BaseControl, Button, Spinner } from '@wordpress/components';
-import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
+
+import { useMediaSrc } from './shared';
 
 const allowedTypes = [ 'video' ];
 
@@ -32,17 +33,7 @@ export default function VideoControl( props ) {
 		onChange,
 	} = props;
 
-	const videoUrl = useSelect(
-		( select ) => {
-			const media = select( 'core' ).getMedia( value, { context: 'view' } );
-			if ( ! media ) {
-				return undefined;
-			}
-
-			return media.source_url;
-		},
-		[ value ]
-	);
+	const videoUrl = useMediaSrc( value );
 
 	return (
 		<BaseControl

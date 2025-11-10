@@ -20,7 +20,6 @@ import { useSelect } from '@wordpress/data';
  * Internal dependencies
  */
 import VideoPromoInspectorControls from './inspector-controls';
-import VideoPromoBlockControls from './block-controls';
 import { useMediaSrc } from './shared';
 import { useEffect } from 'react';
 
@@ -75,23 +74,29 @@ function VideoPromoEdit( {
 	const _mobilePoster = useMediaSrc( mobilePosterId ) ?? '';
 
 	// Update URL attributes if they don't match the freshly fetched attachment sources.
-	useEffect(() => {
+	useEffect( () => {
 		if ( videoId && _videoUrl && ( _videoUrl !== videoUrl ) ) {
 			setAttributes({ videoUrl: _videoUrl });
 		}
+	}, [_videoUrl, setAttributes, videoId, videoUrl] );
 
+	useEffect( () => {
 		if ( mobileVideoId && _mobileVideoUrl && _mobileVideoUrl !== mobileVideoUrl ) {
 			setAttributes({ mobileVideoUrl: _mobileVideoUrl });
 		}
+	}, [_mobileVideoUrl, setAttributes, mobileVideoId, mobileVideoUrl] );
 
+	useEffect( () => {
 		if ( posterId && _poster && _poster !== poster ) {
 			setAttributes({ poster: _poster });
 		}
+	}, [setAttributes, posterId, _poster, poster] );
 
+	useEffect(() => {
 		if ( mobilePosterId && _mobilePoster && _mobilePoster !== mobilePoster ) {
 			setAttributes({ mobilePoster: _mobilePoster });
 		}
-	}, [videoId, mobileVideoId, _videoUrl, videoUrl, _mobileVideoUrl, mobileVideoUrl, setAttributes, _poster, poster, _mobilePoster, mobilePoster, posterId, mobilePosterId]);
+	}, [setAttributes, _mobilePoster, mobilePoster, mobilePosterId]);
 
 	const isUploadingMedia = isTemporaryMedia( videoId, videoUrl ) ||
 		isTemporaryMedia( mobileVideoId, mobileVideoUrl );
@@ -130,14 +135,6 @@ function VideoPromoEdit( {
 		hasInnerBlocks,
 	};
 
-	const blockControls = (
-		<VideoPromoBlockControls
-			attributes={ attributes }
-			setAttributes={ setAttributes }
-			currentSettings={ currentSettings }
-		/>
-	);
-
 	const inspectorControls = (
 		<VideoPromoInspectorControls
 			attributes={ attributes }
@@ -155,7 +152,6 @@ function VideoPromoEdit( {
 
 	return (
 		<>
-			{ blockControls }
 			{ inspectorControls }
 			<TagName
 				{ ...blockProps }
