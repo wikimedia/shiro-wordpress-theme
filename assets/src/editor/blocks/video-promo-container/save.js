@@ -21,8 +21,8 @@ import { ReactNode } from 'react';
 const Save = ( { attributes } ) => {
 	const {
 		tagName: Tag,
-		videoUrl,
-		mobileVideoUrl,
+		video,
+		mobileVideo,
 		poster,
 		mobilePoster,
 	} = attributes;
@@ -36,24 +36,22 @@ const Save = ( { attributes } ) => {
 					} ) }
 				/>
 			</div>
-			{ videoUrl && ( <video
+			{ video && ( <video
 				className={ clsx(
 					'wp-block-shiro-video-promo-container-background__desktop',
 					'intrinsic-ignore',
 					'is-position-center-center'
 				) }
-				src={ videoUrl }
+				src={ video }
 				poster={ poster }
-				data-object-fit="cover"
-			/> ) }{ mobileVideoUrl && ( <video
+			/> ) }{ mobileVideo && ( <video
 				className={ clsx(
 					'wp-block-shiro-video-promo-container-background__mobile',
 					'intrinsic-ignore',
 					'is-position-center-center'
 				) }
-				src={ mobileVideoUrl }
+				src={ mobileVideo }
 				poster={ mobilePoster }
-				data-object-fit="cover"
 			/> ) }
 		</Tag>
 	);

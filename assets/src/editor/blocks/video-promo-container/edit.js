@@ -60,31 +60,31 @@ function VideoPromoEdit( {
 		tagName: TagName = 'div',
 		posterId,
 		mobilePosterId,
-		videoUrl,
-		mobileVideoUrl,
+		video,
+		mobileVideo,
 		poster,
 		mobilePoster,
 	} = attributes;
 
 	// Fetch the attachment sources.
-	const _videoUrl = useMediaSrc( videoId ) ?? '';
+	const _video = useMediaSrc( videoId ) ?? '';
 
-	const _mobileVideoUrl = useMediaSrc( mobileVideoId ) ?? '';
+	const _mobileVideo = useMediaSrc( mobileVideoId ) ?? '';
 	const _poster = useMediaSrc( posterId ) ?? '';
 	const _mobilePoster = useMediaSrc( mobilePosterId ) ?? '';
 
 	// Update URL attributes if they don't match the freshly fetched attachment sources.
 	useEffect( () => {
-		if ( videoId && _videoUrl && ( _videoUrl !== videoUrl ) ) {
-			setAttributes({ videoUrl: _videoUrl });
+		if ( videoId && _video && ( _video !== video ) ) {
+			setAttributes({ video: _video });
 		}
-	}, [_videoUrl, setAttributes, videoId, videoUrl] );
+	}, [_video, setAttributes, videoId, video] );
 
 	useEffect( () => {
-		if ( mobileVideoId && _mobileVideoUrl && _mobileVideoUrl !== mobileVideoUrl ) {
-			setAttributes({ mobileVideoUrl: _mobileVideoUrl });
+		if ( mobileVideoId && _mobileVideo && _mobileVideo !== mobileVideo ) {
+			setAttributes({ mobileVideo: _mobileVideo });
 		}
-	}, [_mobileVideoUrl, setAttributes, mobileVideoId, mobileVideoUrl] );
+	}, [_mobileVideo, setAttributes, mobileVideoId, mobileVideo] );
 
 	useEffect( () => {
 		if ( posterId && _poster && _poster !== poster ) {
@@ -98,8 +98,8 @@ function VideoPromoEdit( {
 		}
 	}, [setAttributes, _mobilePoster, mobilePoster, mobilePosterId]);
 
-	const isUploadingMedia = isTemporaryMedia( videoId, videoUrl ) ||
-		isTemporaryMedia( mobileVideoId, mobileVideoUrl );
+	const isUploadingMedia = isTemporaryMedia( videoId, video ) ||
+		isTemporaryMedia( mobileVideoId, mobileVideo );
 
 	const mediaStyle = {
 		objectPosition: 'center center',
@@ -157,23 +157,23 @@ function VideoPromoEdit( {
 				{ ...blockProps }
 				className={ clsx( classes, blockProps.className ) }
 				style={ { ...blockProps.style } }
-				data-url={ videoUrl }
+				data-url={ video }
 			>
 				<div className="wp-block-shiro-video-promo-container__inner-container">
 					<div { ...innerBlocksProps } />
 				</div>
-				{ videoUrl && (
+				{ video && (
 					<video
 						className={ clsx(
 							'wp-block-shiro-video-promo-container-background__desktop',
 							'intrinsic-ignore',
 							'is-position-center-center'
 						) }
-						src={ videoUrl }
+						src={ video }
 						poster={ poster }
 						style={ mediaStyle }
 					/>
-				) }{ mobileVideoUrl && (
+				) }{ mobileVideo && (
 					<video
 						className={ clsx(
 							'wp-block-shiro-video-promo-container-background__mobile',
@@ -183,7 +183,7 @@ function VideoPromoEdit( {
 						loop
 						muted
 						autoPlay
-						src={ mobileVideoUrl }
+						src={ mobileVideo }
 						poster={ mobilePoster }
 						style={ mediaStyle }
 					/>
