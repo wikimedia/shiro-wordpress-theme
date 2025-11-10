@@ -1,0 +1,47 @@
+@mixin style-guide-play-content {
+	content: "▶ \00a0" #{"/*rtl:'\00a0 ▶'*/;"};
+}
+
+@mixin style-guide-play() {
+	display: inline-flex;
+	position: relative;
+
+	&::before {
+		@include style-guide-play-content;
+		clip-path: rect(0 100% 100% 0);
+		color: currentColor;
+		font-family: var(--wp--preset--font-family--default);
+		font-weight: var(--wp--custom--font-weight--normal);
+		transition: font-weight 300ms ease;
+		transition-property: clip-path, font-weight, letter-spacing;
+	}
+
+	&:hover,
+	&:focus,
+	&:active,
+	&:disabled,
+	&:is(a):not([href]) {
+		&::before {
+			// Clip path hides the text decoration on the extra space after the icon.
+			clip-path: rect(0 100% 100% 0);
+			font-weight: var(--wp--custom--font-weight--bold);
+			letter-spacing: 2px;
+		}
+	}
+}
+
+.wp-block-shiro-video-promo-play {
+	@include style-guide-play();
+
+	background: none;
+	border: none;
+	color: var(--wp--preset--color--blue-aaa);
+	cursor: pointer;
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: var(--wp--custom--font-weight--bold);
+    line-height: var(--wp--custom--line-height--base);
+}
+
+:root .wp-block-shiro-video-promo-play {
+	margin-block-start: var(--wp--preset--spacing--20);
+}
