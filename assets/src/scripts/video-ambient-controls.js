@@ -11,165 +11,200 @@ const shouldShowPlayIcon = video => {
 	return ! isPlaying;
 }
 
+const initialiseVideo = videoWrapper => {
+	// Don't reprocess the same videos.
+	if ( Array.from(videoWrapper.children).some(
+		el => el.classList.contains('video-ambient-controls')
+	) ) {
+		return;
+	}
+
+	const iframe = videoWrapper.querySelector( 'iframe' );
+
+	let videoSelector = 'video';
+
+	// If this is the Promo block, there will be 2 videos, figure out which one to use.
+	if ( videoWrapper.classList.contains( 'wp-block-shiro-video-promo-container' ) ) {
+		// Do we want the mobile or the desktop version?
+		videoSelector = '.wp-block-shiro-video-promo-container-background__desktop';
+		if ( window.matchMedia('(max-width: 700px)').matches ) {
+			videoSelector = '.wp-block-shiro-video-promo-container-background__mobile';
+		}
+	}
+
+	const video = videoWrapper.querySelector( videoSelector );
+
+	if ( ! ( video || iframe ) ) {
+		return;
+	}
+
+	const showPlayIcon = ( video && shouldShowPlayIcon( video ) ) ||
+		( iframe && ( ! iframe.src.includes( 'autoPlay=1' ) ) );
+
+	const promo_play_block = videoWrapper.querySelector( '.wp-block-shiro-video-promo-play' );
+
+	const ambientControls = document.createElement( 'button' );
+	ambientControls.classList.add( 'video-ambient-controls' );
+
+	videoWrapper.appendChild( ambientControls );
+
+	const pauseText = __( 'Pause video', 'shiro-admin' );
+	const playText = __( 'Play video', 'shiro-admin' );
+
+	const showPlayButton = () => {
+		ambientControls.setAttribute( 'aria-label', playText );
+		ambientControls.classList.remove( 'pause' );
+		videoWrapper.classList.remove( 'ambient-video-pause' );
+
+		if ( ! ambientControls.classList.contains( 'play' ) ) {
+			ambientControls.classList.add( 'play' );
+			videoWrapper.classList.add( 'ambient-video-play' );
+		}
+	};
+
+	const showPauseButton = () => {
+		ambientControls.setAttribute( 'aria-label', pauseText );
+		ambientControls.classList.remove( 'play' );
+		videoWrapper.classList.remove( 'ambient-video-play' );
+
+		if ( ! ambientControls.classList.contains( 'pause' ) ) {
+			ambientControls.classList.add( 'pause' );
+			videoWrapper.classList.add( 'ambient-video-pause' );
+		}
+	}
+
+	// HTML5 Video.
+	const onVideoButton = () => {
+		if ( video.paused ) {
+			video.play().catch( err => {
+				// If iOS prevents playback, don't break the application.
+			} );
+		} else {
+			video.pause();
+		}
+	};
+
+	// iframe/VideoPress.
+	const onIframeButton = () => {
+		const isPlaying = ambientControls.classList.contains('play');
+
+		if (isPlaying) {
+			showPauseButton();
+		} else {
+			showPlayButton();
+		}
+
+		const message = isPlaying
+			? {
+				event: 'command',
+				func: 'playVideo',
+				method: 'play',
+			}
+			: {
+				event: 'command',
+				func: 'pauseVideo',
+				method: 'pause',
+			};
+
+		try {
+			if (videoWrapper.classList.contains('is-provider-videopress')) {
+				iframe?.contentWindow.postMessage(
+					{
+						event: isPlaying
+							? 'videopress_action_play'
+							: 'videopress_action_pause',
+					},
+					'*'
+				);
+			} else {
+				iframe?.contentWindow.postMessage(JSON.stringify(message), '*');
+			}
+		} catch (err) {
+			// no-op.
+		}
+	};
+
+	if ( showPlayIcon ) {
+		showPlayButton();
+	} else {
+		showPauseButton();
+	}
+
+	if ( video ) {
+		// Disable default controls to avoid duplication if it hasn't already.
+		video.controls = false;
+
+		// Ensure videos don't take over fullscreen on iOS.
+		if (!video.hasAttribute('playsinline')) {
+			video.setAttribute('playsinline', '');
+		}
+
+		// Improve metadata loading.
+		if (!video.hasAttribute('preload')) {
+			video.setAttribute('preload', 'metadata');
+		}
+
+		// Here we use the player events to trigger the changing of the ambient control UI.
+		// Without this external events such as key presses or clicking would desync the
+		// control from the video state.
+		const update = () => {
+			const isPlaying = !video.paused && !video.ended;
+			ambientControls.setAttribute('aria-pressed', isPlaying);
+			if ( promo_play_block ) {
+				promo_play_block.setAttribute('aria-pressed', isPlaying);
+			}
+			if ( isPlaying ) {
+				showPauseButton();
+				return;
+			}
+			showPlayButton();
+		};
+
+		// Fire once metadata is ready
+		video.addEventListener('loadedmetadata', update);
+
+		// Detect actual playback transitions
+		video.addEventListener('playing', update);
+		video.addEventListener('pause', update);
+		video.addEventListener('ended', update);
+		video.addEventListener('error', update);
+
+		// Fallbacks for older iOS devices.
+		video.addEventListener('webkitbeginfullscreen', update);
+		video.addEventListener('webkitendfullscreen', update);
+
+		// Add click event listeners to play and pause the video.
+		video.addEventListener('click',onVideoButton, false );
+		ambientControls.addEventListener('click', onVideoButton, false );
+		if (promo_play_block) {
+			promo_play_block.addEventListener('click', onVideoButton, false );
+		}
+
+	}
+
+	if ( iframe ) {
+		// Add click event listeners to play and pause the video.
+		ambientControls.addEventListener( 'click', onIframeButton, false );
+		if (promo_play_block) {
+			promo_play_block.addEventListener('click', onIframeButton, false );
+		}
+	}
+	//
+}
+
 /**
  * Initialize all videos on page.
  */
 const init = () => {
 	const videos = [ ...document.querySelectorAll( '.wp-block-video' ) ];
-	if ( videos.length === 0 ) {
-		return;
+	if ( videos.length !== 0 ) {
+		videos.forEach( initialiseVideo );
 	}
 
-	// DO use an animation here!
-	videos.forEach( videoWrapper => {
-		const iframe = videoWrapper.querySelector( 'iframe' );
-		const video = videoWrapper.querySelector( 'video' );
-
-		if ( ! ( video || iframe ) ) {
-			return;
-		}
-
-		// Don't reprocess the same videos.
-		if ( videoWrapper.querySelector('.video-ambient-controls') ) {
-			return;
-		}
-
-		const showPlayIcon = ( video && shouldShowPlayIcon( video ) ) ||
-			( iframe && ( ! iframe.src.includes( 'autoPlay=1' ) ) );
-
-		const ambientControls = document.createElement( 'button' );
-		ambientControls.classList.add( 'video-ambient-controls' );
-
-		videoWrapper.appendChild( ambientControls );
-
-		const pauseText = __( 'Pause ambient video', 'shiro-admin' );
-		const playText = __( 'Play ambient video', 'shiro-admin' );
-
-		const showPlayButton = () => {
-			ambientControls.setAttribute( 'aria-label', playText );
-			ambientControls.classList.remove( 'pause' );
-			if ( ! ambientControls.classList.contains( 'play' ) ) {
-				ambientControls.classList.add( 'play' );
-			}
-		};
-
-		const showPauseButton = () => {
-			ambientControls.setAttribute( 'aria-label', pauseText );
-			ambientControls.classList.remove( 'play' );
-
-			if ( ! ambientControls.classList.contains( 'pause' ) ) {
-				ambientControls.classList.add( 'pause' );
-			}
-		}
-
-		// HTML5 Video.
-		const onVideoButton = () => {
-			if ( video.paused ) {
-				video.play().catch( err => {
-					// If iOS prevents playback, don't break the application.
-				} );
-			} else {
-				video.pause();
-			}
-		};
-
-		// iframe/VideoPress.
-		const onIframeButton = () => {
-			const isPlaying = ambientControls.classList.contains('play');
-
-			if (isPlaying) {
-				showPauseButton();
-			} else {
-				showPlayButton();
-			}
-
-			const message = isPlaying
-				? {
-					event: 'command',
-					func: 'playVideo',
-					method: 'play',
-				}
-				: {
-					event: 'command',
-					func: 'pauseVideo',
-					method: 'pause',
-				};
-
-			try {
-				if (videoWrapper.classList.contains('is-provider-videopress')) {
-					iframe?.contentWindow.postMessage(
-						{
-							event: isPlaying
-								? 'videopress_action_play'
-								: 'videopress_action_pause',
-						},
-						'*'
-					);
-				} else {
-					iframe?.contentWindow.postMessage(JSON.stringify(message), '*');
-				}
-			} catch (err) {
-				// no-op.
-			}
-		};
-
-		if ( showPlayIcon ) {
-			showPlayButton();
-		} else {
-			showPauseButton();
-		}
-
-		if ( video ) {
-			// Disable default controls to avoid duplication if it hasn't already.
-			video.controls = false;
-
-			// Ensure videos don't take over fullscreen on iOS.
-			if (!video.hasAttribute('playsinline')) {
-				video.setAttribute('playsinline', '');
-			}
-
-			// Improve metadata loading.
-			if (!video.hasAttribute('preload')) {
-				video.setAttribute('preload', 'metadata');
-			}
-
-			// Here we use the player events to trigger the changing of the ambient control UI.
-			// Without this external events such as key presses or clicking would desync the
-			// control from the video state.
-			const update = () => {
-				const isPlaying = !video.paused && !video.ended;
-				ambientControls.setAttribute('aria-pressed', isPlaying);
-				if ( isPlaying ) {
-					showPauseButton();
-					return;
-				}
-				showPlayButton();
-			};
-
-			// Fire once metadata is ready
-			video.addEventListener('loadedmetadata', update);
-
-			// Detect actual playback transitions
-			video.addEventListener('playing', update);
-			video.addEventListener('pause', update);
-			video.addEventListener('ended', update);
-			video.addEventListener('error', update);
-
-			// Fallbacks for older iOS devices.
-			video.addEventListener('webkitbeginfullscreen', update);
-			video.addEventListener('webkitendfullscreen', update);
-
-			// Add click event listeners to play and pause the video.
-			video.addEventListener('click',onVideoButton, false );
-			ambientControls.addEventListener('click', onVideoButton, false );
-
-		}
-
-		if ( iframe ) {
-			// Add click event listeners to play and pause the video.
-			ambientControls.addEventListener( 'click', onIframeButton, false );
-		}
-	} );
+	const promoBlocks = [ ...document.querySelectorAll( '.wp-block-shiro-video-promo-container' ) ];
+	if ( promoBlocks.length !== 0 ) {
+		promoBlocks.forEach( initialiseVideo );
+	}
 };
 
 if (document.readyState === 'loading') {

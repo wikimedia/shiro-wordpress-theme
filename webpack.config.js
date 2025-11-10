@@ -174,7 +174,7 @@ module.exports = {
 		...hashedEntries,
 		...themeStylesheets,
 		editor: './assets/src/editor/index.js',
-   	},
+	},
 	resolve: {
 		...defaultConfig.resolve,
 		alias: {
