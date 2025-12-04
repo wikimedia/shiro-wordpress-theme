@@ -98,6 +98,8 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		'shiro/accordion',
 		'shiro/accordion-item',
 		'shiro/interactive-card',
+		'shiro/video-promo-container',
+		'shiro/video-promo-play',
 
 		// Plugin blocks
 		'gravityforms/form',
