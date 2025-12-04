@@ -55,6 +55,8 @@ if ( ! empty( $attributes['defaultCurrencyAmount'] ) ) {
 
 <div <?php echo get_block_wrapper_attributes(); // phpcs:ignore ?>>
 	<form method="get" action="https://donate.wikimedia.org">
+		<input type="hidden" name="appeal" value="WP25" />
+		<input type="hidden" name="pym_appeal" value="WP25" />
 		<input type="hidden" name="wmf_medium" value="<?php echo esc_attr( $attributes['medium'] ?? '' ); ?>" />
 		<input type="hidden" name="wmf_campaign" value="<?php echo esc_attr( $attributes['campaign'] ?? '' ); ?>" />
 		<input type="hidden" name="wmf_source" value="<?php echo esc_attr( $attributes['source'] ?? $default_amount ); ?>" />
