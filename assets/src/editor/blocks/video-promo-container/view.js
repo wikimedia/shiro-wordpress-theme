@@ -48,9 +48,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 				// Scroll the top of the video into view.
 				setTimeout( () => {
 					const header = document.querySelector( '.global-header' ) || document.querySelector( 'header' );
-					const adminBar = document.getElementById( 'wpadminbar' );
-					const headerOffset = (header ? header.getBoundingClientRect().height : 0) +
-						(adminBar ? adminBar.getBoundingClientRect().height : 0);
+					const headerOffset = (header ? header.getBoundingClientRect().height : 0);
 
 					window.scrollTo( {
 						top: container.offsetTop - headerOffset,
