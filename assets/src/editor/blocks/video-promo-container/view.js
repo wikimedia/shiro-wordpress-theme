@@ -34,5 +34,32 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 		setVideoHeight();
 		window.addEventListener( 'resize', setVideoHeight );
+
+
+		/**
+		 * Scrolls the specified video element into view if it is not set to autoplay.
+		 * The method takes into account the height of a global header or WordPress admin bar if present,
+		 * ensuring the video is properly positioned below these elements when scrolled.
+		 *
+		 * @return {void} This method does not return any value.
+		 */
+		function scrollVideoIntoView() {
+			if ( ! video.autoplay ) {
+				// Scroll the top of the video into view.
+				setTimeout( () => {
+					const header = document.querySelector( '.global-header' ) || document.querySelector( 'header' );
+					const adminBar = document.getElementById( 'wpadminbar' );
+					const headerOffset = (header ? header.getBoundingClientRect().height : 0) +
+						(adminBar ? adminBar.getBoundingClientRect().height : 0);
+
+					window.scrollTo( {
+						top: container.offsetTop - headerOffset,
+						behavior: 'smooth'
+					} );
+				}, 100 );
+			}
+		}
+		video.addEventListener( 'play', scrollVideoIntoView );
+
 	} );
 } );
