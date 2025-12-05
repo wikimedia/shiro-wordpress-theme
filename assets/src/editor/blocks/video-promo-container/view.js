@@ -59,5 +59,19 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		}
 		video.addEventListener( 'play', scrollVideoIntoView );
 
+
+		/**
+		 * Sets the poster of the video by resetting the current video source.
+		 * This action makes the poster image visible.
+		 *
+		 * @return {void} Does not return any value.
+		 */
+		function setVideoPoster() {
+			video.src = '';
+			video.src = video.currentSrc;
+		}
+		video.addEventListener( 'ended', setVideoPoster );
+
+
 	} );
 } );
