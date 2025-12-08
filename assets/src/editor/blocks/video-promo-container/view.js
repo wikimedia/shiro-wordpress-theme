@@ -11,6 +11,43 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			return;
 		}
 
+		const initializeProgressBar = () => {
+			const progressBarContainer = document.createElement( 'div' );
+			progressBarContainer.className = 'progress-bar-container';
+			const progressBar = document.createElement( 'div' );
+			progressBar.className = 'progress-bar';
+			progressBarContainer.appendChild( progressBar );
+			video.after( progressBarContainer );
+			return progressBar;
+		};
+
+		const progressBar = initializeProgressBar();
+
+
+		const updateProgressBar = () => {
+			const progress = (video.currentTime / video.duration) * 100;
+			progressBar.style.width = progress + '%';
+		};
+		video.addEventListener( 'timeupdate', updateProgressBar );
+
+		const resetProgressBar = () => {
+			progressBar.style.width = '0%';
+		};
+		video.addEventListener( 'ended', resetProgressBar );
+
+		const transitionProgressBar = () => {
+			progressBar.style.transition = 'width 0.5s linear';
+		};
+		video.addEventListener( 'play', transitionProgressBar );
+
+
+		const pauseProgressBar = () => {
+			progressBar.style.transition = 'none';
+		};
+		video.addEventListener( 'pause', pauseProgressBar );
+
+
+
 		/**
 		 * Adjusts the height of a video element dynamically to fit within the viewport,
 		 * accounting for the height of the global site header and, if present, the WordPress admin bar.
@@ -71,7 +108,5 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			video.src = video.currentSrc;
 		}
 		video.addEventListener( 'ended', setVideoPoster );
-
-
 	} );
 } );
