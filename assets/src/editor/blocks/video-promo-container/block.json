@@ -37,6 +37,10 @@
 		},
 		"mobileVideo": {
 			"type": "string"
+		},
+		"enableProgressBar": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {
