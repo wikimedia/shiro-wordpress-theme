@@ -1,5 +1,3 @@
-@import "sass-lib/helpers/style-guide-variables-overrides";
-
 .wp-block-shiro-video-promo-container {
 	display: inline-grid;
 	position: relative;
@@ -80,6 +78,6 @@ $width-breakpoint-tablet: 768px;
 	.progress-bar {
 		width: 0;
 		height: 100%;
-		background: $wmui-color-red;
+		background: #990000; // $wmui-color-red -- avoid large import;
 	}
 }
