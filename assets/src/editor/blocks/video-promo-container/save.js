@@ -25,10 +25,11 @@ const Save = ( { attributes } ) => {
 		mobileVideo,
 		poster,
 		mobilePoster,
+		enableProgressBar,
 	} = attributes;
 
 	return (
-		<Tag { ...useBlockProps.save() }>
+		<Tag { ...useBlockProps.save() } data-enable-progress-bar={ enableProgressBar }>
 			<div className="wp-block-shiro-video-promo-container__inner-container">
 				<div
 					{ ...useInnerBlocksProps.save( {
