@@ -64,6 +64,7 @@ function VideoPromoEdit( {
 		mobileVideo,
 		poster,
 		mobilePoster,
+		enableProgressBar
 	} = attributes;
 
 	// Fetch the attachment sources.
@@ -158,6 +159,7 @@ function VideoPromoEdit( {
 				className={ clsx( classes, blockProps.className ) }
 				style={ { ...blockProps.style } }
 				data-url={ video }
+				data-enable-progress-bar={ enableProgressBar }
 			>
 				<div className="wp-block-shiro-video-promo-container__inner-container">
 					<div { ...innerBlocksProps } />

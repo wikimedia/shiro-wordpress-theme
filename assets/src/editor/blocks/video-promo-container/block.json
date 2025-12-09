@@ -37,6 +37,10 @@
 		},
 		"mobileVideo": {
 			"type": "string"
+		},
+		"enableProgressBar": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {
@@ -50,6 +54,7 @@
 			}
 	},
 	"editorScript": "file:./index.js",
+	"viewScript": "file:./view.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css"
 }
