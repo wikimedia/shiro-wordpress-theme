@@ -14,13 +14,13 @@
 
 $width-breakpoint-tablet: 768px;
 
-@media ( min-width: #{$width-breakpoint-tablet} ) {
+@media (min-width: #{$width-breakpoint-tablet}) {
 	.wp-block-shiro-video-promo-container > .wp-block-shiro-video-promo-container-background__desktop {
 		display: block;
 	}
 }
 
-@media ( max-width: #{$width-breakpoint-tablet} ) {
+@media (max-width: #{$width-breakpoint-tablet}) {
 	.wp-block-shiro-video-promo-container > .wp-block-shiro-video-promo-container-background__mobile {
 		display: block;
 	}
@@ -33,8 +33,8 @@ $width-breakpoint-tablet: 768px;
 
 	justify-self: start;
 	width: 100%;
-    max-width: var(--wp--style--global--wide-size);
-    align-self: end;
+	max-width: var(--wp--style--global--wide-size);
+	align-self: end;
 }
 
 .wp-block-shiro-video-promo-container__inner-container--content {
@@ -45,7 +45,7 @@ $width-breakpoint-tablet: 768px;
 	max-width: 630px;
 }
 
-@media ( min-width: #{$width-breakpoint-tablet} ) {
+@media (min-width: #{$width-breakpoint-tablet}) {
 	.wp-block-shiro-video-promo-container__inner-container {
 		align-self: center;
 		justify-self: center;
@@ -58,10 +58,27 @@ $width-breakpoint-tablet: 768px;
 
 // Hide the contents when the video is playing.
 .wp-block-shiro-video-promo-container.ambient-video-pause > .wp-block-shiro-video-promo-container__inner-container {
-    display: none;
+	display: none;
 }
 
 .wp-block-shiro-video-promo-container > .video-ambient-controls {
-    align-self: flex-end;
-    justify-self: flex-end;
+	align-self: flex-end;
+	justify-self: flex-end;
 }
+
+
+.wp-block-shiro-video-promo-container .progress-bar-container {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 12px;
+	background-color: transparent;
+
+	.progress-bar {
+		width: 0;
+		height: 100%;
+		background: white;
+	}
+}
+

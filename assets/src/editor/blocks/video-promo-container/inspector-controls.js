@@ -5,6 +5,7 @@ import {
 	PanelBody,
 	PanelRow,
 	SelectControl,
+	ToggleControl,
 } from '@wordpress/components';
 import {
 	InspectorControls,
@@ -27,11 +28,21 @@ export default function VideoPromoInspectorControls( {
 		videoId,
 		mobileVideoId,
 		mobilePosterId,
+		enableProgressBar
 	} = attributes;
 
 	return (
 		<>
 			<InspectorControls>
+				<PanelBody title={ __( 'Settings' ) }>
+					<PanelRow>
+						<ToggleControl
+							label={ __( 'Enable progress bar' ) }
+							checked={ enableProgressBar }
+							onChange={ ( value ) => setAttributes( { enableProgressBar: value } ) }
+						/>
+					</PanelRow>
+				</PanelBody>
 				<PanelBody title="Desktop Video" initialOpen={ true }>
 					<PanelRow>
 						<VideoControl
