@@ -1,3 +1,5 @@
+@import "sass-lib/helpers/style-guide-variables-overrides";
+
 .wp-block-shiro-video-promo-container {
 	display: inline-grid;
 	position: relative;
@@ -81,4 +83,3 @@ $width-breakpoint-tablet: 768px;
 		background: $wmui-color-red;
 	}
 }
-
