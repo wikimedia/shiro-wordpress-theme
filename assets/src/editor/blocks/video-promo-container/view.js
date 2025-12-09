@@ -43,7 +43,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		 *
 		 * @return {void} This method does not return any value.
 		 */
-		function scrollVideoIntoView() {
+		const scrollVideoIntoView = () => {
 			if ( ! video.autoplay ) {
 				// Scroll the top of the video into view.
 				setTimeout( () => {
@@ -56,7 +56,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 					} );
 				}, 100 );
 			}
-		}
+		};
 
 		video.addEventListener( 'play', scrollVideoIntoView );
 
@@ -67,10 +67,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		 *
 		 * @return {void} Does not return any value.
 		 */
-		function setVideoPoster() {
+		const setVideoPoster = () => {
 			video.src = '';
 			video.src = video.currentSrc;
-		}
+		};
 
 		video.addEventListener( 'ended', setVideoPoster );
 
