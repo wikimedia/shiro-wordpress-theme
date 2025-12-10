@@ -11,6 +11,13 @@
 	width: 100%;
 }
 
+/* 9 / 16 vertical aspect ratio is used by YouTube shorts. */
+.wp-block-embed-youtube.wp-embed-aspect-9-16 iframe {
+	aspect-ratio: 9 / 16;
+	height: auto;
+	width: 100%;
+}
+
 .wp-block-embed iframe {
 	border-radius: rem(4);
 	display: block;
