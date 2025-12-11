@@ -288,7 +288,7 @@ registerBlockType( metadata.name, {
 
 		return (
 			<div {...blockProps}>
-				{layout === ('carousel-groups' || 'carousel-video') ? (
+				{layout === 'carousel-groups' ? (
 					<div className="shiro-carousel__track">
 						<div {...innerBlocksProps} />
 					</div>
