@@ -78,10 +78,8 @@ const setVideoHeight = ( video ) => {
 	const header = document.querySelector( '.global-header' ) || document.querySelector( 'header' );
 	const headerHeight = header ? header.getBoundingClientRect().height : 0;
 
-	const adminBar = document.getElementById( 'wpadminbar' );
-	const adminBarHeight = adminBar ? adminBar.getBoundingClientRect().height : 0;
-
-	const availableHeight = Math.max( 0, window.innerHeight - headerHeight - adminBarHeight );
+	// We ignore the admin bar because it is positioned "above" the document.
+	const availableHeight = Math.max( 0, window.innerHeight - headerHeight );
 
 	// We want the element box to match the rendered video size (no letterboxing),
 	// so we size height from width using the intrinsic video aspect ratio.
