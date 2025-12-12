@@ -18,7 +18,7 @@ const init = () => {
 			domElement.querySelector( '.shiro-carousel__list' ),
 		];
 
-		// Don't initiate the carousel if there aren't at least 2 slides.
+		// Don't initiate the carousel if there aren't at least 2 pages of slides.
 		if ( [ ...list.children ].length < 2 ) {
 			return;
 		}
@@ -35,6 +35,7 @@ const init = () => {
 
 		const perPage = JSON.parse( domElement.dataset.splide ).perPage || 1;
 		const isPostCarousel = track.classList.contains( 'wp-block-query' );
+		const isVideoCarousel = list.querySelectorAll( 'video' ).length > 0;
 		if ( perPage > 1 ) {
 			defaultOptions.mediaQuery = 'max';
 			defaultOptions.breakpoints = {
@@ -52,6 +53,11 @@ const init = () => {
 			defaultOptions.gap = '3.34%';
 		}
 
+		// Video Carousel
+		if ( isVideoCarousel ) {
+			defaultOptions.perMove = 1;
+		}
+
 		const textDirection = window
 			.getComputedStyle( document.body )
 			.getPropertyValue( 'direction' );
@@ -67,7 +73,7 @@ const init = () => {
 		domElement.carousel = new Splide( domElement, options ).mount();
 
 		// Start rotating headings on the first slide.
-		slideVisible( domElement.carousel.Components.Slides.get()[ 0 ] );
+		slideVisible( domElement.carousel.Components.Slides.get()[0] );
 		domElement.carousel.on( 'visible', slideVisible );
 		domElement.carousel.on( 'hidden', slideHidden );
 	} );
