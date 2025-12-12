@@ -86,6 +86,15 @@ const VIDEO_TEMPLATE = [
 			},
 		},
 	],
+	[
+		'core/embed',
+		{
+			providerNameSlug: 'youtube',
+			metadata: {
+				name: 'YouTube Video Slide',
+			},
+		},
+	],
 ];
 const TEMPLATES = {
 	'carousel-groups': GROUP_TEMPLATE,
@@ -96,7 +105,7 @@ const TEMPLATES = {
 const ALLOWED_LAYOUT_BLOCKS = {
 	'carousel-groups': [ 'core/group' ],
 	'carousel-news': [ 'core/query' ],
-	'carousel-video': [ 'core/video' ],
+	'carousel-video': [ 'core/video', 'core/embed' ],
 };
 
 registerBlockType( metadata.name, {
@@ -133,7 +142,7 @@ registerBlockType( metadata.name, {
 		const ALLOWED_BLOCKS = ALLOWED_LAYOUT_BLOCKS[layout];
 
 		const blockProps = useBlockProps( {
-			className: 'shiro-carousel',
+			className: classNames( 'shiro-carousel' ),
 		} );
 
 		const innerBlocksProps = useInnerBlocksProps( blockProps, {
@@ -288,7 +297,7 @@ registerBlockType( metadata.name, {
 
 		return (
 			<div {...blockProps}>
-				{layout === 'carousel-groups' ? (
+				{(layout === 'carousel-groups' || layout === 'carousel-video') ? (
 					<div className="shiro-carousel__track">
 						<div {...innerBlocksProps} />
 					</div>
