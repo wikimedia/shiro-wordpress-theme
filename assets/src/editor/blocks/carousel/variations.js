@@ -18,6 +18,20 @@ const variations = [
 		isActive: blockAttributes =>
 			blockAttributes.layout === 'carousel-posts',
 	},
+	{
+		name: 'shiro/carousel-video',
+		title: __( 'Video carousel' ),
+		description: __(
+			'Carousel block containing videos.'
+		),
+		attributes: {
+			align: 'wide',
+			layout: 'carousel-video',
+			perPage: 3,
+		},
+		isActive: blockAttributes =>
+			blockAttributes.layout === 'carousel-video',
+	}
 ];
 
 export default variations;
