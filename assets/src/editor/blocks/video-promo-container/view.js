@@ -182,10 +182,6 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			const progressBar = initializeProgressBar( video, container );
 
 			if ( progressBar ) {
-			// Update once metadata/duration becomes available (helps mobile).
-			video.addEventListener( 'loadedmetadata', () => updateProgressBar( video, progressBar ) );
-			video.addEventListener( 'durationchange', () => updateProgressBar( video, progressBar ) );
-
 				video.addEventListener( 'timeupdate', () => updateProgressBar( video, progressBar ) );
 				video.addEventListener( 'ended', () => resetProgressBar( progressBar ) );
 				video.addEventListener( 'play', () => transitionProgressBar( progressBar ) );
