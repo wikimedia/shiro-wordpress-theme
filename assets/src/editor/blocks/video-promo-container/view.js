@@ -50,10 +50,12 @@ const scrollVideoIntoView = ( video, container ) => {
 		// Scroll the top of the video into view.
 		setTimeout( () => {
 			const header = document.querySelector( '.global-header' ) || document.querySelector( 'header' );
-			const headerOffset = (header ? header.getBoundingClientRect().height : 0);
+			const headerOffset = header ? header.getBoundingClientRect().height : 0;
+
+			const videoTopOnPage = video.getBoundingClientRect().top + window.pageYOffset;
 
 			window.scrollTo( {
-				top: container.offsetTop - headerOffset,
+				top: Math.max( 0, videoTopOnPage - headerOffset ),
 				behavior: 'smooth'
 			} );
 		}, 100 );
@@ -72,12 +74,41 @@ const scrollVideoIntoView = ( video, container ) => {
  */
 const setVideoHeight = ( video ) => {
 	const header = document.querySelector( '.global-header' ) || document.querySelector( 'header' );
-	if ( header ) {
-		const headerHeight = header.getBoundingClientRect().height;
-		const adminBar = document.getElementById( 'wpadminbar' );
-		const adminBarHeight = adminBar ? adminBar.getBoundingClientRect().height : 0;
-		video.style.height = `calc(100vh - ${headerHeight + adminBarHeight}px)`;
-		video.style.objectFit = 'contain';
+	const headerHeight = header ? header.getBoundingClientRect().height : 0;
+
+	const adminBar = document.getElementById( 'wpadminbar' );
+	const adminBarHeight = adminBar ? adminBar.getBoundingClientRect().height : 0;
+
+	const availableHeight = Math.max( 0, window.innerHeight - headerHeight - adminBarHeight );
+
+	// We want the element box to match the rendered video size (no letterboxing),
+	// so we size height from width using the intrinsic video aspect ratio.
+	video.style.objectFit = 'contain';
+	video.style.maxHeight = `${availableHeight}px`;
+
+	const applyIntrinsicHeight = () => {
+		// videoWidth/videoHeight are available after `loadedmetadata`.
+		if ( ! video.videoWidth || ! video.videoHeight ) {
+			return;
+		}
+
+		const width = video.getBoundingClientRect().width;
+		if ( ! width ) {
+			return;
+		}
+
+		const idealHeight = width * (video.videoHeight / video.videoWidth);
+		const finalHeight = Math.min( idealHeight, availableHeight );
+
+		video.style.height = `${finalHeight}px`;
+	};
+
+	// If metadata is already available (cached), apply immediately.
+	applyIntrinsicHeight();
+
+	// Otherwise wait for it once.
+	if ( ! video.videoWidth || ! video.videoHeight ) {
+		video.addEventListener( 'loadedmetadata', applyIntrinsicHeight, { once: true } );
 	}
 };
 
@@ -116,10 +147,23 @@ const transitionProgressBar = ( progressBar ) => {
  * @param {HTMLElement} progressBar - The element representing the visual progress bar to be updated.
  */
 const updateProgressBar = ( video, progressBar ) => {
-	const progress = (video.currentTime / video.duration) * 100;
-	progressBar.style.width = progress + '%';
-};
+	console.log( 'Progress bar update:', {
+		duration: video.duration,
+		currentTime: video.currentTime,
+		progress: video.duration > 0 ? (video.currentTime / video.duration) * 100 : 0
+	} );
 
+	const duration = video.duration;
+
+	// Mobile Safari (and some stream scenarios) can report duration as 0/NaN/Infinity.
+	// If duration isn't a usable finite number, we can't compute progress reliably yet.
+	if ( ! Number.isFinite( duration ) || duration <= 0 ) {
+		return;
+	}
+
+	const progress = (video.currentTime / duration) * 100;
+	progressBar.style.width = `${Math.min( 100, Math.max( 0, progress ) )}%`;
+};
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	const containers = document.querySelectorAll( '.wp-block-shiro-video-promo-container' );
@@ -131,15 +175,15 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			return;
 		}
 
-		setVideoHeight( video );
-		window.addEventListener( 'resize', () => setVideoHeight( video ) );
-
-		video.addEventListener( 'play', () => scrollVideoIntoView( video, container ) );
-		video.addEventListener( 'ended', () => setVideoPoster( video ) );
+		// ... existing code ...
 
 		const progressBar = initializeProgressBar( video, container );
 
 		if ( progressBar ) {
+			// Update once metadata/duration becomes available (helps mobile).
+			video.addEventListener( 'loadedmetadata', () => updateProgressBar( video, progressBar ) );
+			video.addEventListener( 'durationchange', () => updateProgressBar( video, progressBar ) );
+
 			video.addEventListener( 'timeupdate', () => updateProgressBar( video, progressBar ) );
 			video.addEventListener( 'ended', () => resetProgressBar( progressBar ) );
 			video.addEventListener( 'play', () => transitionProgressBar( progressBar ) );
