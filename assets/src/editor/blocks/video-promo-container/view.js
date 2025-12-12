@@ -47,7 +47,7 @@ const pauseProgressBar = ( progressBar ) => {
  *
  * @return {void} This method does not return any value.
  */
-const scrollVideoIntoView = ( video, container ) => {
+const scrollVideoIntoView = ( video ) => {
 	if ( ! video.autoplay ) {
 		// Scroll the top of the video into view.
 		setTimeout( () => {
@@ -176,7 +176,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			setVideoHeight( video );
 			window.addEventListener( 'resize', () => setVideoHeight( video ) );
 
-			video.addEventListener( 'play', () => scrollVideoIntoView( video, container ) );
+			video.addEventListener( 'play', () => scrollVideoIntoView( video ) );
 			video.addEventListener( 'ended', () => setVideoPoster( video ) );
 
 			const progressBar = initializeProgressBar( video, container );
