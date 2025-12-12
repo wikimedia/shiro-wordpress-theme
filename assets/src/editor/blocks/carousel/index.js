@@ -77,37 +77,6 @@ const NEWS_TEMPLATE = [
 	],
 ];
 
-const VIDEO_TEMPLATE = [
-	[
-		'core/video',
-		{
-			metadata: {
-				name: 'Video Slide',
-			},
-		},
-	],
-	[
-		'core/embed',
-		{
-			providerNameSlug: 'youtube',
-			metadata: {
-				name: 'YouTube Video Slide',
-			},
-		},
-	],
-];
-const TEMPLATES = {
-	'carousel-groups': GROUP_TEMPLATE,
-	'carousel-news': NEWS_TEMPLATE,
-	'carousel-video': VIDEO_TEMPLATE,
-};
-
-const ALLOWED_LAYOUT_BLOCKS = {
-	'carousel-groups': [ 'core/group' ],
-	'carousel-news': [ 'core/query' ],
-	'carousel-video': [ 'core/video', 'core/embed' ],
-};
-
 registerBlockType( metadata.name, {
 	...metadata,
 
@@ -135,9 +104,11 @@ registerBlockType( metadata.name, {
 		} = attributes;
 
 		// Ensure it is clear to users how to use the block by defining a template.
-		const TEMPLATE = TEMPLATES[layout];
+		const TEMPLATE =
+			layout === 'carousel-groups' ? GROUP_TEMPLATE : NEWS_TEMPLATE;
 
-		const ALLOWED_BLOCKS = ALLOWED_LAYOUT_BLOCKS[layout];
+		const ALLOWED_BLOCKS =
+			layout === 'carousel-groups' ? [ 'core/group' ] : [ 'core/query' ];
 
 		const blockProps = useBlockProps( {
 			className: 'shiro-carousel',
@@ -149,68 +120,67 @@ registerBlockType( metadata.name, {
 		} );
 
 		return (
-			<div {...blockProps}>
+			<div { ...blockProps }>
 				<InspectorControls>
 					<PanelBody
-						title={__( 'Carousel settings', 'shiro-admin' )}
+						title={ __( 'Carousel settings', 'shiro-admin' ) }
 					>
 						<TextControl
-							help={__( 'Sets ARIA label', 'shiro-admin' )}
-							label={__( 'Carousel name', 'shiro-admin' )}
-							value={title}
-							onChange={title => setAttributes( { title } )}
+							help={ __( 'Sets ARIA label', 'shiro-admin' ) }
+							label={ __( 'Carousel name', 'shiro-admin' ) }
+							value={ title }
+							onChange={ title => setAttributes( { title } ) }
 						/>
 						<RangeControl
-							disabled={layout === 'carousel-video'}
-							label={__( 'Slides per page', 'shiro-admin' )}
-							value={perPage}
-							onChange={perPage => setAttributes( { perPage } )}
-							min={1}
-							max={4}
+							label={ __( 'Slides per page', 'shiro-admin' ) }
+							value={ perPage }
+							onChange={ perPage => setAttributes( { perPage } ) }
+							min={ 1 }
+							max={ 4 }
 						/>
 						<ToggleControl
-							label={__(
+							label={ __(
 								'Show navigation arrows?',
 								'shiro-admin'
-							)}
-							checked={arrows}
-							onChange={arrows => setAttributes( { arrows } )}
+							) }
+							checked={ arrows }
+							onChange={ arrows => setAttributes( { arrows } ) }
 						/>
 						<ToggleControl
-							label={__(
+							label={ __(
 								'Show pagination dots?',
 								'shiro-admin'
-							)}
-							checked={pagination}
-							onChange={pagination =>
+							) }
+							checked={ pagination }
+							onChange={ pagination =>
 								setAttributes( { pagination } )
 							}
 						/>
 						<ToggleControl
-							label={__( 'Loop carousel?', 'shiro-admin' )}
-							checked={loop}
-							onChange={loop => setAttributes( { loop } )}
+							label={ __( 'Loop carousel?', 'shiro-admin' ) }
+							checked={ loop }
+							onChange={ loop => setAttributes( { loop } ) }
 						/>
 						<ToggleControl
-							label={__( 'Enable autoplay?', 'shiro-admin' )}
-							checked={autoplay}
-							onChange={autoplay =>
+							label={ __( 'Enable autoplay?', 'shiro-admin' ) }
+							checked={ autoplay }
+							onChange={ autoplay =>
 								setAttributes( { autoplay } )
 							}
 						/>
 						<RangeControl
-							disabled={! autoplay}
-							label={__(
+							disabled={ ! autoplay }
+							label={ __(
 								'Interval between autoplaying slides',
 								'shiro-admin'
-							)}
-							value={interval}
-							onChange={interval =>
+							) }
+							value={ interval }
+							onChange={ interval =>
 								setAttributes( { interval } )
 							}
-							min={0}
-							max={10000}
-							marks={[
+							min={ 0 }
+							max={ 10000 }
+							marks={ [
 								/* eslint-disable object-property-newline */
 								/* eslint-disable object-curly-newline */
 								{ label: '1s', value: 1000 },
@@ -224,21 +194,21 @@ registerBlockType( metadata.name, {
 								{ label: '9s', value: 9000 },
 								/* eslint-enable object-property-newline */
 								/* eslint-enable object-curly-newline */
-							]}
+							] }
 						/>
 					</PanelBody>
 				</InspectorControls>
 
-				{layout === ('carousel-groups' || 'carousel-video') ? (
+				{ layout === 'carousel-groups' ? (
 					<InnerBlockSlider
-						allowedBlocks={ALLOWED_BLOCKS}
-						parentBlockId={clientId}
-						slidesPerPage={1}
-						template={TEMPLATE}
+						allowedBlocks={ ALLOWED_BLOCKS }
+						parentBlockId={ clientId }
+						slidesPerPage={ 1 }
+						template={ TEMPLATE }
 					/>
 				) : (
-					<div {...innerBlocksProps} />
-				)}
+					<div { ...innerBlocksProps } />
+				) }
 			</div>
 		);
 	},
@@ -278,10 +248,10 @@ registerBlockType( metadata.name, {
 
 		const blockGapArr =
 			attributes?.style?.spacing?.blockGap?.split( '|' ) || [];
-		const blockGap = blockGapArr[blockGapArr.length - 1];
+		const blockGap = blockGapArr[ blockGapArr.length - 1 ];
 
 		if ( blockGap ) {
-			dataSplide.gap = `var(--wp--preset--spacing--${blockGap})`;
+			dataSplide.gap = `var(--wp--preset--spacing--${ blockGap })`;
 		}
 
 		const blockProps = useBlockProps.save( {
@@ -294,14 +264,14 @@ registerBlockType( metadata.name, {
 		} );
 
 		return (
-			<div {...blockProps}>
-				{layout === ('carousel-groups' || 'carousel-video') ? (
+			<div { ...blockProps }>
+				{ layout === 'carousel-groups' ? (
 					<div className="shiro-carousel__track">
-						<div {...innerBlocksProps} />
+						<div { ...innerBlocksProps } />
 					</div>
 				) : (
 					innerBlocksProps.children
-				)}
+				) }
 			</div>
 		);
 	},
