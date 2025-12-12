@@ -77,7 +77,7 @@ const setVideoHeight = ( video ) => {
 		const adminBar = document.getElementById( 'wpadminbar' );
 		const adminBarHeight = adminBar ? adminBar.getBoundingClientRect().height : 0;
 		video.style.height = `calc(100vh - ${headerHeight + adminBarHeight}px)`;
-		video.style.objectFit = 'cover';
+		video.style.objectFit = 'contain';
 	}
 };
 
