@@ -287,7 +287,7 @@ registerBlockType( metadata.name, {
 		}
 
 		const blockProps = useBlockProps.save( {
-			className: classNames( 'shiro-carousel', `shiro-layout-${layout}` ),
+			className: classNames( [ 'shiro-carousel' ] ),
 			'data-splide': JSON.stringify( dataSplide ),
 		} );
 
