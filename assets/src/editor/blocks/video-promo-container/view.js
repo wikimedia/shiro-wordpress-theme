@@ -54,7 +54,7 @@ const scrollVideoIntoView = ( video ) => {
 			const header = document.querySelector( '.global-header' ) || document.querySelector( 'header' );
 			const headerOffset = header ? header.getBoundingClientRect().height : 0;
 
-			const videoTopOnPage = video.getBoundingClientRect().top + window.pageYOffset;
+			const videoTopOnPage = video.getBoundingClientRect().top + window.scrollY;
 
 			window.scrollTo( {
 				top: Math.max( 0, videoTopOnPage - headerOffset ),
