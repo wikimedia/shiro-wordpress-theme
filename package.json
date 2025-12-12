@@ -50,7 +50,7 @@
   "dependencies": {
     "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-intersection": "^0.2.0",
-    "@wordpress/icons": "^10.26.0",
+    "@wordpress/icons": "^11.3.0",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1"
   },
