@@ -19,6 +19,7 @@ import { InnerBlockSlider } from '../../components/inner-block-slider';
 
 import metadata from './block.json';
 import variations from './variations';
+import deprecated from './deprecated';
 import './style.scss';
 
 // Ensure it is clear to users how to use the block by defining a template.
@@ -138,11 +139,10 @@ registerBlockType( metadata.name, {
 
 		const TEMPLATE = TEMPLATES[layout];
 
-
 		const ALLOWED_BLOCKS = ALLOWED_LAYOUT_BLOCKS[layout];
 
 		const blockProps = useBlockProps( {
-			className: classNames( 'shiro-carousel' ),
+			className: classNames( 'shiro-carousel', `shiro-layout-${layout}` ),
 		} );
 
 		const innerBlocksProps = useInnerBlocksProps( blockProps, {
@@ -287,7 +287,7 @@ registerBlockType( metadata.name, {
 		}
 
 		const blockProps = useBlockProps.save( {
-			className: classNames( [ 'shiro-carousel' ] ),
+			className: classNames( 'shiro-carousel', `shiro-layout-${layout}` ),
 			'data-splide': JSON.stringify( dataSplide ),
 		} );
 
@@ -307,6 +307,7 @@ registerBlockType( metadata.name, {
 			</div>
 		);
 	},
+	deprecated,
 	variations,
 } );
 
