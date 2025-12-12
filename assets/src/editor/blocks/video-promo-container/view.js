@@ -14,12 +14,14 @@ const initializeProgressBar = ( video, container ) => {
 	if ( container.dataset.enableProgressBar !== 'true' ) {
 		return null;
 	}
+
 	const progressBarContainer = document.createElement( 'div' );
 	progressBarContainer.className = 'progress-bar-container';
 	const progressBar = document.createElement( 'div' );
 	progressBar.className = 'progress-bar';
 	progressBarContainer.appendChild( progressBar );
 	video.after( progressBarContainer );
+
 	return progressBar;
 };
 
@@ -169,25 +171,29 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	const containers = document.querySelectorAll( '.wp-block-shiro-video-promo-container' );
 
 	containers.forEach( container => {
-		const video = container.querySelector( 'video' );
+		// Desktop or mobile videos
+		const videos = container.querySelectorAll( 'video' );
 
-		if ( ! video ) {
-			return;
-		}
+		videos.forEach( video => {
+			if ( ! video ) {
+				return;
+			}
 
-		// ... existing code ...
+			setVideoHeight( video );
+			window.addEventListener( 'resize', () => setVideoHeight( video ) );
 
-		const progressBar = initializeProgressBar( video, container );
+			video.addEventListener( 'play', () => scrollVideoIntoView( video, container ) );
+			video.addEventListener( 'ended', () => setVideoPoster( video ) );
 
-		if ( progressBar ) {
-			// Update once metadata/duration becomes available (helps mobile).
-			video.addEventListener( 'loadedmetadata', () => updateProgressBar( video, progressBar ) );
-			video.addEventListener( 'durationchange', () => updateProgressBar( video, progressBar ) );
+			const progressBar = initializeProgressBar( video, container );
 
-			video.addEventListener( 'timeupdate', () => updateProgressBar( video, progressBar ) );
-			video.addEventListener( 'ended', () => resetProgressBar( progressBar ) );
-			video.addEventListener( 'play', () => transitionProgressBar( progressBar ) );
-			video.addEventListener( 'pause', () => pauseProgressBar( progressBar ) );
-		}
+			if ( progressBar ) {
+				video.addEventListener( 'timeupdate', () => updateProgressBar( video, progressBar ) );
+				video.addEventListener( 'ended', () => resetProgressBar( progressBar ) );
+				video.addEventListener( 'play', () => transitionProgressBar( progressBar ) );
+				video.addEventListener( 'pause', () => pauseProgressBar( progressBar ) );
+			}
+
+		} );
 	} );
 } );
