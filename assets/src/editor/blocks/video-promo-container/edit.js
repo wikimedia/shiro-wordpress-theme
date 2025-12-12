@@ -76,28 +76,48 @@ function VideoPromoEdit( {
 
 	// Update URL attributes if they don't match the freshly fetched attachment sources.
 	useEffect( () => {
-		if ( videoId && _video && ( _video !== video ) ) {
-			setAttributes({ video: _video });
+		// If the media was removed, also clear the stored URL.
+		if ( ! videoId && video ) {
+			setAttributes( { video: '' } );
+			return;
 		}
-	}, [_video, setAttributes, videoId, video] );
+		if ( videoId && _video && _video !== video ) {
+			setAttributes( { video: _video } );
+		}
+	}, [ _video, setAttributes, videoId, video ] );
 
 	useEffect( () => {
+		// If the media was removed, also clear the stored URL.
+		if ( ! mobileVideoId && mobileVideo ) {
+			setAttributes( { mobileVideo: '' } );
+			return;
+		}
 		if ( mobileVideoId && _mobileVideo && _mobileVideo !== mobileVideo ) {
-			setAttributes({ mobileVideo: _mobileVideo });
+			setAttributes( { mobileVideo: _mobileVideo } );
 		}
-	}, [_mobileVideo, setAttributes, mobileVideoId, mobileVideo] );
+	}, [ _mobileVideo, setAttributes, mobileVideoId, mobileVideo ] );
 
 	useEffect( () => {
+		// If the media was removed, also clear the stored URL.
+		if ( ! posterId && poster ) {
+			setAttributes( { poster: '' } );
+			return;
+		}
 		if ( posterId && _poster && _poster !== poster ) {
-			setAttributes({ poster: _poster });
+			setAttributes( { poster: _poster } );
 		}
-	}, [setAttributes, posterId, _poster, poster] );
+	}, [ setAttributes, posterId, _poster, poster ] );
 
-	useEffect(() => {
-		if ( mobilePosterId && _mobilePoster && _mobilePoster !== mobilePoster ) {
-			setAttributes({ mobilePoster: _mobilePoster });
+	useEffect( () => {
+		// If the media was removed, also clear the stored URL.
+		if ( ! mobilePosterId && mobilePoster ) {
+			setAttributes( { mobilePoster: '' } );
+			return;
 		}
-	}, [setAttributes, _mobilePoster, mobilePoster, mobilePosterId]);
+		if ( mobilePosterId && _mobilePoster && _mobilePoster !== mobilePoster ) {
+			setAttributes( { mobilePoster: _mobilePoster } );
+		}
+	}, [ setAttributes, _mobilePoster, mobilePoster, mobilePosterId ] );
 
 	const isUploadingMedia = isTemporaryMedia( videoId, video ) ||
 		isTemporaryMedia( mobileVideoId, mobileVideo );
@@ -138,9 +158,9 @@ function VideoPromoEdit( {
 
 	const inspectorControls = (
 		<VideoPromoInspectorControls
-			attributes={ attributes }
-			setAttributes={ setAttributes }
-			clientId={ clientId }
+			attributes={attributes}
+			setAttributes={setAttributes}
+			clientId={clientId}
 		/>
 	);
 
@@ -153,45 +173,45 @@ function VideoPromoEdit( {
 
 	return (
 		<>
-			{ inspectorControls }
+			{inspectorControls}
 			<TagName
-				{ ...blockProps }
-				className={ clsx( classes, blockProps.className ) }
-				style={ { ...blockProps.style } }
-				data-url={ video }
-				data-enable-progress-bar={ enableProgressBar }
+				{...blockProps}
+				className={clsx( classes, blockProps.className )}
+				style={{ ...blockProps.style }}
+				data-url={video}
+				data-enable-progress-bar={enableProgressBar}
 			>
 				<div className="wp-block-shiro-video-promo-container__inner-container">
-					<div { ...innerBlocksProps } />
+					<div {...innerBlocksProps} />
 				</div>
-				{ video && (
+				{video && (
 					<video
-						className={ clsx(
+						className={clsx(
 							'wp-block-shiro-video-promo-container-background__desktop',
 							'intrinsic-ignore',
 							'is-position-center-center'
-						) }
-						src={ video }
-						poster={ poster }
-						style={ mediaStyle }
+						)}
+						src={video}
+						poster={poster}
+						style={mediaStyle}
 					/>
-				) }{ mobileVideo && (
-					<video
-						className={ clsx(
-							'wp-block-shiro-video-promo-container-background__mobile',
-							'intrinsic-ignore',
-							'is-position-center-center'
-						) }
-						loop
-						muted
-						autoPlay
-						src={ mobileVideo }
-						poster={ mobilePoster }
-						style={ mediaStyle }
-					/>
-				) }
+				)}{mobileVideo && (
+				<video
+					className={clsx(
+						'wp-block-shiro-video-promo-container-background__mobile',
+						'intrinsic-ignore',
+						'is-position-center-center'
+					)}
+					loop
+					muted
+					autoPlay
+					src={mobileVideo}
+					poster={mobilePoster}
+					style={mediaStyle}
+				/>
+			)}
 
-				{ isUploadingMedia && <Spinner /> }
+				{isUploadingMedia && <Spinner/>}
 			</TagName>
 		</>
 	);
