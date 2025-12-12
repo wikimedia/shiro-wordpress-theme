@@ -45,7 +45,8 @@
       "default": "carousel-groups",
       "enum": [
         "carousel-groups",
-        "carousel-posts"
+        "carousel-posts",
+        "carousel-video"
       ]
     },
     "loop": {
