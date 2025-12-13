@@ -62,15 +62,16 @@ function set_content_security_policy() {
 	 * sure that functionality of site remains not affected.
 	 */
 
-	$csp_allowed = array(
+	$csp_allowed = [
 		"default-src 'self'",
+		"media-src 'self' https://*.wp.com https://videos.files.wordpress.com",
 		"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.wikimedia.org https://*.wp.com https://www.youtube.com https://player.vimeo.com http://localhost https://localhost http://localhost:8080",
 		"frame-src 'self' https://www.youtube.com https://player.vimeo.com https://*.wp.com",
 		"style-src 'self' 'unsafe-inline' https://*.wikimedia.org https://*.wp.com",
 		"img-src 'self' data: https://*.wikimedia.org https://*.wp.com https://wikimediafoundation.org",
 		"font-src 'self' data: https://*.wp.com",
 		"connect-src 'self' https://*.wikipedia.org wss://*.wordpress.com",
-	);
+	];
 
 	header( 'Content-Security-Policy: ' . implode( '; ', $csp_allowed ) );
 	header( 'X-Frame-Options: SAMEORIGIN' );
