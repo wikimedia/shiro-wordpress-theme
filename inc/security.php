@@ -24,6 +24,9 @@ function init() {
 		add_action( 'send_headers', __NAMESPACE__ . '\\set_referrer_policy' ); // Policy for referrer.
 		add_action( 'send_headers', __NAMESPACE__ . '\\set_permissions_policy' ); // Policy for permissions.
 	}
+
+	// The following makes videos work on DEVELOP
+	add_action( 'send_headers', __NAMESPACE__ . '\\set_additional_content_security_policy' ); // Policy for content security.
 }
 
 /**
@@ -31,6 +34,23 @@ function init() {
  */
 function enable_strict_transport_security() {
 	header( 'Strict-Transport-Security: max-age=31536000' );
+}
+
+/**
+ * Configures and sends an additional Content Security Policy (CSP) header.
+ * The method defines a set of allowed sources for media content and applies it.
+ *
+ * NOTE: Can be removed when upstreamed into the wikimedia-wordpress-security-plugin.
+ *
+ * @return void
+ */
+function set_additional_content_security_policy() {
+	$csp_allowed = [
+		// Enable video on DEVELOP
+		"media-src 'self' https://videos.files.wordpress.com",
+	];
+
+	header( 'Content-Security-Policy: ' . implode( '; ', $csp_allowed ) );
 }
 
 /**
@@ -64,7 +84,6 @@ function set_content_security_policy() {
 
 	$csp_allowed = [
 		"default-src 'self'",
-		"media-src 'self' https://*.wp.com https://videos.files.wordpress.com",
 		"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.wikimedia.org https://*.wp.com https://www.youtube.com https://player.vimeo.com http://localhost https://localhost http://localhost:8080",
 		"frame-src 'self' https://www.youtube.com https://player.vimeo.com https://*.wp.com",
 		"style-src 'self' 'unsafe-inline' https://*.wikimedia.org https://*.wp.com",
