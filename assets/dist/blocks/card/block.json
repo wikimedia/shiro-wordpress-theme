@@ -1,0 +1,64 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "shiro/card",
+  "title": "Card",
+  "textdomain": "shiro-admin",
+  "category": "wikimedia",
+  "description": "Card creates a call to action with an image, heading and paragraph.",
+  "attributes": {
+    "imageId": {
+      "type": "number"
+    },
+    "imageSrc": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".content-card__image",
+      "attribute": "src"
+    },
+    "imageAlt": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".content-card__image",
+      "attribute": "alt"
+    },
+    "imageWidth": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".content-card__image",
+      "attribute": "width"
+    },
+    "imageHeight": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".content-card__image",
+      "attribute": "height"
+    },
+    "heading": {
+      "type": "string",
+      "source": "html",
+      "selector": ".content-card__heading"
+    },
+    "body": {
+      "type": "string",
+      "source": "html",
+      "selector": ".content-card__body"
+    },
+    "linkText": {
+      "type": "string",
+      "source": "html",
+      "selector": ".content-card__call-to-action"
+    },
+    "linkUrl": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".content-card__call-to-action",
+      "attribute": "href"
+    },
+    "openInNewTab": {
+      "type": "boolean"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css"
+}

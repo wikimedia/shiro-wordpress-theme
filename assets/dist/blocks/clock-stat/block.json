@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "icon": "star-filled",
+  "title": "Clock Stat",
+  "textdomain": "shiro-admin",
+  "category": "wikimedia",
+  "description": "Adds a stat row to the clock block.",
+  "attributes": {
+    "label": {
+      "type": "string",
+      "source": "html",
+      "selector": ".clock-stat__label"
+    },
+    "stat": {
+      "type": "string",
+      "source": "html",
+      "selector": ".clock-stat__stat"
+    }
+  },
+  "parent": [
+    "shiro/clock"
+  ],
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css"
+}

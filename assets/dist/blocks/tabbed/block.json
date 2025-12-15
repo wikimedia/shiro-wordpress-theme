@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "shiro/tabbed",
+  "title": "Tabbed",
+  "category": "wikimedia",
+  "icon": "index-card",
+  "description": "Preformatted block grouping for a tabbed layout block.",
+  "keywords": [
+    "tabbed-content",
+    "tabs",
+    "tabbed"
+  ],
+  "version": "1.0.0",
+  "textdomain": "shiro-admin",
+  "attributes": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "default": []
+    }
+  },
+  "supports": {
+    "align": [
+      "wide"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "shiro/accordion-item",
+  "textdomain": "shiro-admin",
+  "title": "Accordion Item",
+  "icon": "minus",
+  "category": "wikimedia",
+  "parent": [
+    "shiro/accordion"
+  ],
+  "attributes": {
+    "fontColor": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "source": "text",
+      "selector": ".accordion-item__title-text"
+    }
+  },
+  "usesContext": [
+    "accordion/fontColor"
+  ],
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css"
+}

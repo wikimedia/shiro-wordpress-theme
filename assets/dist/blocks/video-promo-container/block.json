@@ -1,0 +1,66 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "shiro/video-promo-container",
+  "title": "Promo Video Container",
+  "category": "wikimedia",
+  "icon": "embed-video",
+  "description": "A video container that hides its content when playing.",
+  "keywords": [
+    "wikimedia",
+    "video"
+  ],
+  "version": "1.0.0",
+  "textdomain": "shiro-admin",
+  "attributes": {
+    "tagName": {
+      "type": "string",
+      "default": "div"
+    },
+    "posterId": {
+      "type": "number"
+    },
+    "poster": {
+      "type": "string"
+    },
+    "mobilePosterId": {
+      "type": "number"
+    },
+    "mobilePoster": {
+      "type": "string"
+    },
+    "videoId": {
+      "type": "number"
+    },
+    "video": {
+      "type": "string"
+    },
+    "mobileVideoId": {
+      "type": "number"
+    },
+    "mobileVideo": {
+      "type": "string"
+    },
+    "enableProgressBar": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "align": true,
+    "anchor": true,
+    "spacing": {
+      "margin": [
+        "top",
+        "bottom"
+      ]
+    },
+    "layout": {
+      "allowJustification": false
+    }
+  },
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

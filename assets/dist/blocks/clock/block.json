@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "shiro/clock",
+  "title": "Clock",
+  "description": "Clock creates a block that provides statistics and a count down/up timer.",
+  "textdomain": "shiro-admin",
+  "category": "wikimedia",
+  "icon": "clock",
+  "attributes": {
+    "countTitle": {
+      "type": "string",
+      "source": "html",
+      "selector": ".clock__contents__count-label"
+    },
+    "date": {
+      "type": "string"
+    },
+    "disclaimer": {
+      "type": "string",
+      "source": "html",
+      "selector": ".clock__contents__disclaimer"
+    },
+    "display": {
+      "type": "string",
+      "enum": [
+        "d-nolabel",
+        "d",
+        "dh",
+        "dhm",
+        "dhms"
+      ],
+      "default": "d-nolabel"
+    },
+    "displayPadding": {
+      "type": "string",
+      "default": "0"
+    },
+    "stopAtTime": {
+      "type": "boolean",
+      "default": false
+    },
+    "title": {
+      "type": "string",
+      "source": "html",
+      "selector": ".clock__title"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css",
+  "style": "file:/view.css",
+  "viewScript": "file:./view.js"
+}

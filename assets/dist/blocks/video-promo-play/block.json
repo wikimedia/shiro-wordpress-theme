@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "shiro/video-promo-play",
+  "title": "Promo Video Play Button",
+  "category": "wikimedia",
+  "icon": "embed-video",
+  "description": "A play button for a parent Promo Video container.",
+  "keywords": [
+    "wikimedia",
+    "video"
+  ],
+  "version": "1.0.0",
+  "textdomain": "shiro-admin",
+  "attributes": {
+    "text": {
+      "type": "string",
+      "default": "Play"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css"
+}

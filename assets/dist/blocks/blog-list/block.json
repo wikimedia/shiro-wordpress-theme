@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "shiro/blog-list",
+  "title": "Blog list",
+  "textdomain": "shiro-admin",
+  "category": "wikimedia",
+  "icon": "list-view",
+  "description": "Dynamic list of recent posts",
+  "attributes": {
+    "postsToShow": {
+      "type": "integer",
+      "default": 2
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "excludedCategories": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "order": {
+      "type": "string",
+      "default": "desc"
+    },
+    "orderBy": {
+      "type": "string",
+      "default": "date"
+    },
+    "selectedAuthor": {
+      "type": "number"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css",
+  "render": "file:./render.php"
+}

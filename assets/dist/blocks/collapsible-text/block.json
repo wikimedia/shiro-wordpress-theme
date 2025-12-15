@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "title": "Collapsible text",
+  "name": "shiro/collapsible-text",
+  "textdomain": "shiro-admin",
+  "category": "wikimedia",
+  "icon": "ellipsis",
+  "attributes": {
+    "fontColor": {
+      "type": "string"
+    },
+    "readMore": {
+      "type": "string",
+      "source": "html",
+      "selector": ".expand",
+      "default": "Read More"
+    },
+    "readLess": {
+      "type": "string",
+      "source": "html",
+      "selector": ".collapse",
+      "default": "Read Less"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css"
+}
