@@ -27,7 +27,7 @@
 
 	.splide__arrow {
 		@include button-transparent;
-		background: radial-gradient( var(--wp--preset--color--main) 50%, var(--wp--preset--color--base) 50% );
+		background: radial-gradient(var(--wp--preset--color--main) 50%, var(--wp--preset--color--base) 50%);
 		border: 2px solid var(--wp--preset--color--border-light);
 		border-radius: 50%;
 		bottom: 0;
@@ -39,7 +39,7 @@
 		z-index: 1;
 
 		&--prev {
-			left: var( --carousel-side-padding );
+			left: var(--carousel-side-padding);
 
 			&:is(.splide__arrows--ltr .splide__arrow) {
 				rotate: 180deg;
@@ -47,7 +47,7 @@
 		}
 
 		&--next {
-			right: var( --carousel-side-padding );
+			right: var(--carousel-side-padding);
 
 			&:is(.splide__arrows--rtl .splide__arrow) {
 				rotate: 180deg;
@@ -89,19 +89,19 @@
 	}
 
 	.wp-block-group.has-background.splide__slide {
-		padding-bottom: max( rem(80), var( --carousel-vertical-padding ) );
-		padding-inline: var( --carousel-side-padding );
-		padding-top: min( rem(115), var( --carousel-vertical-padding ) );
+		padding-bottom: max(rem(80), var(--carousel-vertical-padding));
+		padding-inline: var(--carousel-side-padding);
+		padding-top: min(rem(115), var(--carousel-vertical-padding));
 	}
 
 	.splide__pagination {
 		background: rgba(0, 0, 0, 0.3);
-		bottom: calc( var(--carousel-control-bottom-position) + 0.5rem );
+		bottom: calc(var(--carousel-control-bottom-position) + 0.5rem);
 		border-radius: rem(15);
 		display: flex;
 		gap: rem(16);
 		left: 50%;
-		max-width: calc( 100% - ( ( var(--carousel-arrow-size) + var( --carousel-side-padding ) + #{rem(20)} ) * 2 ) );
+		max-width: calc(100% - ((var(--carousel-arrow-size) + var(--carousel-side-padding) + #{rem(20)}) * 2));
 		padding: rem(6) rem(10);
 		position: absolute;
 		transform: translateX(-50%);
@@ -190,7 +190,7 @@
 				display: flex;
 				flex-basis: 100% !important;
 				flex-direction: column;
-				gap: var( --wp--preset--spacing--8 );
+				gap: var(--wp--preset--spacing--8);
 			}
 		}
 	}
@@ -221,13 +221,13 @@
 			.splide__arrow {
 				&--prev {
 					@container ( width >= #{ map-get( $breakpoints, "content" ) } ) {
-						left: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.
+						left: calc(-1 * var(--carousel-arrow-position)); // Get the negative value.
 					}
 				}
 
 				&--next {
 					@container ( width >= #{ map-get( $breakpoints, "content" ) } ) {
-						right: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.;
+						right: calc(-1 * var(--carousel-arrow-position)); // Get the negative value.;
 					}
 				}
 			}
@@ -247,13 +247,13 @@
 			.splide__arrow {
 				&--prev {
 					@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
-						left: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.
+						left: calc(-1 * var(--carousel-arrow-position)); // Get the negative value.
 					}
 				}
 
 				&--next {
 					@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
-						right: calc( -1 * var( --carousel-arrow-position ) ); // Get the negative value.;
+						right: calc(-1 * var(--carousel-arrow-position)); // Get the negative value.;
 					}
 				}
 			}
@@ -276,13 +276,13 @@
 		.splide__arrow {
 			&--prev {
 				@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
-					left: var( --carousel-arrow-position );
+					left: var(--carousel-arrow-position);
 				}
 			}
 
 			&--next {
 				@container ( width >= #{ map-get( $breakpoints, "desktop" ) } ) {
-					right: var( --carousel-arrow-position );
+					right: var(--carousel-arrow-position);
 				}
 			}
 		}
