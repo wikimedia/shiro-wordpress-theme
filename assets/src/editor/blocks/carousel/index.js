@@ -190,6 +190,7 @@ registerBlockType( metadata.name, {
 						/>
 						<ToggleControl
 							label={__( 'Loop carousel?', 'shiro-admin' )}
+							disabled={layout === 'carousel-video'}
 							checked={loop}
 							onChange={loop => setAttributes( { loop } )}
 						/>

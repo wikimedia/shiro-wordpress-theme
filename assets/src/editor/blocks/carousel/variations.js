@@ -27,6 +27,7 @@ const variations = [
 		attributes: {
 			align: 'wide',
 			layout: 'carousel-video',
+			loop: true,
 			perPage: 3,
 		},
 		isActive: blockAttributes =>
