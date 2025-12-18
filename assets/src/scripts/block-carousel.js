@@ -49,11 +49,14 @@ const toggleVideoState = ( slide, shouldEnable ) => {
 			youtube.removeAttribute( 'disabled' );
 			youtube.style.pointerEvents = '';
 		} else {
+			console.log( slide );
+			if ( ! youtube.hasAttribute( 'disabled' ) ) {
+				// Pause Youtube. @see https://stackoverflow.com/a/36313110
+				let src = youtube.src;
+				youtube.src = src;
+			}
 			youtube.setAttribute( 'disabled', 'disabled' );
 			youtube.style.pointerEvents = 'none';
-			// Pause Youtube. @see https://stackoverflow.com/a/36313110
-			let src = youtube.src;
-			youtube.src = src;
 		}
 
 	} );
@@ -136,10 +139,11 @@ const init = () => {
 			domElement.carousel.Components.Slides.get().forEach( slide => {
 				toggleVideoState( slide.slide, slide.slide.classList.contains( 'is-active' ) );
 			} );
-			domElement.carousel.on( 'moved', () => {
-				domElement.carousel.Components.Slides.get().forEach( slide => {
-					toggleVideoState( slide.slide, slide.slide.classList.contains( 'is-active' ) );
-				} );
+			domElement.carousel.on( 'active', ( slide ) => {
+				toggleVideoState( slide.slide, true );
+			} );
+			domElement.carousel.on( 'inactive', ( slide ) => {
+				toggleVideoState( slide.slide, false );
 			} );
 		}
 
