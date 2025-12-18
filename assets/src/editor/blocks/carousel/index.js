@@ -21,6 +21,7 @@ import metadata from './block.json';
 import variations from './variations';
 import deprecated from './deprecated';
 import './style.scss';
+import './view.css';
 
 // Ensure it is clear to users how to use the block by defining a template.
 const GROUP_TEMPLATE = [

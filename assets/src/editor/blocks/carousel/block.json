@@ -64,5 +64,5 @@
 	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./style-index.css",
-	"viewStyle": "file:./view.css"
+	"viewStyle": "file:./index.css"
 }
