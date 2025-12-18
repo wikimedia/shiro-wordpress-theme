@@ -134,29 +134,18 @@ const init = () => {
 		domElement.carousel = new Splide( domElement, options ).mount();
 
 		if ( isVideoCarousel ) {
-			// Keep all videos as disabled apart from the active slide.
-			domElement.carousel.Components.Slides.get().forEach( slide => {
-				toggleVideoState( slide.slide, slide.slide.classList.contains( 'is-active' ) );
-			} );
-			domElement.carousel.on( 'active', ( slide ) => {
-				toggleVideoState( slide.slide, true );
-			} );
-			domElement.carousel.on( 'inactive', ( slide ) => {
-				toggleVideoState( slide.slide, false );
-			} );
-
-			// Progress listener for smooth scaling based on proximity to center
-			domElement.carousel.on( 'move', ( newIndex ) => {
+			// Function to apply proximity-based scaling and opacity to slides
+			const applyProximityScaling = ( centerIndex ) => {
 				const slides = domElement.carousel.Components.Slides.get();
 
 				slides.forEach( ( slide ) => {
 					const index = slide.index;
 					// Calculate distance from center (0 = center, increases with distance)
-					const distance = Math.abs( index - newIndex );
+					const distance = Math.abs( index - centerIndex );
 
 					console.debug( '[Carousel] Scaling slide:', {
 						slideIndex: index,
-						newIndex: newIndex,
+						centerIndex: centerIndex,
 						distance: distance
 					} );
 
@@ -182,6 +171,27 @@ const init = () => {
 					slide.slide.style.transform = `scale(${scale})`;
 					slide.slide.style.opacity = "" + opacity;
 				} );
+			};
+
+			// Keep all videos as disabled apart from the active slide.
+			domElement.carousel.Components.Slides.get().forEach( slide => {
+				toggleVideoState( slide.slide, slide.slide.classList.contains( 'is-active' ) );
+			} );
+
+			// Apply initial scaling based on the active slide
+			const initialIndex = domElement.carousel.index;
+			applyProximityScaling( initialIndex );
+
+			domElement.carousel.on( 'active', ( slide ) => {
+				toggleVideoState( slide.slide, true );
+			} );
+			domElement.carousel.on( 'inactive', ( slide ) => {
+				toggleVideoState( slide.slide, false );
+			} );
+
+			// Progress listener for smooth scaling based on proximity to center
+			domElement.carousel.on( 'move', ( newIndex ) => {
+				applyProximityScaling( newIndex );
 			} );
 		}
 
