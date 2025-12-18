@@ -21,6 +21,7 @@ import metadata from './block.json';
 import variations from './variations';
 import deprecated from './deprecated';
 import './style.scss';
+import './view.css';
 
 // Ensure it is clear to users how to use the block by defining a template.
 const GROUP_TEMPLATE = [
@@ -190,6 +191,7 @@ registerBlockType( metadata.name, {
 						/>
 						<ToggleControl
 							label={__( 'Loop carousel?', 'shiro-admin' )}
+							disabled={layout === 'carousel-video'}
 							checked={loop}
 							onChange={loop => setAttributes( { loop } )}
 						/>
@@ -287,7 +289,7 @@ registerBlockType( metadata.name, {
 		}
 
 		const blockProps = useBlockProps.save( {
-			className: classNames( [ 'shiro-carousel' ] ),
+			className: classNames( 'shiro-carousel', `shiro-layout-${layout}` ),
 			'data-splide': JSON.stringify( dataSplide ),
 		} );
 

@@ -7,14 +7,18 @@ import {
 } from '@wordpress/block-editor';
 import classNames from "classnames";
 
+/**
+ * Internal dependencies
+ */
+import metadata from './block.json';
+
+
 console.log( '🚀 Carousel deprecated.js is loading!' );
 
 // Before classname changes
 const v1 = {
-	migrate: ( attributes ) => {
-		console.log( '✅ Deprecation v1 MATCHED and migrating!', attributes );
-		return attributes;
-	},
+	attributes: metadata.attributes,
+	supports: metadata.supports,
 	save: ( { attributes } ) => {
 		const {
 			title,

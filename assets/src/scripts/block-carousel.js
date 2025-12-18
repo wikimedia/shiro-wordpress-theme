@@ -9,6 +9,60 @@ const carousels = [ ...document.querySelectorAll( '.shiro-carousel' ) ];
 const defaultOptions = {};
 
 /**
+ * Toggles the video state in a given slide between enabled and disabled.
+ *
+ * This function identifies a `<video>` or `<iframe>` element within the provided slide element,
+ * along with any associated ambient controls, and adjusts their state and visibility based on
+ * the `isEnabled` parameter. When the video is disabled, playback is paused, pointer events are disabled,
+ * and ambient controls (if present) are hidden. Conversely, when enabled, the video is made interactive and the
+ * ambient controls become visible.
+ *
+ * @param {Element} slide - The HTML element representing the slide containing the video or iframe.
+ * @param {boolean} shouldEnable - Determines whether the video should be enabled or disabled.
+ */
+const toggleVideoState = ( slide, shouldEnable ) => {
+	// Support youtube or videos
+	const videos = slide.querySelectorAll( 'video' );
+	const youtubes = slide.querySelectorAll( 'iframe' );
+	const ambientControls = slide.querySelector( '.video-ambient-controls' );
+
+	videos.forEach( video => {
+		if ( shouldEnable ) {
+			video.removeAttribute( 'disabled' );
+			video.style.pointerEvents = '';
+			if ( ambientControls ) {
+				ambientControls.style.display = '';
+			}
+		} else {
+			if ( video.tagName === 'VIDEO' ) {
+				video.pause();
+			}
+			video.setAttribute( 'disabled', 'disabled' );
+			video.style.pointerEvents = 'none';
+			if ( ambientControls ) {
+				ambientControls.style.display = 'none';
+			}
+		}
+	} );
+	youtubes.forEach( youtube => {
+		if ( shouldEnable ) {
+			youtube.removeAttribute( 'disabled' );
+			youtube.style.pointerEvents = '';
+		} else {
+			if ( ! youtube.hasAttribute( 'disabled' ) ) {
+				// Pause Youtube. @see https://stackoverflow.com/a/36313110
+				let src = youtube.src;
+				youtube.src = src;
+			}
+			youtube.setAttribute( 'disabled', 'disabled' );
+			youtube.style.pointerEvents = 'none';
+		}
+
+	} );
+
+};
+
+/**
  * Initialize all carousels on page.
  */
 const init = () => {
@@ -56,6 +110,13 @@ const init = () => {
 		// Video Carousel
 		if ( isVideoCarousel ) {
 			defaultOptions.perMove = 1;
+			defaultOptions.focus = 'center';
+
+			// Initially disable all videos.
+			list.querySelectorAll( 'video' ).forEach( video => {
+				video.setAttribute( 'disabled', true );
+				video.controls = false;
+			} );
 		}
 
 		const textDirection = window
@@ -71,6 +132,68 @@ const init = () => {
 		};
 
 		domElement.carousel = new Splide( domElement, options ).mount();
+
+		if ( isVideoCarousel ) {
+			// Function to apply proximity-based scaling and opacity to slides
+			const applyProximityScaling = ( centerIndex ) => {
+				const slides = domElement.carousel.Components.Slides.get();
+
+				slides.forEach( ( slide ) => {
+					const index = slide.index;
+					// Calculate distance from center (0 = center, increases with distance)
+					const distance = Math.abs( index - centerIndex );
+
+					console.debug( '[Carousel] Scaling slide:', {
+						slideIndex: index,
+						centerIndex: centerIndex,
+						distance: distance
+					} );
+
+					// Calculate scale: 1.0 at center, decreasing to 0.8 for distant slides
+					// Using a linear interpolation
+					const maxDistance = 2; // Adjust based on how many slides you want to affect
+					const minScale = 0.8;
+					const maxScale = 1.0;
+					const normalizedDistance = Math.min( distance / maxDistance, 1 );
+					const scale = maxScale - (normalizedDistance * (maxScale - minScale));
+
+					// Calculate opacity: 1.0 at center, decreasing to 0.6 for distant slides
+					const minOpacity = 0.1;
+					const maxOpacity = 1.0;
+					const opacity = maxOpacity - (normalizedDistance * (maxOpacity - minOpacity));
+
+					console.debug( '[Carousel] Scale calculation:', {
+						normalizedDistance: normalizedDistance,
+						calculatedScale: scale
+					} );
+
+					// Apply transform and opacity directly
+					slide.slide.style.transform = `scale(${scale})`;
+					slide.slide.style.opacity = "" + opacity;
+				} );
+			};
+
+			// Keep all videos as disabled apart from the active slide.
+			domElement.carousel.Components.Slides.get().forEach( slide => {
+				toggleVideoState( slide.slide, slide.slide.classList.contains( 'is-active' ) );
+			} );
+
+			// Apply initial scaling based on the active slide
+			const initialIndex = domElement.carousel.index;
+			applyProximityScaling( initialIndex );
+
+			domElement.carousel.on( 'active', ( slide ) => {
+				toggleVideoState( slide.slide, true );
+			} );
+			domElement.carousel.on( 'inactive', ( slide ) => {
+				toggleVideoState( slide.slide, false );
+			} );
+
+			// Progress listener for smooth scaling based on proximity to center
+			domElement.carousel.on( 'move', ( newIndex ) => {
+				applyProximityScaling( newIndex );
+			} );
+		}
 
 		// Start rotating headings on the first slide.
 		slideVisible( domElement.carousel.Components.Slides.get()[0] );
