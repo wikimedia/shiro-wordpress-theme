@@ -49,7 +49,6 @@ const toggleVideoState = ( slide, shouldEnable ) => {
 			youtube.removeAttribute( 'disabled' );
 			youtube.style.pointerEvents = '';
 		} else {
-			console.log( slide );
 			if ( ! youtube.hasAttribute( 'disabled' ) ) {
 				// Pause Youtube. @see https://stackoverflow.com/a/36313110
 				let src = youtube.src;
@@ -144,6 +143,45 @@ const init = () => {
 			} );
 			domElement.carousel.on( 'inactive', ( slide ) => {
 				toggleVideoState( slide.slide, false );
+			} );
+
+			// Progress listener for smooth scaling based on proximity to center
+			domElement.carousel.on( 'move', ( newIndex ) => {
+				const slides = domElement.carousel.Components.Slides.get();
+
+				slides.forEach( ( slide ) => {
+					const index = slide.index;
+					// Calculate distance from center (0 = center, increases with distance)
+					const distance = Math.abs( index - newIndex );
+
+					console.debug( '[Carousel] Scaling slide:', {
+						slideIndex: index,
+						newIndex: newIndex,
+						distance: distance
+					} );
+
+					// Calculate scale: 1.0 at center, decreasing to 0.8 for distant slides
+					// Using a linear interpolation
+					const maxDistance = 2; // Adjust based on how many slides you want to affect
+					const minScale = 0.8;
+					const maxScale = 1.0;
+					const normalizedDistance = Math.min( distance / maxDistance, 1 );
+					const scale = maxScale - (normalizedDistance * (maxScale - minScale));
+
+					// Calculate opacity: 1.0 at center, decreasing to 0.6 for distant slides
+					const minOpacity = 0.1;
+					const maxOpacity = 1.0;
+					const opacity = maxOpacity - (normalizedDistance * (maxOpacity - minOpacity));
+
+					console.debug( '[Carousel] Scale calculation:', {
+						normalizedDistance: normalizedDistance,
+						calculatedScale: scale
+					} );
+
+					// Apply transform and opacity directly
+					slide.slide.style.transform = `scale(${scale})`;
+					slide.slide.style.opacity = "" + opacity;
+				} );
 			} );
 		}
 
