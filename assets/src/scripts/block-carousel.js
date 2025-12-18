@@ -9,6 +9,58 @@ const carousels = [ ...document.querySelectorAll( '.shiro-carousel' ) ];
 const defaultOptions = {};
 
 /**
+ * Toggles the video state in a given slide between enabled and disabled.
+ *
+ * This function identifies a `<video>` or `<iframe>` element within the provided slide element,
+ * along with any associated ambient controls, and adjusts their state and visibility based on
+ * the `isEnabled` parameter. When the video is disabled, playback is paused, pointer events are disabled,
+ * and ambient controls (if present) are hidden. Conversely, when enabled, the video is made interactive and the
+ * ambient controls become visible.
+ *
+ * @param {Element} slide - The HTML element representing the slide containing the video or iframe.
+ * @param {boolean} shouldEnable - Determines whether the video should be enabled or disabled.
+ */
+const toggleVideoState = ( slide, shouldEnable ) => {
+	// Support youtube or videos
+	const videos = slide.querySelectorAll( 'video' );
+	const youtubes = slide.querySelectorAll( 'iframe' );
+	const ambientControls = slide.querySelector( '.video-ambient-controls' );
+
+	videos.forEach( video => {
+		if ( shouldEnable ) {
+			video.removeAttribute( 'disabled' );
+			video.style.pointerEvents = '';
+			if ( ambientControls ) {
+				ambientControls.style.display = '';
+			}
+		} else {
+			if ( video.tagName === 'VIDEO' ) {
+				video.pause();
+			}
+			video.setAttribute( 'disabled', 'disabled' );
+			video.style.pointerEvents = 'none';
+			if ( ambientControls ) {
+				ambientControls.style.display = 'none';
+			}
+		}
+	} );
+	youtubes.forEach( youtube => {
+		if ( shouldEnable ) {
+			youtube.removeAttribute( 'disabled' );
+			youtube.style.pointerEvents = '';
+		} else {
+			youtube.setAttribute( 'disabled', 'disabled' );
+			youtube.style.pointerEvents = 'none';
+			// Pause Youtube. @see https://stackoverflow.com/a/36313110
+			let src = youtube.src;
+			youtube.src = src;
+		}
+
+	} );
+
+};
+
+/**
  * Initialize all carousels on page.
  */
 const init = () => {
@@ -56,6 +108,13 @@ const init = () => {
 		// Video Carousel
 		if ( isVideoCarousel ) {
 			defaultOptions.perMove = 1;
+			defaultOptions.focus = 'center';
+
+			// Initially disable all videos.
+			list.querySelectorAll( 'video' ).forEach( video => {
+				video.setAttribute( 'disabled', true );
+				video.controls = false;
+			} );
 		}
 
 		const textDirection = window
@@ -71,6 +130,18 @@ const init = () => {
 		};
 
 		domElement.carousel = new Splide( domElement, options ).mount();
+
+		if ( isVideoCarousel ) {
+			// Keep all videos as disabled apart from the active slide.
+			domElement.carousel.Components.Slides.get().forEach( slide => {
+				toggleVideoState( slide.slide, slide.slide.classList.contains( 'is-active' ) );
+			} );
+			domElement.carousel.on( 'moved', () => {
+				domElement.carousel.Components.Slides.get().forEach( slide => {
+					toggleVideoState( slide.slide, slide.slide.classList.contains( 'is-active' ) );
+				} );
+			} );
+		}
 
 		// Start rotating headings on the first slide.
 		slideVisible( domElement.carousel.Components.Slides.get()[0] );
