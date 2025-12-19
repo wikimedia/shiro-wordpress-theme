@@ -63,6 +63,59 @@ const toggleVideoState = ( slide, shouldEnable ) => {
 };
 
 /**
+ * Apply proximity-based scaling and opacity to slides in a video carousel.
+ *
+ * This function adjusts the scale and opacity of slides based on their distance
+ * from the center slide. Slides closer to the center appear larger and more opaque,
+ * while those further away are smaller and more transparent.
+ *
+ * @param {Element} domElement - The carousel DOM element containing the Splide instance.
+ * @param {number} centerIndex - The index of the center slide.
+ */
+const applyProximityScaling = ( domElement, centerIndex ) => {
+	const perPage = JSON.parse( domElement.dataset.splide ).perPage || 1;
+	const slides = domElement.carousel.Components.Slides.get();
+	const visibleRange = Math.floor( perPage / 2 );
+
+	slides.forEach( ( slide ) => {
+		const index = slide.index;
+		// Calculate distance from center (0 = center, increases with distance)
+		const distance = Math.abs( index - centerIndex );
+
+
+		// Calculate scale: 1.0 at center, decreasing for distant slides
+		// Using a linear interpolation
+		const maxDistance = visibleRange; // Adjust based on perPage
+		const minScale = 0.6;
+		const maxScale = 1.0;
+		const normalizedDistance = Math.min( distance / maxDistance, 1 );
+		const scale = maxScale - (normalizedDistance * (maxScale - minScale));
+
+		// Calculate opacity: 1.0 at center, decreasing for distant slides
+		const minOpacity = 0.1;
+		const maxOpacity = 1.0;
+		const opacity = maxOpacity - (normalizedDistance * (maxOpacity - minOpacity));
+
+
+		// Apply transform, opacity, and padding directly
+		if ( slide.slide.classList.contains( 'wp-block-shiro-video-promo-container' ) ) {
+			// Apply scale to all video and iframe children
+			const videos = slide.slide.querySelectorAll( 'video' );
+			const iframes = slide.slide.querySelectorAll( 'iframe' );
+			videos.forEach( video => {
+				video.style.transform = `scale(${scale})`;
+			} );
+			iframes.forEach( iframe => {
+				iframe.style.transform = `scale(${scale})`;
+			} );
+		} else {
+			slide.slide.firstChild.style.transform = `scale(${scale})`;
+		}
+		slide.slide.style.opacity = "" + opacity;
+	} );
+};
+
+/**
  * Initialize all carousels on page.
  */
 const init = () => {
@@ -134,49 +187,6 @@ const init = () => {
 		domElement.carousel = new Splide( domElement, options ).mount();
 
 		if ( isVideoCarousel ) {
-			// Function to apply proximity-based scaling and opacity to slides
-			const applyProximityScaling = ( centerIndex ) => {
-				const slides = domElement.carousel.Components.Slides.get();
-				const visibleRange = Math.floor( perPage / 2 );
-
-				slides.forEach( ( slide ) => {
-					const index = slide.index;
-					// Calculate distance from center (0 = center, increases with distance)
-					const distance = Math.abs( index - centerIndex );
-
-
-					// Calculate scale: 1.0 at center, decreasing for distant slides
-					// Using a linear interpolation
-					const maxDistance = visibleRange; // Adjust based on perPage
-					const minScale = 0.6;
-					const maxScale = 1.0;
-					const normalizedDistance = Math.min( distance / maxDistance, 1 );
-					const scale = maxScale - (normalizedDistance * (maxScale - minScale));
-
-					// Calculate opacity: 1.0 at center, decreasing for distant slides
-					const minOpacity = 0.1;
-					const maxOpacity = 1.0;
-					const opacity = maxOpacity - (normalizedDistance * (maxOpacity - minOpacity));
-
-
-					// Apply transform, opacity, and padding directly
-					if ( slide.slide.classList.contains( 'wp-block-shiro-video-promo-container' ) ) {
-						// Apply scale to all video and iframe children
-						const videos = slide.slide.querySelectorAll( 'video' );
-						const iframes = slide.slide.querySelectorAll( 'iframe' );
-						videos.forEach( video => {
-							video.style.transform = `scale(${scale})`;
-						} );
-						iframes.forEach( iframe => {
-							iframe.style.transform = `scale(${scale})`;
-						} );
-					} else {
-						slide.slide.firstChild.style.transform = `scale(${scale})`;
-					}
-					slide.slide.style.opacity = "" + opacity;
-				} );
-			};
-
 			// Keep all videos as disabled apart from the active slide.
 			domElement.carousel.Components.Slides.get().forEach( slide => {
 				toggleVideoState( slide.slide, slide.slide.classList.contains( 'is-active' ) );
@@ -184,7 +194,7 @@ const init = () => {
 
 			// Apply initial scaling based on the active slide
 			const initialIndex = domElement.carousel.index;
-			applyProximityScaling( initialIndex );
+			applyProximityScaling( domElement, initialIndex );
 
 			domElement.carousel.on( 'active', ( slide ) => {
 				toggleVideoState( slide.slide, true );
@@ -195,7 +205,7 @@ const init = () => {
 
 			// Progress listener for smooth scaling based on proximity to center
 			domElement.carousel.on( 'move', ( newIndex ) => {
-				applyProximityScaling( newIndex );
+				applyProximityScaling( domElement, newIndex );
 			} );
 		}
 
