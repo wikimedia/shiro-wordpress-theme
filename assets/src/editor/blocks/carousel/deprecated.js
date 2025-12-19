@@ -12,9 +12,6 @@ import classNames from "classnames";
  */
 import metadata from './block.json';
 
-
-console.log( '🚀 Carousel deprecated.js is loading!' );
-
 // Before classname changes
 const v1 = {
 	attributes: metadata.attributes,
