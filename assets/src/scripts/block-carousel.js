@@ -137,38 +137,29 @@ const init = () => {
 			// Function to apply proximity-based scaling and opacity to slides
 			const applyProximityScaling = ( centerIndex ) => {
 				const slides = domElement.carousel.Components.Slides.get();
+				const visibleRange = Math.floor( perPage / 2 );
 
 				slides.forEach( ( slide ) => {
 					const index = slide.index;
 					// Calculate distance from center (0 = center, increases with distance)
 					const distance = Math.abs( index - centerIndex );
 
-					console.debug( '[Carousel] Scaling slide:', {
-						slideIndex: index,
-						centerIndex: centerIndex,
-						distance: distance
-					} );
 
-					// Calculate scale: 1.0 at center, decreasing to 0.8 for distant slides
+					// Calculate scale: 1.0 at center, decreasing for distant slides
 					// Using a linear interpolation
-					const maxDistance = 2; // Adjust based on how many slides you want to affect
-					const minScale = 0.8;
+					const maxDistance = visibleRange; // Adjust based on perPage
+					const minScale = 0.6;
 					const maxScale = 1.0;
 					const normalizedDistance = Math.min( distance / maxDistance, 1 );
 					const scale = maxScale - (normalizedDistance * (maxScale - minScale));
 
-					// Calculate opacity: 1.0 at center, decreasing to 0.6 for distant slides
+					// Calculate opacity: 1.0 at center, decreasing for distant slides
 					const minOpacity = 0.1;
 					const maxOpacity = 1.0;
 					const opacity = maxOpacity - (normalizedDistance * (maxOpacity - minOpacity));
 
-					console.debug( '[Carousel] Scale calculation:', {
-						normalizedDistance: normalizedDistance,
-						calculatedScale: scale
-					} );
-
-					// Apply transform and opacity directly
-					slide.slide.style.transform = `scale(${scale})`;
+					// Apply transform, opacity, and padding directly
+					slide.slide.firstChild.style.transform = `scale(${scale})`;
 					slide.slide.style.opacity = "" + opacity;
 				} );
 			};

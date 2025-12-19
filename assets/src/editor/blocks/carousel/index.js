@@ -107,7 +107,7 @@ const TEMPLATES = {
 const ALLOWED_LAYOUT_BLOCKS = {
 	'carousel-groups': [ 'core/group' ],
 	'carousel-news': [ 'core/query' ],
-	'carousel-video': [ 'core/video', 'core/embed' ],
+	'carousel-video': [ 'core/video', 'core/embed', 'shiro/video-promo-container' ],
 };
 
 registerBlockType( metadata.name, {
@@ -164,12 +164,11 @@ registerBlockType( metadata.name, {
 							onChange={title => setAttributes( { title } )}
 						/>
 						<RangeControl
-							disabled={layout === 'carousel-video'}
 							label={__( 'Slides per page', 'shiro-admin' )}
 							value={perPage}
 							onChange={perPage => setAttributes( { perPage } )}
 							min={1}
-							max={4}
+							max={layout === 'carousel-video' ? 7 : 4}
 						/>
 						<ToggleControl
 							label={__(
