@@ -1,63 +1,68 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "shiro/carousel",
-  "title": "Carousel",
-  "category": "media",
-  "icon": "images-alt2",
-  "description": "Content carousel",
-  "keywords": [
-    "carousel",
-    "gallery"
-  ],
-  "supports": {
-    "align": [
-      "wide",
-      "full"
-    ],
-    "spacing": {
-      "blockGap": true,
-      "margin": true,
-      "padding": true
-    }
-  },
-  "version": "1.0.0",
-  "textdomain": "shiro-admin",
-  "attributes": {
-    "title": {
-      "type": "string",
-      "default": ""
-    },
-    "perPage": {
-      "type": "integer",
-      "default": 1
-    },
-    "arrows": {
-      "type": "boolean",
-      "default": true
-    },
-    "pagination": {
-      "type": "boolean",
-      "default": true
-    },
-    "layout": {
-      "type": "string",
-      "default": "carousel-groups",
-      "enum": [ "carousel-groups", "carousel-posts" ]
-    },
-    "loop": {
-      "type": "boolean",
-      "default": false
-    },
-    "autoplay": {
-      "type": "boolean",
-      "default": false
-    },
-    "interval": {
-      "type": "integer",
-      "default": 5000
-    }
-  },
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "shiro/carousel",
+	"title": "Carousel",
+	"category": "media",
+	"icon": "images-alt2",
+	"description": "Content carousel",
+	"keywords": [
+		"carousel",
+		"gallery"
+	],
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"blockGap": true,
+			"margin": true,
+			"padding": true
+		}
+	},
+	"version": "1.0.0",
+	"textdomain": "shiro-admin",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"perPage": {
+			"type": "integer",
+			"default": 1
+		},
+		"arrows": {
+			"type": "boolean",
+			"default": true
+		},
+		"pagination": {
+			"type": "boolean",
+			"default": true
+		},
+		"layout": {
+			"type": "string",
+			"default": "carousel-groups",
+			"enum": [
+				"carousel-groups",
+				"carousel-posts",
+				"carousel-video"
+			]
+		},
+		"loop": {
+			"type": "boolean",
+			"default": false
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"interval": {
+			"type": "integer",
+			"default": 5000
+		}
+	},
 	"editorScript": "file:./index.js",
-	"editorStyle": "file:./style-index.css"
+	"editorStyle": "file:./style-index.css",
+	"viewStyle": "file:./index.css"
 }
