@@ -3,6 +3,55 @@
  */
 
 /**
+ * Calculates the dimensions of a video element that is fully contained
+ * within its parent container while maintaining the video's aspect ratio.
+ *
+ * This function determines the appropriate width and height for the video
+ * element to ensure that it fits within the bounds of its parent's dimensions
+ * without distortion.
+ *
+ * @param {HTMLVideoElement} video - The video element for which the contained size is determined.
+ *                                   It should be a valid HTML video element.
+ * @returns {{width: number, height: number}} An object containing the calculated width and height
+ *                                            of the video element that fits fully within its parent.
+ */
+const getContainedVideoSize = video => {
+	const { videoWidth, videoHeight } = video;
+	const { width: cw, height: ch } = video.parentElement.getBoundingClientRect();
+
+	const videoAspect = videoWidth / videoHeight;
+	const containerAspect = cw / ch;
+
+	if ( videoAspect > containerAspect ) {
+		return { width: cw, height: cw / videoAspect };
+	} else {
+		return { width: ch * videoAspect, height: ch };
+	}
+};
+
+const fitVideo = ( video ) => {
+	video.style.objectFit = 'contain';
+};
+
+/**
+ * Positions the progress bar container to match the video's rendered dimensions.
+ *
+ * @param {HTMLVideoElement} video - The video element.
+ * @param {HTMLElement} progressBarContainer - The progress bar container element to position.
+ */
+const positionProgressBar = ( video, progressBarContainer ) => {
+	const videoSize = getContainedVideoSize( video );
+
+	if ( videoSize ) {
+		const containerWidth = video.getBoundingClientRect().width;
+		const leftOffset = (containerWidth - videoSize.width) / 2;
+
+		progressBarContainer.style.left = `${leftOffset}px`;
+		progressBarContainer.style.width = `${videoSize.width}px`;
+	}
+};
+
+/**
  * Creates and initializes a progress bar element for a given context.
  * The function dynamically generates a container with an embedded progress bar.
  * Once created, the progress bar container is appended to the DOM immediately following the specified video element.
@@ -21,6 +70,10 @@ const initializeProgressBar = ( video, container ) => {
 	progressBar.className = 'progress-bar';
 	progressBarContainer.appendChild( progressBar );
 	video.after( progressBarContainer );
+
+	positionProgressBar( video, progressBarContainer );
+
+	window.addEventListener( 'resize', () => positionProgressBar( video, progressBarContainer ) );
 
 	return progressBar;
 };
@@ -47,14 +100,14 @@ const pauseProgressBar = ( progressBar ) => {
  *
  * @return {void} This method does not return any value.
  */
-const scrollVideoIntoView = ( video ) => {
+const scrollVideoIntoView = ( video, container ) => {
 	if ( ! video.autoplay ) {
 		// Scroll the top of the video into view.
 		setTimeout( () => {
 			const header = document.querySelector( '.global-header' ) || document.querySelector( 'header' );
 			const headerOffset = header ? header.getBoundingClientRect().height : 0;
 
-			const videoTopOnPage = video.getBoundingClientRect().top + window.scrollY;
+			const videoTopOnPage = video.getBoundingClientRect().top + window.pageYOffset;
 
 			window.scrollTo( {
 				top: Math.max( 0, videoTopOnPage - headerOffset ),
@@ -83,9 +136,36 @@ const setVideoHeight = ( video ) => {
 
 	// We want the element box to match the rendered video size (no letterboxing),
 	// so we size height from width using the intrinsic video aspect ratio.
-	video.style.objectFit = 'contain';
 	video.style.maxHeight = `${availableHeight}px`;
 
+	/**
+	 * Adjusts the height of a video element to maintain its intrinsic aspect ratio
+	 * while ensuring it fits within the available height of its container.
+	 *
+	 * This function calculates an ideal height based on the video's intrinsic
+	 * dimensions (`videoWidth` and `videoHeight`) and the current display width of
+	 * the video. It then applies the smaller value between the calculated ideal
+	 * height and the maximum available height to the video element's height.
+	 *
+	 * If the video's intrinsic dimensions are unavailable (e.g., video metadata
+	 * has not yet been loaded) or if the video's width cannot be determined, the
+	 * function will exit without modifying the height.
+	 *
+	 * Preconditions:
+	 * - The video element's metadata must be loaded (`loadedmetadata` event) to
+	 *   ensure its `videoWidth` and `videoHeight` properties are populated.
+	 * - The video element must have a measurable width through its bounding client
+	 *   rectangle.
+	 *
+	 * Side Effects:
+	 * - Updates the `style.height` property of the referenced video element.
+	 *
+	 * Edge Cases:
+	 * - No height modification is applied if the `videoWidth` and `videoHeight`
+	 *   values are unavailable.
+	 * - No height modification is applied if the video's bounding client width is
+	 *   zero or undefined.
+	 */
 	const applyIntrinsicHeight = () => {
 		// videoWidth/videoHeight are available after `loadedmetadata`.
 		if ( ! video.videoWidth || ! video.videoHeight ) {
@@ -121,6 +201,7 @@ const setVideoHeight = ( video ) => {
 const setVideoPoster = ( video ) => {
 	video.src = '';
 	video.src = video.currentSrc;
+	video.style.objectFit = 'cover';
 };
 
 /**
@@ -172,9 +253,12 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			}
 
 			setVideoHeight( video );
+			video.style.objectFit = 'cover';
+
 			window.addEventListener( 'resize', () => setVideoHeight( video ) );
 
-			video.addEventListener( 'play', () => scrollVideoIntoView( video ) );
+			video.addEventListener( 'play', () => scrollVideoIntoView( video, container ) );
+			video.addEventListener( 'play', () => fitVideo( video ) );
 			video.addEventListener( 'ended', () => setVideoPoster( video ) );
 
 			const progressBar = initializeProgressBar( video, container );
