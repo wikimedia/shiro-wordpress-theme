@@ -164,12 +164,11 @@ registerBlockType( metadata.name, {
 							onChange={title => setAttributes( { title } )}
 						/>
 						<RangeControl
-							disabled={layout === 'carousel-video'}
 							label={__( 'Slides per page', 'shiro-admin' )}
 							value={perPage}
 							onChange={perPage => setAttributes( { perPage } )}
 							min={1}
-							max={4}
+							max={layout === 'carousel-video' ? 7 : 4}
 						/>
 						<ToggleControl
 							label={__(
