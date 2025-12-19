@@ -86,6 +86,34 @@ const setVideoHeight = ( video ) => {
 	video.style.objectFit = 'contain';
 	video.style.maxHeight = `${availableHeight}px`;
 
+	/**
+	 * Adjusts the height of a video element to maintain its intrinsic aspect ratio
+	 * while ensuring it fits within the available height of its container.
+	 *
+	 * This function calculates an ideal height based on the video's intrinsic
+	 * dimensions (`videoWidth` and `videoHeight`) and the current display width of
+	 * the video. It then applies the smaller value between the calculated ideal
+	 * height and the maximum available height to the video element's height.
+	 *
+	 * If the video's intrinsic dimensions are unavailable (e.g., video metadata
+	 * has not yet been loaded) or if the video's width cannot be determined, the
+	 * function will exit without modifying the height.
+	 *
+	 * Preconditions:
+	 * - The video element's metadata must be loaded (`loadedmetadata` event) to
+	 *   ensure its `videoWidth` and `videoHeight` properties are populated.
+	 * - The video element must have a measurable width through its bounding client
+	 *   rectangle.
+	 *
+	 * Side Effects:
+	 * - Updates the `style.height` property of the referenced video element.
+	 *
+	 * Edge Cases:
+	 * - No height modification is applied if the `videoWidth` and `videoHeight`
+	 *   values are unavailable.
+	 * - No height modification is applied if the video's bounding client width is
+	 *   zero or undefined.
+	 */
 	const applyIntrinsicHeight = () => {
 		// videoWidth/videoHeight are available after `loadedmetadata`.
 		if ( ! video.videoWidth || ! video.videoHeight ) {
