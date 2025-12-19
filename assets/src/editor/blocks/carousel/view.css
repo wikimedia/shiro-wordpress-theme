@@ -5,7 +5,7 @@
         will-change: transform; /* Helps performance */
         transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 
-        video, div {
+        video, div, iframe {
             will-change: transform; /* Helps performance */
             transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
