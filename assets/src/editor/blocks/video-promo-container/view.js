@@ -2,6 +2,10 @@
  * Video Promo Container View Script
  */
 
+const fitVideo = ( video ) => {
+	video.style.objectFit = 'contain';
+};
+
 /**
  * Creates and initializes a progress bar element for a given context.
  * The function dynamically generates a container with an embedded progress bar.
@@ -83,7 +87,7 @@ const setVideoHeight = ( video ) => {
 
 	// We want the element box to match the rendered video size (no letterboxing),
 	// so we size height from width using the intrinsic video aspect ratio.
-	video.style.objectFit = 'contain';
+	video.style.objectFit = 'cover';
 	video.style.maxHeight = `${availableHeight}px`;
 
 	/**
@@ -149,6 +153,7 @@ const setVideoHeight = ( video ) => {
 const setVideoPoster = ( video ) => {
 	video.src = '';
 	video.src = video.currentSrc;
+	video.style.objectFit = 'cover';
 };
 
 /**
@@ -209,6 +214,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			window.addEventListener( 'resize', () => setVideoHeight( video ) );
 
 			video.addEventListener( 'play', () => scrollVideoIntoView( video, container ) );
+			video.addEventListener( 'play', () => fitVideo( video ) );
 			video.addEventListener( 'ended', () => setVideoPoster( video ) );
 
 			const progressBar = initializeProgressBar( video, container );
