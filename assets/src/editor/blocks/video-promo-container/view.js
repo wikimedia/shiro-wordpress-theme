@@ -2,8 +2,53 @@
  * Video Promo Container View Script
  */
 
+/**
+ * Calculates the dimensions of a video element that is fully contained
+ * within its parent container while maintaining the video's aspect ratio.
+ *
+ * This function determines the appropriate width and height for the video
+ * element to ensure that it fits within the bounds of its parent's dimensions
+ * without distortion.
+ *
+ * @param {HTMLVideoElement} video - The video element for which the contained size is determined.
+ *                                   It should be a valid HTML video element.
+ * @returns {{width: number, height: number}} An object containing the calculated width and height
+ *                                            of the video element that fits fully within its parent.
+ */
+const getContainedVideoSize = video => {
+	const { videoWidth, videoHeight } = video;
+	const { width: cw, height: ch } = video.parentElement.getBoundingClientRect();
+
+	const videoAspect = videoWidth / videoHeight;
+	const containerAspect = cw / ch;
+
+	if ( videoAspect > containerAspect ) {
+		return { width: cw, height: cw / videoAspect };
+	} else {
+		return { width: ch * videoAspect, height: ch };
+	}
+};
+
 const fitVideo = ( video ) => {
 	video.style.objectFit = 'contain';
+};
+
+/**
+ * Positions the progress bar container to match the video's rendered dimensions.
+ *
+ * @param {HTMLVideoElement} video - The video element.
+ * @param {HTMLElement} progressBarContainer - The progress bar container element to position.
+ */
+const positionProgressBar = ( video, progressBarContainer ) => {
+	const videoSize = getContainedVideoSize( video );
+
+	if ( videoSize ) {
+		const containerWidth = video.getBoundingClientRect().width;
+		const leftOffset = (containerWidth - videoSize.width) / 2;
+
+		progressBarContainer.style.left = `${leftOffset}px`;
+		progressBarContainer.style.width = `${videoSize.width}px`;
+	}
 };
 
 /**
@@ -25,6 +70,10 @@ const initializeProgressBar = ( video, container ) => {
 	progressBar.className = 'progress-bar';
 	progressBarContainer.appendChild( progressBar );
 	video.after( progressBarContainer );
+
+	positionProgressBar( video, progressBarContainer );
+
+	window.addEventListener( 'resize', () => positionProgressBar( video, progressBarContainer ) );
 
 	return progressBar;
 };
@@ -205,7 +254,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 			setVideoHeight( video );
 			video.style.objectFit = 'cover';
-			
+
 			window.addEventListener( 'resize', () => setVideoHeight( video ) );
 
 			video.addEventListener( 'play', () => scrollVideoIntoView( video, container ) );
