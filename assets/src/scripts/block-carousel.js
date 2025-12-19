@@ -158,8 +158,21 @@ const init = () => {
 					const maxOpacity = 1.0;
 					const opacity = maxOpacity - (normalizedDistance * (maxOpacity - minOpacity));
 
+
 					// Apply transform, opacity, and padding directly
-					slide.slide.firstChild.style.transform = `scale(${scale})`;
+					if ( slide.slide.classList.contains( 'wp-block-shiro-video-promo-container' ) ) {
+						// Apply scale to all video and iframe children
+						const videos = slide.slide.querySelectorAll( 'video' );
+						const iframes = slide.slide.querySelectorAll( 'iframe' );
+						videos.forEach( video => {
+							video.style.transform = `scale(${scale})`;
+						} );
+						iframes.forEach( iframe => {
+							iframe.style.transform = `scale(${scale})`;
+						} );
+					} else {
+						slide.slide.firstChild.style.transform = `scale(${scale})`;
+					}
 					slide.slide.style.opacity = "" + opacity;
 				} );
 			};
