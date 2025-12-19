@@ -87,7 +87,6 @@ const setVideoHeight = ( video ) => {
 
 	// We want the element box to match the rendered video size (no letterboxing),
 	// so we size height from width using the intrinsic video aspect ratio.
-	video.style.objectFit = 'cover';
 	video.style.maxHeight = `${availableHeight}px`;
 
 	/**
@@ -205,6 +204,8 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			}
 
 			setVideoHeight( video );
+			video.style.objectFit = 'cover';
+			
 			window.addEventListener( 'resize', () => setVideoHeight( video ) );
 
 			video.addEventListener( 'play', () => scrollVideoIntoView( video, container ) );
