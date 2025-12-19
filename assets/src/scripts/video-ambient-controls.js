@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 
 const shouldShowPlayIcon = video => {
-	if ( ! ( video instanceof HTMLVideoElement ) ) {
+	if ( ! (video instanceof HTMLVideoElement) ) {
 		return false;
 	}
 
@@ -9,12 +9,12 @@ const shouldShowPlayIcon = video => {
 
 	// Return true when we should show the play icon.
 	return ! isPlaying;
-}
+};
 
 const initialiseVideo = videoWrapper => {
 	// Don't reprocess the same videos.
-	if ( Array.from(videoWrapper.children).some(
-		el => el.classList.contains('video-ambient-controls')
+	if ( Array.from( videoWrapper.children ).some(
+		el => el.classList.contains( 'video-ambient-controls' )
 	) ) {
 		return;
 	}
@@ -27,19 +27,19 @@ const initialiseVideo = videoWrapper => {
 	if ( videoWrapper.classList.contains( 'wp-block-shiro-video-promo-container' ) ) {
 		// Do we want the mobile or the desktop version?
 		videoSelector = '.wp-block-shiro-video-promo-container-background__desktop';
-		if ( window.matchMedia('(max-width: 700px)').matches ) {
+		if ( window.matchMedia( '(max-width: 700px)' ).matches ) {
 			videoSelector = '.wp-block-shiro-video-promo-container-background__mobile';
 		}
 	}
 
 	const video = videoWrapper.querySelector( videoSelector );
 
-	if ( ! ( video || iframe ) ) {
+	if ( ! (video || iframe) ) {
 		return;
 	}
 
-	const showPlayIcon = ( video && shouldShowPlayIcon( video ) ) ||
-		( iframe && ( ! iframe.src.includes( 'autoPlay=1' ) ) );
+	const showPlayIcon = (video && shouldShowPlayIcon( video )) ||
+		(iframe && (! iframe.src.includes( 'autoPlay=1' )));
 
 	const promo_play_block = videoWrapper.querySelector( '.wp-block-shiro-video-promo-play' );
 
@@ -47,6 +47,9 @@ const initialiseVideo = videoWrapper => {
 	ambientControls.classList.add( 'video-ambient-controls' );
 
 	videoWrapper.appendChild( ambientControls );
+
+	// Initial position update
+	updateAmbientControlsPosition( video, ambientControls );
 
 	const pauseText = __( 'Pause video', 'shiro-admin' );
 	const playText = __( 'Play video', 'shiro-admin' );
@@ -71,7 +74,7 @@ const initialiseVideo = videoWrapper => {
 			ambientControls.classList.add( 'pause' );
 			videoWrapper.classList.add( 'ambient-video-pause' );
 		}
-	}
+	};
 
 	// HTML5 Video.
 	const onVideoButton = () => {
@@ -86,9 +89,9 @@ const initialiseVideo = videoWrapper => {
 
 	// iframe/VideoPress.
 	const onIframeButton = () => {
-		const isPlaying = ambientControls.classList.contains('play');
+		const isPlaying = ambientControls.classList.contains( 'play' );
 
-		if (isPlaying) {
+		if ( isPlaying ) {
 			showPauseButton();
 		} else {
 			showPlayButton();
@@ -107,7 +110,7 @@ const initialiseVideo = videoWrapper => {
 			};
 
 		try {
-			if (videoWrapper.classList.contains('is-provider-videopress')) {
+			if ( videoWrapper.classList.contains( 'is-provider-videopress' ) ) {
 				iframe?.contentWindow.postMessage(
 					{
 						event: isPlaying
@@ -117,9 +120,9 @@ const initialiseVideo = videoWrapper => {
 					'*'
 				);
 			} else {
-				iframe?.contentWindow.postMessage(JSON.stringify(message), '*');
+				iframe?.contentWindow.postMessage( JSON.stringify( message ), '*' );
 			}
-		} catch (err) {
+		} catch ( err ) {
 			// no-op.
 		}
 	};
@@ -135,23 +138,26 @@ const initialiseVideo = videoWrapper => {
 		video.controls = false;
 
 		// Ensure videos don't take over fullscreen on iOS.
-		if (!video.hasAttribute('playsinline')) {
-			video.setAttribute('playsinline', '');
+		if ( ! video.hasAttribute( 'playsinline' ) ) {
+			video.setAttribute( 'playsinline', '' );
 		}
 
 		// Improve metadata loading.
-		if (!video.hasAttribute('preload')) {
-			video.setAttribute('preload', 'metadata');
+		if ( ! video.hasAttribute( 'preload' ) ) {
+			video.setAttribute( 'preload', 'metadata' );
 		}
 
 		// Here we use the player events to trigger the changing of the ambient control UI.
 		// Without this external events such as key presses or clicking would desync the
 		// control from the video state.
-		const update = () => {
-			const isPlaying = !video.paused && !video.ended;
-			ambientControls.setAttribute('aria-pressed', isPlaying);
+		const update = ( shouldUpdateAmbient = true ) => {
+			if ( shouldUpdateAmbient ) {
+				updateAmbientControlsPosition( video, ambientControls );
+			}
+			const isPlaying = ! video.paused && ! video.ended;
+			ambientControls.setAttribute( 'aria-pressed', isPlaying );
 			if ( promo_play_block ) {
-				promo_play_block.setAttribute('aria-pressed', isPlaying);
+				promo_play_block.setAttribute( 'aria-pressed', isPlaying );
 			}
 			if ( isPlaying ) {
 				showPauseButton();
@@ -161,23 +167,36 @@ const initialiseVideo = videoWrapper => {
 		};
 
 		// Fire once metadata is ready
-		video.addEventListener('loadedmetadata', update);
+		video.addEventListener( 'loadedmetadata', () => {
+			update( false );
+		} );
+
+		// Update position on window resize, on video play.
+		window.addEventListener( 'resize', () => {
+			const isPlaying = ! video.paused && ! video.ended;
+			if ( ! isPlaying ) {
+				// Don't move the controls when the poster/cover is visible
+				return;
+			}
+			updateAmbientControlsPosition( video, ambientControls );
+		} );
 
 		// Detect actual playback transitions
-		video.addEventListener('playing', update);
-		video.addEventListener('pause', update);
-		video.addEventListener('ended', update);
-		video.addEventListener('error', update);
+		video.addEventListener( 'playing', update );
+		video.addEventListener( 'pause', update );
+		video.addEventListener( 'ended', update );
+		video.addEventListener( 'error', update );
+		video.addEventListener( 'canplayThrough', () => updateAmbientControlsPosition( video, ambientControls ) );
 
 		// Fallbacks for older iOS devices.
-		video.addEventListener('webkitbeginfullscreen', update);
-		video.addEventListener('webkitendfullscreen', update);
+		video.addEventListener( 'webkitbeginfullscreen', update );
+		video.addEventListener( 'webkitendfullscreen', update );
 
 		// Add click event listeners to play and pause the video.
-		video.addEventListener('click',onVideoButton, false );
-		ambientControls.addEventListener('click', onVideoButton, false );
-		if (promo_play_block) {
-			promo_play_block.addEventListener('click', onVideoButton, false );
+		video.addEventListener( 'click', onVideoButton, false );
+		ambientControls.addEventListener( 'click', onVideoButton, false );
+		if ( promo_play_block ) {
+			promo_play_block.addEventListener( 'click', onVideoButton, false );
 		}
 
 	}
@@ -185,12 +204,12 @@ const initialiseVideo = videoWrapper => {
 	if ( iframe ) {
 		// Add click event listeners to play and pause the video.
 		ambientControls.addEventListener( 'click', onIframeButton, false );
-		if (promo_play_block) {
-			promo_play_block.addEventListener('click', onIframeButton, false );
+		if ( promo_play_block ) {
+			promo_play_block.addEventListener( 'click', onIframeButton, false );
 		}
 	}
 	//
-}
+};
 
 /**
  * Initialize all videos on page.
@@ -207,8 +226,8 @@ const init = () => {
 	}
 };
 
-if (document.readyState === 'loading') {
-	document.addEventListener('readystatechange', () => {
+if ( document.readyState === 'loading' ) {
+	document.addEventListener( 'readystatechange', () => {
 		if ( document.readyState === 'interactive' ) {
 			init();
 		}
