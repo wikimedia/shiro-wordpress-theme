@@ -11,4 +11,11 @@
         }
 
     }
+
+    .video-ambient-controls {
+        /* quick fix for repositioning the control. */
+        bottom: 0.25rem;
+    }
+
+
 }
