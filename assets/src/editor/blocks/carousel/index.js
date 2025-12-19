@@ -107,7 +107,7 @@ const TEMPLATES = {
 const ALLOWED_LAYOUT_BLOCKS = {
 	'carousel-groups': [ 'core/group' ],
 	'carousel-news': [ 'core/query' ],
-	'carousel-video': [ 'core/video', 'core/embed' ],
+	'carousel-video': [ 'core/video', 'core/embed', 'shiro/video-promo-container' ],
 };
 
 registerBlockType( metadata.name, {
