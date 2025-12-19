@@ -226,7 +226,15 @@ const initialiseVideo = videoWrapper => {
 			update( false );
 		} );
 
-		// Update position on window resize
+		// Update position on window resize, on video play.
+		window.addEventListener( 'resize', () => {
+			const isPlaying = ! video.paused && ! video.ended;
+			if ( ! isPlaying ) {
+				// Don't move the controls when the poster/cover is visible
+				return;
+			}
+			updateAmbientControlsPosition( video, ambientControls );
+		} );
 
 		// Detect actual playback transitions
 		video.addEventListener( 'playing', update );
