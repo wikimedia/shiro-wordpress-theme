@@ -64,8 +64,9 @@ $width-breakpoint-tablet: 768px;
 .wp-block-shiro-video-promo-container > .video-ambient-controls {
 	align-self: flex-end;
 	justify-self: flex-end;
+	// sit the player controls above the video title.
+	z-index: 99;
 }
-
 
 .wp-block-shiro-video-promo-container .progress-bar-container {
 	position: absolute;

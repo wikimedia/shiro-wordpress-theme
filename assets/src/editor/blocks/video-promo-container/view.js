@@ -14,12 +14,14 @@ const initializeProgressBar = ( video, container ) => {
 	if ( container.dataset.enableProgressBar !== 'true' ) {
 		return null;
 	}
+
 	const progressBarContainer = document.createElement( 'div' );
 	progressBarContainer.className = 'progress-bar-container';
 	const progressBar = document.createElement( 'div' );
 	progressBar.className = 'progress-bar';
 	progressBarContainer.appendChild( progressBar );
 	video.after( progressBarContainer );
+
 	return progressBar;
 };
 
@@ -45,15 +47,17 @@ const pauseProgressBar = ( progressBar ) => {
  *
  * @return {void} This method does not return any value.
  */
-const scrollVideoIntoView = ( video, container ) => {
+const scrollVideoIntoView = ( video ) => {
 	if ( ! video.autoplay ) {
 		// Scroll the top of the video into view.
 		setTimeout( () => {
 			const header = document.querySelector( '.global-header' ) || document.querySelector( 'header' );
-			const headerOffset = (header ? header.getBoundingClientRect().height : 0);
+			const headerOffset = header ? header.getBoundingClientRect().height : 0;
+
+			const videoTopOnPage = video.getBoundingClientRect().top + window.scrollY;
 
 			window.scrollTo( {
-				top: container.offsetTop - headerOffset,
+				top: Math.max( 0, videoTopOnPage - headerOffset ),
 				behavior: 'smooth'
 			} );
 		}, 100 );
@@ -72,12 +76,39 @@ const scrollVideoIntoView = ( video, container ) => {
  */
 const setVideoHeight = ( video ) => {
 	const header = document.querySelector( '.global-header' ) || document.querySelector( 'header' );
-	if ( header ) {
-		const headerHeight = header.getBoundingClientRect().height;
-		const adminBar = document.getElementById( 'wpadminbar' );
-		const adminBarHeight = adminBar ? adminBar.getBoundingClientRect().height : 0;
-		video.style.height = `calc(100vh - ${headerHeight + adminBarHeight}px)`;
-		video.style.objectFit = 'cover';
+	const headerHeight = header ? header.getBoundingClientRect().height : 0;
+
+	// We ignore the admin bar because it is positioned "above" the document.
+	const availableHeight = Math.max( 0, window.innerHeight - headerHeight );
+
+	// We want the element box to match the rendered video size (no letterboxing),
+	// so we size height from width using the intrinsic video aspect ratio.
+	video.style.objectFit = 'contain';
+	video.style.maxHeight = `${availableHeight}px`;
+
+	const applyIntrinsicHeight = () => {
+		// videoWidth/videoHeight are available after `loadedmetadata`.
+		if ( ! video.videoWidth || ! video.videoHeight ) {
+			return;
+		}
+
+		const width = video.getBoundingClientRect().width;
+		if ( ! width ) {
+			return;
+		}
+
+		const idealHeight = width * (video.videoHeight / video.videoWidth);
+		const finalHeight = Math.min( idealHeight, availableHeight );
+
+		video.style.height = `${finalHeight}px`;
+	};
+
+	// If metadata is already available (cached), apply immediately.
+	applyIntrinsicHeight();
+
+	// Otherwise wait for it once.
+	if ( ! video.videoWidth || ! video.videoHeight ) {
+		video.addEventListener( 'loadedmetadata', applyIntrinsicHeight, { once: true } );
 	}
 };
 
@@ -116,34 +147,45 @@ const transitionProgressBar = ( progressBar ) => {
  * @param {HTMLElement} progressBar - The element representing the visual progress bar to be updated.
  */
 const updateProgressBar = ( video, progressBar ) => {
-	const progress = (video.currentTime / video.duration) * 100;
-	progressBar.style.width = progress + '%';
-};
+	const duration = video.duration;
 
+	// Mobile Safari (and some stream scenarios) can report duration as 0/NaN/Infinity.
+	// If duration isn't a usable finite number, we can't compute progress reliably yet.
+	if ( ! Number.isFinite( duration ) || duration <= 0 ) {
+		return;
+	}
+
+	const progress = (video.currentTime / duration) * 100;
+	progressBar.style.width = `${Math.min( 100, Math.max( 0, progress ) )}%`;
+};
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	const containers = document.querySelectorAll( '.wp-block-shiro-video-promo-container' );
 
 	containers.forEach( container => {
-		const video = container.querySelector( 'video' );
+		// Desktop or mobile videos
+		const videos = container.querySelectorAll( 'video' );
 
-		if ( ! video ) {
-			return;
-		}
+		videos.forEach( video => {
+			if ( ! video ) {
+				return;
+			}
 
-		setVideoHeight( video );
-		window.addEventListener( 'resize', () => setVideoHeight( video ) );
+			setVideoHeight( video );
+			window.addEventListener( 'resize', () => setVideoHeight( video ) );
 
-		video.addEventListener( 'play', () => scrollVideoIntoView( video, container ) );
-		video.addEventListener( 'ended', () => setVideoPoster( video ) );
+			video.addEventListener( 'play', () => scrollVideoIntoView( video ) );
+			video.addEventListener( 'ended', () => setVideoPoster( video ) );
 
-		const progressBar = initializeProgressBar( video, container );
+			const progressBar = initializeProgressBar( video, container );
 
-		if ( progressBar ) {
-			video.addEventListener( 'timeupdate', () => updateProgressBar( video, progressBar ) );
-			video.addEventListener( 'ended', () => resetProgressBar( progressBar ) );
-			video.addEventListener( 'play', () => transitionProgressBar( progressBar ) );
-			video.addEventListener( 'pause', () => pauseProgressBar( progressBar ) );
-		}
+			if ( progressBar ) {
+				video.addEventListener( 'timeupdate', () => updateProgressBar( video, progressBar ) );
+				video.addEventListener( 'ended', () => resetProgressBar( progressBar ) );
+				video.addEventListener( 'play', () => transitionProgressBar( progressBar ) );
+				video.addEventListener( 'pause', () => pauseProgressBar( progressBar ) );
+			}
+
+		} );
 	} );
 } );
