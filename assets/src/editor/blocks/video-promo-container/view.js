@@ -180,12 +180,6 @@ const transitionProgressBar = ( progressBar ) => {
  * @param {HTMLElement} progressBar - The element representing the visual progress bar to be updated.
  */
 const updateProgressBar = ( video, progressBar ) => {
-	console.log( 'Progress bar update:', {
-		duration: video.duration,
-		currentTime: video.currentTime,
-		progress: video.duration > 0 ? (video.currentTime / video.duration) * 100 : 0
-	} );
-
 	const duration = video.duration;
 
 	// Mobile Safari (and some stream scenarios) can report duration as 0/NaN/Infinity.
