@@ -15,16 +15,19 @@ const updateAmbientControlsPosition = ( video, ambientControls ) => {
 	// Reset position if video has ended
 	if ( video.ended ) {
 		ambientControls.style.removeProperty( 'right' );
+		ambientControls.style.removeProperty( 'bottom' );
 		return;
 	}
 
-	const { width } = getContainedVideoSize( video );
+	const { width, height } = getContainedVideoSize( video );
 	const containerRect = video.parentElement.getBoundingClientRect();
 
 	// Calculate the offset to center the video within its container
 	const leftOffset = (containerRect.width - width) / 2;
+	const bottomOffset = (containerRect.height - video.clientHeight) / 2;
 
 	ambientControls.style.right = `${leftOffset}px`;
+	ambientControls.style.bottom = `${bottomOffset}px`;
 };
 
 /**
@@ -225,6 +228,14 @@ const initialiseVideo = videoWrapper => {
 		video.addEventListener( 'loadedmetadata', () => {
 			update( false );
 		} );
+
+		// Observe CSS transforms
+		const observer = new MutationObserver( () => {
+			updateAmbientControlsPosition( video, ambientControls );
+
+		} );
+
+		observer.observe( video, { attributes: true, attributeFilter: [ 'style', 'class' ] } );
 
 		// Update position on window resize, on video play.
 		window.addEventListener( 'resize', () => {
