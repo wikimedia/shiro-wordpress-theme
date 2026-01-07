@@ -23,7 +23,7 @@ const updateAmbientControlsPosition = ( video, ambientControls ) => {
 	const containerRect = video.parentElement.getBoundingClientRect();
 
 	// Calculate the offset to center the video within its container
-	const leftOffset = (containerRect.width - width) / 2;
+	const leftOffset = (containerRect.width - video.clientWidth) / 2;
 	const bottomOffset = (containerRect.height - video.clientHeight) / 2;
 
 	ambientControls.style.right = `${leftOffset}px`;
