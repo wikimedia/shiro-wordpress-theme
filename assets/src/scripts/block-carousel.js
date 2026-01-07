@@ -142,7 +142,7 @@ const init = () => {
 
 		const perPage = JSON.parse( domElement.dataset.splide ).perPage || 1;
 		const isPostCarousel = track.classList.contains( 'wp-block-query' );
-		const isVideoCarousel = list.querySelectorAll( 'video' ).length > 0;
+		const isVideoCarousel = domElement.classList.contains( 'shiro-layout-carousel-video' );
 		if ( perPage > 1 ) {
 			defaultOptions.mediaQuery = 'max';
 			defaultOptions.breakpoints = {
