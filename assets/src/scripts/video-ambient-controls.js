@@ -237,15 +237,11 @@ const initialiseVideo = videoWrapper => {
 
 		observer.observe( video, { attributes: true, attributeFilter: [ 'style', 'class' ] } );
 
-		// Update position on window resize, on video play.
-		window.addEventListener( 'resize', () => {
-			const isPlaying = ! video.paused && ! video.ended;
-			if ( ! isPlaying ) {
-				// Don't move the controls when the poster/cover is visible
-				return;
-			}
+		// Update position using ResizeObserver for more robust handling
+		const resizeObserver = new ResizeObserver( () => {
 			updateAmbientControlsPosition( video, ambientControls );
 		} );
+		resizeObserver.observe( video );
 
 		// Detect actual playback transitions
 		video.addEventListener( 'playing', update );
@@ -253,6 +249,8 @@ const initialiseVideo = videoWrapper => {
 		video.addEventListener( 'ended', update );
 		video.addEventListener( 'error', update );
 		video.addEventListener( 'canplayThrough', () => updateAmbientControlsPosition( video, ambientControls ) );
+		video.addEventListener( 'waiting', () => updateAmbientControlsPosition( video, ambientControls ) );
+		video.addEventListener( 'stalled', () => updateAmbientControlsPosition( video, ambientControls ) );
 
 		// Fallbacks for older iOS devices.
 		video.addEventListener( 'webkitbeginfullscreen', update );
