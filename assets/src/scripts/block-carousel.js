@@ -92,7 +92,7 @@ const applyProximityScaling = ( domElement, centerIndex ) => {
 		const scale = maxScale - (normalizedDistance * (maxScale - minScale));
 
 		// Calculate opacity: 1.0 at center, decreasing for distant slides
-		const minOpacity = 0.1;
+		const minOpacity = 0.5;
 		const maxOpacity = 1.0;
 		const opacity = maxOpacity - (normalizedDistance * (maxOpacity - minOpacity));
 
