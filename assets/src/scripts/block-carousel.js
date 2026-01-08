@@ -92,7 +92,7 @@ const applyProximityScaling = ( domElement, centerIndex ) => {
 		const scale = maxScale - (normalizedDistance * (maxScale - minScale));
 
 		// Calculate opacity: 1.0 at center, decreasing for distant slides
-		const minOpacity = 0.1;
+		const minOpacity = 0.5;
 		const maxOpacity = 1.0;
 		const opacity = maxOpacity - (normalizedDistance * (maxOpacity - minOpacity));
 
@@ -142,7 +142,7 @@ const init = () => {
 
 		const perPage = JSON.parse( domElement.dataset.splide ).perPage || 1;
 		const isPostCarousel = track.classList.contains( 'wp-block-query' );
-		const isVideoCarousel = list.querySelectorAll( 'video' ).length > 0;
+		const isVideoCarousel = domElement.classList.contains( 'shiro-layout-carousel-video' );
 		if ( perPage > 1 ) {
 			defaultOptions.mediaQuery = 'max';
 			defaultOptions.breakpoints = {
