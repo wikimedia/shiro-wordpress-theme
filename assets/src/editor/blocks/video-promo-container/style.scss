@@ -24,6 +24,11 @@ $width-breakpoint-tablet: 768px;
 	.wp-block-shiro-video-promo-container > .wp-block-shiro-video-promo-container-background__mobile {
 		display: block;
 	}
+
+	// Hide play button on mobile
+	.wp-block-shiro-video-promo-container > .video-ambient-controls.play {
+		display: none;
+	}
 }
 
 .wp-block-shiro-video-promo-container__inner-container {
