@@ -15,16 +15,19 @@ const updateAmbientControlsPosition = ( video, ambientControls ) => {
 	// Reset position if video has ended
 	if ( video.ended ) {
 		ambientControls.style.removeProperty( 'right' );
+		ambientControls.style.removeProperty( 'bottom' );
 		return;
 	}
 
-	const { width } = getContainedVideoSize( video );
+	const { width, height } = getContainedVideoSize( video );
 	const containerRect = video.parentElement.getBoundingClientRect();
 
 	// Calculate the offset to center the video within its container
-	const leftOffset = (containerRect.width - width) / 2;
+	const leftOffset = (containerRect.width - video.clientWidth) / 2;
+	const bottomOffset = (containerRect.height - video.clientHeight) / 2;
 
 	ambientControls.style.right = `${leftOffset}px`;
+	ambientControls.style.bottom = `${bottomOffset}px`;
 };
 
 /**
@@ -226,15 +229,19 @@ const initialiseVideo = videoWrapper => {
 			update( false );
 		} );
 
-		// Update position on window resize, on video play.
-		window.addEventListener( 'resize', () => {
-			const isPlaying = ! video.paused && ! video.ended;
-			if ( ! isPlaying ) {
-				// Don't move the controls when the poster/cover is visible
-				return;
-			}
+		// Observe CSS transforms
+		const observer = new MutationObserver( () => {
+			updateAmbientControlsPosition( video, ambientControls );
+
+		} );
+
+		observer.observe( video, { attributes: true, attributeFilter: [ 'style', 'class' ] } );
+
+		// Update position using ResizeObserver for more robust handling
+		const resizeObserver = new ResizeObserver( () => {
 			updateAmbientControlsPosition( video, ambientControls );
 		} );
+		resizeObserver.observe( video );
 
 		// Detect actual playback transitions
 		video.addEventListener( 'playing', update );
@@ -242,6 +249,8 @@ const initialiseVideo = videoWrapper => {
 		video.addEventListener( 'ended', update );
 		video.addEventListener( 'error', update );
 		video.addEventListener( 'canplayThrough', () => updateAmbientControlsPosition( video, ambientControls ) );
+		video.addEventListener( 'waiting', () => updateAmbientControlsPosition( video, ambientControls ) );
+		video.addEventListener( 'stalled', () => updateAmbientControlsPosition( video, ambientControls ) );
 
 		// Fallbacks for older iOS devices.
 		video.addEventListener( 'webkitbeginfullscreen', update );
