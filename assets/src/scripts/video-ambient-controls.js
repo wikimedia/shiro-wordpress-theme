@@ -19,7 +19,6 @@ const updateAmbientControlsPosition = ( video, ambientControls ) => {
 		return;
 	}
 
-	const { width, height } = getContainedVideoSize( video );
 	const containerRect = video.parentElement.getBoundingClientRect();
 
 	// Calculate the offset to center the video within its container
@@ -29,34 +28,6 @@ const updateAmbientControlsPosition = ( video, ambientControls ) => {
 	ambientControls.style.right = `${leftOffset}px`;
 	ambientControls.style.bottom = `${bottomOffset}px`;
 };
-
-/**
- * Calculates the dimensions of a video element that is fully contained
- * within its parent container while maintaining the video's aspect ratio.
- *
- * This function determines the appropriate width and height for the video
- * element to ensure that it fits within the bounds of its parent's dimensions
- * without distortion.
- *
- * @param {HTMLVideoElement} video - The video element for which the contained size is determined.
- *                                   It should be a valid HTML video element.
- * @returns {{width: number, height: number}} An object containing the calculated width and height
- *                                            of the video element that fits fully within its parent.
- */
-const getContainedVideoSize = video => {
-	const { videoWidth, videoHeight } = video;
-	const { width: cw, height: ch } = video.parentElement.getBoundingClientRect();
-
-	const videoAspect = videoWidth / videoHeight;
-	const containerAspect = cw / ch;
-
-	if ( videoAspect > containerAspect ) {
-		return { width: cw, height: cw / videoAspect };
-	} else {
-		return { width: ch * videoAspect, height: ch };
-	}
-};
-
 
 const shouldShowPlayIcon = video => {
 	if ( ! (video instanceof HTMLVideoElement) ) {
