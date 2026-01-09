@@ -40,6 +40,11 @@ const fitVideo = ( video ) => {
  * @param {HTMLElement} progressBarContainer - The progress bar container element to position.
  */
 const positionProgressBar = ( video, progressBarContainer ) => {
+	if ( ! video.videoWidth || ! video.videoHeight ) {
+		// [ProgressBar] No video dimensions available yet
+		return;
+	}
+
 	const videoSize = getContainedVideoSize( video );
 
 	if ( videoSize ) {
@@ -72,6 +77,16 @@ const initializeProgressBar = ( video, container ) => {
 	video.after( progressBarContainer );
 
 	positionProgressBar( video, progressBarContainer );
+
+	// Listen for metadata loading to catch the first available dimensions.
+	video.addEventListener( 'loadedmetadata', () => {
+		positionProgressBar( video, progressBarContainer );
+	} );
+
+	const resizeObserver = new ResizeObserver( () => {
+		positionProgressBar( video, progressBarContainer );
+	} );
+	resizeObserver.observe( video );
 
 	window.addEventListener( 'resize', () => positionProgressBar( video, progressBarContainer ) );
 
@@ -169,11 +184,13 @@ const setVideoHeight = ( video ) => {
 	const applyIntrinsicHeight = () => {
 		// videoWidth/videoHeight are available after `loadedmetadata`.
 		if ( ! video.videoWidth || ! video.videoHeight ) {
+			// [VideoHeight] No video dimensions available yet
 			return;
 		}
 
 		const width = video.getBoundingClientRect().width;
 		if ( ! width ) {
+			// [VideoHeight] No video width available
 			return;
 		}
 
@@ -181,6 +198,12 @@ const setVideoHeight = ( video ) => {
 		const finalHeight = Math.min( idealHeight, availableHeight );
 
 		video.style.height = `${finalHeight}px`;
+
+		// Ensure progress bar is repositioned after the height is explicitly set.
+		const progressBarContainer = video.parentElement.querySelector( '.progress-bar-container' );
+		if ( progressBarContainer ) {
+			positionProgressBar( video, progressBarContainer );
+		}
 	};
 
 	// If metadata is already available (cached), apply immediately.
@@ -243,11 +266,11 @@ const updateProgressBar = ( video, progressBar ) => {
 document.addEventListener( 'DOMContentLoaded', () => {
 	const containers = document.querySelectorAll( '.wp-block-shiro-video-promo-container' );
 
-	containers.forEach( container => {
+	containers.forEach( ( container, containerIndex ) => {
 		// Desktop or mobile videos
 		const videos = container.querySelectorAll( 'video' );
 
-		videos.forEach( video => {
+		videos.forEach( ( video, videoIndex ) => {
 			if ( ! video ) {
 				return;
 			}
