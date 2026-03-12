@@ -1,4 +1,11 @@
 .site-header {
+
+	// Increase the z-index to ensure compatibility with the annual report jumplist.
+	// We repeat the class for extra specificity to override core styles.
+	&.site-header {
+		z-index: 21;
+	}
+
 	@include media(">=sm_desktop") {
 		&:has( .primary-nav .wp-block-hm-mega-menu__toggle[aria-expanded=true] ) {
 			box-shadow: var(--wp--preset--shadow--shadow-16-blur);
