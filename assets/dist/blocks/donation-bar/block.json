@@ -47,6 +47,9 @@
       "type": "string",
       "default": "10"
     },
+    "useLang": {
+      "type": "string"
+    },
     "unsupportedCountries": {
       "type": "array",
       "items": {
