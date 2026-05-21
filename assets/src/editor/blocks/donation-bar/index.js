@@ -52,6 +52,7 @@ registerBlockType( metadata.name, {
 			medium,
 			campaign,
 			source,
+			useLang,
 			unsupportedCountries,
 		} = attributes;
 
@@ -110,6 +111,12 @@ registerBlockType( metadata.name, {
 							label={ __( 'UTM Source', 'shiro-admin' ) }
 							value={ source }
 							onChange={ ( value ) => setAttributes( { source: value } ) }
+						/>
+						<TextControl
+							label={ __( 'Language', 'shiro-admin' ) }
+							help={ __( 'The language attribute to pass using the uselang parameter. Defaults to the site language.', 'shiro-admin' ) }
+							value={ useLang }
+							onChange={ ( value ) => setAttributes( { useLang: value } ) }
 						/>
 					</PanelBody>
 					<PanelBody title={ __( 'Default Amounts by Currency', 'shiro-admin' ) }>
