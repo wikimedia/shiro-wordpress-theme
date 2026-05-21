@@ -51,6 +51,9 @@ if ( ! empty( $attributes['defaultCurrencyAmount'] ) ) {
 	$default_amount = $default_amounts[0]['amount'] ?? $default_amount;
 }
 
+// Get the uselang attribute, defaulting to the site language if not set.
+$uselang = $attributes['useLang'] ?? strtolower( str_replace( '_', '-', get_locale() ) );
+
 ?>
 
 <div <?php echo get_block_wrapper_attributes(); // phpcs:ignore ?>>
@@ -60,7 +63,7 @@ if ( ! empty( $attributes['defaultCurrencyAmount'] ) ) {
 		<input type="hidden" name="wmf_medium" value="<?php echo esc_attr( $attributes['medium'] ?? '' ); ?>" />
 		<input type="hidden" name="wmf_campaign" value="<?php echo esc_attr( $attributes['campaign'] ?? '' ); ?>" />
 		<input type="hidden" name="wmf_source" value="<?php echo esc_attr( $attributes['source'] ?? $default_amount ); ?>" />
-		<input type="hidden" name="uselang" value="<?php echo esc_attr( strtolower( str_replace( '_', '-', get_locale() ) ) ); ?>" />
+		<input type="hidden" name="uselang" value="<?php echo esc_attr( $uselang ); ?>" />
 		<input type="hidden" name="country" value="<?php echo esc_attr( $country_code ); ?>" />
 
 		<fieldset>
