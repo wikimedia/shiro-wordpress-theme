@@ -1,0 +1,81 @@
+.gform_wrapper.nps-survey_wrapper {
+
+	.gform_title {
+		font-size: var(--wp--preset--font-size--large)
+	}
+
+	.nps-survey {
+
+		.gfield_label {
+			font-size: var(--wp--preset--font-size--medium);
+			font-weight: 400;
+		}
+
+		.gfield--input-type-likert .gfield_description {
+			font-style: italic;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			color: var( --wp--preset--color--black-75 );
+		}
+
+		table.gsurvey-likert {
+
+			border-bottom: 0;
+			margin-top: 1rem;
+
+			thead {
+				@include visually-hidden;
+			}
+
+			tr {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+				justify-content: space-between;
+			}
+
+			td.gsurvey-likert-choice {
+
+				font-weight: 700;
+				color: var( --wp--preset--color--black );
+				background-image: none;
+				background-color: var( --wp--preset--color--base ) !important;
+				padding: 8px 14.5px;
+				font-size: 1rem;
+				line-height: 1.5rem;
+				height: auto;
+				border: 1px solid var( --wp--preset--color--black-25 );
+				border-radius: 4px;
+
+				&::before {
+					content: attr(data-label);
+					display: inline;
+				}
+
+				&::after {
+					display: none !important;
+				}
+
+				&.gsurvey-likert-selected {
+					color: var( --wp--preset--color--base );
+					background-image: none;
+					background-color: var( --wp--preset--color--blue-aaa ) !important;
+				}
+
+				&.gsurvey-likert-focus {
+					outline-color: var(--wp--preset--color--main);
+					outline-offset: 2px;
+					outline-style: solid;
+					outline-width: 2px;
+					text-decoration: underline;
+				}
+			}
+		}
+
+		.gform-footer {
+			justify-content: flex-end;
+		}
+	}
+
+}
