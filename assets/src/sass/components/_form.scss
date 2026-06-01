@@ -1,0 +1,94 @@
+/**
+ *
+ * Styles for the NPS survey form.
+ */
+.gform_wrapper.nps-survey_wrapper {
+
+	.gform_title {
+		font-size: var(--wp--preset--font-size--large);
+	}
+
+	// Form fields sit within this container.
+	.nps-survey {
+
+		.gfield_label {
+			font-size: var(--wp--preset--font-size--medium);
+			font-weight: var(--wp--custom--font-weight--normal);
+		}
+
+		// The description for the likert table needs to be split, so we add some custom markup and use flex.
+		.gfield--input-type-likert .gfield_description {
+			font-style: italic;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			color: var( --wp--preset--color--black-75 );
+		}
+
+
+		// The Likert survey uses a table with a heading row and a row of choice inputs.
+		table.gsurvey-likert {
+
+			border-bottom: 0;
+			margin-top: var( --wp--preset--spacing--16 );
+
+			// Hide the table header, but ensure its labels are accessible.
+			thead {
+				@include visually-hidden;
+			}
+
+			tr {
+				display: flex;
+				flex-wrap: wrap;
+				gap: var( --wp--preset--spacing--16 );
+				justify-content: space-between;
+			}
+
+			td.gsurvey-likert-choice {
+
+				font-weight: 700;
+				color: var( --wp--preset--color--black );
+				background-image: none;
+				background-color: var( --wp--preset--color--base ) !important;
+				padding: 0.5rem;
+				min-width: var( --wp--preset--spacing--40 );
+				font-size: var( --wp--preset--font-size--medium);
+				line-height: 1.5rem;
+				height: auto;
+				border: 1px solid var( --wp--preset--color--border-base );
+				border-radius: 0.25rem;
+
+				// Display the label for each choice as part of the selectable option.
+				&::before {
+					content: attr(data-label);
+					display: inline;
+				}
+
+				// Hide Gravity Forms' own responsive labels, since these duplicate ours.
+				&::after {
+					display: none !important;
+				}
+
+				&.gsurvey-likert-selected {
+					color: var( --wp--preset--color--base );
+					background-image: none;
+					background-color: var( --wp--preset--color--blue-aaa ) !important;
+				}
+
+				// Apply the standard button focus to focused options.
+				&.gsurvey-likert-focus {
+					outline-color: var(--wp--preset--color--main);
+					outline-offset: 2px;
+					outline-style: solid;
+					outline-width: 2px;
+					text-decoration: underline;
+				}
+			}
+		}
+
+		.gform-footer {
+			justify-content: flex-end;
+		}
+	}
+
+}
