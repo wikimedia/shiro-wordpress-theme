@@ -85,6 +85,7 @@
 				border: 1px solid var( --wp--preset--color--border-base );
 				border-radius: 0.25rem;
 				grid-column: auto / span 2;
+				text-align: center;
 
 				// Display the label for each choice as part of the selectable option.
 				&::before {
