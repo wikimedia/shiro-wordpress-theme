@@ -23,6 +23,32 @@ div.gform_wrapper.gravity-theme {
 /**
  * Styles for the NPS survey form.
  */
+ .wmf-conditional-survey {
+	display: block;
+	border-radius: 1rem;
+	position: fixed;
+	bottom: 1rem;
+	background-color: var( --wp--preset--color--black-05 );
+	max-width: clamp( 0px, calc( 100vw - 2rem ), 636px );
+	padding: 1rem;
+	left: 50%;
+	transform: translatex(-50%);
+	z-index: 20;
+	width: 100%;
+	box-shadow: 0px 0.25rem 0.5rem 0px rgba(0, 0, 0, 0.06), 0px 0px 1rem 0px rgba(0, 0, 0, 0.06);
+
+	.wmf-conditional-survey-close {
+		position: absolute;
+		right: 1rem;
+		padding: 0;
+		color: var( --wp--preset--color--main );
+		background: transparent;
+		border: 0;
+  		font-size: 1.5rem;
+		cursor: pointer;
+	}
+ }
+
 .gform_wrapper.nps-survey_wrapper {
 
 	.gform_title {
@@ -59,10 +85,11 @@ div.gform_wrapper.gravity-theme {
 			}
 
 			tr {
-				display: flex;
-				flex-wrap: wrap;
+				display: grid;
+				grid-template-columns: repeat( 22, 1fr );
+				justify-items: center;
 				gap: var( --wp--preset--spacing--16 );
-				justify-content: space-between;
+
 			}
 
 			td.gsurvey-likert-choice {
@@ -72,12 +99,14 @@ div.gform_wrapper.gravity-theme {
 				background-image: none;
 				background-color: var( --wp--preset--color--base ) !important;
 				padding: 0.5rem;
-				min-width: var( --wp--preset--spacing--40 );
+				min-width: 2.5rem;
 				font-size: var( --wp--preset--font-size--medium);
 				line-height: 1.5rem;
 				height: auto;
 				border: 1px solid var( --wp--preset--color--border-base );
 				border-radius: 0.25rem;
+				grid-column: auto / span 2;
+				text-align: center;
 
 				// Display the label for each choice as part of the selectable option.
 				&::before {
@@ -105,10 +134,29 @@ div.gform_wrapper.gravity-theme {
 					text-decoration: underline;
 				}
 			}
+
+			@media screen and ( max-width: 620px ) {
+				tr {
+					grid-template-columns: repeat( 12, 1fr );
+
+					td.gsurvey-likert-choice:nth-child(7) {
+						grid-column-start: 2;
+					}
+				}
+			}
 		}
 
 		.gform-footer {
 			justify-content: flex-end;
+			padding-bottom: 0;
+
+
+			@media screen and ( max-width: 620px ) {
+				.gform_button {
+					width: 100%;
+				}
+			}
+
 		}
 	}
 
