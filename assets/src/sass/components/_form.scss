@@ -17,6 +17,10 @@ div.gform_wrapper.gravity-theme {
 	input {
 		font-size: var(--wp--preset--font-size--large)
 	}
+
+	.gform_fields {
+		gap: var(--wp--preset--spacing--24);
+	}
 }
 
 
