@@ -1,5 +1,30 @@
 /**
+ * Styles for Gravity Forms
  *
+ */
+
+/**
+ * General Form Styles
+ */
+.gform_wrapper,
+div.gform_wrapper.gravity-theme {
+
+	.gfield_label {
+		font-size: var(--wp--preset--font-size--large);
+		font-weight: var(--wp--custom--font-weight--normal);
+	}
+
+	input {
+		font-size: var(--wp--preset--font-size--large)
+	}
+
+	.gform_fields {
+		gap: var(--wp--preset--spacing--24);
+	}
+}
+
+
+/**
  * Styles for the NPS survey form.
  */
  .wmf-conditional-survey {
