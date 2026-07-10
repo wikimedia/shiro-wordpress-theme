@@ -62,4 +62,15 @@
 	&.pause::before {
 		mask-image: url( "../svg/individual/pause.svg" );
 	}
+
+	/**
+	 * This is a workaround for Safari, which does not render the aspect-ratio of this element correctly when this
+	 * property is present. It's still unclear exactly why this is the case, as it's been reported in a few places
+	 * but isn't documented by Apple.
+	 *
+	 * The media query here targets Safari specifically, using properties only recognised by this browser.
+	 */
+	@supports (hanging-punctuation: first) and (font: -apple-system-body) and (-webkit-appearance: none) {
+		aspect-ratio: unset;
+	}
 }
