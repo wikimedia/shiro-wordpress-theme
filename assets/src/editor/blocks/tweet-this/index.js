@@ -16,7 +16,7 @@ import { ReactComponent as BlockIcon } from '../../../svg/blocks/twitter.svg';
 export const
 	name = 'shiro/tweet-this',
 	settings = {
-		apiVersion: 2,
+		apiVersion: 3,
 		icon: BlockIcon,
 		title: __( 'Tweet this', 'shiro' ),
 		category: 'wikimedia',
