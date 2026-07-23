@@ -60,7 +60,7 @@ function ensureSiteLanguageHeading( headings ) {
 
 export const name = 'shiro/double-heading',
 	settings = {
-		apiVersion: 2,
+		apiVersion: 3,
 		icon: BlockIcon,
 		title: __( 'Double heading', 'shiro-admin' ),
 		category: 'wikimedia',
