@@ -28,7 +28,7 @@ export const name = 'shiro/unseen-facts';
 export const settings = {
 	title: __( 'Unseen Facts Section', 'shiro-admin' ),
 
-	apiVersion: 2,
+	apiVersion: 3,
 
 	description: __( 'Add the Wiki Unseen facts section.', 'shiro-admin' ),
 
