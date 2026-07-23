@@ -27,6 +27,16 @@ div.gform_wrapper.gravity-theme {
 /**
  * Styles for the NPS survey form.
  */
+@keyframes wmf-conditional-survey-in {
+	from {
+		transform: translate(-50%, 100%);
+	}
+
+	to {
+		transform: translate(-50%, 0);
+	}
+}
+
  .wmf-conditional-survey {
 	display: block;
 	border-radius: 1rem;
@@ -41,6 +51,10 @@ div.gform_wrapper.gravity-theme {
 	width: 100%;
 	box-shadow: 0px 0.25rem 0.5rem 0px rgba(0, 0, 0, 0.06), 0px 0px 1rem 0px rgba(0, 0, 0, 0.06);
 
+	@media (prefers-reduced-motion: no-preference) {
+		animation: wmf-conditional-survey-in 0.25s ease-out;
+	}
+
 	.wmf-conditional-survey-close {
 		position: absolute;
 		right: 1rem;
@@ -50,6 +64,13 @@ div.gform_wrapper.gravity-theme {
 		border: 0;
   		font-size: 1.5rem;
 		cursor: pointer;
+	}
+
+	// Once the form has been submitted, the confirmation message replaces the form, so center the close button to match.
+	&:has( .gform_confirmation_wrapper ) .wmf-conditional-survey-close {
+		left: 50%;
+		right: auto;
+		transform: translatex(-50%);
 	}
  }
 
@@ -111,6 +132,7 @@ div.gform_wrapper.gravity-theme {
 				border-radius: 0.25rem;
 				grid-column: auto / span 2;
 				text-align: center;
+				cursor: pointer;
 
 				// Display the label for each choice as part of the selectable option.
 				&::before {
@@ -154,6 +176,11 @@ div.gform_wrapper.gravity-theme {
 			justify-content: flex-end;
 			padding-bottom: 0;
 
+			// Gravity Forms inserts the AJAX submission spinner right after the submit button, either
+			// as an `.gform_ajax_spinner` image or a `.gform-loader` span, both sharing this ID pattern.
+			[id^="gform_ajax_spinner_"] {
+				margin-left: var( --wp--preset--spacing--16 );
+			}
 
 			@media screen and ( max-width: 620px ) {
 				.gform_button {
