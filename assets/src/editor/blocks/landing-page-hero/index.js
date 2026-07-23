@@ -28,7 +28,7 @@ export const name = 'shiro/landing-page-hero';
 export const styles = blockStyles;
 
 export const settings = {
-	apiVersion: 2,
+	apiVersion: 3,
 
 	title: __( 'Landing page hero', 'shiro-admin' ),
 
