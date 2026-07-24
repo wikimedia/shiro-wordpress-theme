@@ -14,7 +14,7 @@ import ServerSideRender from '@wordpress/server-side-render';
 export const
 	name = 'shiro/inline-languages',
 	settings = {
-		apiVersion: 2,
+		apiVersion: 3,
 		title: __( 'Inline Languages', 'shiro-admin' ),
 		icon: 'translation',
 		category: 'wikimedia',

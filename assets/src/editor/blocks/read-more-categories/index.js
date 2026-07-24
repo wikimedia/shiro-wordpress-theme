@@ -59,7 +59,7 @@ export const settings = {
 
 	category: 'wikimedia',
 
-	apiVersion: 2,
+	apiVersion: 3,
 
 	icon: 'category',
 

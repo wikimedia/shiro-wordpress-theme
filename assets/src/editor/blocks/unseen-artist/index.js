@@ -45,7 +45,7 @@ export const name = 'shiro/unseen-artist';
 export const settings = {
 	title: __( 'Unseen Artist', 'shiro-admin' ),
 
-	apiVersion: 2,
+	apiVersion: 3,
 
 	description: __( 'Add a featured Wiki Unseen artist showcase.', 'shiro-admin' ),
 

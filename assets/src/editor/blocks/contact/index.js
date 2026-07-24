@@ -46,7 +46,7 @@ const BLOCKS_TEMPLATE = [
 
 export const name = 'shiro/contact',
 	settings = {
-		apiVersion: 2,
+		apiVersion: 3,
 		icon: BlockIcon,
 		title: __( 'Contact', 'shiro-admin' ),
 		category: 'wikimedia',
