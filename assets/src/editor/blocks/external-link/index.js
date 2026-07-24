@@ -124,7 +124,7 @@ ExternalLinkWithFocusOutside.Content.propTypes = {
 export const
 	name = 'shiro/external-link',
 	settings = {
-		apiVersion: 2,
+		apiVersion: 3,
 		title: __( 'External Link', 'shiro-admin' ),
 		icon: 'external',
 		category: 'wikimedia',

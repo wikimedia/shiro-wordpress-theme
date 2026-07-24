@@ -22,7 +22,7 @@ export const name = 'shiro/profile-list';
 export const settings = {
 	title: __( 'Profile List', 'shiro-admin' ),
 	category: 'wikimedia',
-	apiVersion: 2,
+	apiVersion: 3,
 	icon: 'groups',
 	description: __( 'Show a list of profile cards', 'shiro-admin' ),
 	attributes: {

@@ -45,7 +45,7 @@ const BLOCKS_TEMPLATE = [
 
 export const name = 'shiro/linked-toc-columns',
 	settings = {
-		apiVersion: 2,
+		apiVersion: 3,
 		icon: BlockIcon,
 		title: __( 'Linked Table of Contents Columns', 'shiro-admin' ),
 		category: 'wikimedia',

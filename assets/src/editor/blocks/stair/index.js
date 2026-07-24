@@ -12,7 +12,7 @@ import ImagePicker from '../../components/image-picker';
 export const
 	name = 'shiro/stair',
 	settings = {
-		apiVersion: 2,
+		apiVersion: 3,
 		title: __( 'Stair', 'shiro-admin' ),
 		category: 'wikimedia',
 		attributes: {

@@ -31,7 +31,7 @@ export const name = 'shiro/unseen-footer';
 export const settings = {
 	title: __( 'Unseen Footer CTA', 'shiro-admin' ),
 
-	apiVersion: 2,
+	apiVersion: 3,
 
 	description: __( 'Add the Wiki Unseen footer call-to-action.', 'shiro-admin' ),
 

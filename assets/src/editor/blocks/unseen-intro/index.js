@@ -32,7 +32,7 @@ export const name = 'shiro/unseen-intro';
 export const settings = {
 	title: __( 'Unseen Text Intro', 'shiro-admin' ),
 
-	apiVersion: 2,
+	apiVersion: 3,
 
 	description: __( 'Add the Wiki Unseen text intro section.', 'shiro-admin' ),
 
