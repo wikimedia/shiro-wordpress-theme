@@ -68,22 +68,23 @@ div.gform_wrapper.gravity-theme {
 		animation: wmf-conditional-survey-in 0.25s ease-out;
 	}
 
+	// The 1.5rem box lines the glyph up with the first line of text, whether that is the
+	// form title or the confirmation message, and gives the button a 24px touch target.
 	.wmf-conditional-survey-close {
 		position: absolute;
 		right: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.5rem;
+		height: 1.5rem;
 		padding: 0;
 		color: var( --wp--preset--color--main );
 		background: transparent;
 		border: 0;
   		font-size: 1.5rem;
+		line-height: 1.5rem;
 		cursor: pointer;
-	}
-
-	// Once the form has been submitted, the confirmation message replaces the form, so center the close button to match.
-	&:has( .gform_confirmation_wrapper ) .wmf-conditional-survey-close {
-		left: 50%;
-		right: auto;
-		transform: translatex(-50%);
 	}
  }
 
