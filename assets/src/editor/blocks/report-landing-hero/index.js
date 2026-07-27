@@ -20,7 +20,7 @@ export const name = 'shiro/report-landing-hero';
 export const styles = blockStyles;
 
 export const settings = {
-	apiVersion: 2,
+	apiVersion: 3,
 
 	title: __( 'Report landing hero', 'shiro-admin' ),
 
