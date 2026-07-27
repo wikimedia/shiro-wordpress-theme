@@ -21,7 +21,7 @@ import HomePageHeroBlock from './edit';
 export const name = 'shiro/home-page-hero';
 
 export const settings = {
-	apiVersion: 2,
+	apiVersion: 3,
 
 	title: __( 'Home hero', 'shiro-admin' ),
 

@@ -99,7 +99,7 @@ LinkedTOCItemWithFocusOutside.Content.propTypes = {
 export const
 	name = 'shiro/linked-toc-item',
 	settings = {
-		apiVersion: 2,
+		apiVersion: 3,
 		title: __( 'Linked Table Of Contents Item', 'shiro-admin' ),
 		icon: 'external',
 		category: 'wikimedia',

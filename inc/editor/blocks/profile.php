@@ -21,7 +21,7 @@ function register_block() {
 	register_block_type(
 		BLOCK_NAME,
 		[
-			'apiVersion'      => 2,
+			'apiVersion'      => 3,
 			'render_callback' => __NAMESPACE__ . '\\render_block',
 			'attributes'      => [
 				'profile_id' => [

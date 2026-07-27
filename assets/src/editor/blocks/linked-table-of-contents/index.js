@@ -6,7 +6,7 @@ import { __ } from '@wordpress/i18n';
 
 export const name = 'shiro/linked-toc',
 	settings = {
-		apiVersion: 2,
+		apiVersion: 3,
 		title: __( 'Linked Table of Contents', 'shiro-admin' ),
 		category: 'wikimedia',
 		icon: 'menu-alt2',

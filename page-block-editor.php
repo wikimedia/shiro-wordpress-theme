@@ -47,8 +47,8 @@ while ( have_posts() ) {
 	$show_breadcrumb = false;
 
 	if ( $breadcrumb_link_switch === 'on' ) {
-		$template_args['breadcrumb_custom_parent_link']  = get_post_meta( get_the_ID(), 'breadcrumb_link_title', true );
-		$template_args['breadcrumb_custom_parent_title'] = get_post_meta( get_the_ID(), 'breadcrumb_link_url', true );
+		$template_args['breadcrumb_custom_parent_link']  = get_post_meta( get_the_ID(), 'breadcrumb_link_url', true );
+		$template_args['breadcrumb_custom_parent_title'] = get_post_meta( get_the_ID(), 'breadcrumb_link_title', true );
 
 		$show_breadcrumb = true;
 	} elseif ( $breadcrumb_link_switch === 'off' ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedElseif

@@ -12,7 +12,7 @@ import './style.scss';
 
 export const name = 'shiro/toc',
 	settings = {
-		apiVersion: 2,
+		apiVersion: 3,
 		title: __( 'Table of Contents', 'shiro-admin' ),
 		category: 'wikimedia',
 		icon: 'menu-alt2',

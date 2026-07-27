@@ -22,7 +22,7 @@ export const name = 'shiro/profile';
 export const settings = {
 	title: __( 'Profile', 'shiro-admin' ),
 	category: 'wikimedia',
-	apiVersion: 2,
+	apiVersion: 3,
 	icon: 'admin-users',
 	description: __(
 		'Show the photo, name and description of a person',
