@@ -28,7 +28,61 @@ $post_ancestors = is_page() ? get_post_ancestors( $breadcrumb_parent ) : [];
 
 $home_page_id = get_option( 'page_on_front' );
 $home_title = $home_page_id ? get_the_title( $home_page_id ) : __( 'Home', 'shiro' );
+
+// Build the breadcrumb trail once, so the visible list and the BreadcrumbList
+// schema are generated from the same data and can never drift apart.
+$breadcrumb_trail = [
+	[
+		'name' => $home_title,
+		'url'  => home_url(),
+	],
+];
+
+if ( ! empty( $post_ancestors ) ) {
+	foreach ( array_reverse( $post_ancestors ) as $ancestor ) {
+		$breadcrumb_trail[] = [
+			'name' => get_the_title( $ancestor ),
+			'url'  => get_the_permalink( $ancestor ),
+		];
+	}
+}
+
+if ( ! empty( $breadcrumb_parent_link ) && ! empty( $breadcrumb_parent_title ) ) {
+	$breadcrumb_trail[] = [
+		'name' => $breadcrumb_parent_title,
+		'url'  => $breadcrumb_parent_link,
+	];
+}
+
+$breadcrumb_trail[] = [
+	'name' => get_the_title(),
+	'url'  => null,
+];
+
+$breadcrumb_list_items = [];
+
+foreach ( $breadcrumb_trail as $position => $breadcrumb_item ) {
+	$list_item = [
+		'@type'    => 'ListItem',
+		'position' => $position + 1,
+		'name'     => $breadcrumb_item['name'],
+	];
+
+	if ( ! empty( $breadcrumb_item['url'] ) ) {
+		$list_item['item'] = $breadcrumb_item['url'];
+	}
+
+	$breadcrumb_list_items[] = $list_item;
+}
+
+$breadcrumb_schema = [
+	'@context'        => 'https://schema.org',
+	'@type'           => 'BreadcrumbList',
+	'itemListElement' => $breadcrumb_list_items,
+];
 ?>
+
+<script type="application/ld+json"><?php echo wp_json_encode( $breadcrumb_schema ); ?></script>
 
 <nav aria-label="Breadcrumbs" class="breadcrumbs">
 	<h2 class="screen-reader-text"><?php echo esc_html__( 'You are here:', 'shiro' ); ?></h2>
