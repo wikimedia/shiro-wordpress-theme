@@ -18,6 +18,19 @@ div.gform_wrapper.gravity-theme {
 		font-size: var(--wp--preset--font-size--large)
 	}
 
+	// Safari renders selects with native OS chrome unless appearance is fully
+	// opted out. We replace it with our own chevron rather than restoring the
+	// arrow globally, so this is scoped to selects within Gravity Forms only.
+	select {
+		@include style-guide-dropdown-caret-black();
+		appearance: none;
+		-webkit-appearance: none;
+		background-position: calc(100% - #{rem(10)}) center;
+		background-repeat: no-repeat;
+		background-size: rem(12);
+		padding-right: rem(30);
+	}
+
 	.gform_fields {
 		gap: var(--wp--preset--spacing--24);
 	}
