@@ -5,3 +5,7 @@ assets/src/svg/package-lock.json
 
 node_modules/
 vendor/
+
+# devbox
+.devbox/
+devbox.d/
