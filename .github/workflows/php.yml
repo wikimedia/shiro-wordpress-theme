@@ -47,6 +47,10 @@ jobs:
         if: ${{ github.event_name != 'pull_request' || toJSON( steps.paths.outputs.changes ) != '"[]"' && steps.cache-php-dependencies.outputs.cache-hit != 'true' }}
         run: composer install --no-progress --no-interaction --no-ansi
 
+      - name: Audit Composer dependencies for known vulnerabilities
+        if: ${{ github.event_name != 'pull_request' || toJSON( steps.paths.outputs.changes ) != '"[]"' }}
+        run: composer audit --locked --no-interaction --no-ansi
+
       - name: Make Composer packages available globally
         if: ${{ github.event_name != 'pull_request' || toJSON( steps.paths.outputs.changes ) != '"[]"' }}
         run: echo "${PWD}/vendor/bin" >> $GITHUB_PATH
