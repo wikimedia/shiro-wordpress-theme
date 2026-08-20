@@ -29,12 +29,22 @@ Development workflow:
 
 - Implement a feature or bugfix in a feature branch created off of `main`
 - Submit a pull request from that feature branch back into `main`, and get code review
-- Merge the feature branch into `develop` manually.
-  - The `release-develop` branch will be automatically rebuilt
+- Add the **Push to Development** label to the pull request to promote it to the test environment.
+  - The `Push to Environment` workflow opens a sync pull request from your feature branch into `develop`. Merge that sync PR to update `develop`.
+  - The `release-develop` branch is then rebuilt automatically, and the workflow marks your original PR with the **On Development** label.
 - Update the preproduction or development environment for your project to reference the newest built version of the `release-develop` branch, to deploy and test the theme PR.
 - Once approved, merge the pull request into `main`
   - The `release` branch will be automatically rebuilt
 - Update the production branch in your project repository to reference the newest built version of the `release` branch, to deploy the change to production.
+
+### Labels
+
+The label-driven promotion needs two repository labels:
+
+- **Push to Development** — add it to a PR to open a sync PR into `develop`.
+- **On Development** — applied automatically once a development sync PR merges; shows which branches are live on the test environment.
+
+The default `GITHUB_TOKEN` opens the sync PR, so the repository must allow GitHub Actions to create pull requests (Settings → Actions → General → "Allow GitHub Actions to create and approve pull requests").
 
 
 Build Process
