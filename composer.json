@@ -16,6 +16,12 @@
             "composer/installers": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "cweagans/composer-patches": true
+        },
+        "audit": {
+            "ignore": {
+                "CVE-2026-45293": "wp-coding-standards/wpcs: cleared by the WPCS 3.x upgrade, tracked separately in humanmade/wikimedia#1033",
+                "CVE-2026-65954": "phpcsstandards/phpcsutils: pulled in by the same WPCS 3.x upgrade, tracked in humanmade/wikimedia#1033"
+            }
         }
     },
     "require-dev": {

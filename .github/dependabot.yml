@@ -1,7 +1,7 @@
 version: 2
 
 updates:
-# Updates for the main branch
+  # JavaScript build/tooling dependencies.
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -14,6 +14,38 @@ updates:
       - dependency-type: "all"
     open-pull-requests-limit: 25
     groups:
-      npm-dependencies:
+      npm-production:
+        dependency-type: "production"
+      npm-development:
+        dependency-type: "development"
+
+  # PHP dev tooling (phpcs, wpcs, and friends).
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    target-branch: "main"
+    commit-message:
+      prefix: "composer"
+    allow:
+      - dependency-type: "all"
+    open-pull-requests-limit: 10
+    groups:
+      composer-production:
+        dependency-type: "production"
+      composer-development:
+        dependency-type: "development"
+
+  # GitHub Actions pinned by SHA in the workflows.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "main"
+    commit-message:
+      prefix: "ci"
+    open-pull-requests-limit: 10
+    groups:
+      github-actions:
         patterns:
           - "*"
