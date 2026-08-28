@@ -52,6 +52,7 @@ jobs:
         continue-on-error: true
 
       - name: Annotate Code Linting Results
+        # Only annotate when the lint step above actually ran and wrote a report.
         if: ${{ steps.paths.outputs.eslint == 'true' }}
         uses: ataylorme/eslint-annotate-action@5a8d8ab89a57679e90c32750e0f382e9d8570750 # v4.0.0
         with:
