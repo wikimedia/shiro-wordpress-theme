@@ -29,12 +29,22 @@ Development workflow:
 
 - Implement a feature or bugfix in a feature branch created off of `main`
 - Submit a pull request from that feature branch back into `main`, and get code review
-- Merge the feature branch into `develop` manually.
-  - The `release-develop` branch will be automatically rebuilt
+- Add the **Push to Development** label to the pull request to promote it to the test environment.
+  - The `Push to Environment` workflow opens a sync pull request from your feature branch into `develop`. Merge that sync PR to update `develop`.
+  - The `release-develop` branch is then rebuilt automatically, and the workflow marks your original PR with the **On Development** label.
 - Update the preproduction or development environment for your project to reference the newest built version of the `release-develop` branch, to deploy and test the theme PR.
 - Once approved, merge the pull request into `main`
   - The `release` branch will be automatically rebuilt
 - Update the production branch in your project repository to reference the newest built version of the `release` branch, to deploy the change to production.
+
+### Labels
+
+The label-driven promotion needs two repository labels:
+
+- **Push to Development** — add it to a PR to open a sync PR into `develop`.
+- **On Development** — applied automatically once a development sync PR merges; shows which branches are live on the test environment.
+
+The default `GITHUB_TOKEN` opens the sync PR, so the repository must allow GitHub Actions to create pull requests (Settings → Actions → General → "Allow GitHub Actions to create and approve pull requests").
 
 
 Build Process
@@ -47,10 +57,10 @@ The following tasks are available to you:
 This builds out the assets and runs the following tasks: `styles`, `scripts`
 
 * `npm run lint`
-Lints JavaScript and (modified) PHP files.
+Lints the JavaScript and PHP files that changed on the current branch.
 
 * `npm run lint:js`
-Lints only JavaScript using `eslint`
+Lints only the JavaScript files that have changed against `main`, using `eslint`. When no JavaScript changed, it does nothing. This mirrors `lint:php`; see the note under [JS](#js) for why whole-tree linting is disabled.
 
 * `npm run lint:php`
 Lints only PHP files which have changed in the current branch, using `phpcs`.  To run PHPCS on all files, run `composer phpcs`.
@@ -73,6 +83,9 @@ JS
 JS should follow the project linting standards, which are based on the [WordPress core coding standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/javascript/) and [Human Made coding standards]([https://](https://www.npmjs.com/package/@humanmade/eslint-config)). In addition, please use [JSDoc](http://eslint.org/docs/rules/require-jsdoc) to document functions.
 
 Due to evolving JavaScript best practices over the lifecycle of this project, different pieces of JS code are held to slightly different coding standards. ESLint is configured in [`.eslintrc`](.eslintrc).
+
+> [!NOTE]
+> `lint:js` lints only the JavaScript that changed on your branch, not the whole tree. `@wordpress/scripts` v34 ships ESLint 9, which reads flat config (`eslint.config.*`) only and ignores the legacy `.eslintrc`/`.eslintignore` above. Without those ignores, an unscoped lint descends into the minified `assets/dist` bundles and crashes the formatter, so the scan is limited to changed source files. One consequence: `.eslintrc` is currently inert, so changed-file linting falls back to the default `@wordpress/scripts` rules — which enforce `prettier/prettier`, a rule this project had switched off. The full fix — a flat `eslint.config.cjs` that ports these overrides and the `assets/dist` ignores, then clears the pre-existing errors it surfaces — is tracked separately.
 
 PHP
 ---------------
