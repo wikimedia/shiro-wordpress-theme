@@ -52,11 +52,11 @@ msgstr ""
 
 #: assets/src/editor/blocks/donation-bar/render.php:65
 msgid "Amount"
-msgstr ""
+msgstr "المبلغ"
 
 #: assets/src/editor/blocks/donation-bar/render.php:75
 msgid "Frequency"
-msgstr ""
+msgstr "التكرار"
 
 #: assets/src/editor/blocks/donation-bar/render.php:78
 msgid "Just once"
@@ -68,7 +68,7 @@ msgstr "التبرع شهريًا"
 
 #: assets/src/editor/blocks/donation-bar/render.php:87
 msgid "Annual"
-msgstr "سنوي"
+msgstr "سنويًا"
 
 #: assets/src/editor/blocks/donation-bar/render.php:93
 #: assets/src/editor/blocks/core-button/index.js:62
