@@ -23,6 +23,10 @@ if ( ! empty( $h2_title ) xor ! empty( $title ) ) {
 	$single_title = ! empty( $h2_title ) ? $h2_title : $title;
 }
 
+// Read unconditionally below, but only assigned for pages.
+$breadcrumb_args = [];
+$show_breadcrumb = false;
+
 if ( is_page() ) {
 	/**
 	 * Page breadcrumb link switch
@@ -33,8 +37,6 @@ if ( is_page() ) {
 	 * 3. 'off' - set to no
 	 */
 	$breadcrumb_link_switch = get_post_meta( get_the_ID(), 'show_breadcrumb_links', true );
-	$breadcrumb_args = [];
-	$show_breadcrumb = false;
 
 	if ( $breadcrumb_link_switch === 'on' ) {
 		$breadcrumb_args['breadcrumb_custom_parent_link']  = get_post_meta( get_the_ID(), 'breadcrumb_link_url', true );
