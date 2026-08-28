@@ -10,7 +10,8 @@ The pinned toolchain lives in `devbox.json`: PHP 8.4, Composer, and Node 22. Pre
 
 - `npm run build` — build editor and front-end assets into `assets/dist` (git-ignored; built in CI).
 - `npm start` — webpack watch with hot reload. WordPress needs `SCRIPT_DEBUG` enabled to load from the dev server (see README).
-- `npm run lint` — runs `lint:js` (`wp-scripts lint-js`) and `lint:php` in parallel.
+- `npm run lint` — runs `lint:js` and `lint:php` in parallel. Both lint only files changed against `main`.
+- `npm run lint:js` — `wp-scripts lint-js` over changed `.js`/`.jsx` files only (mirrors `lint:php`); does nothing when no JavaScript changed. Whole-tree linting is disabled because ESLint 9 (via `@wordpress/scripts` v34) ignores the legacy `.eslintrc`, so an unscoped scan lints minified `assets/dist` and crashes the formatter. `.eslintrc` is currently inert; the flat-config migration that restores the project's rule overrides is tracked separately.
 - `composer phpcs` — phpcs over the whole tree. `composer phpcs:changed` lints only PHP files changed against `main` (what CI and `npm run lint:php` run). `phpcbf` / `phpcbf:changed` auto-fix.
 - `npm run make-shiro-pot` — regenerate translation templates after changing translatable strings.
 

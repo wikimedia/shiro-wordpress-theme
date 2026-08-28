@@ -57,10 +57,10 @@ The following tasks are available to you:
 This builds out the assets and runs the following tasks: `styles`, `scripts`
 
 * `npm run lint`
-Lints JavaScript and (modified) PHP files.
+Lints the JavaScript and PHP files that changed on the current branch.
 
 * `npm run lint:js`
-Lints only JavaScript using `eslint`
+Lints only the JavaScript files that have changed against `main`, using `eslint`. When no JavaScript changed, it does nothing. This mirrors `lint:php`; see the note under [JS](#js) for why whole-tree linting is disabled.
 
 * `npm run lint:php`
 Lints only PHP files which have changed in the current branch, using `phpcs`.  To run PHPCS on all files, run `composer phpcs`.
@@ -83,6 +83,9 @@ JS
 JS should follow the project linting standards, which are based on the [WordPress core coding standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/javascript/) and [Human Made coding standards]([https://](https://www.npmjs.com/package/@humanmade/eslint-config)). In addition, please use [JSDoc](http://eslint.org/docs/rules/require-jsdoc) to document functions.
 
 Due to evolving JavaScript best practices over the lifecycle of this project, different pieces of JS code are held to slightly different coding standards. ESLint is configured in [`.eslintrc`](.eslintrc).
+
+> [!NOTE]
+> `lint:js` lints only the JavaScript that changed on your branch, not the whole tree. `@wordpress/scripts` v34 ships ESLint 9, which reads flat config (`eslint.config.*`) only and ignores the legacy `.eslintrc`/`.eslintignore` above. Without those ignores, an unscoped lint descends into the minified `assets/dist` bundles and crashes the formatter, so the scan is limited to changed source files. One consequence: `.eslintrc` is currently inert, so changed-file linting falls back to the default `@wordpress/scripts` rules — which enforce `prettier/prettier`, a rule this project had switched off. The full fix — a flat `eslint.config.cjs` that ports these overrides and the `assets/dist` ignores, then clears the pre-existing errors it surfaces — is tracked separately.
 
 PHP
 ---------------
