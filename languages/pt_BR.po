@@ -51,28 +51,28 @@ msgstr ""
 
 #: assets/src/editor/blocks/donation-bar/render.php:65
 msgid "Amount"
-msgstr ""
+msgstr "Valor"
 
 #: assets/src/editor/blocks/donation-bar/render.php:75
 msgid "Frequency"
-msgstr ""
+msgstr "Frequência"
 
 #: assets/src/editor/blocks/donation-bar/render.php:78
 msgid "Just once"
-msgstr "Uma vez"
+msgstr "Apenas uma vez"
 
 #: assets/src/editor/blocks/donation-bar/render.php:82
 msgid "Give monthly"
-msgstr "Mensalmente"
+msgstr "Doar mensalmente"
 
 #: assets/src/editor/blocks/donation-bar/render.php:87
 msgid "Annual"
-msgstr "Anualmente"
+msgstr "Anual"
 
 #: assets/src/editor/blocks/donation-bar/render.php:93
 #: assets/src/editor/blocks/core-button/index.js:62
 msgid "Donate now"
-msgstr "Doar agora"
+msgstr "Doe agora"
 
 #: assets/src/editor/blocks/share-article/render.php:63
 msgid "Copy Link"
