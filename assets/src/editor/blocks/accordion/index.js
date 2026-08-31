@@ -6,8 +6,6 @@
  * WordPress dependencies
  */
 
-import { ReactNode } from 'react';
-
 import { registerBlockType } from '@wordpress/blocks';
 import { InnerBlocks, useBlockProps, InspectorControls, useSettings } from '@wordpress/block-editor';
 import { Panel, PanelBody, ColorPalette } from '@wordpress/components';
@@ -18,6 +16,7 @@ import { __ } from '@wordpress/i18n';
  */
 
 import metadata from './block.json';
+import deprecated from './deprecations';
 
 import '../../helpers/accordion/toggler';
 
@@ -25,10 +24,10 @@ registerBlockType( metadata.name, {
 	/**
 	 * Render the editor UI for the block.
 	 *
-	 * @param {object}   props               React component props.
-	 * @param {object}   props.attributes    Block attrs.
+	 * @param {Object}   props               React component props.
+	 * @param {Object}   props.attributes    Block attrs.
 	 * @param {Function} props.setAttributes Block attribute setter.
-	 * @returns {ReactNode} Rendered edit note.
+	 * @return {ReactNode} Rendered edit note.
 	 */
 	edit: function Edit( { attributes, setAttributes,  } ) {
 		const blockProps = useBlockProps();
@@ -42,7 +41,7 @@ registerBlockType( metadata.name, {
 							<ColorPalette
 								value={ fontColor }
 								colors={ [ ...colorSettings ] }
-								onChange={ ( fontColor ) => setAttributes( { fontColor } ) }
+								onChange={ ( value ) => setAttributes( { fontColor: value } ) }
 							/>
 						</PanelBody>
 					</Panel>
@@ -59,7 +58,7 @@ registerBlockType( metadata.name, {
 	},
 	save: ( { attributes } ) => {
 		const blockProps = useBlockProps.save();
-		blockProps.className = `accordion-wrapper ${blockProps.className} ${attributes.fontColor}`;
+		blockProps.className = [ 'accordion-wrapper', blockProps.className, attributes.fontColor ].filter( Boolean ).join( ' ' );
 
 		return (
 			<div { ...blockProps } >
@@ -68,6 +67,7 @@ registerBlockType( metadata.name, {
 
 		);
 	},
+	deprecated,
 } );
 
 // Block HMR boilerplate.
