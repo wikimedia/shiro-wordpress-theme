@@ -26,17 +26,17 @@
     },
     "require-dev": {
         "automattic/vipwpcs": "^3.0.1",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
-        "phpcompatibility/phpcompatibility-wp": "^1.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.2.1",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
         "squizlabs/php_codesniffer": "^3.9",
         "wp-coding-standards/wpcs": "^3.1.0",
         "staabm/annotate-pull-request-from-checkstyle": "^1.8",
-        "cweagans/composer-patches": "^1.7"
+        "cweagans/composer-patches": "^2.0"
     },
     "scripts": {
         "phpcs": "phpcs .",
         "phpcbf": "phpcbf .",
-        "phpcs:changed": "phpcs $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base HEAD main) | grep '\\.php')",
+        "phpcs:changed": "bin/lint-changed-php.sh",
         "phpcbf:changed": "phpcbf $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base HEAD main) | grep '\\.php')"
     }
 }

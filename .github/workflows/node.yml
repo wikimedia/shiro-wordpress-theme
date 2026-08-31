@@ -19,6 +19,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Full history so lint:js can diff changed files against the base branch.
+          fetch-depth: 0
 
       - name: Paths filters
         uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4.0.3
@@ -29,8 +32,7 @@ jobs:
               - '**/*.js'
             eslint:
               - *javascript
-              - '.eslintignore'
-              - '.eslintrc'
+              - 'eslint.config.js'
             npm:
               - 'package.json'
               - 'package-lock.json'
@@ -47,6 +49,8 @@ jobs:
 
       - name: Lint code and save linting report JSON
         if: ${{ steps.paths.outputs.eslint == 'true' }}
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: npm run lint:js -- --output-file eslint_report.json --format json
         # Continue to the next step even if this fails, so we can report on it.
         continue-on-error: true
