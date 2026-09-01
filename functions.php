@@ -84,9 +84,9 @@ function wmf_setup() {
 	add_image_size( 'image_square_medium', '250', '250', true );
 
 	// Warn if required environment is not satisfied.
-	if ( ! function_exists( 'Asset_Loader\enqueue_asset' ) ) {
+	if ( ! function_exists( 'Asset_Loader\enqueue_manifest_asset' ) ) {
 		// phpcs:ignore
-		trigger_error( 'This theme expects the humanmade/asset-loader plugin to be installed and active.' );
+		trigger_error( 'This theme expects the humanmade/asset-loader plugin, version 0.8.0 or later, to be installed and active.' );
 	}
 }
 add_action( 'after_setup_theme', 'wmf_setup' );
@@ -126,7 +126,7 @@ function wmf_scripts() {
 	}
 	wp_enqueue_script( 'shiro-svg4everybody', get_template_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'shiro-script', get_template_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-svg4everybody' ), $script_version, true );
-	Asset_Loader\enqueue_asset(
+	Asset_Loader\enqueue_manifest_asset(
 		\WMF\Assets\get_manifest_path( 'shiro.js' ),
 		'shiro.js',
 		[
