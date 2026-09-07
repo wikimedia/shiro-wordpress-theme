@@ -258,6 +258,7 @@ require get_template_directory() . '/inc/ajax.php';
  * Block editor functionality.
  */
 require get_template_directory() . '/inc/editor/namespace.php';
+require get_template_directory() . '/inc/editor/blocks/accordion.php';
 require get_template_directory() . '/inc/editor/blocks/blog-post.php';
 require get_template_directory() . '/inc/editor/blocks/donation-portal-form.php';
 require get_template_directory() . '/inc/editor/blocks/double-heading.php';
@@ -291,6 +292,7 @@ require get_template_directory() . '/inc/editor/patterns/template-report-section
 WMF\Assets\bootstrap();
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
+WMF\Editor\Blocks\Accordion\bootstrap();
 WMF\Editor\Blocks\BlogPost\bootstrap();
 WMF\Editor\Blocks\InlineLanguages\bootstrap();
 WMF\Editor\Blocks\DonationPortalForm\bootstrap();
