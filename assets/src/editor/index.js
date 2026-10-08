@@ -14,6 +14,7 @@ import * as coreQuote from './blocks/core-quote';
 import * as doubleHeading from './blocks/double-heading';
 import * as externalLink from './blocks/external-link';
 import * as filterColorSupport from './blocks/filter-color-support';
+import * as gradientContrast from './blocks/gradient-contrast';
 import * as homePageHero from './blocks/home-page-hero';
 import * as inlineLanguages from './blocks/inline-languages';
 import * as landingPageHero from './blocks/landing-page-hero';
@@ -54,6 +55,7 @@ const blocks = [
 	doubleHeading,
 	externalLink,
 	filterColorSupport,
+	gradientContrast,
 	homePageHero,
 	inlineLanguages,
 	landingPageHero,

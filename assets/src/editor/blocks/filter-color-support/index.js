@@ -6,7 +6,7 @@
  * and background colors.
  *
  * The text color in all cases should be set intelligently based on the
- * background color to preserve AAA contrast requirements for accessibility.
+ * background color to preserve WCAG AA contrast requirements for accessibility.
  */
 
 /**
