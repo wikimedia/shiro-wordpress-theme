@@ -43,6 +43,7 @@ if ( process.env.NODE_ENV.trim() === 'development' && window.__webpack_public_pa
 	// hot-update chunks. This fixes an issue where hot-reloading in the editor
 	// tries to load files relative to /wp-admin/. May be unnecessary once all
 	// blocks have been converted to block.json structure.
+	// eslint-disable-next-line camelcase, no-undef
 	__webpack_public_path__ = window.__webpack_public_path__;
 }
 

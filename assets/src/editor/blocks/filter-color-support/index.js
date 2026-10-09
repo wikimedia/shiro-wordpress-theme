@@ -13,10 +13,9 @@
  * Remove the "text" property from the block supports for all blocks that
  * support the color picker.
  *
- * @param {object} settings Block registration settings.
- * @param {string} name Block name.
+ * @param {Object} settings Block registration settings.
  */
-const removeTextColorSelection = ( settings, name ) => {
+const removeTextColorSelection = ( settings ) => {
 
 	if ( ! settings.supports?.color ) {
 		return settings;
