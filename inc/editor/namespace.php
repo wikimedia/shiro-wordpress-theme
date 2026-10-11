@@ -330,7 +330,7 @@ function enqueue_block_editor_assets() {
 	);
 
 	$editor_css_asset = is_rtl() ? 'editor.rtl.css' : 'editor.css';
-	Asset_Loader\enqueue_asset(
+	Asset_Loader\enqueue_manifest_asset(
 		Assets\get_manifest_path( $editor_css_asset ),
 		$editor_css_asset,
 		[
@@ -339,7 +339,7 @@ function enqueue_block_editor_assets() {
 	);
 
 	$editor_style_css_asset = is_rtl() ? 'editor-style.rtl.css' : 'editor-style.css';
-	Asset_Loader\enqueue_asset(
+	Asset_Loader\enqueue_manifest_asset(
 		Assets\get_manifest_path( $editor_style_css_asset ),
 		$editor_style_css_asset,
 		[
