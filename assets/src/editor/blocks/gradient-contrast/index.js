@@ -91,6 +91,27 @@ const withGradientContrast = createHigherOrderComponent( ( BlockEdit ) => {
 			}
 		}, [ shouldUpdateClassName, nextClassName, setAttributes ] );
 
+		const hasBackgroundColor = !! ( attributes.backgroundColor || attributes.style?.color?.background );
+
+		useEffect( () => {
+			// Gradients must be opaque, so a colour under one is never visible and its palette class would override the tone class.
+			if ( ! gradient || ! hasBackgroundColor ) {
+				return;
+			}
+
+			const { background, ...color } = attributes.style?.color ?? {};
+			const { color: ignored, ...style } = attributes.style ?? {};
+
+			if ( Object.keys( color ).length ) {
+				style.color = color;
+			}
+
+			setAttributes( {
+				backgroundColor: undefined,
+				style: Object.keys( style ).length ? style : undefined,
+			} );
+		}, [ gradient, hasBackgroundColor ] ); // eslint-disable-line react-hooks/exhaustive-deps
+
 		useEffect( () => {
 			if ( ! isBlocked ) {
 				return undefined;
