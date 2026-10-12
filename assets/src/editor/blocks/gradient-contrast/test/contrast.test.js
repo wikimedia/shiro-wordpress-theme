@@ -1,5 +1,5 @@
 import theme from '../../../../../../theme.json';
-import { getGradientTone, parseStops, resolvePresetReference } from '../contrast';
+import { getGradientTone, parseStops, resolvePresetReference, textMeetsContrast } from '../contrast';
 
 const solid = color => `linear-gradient(90deg,${ color } 0%,${ color } 100%)`;
 
@@ -158,6 +158,36 @@ describe( 'getGradientTone', () => {
 		it.each( LIGHT_PALETTE )( 'treats %s as light', slug => {
 			expect( getGradientTone( solid( resolve( palette[ slug ] ) ) ).tone ).toBe( 'light' );
 		} );
+	} );
+} );
+
+describe( 'textMeetsContrast', () => {
+	it( 'passes a text colour that reads on every colour of the gradient', () => {
+		expect( textMeetsContrast( 'linear-gradient(135deg,#000000 0%,#0063BF 100%)', '#fff' ) ).toBe( true );
+	} );
+
+	it( 'fails a text colour that is too close to the gradient', () => {
+		expect( textMeetsContrast( 'linear-gradient(135deg,#000000 0%,#0063BF 100%)', '#0063BF' ) ).toBe( false );
+	} );
+
+	it( 'fails when only a colour between two readable stops fails', () => {
+		// Black text: #FF0000 is 5.25:1 and #00A000 is 6.03:1, but the midpoint is about 3.1:1.
+		expect( textMeetsContrast( solid( '#FF0000' ), '#000' ) ).toBe( true );
+		expect( textMeetsContrast( solid( '#00A000' ), '#000' ) ).toBe( true );
+		expect( textMeetsContrast( 'linear-gradient(90deg,#FF0000 0%,#00A000 100%)', '#000' ) ).toBe( false );
+	} );
+
+	it.each( [
+		[ 'a CSS variable', 'var(--wp--preset--color--main)' ],
+		[ 'an unknown slug', 'some-slug' ],
+		[ 'a translucent colour', 'rgba(0,0,0,0.5)' ],
+		[ 'no value', undefined ],
+	] )( 'fails an unreadable text colour: %s', ( label, color ) => {
+		expect( textMeetsContrast( solid( '#fff' ), color ) ).toBe( false );
+	} );
+
+	it( 'fails an unreadable gradient', () => {
+		expect( textMeetsContrast( 'some-slug', '#000' ) ).toBe( false );
 	} );
 } );
 

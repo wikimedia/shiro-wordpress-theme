@@ -276,6 +276,28 @@ export const getContrastRatio = ( first, second ) => {
 };
 
 /**
+ * Get the luminance of every stop and of 7 colours between each pair of stops.
+ *
+ * Colours between stops can be darker than both ends, e.g. red to green.
+ *
+ * @param {Array<{r: number, g: number, b: number}>} stops Stop colours.
+ * @return {number[]} Relative luminances.
+ */
+const getSampleLuminances = stops => stops.flatMap( ( stop, index ) => {
+	const next = stops[ index + 1 ];
+
+	return ! next ? [ stop ] : [ stop, ...[ 1, 2, 3, 4, 5, 6, 7 ].map( step => ( {
+		r: stop.r + ( ( next.r - stop.r ) * step ) / 8,
+		g: stop.g + ( ( next.g - stop.g ) * step ) / 8,
+		b: stop.b + ( ( next.b - stop.b ) * step ) / 8,
+	} ) ) ];
+} ).map( getRelativeLuminance );
+
+const isReadableOn = ( luminances, textLuminance ) => luminances.every(
+	luminance => getContrastRatio( textLuminance, luminance ) >= MIN_CONTRAST
+);
+
+/**
  * Decide which text colour is readable over every stop of a gradient.
  *
  * "dark" means the background is dark and needs white text; "light" means the
@@ -296,30 +318,35 @@ export const getGradientTone = gradient => {
 		return { tone: null, reason: 'transparent' };
 	}
 
-	// Colours between stops can be darker than both ends, e.g. red to green.
-	const samples = stops.flatMap( ( stop, index ) => {
-		const next = stops[ index + 1 ];
+	const luminances = getSampleLuminances( stops );
 
-		return ! next ? [ stop ] : [ stop, ...[ 1, 2, 3, 4, 5, 6, 7 ].map( step => ( {
-			r: stop.r + ( ( next.r - stop.r ) * step ) / 8,
-			g: stop.g + ( ( next.g - stop.g ) * step ) / 8,
-			b: stop.b + ( ( next.b - stop.b ) * step ) / 8,
-		} ) ) ];
-	} );
-	const luminances = samples.map( getRelativeLuminance );
-	const isReadable = textLuminance => luminances.every(
-		luminance => getContrastRatio( textLuminance, luminance ) >= MIN_CONTRAST
-	);
-
-	if ( isReadable( WHITE_LUMINANCE ) ) {
+	if ( isReadableOn( luminances, WHITE_LUMINANCE ) ) {
 		return { tone: 'dark', reason: null };
 	}
 
-	if ( isReadable( BLACK_LUMINANCE ) ) {
+	if ( isReadableOn( luminances, BLACK_LUMINANCE ) ) {
 		return { tone: 'light', reason: null };
 	}
 
 	return { tone: null, reason: 'contrast' };
+};
+
+/**
+ * Check that a text colour meets WCAG AA contrast on every sampled point of a gradient.
+ *
+ * @param {string} gradient CSS gradient.
+ * @param {string} color    CSS text colour (hex, rgb() or hsl()).
+ * @return {boolean} False when either value cannot be read, or the text colour is not opaque.
+ */
+export const textMeetsContrast = ( gradient, color ) => {
+	const stops = parseStops( gradient );
+	const text = typeof color === 'string' ? parseColor( color.trim() ) : null;
+
+	if ( ! stops || ! text || text.a < 1 ) {
+		return false;
+	}
+
+	return isReadableOn( getSampleLuminances( stops ), getRelativeLuminance( text ) );
 };
 
 /**
