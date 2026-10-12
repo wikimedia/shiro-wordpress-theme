@@ -1,5 +1,5 @@
 import theme from '../../../../../../theme.json';
-import { getGradientTone, parseStops } from '../contrast';
+import { getGradientTone, parseStops, resolvePresetReference } from '../contrast';
 
 const solid = color => `linear-gradient(90deg,${ color } 0%,${ color } 100%)`;
 
@@ -158,5 +158,35 @@ describe( 'getGradientTone', () => {
 		it.each( LIGHT_PALETTE )( 'treats %s as light', slug => {
 			expect( getGradientTone( solid( resolve( palette[ slug ] ) ) ).tone ).toBe( 'light' );
 		} );
+	} );
+} );
+
+describe( 'resolvePresetReference', () => {
+	const presets = [ { slug: 'night', gradient: 'linear-gradient(#000,#111)' } ];
+
+	it( 'resolves a plain slug', () => {
+		expect( resolvePresetReference( 'night', presets ) ).toBe( 'linear-gradient(#000,#111)' );
+	} );
+
+	it( 'resolves a var:preset|gradient|slug reference', () => {
+		expect( resolvePresetReference( 'var:preset|gradient|night', presets ) ).toBe( 'linear-gradient(#000,#111)' );
+	} );
+
+	it( 'returns the input for an unknown slug', () => {
+		expect( resolvePresetReference( 'var:preset|gradient|nope', presets ) ).toBe( 'var:preset|gradient|nope' );
+	} );
+
+	it( 'passes a CSS string through', () => {
+		expect( resolvePresetReference( 'linear-gradient(#000,#fff)', presets ) ).toBe( 'linear-gradient(#000,#fff)' );
+	} );
+} );
+
+describe( 'styles.background.gradient values', () => {
+	it( 'is dark for black to purple', () => {
+		expect( getGradientTone( 'linear-gradient(0deg,rgb(0,0,0) 0%,rgb(155,81,224) 100%)' ) ).toEqual( { tone: 'dark', reason: null } );
+	} );
+
+	it( 'is light for light blue to white', () => {
+		expect( getGradientTone( 'linear-gradient(180deg,rgb(118,185,224) 0%,rgb(255,255,255) 100%)' ).tone ).toBe( 'light' );
 	} );
 } );

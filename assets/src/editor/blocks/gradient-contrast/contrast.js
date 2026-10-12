@@ -321,3 +321,16 @@ export const getGradientTone = gradient => {
 
 	return { tone: null, reason: 'contrast' };
 };
+
+/**
+ * Resolve a preset slug or `var:preset|gradient|slug` reference to its CSS.
+ *
+ * @param {string}   value   Preset slug, preset reference or CSS gradient.
+ * @param {object[]} presets Gradient presets.
+ * @return {string} The preset CSS, or the input when no preset matches.
+ */
+export const resolvePresetReference = ( value, presets ) => {
+	const slug = value.replace( /^var:preset\|gradient\|/, '' );
+
+	return presets.find( preset => preset.slug === slug )?.gradient ?? value;
+};

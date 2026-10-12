@@ -13,7 +13,7 @@ import { dispatch } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import { getGradientTone } from './contrast';
+import { getGradientTone, resolvePresetReference } from './contrast';
 
 const TONE_CLASSES = {
 	dark: 'has-dark-background',
@@ -38,13 +38,10 @@ const getMessages = () => ( {
  */
 const resolveGradient = ( attributes, presets ) => {
 	const { gradient, style } = attributes;
+	const value = gradient || style?.color?.gradient || style?.background?.gradient;
 
-	if ( gradient ) {
-		// An unknown slug is returned as it is, which counts as unreadable.
-		return presets.find( ( { slug } ) => slug === gradient )?.gradient ?? gradient;
-	}
-
-	return style?.color?.gradient;
+	// An unknown slug is returned as it is, which counts as unreadable.
+	return value && resolvePresetReference( value, presets );
 };
 
 /**
