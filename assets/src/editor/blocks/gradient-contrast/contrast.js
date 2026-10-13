@@ -361,3 +361,40 @@ export const resolvePresetReference = ( value, presets ) => {
 
 	return presets.find( preset => preset.slug === slug )?.gradient ?? value;
 };
+
+/**
+ * Get the CSS of the text colour set on a block.
+ *
+ * @param {Object}   attributes Block attributes.
+ * @param {object[]} palette    Colour palette from the block editor settings.
+ * @return {string|undefined} Colour, or undefined when the block has none. An unknown
+ *     slug is returned as it is, which counts as unreadable.
+ */
+export const resolveTextColor = ( attributes, palette ) => {
+	const value = attributes.textColor || attributes.style?.color?.text;
+	const slug = value?.replace( /^var:preset\|color\|/, '' );
+
+	return palette.find( color => color.slug === slug )?.color ?? value;
+};
+
+/**
+ * Get the resolved text colours of the descendants that sit on a block's background.
+ *
+ * A descendant with a background of its own is skipped with its whole subtree,
+ * because its text is not on the ancestor's background.
+ *
+ * @param {Object[]} blocks  Inner blocks, each with `attributes` and `innerBlocks`.
+ * @param {object[]} palette Colour palette from the block editor settings.
+ * @return {string[]} Text colours, in document order.
+ */
+export const getDescendantTextColors = ( blocks, palette ) => blocks.flatMap( ( { attributes, innerBlocks } ) => {
+	const { backgroundColor, gradient, style } = attributes;
+
+	if ( backgroundColor || gradient || style?.color?.background || style?.color?.gradient || style?.background?.gradient ) {
+		return [];
+	}
+
+	const color = resolveTextColor( attributes, palette );
+
+	return [ ...( color ? [ color ] : [] ), ...getDescendantTextColors( innerBlocks, palette ) ];
+} );

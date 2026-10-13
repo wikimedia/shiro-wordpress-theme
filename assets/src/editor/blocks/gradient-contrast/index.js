@@ -11,11 +11,11 @@
 import { InspectorControls, useSettings } from '@wordpress/block-editor';
 import { Notice } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { dispatch } from '@wordpress/data';
+import { dispatch, useSelect } from '@wordpress/data';
 import { useEffect, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import { getGradientTone, resolvePresetReference, textMeetsContrast } from './contrast';
+import { getDescendantTextColors, getGradientTone, resolvePresetReference, resolveTextColor, textMeetsContrast } from './contrast';
 
 const TONE_CLASSES = {
 	dark: 'has-dark-background',
@@ -25,7 +25,7 @@ const TONE_CLASSES = {
 const BACKGROUND_IMAGE_REASON = 'background-image';
 
 const getMessages = () => ( {
-	contrast: __( 'The text on this gradient may not meet accessibility contrast (WCAG AA). Choose another gradient or text colour.', 'shiro-admin' ),
+	contrast: __( 'The text on this gradient may not meet accessibility contrast (WCAG AA). Choose a gradient whose colours are all darker or all lighter.', 'shiro-admin' ),
 	transparent: __( 'This gradient has a transparent colour stop, so text contrast cannot be checked. Use fully opaque colours. The post cannot be saved until this is fixed.', 'shiro-admin' ),
 	[ BACKGROUND_IMAGE_REASON ]: __( 'A gradient cannot be combined with a background image, because text contrast cannot be checked. Remove one of them. The post cannot be saved until this is fixed.', 'shiro-admin' ),
 	unreadable: __( 'The editor cannot read a colour in this gradient, such as a CSS variable or color-mix(). Use hex, rgb() or hsl() colours. The post cannot be saved until this is fixed.', 'shiro-admin' ),
@@ -44,21 +44,6 @@ const resolveGradient = ( attributes, presets ) => {
 
 	// An unknown slug is returned as it is, which counts as unreadable.
 	return value && resolvePresetReference( value, presets );
-};
-
-/**
- * Get the CSS of the text colour set on a block.
- *
- * @param {Object}   attributes Block attributes.
- * @param {object[]} palette    Colour palette from the block editor settings.
- * @return {string|undefined} Colour, or undefined when the block has none. An unknown
- *     slug is returned as it is, which counts as unreadable.
- */
-const resolveTextColor = ( attributes, palette ) => {
-	const value = attributes.textColor || attributes.style?.color?.text;
-	const slug = value?.replace( /^var:preset\|color\|/, '' );
-
-	return palette.find( color => color.slug === slug )?.color ?? value;
 };
 
 /**
@@ -131,8 +116,18 @@ const withGradientContrast = createHigherOrderComponent( ( BlockEdit ) => {
 		const problem = gradient && hasBackgroundImage ? BACKGROUND_IMAGE_REASON : reason;
 		// Low contrast only warns. Every other problem blocks saving.
 		const isBlocked = !! problem && problem !== 'contrast';
+
+		const hasLowContrastDescendant = useSelect( select => {
+			if ( ! gradient || isBlocked ) {
+				return false;
+			}
+
+			return getDescendantTextColors( select( 'core/block-editor' ).getBlocks( clientId ), palette )
+				.some( color => ! textMeetsContrast( gradient, color ) );
+		} );
+
 		const hasLowContrast = !! gradient && ! isBlocked && (
-			textColor ? ! textMeetsContrast( gradient, textColor ) : problem === 'contrast'
+			hasLowContrastDescendant || ( textColor ? ! textMeetsContrast( gradient, textColor ) : problem === 'contrast' )
 		);
 		const noticeReason = hasLowContrast ? 'contrast' : isBlocked && problem;
 

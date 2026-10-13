@@ -1,5 +1,5 @@
 import theme from '../../../../../../theme.json';
-import { getGradientTone, parseStops, resolvePresetReference, textMeetsContrast } from '../contrast';
+import { getDescendantTextColors, getGradientTone, parseStops, resolvePresetReference, textMeetsContrast } from '../contrast';
 
 const solid = color => `linear-gradient(90deg,${ color } 0%,${ color } 100%)`;
 
@@ -218,5 +218,31 @@ describe( 'styles.background.gradient values', () => {
 
 	it( 'is light for light blue to white', () => {
 		expect( getGradientTone( 'linear-gradient(180deg,rgb(118,185,224) 0%,rgb(255,255,255) 100%)' ).tone ).toBe( 'light' );
+	} );
+} );
+
+describe( 'getDescendantTextColors', () => {
+	const palette = [ { slug: 'red', color: '#f00' } ];
+	const block = ( attributes, innerBlocks = [] ) => ( { attributes, innerBlocks } );
+
+	it( 'resolves a child text colour through the palette', () => {
+		expect( getDescendantTextColors( [ block( { textColor: 'red' } ), block( { style: { color: { text: '#111' } } } ), block( {} ) ], palette ) )
+			.toEqual( [ '#f00', '#111' ] );
+	} );
+
+	it( 'skips a child with its own background and its subtree', () => {
+		const child = attributes => block( attributes, [ block( { textColor: 'red' } ) ] );
+
+		expect( getDescendantTextColors( [
+			child( { textColor: 'red', backgroundColor: 'red' } ),
+			child( { style: { color: { background: '#fff' } } } ),
+			child( { gradient: 'g' } ),
+			child( { style: { color: { gradient: 'g' } } } ),
+			child( { style: { background: { gradient: 'g' } } } ),
+		], palette ) ).toEqual( [] );
+	} );
+
+	it( 'reaches a grandchild through a child without a colour', () => {
+		expect( getDescendantTextColors( [ block( {}, [ block( { textColor: 'red' } ) ] ) ], palette ) ).toEqual( [ '#f00' ] );
 	} );
 } );
