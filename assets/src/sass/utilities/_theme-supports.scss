@@ -56,30 +56,35 @@ $color-palette-light:
 
 $color-palette-all: list.join($color-palette-dark, $color-palette-light);
 
-@each $color in $color-palette-all {
-	$is-dark: is-in-list($color, $color-palette-dark);
+// Text, icon and button colours that keep WCAG AA contrast on a background.
+// Applied inside a selector for the background. $palette-slug is the slug of a
+// palette colour; it is null for gradients, which skip the rules that depend
+// on a specific palette colour.
+@mixin accessible-colors($is-dark, $palette-slug: null) {
 	$text-var: if($is-dark, '--wp--preset--color--base', '--wp--preset--color--main');
 
-	.has-#{$color}-background-color {
-		color: var(#{$text-var}) !important;
+	color: var(#{$text-var}) !important;
 
+	@if $palette-slug {
 		&.wp-block-separator {
-			color: var(--wp--preset--color--#{$color}) !important;
+			color: var(--wp--preset--color--#{$palette-slug}) !important;
 		}
+	}
 
-		.wp-block-shiro-button.is-style-as-link::before,
-		.wp-block-shiro-button.is-style-as-arrow-link::before,
-		.is-style-transparent.has-icon .wp-block-button__link:not(:active)::before,
-		.is-style-as-link.has-icon .wp-block-button__link::before,
-		.is-style-as-arrow-link.has-icon .wp-block-button__link::before {
-			filter: if($is-dark, brightness(0) invert(1), brightness(0)) !important;
-		}
+	.wp-block-shiro-button.is-style-as-link::before,
+	.wp-block-shiro-button.is-style-as-arrow-link::before,
+	.is-style-transparent.has-icon .wp-block-button__link:not(:active)::before,
+	.is-style-as-link.has-icon .wp-block-button__link::before,
+	.is-style-as-arrow-link.has-icon .wp-block-button__link::before {
+		filter: if($is-dark, brightness(0) invert(1), brightness(0)) !important;
+	}
 
-		.wp-block-button__link {
-			border-color: var(#{$text-var}) !important;
-			outline-color: var(#{$text-var}) !important;
-		}
+	.wp-block-button__link {
+		border-color: var(#{$text-var}) !important;
+		outline-color: var(#{$text-var}) !important;
+	}
 
+	@if $palette-slug {
 		&.has-base-background-color .wp-block-button__link {
 			&:hover,
 			&:focus {
@@ -108,6 +113,33 @@ $color-palette-all: list.join($color-palette-dark, $color-palette-light);
 				outline-color: currentColor !important;
 			}
 		}
+	}
+}
+
+// Gradients have no palette class, so the block editor adds one of these
+// classes after checking the gradient's contrast. They come before the palette
+// rules so that a palette-coloured block inside a gradient block wins by
+// source order.
+.has-dark-background {
+	@include accessible-colors(true);
+}
+
+// The tone class lands on the button wrapper, but the gradient is on the link.
+.wp-block-button.has-dark-background > .wp-block-button__link {
+	color: var(--wp--preset--color--base) !important;
+}
+
+.has-light-background {
+	@include accessible-colors(false);
+}
+
+.wp-block-button.has-light-background > .wp-block-button__link {
+	color: var(--wp--preset--color--main) !important;
+}
+
+@each $color in $color-palette-all {
+	.has-#{$color}-background-color {
+		@include accessible-colors(is-in-list($color, $color-palette-dark), $color);
 	}
 }
 
