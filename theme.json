@@ -10,7 +10,7 @@
 		"color": {
 			"custom": false,
 			"customDuotone": false,
-			"customGradient": false,
+			"customGradient": true,
 			"defaultDuotone": false,
 			"defaultGradients": false,
 			"defaultPalette": false,
