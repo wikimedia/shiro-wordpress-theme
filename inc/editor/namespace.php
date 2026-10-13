@@ -295,7 +295,7 @@ function is_using_block_editor(): bool {
 }
 
 /**
- * Enqueue the editor stylesheet in the editor iframe, not on the front end.
+ * Enqueue the editor stylesheets in the editor iframe, not on the front end.
  */
 function enqueue_block_assets() {
 	if ( ! is_admin() ) {
@@ -308,6 +308,16 @@ function enqueue_block_assets() {
 		$editor_css_asset,
 		[
 			'handle' => 'shiro_editor_css',
+		]
+	);
+
+	// add_editor_style() can't load this file: it looks in the theme root, and the build writes to assets/dist.
+	$editor_style_css_asset = is_rtl() ? 'editor-style.rtl.css' : 'editor-style.css';
+	Asset_Loader\enqueue_asset(
+		Assets\get_manifest_path( $editor_style_css_asset ),
+		$editor_style_css_asset,
+		[
+			'handle' => 'shiro_editor_style_css',
 		]
 	);
 }
