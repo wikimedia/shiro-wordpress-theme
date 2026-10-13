@@ -14,6 +14,7 @@ import * as coreQuote from './blocks/core-quote';
 import * as doubleHeading from './blocks/double-heading';
 import * as externalLink from './blocks/external-link';
 import * as filterColorSupport from './blocks/filter-color-support';
+import * as gradientContrast from './blocks/gradient-contrast';
 import * as homePageHero from './blocks/home-page-hero';
 import * as inlineLanguages from './blocks/inline-languages';
 import * as landingPageHero from './blocks/landing-page-hero';
@@ -42,6 +43,7 @@ if ( process.env.NODE_ENV.trim() === 'development' && window.__webpack_public_pa
 	// hot-update chunks. This fixes an issue where hot-reloading in the editor
 	// tries to load files relative to /wp-admin/. May be unnecessary once all
 	// blocks have been converted to block.json structure.
+	// eslint-disable-next-line camelcase, no-undef
 	__webpack_public_path__ = window.__webpack_public_path__;
 }
 
@@ -54,6 +56,7 @@ const blocks = [
 	doubleHeading,
 	externalLink,
 	filterColorSupport,
+	gradientContrast,
 	homePageHero,
 	inlineLanguages,
 	landingPageHero,

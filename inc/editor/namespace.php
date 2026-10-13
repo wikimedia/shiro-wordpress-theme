@@ -214,10 +214,6 @@ function add_theme_supports() {
 	// Remove the ability to set custom font sizes in the editor.
 	add_theme_support( 'disable-custom-font-sizes' );
 
-	// Disable and gradient selection in the editor.
-	add_theme_support( 'editor-gradient-presets', [] );
-	add_theme_support( 'disable-custom-gradients' );
-
 	// Allow for "wide" and "full" alignment options on blocks that support them.
 	add_theme_support( 'align-wide' );
 

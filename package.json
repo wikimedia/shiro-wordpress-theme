@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Wikimedia Foundation's primary Wordpress theme",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "wp-scripts test-unit-js",
     "lint:js": "bin/lint-changed-js.sh",
     "lint:php": "composer phpcs:changed",
     "lint": "run-p lint:js lint:php",
