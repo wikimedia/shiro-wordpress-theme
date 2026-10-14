@@ -20,6 +20,7 @@ function bootstrap() {
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\register_core_block_styles' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
+	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\enqueue_block_assets' );
 	add_filter( 'block_categories_all', __NAMESPACE__ . '\\add_block_categories' );
 
 	// Disable block directory, we cannot (and would not want to) dynamically add plugins.
@@ -290,6 +291,34 @@ function is_using_block_editor(): bool {
 }
 
 /**
+ * Enqueue the editor stylesheets in the editor iframe, not on the front end.
+ */
+function enqueue_block_assets() {
+	if ( ! is_admin() ) {
+		return;
+	}
+
+	$editor_css_asset = is_rtl() ? 'editor.rtl.css' : 'editor.css';
+	Asset_Loader\enqueue_asset(
+		Assets\get_manifest_path( $editor_css_asset ),
+		$editor_css_asset,
+		[
+			'handle' => 'shiro_editor_css',
+		]
+	);
+
+	// add_editor_style() can't load this file: it looks in the theme root, and the build writes to assets/dist.
+	$editor_style_css_asset = is_rtl() ? 'editor-style.rtl.css' : 'editor-style.css';
+	Asset_Loader\enqueue_asset(
+		Assets\get_manifest_path( $editor_style_css_asset ),
+		$editor_style_css_asset,
+		[
+			'handle' => 'shiro_editor_style_css',
+		]
+	);
+}
+
+/**
  * Enqueue assets used only in the block editor.
  */
 function enqueue_block_editor_assets() {
@@ -323,24 +352,6 @@ function enqueue_block_editor_assets() {
 			'siteLanguage'  => $languages[0]['shortname'] ?? '',
 			'wmfIsMainSite' => wmf_is_main_site(),
 		)
-	);
-
-	$editor_css_asset = is_rtl() ? 'editor.rtl.css' : 'editor.css';
-	Asset_Loader\enqueue_asset(
-		Assets\get_manifest_path( $editor_css_asset ),
-		$editor_css_asset,
-		[
-			'handle' => 'shiro_editor_css',
-		]
-	);
-
-	$editor_style_css_asset = is_rtl() ? 'editor-style.rtl.css' : 'editor-style.css';
-	Asset_Loader\enqueue_asset(
-		Assets\get_manifest_path( $editor_style_css_asset ),
-		$editor_style_css_asset,
-		[
-			'handle' => 'shiro_editor_style_css',
-		]
 	);
 }
 
