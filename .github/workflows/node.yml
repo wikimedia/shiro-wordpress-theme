@@ -67,3 +67,7 @@ jobs:
       - name: Build application
         if: ${{ steps.paths.outputs.javascript == 'true' || steps.paths.outputs.npm == 'true' }}
         run: npm run build
+
+      - name: Run unit tests
+        if: ${{ steps.paths.outputs.javascript == 'true' || steps.paths.outputs.npm == 'true' }}
+        run: npm test
