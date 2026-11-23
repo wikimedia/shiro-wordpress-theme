@@ -95,11 +95,11 @@ function wmf_get_header_cta_button_class() {
  */
 function wmf_sort_role_list( &$roles ) {
 	uasort( $roles, function ( $a, $b ) {
-		$order_a = $a['order'];
+		$order_a = $a['order'] ?? 1000;
 		if ( empty( $order_a ) ) {
 			$order_a = 1000;
 		}
-		$order_b = $b['order'];
+		$order_b = $b['order'] ?? 1000;
 		if ( empty( $order_b ) ) {
 			$order_b = 1000;
 		}
@@ -196,8 +196,8 @@ function wmf_get_role_posts( $term_id ) {
 
 	return array(
 		'posts' => $profile_list,
-		'name'  => $term_query->name,
-		'slug'  => $term_query->slug,
+		'name'  => $term_query->name ?? '',
+		'slug'  => $term_query->slug ?? '',
 		'order' => get_term_meta( $term_id, 'role_order', true ) ?: 0,
 	);
 }
@@ -460,7 +460,7 @@ function wmf_get_author_link( $author_id ) {
 		$post = get_post( $author_id );
 	}
 
-	$author_link = $post->post_name;
+	$author_link = $post->post_name ?? '';
 
 	return $author_link;
 }
