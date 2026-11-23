@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-namespace WMF;
+namespace WMF; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound -- the prefix list holds wmf_, which matches WMF\ sub-namespaces only.
 
 /**
  * Handles autoloading for the WMF namespace.

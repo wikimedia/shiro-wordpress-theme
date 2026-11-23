@@ -8,11 +8,11 @@
 $newer = get_theme_mod( 'wmf_pagination_newer', __( 'Previous', 'shiro-admin' ) );
 $older = get_theme_mod( 'wmf_pagination_older', __( 'Next', 'shiro-admin' ) );
 
-$previous_arrow = <<<SVG
+$previous_arrow = <<<'SVG'
 <svg fill="none" height="18" viewBox="0 0 12 18" width="12" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m9.75 0-9 9 9 9 1.5-1.5-7.5-7.5 7.5-7.5z" fill="#000" fill-rule="evenodd"/></svg>
 SVG;
 
-$next_arrow = <<<SVG
+$next_arrow = <<<'SVG'
 <svg fill="none" height="18" viewBox="0 0 12 18" width="12" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m2.25 0-1.5 1.5 7.499 7.5-7.499 7.5 1.5 1.5 9-9z" fill-rule="evenodd"/></svg>
 SVG;
 

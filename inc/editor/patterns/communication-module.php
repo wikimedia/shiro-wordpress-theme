@@ -7,7 +7,7 @@ namespace WMF\Editor\Patterns\CommunicationModule;
 
 const NAME = 'shiro/communication-module';
 
-const PATTERN = <<<CONTENT
+const PATTERN = <<<'CONTENT'
 <!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}}} -->
 <div class="wp-block-group alignwide" style="margin-top:var(--wp--preset--spacing--40);margin-bottom:var(--wp--preset--spacing--40)"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
