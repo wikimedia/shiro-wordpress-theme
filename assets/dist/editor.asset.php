@@ -20,5 +20,5 @@
 		'wp-server-side-render',
 		'wp-token-list'
 	),
-	'version' => '088c6145668d7abe9912'
+	'version' => 'a50ea5efc0da50d1eaea'
 );

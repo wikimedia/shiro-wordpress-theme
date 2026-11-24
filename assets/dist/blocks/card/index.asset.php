@@ -11,5 +11,5 @@
 		'wp-i18n',
 		'wp-keycodes'
 	),
-	'version' => '015ca7f9c220b9d77130'
+	'version' => 'c3b3ca0eb4f8483406fd'
 );
