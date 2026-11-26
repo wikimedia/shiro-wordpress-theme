@@ -7,7 +7,7 @@ namespace WMF\Editor\Patterns\BlogList;
 
 const NAME = 'shiro/blog-list';
 
-const PATTERN = <<<CONTENT
+const PATTERN = <<<'CONTENT'
 <!-- wp:group {"align":"full","backgroundColor":"base90"} -->
 <div class="wp-block-group alignfull has-base-90-background-color has-background"><div class="wp-block-group__inner-container">
 <!-- wp:heading -->

@@ -13,7 +13,7 @@ const NAME = 'shiro/template-report-section';
  * @return string
  */
 function pattern(): string {
-	return <<<CONTENT
+	return <<<'CONTENT'
 <!-- wp:shiro/toc-columns -->
 <div class="wp-block-shiro-toc-columns"><!-- wp:columns {"className":"toc__section"} -->
 <div class="wp-block-columns toc__section"><!-- wp:column {"width":"30%","className":"toc__sidebar"} -->

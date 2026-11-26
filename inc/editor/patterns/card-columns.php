@@ -7,7 +7,7 @@ namespace WMF\Editor\Patterns\CardColumns;
 
 const NAME = 'shiro/card-columns';
 
-const PATTERN = <<<CONTENT
+const PATTERN = <<<'CONTENT'
 <!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:shiro/card {"imageId":0} -->
