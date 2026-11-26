@@ -7,7 +7,7 @@ namespace WMF\Editor\Patterns\FactColumns;
 
 const NAME = 'shiro/fact-columns';
 
-const PATTERN = <<<CONTENT
+const PATTERN = <<<'CONTENT'
 <!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column {"width":"25%"} -->
 <div class="wp-block-column" style="flex-basis:25%"><!-- wp:paragraph {"className":"is-style-h1"} -->

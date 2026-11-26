@@ -13,7 +13,7 @@ const NAME = 'shiro/template-report-landing';
  * @return string
  */
 function pattern(): string {
-	return <<<CONTENT
+	return <<<'CONTENT'
 <!-- wp:shiro/report-landing-hero -->
 <div class="wp-block-shiro-report-landing-hero hero is-style-base90"><header class="hero-report__header"><div class="hero-report__text-column"><small class="hero-report__kicker"></small><h1 class="hero-report__title"></h1></div><figure class="hero-report__image-container image-filter-inherit"><img alt="" class="hero-report__image"/></figure></header></div>
 <!-- /wp:shiro/report-landing-hero -->
