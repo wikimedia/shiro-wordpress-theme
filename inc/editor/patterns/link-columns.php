@@ -15,7 +15,7 @@ const NAME = 'shiro/link-columns';
  *
  * @return string
  */
-const PATTERN = <<<CONTENT
+const PATTERN = <<<'CONTENT'
 <!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:shiro/external-link -->

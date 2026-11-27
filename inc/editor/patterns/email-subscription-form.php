@@ -7,7 +7,7 @@ namespace WMF\Editor\Patterns\EmailSubscriptionForm;
 
 const NAME = 'shiro/email-subscription-form';
 
-const PATTERN = <<<CONTENT
+const PATTERN = <<<'CONTENT'
 <!-- wp:group {"align":"full","backgroundColor":"yellow","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-yellow-background-color has-background"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|80"}}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"blockGap":"var:preset|spacing|16"}}} -->

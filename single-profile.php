@@ -20,12 +20,14 @@ while ( have_posts() ) :
 	$roles           = get_the_terms( get_the_ID(), 'role' );
 	$default_heading = get_theme_mod( 'wmf_related_profiles_heading', __( 'Other members of ', 'shiro-admin' ) );
 	$team_name       = '';
-	$parent_name    = $roles[0]->name;
-	$parent_link    = get_term_link( $roles[0] );
+	$parent_name    = '';
+	$parent_link    = '';
 	$connected_user = get_post_meta( get_the_ID(), 'connected_user', true );
 
 	if ( ! empty( $roles ) && ! is_wp_error( $roles ) ) {
-		$team_name  = $roles;
+		$team_name   = $roles;
+		$parent_name = $roles[0]->name;
+		$parent_link = get_term_link( $roles[0] );
 		$ancestors  = get_ancestors( $roles[0]->term_id, 'role' );
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -39,8 +41,8 @@ while ( have_posts() ) :
 			$parent_id = is_array( $ancestors ) ? end( $ancestors ) : false;
 		}
 
-		if ( $parent_id ) {
-			$parent_term = get_term( $parent_id );
+		$parent_term = $parent_id ? get_term( $parent_id ) : null;
+		if ( $parent_term instanceof WP_Term ) {
 			$parent_name = $parent_term->name;
 			$parent_link = get_term_link( $parent_id );
 		}
@@ -157,7 +159,7 @@ while ( have_posts() ) :
 	}
 
 	$template_args['profiles_list'] = wmf_get_related_profiles( get_the_ID() );
-	$template_args['headline']      = ! empty( $template_args['headline'] ) ? $template_args['headline'] : $default_heading . $roles[0]->name;
+	$template_args['headline']      = ! empty( $template_args['headline'] ) ? $template_args['headline'] : $default_heading . ( $team_name[0]->name ?? '' );
 	get_template_part( 'template-parts/modules/profiles/list', null, $template_args );
 endwhile;
 Credits::get_instance()->resume();

@@ -19,6 +19,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Full history so lint:js can diff changed files against the base branch.
+          fetch-depth: 0
 
       - name: Paths filters
         uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4.0.3
@@ -29,14 +32,13 @@ jobs:
               - '**/*.js'
             eslint:
               - *javascript
-              - '.eslintignore'
-              - '.eslintrc'
+              - 'eslint.config.js'
             npm:
               - 'package.json'
               - 'package-lock.json'
 
       - name: Set up Node
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
           cache: 'npm'
@@ -47,13 +49,15 @@ jobs:
 
       - name: Lint code and save linting report JSON
         if: ${{ steps.paths.outputs.eslint == 'true' }}
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: npm run lint:js -- --output-file eslint_report.json --format json
         # Continue to the next step even if this fails, so we can report on it.
         continue-on-error: true
 
       - name: Annotate Code Linting Results
-        # Only annotate when the lint step above actually ran and wrote a report.
-        if: ${{ steps.paths.outputs.eslint == 'true' }}
+        # Only annotate when the lint step wrote a report. It writes none when no JS file changed, for example a PR that only deletes JS.
+        if: ${{ steps.paths.outputs.eslint == 'true' && hashFiles( 'eslint_report.json' ) != '' }}
         uses: ataylorme/eslint-annotate-action@5a8d8ab89a57679e90c32750e0f382e9d8570750 # v4.0.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

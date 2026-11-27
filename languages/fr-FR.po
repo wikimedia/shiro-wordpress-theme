@@ -8,7 +8,7 @@ msgstr ""
 "PO-Revision-Date: 2025-08-20 14:57-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: fr\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -63,11 +63,11 @@ msgstr "Une seule fois"
 
 #: assets/src/editor/blocks/donation-bar/render.php:82
 msgid "Give monthly"
-msgstr "Tous les mois"
+msgstr "Faire un don mensuel"
 
 #: assets/src/editor/blocks/donation-bar/render.php:87
 msgid "Annual"
-msgstr "Tous les ans"
+msgstr "Annuel"
 
 #: assets/src/editor/blocks/donation-bar/render.php:93
 #: assets/src/editor/blocks/core-button/index.js:62

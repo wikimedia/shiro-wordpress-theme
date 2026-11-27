@@ -10,7 +10,7 @@ $profile_header_data = $args;
 $team_name    = ! empty( $profile_header_data['team_name'] ) ? $profile_header_data['team_name'] : false;
 $role_name    = ! empty( $profile_header_data['role'] ) ? $profile_header_data['role'] : false;
 $share_links  = ! empty( $profile_header_data['share_links'] ) ? $profile_header_data['share_links'] : '';
-$team_url     = get_term_link( $team_name[0]->term_id, $team_name[0]->taxonomy );
+$team_url     = empty( $team_name[0] ) ? false : get_term_link( $team_name[0]->term_id, $team_name[0]->taxonomy );
 $team_link    = is_string( $team_url ) ? '<a href="' . esc_url( $team_url ) . '">' . esc_html( $team_name[0]->name ) . '</a>' : '';
 $role_desc    = join( ', ', array_filter( array( $role_name, $team_link ) ) );
 

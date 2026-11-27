@@ -77,7 +77,7 @@
 	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
-			<property name="prefixes" type="array" value="wmf,shiro"/>
+			<property name="prefixes" type="array" value="wmf_,shiro"/>
 		</properties>
 	</rule>
 	<rule ref="WordPress.Security.ValidatedSanitizedInput">

@@ -270,7 +270,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			 * the action we run on each post is minimal. Given that, a query
 			 * getting *all* posts should be safe.
 			 */
-			'posts_per_page' => -1,
+			'posts_per_page' => -1, // phpcs:ignore WordPressVIPMinimum.Performance.NoPaging.posts_per_page_posts_per_page -- see the comment above.
 			'fields' => 'ids',
 			// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 			'tax_query' => [

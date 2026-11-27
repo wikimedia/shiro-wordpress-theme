@@ -6,17 +6,16 @@
  * and background colors.
  *
  * The text color in all cases should be set intelligently based on the
- * background color to preserve AAA contrast requirements for accessibility.
+ * background color to preserve WCAG AA contrast requirements for accessibility.
  */
 
 /**
  * Remove the "text" property from the block supports for all blocks that
  * support the color picker.
  *
- * @param {object} settings Block registration settings.
- * @param {string} name Block name.
+ * @param {Object} settings Block registration settings.
  */
-const removeTextColorSelection = ( settings, name ) => {
+const removeTextColorSelection = ( settings ) => {
 
 	if ( ! settings.supports?.color ) {
 		return settings;
