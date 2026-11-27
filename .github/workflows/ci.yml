@@ -27,6 +27,7 @@ on:
       - 'package.json'
       - 'package-lock.json'
       - 'phpcs.xml'
+      - 'languages/**'
 
 permissions:
   contents: read
@@ -49,3 +50,21 @@ jobs:
   php:
     uses: ./.github/workflows/php.yml
     secrets: inherit
+
+  i18n:
+    name: Locale filenames
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Reject underscore-named catalogues
+        run: |
+          # Translation catalogues must be hyphen-named (fr-FR.mo, not fr_FR.mo)
+          # to match the locale WordPress resolves under MultilingualPress; an
+          # underscore name silently falls back to English on the live subsite.
+          # ponytail: catches underscore-vs-hyphen only. A wrong-but-hyphenated
+          # name (e.g. fr-CA.mo for an fr-FR subsite) still slips through; add a
+          # per-locale load assertion if that ever bites.
+          if git ls-files 'languages/*.po' 'languages/*.mo' | grep '_'; then
+            echo "::error::Translation catalogues must use hyphenated locale names (e.g. fr-FR.mo, not fr_FR.mo)."
+            exit 1
+          fi
